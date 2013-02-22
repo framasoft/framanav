@@ -1,0 +1,67 @@
+
+#framanav_checkmail {
+	background : transparent url('./img/nav.png') -115px -60px no-repeat;
+	width : 22px; height : 22px;
+}
+
+/* Screenshots */
+.framanav_scr { 
+	background : url('./img/sites.jpg') no-repeat;
+	width : 200px; height : 140px;
+	border: 0px 1px 1px 0px solid #DFDFDF;
+}
+
+.framanav_framasoft { background-position : 0 0; }
+.framanav_framablog { background-position : 0 -140px; }
+.framanav_framabook { background-position : 0 -280px; }
+.framanav_framakey { background-position : 0 -420px; }
+.framanav_framagora { background-position : 0 -560px; }
+.framanav_enventelibre { background-position : 0 -700px; }
+.framanav_framapack { background-position : 0 -840px; }
+.framanav_framadvd { background-position : 0 -980px; }
+.framanav_framapad { background-position : 0 -1120px; }
+.framanav_framawiki { background-position : 0 -1260px; }
+.framanav_framatube { background-position : 0 -1400px; }
+.framanav_soutenir { background-position : 0 -1540px; }
+.framanav_framadate { background-position : 0 -1680px; }
+
+.framanav_framacalc { background-position : 0 -1820px; }
+.framanav_framatube { background-position : 0 -1960px; }
+.framanav_framazic { background-position : 0 -2100px; }
+.framanav_framindmap { background-position : 0 -2240px; }
+.framanav_framavectoriel { background-position : 0 -2380px; }
+.framanav_framaphonie { background-position : 0 -2520px; }
+.framanav_framawiki { background-position : 0 -2660px; }
+.framanav_gknd { background-position : 0 -2800px; }
+.framanav_planete { background-position : 0 -2940px; }
+.framanav_vvl { background-position : 0 -3080px; }
+.framanav_framacode { background-position : 0 -3220px; }
+
+
+.framanav_container {
+	width:1100px;
+	margin: auto;
+}
+
+#framanav input.span2, #framanav textarea.span2, #framanav .uneditable-input.span2 {
+	width: 75px !important;
+}
+
+a#framanav_donation {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	display: block;
+	height: 63px;
+	width: 63px;
+	background: url('./img/nav.png') -119px -60px no-repeat;
+	text-indent: -999em;
+	text-decoration: none;
+	z-index : 99;
+}
+a#framanav_donation:hover {filter:alpha(opacity=80);-moz-opacity:0.8;-khtml-opacity: 0.8;opacity: 0.8;}
+
+#framanav .brand { font-weight: bold; }
+#framanav .dd_icon { border:none; margin-right: 5px; }
+
+#framanav .popover-title { font-weight: bold; }
