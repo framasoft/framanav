@@ -14,6 +14,8 @@ if (!defined('FNAV_CONFIG')) {
 	<?php echo FNAV_EXTRA_START == true ? $fnav_extra_start : ''; ?>
 
 	<link href="<?php echo FNAV_RPATH; ?>/nav.css" rel="stylesheet">
+	<?php echo FNAV_EXTRA_CSS == true ? '<link href="<?php echo FNAV_EXTRA_CSS; ?>" rel="stylesheet">' : ''; ?>
+
 	
 	<?php echo FNAV_LOCAL_JQUERY == true ? '<script src="' . FNAV_RPATH .'/fnav_bootstrap/js/jquery.min.js"></script>' : ''; ?>
 	
