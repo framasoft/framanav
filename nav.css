@@ -6,7 +6,7 @@
 
 /* Screenshots */
 .framanav_scr { 
-	background : url('./img/sites.jpg') no-repeat;
+	background : url('./img/sites.jpg?1') no-repeat;
 	width : 200px; height : 140px;
 	border: 0px 1px 1px 0px solid #DFDFDF;
 }
