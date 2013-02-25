@@ -70,7 +70,7 @@ if (!defined('FNAV_CONFIG')) {
                        <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Services libres <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-							<li><a href="http://framapad.org" rel="popover" data-content="Editeur de texte collaboratif en temps réel. <div class='framanav_scr framanav_framapad'></div>" title="Framapad"><i class="icon-align-left"></i>&nbsp;Framapad</a></li>
+							<li><a href="http://framapad.org" rel="popover" data-content="Editeur de texte collaboratif. <div class='framanav_scr framanav_framapad'></div>" title="Framapad"><i class="icon-align-left"></i>&nbsp;Framapad</a></li>
 							<li><a href="http://framacalc.org" rel="popover" data-content="Tableur collaboratif en temps réel.<div class='framanav_scr framanav_framacalc'></div>" title="Framacalc"><i class="icon-th"></i>&nbsp;Framacalc</a></li>
 							<li><a href="http://framadate.org" rel="popover" data-content="Sondages et organisation de rendez-vous. <div class='framanav_scr framanav_framadate'></div>" title="Framadate"><i class="icon-calendar"></i>&nbsp;Framadate</a></li>
 							<li><a href="http://framindmap.org" rel="popover" data-content="Carte heuristique en ligne. <div class='framanav_scr framanav_framindmap'></div>" title="Framindmap"><i class="icon-edit"></i>&nbsp;Framindmap</a></li>
