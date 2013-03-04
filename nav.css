@@ -40,6 +40,7 @@
 .framanav_container {
 	width:1100px;
 	margin: auto;
+	font-size: 12px;
 }
 
 #framanav input.span2, #framanav textarea.span2, #framanav .uneditable-input.span2 {
