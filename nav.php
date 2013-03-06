@@ -1,9 +1,9 @@
 <?php
 if (!defined('FNAV_CONFIG')) {
-    if (file_exists("./framanav/conf/config.php")) {
-	include_once("./framanav/conf/config.php");
-    } elseif (file_exists("./framanav/conf/config.default.php")) {
-	include_once("./framanav/conf/config.default.php");
+    if (file_exists(dirname(__FILE__)."/conf/config.php")) {
+	include_once(dirname(__FILE__)."/conf/config.php");
+    } elseif (file_exists(dirname(__FILE__)."/conf/config.default.php")) {
+	include_once(dirname(__FILE__)."/conf/config.default.php");
     } else {
 	echo "Fichier de config Framanav absent !";
 	exit;
