@@ -38,7 +38,7 @@ Pour l'inclure, il suffit de passer la constante FNAV_EXTRA_END a "true" -->
 EOT;
 
 
-define("FNAV_EXTRA_ALERT", true);
+define("FNAV_EXTRA_ALERT", false);
 $fnav_extra_alert = <<<EOA
 <!-- Lien d alerte -->
 
