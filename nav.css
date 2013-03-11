@@ -65,3 +65,7 @@ a#framanav_donation:hover {filter:alpha(opacity=80);-moz-opacity:0.8;-khtml-opac
 #framanav .dd_icon { border:none; margin-right: 5px; }
 
 #framanav .popover-title { font-weight: bold; }
+
+.modal-backdrop {
+    z-index: 1029 !important;
+}

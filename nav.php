@@ -125,6 +125,11 @@ if (!defined('FNAV_CONFIG')) {
 				<!-- /automatiquement referm&eacute; en cas de petit &eacute;cran -->
                   </div>
                 </div>
+		
+	        <?php echo FNAV_EXTRA_ALERT == true ? $fnav_extra_alert : ""; ?>
+
+		
+		
               </div><!-- /navbar-inner -->
             </div><!-- /navbar -->
 		<script type="text/javascript">
@@ -140,7 +145,7 @@ if (!defined('FNAV_CONFIG')) {
 		});
 		
 		function p_donationsTimer(t) {
-			if (t) $('#framanav_donation').fadeOut(600).fadeIn(600);
+			if (t) jQuery('#framanav_donation').fadeOut(600).fadeIn(600);
 			t = <?php echo FNAV_DONATE_BLINK_TIME; ?> + Math.floor(Math.random()*<?php echo FNAV_DONATE_BLINK_TIME; ?> ); 
 			setTimeout('p_donationsTimer(1)',t);
 		}
