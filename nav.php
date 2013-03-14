@@ -112,7 +112,7 @@ if (!defined('FNAV_CONFIG')) {
                         <ul class="dropdown-menu">
 							<li><a href="http://twitter.com/framasoft" rel="popover" data-content="Notre compte de microblogging" title="Twitter / Framasoft"><i class="icon-search"></i>&nbsp;Twitter Framasoft</a></li>
 							<li><a href="http://identi.ca/framasoft" rel="popover" data-content="Notre compte de microblogging <strong>libre</strong> !" title="Identi.ca / Framasoft"><i class="icon-search"></i>&nbsp;Identi.ca Framasoft</a></li>
-							<li><a href="http://twitter.com/framaka" rel="popover" data-content="Le compte de microblogging d'aKa." title="Twitter / aKa"><i class="icon-user"></i>&nbsp;Twitter Framaka</a></li>
+							<li><a href="http://twitter.com/framaka" rel="popover" data-content="Le compte de microblogging d'aKa, le fondateur de Framasoft." title="Twitter / aKa"><i class="icon-user"></i>&nbsp;Twitter Framaka</a></li>
 							<li><a href="https://www.facebook.com/framasoft" data-content="Framasoft est <em>aussi</em> sur Facebook (oui, on sait...)." title="Facebook / Framasoft"><i class="icon-thumbs-up"></i>&nbsp;Facebook</a></li>
 							<li><a href="http://soutenir.framasoft.org/newsletter" data-content="Rejoignez nos 5000 abonn&eacute;s &agrave; notre lettre d'informations." title="Lettre d'informations"><i class="icon-bullhorn"></i>&nbsp;Newsletter</a></li>
 							<li><a href="http://framapack.org/~framaflux/rss.php"  data-content="Flux RSS agr&eacute;g&eacute; des diff&eacute;rents sites." title="Flux RSS"><img src="<?php echo FNAV_RPATH; ?>/img/small_rss.png" />&nbsp;Flux RSS</a></li>
