@@ -10,7 +10,7 @@ if (!defined('FNAV_CONFIG')) {
     }
 }
 ?>
-<!-- ------------------------------------------ Framanav ------------------- -->
+<!-- - - - - - - - - - - - - - - - Framanav - - - - - - - -  - - - - - - - - - - - -->
 	<?php echo FNAV_EXTRA_START == true ? $fnav_extra_start : ''; ?>
 
 	<link href="<?php echo FNAV_RPATH; ?>/nav.css" rel="stylesheet">
@@ -21,6 +21,8 @@ if (!defined('FNAV_CONFIG')) {
 	
     <?php echo FNAV_LOCAL_BOOTSTRAP_JS == true  ? '<script src="' . FNAV_RPATH .'/fnav_bootstrap/js/bootstrap.min.js"></script>' : ''; ?>
     
+    <script src="http://www.google.com/coop/cse/brand?form=searchbox_002138387073339262058:qhubrzuwlhg&amp;lang=fr" type="text/javascript"></script>
+
     <?php echo FNAV_LOCAL_BOOTSTRAP_CSS == true ? '<link href="' . FNAV_RPATH .'/fnav_bootstrap/css/bootstrap.min.css" rel="stylesheet">' : ''; ?>
     
     <?php echo FNAV_LOCAL_BOOTSTRAP_RESPONSIVE_CSS == true ? '<link href="' . FNAV_RPATH .'/fnav_bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">' : ''; ?>
@@ -39,7 +41,7 @@ if (!defined('FNAV_CONFIG')) {
 				  
                 <div class="framanav_container">
 
-                  <a class="brand" href="http://framasoft.org"><img src="<?php echo FNAV_RPATH; ?>/img/manchot.png" class="dd_icon"/> <span style="color: #6b6bb5;">Frama</span><span style="color: #FF8103;">soft</span></a>
+                  <a class="brand" href="http://framasoft.org"><img src="<?php echo FNAV_RPATH; ?>/img/manchot.png" alt="Framasoft" class="dd_icon"/> <span style="color: #6b6bb5;">Frama</span><span style="color: #FF8103;">soft</span></a>
                   <div class="nav-collapse collapse">  <!-- automatiquement referm&eacute; en cas de petit &eacute;cran -->
                     <ul class="nav">
 
@@ -52,7 +54,7 @@ if (!defined('FNAV_CONFIG')) {
 							<li><a href="http://framastart.org" rel="popover" data-content="Le meilleur des logiciels libres sur une seule page." title="Framastart"><i class="icon-bookmark"></i>&nbsp;Framastart</a></li>
 							<li><a href="http://framadvd.org" rel="popover" data-content="Compilations de logiciels libres sur DVD. <div class='framanav_scr framanav_framadvd'></div>" title="FramaDVD"><i class="icon-forward"></i>&nbsp;FramaDVD</a></li>
 							<li><a href="http://framapack.org" rel="popover" data-content="Installation rapide de multiples logiciels libres. <div class='framanav_scr framanav_framapack'></div>" title="Framapack"><i class="icon-download-alt"></i>&nbsp;Framapack</a></li>
-							<li><a href="http://framakey.org" rel="popover" data-content="Applications nomades pour cl&eacute;s USB. <div class='framanav_scr framanav_framakey'></div>" title="Framakey"><img src="<?php echo FNAV_RPATH; ?>/img/small_usb.png" />&nbsp;Framakey</a></li>
+							<li><a href="http://framakey.org" rel="popover" data-content="Applications nomades pour cl&eacute;s USB. <div class='framanav_scr framanav_framakey'></div>" title="Framakey"><img src="<?php echo FNAV_RPATH; ?>/img/small_usb.png" alt="Framakey"/>&nbsp;Framakey</a></li>
 	                          </ul>
                       </li>											
 
@@ -104,19 +106,18 @@ if (!defined('FNAV_CONFIG')) {
 						<input type="text" size="25" name="q" placeholder="Rechercher" class="search-query span2"/> 
 						<input type="submit" value="Go" name="sa" style="display:none"/> 
 					</form> 
-					<script src="http://www.google.com/coop/cse/brand?form=searchbox_002138387073339262058:qhubrzuwlhg&amp;lang=fr" type="text/javascript"></script>
 
                     <ul class="nav pull-right">
                       <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="<?php echo FNAV_RPATH; ?>/img/contact.png" class="dd_icon"/>Nous suivre</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="<?php echo FNAV_RPATH; ?>/img/contact.png" class="dd_icon" alt="contact"/>Nous suivre</a>
                         <ul class="dropdown-menu">
 							<li><a href="http://twitter.com/framasoft" rel="popover" data-content="Notre compte de microblogging" title="Twitter / Framasoft"><i class="icon-search"></i>&nbsp;Twitter Framasoft</a></li>
 							<li><a href="http://identi.ca/framasoft" rel="popover" data-content="Notre compte de microblogging <strong>libre</strong> !" title="Identi.ca / Framasoft"><i class="icon-search"></i>&nbsp;Identi.ca Framasoft</a></li>
 							<li><a href="http://twitter.com/framaka" rel="popover" data-content="Le compte de microblogging d'aKa, le fondateur de Framasoft." title="Twitter / aKa"><i class="icon-user"></i>&nbsp;Twitter Framaka</a></li>
 							<li><a href="https://www.facebook.com/framasoft" data-content="Framasoft est <em>aussi</em> sur Facebook (oui, on sait...)." title="Facebook / Framasoft"><i class="icon-thumbs-up"></i>&nbsp;Facebook</a></li>
 							<li><a href="http://soutenir.framasoft.org/newsletter" data-content="Rejoignez nos 5000 abonn&eacute;s &agrave; notre lettre d'informations." title="Lettre d'informations"><i class="icon-bullhorn"></i>&nbsp;Newsletter</a></li>
-							<li><a href="http://framapack.org/~framaflux/rss.php"  data-content="Flux RSS agr&eacute;g&eacute; des diff&eacute;rents sites." title="Flux RSS"><img src="<?php echo FNAV_RPATH; ?>/img/small_rss.png" />&nbsp;Flux RSS</a></li>
-							<li><a href="http://fr.wikipedia.org/wiki/Framasoft"  data-content="Parcourez le (long) article Framasoft sur (l'incontournable) encyclop&eacute;die libre Wikip&eacute;dia." title="Framasoft sur Wikip&eacute;dia"><img src="<?php echo FNAV_RPATH; ?>/img/wikipedia_logo.png" />&nbsp;Page Wikip&eacute;dia</a></li>
+							<li><a href="http://framapack.org/~framaflux/rss.php"  data-content="Flux RSS agr&eacute;g&eacute; des diff&eacute;rents sites." title="Flux RSS"><img src="<?php echo FNAV_RPATH; ?>/img/small_rss.png" alt="RSS" />&nbsp;Flux RSS</a></li>
+							<li><a href="http://fr.wikipedia.org/wiki/Framasoft"  data-content="Parcourez le (long) article Framasoft sur (l'incontournable) encyclop&eacute;die libre Wikip&eacute;dia." title="Framasoft sur Wikip&eacute;dia"><img src="<?php echo FNAV_RPATH; ?>/img/wikipedia_logo.png" alt="Wikipedia" />&nbsp;Page Wikip&eacute;dia</a></li>
 							<li><a href="http://contact.framasoft.org" data-content="Vous souhaitez prendre contact avec nous ?" title="Contacter Framasoft"><i class="icon-envelope"></i>&nbsp;Contact</a></li>
                         </ul>
                       </li>
@@ -155,4 +156,4 @@ if (!defined('FNAV_CONFIG')) {
 		</script>
     
     <?php echo FNAV_EXTRA_END == true ? $fnav_extra_end : ''; ?>
-<!-- ------------------------------------------ /Framanav ------------------- -->
+<!-- - - - - - - - - - - - - - - - - - /Framanav - - - - - - - - -  - - - - -->
