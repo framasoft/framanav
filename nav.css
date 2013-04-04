@@ -69,3 +69,11 @@ a#framanav_donation:hover {filter:alpha(opacity=80);-moz-opacity:0.8;-khtml-opac
 .modal-backdrop {
     z-index: 1029 !important;
 }
+
+/* --- on s'assure qu'on a bien une nav collée en haut en cas de petit écran --- */
+@media (max-width: 979px) {
+    body {
+            margin-top: 0px !important;
+    }
+}
+
