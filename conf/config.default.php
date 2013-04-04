@@ -13,7 +13,7 @@ define("FNAV_DONATE_BLINK_TIME", 30000);
 define("FNAV_LOCAL_JQUERY", true); // Doit-on charger le jQuery local ?
 define("FNAV_LOCAL_BOOTSTRAP_JS", true);
 define("FNAV_LOCAL_BOOTSTRAP_CSS", true);
-define("FNAV_LOCAL_BOOTSTRAP_RESPONSIVE", true);
+define("FNAV_LOCAL_BOOTSTRAP_RESPONSIVE_CSS", true);
 
 # Doit-on charger un fichier CSS supplémentaire ?
 # Par défaut à false
