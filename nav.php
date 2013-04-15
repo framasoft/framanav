@@ -11,27 +11,20 @@ if (!defined('FNAV_CONFIG')) {
 }
 ?>
 <!-- - - - - - - - - - - - - - - - Framanav - - - - - - - -  - - - - - - - - - - - -->
-	<?php echo FNAV_EXTRA_START == true ? $fnav_extra_start : ''; ?>
-
-	<link href="<?php echo FNAV_RPATH; ?>/nav.css" rel="stylesheet">
-	<?php echo FNAV_EXTRA_CSS == true ? '<link href="'. FNAV_EXTRA_CSS .'" rel="stylesheet">' : ''; ?>
-
-	
-	<?php echo FNAV_LOCAL_JQUERY == true ? '<script src="' . FNAV_RPATH .'/fnav_bootstrap/js/jquery.min.js"></script>' : ''; ?>
-	
+    <?php echo FNAV_EXTRA_START == true ? $fnav_extra_start : ''; ?>
+    <link href="<?php echo FNAV_RPATH; ?>/nav.css" rel="stylesheet">
+    <?php echo FNAV_EXTRA_CSS == true ? '<link href="'. FNAV_EXTRA_CSS .'" rel="stylesheet">' : ''; ?>	
+    <?php echo FNAV_LOCAL_JQUERY == true ? '<script src="' . FNAV_RPATH .'/fnav_bootstrap/js/jquery.min.js"></script>' : ''; ?>
     <?php echo FNAV_LOCAL_BOOTSTRAP_JS == true  ? '<script src="' . FNAV_RPATH .'/fnav_bootstrap/js/bootstrap.min.js"></script>' : ''; ?>
-    
+
     <script src="http://www.google.com/coop/cse/brand?form=searchbox_002138387073339262058:qhubrzuwlhg&amp;lang=fr" type="text/javascript"></script>
 
     <?php echo FNAV_LOCAL_BOOTSTRAP_CSS == true ? '<link href="' . FNAV_RPATH .'/fnav_bootstrap/css/bootstrap.min.css" rel="stylesheet">' : ''; ?>
-    
     <?php echo FNAV_LOCAL_BOOTSTRAP_RESPONSIVE_CSS == true ? '<link href="' . FNAV_RPATH .'/fnav_bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">' : ''; ?>
     
-
-    		<a href="http://soutenir.framasoft.org" id="framanav_donation" rel="donBadge">Faire un don</a>
+	<a href="http://soutenir.framasoft.org" id="framanav_donation" rel="donBadge">Faire un don</a>
             <div class="navbar  <?php echo FNAV_STATIC==true ? 'navbar-fixed-top' : ''; ?>" id="framanav">
-              <div class="navbar-inner">
-				  
+              <div class="navbar-inner">			  
 				<!-- .btn-navbar is used as the toggle for collapsed navbar content -->
 				  <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 					<span class="icon-bar"></span>
@@ -40,7 +33,6 @@ if (!defined('FNAV_CONFIG')) {
 				  </a>
 				  
                 <div class="framanav_container">
-
                   <a class="brand" href="http://framasoft.org"><img src="<?php echo FNAV_RPATH; ?>/img/manchot.png" alt="Framasoft" class="dd_icon"/> <span style="color: #6b6bb5;">Frama</span><span style="color: #FF8103;">soft</span></a>
                   <div class="nav-collapse collapse">  <!-- automatiquement referm&eacute; en cas de petit &eacute;cran -->
                     <ul class="nav">
@@ -129,9 +121,7 @@ if (!defined('FNAV_CONFIG')) {
                   </div>
                 </div>
 		
-	        <?php echo FNAV_EXTRA_ALERT == true ? $fnav_extra_alert : ""; ?>
-
-		
+	        <?php echo FNAV_EXTRA_ALERT == true ? $fnav_extra_alert : ""; ?>		
 		
               </div><!-- /navbar-inner -->
             </div><!-- /navbar -->
