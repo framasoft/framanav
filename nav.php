@@ -100,7 +100,7 @@ if (!defined('FNAV_CONFIG')) {
 					</form> 
 
                     <ul class="nav pull-right">
-                      <li class="dropdown" class="nous_suivre">
+                      <li class="dropdown nous_suivre">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="<?php echo FNAV_RPATH; ?>/img/contact.png" class="dd_icon" alt="contact"/>Nous suivre</a>
                         <ul class="dropdown-menu">
 							<li><a href="http://twitter.com/framasoft" rel="popover" data-content="Notre compte de microblogging" title="Twitter / Framasoft"><i class="icon-search"></i>&nbsp;Twitter Framasoft</a></li>
