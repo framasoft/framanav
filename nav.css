@@ -70,6 +70,20 @@ a#framanav_donation:hover {filter:alpha(opacity=80);-moz-opacity:0.8;-khtml-opac
     z-index: 1029 !important;
 }
 
+#framanav .sub_alert {
+	clear:both;
+	background-color:#eee; 
+	height:35px;
+}
+
+#framanav .sub_msg_alert {
+	color: #d33;
+	font-size: small;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: bottom;
+}
+
 /* --- on s'assure qu'on a bien une nav collée en haut en cas de petit écran --- */
 @media (max-width: 979px) {
     body {

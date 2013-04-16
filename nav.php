@@ -23,7 +23,7 @@ if (!defined('FNAV_CONFIG')) {
     <?php echo FNAV_LOCAL_BOOTSTRAP_RESPONSIVE_CSS == true ? '<link href="' . FNAV_RPATH .'/fnav_bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">' : ''; ?>
     
 	<a href="http://soutenir.framasoft.org" id="framanav_donation" rel="donBadge">Faire un don</a>
-            <div class="navbar  <?php echo FNAV_STATIC==true ? 'navbar-fixed-top' : ''; ?>" id="framanav">
+            <div class="navbar <?php echo FNAV_STATIC==true ? 'navbar-fixed-top' : ''; ?>" id="framanav">
               <div class="navbar-inner">			  
 				<!-- .btn-navbar is used as the toggle for collapsed navbar content -->
 				  <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -120,9 +120,21 @@ if (!defined('FNAV_CONFIG')) {
 				<!-- /automatiquement referm&eacute; en cas de petit &eacute;cran -->
                   </div>
                 </div>
-		
-	        <?php echo FNAV_EXTRA_ALERT == true ? $fnav_extra_alert : ""; ?>		
-		
+		<?php 
+			if (FNAV_EXTRA_ALERT==true) {
+				if (FNAV_EXTRA_ALERT_MODAL==true) {
+						echo $fnav_extra_alert_cookie;
+				} else {
+						$alert_modal_link="";
+						$fnav_extra_alert_modal_content="";
+				}
+				
+				echo "<div class=\"sub_alert\">\n";
+				echo "					<p class=\"sub_msg_alert\">". $fnav_extra_alert_txt_title .' '. $alert_modal_link ."</p>\n";
+				echo "				</div>\n";
+				
+			}
+		?>
               </div><!-- /navbar-inner -->
             </div><!-- /navbar -->
 		<script type="text/javascript">
@@ -145,5 +157,8 @@ if (!defined('FNAV_CONFIG')) {
 		
 		</script>
     
-    <?php echo FNAV_EXTRA_END == true ? $fnav_extra_end : ''; ?>
+    <?php 
+		echo FNAV_EXTRA_END == true ? $fnav_extra_end : ''; 
+		echo $fnav_extra_alert_modal_content;
+	?>
 <!-- - - - - - - - - - - - - - - - - - /Framanav - - - - - - - - -  - - - - -->
