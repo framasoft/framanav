@@ -42,7 +42,7 @@ if (!defined('FNAV_CONFIG')) {
                         <ul class="dropdown-menu">
 							<li><a href="http://framasoft.org" rel="popover" data-content="Le r&eacute;seau Framasoft" title="Framasoft"><i class="icon-home"></i>&nbsp;Framasoft</a></li>
 							<li class="divider"></li>
-							<li><a href="http://framasoft.org" rel="popover" data-content="L'annuaire de logiciels libres. <div class='framanav_scr framanav_framasoft'></div>" title="Framalibre"><i class="icon-list"></i>&nbsp;Framalibre</a></li>
+							<li><a href="http://framalibre.org" rel="popover" data-content="L'annuaire de logiciels libres. <div class='framanav_scr framanav_framasoft'></div>" title="Framalibre"><i class="icon-list"></i>&nbsp;Framalibre</a></li>
 							<li><a href="http://framastart.org" rel="popover" data-content="Le meilleur des logiciels libres sur une seule page." title="Framastart"><i class="icon-bookmark"></i>&nbsp;Framastart</a></li>
 							<li><a href="http://framadvd.org" rel="popover" data-content="Compilations de logiciels libres sur DVD. <div class='framanav_scr framanav_framadvd'></div>" title="FramaDVD"><i class="icon-forward"></i>&nbsp;FramaDVD</a></li>
 							<li><a href="http://framapack.org" rel="popover" data-content="Installation rapide de multiples logiciels libres. <div class='framanav_scr framanav_framapack'></div>" title="Framapack"><i class="icon-download-alt"></i>&nbsp;Framapack</a></li>
