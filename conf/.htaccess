@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Dossier protege"
+AuthUserFile .htpasswd
+Require valid-user
