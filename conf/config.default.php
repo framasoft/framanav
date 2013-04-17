@@ -1,41 +1,73 @@
 <?php
+# Flag de config
 define("FNAV_CONFIG", true);
+
+# chemin absolu de la Framanav
 define("FNAV_PATH", realpath($_SERVER["DOCUMENT_ROOT"])."/framanav");
+
+# chemin relatif de la framanav
 define("FNAV_RPATH", "/framanav");
+
+# Chemin du zip sur github
+define("FNAV_ZIP_URL", "https://github.com/framasoft/framanav/archive/master.zip");
+
+# user/group de la nav (utilisé par le script deploy-git uniquement
+define("FNAV_USER", "fsoft");
+define("FNAV_GROUP", "users");
 
 # La barre doit-elle rester statique en haut de page (true/false) ?
 define("FNAV_STATIC", true);
 
+# Temps maximum de blinking du badge "Don" (en ms)
 define("FNAV_DONATE_BLINK_TIME", 30000);
 
-define("FNAV_LOCAL_JQUERY", true); // Doit-on charger le jQuery local ?
+# Doit on charger le jquery local ?
+define("FNAV_LOCAL_JQUERY", true);
+
+# Doit-on charger le JS de Bootstrap ?
 define("FNAV_LOCAL_BOOTSTRAP_JS", true);
+
+# Doit-on charger le CSS de Bootstrap ?
 define("FNAV_LOCAL_BOOTSTRAP_CSS", true);
+
+# Doit-on charger le CSS Responsive de Bootstrap ?
 define("FNAV_LOCAL_BOOTSTRAP_RESPONSIVE_CSS", true);
+
+# ========= Système d'extras =======
 
 # Doit-on charger un fichier CSS supplémentaire ?
 # Par défaut à false
 # Sinon, chemin du fichier. ex: define("FNAV_EXTEND_CSS", FNAV_RPATH."/extra.css");
 define("FNAV_EXTRA_CSS", false);
 
+# Ajout de code spécifique en début de nav (cf $fnav_extra_start)
 define("FNAV_EXTRA_START", false);
 
+# Ajout de code spécifique en fin de nav (cf $fnav_extra_end)
 define("FNAV_EXTRA_END", false);
 
+# ========= Système d'alerte =======
+
+# Doit-on afficher une alerte ?
 define("FNAV_EXTRA_ALERT", false);
 
+# Doit-on afficher une fenetre modale ?
 define("FNAV_EXTRA_ALERT_MODAL", false);
-$fnav_extra_alert_modal_force = "true";
+$fnav_extra_alert_modal_force = "true"; //forcer l'affichage de la fenetre à la première visite
 $alert_cookie_time = 0.05; // durée du cookie, en heures.
-$fnav_extra_alert_txt_title = "bla";
+$fnav_extra_alert_txt_title = "Attention, ce site sera bientot mis-à-jour !"; // contenu par défaut du contenu de l'alerte sous la nav.
 
 
-/** Doit-on lire le contenu de l'alerte depuis les fichiers "/conf/alert_title.txt" et "/conf/alert_content.txt" ? **/
+# Doit-on lire le contenu de l'alerte depuis des fichiers (locaux ou distants)  ?
 define("FNAV_EXTRA_ALERT_TXT_FILES", false);
-$fnav_extra_alert_txt_files_title = dirname(__FILE__)."/alert_title.txt";
+# Chemin du fichier pour le contenu de l'alerte sous la nav
+# Par défaut : dirname(__FILE__)."/alert_title.txt"; 
+# Mais il est possible d'envisager un chemin distant type "http://framasite.org/nav/alert_title.txt
+$fnav_extra_alert_txt_files_title = dirname(__FILE__)."/alert_title.txt"; 
+# Chemin du fichier pour le contenu de la fenetre modale
+# Par défaut : dirname(__FILE__)."/alert_content.txt"; 
+# Mais il est possible d'envisager un chemin distant type "http://framasite.org/nav/alert_content.txt
 $fnav_extra_alert_txt_files_content = dirname(__FILE__)."/alert_content.txt";
-
-
 
 # === contenu des variables ========
 
@@ -99,7 +131,7 @@ jQuery(document).ready(function() {
 </script>
 EOAB;
 
-
+# Si on a défini FNAV_EXTRA_ALERT_TXT_FILES a "true", on charge les fichiers distants
 if ( FNAV_EXTRA_ALERT_TXT_FILES==true ) {
     $fnav_extra_alert_txt_title = @file_get_contents($fnav_extra_alert_txt_files_title);
     $fnav_extra_alert_modal_content = @file_get_contents($fnav_extra_alert_txt_files_content);
