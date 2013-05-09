@@ -36,13 +36,20 @@
 .framanav_vvl { background-position : 0 -3080px; }
 .framanav_framacode { background-position : 0 -3220px; }
 
-
 .framanav_container {
-	width:1100px;
 	margin: auto;
 	font-size: 12px;
 }
-
+@media (min-width: 1100px) {
+    .framanav_container {
+        width:1100px;
+    }
+}
+@media (max-width: 1099px) {
+    .framanav_container {
+        width:auto;
+    }
+}
 #framanav input.span2, #framanav textarea.span2, #framanav .uneditable-input.span2 {
 	width: 100px !important;
 }
@@ -84,7 +91,7 @@ a#framanav_donation:hover {filter:alpha(opacity=80);-moz-opacity:0.8;-khtml-opac
 	vertical-align: bottom;
 }
 
-/* --- on s'assure qu'on a bien une nav collée en haut en cas de petit écran --- */
+/* --- on s'assure qu'on a bien une nav collï¿½e en haut en cas de petit ï¿½cran --- */
 @media (max-width: 979px) {
     body {
             margin-top: 0px !important;
