@@ -108,7 +108,7 @@ if (!defined('FNAV_CONFIG')) {
 							<li><a href="http://twitter.com/framaka" rel="popover" data-content="Le compte de microblogging d'aKa, le fondateur de Framasoft." title="Twitter / aKa"><i class="icon-user"></i>&nbsp;Twitter Framaka</a></li>
 							<li><a href="https://www.facebook.com/framasoft" data-content="Framasoft est <em>aussi</em> sur Facebook (oui, on sait...)." title="Facebook / Framasoft"><i class="icon-thumbs-up"></i>&nbsp;Facebook</a></li>
 							<li><a href="http://soutenir.framasoft.org/newsletter" data-content="Rejoignez nos 5000 abonn&eacute;s &agrave; notre lettre d'informations." title="Lettre d'informations"><i class="icon-bullhorn"></i>&nbsp;Newsletter</a></li>
-							<li><a href="http://framapack.org/~framaflux/rss.php"  data-content="Flux RSS agr&eacute;g&eacute; des diff&eacute;rents sites." title="Flux RSS"><img src="<?php echo FNAV_RPATH; ?>/img/small_rss.png" alt="RSS" />&nbsp;Flux RSS</a></li>
+							<li><a href="http://rss.framasoft.org/"  data-content="Flux RSS agr&eacute;g&eacute; des diff&eacute;rents sites." title="Flux RSS"><img src="<?php echo FNAV_RPATH; ?>/img/small_rss.png" alt="RSS" />&nbsp;Flux RSS</a></li>
 							<li><a href="http://fr.wikipedia.org/wiki/Framasoft"  data-content="Parcourez le (long) article Framasoft sur (l'incontournable) encyclop&eacute;die libre Wikip&eacute;dia." title="Framasoft sur Wikip&eacute;dia"><img src="<?php echo FNAV_RPATH; ?>/img/wikipedia_logo.png" alt="Wikipedia" />&nbsp;Page Wikip&eacute;dia</a></li>
 							<li><a href="http://contact.framasoft.org" data-content="Vous souhaitez prendre contact avec nous ?" title="Contacter Framasoft"><i class="icon-envelope"></i>&nbsp;Contact</a></li>
                         </ul>
