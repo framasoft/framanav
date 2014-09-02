@@ -73,7 +73,14 @@ var f$_start_global_config = function() {
 var f$_start_local_config = function() {
     if (f$_config == 'local') {
         console.log('Ok '+f$_site+'.js');
-        if (f$_jquery == 'jQuery' || f$_page('/nav/html/')) {
+        if(f$_page('/nav/html/')) { // Si pages « À propos » on reinit la config
+            f$_jquery = 'jQuery';
+            f$_bootstrap_css = true;
+            f$_bootstrap_js = true;
+            f$_accessible = true;
+        }
+
+        if (f$_jquery == 'jQuery') {
             if (window.jQuery === undefined || window.jQuery.fn.jquery !== '1.10.2') {
                 console.log('jQuery chargé par AJAX - Mode isolé');
                 f$_loadScript(f$_nav+'lib/jquery/jquery.min.js', f$_start_jquery);
@@ -116,7 +123,7 @@ function f$_start_jquery() {
      * CSS
      */
     // On charge bootstrap css d'abord sans attendre le DOM (à l'ancienne, sans jquery)
-    if (f$_bootstrap_css || f$_page('/nav/html/')) {
+    if (f$_bootstrap_css) {
         var f$_bootstrap_link = document.createElement('link');
         f$_bootstrap_link.id = "nav_bs_css";
         f$_bootstrap_link.rel = "stylesheet";
@@ -203,7 +210,7 @@ function f$_start_jquery() {
             });
 
             if (f$_bootstrap_js) {
-                if (typeof f$().modal == 'function' || f$_bootstrap_js == 'html' && !f$_page('/nav/html/')) {
+                if (typeof f$().modal == 'function' || f$_bootstrap_js == 'html') {
                     console.log('Ok Bootstrap actif (html)');
                     go_BootStrap();
                 } else {
@@ -503,9 +510,7 @@ function f$_start_jquery() {
                     }
 
                     // Liens de la nav à ouvrir dans un onglet
-                    if(f$_page('/nav/html/')) {
-                        f$('#framanav .dropdown-menu a:not([href^="/nav/html/"])').attr('target','_blank').append('<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span>');
-                    } else {
+                    if(!f$_page('/nav/html/')) {
                         f$('#framanav .dropdown-menu a').attr('target','_blank').append('<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span>');
                     }
 

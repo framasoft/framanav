@@ -201,7 +201,7 @@ a#framanav_donation:hover {filter:alpha(opacity=80);-moz-opacity:0.8;-khtml-opac
 #nav-skip:focus {
     width: 113px;
     line-height: 20px;
-    margin: 0 0 0 -110px;
+    margin: 0 0 0 -115px;
     padding: 10px;
     background-color: #F8F8F8;
     color: #333;
