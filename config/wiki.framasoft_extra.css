@@ -1,0 +1,11 @@
+#framanav li {
+  margin:0;
+}
+
+body {
+  font: 135% verdana,"DejaVu sans",helvetica,sans-serif !important;
+}
+
+#dokuwiki__usertools {
+    top: 50px;
+}

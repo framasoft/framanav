@@ -1,0 +1,52 @@
+*, *:before, *:after {
+	-webkit-box-sizing: content-box !important;
+	-moz-box-sizing: content-box !important;
+	box-sizing: content-box !important;
+}
+
+/* + 50 px partout */
+#workarea, #sidepanels, #tools_left {
+  	top:110px !important;
+}
+#main_button {
+	  top:44px !important;
+}
+#tools_top {
+  	top:42px !important;
+}
+
+#svg_source_container {
+  	top:90px !important;
+}
+
+#tools_rect {
+  	top:212px !important;
+}
+#tools_ellipse {
+	top:246px !important;
+}
+#tools_line {
+	top:178px !important;
+}
+#tools_shapelib {
+	top:314px !important;
+}
+#ruler_corner,#ruler_x,#ruler_y {
+	top:111px !important;
+}
+/* Fix menu nav */
+#framanav .dropdown-menu {
+	padding : 5px 0px !important;
+	left:0 !important;
+	top:100% !important;
+}
+#framanav .dropdown-menu li {
+	width:auto;
+	padding:0;
+	background-color:#fff;
+	border:none;
+}
+
+#framanav .dropdown-menu .divider { 
+	background-color: rgb(229, 229, 229) !important;
+}

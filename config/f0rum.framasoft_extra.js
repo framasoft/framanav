@@ -1,0 +1,1 @@
+f$('body').removeClass('docked');

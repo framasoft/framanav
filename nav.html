@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+<a href="http://soutenir.framasoft.org/?f=macaron" id="framanav_donation" rel="donBadge" style="display:none"></a>
+<nav class="navbar navbar-default" id="framanav" role="navigation" style="display:none">
+	<!-- Brand and toggle get grouped for better mobile display -->
+	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+			<!--<span class="sr-only">Toggle navigation</span>-->
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+	</button>
+	<div class="nav-container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="http://framasoft.org"><img alt="" src="data:image/png;base64,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" style="position: absolute;margin-left: -45px;margin-top: -10px" /> <span style="color: #6A5687;">Frama</span><span style="color: #EB7E41;">soft</span></a>
+	</div>
+	<!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+		<ul class="nav navbar-nav">
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Logiciel libre <b class="caret"></b></a>
+				<ul class="dropdown-menu">					
+					<li><a href="http://framalibre.org" rel="popover" data-content="Plus de 1600 logiciels classés, testés et commentés dans le projet historique et fondateur de Framasoft. On y trouve également des tutoriels et des articles de fond." title="L'annuaire de logiciels libres."><span class="glyphicon glyphicon-list"></span>&nbsp;Framalibre</a></li>
+					<li><a href="http://framakey.org" rel="popover" data-content="Dans une clé USB (ou tout autre support mobile) utiliser en mode nomade une centaine de logiciels libres portables pour Windows, tester voire installer une distribution GNU/Linux ou encore avoir accès hors ligne à toute la Wikipédia francophone." title="Le plein de liberté dans une simple clé"><img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAANCAYAAACZ3F9/AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAABMAAAATAHOM9y6AAAAB3RJTUUH3gUcDDAyKEQuvwAAAI9JREFUKM+d0rEJAkEQheFPMTASbUFQBBvQzAKMLcB6rMECLMAKNLvc1MjU1EBYkw2Odc+79cEEb5ifmQfT860d9jV/xCkd6mfAKd5Y4BW9LiDMMY5wVoNM74Jh4lu1QsjUpuupUP3a0AQ+YoxzKfjEDetScBmzTUpBGP2TEbYlYGiYC20PUOGAWa13xzUFP+T8Fv3iMfh+AAAAAElFTkSuQmCC" />&nbsp;Framakey</a></li>					
+					<li><a href="http://framadvd.org" rel="popover" data-content="Un DVD rempli non seulement des meilleurs logiciels libres pour Windows, Mac et GNU/Linux (avec une distribution dedans) mais aussi de la culture libre (textes, photos, audios et vidéos). Existe en une version spéciale école." title="Le plein de liberté dans un DVD"><span class="glyphicon glyphicon-forward"></span>&nbsp;FramaDVD</a></li>
+					<li><a href="http://framapack.org" rel="popover" data-content="Pratique, sur Framapack on fait son marché des meilleurs logiciels libres Windows dans leur dernière version. On les sélectionne et ils s’installent tous ensemble d’un simple clic !" title="Distribution massive"><span class="glyphicon glyphicon-download-alt"></span>&nbsp;Framapack</a></li>
+					<li><a href="http://framastart.org" rel="popover" data-content="Le meilleur des logiciels libres sur une seule page." title="Framastart"><span class="glyphicon glyphicon-bookmark"></span>&nbsp;Framastart</a></li>
+				</ul>
+			</li>											
+
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Culture libre <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+					<li><a href="http://framablog.org" class="" rel="popover" data-content="Chroniques quotidiennes autour du Libre en général et du logiciel libre en particulier. De riches débats dans les commentairees, de nombreuses traductions originales et les annonces des nouveautés de l’ensemble du réseau Framasoft." title="L’actualité du « Libre »"><span class="glyphicon glyphicon-pencil"></span>&nbsp;Framablog</a></li>
+					<li><a href="http://framabook.org" rel="popover" data-content="Notre maison d’édition qui comporte une vingtaine de titres autour du logiciel libre, initiation à la programmation, réflexion sur le droit d’auteur mais aussi des BD et même un roman. Un livre libre offre au lecteur les mêmes libertés qu’un logiciel libre." title="Le pari du livre libre"><span class="glyphicon glyphicon-book"></span>&nbsp;Framabook</a></li>
+					<li><a href="http://www.framablog.org/index.php/pages/framalang" rel="popover" data-content="Traduire tous ensemble, principalement de l’anglais vers le français, dans la convivialité en bénéficiant de la force d’Internet et de la bonne volonté de ses habitants. Il peut s’agir d’articles, de sous-titrage et même de livres entiers !" title="Traduction collaborative"><span class="glyphicon glyphicon-flag"></span>&nbsp;Framalang</a></li>
+					<li><a href="http://framatube.org" rel="popover" data-content="Vidéos en français (ou sous-titrées en français) autour du logiciel libre en particulier et du Libre en général. Interviews, conférences, documentaires, extraits télévisés… pour s’informer mais aussi informer les autres." title="Notre « YouTube » du Libre"><span class="glyphicon glyphicon-facetime-video"></span>&nbsp;Framatube</a></li>
+					<li><a href="http://framazic.org" rel="popover" data-content="Une « musique libre » est une musique qui offre au mélomane les mêmes libertés qu’un logiciel libre. Un site dédié permettant de mieux la comprendre accompagné d’une petite sélection permettant de constater que la qualité est au rendez-vous." title="Quand la musique est libre"><span class="glyphicon glyphicon-music"></span>&nbsp;Framazic</a></li>
+				</ul>
+			</li>
+
+		   <li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Services libres <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+					<li><a href="http://framapad.org" rel="popover" data-content="Écrivons tous ensemble sur le même document dans une interface de rédaction collective en ligne. Aucune inscription requise, on se donne un pseudo, une couleur et on se lance !" title="Éditer collaborativement"><span class="glyphicon glyphicon-align-left"></span>&nbsp;Framapad</a></li>
+					<li><a href="http://framadate.org" rel="popover" data-content="Framadate c’est un peu comme Doodle mais en libre. Rien de plus simple de créer un rendez-vous ou un sondage sans inscription pour y inviter vos collaborateurs." title="Organiser des rendez-vous et des sondages"><span class="glyphicon glyphicon-calendar"></span>&nbsp;Framadate</a></li>
+					<li><a href="http://framacalc.org" rel="popover" data-content="Framacalc est au tableur ce que Framapad est au traitement de texte, autrement dit la possibilité d’éditer simplement et collectivement en ligne sur un même document." title="Un tableur collaboratif"><span class="glyphicon glyphicon-th"></span>&nbsp;Framacalc</a></li>
+					<li><a href="http://framindmap.org" rel="popover" data-content="Interface fluide et intuitive pour créer rapidement et simplement des cartes heuristiques à même votre navigateur. Pertinent en situation de brainstorming ou de prise de notes." title="Créer des cartes mentales"><span class="glyphicon glyphicon-edit"></span>&nbsp;Framindmap</a></li>
+					<li><a href="http://framavectoriel.org" rel="popover" data-content="Pour créer et éditer simplement et rapidement de belles images en ligne au format ouvert SVG. Les enfants adorent !" title="Dessiner en vectoriel"><span class="glyphicon glyphicon-tint"></span>&nbsp;Framavectoriel</a></li>
+					<li><a href="http://framanews.org" rel="popover" data-content="En vous abonnant aux flux RSS de vos sites préférés, restez informés de toutes leurs actualités avec Framanews !" title="Suivre l'actualité"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;Framanews</a></li>
+					<li><a href="http://framaphonie.org" rel="popover" data-content="Framaphonie est un projet du réseau Framasoft qui vise à diffuser des produits libres (CD, clés USB, livres, etc) dans les zones faiblement connectées à Internet." title="Le Libre dans des zones faiblement connectées"><span class="glyphicon glyphicon-map-marker"></span>&nbsp;Framaphonie</a></li>
+					<li><a href="http://framabag.org" rel="popover" data-content="Framabag vous permet de mettre de côté les articles que vous n'avez pas le temps de lire tout de suite." title="Ne ratez plus aucun article !"><span class="glyphicon glyphicon-briefcase"></span>&nbsp;Framabag</a></li>
+				</ul>
+			</li>     
+
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Libr'en vrac <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+					<li><a href="http://enventelibre.org/catalog/par-association/framasoft" rel="popover" data-content="L’espace vente des différents produits Framasoft qui peuvent se matérialiser : Framakey, Framabook, Framadvd mais aussi des goodies et des tee-shirts." title="Notre libre petite boutique"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;EnVenteLibre</a></li>
+					<li class="divider"></li>
+					<li><a href="https://framasphere.org" rel="popover" data-content="Framasphère est un nœud de Diaspora*&nbsp;: un réseau social libre, décentralisé, respectueux de vos données et de votre vie privée." title="Le réseau social de Framasoft"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;Framasphère</a></li>
+					<li><a href="http://forum.framasoft.org" rel="popover" data-content="Vous avez une question ? Nous avons (peut-être) une réponse ! « Si tu ne sais pas, demande. Si tu sais, partage. » Framagora est notre convivial espace d’échange d’informations autour du Libre." title="Le forum du réseau Framasoft"><span class="glyphicon glyphicon-comment"></span>&nbsp;Framagora</a></li>
+					<li><a href="http://wiki.framasoft.org" rel="popover" data-content="Le wiki de Framasoft." title="Framawiki"><span class="glyphicon glyphicon-font"></span>&nbsp;Framawiki</a></li>
+					<li><a href="http://framalab.org" rel="popover" data-content="C’est ici que nous déposons les projets modestes, dans nos cartons, en cours ou en attente de bonnes volontés. On peut y trouver des belles suprises." title="Le laboratoire des projets Framasoft"><span class="glyphicon glyphicon-refresh"></span>&nbsp;Framalab</a></li>
+					<li><a href="http://framacode.org" rel="popover" data-content="Le dépôt GitHub du code produit par Framasoft, en particulier les services libres Framacloud pour les installer soi-même et les améliorer ensemble." title="Chez nous aussi on développe"><span class="glyphicon glyphicon-wrench"></span>&nbsp;Framacode</a></li>
+					<li class="divider"></li>
+					<li><a href="http://vvlibri.org" rel="popover" data-content="Tout ce que vous avez toujours voulu savoir sur les licences libres." title="Veni Vidi Libri"><span class="glyphicon glyphicon-road"></span>&nbsp;Veni Vidi Libri</a></li>
+					<li><a href="http://geektionnerd.net" rel="popover" data-content="La BD des Geeks libres !" title="Geektionnerd"><span class="glyphicon glyphicon-picture"></span>&nbsp;Geektionnerd</a></li>
+					<li><a href="http://noenaute.fr" rel="popover" data-content="Romans feuilleton geeks et libres" title="NoeNaute"><span class="glyphicon glyphicon-book"></span>&nbsp;NoeNaute</a></li>
+					<li><a href="http://planet-libre.org" rel="popover" data-content="S&eacute;lection de nouvelles du libre francophone." title="Planet-libre"><span class="glyphicon glyphicon-globe"></span>&nbsp;Planet-libre</a></li>
+					<li><a href="http://romainelubrique.org" rel="popover" data-content="Site consacré comme son nom l’indique (ou pas) au Domaine Public." title="Romaine Lubrique"><img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAACXBIWXMAAAsTAAALEwEAmpwYAAABHUlEQVQoz53STyuEURQG8N/4O1mQqAnZYCUr7Cykplj5CJa2PoCvIDa+gD0WNHZDTcxCGVnMRlMzCSOSsrGRsTlvvaZZuXXrPOfc595zn/Nk/F2jyGMDM2ihigOU8KHDyqMZh6+wg13cRK6OxXbSahTvMB25XvREvBL1VpqcwxsqyGIIZ6jFPsZ1iljHMGxGYgwj+ArcjD8l7ZewHPE6lHESr19EYRuTuA/8GV3ALY7gG1sYxAMeMYHLIJ1jKjqCfVS7ArRSQmVRxBIOsYZuDLQrWsZpxEW8xEW3GMde4EJ7q4k4szGORJh3vAZ+Qh8W0uLkUgcS9QqpcRyiP0ZQQyMZR9oAP5jrYID5ILU6uSeP5w6Wq0SukSZl/mvyX3qeYeeCeMlVAAAAAElFTkSuQmCC" />&nbsp;Romaine Lubrique</a></li>
+					<li><a href="http://clibre.eu" rel="popover" data-content="Un annuaire des principaux logiciels et alternatives libres" title="CLibre.eu"><span class="glyphicon glyphicon-leaf"></span>&nbsp;CLibre.eu</a></li>
+				</ul>
+			</li>     
+
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" id="suivez-nous" data-toggle="dropdown">Nous suivre <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+					<li><a href="http://fr.wikipedia.org/wiki/Framasoft" rel="popover" data-placement="left" data-content="Parcourez le (long) article Framasoft sur (l'incontournable) encyclop&eacute;die libre Wikip&eacute;dia." title="Framasoft sur Wikip&eacute;dia"><img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAJCAYAAAACTR1pAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAABtAAAAbQBTCJN+AAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADOSURBVCiRdc4hS0NRGMbxX7gM9gXEpt0qGlSQJYPWFTEbTJYhmGUYlCljX2B96FcQxCgs2E0KImiQMRFey3svV8cOHHj+533+vAc6eMUbdnGId4yxgQc8YQ9dfKAjIuAYLyiSL3CX+RRrmRcxiAil2Mwt7eQFTLCDy4goeydYrsR8PMd9jfv4rIoUuK7mteISfrCavI6ocRtbM2IORxhmPsMNRslXf7r/xG1MsYkjrOQv9nEwV0x5jEc0km/xXHJ5C7Onh6+I+E7uolVj8At8ibLwJdrQzAAAAABJRU5ErkJggg==" />&nbsp;Page Wikip&eacute;dia</a></li>
+					<li><a href="https://framasphere.org/people/ec16b780ddae013117aa2a0000053625" rel="popover" data-placement="left" data-content="Notre compte sur le réseau social libre Diaspora*" title="Framasoft sur Diaspora*"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;Diaspora*</a></li>
+					<li><a href="http://twitter.com/framasoft" rel="popover" data-placement="left" data-content="Notre compte de microblogging sur Twitter (oui, on sait...)" title="Framasoft sur Twitter"><span class="glyphicon glyphicon-send"></span>&nbsp;Twitter</a></li>					
+					<li><a href="https://www.facebook.com/framasoft" rel="popover" data-placement="left" data-content="Framasoft est <em>aussi</em> sur Facebook (oui, on sait aussi...)" title="Framasoft sur Facebook"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;Facebook</a></li>
+					<li><a href="https://plus.google.com/113481533567002271362" rel="popover" data-placement="left" data-content="Framasoft est malheureusement <em>aussi</em> sur Google+ (rhalala...)" title="Framasoft sur Google+"><span class="glyphicon glyphicon-plus"></span>&nbsp;Google+</a></li>
+					<li class="divider"></li>
+					<li><a href="http://soutenir.framasoft.org/newsletter" rel="popover" data-placement="left" data-content="Rejoignez nos 5000 abonn&eacute;s &agrave; notre lettre d'informations." title="Lettre d'informations"><span class="glyphicon glyphicon-bullhorn"></span>&nbsp;Newsletter</a></li>
+					<li><a href="http://framapack.org/~framaflux/rss.php" rel="popover" data-placement="left" data-content="Flux RSS agr&eacute;g&eacute; des diff&eacute;rents sites." title="Flux RSS"><img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAANCAYAAACZ3F9/AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAATAAAAEwBzjPcugAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAECSURBVCiRjdC/K8ZRFMfx1/UzkpIMJpvJszykLHYmo7KaLEabzWq2elJGk80/wMAgkZJFfiQDi/yoY3AeffMjz63Tvedzz/ucz70iAqYxHBFaDQmeIXCFHSyjsxXwJMFqHKH2H9iNSSxhC+8Jv2AF7X+B8wl2ZT6F88r0tf/e+IIN9KEXjdTfMPEbuFuxF7hoOsBxasdNR19gwn1YxGMWXmMA9ZwYWP0BVhqM4DYLG6mtZ77/3eoMLrGZ+VzF9ihm8/yMjiq4VykcS635qwsYrtzXIkKbz7WNVxzgNLXD3Mcj4gZ3mdehZHellP6IeMpLpZQhDOIpIq5LKSPowX1EPHwASS8NHBrJmt4AAAAASUVORK5CYII=" />&nbsp;Flux RSS</a></li>
+					<li><a href="http://contact.framasoft.org" rel="popover" data-placement="left" data-content="Vous souhaitez prendre contact avec nous ?" title="Contacter Framasoft"><span class="glyphicon glyphicon-envelope"></span>&nbsp;Contact</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown"><a href="http://soutenir.framasoft.org/?f=nav" style="font-weight:bold" rel="popover" data-placement="bottom" data-content="Framasoft ne serait rien sans sa communauté de bénévoles mais ne pourrait pas fonctionner non plus sans le service de l’association qui a des frais et emploie trois indispensables permanents. Notre financement dépend de vous, c’est-à-dire des dons individuels collectés sur Internet. Si vous pensez que nous le méritons…" title="Parce que libre ne signifie pas gratuit"><span class="glyphicon glyphicon-gift"></span>&nbsp;Faire un don ?</a></li>
+		<!--	<li>
+				<form role="form" class="navbar-search" action="http://www.google.com/cse"> 
+					<input type="hidden" value="002138387073339262058:qhubrzuwlhg" name="cx"/> 
+					<input type="search" size="25" name="q" placeholder="Rechercher" class="form-control input-sm span2 search-query"/> 
+					<input type="submit" value="Go" name="sa" style="display:none"/> 
+				</form> 
+			</li>-->
+		</ul>
+	</div>
+	</div>
+</nav>
+</body>
+</html>

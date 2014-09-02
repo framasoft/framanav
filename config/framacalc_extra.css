@@ -1,0 +1,11 @@
+*, *:before, *:after {
+        -webkit-box-sizing: content-box !important;
+        -moz-box-sizing: content-box !important;
+        box-sizing: content-box !important;
+}
+#tableeditor {
+    margin: 8px 10px 10px 5px;
+}
+#msg {
+        top:48px;
+}

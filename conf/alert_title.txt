@@ -1,1 +1,0 @@
-Ici, le titre de l'alerte qui peut contenir du HTML

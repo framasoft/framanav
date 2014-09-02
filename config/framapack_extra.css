@@ -1,0 +1,10 @@
+*, *:before, *:after {
+	-webkit-box-sizing: content-box !important;
+	-moz-box-sizing: content-box !important;
+	box-sizing: content-box !important;
+}
+
+body {
+	padding-top:0;
+	font-size:1.5em;
+}
