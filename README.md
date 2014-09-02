@@ -1,5 +1,5 @@
-framanav2013
-============
+Framanav
+========
 
 Barre de navigation commune aux sites du réseau
 
@@ -12,11 +12,10 @@ Installation
 Prendre modèle sur config/config.js pour connaître les paramètres à personnalisables
 
 
-2) Se placer en ligne de commande dans le dossier du *site*, importer les fichiers du dépôt et rendre le fichier cron.sh exécutable
+2) Se placer en ligne de commande dans le dossier du *site* et importer les fichiers du dépôt
 ```bash
     cd /home/site/www
-    git clone https://github.com/framasoft/framanav2013.git nav
-    chmod 744 nav/cron.sh
+    git clone git@git.framasoft.org:framasoft/framanav.git nav
 ```
 
 3) a) Ajouter le script nav.js en haut du `<body>` du site où la nav est requise :
@@ -24,7 +23,7 @@ Prendre modèle sur config/config.js pour connaître les paramètres à personna
     <script src="/nav/nav.js" type="text/javascript"></script>
 ```
 
-Dans certain cas, le CMS utilisé compresse à la volée le javascript, il faut alors utiliser ce code là:
+Dans certain cas, le CMS utilisé compresse à la volée le javascript, il faut alors utiliser ce code là :
 ```HTML
 <script type="text/javascript">
 var script = document.createElement('script');
