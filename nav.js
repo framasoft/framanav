@@ -136,12 +136,12 @@ function f$_start_jquery() {
     // On charge bootstrap-a11y css
     if(f$_accessible) {
         var f$_accessibility_link = document.createElement('link');
-        f$_accessibility_link.rel = "stylesheet";
-        f$_accessibility_link.media="all";
-        f$_accessibility_link.href= f$_nav+"lib/bootstrap/css/bootstrap-accessibility.css";
+            f$_accessibility_link.rel = "stylesheet";
+            f$_accessibility_link.media="all";
+            f$_accessibility_link.href= f$_nav+"lib/bootstrap/css/bootstrap-accessibility.css";
 
-        document.getElementById('nav_bs_css').parentNode.insertBefore(f$_accessibility_link, document.getElementById('nav_bs_css').nextSibling);
-        console.log('Ok accessibility.css');
+            document.getElementsByTagName('head')[0].appendChild(f$_accessibility_link);
+            console.log('Ok accessibility.css');
     }
 
     // On charge font-awesome.min.css
