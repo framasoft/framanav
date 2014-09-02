@@ -1,5 +1,7 @@
-var f$_config = 'local';
+f$_config = 'local';
 
-var f$_jquery = 'fQuery';
+f$_jquery = 'fQuery';
 
-var f$_video_js = true;
+f$_video_js = true;
+
+f$_host = 'ovh';
