@@ -332,6 +332,11 @@ function f$_start_jquery() {
                     /** ... on ajoute surtout les scripts qui font appel à BootStrap et jQuery ici **/
                     // Activation des popovers
                     f$('a[rel="popover"]').each(function() {
+                        if(typeof f$().popover != 'function') {
+                            f$.getScript(f$_nav+'lib/bootstrap/js/bootstrap-popover.min.js', function() {
+                                console.log('Arf... popover.min.js');
+                            });
+                        }
                         f$(this).popover({
                             html: true,
                             trigger: 'hover',
