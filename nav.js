@@ -335,14 +335,21 @@ function f$_start_jquery() {
                         if(typeof f$().popover != 'function') {
                             f$.getScript(f$_nav+'lib/bootstrap/js/bootstrap-popover.min.js', function() {
                                 console.log('Arf... popover.min.js');
+                                f$(this).popover({
+                                    html: true,
+                                    trigger: 'hover',
+                                    // utilisation de 'template' pour ajout du lien sur la popover en mode tactile
+                                    template: '<div class="popover" role="tooltip"><div class="arrow"></div><a href="'+f$(this).attr('href')+'"><h3 class="popover-title"></h3><div class="popover-content"></div></a></div>'
+                                });
+                            });
+                        } else {
+                            f$(this).popover({
+                                html: true,
+                                trigger: 'hover',
+                                // utilisation de 'template' pour ajout du lien sur la popover en mode tactile
+                                template: '<div class="popover" role="tooltip"><div class="arrow"></div><a href="'+f$(this).attr('href')+'"><h3 class="popover-title"></h3><div class="popover-content"></div></a></div>'
                             });
                         }
-                        f$(this).popover({
-                            html: true,
-                            trigger: 'hover',
-                            // utilisation de 'template' pour ajout du lien sur la popover en mode tactile
-                            template: '<div class="popover" role="tooltip"><div class="arrow"></div><a href="'+f$(this).attr('href')+'"><h3 class="popover-title"></h3><div class="popover-content"></div></a></div>'
-                        });
                     });
 
                     // Fenêtre modale et bandeau d'alerte
