@@ -502,9 +502,16 @@ function f$_start_jquery() {
                         p_donationsTimer(false)
                     }
 
+                    // Liens de la nav à ouvrir dans un onglet
+                    if(f$_page('/nav/html/')) {
+                        f$('#framanav .dropdown-menu a:not([href^="/nav/html/"])').attr('target','_blank').append('<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span>');
+                    } else {
+                        f$('#framanav .dropdown-menu a').attr('target','_blank').append('<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span>');
+                    }
+
                     // Crédits
                     if(!f$_page('/html/credits_'))  {
-                        f$('#framanav_container').append('<div id="framanav_test" class="hidden">No ?'+f$_credits+'</div>');
+                        f$('#framanav_container').append('<div id="framanav_test" class="hidden"></div>');
                         f$('#framanav_test').load(f$_nav+'html/credits_'+f$_credits+'.html title', function() {
                             if(f$(this).html()!='') {
                                 f$('nav a[href$="html/credits.html"]').removeClass('hidden');
@@ -522,8 +529,6 @@ function f$_start_jquery() {
                     if(f$_page('/html/legals.html')) {
                         f$('#modal-legals-host').load(f$_nav+'html/host_'+f$_host+'.html');
                     }
-                    // Liens de la nav à ouvrir dans un onglet
-                    f$('#framanav .dropdown-menu a').attr('target','_blank').append('<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span>');
 
                     // Bug fix (bootstrap a11y fait correspondre le focus sur le hover mais pas pour le dernier menu)
                     f$('#framanav .navbar-right .dropdown-menu li a').hover(function() {
