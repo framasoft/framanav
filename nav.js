@@ -33,7 +33,7 @@ var f$_nav_container = false;
 
 var f$_nav_init = function() {
     for (var i = 0; i < f$_scripts.length; i++) {
-        if (f$_scripts[i].getAttribute("src").indexOf("/nav.js") > -1) {
+        if (f$_scripts[i].getAttribute("src") && f$_scripts[i].getAttribute("src").indexOf("/nav.js") > -1) {
             // Emplacement de la nav (racine ? sous-dossier ?)
             f$_nav = f$_scripts[i].getAttribute("src").replace('nav.js',''); // = 'http://'+f$_site+'/nav/';
 
