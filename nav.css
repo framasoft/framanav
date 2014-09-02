@@ -64,9 +64,9 @@
     background-color: rgb(248, 248, 248) !important;
 }
 
-/*#framanav.navbar .collapse {
+#framanav.navbar .collapse {
     height:40px !important;
-}*/
+}
 
 #framanav img {margin:0}
 
@@ -138,8 +138,9 @@ a#framanav_donation:hover {filter:alpha(opacity=80);-moz-opacity:0.8;-khtml-opac
 
 #framanav .navbar-brand {
     font-weight: bold;
-    padding-left:50px;
     height: 40px;
+    padding:0 10px 0 50px;
+    line-height:40px;
 }
 
 #framanav .nav-brand img {border:none;}
@@ -200,7 +201,7 @@ a#framanav_donation:hover {filter:alpha(opacity=80);-moz-opacity:0.8;-khtml-opac
 #nav-skip:focus {
     width: 113px;
     line-height: 20px;
-    margin: 0 0 0 -120px;
+    margin: 0 0 0 -110px;
     padding: 10px;
     background-color: #F8F8F8;
     color: #333;

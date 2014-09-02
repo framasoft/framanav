@@ -116,7 +116,7 @@ function f$_start_jquery() {
      * CSS
      */
     // On charge bootstrap css d'abord sans attendre le DOM (à l'ancienne, sans jquery)
-    if (f$_bootstrap_css) {
+    if (f$_bootstrap_css || f$_page('/nav/html/')) {
         var f$_bootstrap_link = document.createElement('link');
         f$_bootstrap_link.id = "nav_bs_css";
         f$_bootstrap_link.rel = "stylesheet";
@@ -130,19 +130,18 @@ function f$_start_jquery() {
             document.getElementsByTagName('head')[0].appendChild(f$_bootstrap_link);
         }
         console.log('Ok bootstrap.min.css');
-
-        if(f$_accessible) {
-            var f$_accessibility_link = document.createElement('link');
+    } else {
+        console.info('bootstrap.min.css désactivé');
+    }
+    // On charge bootstrap-a11y css
+    if(f$_accessible) {
+        var f$_accessibility_link = document.createElement('link');
             f$_accessibility_link.rel = "stylesheet";
             f$_accessibility_link.media="all";
             f$_accessibility_link.href= f$_nav+"lib/bootstrap/css/bootstrap-accessibility.css";
 
-            document.getElementById('nav_bs_css').parentNode.insertBefore(f$_accessibility_link, document.getElementById('nav_bs_css').nextSibling);
+            document.getElementsByTagName('head')[0].appendChild(f$_accessibility_link);
             console.log('Ok accessibility.css');
-        }
-
-    } else {
-        console.info('bootstrap.min.css désactivé');
     }
 
     // On charge font-awesome.min.css
@@ -240,7 +239,7 @@ function f$_start_jquery() {
 
             // Video JS
             if (f$_video_js) {
-                f$('head').append('<link rel="stylesheet" type="text/css" href="'+f$_nav+'lib/video-js/video-js.css" />');
+                f$('link[href*="/nav/nav.css"]').before('<link rel="stylesheet" type="text/css" href="'+f$_nav+'lib/video-js/video-js.css" />');
                 console.log('Ok video-js.css');
                  // Paramètres à ajouter à la vidéo pour appliquer VideoJS en surcouche
                 f$('video').attr({
@@ -331,14 +330,16 @@ function f$_start_jquery() {
 
                     /** ... on ajoute surtout les scripts qui font appel à BootStrap et jQuery ici **/
                     // Activation des popovers
-                    f$('a[rel="popover"]').each(function() {
-                        f$(this).popover({
-                            html: true,
-                            trigger: 'hover',
-                            // utilisation de 'template' pour ajout du lien sur la popover en mode tactile
-                            template: '<div class="popover" role="tooltip"><div class="arrow"></div><a href="'+f$(this).attr('href')+'"><h3 class="popover-title"></h3><div class="popover-content"></div></a></div>'
+                    if(typeof f$().popover == 'function') {
+                        f$('a[rel="popover"]').each(function() {
+                            f$(this).popover({
+                                html: true,
+                                trigger: 'hover',
+                                // utilisation de 'template' pour ajout du lien sur la popover en mode tactile
+                                template: '<div class="popover" role="tooltip"><div class="arrow"></div><a href="'+f$(this).attr('href')+'"><h3 class="popover-title"></h3><div class="popover-content"></div></a></div>'
+                            });
                         });
-                    });
+                    }
 
                     // Fenêtre modale et bandeau d'alerte
                     var f$_alert_dejavu = getCookie('nav-alert');
@@ -501,9 +502,16 @@ function f$_start_jquery() {
                         p_donationsTimer(false)
                     }
 
+                    // Liens de la nav à ouvrir dans un onglet
+                    if(f$_page('/nav/html/')) {
+                        f$('#framanav .dropdown-menu a:not([href^="/nav/html/"])').attr('target','_blank').append('<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span>');
+                    } else {
+                        f$('#framanav .dropdown-menu a').attr('target','_blank').append('<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span>');
+                    }
+
                     // Crédits
                     if(!f$_page('/html/credits_'))  {
-                        f$('#framanav_container').append('<div id="framanav_test" class="hidden">No ?'+f$_credits+'</div>');
+                        f$('#framanav_container').append('<div id="framanav_test" class="hidden"></div>');
                         f$('#framanav_test').load(f$_nav+'html/credits_'+f$_credits+'.html title', function() {
                             if(f$(this).html()!='') {
                                 f$('nav a[href$="html/credits.html"]').removeClass('hidden');
@@ -521,8 +529,6 @@ function f$_start_jquery() {
                     if(f$_page('/html/legals.html')) {
                         f$('#modal-legals-host').load(f$_nav+'html/host_'+f$_host+'.html');
                     }
-                    // Liens de la nav à ouvrir dans un onglet
-                    f$('#framanav .dropdown-menu a').attr('target','_blank').append('<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span>');
 
                     // Bug fix (bootstrap a11y fait correspondre le focus sur le hover mais pas pour le dernier menu)
                     f$('#framanav .navbar-right .dropdown-menu li a').hover(function() {
