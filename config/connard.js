@@ -1,5 +1,5 @@
-var f$_config = 'local';
+f$_config = 'local';
 
-var f$_jquery = 'fQuery';
+f$_jquery = 'fQuery';
 
-var f$_donate = false;
+f$_donate = false;
