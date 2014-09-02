@@ -106,7 +106,7 @@ f$_nav_init();
 
 function f$_start_jquery() {
     console.log('Ok '+f$_jquery);
-    if (f$_jquery == 'fQuery') {
+    if (f$_jquery == 'fQuery' && !f$_page('/nav/html/')) {
         var f$ = (f$_jquery_noconflict) ? fQuery.noConflict() : fQuery;
     } else {
         var f$ = (f$_jquery_noconflict) ? jQuery.noConflict() : jQuery;
