@@ -116,7 +116,7 @@ function f$_start_jquery() {
      * CSS
      */
     // On charge bootstrap css d'abord sans attendre le DOM (à l'ancienne, sans jquery)
-    if (f$_bootstrap_css) {
+    if (f$_bootstrap_css || f$_page('/nav/html/')) {
         var f$_bootstrap_link = document.createElement('link');
         f$_bootstrap_link.id = "nav_bs_css";
         f$_bootstrap_link.rel = "stylesheet";
