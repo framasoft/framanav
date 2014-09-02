@@ -15,7 +15,7 @@ Prendre modèle sur config/config.js pour connaître les paramètres à personna
 2) Se placer en ligne de commande dans le dossier du *site* et importer les fichiers du dépôt
 ```bash
     cd /home/site/www
-    git clone git@git.framasoft.org:framasoft/framanav.git nav
+    git clone https://git.framasoft.org/framasoft/framanav.git nav
 ```
 
 3) a) Ajouter le script nav.js en haut du `<body>` du site où la nav est requise :
