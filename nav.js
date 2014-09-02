@@ -239,7 +239,7 @@ function f$_start_jquery() {
 
             // Video JS
             if (f$_video_js) {
-                f$('head').append('<link rel="stylesheet" type="text/css" href="'+f$_nav+'lib/video-js/video-js.css" />');
+                f$('link[href*="/nav/nav.css"]').before('<link rel="stylesheet" type="text/css" href="'+f$_nav+'lib/video-js/video-js.css" />');
                 console.log('Ok video-js.css');
                  // Paramètres à ajouter à la vidéo pour appliquer VideoJS en surcouche
                 f$('video').attr({
