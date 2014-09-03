@@ -98,10 +98,10 @@ var f$_nav_init = function() {
             // Emplacement de la nav (racine ? sous-dossier ?)
             f$_nav = f$_scripts[i].getAttribute("src").replace('nav.js',''); // = 'http://'+f$_site+'/nav/';
 
-            // On ajout une div vide de 44px qui contiendra la nav (évite les sauts de mise en page avant le chargement des fichiers)
+            // On ajout une div vide de 42px qui contiendra la nav (évite les sauts de mise en page avant le chargement des fichiers)
             if (f$_scripts[i].parentNode.tagName.toLowerCase() == 'body' ) {
                 // si nav.js est appelé en haut du body, c'est super rapide
-                var navContainer = (f$_not_in_frame) ? '<div id="framanav_container" style="height:44px"></div>' : '<div id="framanav_container"></div>';
+                var navContainer = (f$_not_in_frame) ? '<div id="framanav_container" style="height:42px"></div>' : '<div id="framanav_container"></div>';
                 document.write(navContainer);
                 console.log('Nav fast');
                 f$_nav_container = true;
@@ -158,7 +158,7 @@ function f$_start_jquery() {
         f$.ajaxSetup({ cache: f$_cache });
 
         if(!f$_nav_container) {
-            (f$_not_in_frame) ? f$('body').prepend('<div id="framanav_container" style="height:44px"></div>') : f$('body').prepend('<div id="framanav_container"></div>');
+            (f$_not_in_frame) ? f$('body').prepend('<div id="framanav_container" style="height:42px"></div>') : f$('body').prepend('<div id="framanav_container"></div>');
         }
 
         // On charge ensuite le code HTML
@@ -306,7 +306,7 @@ function f$_start_jquery() {
                     f$('#framanav').fadeIn('fast');
 
                     if(f$_nav_static) {
-                        f$('#framanav_container ~ *:not(script):first').css('padding-top', function(value) { return value+44; });
+                        f$('#framanav_container ~ *:not(script):first').css('padding-top', function(value) { return value+42; });
                         f$('#framanav_container').css({
                             'position':'fixed',
                             'width':'100%',
@@ -370,7 +370,7 @@ function f$_start_jquery() {
                     // Ajout du bandeau d'alerte
                     if (f$_alert_text!='' && !f$_alert_dejavu) {
 
-                        f$('#framanav').after(
+                        f$('#framanav_container').after(
                             '<div id="nav-alert" class="alert alert-'+f$_alert_type+' fade in" style="border-radius:0">'+
                                 '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'+
                                 '<p style="text-align:center">'+f$_alert_text+f$_alert_more+'</p>'+

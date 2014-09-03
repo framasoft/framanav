@@ -1,5 +1,7 @@
 f$_config = 'local';
 
+f$_nav_static = true;
+
 // Opt-in
 f$_email_field1 = '#email_auteur';
 
