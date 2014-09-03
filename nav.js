@@ -1,4 +1,4 @@
-var f$_version = '140829';
+var f$_version = '140903';
 var f$_site = window.location.host
 f$_site = f$_site.replace(/^(www|test)\./i,"");
 f$_site = f$_site.replace(/\.(com|net|org|fr|pro)$/i,"");
@@ -7,12 +7,6 @@ var f$_url = window.location.href;
 
 var f$_not_in_frame = (top.location==self.document.location); // Pas dans une Frame
 console.log('Not in frame ? '+f$_not_in_frame);
-
-var f$_scripts = document.getElementsByTagName('script');
-
-var f$_nav = '';
-
-var f$_nav_container = false;
 
 // console n'existe pas sur IE8
 (function() {
@@ -31,36 +25,15 @@ var f$_nav_container = false;
   }
 })();
 
-var f$_nav_init = function() {
-    for (var i = 0; i < f$_scripts.length; i++) {
-        if (f$_scripts[i].getAttribute("src") && f$_scripts[i].getAttribute("src").indexOf("/nav.js") > -1) {
-            // Emplacement de la nav (racine ? sous-dossier ?)
-            f$_nav = f$_scripts[i].getAttribute("src").replace('nav.js',''); // = 'http://'+f$_site+'/nav/';
-
-            // On ajout une div vide de 44px qui contiendra la nav (évite les sauts de mise en page avant le chargement des fichiers)
-            if (f$_scripts[i].parentNode.tagName.toLowerCase() == 'body' ) {
-                // si nav.js est appelé en haut du body, c'est super rapide
-                var navContainer = (f$_not_in_frame) ? '<div id="framanav_container" style="height:44px"></div>' : '<div id="framanav_container"></div>';
-                document.write(navContainer);
-                console.log('Nav fast');
-                f$_nav_container = true;
-            } else {
-                // sinon c'est dans le head, il faut attendre document.ready (voir plus bas)
-                console.log('Nav slow');
-            }
-        }
-    }
-
-    f$_loadScript(f$_nav+'config/config.js?'+f$_version, f$_start_global_config);
-
-};
-
 /**
  * f$() = jQuery() = $()
  * f$_  = variables ou fonctions
  * f$   = free $oftware = frama$oft :P
  **/
 
+/*******************
+ *  Config globale
+ *******************/
 var f$_start_global_config = function() {
     if (f$_config == 'global') {
         console.log('Ok config.js');
@@ -68,8 +41,11 @@ var f$_start_global_config = function() {
     } else {
         console.error('config.js');
     }
-};
+}; // ---> site.js
 
+/*******************
+ *  Config locale
+ *******************/
 var f$_start_local_config = function() {
     if (f$_config == 'local') {
         console.log('Ok '+f$_site+'.js');
@@ -107,74 +83,75 @@ var f$_start_local_config = function() {
     } else {
         console.error(f$_site+'.js');
     }
-}
+} // ---> jQuery
+
+/*******************
+ *     Nav init
+ *******************/
+var f$_scripts = document.getElementsByTagName('script');
+var f$_nav = ''; // racine de la nav
+var f$_nav_container = false;
+
+var f$_nav_init = function() {
+    for (var i = 0; i < f$_scripts.length; i++) {
+        if (f$_scripts[i].getAttribute("src") && f$_scripts[i].getAttribute("src").indexOf("/nav.js") > -1) {
+            // Emplacement de la nav (racine ? sous-dossier ?)
+            f$_nav = f$_scripts[i].getAttribute("src").replace('nav.js',''); // = 'http://'+f$_site+'/nav/';
+
+            // On ajout une div vide de 44px qui contiendra la nav (évite les sauts de mise en page avant le chargement des fichiers)
+            if (f$_scripts[i].parentNode.tagName.toLowerCase() == 'body' ) {
+                // si nav.js est appelé en haut du body, c'est super rapide
+                var navContainer = (f$_not_in_frame) ? '<div id="framanav_container" style="height:44px"></div>' : '<div id="framanav_container"></div>';
+                document.write(navContainer);
+                console.log('Nav fast');
+                f$_nav_container = true;
+            } else {
+                // sinon c'est dans le head, il faut attendre document.ready (voir plus bas)
+                console.log('Nav slow');
+            }
+        }
+    }
+
+    f$_loadScript(f$_nav+'config/config.js?'+f$_version, f$_start_global_config);
+}; // ---> config.js
 
 f$_nav_init();
 
+/*******************
+ *     jQuery
+ *******************/
 function f$_start_jquery() {
+    /*
+     * CSS
+     */
+    // Bootstrap
+    if (f$_bootstrap_css) {
+        f$_loadCSS(f$_nav+"lib/bootstrap/css/bootstrap.min.css", f$_css_position, "all");
+    }
+    // Bootstrap-a11y
+    if(f$_accessible) {
+        f$_loadCSS(f$_nav+"lib/bootstrap/css/bootstrap-accessibility.css", 'end', "all");
+    }
+
+    // Font-awesome
+    f$_loadCSS(f$_nav+'lib/font-awesome/css/font-awesome.min.css','end','all');
+
+    // Nav.css
+    f$_loadCSS(f$_nav+'nav.css?'+f$_version);
+
+    // Extra.css
+    if(f$_extra_css) {
+        f$_loadCSS(f$_nav+'nav.css?'+f$_version);
+    }
+
+    /*
+     * Nav
+     */
     console.log('Ok '+f$_jquery);
     if (f$_jquery == 'fQuery') {
         var f$ = (f$_jquery_noconflict) ? fQuery.noConflict() : fQuery;
     } else {
         var f$ = (f$_jquery_noconflict) ? jQuery.noConflict() : jQuery;
-    }
-
-    /*
-     * CSS
-     */
-    // On charge bootstrap css d'abord sans attendre le DOM (à l'ancienne, sans jquery)
-    if (f$_bootstrap_css) {
-        var f$_bootstrap_link = document.createElement('link');
-        f$_bootstrap_link.id = "nav_bs_css";
-        f$_bootstrap_link.rel = "stylesheet";
-        f$_bootstrap_link.media="all";
-        f$_bootstrap_link.href= f$_nav+"lib/bootstrap/css/bootstrap.min.css";
-
-
-        if (f$_css_position == 'start') {
-            document.getElementsByTagName('head')[0].insertBefore(f$_bootstrap_link, document.getElementsByTagName('head')[0].firstChild);
-        } else {
-            document.getElementsByTagName('head')[0].appendChild(f$_bootstrap_link);
-        }
-        console.log('Ok bootstrap.min.css');
-    } else {
-        console.info('bootstrap.min.css désactivé');
-    }
-    // On charge bootstrap-a11y css
-    if(f$_accessible) {
-        var f$_accessibility_link = document.createElement('link');
-            f$_accessibility_link.rel = "stylesheet";
-            f$_accessibility_link.media="all";
-            f$_accessibility_link.href= f$_nav+"lib/bootstrap/css/bootstrap-accessibility.css";
-
-            document.getElementsByTagName('head')[0].appendChild(f$_accessibility_link);
-            console.log('Ok accessibility.css');
-    }
-
-    // On charge font-awesome.min.css
-    var f$_fa_css_link = document.createElement('link');
-        f$_fa_css_link.rel = "stylesheet";
-        f$_fa_css_link.media="screen";
-        f$_fa_css_link.href= f$_nav+'lib/font-awesome/css/font-awesome.min.css';
-    document.getElementsByTagName('head')[0].appendChild(f$_fa_css_link);
-    console.log('Ok font-awesome.min.css');
-
-    // On charge nav.css
-    var f$_nav_css_link = document.createElement('link');
-        f$_nav_css_link.rel = "stylesheet";
-        f$_nav_css_link.media="screen";
-        f$_nav_css_link.href= f$_nav+'nav.css?'+f$_version;
-    document.getElementsByTagName('head')[0].appendChild(f$_nav_css_link);
-    console.log('Ok nav.css');
-
-    // On charge extra.css
-    if(f$_extra_css) {
-        var f$_extra_css_link = document.createElement('link');
-            f$_extra_css_link.rel = "stylesheet";
-            f$_extra_css_link.media="screen";
-            f$_extra_css_link.href= f$_nav+'config/'+f$_site+'_extra.css';
-        document.getElementsByTagName('head')[0].appendChild(f$_extra_css_link);
-        console.log('Ok extra.css');
     }
 
     f$(document).ready(function() {
@@ -186,10 +163,10 @@ function f$_start_jquery() {
 
         // On charge ensuite le code HTML
         f$.ajax({
-            url: f$_nav+'nav.html',
+            url: f$_nav+'nav.html'
         })
         .fail(function() {
-            console.error('nav.html');
+            console.error('Pas de nav.html');
         })
         .done(function(html) {
             // On ajoute le viewport si Responsive
@@ -202,13 +179,16 @@ function f$_start_jquery() {
 
             // On affiche le code html
             f$('#framanav_container').addClass('hidden-print');
-            f$('#framanav_container').prepend(html); console.log('Ok nav.html');
+            f$('#framanav_container').prepend(html);
             // Correctif sur les url relatives (les images) dans le code html
             f$('img[src^="nav/"]').each(function(){
                 link=f$(this).attr('src');
                 f$(this).attr('src',link.replace('nav/',f$_nav));
             });
 
+            /*******************
+             *   BootStrap JS
+             *******************/
             if (f$_bootstrap_js) {
                 if (typeof f$().modal == 'function' || f$_bootstrap_js == 'html') {
                     console.log('Ok Bootstrap actif (html)');
@@ -247,7 +227,6 @@ function f$_start_jquery() {
             // Video JS
             if (f$_video_js) {
                 f$('link[href*="/nav/nav.css"]').before('<link rel="stylesheet" type="text/css" href="'+f$_nav+'lib/video-js/video-js.css" />');
-                console.log('Ok video-js.css');
                  // Paramètres à ajouter à la vidéo pour appliquer VideoJS en surcouche
                 f$('video').attr({
                     'class':'video-js vjs-default-skin',
@@ -489,7 +468,7 @@ function f$_start_jquery() {
                                     type: "POST",
                                     url: 'http://contact.framasoft.org/php_list/lists/?p=subscribe&id=2', // URL d'abonnement à la liste
                                     crossDomain:true,
-                                    data: 'makeconfirmed=1&htmlemail=0&list%5B5%5D=signup&listname%5B5%5D=Newsletter&email='+f$_email.replace('@','%40')+'&VerificationCodeX=&subscribe=Abonnement', // Paramètres habituellement passés dans le formulaire
+                                    data: 'makeconfirmed=1&htmlemail=0&list%5B5%5D=signup&listname%5B5%5D=Newsletter&email='+f$_email.replace('@','%40')+'&VerificationCodeX=&subscribe=Abonnement' // Paramètres habituellement passés dans le formulaire
                                 });
                                 // On supprime la case à cocher (pas possible de décocher ; l'annulation se fait depuis le mail reçu)
                                 f$('#fs_opt-in').remove();
@@ -564,6 +543,7 @@ function p_donationsTimer(t) {
     setTimeout('p_donationsTimer(1)',t);
 }
 
+// Cookies
 function setCookie(sName, sValue, sTime) {
     sTime = typeof sTime !== 'undefined' ? sTime : 365*24*60*60*1000;
     var today = new Date(), expires = new Date();
@@ -580,15 +560,7 @@ function getCookie(sName) {
     }
 }
 
-function addScript(filename) {
-    var add_script = document.createElement('script')
-    add_script.setAttribute("type","text/javascript")
-    add_script.setAttribute("src", filename)
-    if (typeof add_script!="undefined")
-        document.getElementsByTagName("head")[0].appendChild(add_script)
-}
-
-// Fonction pour ajouter les scripts au head et vérifier le chargement
+// Fonction d'ajout de scripts
 function f$_loadScript(url, callback, forceCallback) {
     if (!this.loadedScript) {
         this.loadedScript = new Array();
@@ -614,29 +586,46 @@ function f$_loadScript(url, callback, forceCallback) {
     }
     // fin teste indexOf
 
-
     if (this.loadedScript.indexOf(url) == -1) {
         this.loadedScript.push(url);
+        var head = document.getElementsByTagName("head")[0];
         var e = document.createElement("script");
         e.src = url;
         e.type = "text/javascript";
         e.charset ="utf-8";
-        if (/msie/i.test(navigator.userAgent) && !/opera/i.test(navigator.userAgent)) {
-        // IE
-        e.onreadystatechange = function(){
-            if (this.readyState == 'loaded') {
-            callback();
+
+        var done = false;
+        e.onload = e.onreadystatechange = function() {
+            if ( !done && (!this.readyState ||
+                this.readyState === "loaded" || this.readyState === "complete") ) {
+                done = true;
+                callback();
+                // Handle memory leak in IE
+                e.onload = e.onreadystatechange = null;
             }
-        }
-        } else {
-        // Other browsers
-            e.onload = callback;
-        }
-        document.getElementsByTagName("head")[0].appendChild(e);
+        };
+
+        head.appendChild(e);
     } else {
         if (forceCallback) { // pas utilisé
             callback();
         }
+    }
+}
+
+// Ajout de CSS
+function f$_loadCSS(url, position, media) {
+    if (position==undefined) position='end';
+    if (media==undefined) media='screen';
+    var f$_link = document.createElement('link');
+        f$_link.rel = "stylesheet";
+        f$_link.media=media;
+        f$_link.href= url;
+
+    if (position == 'start') {
+        document.getElementsByTagName('head')[0].insertBefore(f$_link, document.getElementsByTagName('head')[0].firstChild);
+    } else {
+        document.getElementsByTagName('head')[0].appendChild(f$_link);
     }
 }
 
