@@ -141,7 +141,7 @@ function f$_start_jquery() {
 
     // Extra.css
     if(f$_extra_css) {
-        f$_loadCSS(f$_nav+'nav.css?'+f$_version);
+        f$_loadCSS(f$_nav+'config/'+f$_site+'_extra.css');
     }
 
     /*
