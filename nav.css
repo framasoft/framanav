@@ -13,6 +13,17 @@
     padding: 3px 15px;
 }
 
+#framanav .dropdown a .caret {
+    margin-left:-50%;
+    margin-top:25px;
+    visibility:hidden;
+}
+
+#framanav .dropdown a:hover .caret,
+#framanav .dropdown a:focus .caret {
+    visibility:visible;
+}
+
 #modal-don .new-window,
 #link-opt-in .new-window,
 #framanav .dropdown-menu li a .new-window { /*a:not(.modal-link)*/
@@ -37,16 +48,14 @@
 #framanav .dropdown:nth-child(5) .dropdown-menu li a:hover {background-color: #6A5687 !important;color:#fff !important;} /* violet nous suivre */
 #framanav .navbar-right .dropdown:nth-child(1) .dropdown-menu li a:hover {background-color: #EB7E41 !important;color:#fff !important;} /* orange a propos */
 
-#suivez-nous:focus span.hidden,
+
 #apropos:focus span.hidden,
-#suivez-nous:hover span.hidden,
 #apropos:hover span.hidden {
     display:inline !important;
     visibility:visible !important;
 }
 
 @media (max-width: 768px) {
-    #suivez-nous span.hidden,
     #apropos span.hidden {
         display:inline !important;
         visibility:visible !important;
@@ -64,15 +73,15 @@
     background-color: rgb(248, 248, 248) !important;
 }
 
-#framanav.navbar .collapse {
-    height:40px !important;
-}
-
 #framanav img {margin:0}
 
 #framanav .navbar-brand,
 #framanav .navbar-nav > li > a {
-    padding:10px;                /*15px sur BS*/
+    padding:10px 15px;                /*15px sur BS*/
+}
+
+#framanav .dropdown-toggle {
+    padding:7px 2px 5px 12px !important;
 }
 
 #framanav .nav-container {
@@ -83,6 +92,9 @@
 @media (min-width: 768px) {
     #framanav .nav-container {
         width:930px;        /* largeur fixe pour que la nav tienne sur une seule ligne */
+    }
+    #framanav.navbar .collapse { /* bug dans certaines config en box-sizing: content-box*/
+        height:40px !important;
     }
 }
 @media (max-width: 768px) { /* la nav pour tablette/mobile n'a pas ce problème */
@@ -199,7 +211,7 @@ a#framanav_donation:hover {filter:alpha(opacity=80);-moz-opacity:0.8;-khtml-opac
     margin-top:-50px;
 }
 #nav-skip:focus {
-    width: 113px;
+    width: auto;
     line-height: 20px;
     margin: 0 0 0 -115px;
     padding: 10px;
