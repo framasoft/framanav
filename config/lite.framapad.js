@@ -13,7 +13,7 @@ f$_donate = false;
 f$_alert_modal_title = 'Création des pads désactivée';
 f$_alert_modal_text = '<p>Nous vous informons que cette instance de Framapad (<b>lite</b>.framapad.org) ne peut plus accueillir de nouveaux pads.<p>'+
  '<br /><p>Il reste bien évidement possible de travailler sur les pads déjà existants (ils ne seront pas supprimés)'+
- ' mais pour en créer de nouveaux, veuillez passer par la page d’accueil du site :<br />'+
+ ' mais pour en créer de nouveaux, veuillez passer par la page d’accueil du site :<br />'+
  '<a href="http://www.framapad.org">www.framapad.org</a></p>'+
  '<br /><p>Merci.<br />L’équipe technique</p>';
 
@@ -22,4 +22,4 @@ f$_piwik_url = 'http://stats.framasoft.org/';
 f$_piwik_id = '4';
 
 f$_host = 'ovh';
-f$_credit = 'framapad';
+f$_credits = 'framapad';
