@@ -49,6 +49,23 @@ var f$_start_global_config = function() {
 var f$_start_local_config = function() {
     if (f$_config == 'local') {
         console.log('Ok '+f$_site+'.js');
+
+        // Piwik
+        if(f$_piwik_url != '' && f$_piwik_id != '') {
+           var _paq = _paq || [];
+            _paq.push(["trackPageView"]);
+            _paq.push(["enableLinkTracking"]);
+
+            (function() {
+              var u=(("https:" == document.location.protocol) ? "https:" : "http:") + f$_piwik_url.replace(/(http:|https:)/,'');
+              console.log('Ok piwik : '+u+'piwik.js');
+              _paq.push(["setTrackerUrl", u+"piwik.php"]);
+              _paq.push(["setSiteId", f$_piwik_id]);
+              var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+              g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+            })();
+        }
+
         if(f$_page('/nav/html/')) { // Si pages « À propos » on reinit la config
             f$_jquery = 'jQuery';
             f$_bootstrap_css = true;
@@ -272,21 +289,6 @@ function f$_start_jquery() {
                 return false;
             });
 
-            // Piwik
-            if(f$_piwik_url != '' && f$_piwik_id != '') {
-                console.log('Ok piwik');
-                var _paq = _paq || [];
-                _paq.push(["trackPageView"]);
-                _paq.push(["enableLinkTracking"]);
-
-                (function() {
-                  var u=(("https:" == document.location.protocol) ? "https:" : "http:") + f$_piwik_url.replace(/(http:|https:)/,'');
-                  _paq.push(["setTrackerUrl", u+"piwik.php"]);
-                  _paq.push(["setSiteId", f$_piwik_id]);
-                  var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
-                  g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
-                })();
-            }
             /** On peut ajouter des scripts jQuery "génériques" ici mais... **/
 
             function go_BootStrap() {
@@ -335,7 +337,7 @@ function f$_start_jquery() {
                     // Ajout de la fenêtre modale
                     if (f$_alert_modal_text!='') {
                         f$('body').append(
-                        '<div class="modal fade hidden" id="modal-alert" tabindex="-1" role="dialog" aria-labelledby="modal-alertLabel" aria-hidden="true">'+
+                        '<div class="modal fade" id="modal-alert" tabindex="-1" role="dialog" aria-labelledby="modal-alertLabel" aria-hidden="true">'+
                             '<div class="modal-dialog">'+
                                 '<div class="modal-content">'+
                                     '<div class="modal-header">'+
