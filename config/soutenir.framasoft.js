@@ -17,8 +17,4 @@ if(f$_page('add/temoignage')) {
     f$_email_field1 = '#edit-field-t-email-0-value';
 }
 
-// Piwik
-f$_piwik_url = 'http://stats.framasoft.org/';
-f$_piwik_id = '18';
-
 f$_host = 'ovh';

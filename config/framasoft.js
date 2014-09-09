@@ -14,8 +14,3 @@ if(window.location.href != 'http://www.framasoft.net/' && !f$_page('framasoft.ne
 
     f$_credits = 'framalibre';
 }
-
-// Piwik
-f$_piwik_url = 'http://stats.framasoft.org/';
-f$_piwik_id = '1';
-

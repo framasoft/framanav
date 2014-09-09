@@ -50,22 +50,6 @@ var f$_start_local_config = function() {
     if (f$_config == 'local') {
         console.log('Ok '+f$_site+'.js');
 
-        // Piwik
-        if(f$_piwik_url != '' && f$_piwik_id != '') {
-           var _paq = _paq || [];
-            _paq.push(["trackPageView"]);
-            _paq.push(["enableLinkTracking"]);
-
-            (function() {
-              var u=(("https:" == document.location.protocol) ? "https:" : "http:") + f$_piwik_url.replace(/(http:|https:)/,'');
-              console.log('Ok piwik : '+u+'piwik.js');
-              _paq.push(["setTrackerUrl", u+"piwik.php"]);
-              _paq.push(["setSiteId", f$_piwik_id]);
-              var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
-              g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
-            })();
-        }
-
         if(f$_page('/nav/html/')) { // Si pages « À propos » on reinit la config
             f$_jquery = 'jQuery';
             f$_bootstrap_css = true;

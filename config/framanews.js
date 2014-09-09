@@ -12,8 +12,4 @@ if(f$_page('framanews.org/ttrss')) {
     f$_donate = false;
 }
 
-// Piwik
-f$_piwik_url = 'https://framanews.org/piwik/';
-f$_piwik_id = '20';
-
 f$_host = 'iniz';

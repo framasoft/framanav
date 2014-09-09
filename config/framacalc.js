@@ -22,8 +22,4 @@ if(f$_page('framacalc.org/_start')) {
     f$_donate = false;
 }
 
-// Piwik
-f$_piwik_url = 'http://stats.framasoft.org/';
-f$_piwik_id = '11';
-
 f$_host = 'ovh';

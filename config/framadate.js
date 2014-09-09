@@ -10,8 +10,4 @@ if(f$_page('infos_sondage.php?choix_sondage')) {
     f$_extra_css = true;
 }
 
-// Piwik
-f$_piwik_url = 'http://stats.framasoft.org/';
-f$_piwik_id = '10';
-
 f$_host = 'online';

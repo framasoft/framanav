@@ -14,9 +14,5 @@ f$_alert_modal_text = '';
 f$_modal_don_liendl = '';
 f$_donate = false;
 
-// Piwik
-f$_piwik_url = 'http://stats.framasoft.org/';
-f$_piwik_id = '4';
-
 f$_host = 'ovh';
 f$_credits = 'framapad';

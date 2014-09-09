@@ -22,7 +22,3 @@ if(f$_page('framindmap.html')) {
     f$_video_js = true;
 
 }
-
-// Piwik
-f$_piwik_url = 'http://stats.framasoft.org/';
-f$_piwik_id = '12';

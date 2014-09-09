@@ -32,8 +32,4 @@ if(f$_page('framindmap.org/mindmaps')) {
     f$_video_js = true;
 }
 
-// Piwik
-f$_piwik_url = 'http://stats.framasoft.org/';
-f$_piwik_id = '12';
-
 f$_credits = "framindmap";
