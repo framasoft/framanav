@@ -17,9 +17,5 @@ f$_alert_modal_text = '<p>Nous vous informons que cette instance de Framapad (<b
  '<a href="http://www.framapad.org">www.framapad.org</a></p>'+
  '<br /><p>Merci.<br />L’équipe technique</p>';
 
-// Piwik
-f$_piwik_url = 'http://stats.framasoft.org/';
-f$_piwik_id = '4';
-
 f$_host = 'ovh';
 f$_credits = 'framapad';

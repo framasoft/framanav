@@ -20,8 +20,4 @@ jQuery(document).ready(function() {
 // Opt-in
 f$_email_field1 = '#c_mail';
 
-// Piwik
-f$_piwik_url = 'http://stats.framasoft.org/';
-f$_piwik_id = '3';
-
 f$_host = 'ovh';

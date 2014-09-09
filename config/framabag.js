@@ -12,7 +12,3 @@ if(f$_page('framabag.org/u')) {
     f$_donate = false;
 
 }
-
-// Piwik
-f$_piwik_url = 'http://stats.framasoft.org/';
-f$_piwik_id = '21';
