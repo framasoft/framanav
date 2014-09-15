@@ -12,9 +12,11 @@ var f$_css_position = 'start';                      // 'start' = head > bootstra
 var f$_responsive = true;
 var f$_accessible = true;
 
-var f$_nav_static = false;                          // Pas encore implémenté correctement
+var f$_nav_static = false;
 var f$_extra_css = false;                           // nav/config/nom-de-domaine_extra.css
 var f$_extra_js = false;                            // nav/config/nom-de-domaine_extra.js
+
+var f$_footer = false;                              // charger le fichier footer.html
 
 // Popup de don
 var f$_modal_don_txtdl1 = 'de télécharger';
