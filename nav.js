@@ -479,6 +479,32 @@ function f$_start_jquery() {
                         f$('#framanav .dropdown-menu a').attr('target','_blank').append('<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span>');
                     }
 
+                    // Footer
+                    if(f$_page('/nav/html/') || f$_footer) {
+                        f$.ajax({
+                            url: f$_nav+'footer.html'
+                        })
+                        .fail(function() {
+                            console.error('Pas de footer.html');
+                        })
+                        .done(function(html) {
+                            f$('body').append(html);
+                            if(f$('body').height() < f$(window).height()) {
+                                f$('#framafooter').css('position','absolute');
+                            } else {
+                                f$('#framafooter').css('position','relative');
+                            }
+                        });
+                        f$(window).on('resize', function() {
+                            f$('#framafooter').css('position','relative');
+                            if(f$('body').height() < f$(window).height()) {
+                                f$('#framafooter').css('position','absolute');
+                            } else {
+                                f$('#framafooter').css('position','relative');
+                            }
+                        });
+                    }
+
                     // Crédits
                     if(!f$_page('/html/credits_'))  {
                         f$('#framanav_container').append('<div id="framanav_test" class="hidden"></div>');

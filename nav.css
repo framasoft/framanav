@@ -298,14 +298,42 @@ a#framanav_donation:hover {filter:alpha(opacity=80);-moz-opacity:0.8;-khtml-opac
     color:#555;
 }
 
-.apropos {
-    background: #E5E8ED;
-}
-.apropos .container {
-    max-width:800px;
+/* Footer */
+#framafooter {
+    padding:0 0 20px 0;
+    margin:0px 0 0 0;
+    background:#E5E8ED;
+    color:#333;
+    font-size:14px;
+    width:100%;
+    bottom:0;
 }
 
-.apropos footer {
-    text-align:center;
-    font-style:italic;
+#framafooter .container {
+    max-width:1000px;
+}
+
+#framafooter h1 {
+    font-size:14px;
+    font-weight:bold;
+}
+
+#framafooter h2 {
+    font-size:14px;
+    font-weight:bold;
+}
+#framafooter a {
+    color:#333;
+}
+
+#framafooter a .fa-fw {
+    padding:5px;
+    width:36px;
+    height:36px;
+}
+#framafooter a:hover .fa,
+#framafooter a:focus .fa {
+    background:#6A5687;
+    color:#fff;
+    border-radius:5px;
 }
