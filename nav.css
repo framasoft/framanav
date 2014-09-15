@@ -328,11 +328,11 @@ a#framanav_donation:hover {filter:alpha(opacity=80);-moz-opacity:0.8;-khtml-opac
     text-decoration:none;
     border-bottom:none;
 }
-#framafooter a {
-    color:#333;
+
+#framafooter a:hover,
+#framafooter a:focus {
     text-decoration:underline;
 }
-
 
 #framafooter a .fa-fw {
     padding:5px;
