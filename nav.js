@@ -52,7 +52,7 @@ var f$_start_local_config = function() {
 
         if(f$_page('/nav/html/')) { // Si pages « À propos » on reinit la config
             f$_jquery = 'jQuery';
-            f$_bootstrap_css = true;
+            f$_bootstrap_css = false;
             f$_bootstrap_js = true;
             f$_accessible = true;
         }
