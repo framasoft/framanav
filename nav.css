@@ -300,8 +300,8 @@ a#framanav_donation:hover {filter:alpha(opacity=80);-moz-opacity:0.8;-khtml-opac
 
 /* Footer */
 #framafooter {
-    padding:0 0 20px 0;
-    margin:0px 0 0 0;
+    padding:20px 0 20px 0;
+    margin:0;
     background:#E5E8ED;
     color:#333;
     font-size:14px;
@@ -316,6 +316,7 @@ a#framanav_donation:hover {filter:alpha(opacity=80);-moz-opacity:0.8;-khtml-opac
 #framafooter h1 {
     font-size:14px;
     font-weight:bold;
+    margin-top:0;
 }
 
 #framafooter h2 {
@@ -324,12 +325,20 @@ a#framanav_donation:hover {filter:alpha(opacity=80);-moz-opacity:0.8;-khtml-opac
 }
 #framafooter a {
     color:#333;
+    text-decoration:none;
+    border-bottom:none;
 }
+#framafooter a {
+    color:#333;
+    text-decoration:underline;
+}
+
 
 #framafooter a .fa-fw {
     padding:5px;
     width:36px;
     height:36px;
+    text-decoration:none;
 }
 #framafooter a:hover .fa,
 #framafooter a:focus .fa {
