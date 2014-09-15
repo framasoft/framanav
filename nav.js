@@ -510,8 +510,8 @@ function f$_start_jquery() {
                         f$('#framanav_container').append('<div id="framanav_test" class="hidden"></div>');
                         f$('#framanav_test').load(f$_nav+'html/credits_'+f$_credits+'.html title', function() {
                             if(f$(this).html()!='') {
-                                f$('nav a[href$="html/credits.html"]').removeClass('hidden');
-                                f$('nav a[href$="html/credits.html"]').attr('href',f$_nav+'html/credits_'+f$_credits+'.html');
+                                f$('nav a[href$="html/credits.html"],#framafooter a[href$="html/credits.html"]').removeClass('hidden');
+                                f$('nav a[href$="html/credits.html"],#framafooter a[href$="html/credits.html"]').attr('href',f$_nav+'html/credits_'+f$_credits+'.html');
                             }
                         });
                     }
