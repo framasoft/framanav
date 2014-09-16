@@ -302,11 +302,12 @@ a#framanav_donation:hover {filter:alpha(opacity=80);-moz-opacity:0.8;-khtml-opac
 #framafooter {
     padding:20px 0 20px 0;
     margin:0;
-    background:#E5E8ED;
+    background:#dfdfdf;
     color:#333;
     font-size:14px;
     width:100%;
     bottom:0;
+    border-top:1px solid #ccc;
 }
 
 #framafooter .container {
