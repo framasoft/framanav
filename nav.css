@@ -311,7 +311,7 @@ a#framanav_donation:hover {filter:alpha(opacity=80);-moz-opacity:0.8;-khtml-opac
 }
 
 #framafooter .container {
-    max-width:1000px;
+    min-height:0px;
 }
 
 #framafooter h1 {
