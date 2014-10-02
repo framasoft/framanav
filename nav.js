@@ -287,7 +287,7 @@ function f$_start_jquery() {
                 }
                 // Carousel
                 f$('.carousel').each(function (index) {
-                    var $this = f$(this)
+                    var f$this = f$(this)
                       , prev = f$this.find('[data-slide="prev"]')
                       , next = f$this.find('[data-slide="next"]')
                       , f$options = f$this.find('.item')
