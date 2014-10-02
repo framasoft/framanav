@@ -277,7 +277,7 @@ function f$_start_jquery() {
                  *  code issu de https://github.com/paypal/bootstrap-accessibility-plugin
                  **/
                 // Alert
-                $('.close').removeAttr('aria-hidden').wrapInner('<span aria-hidden="true"></span>').append('<span class="sr-only">Fermer</span>');
+                f$('.close').removeAttr('aria-hidden').wrapInner('<span aria-hidden="true"></span>').append('<span class="sr-only">Fermer</span>');
                 // Modal
                 var modalhide =   f$.fn.modal.Constructor.prototype.hide;
                 f$.fn.modal.Constructor.prototype.hide = function(){
@@ -286,22 +286,22 @@ function f$_start_jquery() {
                     modalOpener.focus();
                 }
                 // Carousel
-                $('.carousel').each(function (index) {
-                    var $this = $(this)
-                      , prev = $this.find('[data-slide="prev"]')
-                      , next = $this.find('[data-slide="next"]')
-                      , $options = $this.find('.item')
-                      , $listbox = $options.parent()
+                f$('.carousel').each(function (index) {
+                    var $this = f$(this)
+                      , prev = f$this.find('[data-slide="prev"]')
+                      , next = f$this.find('[data-slide="next"]')
+                      , f$options = f$this.find('.item')
+                      , f$listbox = f$options.parent()
 
-                    $this.attr( { 'data-interval' : 'false', 'data-wrap' : 'false' } )
-                    $listbox.attr('role', 'listbox')
-                    $options.attr('role', 'option')
+                    f$this.attr( { 'data-interval' : 'false', 'data-wrap' : 'false' } )
+                    f$listbox.attr('role', 'listbox')
+                    f$options.attr('role', 'option')
 
                     prev.attr('role', 'button')
                     next.attr('role', 'button')
 
-                    $options.each(function () {
-                      var item = $(this)
+                    f$options.each(function () {
+                      var item = f$(this)
                       if(item.hasClass('active')){
                         item.attr({ 'aria-selected': 'true', 'tabindex' : '0' })
                       }else{
@@ -310,47 +310,47 @@ function f$_start_jquery() {
                     })
                   })
 
-                  var slideCarousel = $.fn.carousel.Constructor.prototype.slide
-                  $.fn.carousel.Constructor.prototype.slide = function (type, next) {
-                    var $active = this.$element.find('.item.active')
-                      , $next = next || $active[type]()
+                  var slideCarousel = f$.fn.carousel.Constructor.prototype.slide
+                  f$.fn.carousel.Constructor.prototype.slide = function (type, next) {
+                    var f$active = this.f$element.find('.item.active')
+                      , f$next = next || f$active[type]()
 
                     slideCarousel.apply(this, arguments)
 
-                  $active
-                    .one($.support.transition.end, function () {
-                    $active.attr({'aria-selected':false, 'tabIndex': '-1'})
-                    $next.attr({'aria-selected':true, 'tabIndex': '0'})
+                  f$active
+                    .one(f$.support.transition.end, function () {
+                    f$active.attr({'aria-selected':false, 'tabIndex': '-1'})
+                    f$next.attr({'aria-selected':true, 'tabIndex': '0'})
                     //.focus()
                    })
                   }
 
-                $.fn.carousel.Constructor.prototype.keydown = function (e) {
-                 var $this = $(this)
-                  , $ul = $this.closest('div[role=listbox]')
-                  , $items = $ul.find('[role=option]')
-                  , $parent = $ul.parent()
+                f$.fn.carousel.Constructor.prototype.keydown = function (e) {
+                 var f$this = f$(this)
+                  , f$ul = f$this.closest('div[role=listbox]')
+                  , f$items = f$ul.find('[role=option]')
+                  , f$parent = f$ul.parent()
                   , k = e.which || e.keyCode
                   , index
                   , i
 
                   if (!/(37|38|39|40)/.test(k)) return
 
-                  index = $items.index($items.filter('.active'))
+                  index = f$items.index(f$items.filter('.active'))
                   if (k == 37 || k == 38) {                           //  Up
-                    $parent.carousel('prev')
+                    f$parent.carousel('prev')
                     index--
-                    if(index < 0) index = $items.length -1
-                    else  $this.prev().focus()
+                    if(index < 0) index = f$items.length -1
+                    else  f$this.prev().focus()
 
                   }
                   if (k == 39 || k == 40) {                          // Down
-                    $parent.carousel('next')
+                    f$parent.carousel('next')
                     index++
-                    if(index == $items.length) index = 0
+                    if(index == f$items.length) index = 0
                     else  {
-                      $this.one($.support.transition.end, function () {
-                        $this.next().focus()
+                      f$this.one(f$.support.transition.end, function () {
+                        f$this.next().focus()
                       })
                     }
 
@@ -359,7 +359,7 @@ function f$_start_jquery() {
                   e.preventDefault()
                   e.stopPropagation()
                 }
-                $(document).on('keydown.carousel.data-api', 'div[role=option]', $.fn.carousel.Constructor.prototype.keydown)
+                f$(document).on('keydown.carousel.data-api', 'div[role=option]', f$.fn.carousel.Constructor.prototype.keydown)
                 /** Fin accessibilité **/
 
                 if (f$_not_in_frame) { // Pas de bandeau, nav, modale et macaron en mode iframe
