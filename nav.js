@@ -281,7 +281,7 @@ function f$_start_jquery() {
                 // Modal
                 var modalhide =   f$.fn.modal.Constructor.prototype.hide;
                 f$.fn.modal.Constructor.prototype.hide = function(){
-                    var modalOpener = this.f$element.parent().find('[data-target="#' + this.f$element.attr('id') + '"]');
+                    var modalOpener = this.$element.parent().find('[data-target="#' + this.$element.attr('id') + '"]');
                     modalhide.apply(this, arguments);
                     modalOpener.focus();
                 }
