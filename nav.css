@@ -347,3 +347,12 @@ a#framanav_donation:hover {filter:alpha(opacity=80);-moz-opacity:0.8;-khtml-opac
     color:#fff;
     border-radius:5px;
 }
+
+.signature {
+	margin-top: 3em;
+	margin-bottom: 2em;
+	margin-left: 3em;
+	color: #777;
+	font-style: italic;
+}
+
