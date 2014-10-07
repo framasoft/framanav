@@ -5,7 +5,6 @@ f$_nav_static = true;
 // Opt-in
 f$_email_field1 = '#email_auteur';
 
-// Bandeau
 if(window.location.href != 'http://www.framasoft.net/' && !f$_page('framasoft.net/accueil')) {
     // Mise en forme « Juste une image »
     flickr_t = jQuery('img[src$="_t.jpg"]').attr('src');
@@ -13,4 +12,6 @@ if(window.location.href != 'http://www.framasoft.net/' && !f$_page('framasoft.ne
     jQuery('img[src$="_t.jpg"]').attr('src', flickr_m).css('width', '90%');
 
     f$_credits = 'framalibre';
+} else {
+    f$_footer = true;
 }
