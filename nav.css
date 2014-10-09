@@ -208,7 +208,7 @@ a#framanav_donation:hover {filter:alpha(opacity=80);-moz-opacity:0.8;-khtml-opac
 }
 #nav-skip {
     position:absolute;
-    margin-top:-50px;
+    margin-top:-5000px;
 }
 #nav-skip:focus {
     width: auto;
@@ -220,6 +220,13 @@ a#framanav_donation:hover {filter:alpha(opacity=80);-moz-opacity:0.8;-khtml-opac
     outline: 1px dotted #000;
     text-decoration:none;
     font-size:12px;
+}
+
+#nav-alert .close {
+    position: absolute;
+    right: 0px;
+    margin-right: 5px;
+    margin-top: -5px;
 }
 
 /* Video JS */
