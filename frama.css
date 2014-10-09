@@ -1,0 +1,40 @@
+/* Alerts */
+.alert-success a, .alert-info a,
+.alert-warning a, .alert-danger a {
+    text-decoration:none;
+    border-bottom: 1px dotted #767676;
+}
+.alert-success a:hover, .alert-info a:hover,
+.alert-warning a:hover, .alert-danger a:hover {
+    text-decoration:none;
+    border-bottom: 1px solid #767676;
+}
+.alert-success a,
+.alert-success a:hover,
+.alert-success {
+  color: #4A542C !important;
+  background:#EAF0D8;
+  border-color: #4A542C !important;
+}
+.alert-info a,
+.alert-info a:hover,
+.alert-info {
+  color: #245569 !important;
+  background-color: #D9EFF7;
+  border-color: #245569 !important;
+}
+.alert-warning a,
+.alert-warning a:hover,
+.alert-warning {
+  color: #66522C !important;
+  background-color: #FCF3E3;
+  border-color: #66522C !important;
+}
+.alert-danger a,
+.alert-danger a:hover,
+.alert-danger {
+  color: #843D34 !important;
+  background-color: #F2E7E5;
+  border-color: #843D34 !important;
+}
+

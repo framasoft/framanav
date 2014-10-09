@@ -1,4 +1,4 @@
-var f$_version = '140903';
+var f$_version = '141009';
 var f$_site = window.location.host
 f$_site = f$_site.replace(/^(www|test)\./i,"");
 f$_site = f$_site.replace(/\.(com|net|org|fr|pro)$/i,"");
@@ -135,6 +135,9 @@ function f$_start_jquery() {
 
     // Nav.css
     f$_loadCSS(f$_nav+'nav.css?'+f$_version);
+
+    // Frama.css
+    f$_loadCSS(f$_nav+"frama.css", 'end', "all");
 
     // Extra.css
     if(f$_extra_css) {
@@ -355,9 +358,9 @@ function f$_start_jquery() {
 
                     // Ajout du bandeau d'alerte
                     if (f$_alert_text!='' && !f$_alert_dejavu) {
-
+                        f$_alert_margin_top = (f$_nav_static) ? ' margin-top:42px;': '';
                         f$('#framanav_container').after(
-                            '<div id="nav-alert" class="alert alert-'+f$_alert_type+' fade in" style="border-radius:0">'+
+                            '<div id="nav-alert" class="alert alert-'+f$_alert_type+' fade in" style="border-radius:0;'+f$_alert_margin_top+'">'+
                                 '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'+
                                 '<p style="text-align:center">'+f$_alert_text+f$_alert_more+'</p>'+
                             '</div>'

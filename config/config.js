@@ -133,3 +133,42 @@ if(f$_piwik_id != '') {
     })();
 }
 
+/* Bandeau Degooglisons */
+    f$_banniere = Math.floor(Math.random() * 4);
+    switch (f$_banniere) {
+    case 0:
+        f$_alert_type       = 'info';
+        f$_alert_img_left   = '<div class="col-sm-3 hidden-xs" style="padding:0"><a href="http://degooglisons-internet.org"><img src="http://degooglisons-internet.org/nav/img/stallman.png" alt="degooglisons-internet.org" class="img-responsive center-block" /></a></div>';
+        f$_alert_img_right  = '';
+        break;
+    case 1:
+        f$_alert_type       = 'warning';
+        f$_alert_img_left   = '<div class="col-sm-3 hidden-xs" style="padding:0"><a href="http://degooglisons-internet.org"><img src="http://degooglisons-internet.org/nav/img/aaron.png" alt="degooglisons-internet.org" class="img-responsive center-block" /></a></div>';
+        f$_alert_img_right  = '';
+        break;
+    case 2:
+        f$_alert_type       = 'success';
+        f$_alert_img_left   = '';
+        f$_alert_img_right  = '<div class="col-sm-3 hidden-xs" style="padding:0"><a href="http://degooglisons-internet.org"><img src="http://degooglisons-internet.org/nav/img/geekette.png" alt="degooglisons-internet.org" class="img-responsive center-block" /></a></div>';
+        break;
+    case 3:
+        f$_alert_type       = 'danger';
+        f$_alert_img_left   = '';
+        f$_alert_img_right  = '<div class="col-sm-3 hidden-xs" style="padding:0; padding-left:5px;"><a href="http://degooglisons-internet.org"><img src="http://degooglisons-internet.org/nav/img/cyberpolice.png" alt="degooglisons-internet.org" class="img-responsive center-block" /></a></div>';
+        break;
+    }
+
+    f$_alert_text =
+        '<div style="margin:0 auto; max-width:800px; text-align:justify">'+
+            f$_alert_img_left+
+            '<div class="col-sm-9" style="padding:0"><p style="font-weight:bold;font-size:16px;" class="text-center"><a href="http://degooglisons-internet.org" style="border:none"><span style="color:#6A5687">Dégooglisons</span> <span style="color:#D2703A">Internet</span> : une ambitieuse campagne.</a></p>'+
+            '<p>Les services en ligne de géants tentaculaires comme Google, Amazon, Facebook, Apple ou Microsoft (GAFAM) mettent en danger nos vies numériques.</p>'+
+            '<p>Aujourd’hui, <span style="font-weight:bold;color:#6A5687">Frama</span><span style="font-weight:bold;color:#D2703A">soft</span> '+
+            'se lance un défi audacieux : vous proposer, avec votre aide, une alternative Libre, Éthique, Décentralisé et Solidaire pour chacun de ces services.</p>'+
+            '<p style="font-weight:bold">Découvrez notre projet sur <a href="http://degooglisons-internet.org">degooglisons-internet.org</a></p></div>'+
+            f$_alert_img_right+
+        '</div><div class="clearfix"></div>';
+    f$_alert_modal_text = '';
+    f$_modal_don_liendl = '';
+
+
