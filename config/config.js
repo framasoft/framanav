@@ -154,7 +154,7 @@ if(f$_piwik_id != '') {
     case 3:
         f$_alert_type       = 'danger';
         f$_alert_img_left   = '';
-        f$_alert_img_right  = '<div class="col-sm-3 hidden-xs" style="padding:0; padding-left:5px;"><a href="http://degooglisons-internet.org"><img src="http://degooglisons-internet.org/nav/img/cyberpolice.png" alt="degooglisons-internet.org" class="img-responsive center-block" /></a></div>';
+        f$_alert_img_right  = '<div class="col-sm-3 hidden-xs" style="padding:0;"><a href="http://degooglisons-internet.org"><img src="http://degooglisons-internet.org/nav/img/cyberpolice.png" alt="degooglisons-internet.org" class="img-responsive center-block" /></a></div>';
         break;
     }
 
