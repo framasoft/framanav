@@ -229,6 +229,11 @@ a#framanav_donation:hover {filter:alpha(opacity=80);-moz-opacity:0.8;-khtml-opac
     margin-top: -5px;
 }
 
+#nav-alert .clearfix {
+    height:auto !important;
+    overflow:visible !important;
+}
+
 /* Video JS */
 .vjs-default-skin .vjs-big-play-button {
     left:50%;
