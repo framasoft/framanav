@@ -164,7 +164,7 @@ if(f$_piwik_id != '') {
             '<div class="col-sm-9" style="padding:0"><p style="font-weight:bold;font-size:16px;" class="text-center"><a href="http://degooglisons-internet.org" style="border:none"><span style="color:#6A5687">Dégooglisons</span> <span style="color:#D2703A">Internet</span> : une ambitieuse campagne.</a></p>'+
             '<p>Les services en ligne de géants tentaculaires comme Google, Amazon, Facebook, Apple ou Microsoft (GAFAM) mettent en danger nos vies numériques.</p>'+
             '<p>Aujourd’hui, <span style="font-weight:bold;color:#6A5687">Frama</span><span style="font-weight:bold;color:#D2703A">soft</span> '+
-            'se lance un défi audacieux : vous proposer, avec votre aide, une alternative Libre, Éthique, Décentralisé et Solidaire pour chacun de ces services.</p>'+
+            'se lance un défi audacieux : vous proposer, avec votre aide, une alternative Libre, Éthique, Décentralisée et Solidaire pour chacun de ces services.</p>'+
             '<p style="font-weight:bold">Découvrez notre projet sur <a href="http://degooglisons-internet.org">degooglisons-internet.org</a></p></div>'+
             f$_alert_img_right+
         '</div><div class="clearfix"></div>';
