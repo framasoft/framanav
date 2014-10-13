@@ -282,11 +282,13 @@ function f$_start_jquery() {
                 // Alert
                 f$('.close').removeAttr('aria-hidden').wrapInner('<span aria-hidden="true"></span>').append('<span class="sr-only">Fermer</span>');
                 // Modal
-                var modalhide =   f$.fn.modal.Constructor.prototype.hide;
-                f$.fn.modal.Constructor.prototype.hide = function(){
-                    var modalOpener = this.$element.parent().find('[data-target="#' + this.$element.attr('id') + '"]');
-                    modalhide.apply(this, arguments);
-                    modalOpener.focus();
+                if(typeof f$().modal == 'function') {
+                    var modalhide =   f$.fn.modal.Constructor.prototype.hide;
+                    f$.fn.modal.Constructor.prototype.hide = function(){
+                        var modalOpener = this.$element.parent().find('[data-target="#' + this.$element.attr('id') + '"]');
+                        modalhide.apply(this, arguments);
+                        modalOpener.focus();
+                    }
                 }
                 /** Fin accessibilité **/
 
