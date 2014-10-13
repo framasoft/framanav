@@ -33,7 +33,7 @@ if(f$_page('framindmap.org/mindmaps')) {
         f$_modal_don_liendl = 'a.btn[href*="/framindmap.html"]';
 
         jQuery('#footerContainer, footer').remove();
-        footer = true;
+        f$_footer = true;
     } else {
         // Force la désactivation des fenêtres modales, du bandeau et du macaron
         f$_alert_text = '';
