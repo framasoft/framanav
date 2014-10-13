@@ -523,9 +523,10 @@ function f$_start_jquery() {
                         return f$(this).attr('href').replace('/nav/html/', f$_nav+'html/');
                     });
 
-                    // Hébergeur sur Mentions légales
+                    // Hébergeur et Iframe Piwik sur Mentions légales
                     if(f$_page('/html/legals.html')) {
                         f$('#modal-legals-host').load(f$_nav+'html/host_'+f$_host+'.html');
+                        f$('#piwik-iframe').html('<iframe style="border: 0; height: 200px; width: 600px;" src="'+f$_piwik_url+'/index.php?module=CoreAdminHome&action=optOut&language=fr"></iframe>')
                     }
 
                 } // </f$_not_in_frame>
