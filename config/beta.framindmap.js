@@ -26,7 +26,7 @@ if(f$_page('framindmap.org/mindmaps')) {
     // Opt-in
     f$_email_field1 = '#user #email';
 
-    if(f$_page('framindmap.org/c/login') || f$_page('framindmap.org/c/user/registration'))
+    if(f$_page('framindmap.org/c/login') || f$_page('framindmap.org/c/user/registration')) {
         // Popup « faire un don » pour utiliser Mindmaps
         f$_modal_don_txtdl1 = 'd’utiliser';
         f$_modal_don_txtdl2 = 'créer une carte mentale';
