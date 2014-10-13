@@ -197,15 +197,6 @@ a#framanav_donation:hover {filter:alpha(opacity=80);-moz-opacity:0.8;-khtml-opac
     margin-top:0px;
 }
 
-#nav-alert a {
-    color:#888;
-    border-bottom: 1px dotted #888;
-    text-decoration:none;
-}
-#nav-alert a:hover,#nav-alert a:focus {
-    color: #7E4F82;
-    border-bottom: 1px solid #7E4F82;
-}
 #nav-skip {
     position:absolute;
     margin-top:-5000px;
