@@ -498,6 +498,9 @@ function f$_start_jquery() {
                             } else {
                                 f$('#framafooter').css('position','relative');
                             }
+                            f$('#framafooter a[href^="/nav/html/"]').attr('href', function() {
+                                return f$(this).attr('href').replace('/nav/html/', f$_nav+'html/');
+                            });
                         });
                         f$(window).on('resize', function() {
                             f$('#framafooter').css('position','relative');
