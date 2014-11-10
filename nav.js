@@ -311,10 +311,11 @@ function f$_start_jquery() {
                         f$('a[rel="popover"]').each(function() {
                             f$(this).popover({
                                 html: true,
-                                trigger: 'hover',
+                                trigger: 'focus hover',
                                 // utilisation de 'template' pour ajout du lien sur la popover en mode tactile
-                                template: '<div class="popover" role="tooltip"><div class="arrow"></div><a href="'+f$(this).attr('href')+'"><h3 class="popover-title"></h3><div class="popover-content"></div></a></div>'
+                                //template: '<div class="popover" role="tooltip"><div class="arrow"></div><a href="'+f$(this).attr('href')+'"><h3 class="popover-title"></h3><div class="popover-content"></div></a></div>'
                             });
+                            f$(this).removeAttr('title');
                         });
                     }
 
@@ -326,16 +327,16 @@ function f$_start_jquery() {
                     // Ajout de la fenêtre modale
                     if (f$_alert_modal_text!='') {
                         f$('body').append(
-                        '<div class="modal fade" id="modal-alert" tabindex="-1" role="dialog" aria-labelledby="modal-alertLabel" aria-hidden="true">'+
+                        '<div class="modal fade" lang="fr" id="modal-alert" tabindex="-1" role="dialog" aria-labelledby="modal-alertLabel" aria-hidden="true">'+
                             '<div class="modal-dialog">'+
                                 '<div class="modal-content">'+
                                     '<div class="modal-header">'+
-                                        '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>'+
+                                        '<button type="button" class="close" data-dismiss="modal" title="Fermer"><span aria-hidden="true">&times;</span><span class="sr-only">Fermer</span></button>'+
                                         '<h1 id="modal-alertLabel">'+f$_alert_modal_title+'</h1>'+
                                     '</div>'+
                                     '<div class="modal-body">'+f$_alert_modal_text+'</div>'+
                                     '<div class="modal-footer">'+
-                                        '<button class="btn" id="modal-close" data-dismiss="modal" aria-hidden="true">Fermer</button>'+
+                                        '<button class="btn" id="modal-close" data-dismiss="modal">Fermer</button>'+
                                     '</div>'+
                                 '</div>'+
                             '</div>'+
@@ -362,8 +363,8 @@ function f$_start_jquery() {
                     if (f$_alert_text!='' && !f$_alert_dejavu) {
                         f$_alert_margin_top = (f$_nav_static) ? ' margin-top:42px;': '';
                         f$('#framanav_container').after(
-                            '<div id="nav-alert" class="alert alert-'+f$_alert_type+' fade in" style="border-radius:0;'+f$_alert_margin_top+'">'+
-                                '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'+
+                            '<div id="nav-alert" lang="fr" class="alert alert-'+f$_alert_type+' fade in" style="border-radius:0;'+f$_alert_margin_top+'">'+
+                                '<button type="button" class="close" data-dismiss="alert" title="Fermer"><span aria-hidden="true">&times;</span><span class="sr-only">Fermer</span></button>'+
                                 '<p style="text-align:center">'+f$_alert_text+f$_alert_more+'</p>'+
                             '</div>'
                         );
@@ -382,11 +383,11 @@ function f$_start_jquery() {
                     // Fenêtre modal pour dons sur téléchargements
                     if (f$_modal_don_liendl!='') {
                         f$('body').append(
-                        '<div class="modal fade" id="modal-soutenir" tabindex="-1" role="dialog" aria-labelledby="modal-soutenirLabel" aria-hidden="true">'+
+                        '<div class="modal fade" lang="fr" id="modal-soutenir" tabindex="-1" role="dialog" aria-labelledby="modal-soutenirLabel" aria-hidden="true">'+
                             '<div class="modal-dialog">'+
                                 '<div class="modal-content">'+
                                     '<div class="modal-header">'+
-                                        '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>'+
+                                        '<button type="button" class="close" data-dismiss="modal" title="Fermer"><span aria-hidden="true">&times;</span><span class="sr-only">Fermer</span></button>'+
                                         '<h1 id="modal-soutenirLabel">Soutenez Framasoft</h1>'+
                                     '</div>'+
                                     '<div class="modal-body">'+
@@ -397,7 +398,7 @@ function f$_start_jquery() {
                                         '<p>Merci de prendre quelques minutes en nous aidant à pérenniser et développer notre action.</p>'+
                                     '</div>'+
                                     '<div class="modal-footer">'+
-                                        '<div style="width:100%; float:left; text-align:center"><a target="_blank" id="modal-don" href="http://soutenir.framasoft.org/?f=modal&s='+f$_site+'" style="color:white;margin:5px" class="btn btn-large btn-success">Je veux faire un don à l’association Framasoft&nbsp;<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span></a></div>'+
+                                        '<p style="width:100%; float:left; text-align:center"><a target="_blank" id="modal-don" href="http://soutenir.framasoft.org/?f=modal&s='+f$_site+'" style="color:white;margin:5px" class="btn btn-large btn-success">Je veux faire un don à l’association Framasoft&nbsp;<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span></a></p>'+
                                     //  '<div style="width:50%; float:left; text-align:center"><a target="_blank" id="modal-contact" href="http://contact.framasoft.org/?f=modal&s='+fsite+'"  style="color:white;margin:5px" class="btn btn-large btn-info">Je veux participer. Par où on commence ?</a></div>'+
                                         '<p style="clear:left;text-align:right"><a id="modal-dl" href="javascript:void(0);" class="text-warning" >Non merci, je souhaite seulement '+f$_modal_don_txtdl2+'</a></p>'+
                                     '</div>'+
@@ -465,8 +466,8 @@ function f$_start_jquery() {
                                 f$('#fs_opt-in').remove();
                                 // Message d'alert pour confirmer l'inscription
                                 f$(f$_email_field1).after(
-                                    '<div class="alert alert-success fade in" id="fs_opt-in_confirm">'+
-                                    '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
+                                    '<div class="alert alert-success fade in" id="fs_opt-in_confirm" aria-live="polite">'+
+                                    '<button type="button" class="close" data-dismiss="alert" title="Fermer"><span aria-hidden="true">&times;</span><span class="sr-only">Fermer</span></button>'+
                                     'Votre adresse email <strong>'+f$_email+'</strong> a été ajoutée à notre liste. Vous devriez avoir reçu un email de confirmation.</div>'
                                 );
                             }

@@ -19,5 +19,3 @@ jQuery(document).ready(function() {
 
 // Opt-in
 f$_email_field1 = '#c_mail';
-
-f$_host = 'ovh';

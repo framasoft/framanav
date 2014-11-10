@@ -1,6 +1,5 @@
-*, *:before, *:after {
-	-webkit-box-sizing: content-box !important;
-	-moz-box-sizing: content-box !important;
-	box-sizing: content-box !important;
+#mindmaps *, #mindmaps *:before, #mindmaps *:after {
+    -webkit-box-sizing: content-box !important;
+    -moz-box-sizing: content-box !important;
+    box-sizing: content-box !important;
 }
-#framanav .navbar-brand { height:10px };
