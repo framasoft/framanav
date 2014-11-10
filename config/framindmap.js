@@ -26,21 +26,14 @@ if(f$_page('framindmap.org/mindmaps')) {
     // Opt-in
     f$_email_field1 = '#user #email';
 
-    if(f$_page('framindmap.org/c/login') || f$_page('framindmap.org/c/user/registration')) {
-        // Popup « faire un don » pour utiliser Mindmaps
-        f$_modal_don_txtdl1 = 'd’utiliser';
-        f$_modal_don_txtdl2 = 'créer une carte mentale';
-        f$_modal_don_liendl = 'a.btn[href*="/framindmap.html"]';
-
-        jQuery('#footerContainer, footer').remove();
-        f$_footer = true;
-    } else {
+    if(!f$_page('framindmap.org/c/login') && !f$_page('framindmap.org/c/user/registration')) {
         // Force la désactivation des fenêtres modales, du bandeau et du macaron
         f$_alert_text = '';
         f$_alert_modal_text = '';
         f$_modal_don_liendl = '';
         f$_donate = false;
     }
+    f$_footer = true;
 }
 
 f$_credits = "framindmap";
