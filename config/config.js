@@ -96,8 +96,7 @@ switch (f$_site) {
     case 'framadate' :              f$_piwik_id = '10'; break;
     case 'beta.framadate' :         f$_piwik_id = '10'; break;
     case 'framacalc' :              f$_piwik_id = '11'; break;
-    case 'framindmap' :             f$_piwik_id = '12'; break;
-    case 'beta.framindmap' :        f$_piwik_id = '12'; break;
+    case 'framindmap' :             f$_piwik_id = '12'; f$_piwik_url = 'https://framindmap.org/piwik/'; break;
     case 'framavectoriel' :         f$_piwik_id = '13'; break;
     case 'framaphonie' :            f$_piwik_id = '14'; break;
     case 'wiki.framasoft' :         f$_piwik_id = '15'; break;
