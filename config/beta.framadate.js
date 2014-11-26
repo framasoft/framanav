@@ -9,8 +9,7 @@ f$_bootstrap_js = 'html';
 
 // Opt-in
 if(f$_page('infos_sondage.php?choix_sondage')) {
-  f$_email_field1 = '#formulaire input[name="adresse"]';
-  f$_nav_extra_css = true;
+    f$_email_field1 = '#formulaire input[name="adresse"]';
 }
 
 f$_host = 'online';
