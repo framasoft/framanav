@@ -93,7 +93,7 @@ switch (f$_site) {
     case 'framabook' :              f$_piwik_id = '7';  break;
     case 'framatube' :              f$_piwik_id = '8';  break;
     case 'framazic' :               f$_piwik_id = '9';  break;
-    case 'framadate' :              f$_piwik_id = '10'; break;
+    case 'framadate' :              f$_piwik_id = '10'; f$_piwik_url = 'https://framadate.org/piwik/'; break;
     case 'beta.framadate' :         f$_piwik_id = '10'; break;
     case 'framacalc' :              f$_piwik_id = '11'; break;
     case 'framindmap' :             f$_piwik_id = '12'; f$_piwik_url = 'https://framindmap.org/piwik/'; break;
