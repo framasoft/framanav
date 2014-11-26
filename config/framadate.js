@@ -13,5 +13,3 @@ if(f$_page('infos_sondage.php?choix_sondage')) {
 
 }
 
-f$_host = 'online';
-f$_credits = 'framadate';

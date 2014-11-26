@@ -12,5 +12,4 @@ if(f$_page('infos_sondage.php?choix_sondage')) {
     f$_email_field1 = '#formulaire input[name="adresse"]';
 }
 
-f$_host = 'online';
 f$_credits = 'framadate';
