@@ -13,3 +13,4 @@ if(f$_page('infos_sondage.php?choix_sondage')) {
 }
 
 f$_credits = 'framadate';
+f$_footer = true;
