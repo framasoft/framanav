@@ -13,3 +13,7 @@
     box-shadow: none;
     border: 1px solid rgba(0, 0, 0, 0.15);
 }
+#discourse-modal.in {
+    display: block !important;
+    visibility: visible !important;
+}
