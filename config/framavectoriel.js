@@ -20,9 +20,10 @@ if(f$_page('svg-editor')) {
 
     f$_modal_don_txtdl1 = 'd’utiliser';
     f$_modal_don_txtdl2 = 'créer une image';
-    f$_modal_don_liendl = 'a.btn-large[href*="/svg-editor.html"]';
+    f$_modal_don_liendl = 'a[href="/svg-editor.html"]';
 
     f$_video_js = true;
+
+    f$_footer = true;
 }
 
-f$_host = 'ovh';

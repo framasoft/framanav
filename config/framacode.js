@@ -4,4 +4,4 @@ f$_jquery = 'fQuery';
 
 f$_css_position = 'start';
 
-f$_host = 'ovh';
+f$_footer = true;

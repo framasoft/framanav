@@ -1,3 +1,3 @@
 f$_config = 'local';
 
-f$_host = 'ovh';
+f$_footer = true;
