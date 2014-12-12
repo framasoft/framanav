@@ -46,10 +46,8 @@ h1 {font-family: "DejaVu Sans", Verdana, Geneva, sans-serif; font-weight:bold; }
 }
 
 .signature {
-    margin-top: 3em;
-    margin-bottom: 2em;
-    margin-left: 3em;
     font-style: italic;
+    text-align:right;
     color:#795548;
 }
 
