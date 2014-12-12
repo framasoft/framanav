@@ -10,7 +10,7 @@ var f$_bootstrap_css = true;
 var f$_css_position = 'start';                      // 'start' = head > bootstrap.css > ... /head body > nav.js ;
                                                     // 'end'   = head > ... > bootstrap.css /head body > nav.js ;
 var f$_responsive = true;
-var f$_accessible = true;
+var f$_frama_css = true;
 
 var f$_nav_static = false;
 var f$_extra_css = false;                           // nav/config/nom-de-domaine_extra.css
@@ -63,6 +63,7 @@ switch (f$_site) {
     case 'lite3.framapad' : f$_site = 'instances.framapad'; break;
     case 'lite4.framapad' : f$_site = 'instances.framapad'; break;
     case 'lite5.framapad' : f$_site = 'instances.framapad'; break;
+    case 'lite6.framapad' : f$_site = 'instances.framapad'; break;
     case 'full1.framapad' : f$_site = 'instances.framapad'; break;
     case 'full2.framapad' : f$_site = 'instances.framapad'; break;
     case 'quotidien.framapad' : f$_site = 'instances.framapad'; break;
@@ -72,6 +73,7 @@ switch (f$_site) {
     case 'education.framapad' : f$_site = 'instances.framapad'; break;
     case 'sciences.framapad' : f$_site = 'instances.framapad'; break;
     case 'noenaute' : f$_site = 'pouhiou'; break;
+    case 'beta.framadate' : f$_site = 'framadate'; break;
 }
 
 // À propos
@@ -94,7 +96,6 @@ switch (f$_site) {
     case 'framatube' :              f$_piwik_id = '8';  break;
     case 'framazic' :               f$_piwik_id = '9';  break;
     case 'framadate' :              f$_piwik_id = '10'; f$_piwik_url = 'https://framadate.org/piwik/'; break;
-    case 'beta.framadate' :         f$_piwik_id = '10'; break;
     case 'framacalc' :              f$_piwik_id = '11'; break;
     case 'framindmap' :             f$_piwik_id = '12'; f$_piwik_url = 'https://framindmap.org/piwik/'; break;
     case 'framavectoriel' :         f$_piwik_id = '13'; break;
@@ -111,7 +112,7 @@ switch (f$_site) {
     case 'framapack' :              f$_piwik_id = '24'; break;
     case '10ans.framasoft' :        f$_piwik_id = '25'; break;
     case 'framasphere' :            f$_piwik_id = '26'; f$_piwik_url = 'https://framasphere.org/piwik/'; break;
-    case 'searx.framasoft' :        f$_piwik_id = '27'; break;
+    case 'framasearch' :            f$_piwik_id = '27'; break;
     case 'framagames' :             f$_piwik_id = '28'; break;
     case 'git.framasoft' :          f$_piwik_id = '29'; break;
     case 'degooglisons-internet' :  f$_piwik_id = '30'; break;

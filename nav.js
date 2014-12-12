@@ -54,7 +54,6 @@ var f$_start_local_config = function() {
             f$_jquery = 'jQuery';
             f$_bootstrap_css = false;
             f$_bootstrap_js = true;
-            f$_accessible = true;
         }
 
         if (f$_jquery == 'jQuery') {
@@ -137,7 +136,9 @@ function f$_start_jquery() {
     f$_loadCSS(f$_nav+'nav.css?'+f$_version);
 
     // Frama.css
-    f$_loadCSS(f$_nav+"frama.css", 'end', "all");
+    if(f$_frama_css) {
+        f$_loadCSS(f$_nav+"frama.css", 'end', "all");
+    }
 
     // Extra.css
     if(f$_extra_css) {
@@ -295,8 +296,8 @@ function f$_start_jquery() {
                 if (f$_not_in_frame) { // Pas de bandeau, nav, modale et macaron en mode iframe
                     f$('#framanav').fadeIn('fast');
 
-                    if(f$_nav_static) {
-                        f$('#framanav_container ~ *:not(script):first').css('padding-top', function(value) { return value+42; });
+                    if(f$_nav_static || f$_page('/nav/html/')) {
+                        f$('#framanav_container ~ *:not(script):first').css('margin-top', '+=42');
                         f$('#framanav_container').css({
                             'position':'fixed',
                             'width':'100%',
@@ -342,7 +343,7 @@ function f$_start_jquery() {
                             '</div>'+
                         '</div>');
                         if(f$_alert_modal_btn) {
-                            f$_alert_more = ' <button type="button" id="nav-alert-more" class="btn btn-'+f$_alert_type+' btn-xs">plus d\'infos</button>';
+                            f$_alert_more = ' <button type="button" id="nav-alert-more" class="btn btn-'+f$_alert_type+' btn-xs">plus d’infos</button>';
                         }
 
                         if(!f$_alert_modal_dejavu && f$_alert_modal_onstart) {
@@ -398,9 +399,9 @@ function f$_start_jquery() {
                                         '<p>Merci de prendre quelques minutes en nous aidant à pérenniser et développer notre action.</p>'+
                                     '</div>'+
                                     '<div class="modal-footer">'+
-                                        '<p style="width:100%; float:left; text-align:center"><a target="_blank" id="modal-don" href="http://soutenir.framasoft.org/?f=modal&s='+f$_site+'" style="color:white;margin:5px" class="btn btn-large btn-success">Je veux faire un don à l’association Framasoft&nbsp;<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span></a></p>'+
-                                    //  '<div style="width:50%; float:left; text-align:center"><a target="_blank" id="modal-contact" href="http://contact.framasoft.org/?f=modal&s='+fsite+'"  style="color:white;margin:5px" class="btn btn-large btn-info">Je veux participer. Par où on commence ?</a></div>'+
-                                        '<p style="clear:left;text-align:right"><a id="modal-dl" href="javascript:void(0);" class="text-warning" >Non merci, je souhaite seulement '+f$_modal_don_txtdl2+'</a></p>'+
+                                        '<p class="col-md-6 text-center"><a target="_blank" id="modal-don" href="http://soutenir.framasoft.org/?f=modal&s='+f$_site+'" class="btn btn-soutenir btn-block"><span class="fa fa-fw fa-lg fa-heart"></span> Je veux faire un don<br /> à l’association Framasoft&nbsp;<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span></a></p>'+
+                                        '<p class="col-md-6 text-center"><a target="_blank" id="modal-contact" href="http://contact.framasoft.org/participer" class="btn btn-info btn-block"><span class="fa fa-fw fa-lg fa-paw"></span> Je veux participer.<br />Par où on commence ?&nbsp;<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span></a></p>'+
+                                        '<p class="clearfix text-right"><a id="modal-dl" href="javascript:void(0);" class="text-primary" >Non merci, je souhaite seulement '+f$_modal_don_txtdl2+'</a></p>'+
                                     '</div>'+
                                 '</div>'+
                             '</div>'+
@@ -484,6 +485,22 @@ function f$_start_jquery() {
                         f$('#framanav .dropdown-menu a').attr('target','_blank').append('<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span>');
                     }
 
+                    // Crédits
+                    if(f$_page('/html/credits.html')) {
+                        f$('#site-credits').load(f$_nav+'html/credits_'+f$_credits+'.html');
+                    };
+
+                    // Liens À propos
+                    f$('nav a[href^="/nav/html/"]').attr('href', function() {
+                        return f$(this).attr('href').replace('/nav/html/', f$_nav+'html/');
+                    });
+
+                    // Hébergeur et Iframe Piwik sur Mentions légales
+                    if(f$_page('/html/legals.html')) {
+                        f$('#modal-legals-host').load(f$_nav+'html/host_'+f$_host+'.html');
+                        f$('#piwik-iframe').html('<iframe style="border: 0; height: 200px; width: 600px;" src="'+f$_piwik_url+'/index.php?module=CoreAdminHome&action=optOut&language=fr"></iframe>')
+                    }
+
                     // Footer
                     if(f$_page('/nav/html/') || f$_footer) {
                         f$.ajax({
@@ -511,26 +528,6 @@ function f$_start_jquery() {
                                 f$('#framafooter').css('position','relative');
                             }
                         });
-                    }
-
-                    // Crédits
-                    f$('#framanav_container').append('<div id="framanav_test" class="hidden"></div>');
-                    f$('#framanav_test').load(f$_nav+'html/credits_'+f$_credits+'.html title', function() {
-                        if(f$(this).html()!='') {
-                            f$('nav a[href$="html/credits.html"],#framafooter a[href$="html/credits.html"]').removeClass('hidden');
-                            f$('nav a[href$="html/credits.html"],#framafooter a[href$="html/credits.html"]').attr('href',f$_nav+'html/credits_'+f$_credits+'.html');
-                        }
-                    });
-
-                    // Liens À propos
-                    f$('nav a[href^="/nav/html/"]').attr('href', function() {
-                        return f$(this).attr('href').replace('/nav/html/', f$_nav+'html/');
-                    });
-
-                    // Hébergeur et Iframe Piwik sur Mentions légales
-                    if(f$_page('/html/legals.html')) {
-                        f$('#modal-legals-host').load(f$_nav+'html/host_'+f$_host+'.html');
-                        f$('#piwik-iframe').html('<iframe style="border: 0; height: 200px; width: 600px;" src="'+f$_piwik_url+'/index.php?module=CoreAdminHome&action=optOut&language=fr"></iframe>')
                     }
 
                 } // </f$_not_in_frame>

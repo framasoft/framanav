@@ -35,6 +35,3 @@ if(f$_page('framindmap.org/mindmaps')) {
     }
     f$_footer = true;
 }
-
-f$_credits = "framindmap";
-

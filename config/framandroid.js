@@ -2,4 +2,4 @@ f$_config = 'local';
 
 f$_jquery = 'jQuery';
 
-f$_host = 'ovh';
+f$_footer = true;
