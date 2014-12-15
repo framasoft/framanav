@@ -52,7 +52,7 @@
 #framanav .dropdown:nth-child(6) .dropdown-menu li a:hover {background-color: #C05827 !important;color:#fff !important;} /* orange a propos */
 
 #framanav .frama { color: #6A5687; vertical-align:top !important;}
-#framanav .soft { color: #C05827; vertical-align:top !important;}
+#framanav .soft { color: #EB7239; vertical-align:top !important;}
 
 @media (max-width: 768px) {
     #apropos span.hidden {
