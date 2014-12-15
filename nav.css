@@ -51,12 +51,8 @@
 #framanav .dropdown:nth-child(5) .dropdown-menu li a:hover {background-color: #6A5687 !important;color:#fff !important;} /* violet nous suivre */
 #framanav .dropdown:nth-child(6) .dropdown-menu li a:hover {background-color: #C05827 !important;color:#fff !important;} /* orange a propos */
 
-
-#apropos:focus span.hidden,
-#apropos:hover span.hidden {
-    display:inline !important;
-    visibility:visible !important;
-}
+#framanav .frama { color: #6A5687; vertical-align:top !important;}
+#framanav .soft { color: #C05827; vertical-align:top !important;}
 
 @media (max-width: 768px) {
     #apropos span.hidden {
@@ -97,7 +93,7 @@
 
 @media (min-width: 768px) {
     #framanav .nav-container {
-        width:930px;        /* largeur fixe pour que la nav tienne sur une seule ligne */
+        width:950px;        /* largeur fixe pour que la nav tienne sur une seule ligne */
     }
     #framanav.navbar .collapse { /* bug dans certaines config en box-sizing: content-box*/
         height:40px !important;
@@ -178,6 +174,21 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
     z-index: 1029 !important;
 }
 
+.navbar-default .navbar-nav > li > a.btn-soutenir {
+    font-size:12px !important;
+    color: #fff;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+    background-color: #DBA306;
+    border-color: #DBA306;
+}
+.navbar-default .navbar-nav > li > a.btn-soutenir:hover,
+.navbar-default .navbar-nav > li > a.btn-soutenir:focus,
+.navbar-default .navbar-nav > li > a.btn-soutenir:active {
+    color: #fff;
+    background-color: #C48a1b;
+    border-color: #C48a1b;
+}
+
 /* --- on s'assure on a bien une nav collée en haut en cas de petit écran --- */
 @media (max-width: 979px) {
     body {
@@ -186,6 +197,29 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
 }
 
 .navbar-toggle {padding: 4px 6px !important;}
+
+#nav-skip {
+    position:absolute;
+    margin-top:-5000px;
+}
+#nav-skip:focus {
+    width: auto;
+    line-height: 20px;
+    margin: 0 0 0 -135px;
+    padding: 10px 20px;
+    background-color: #fafafa;
+    color: #333;
+    outline: 1px dotted #000;
+    text-decoration:none;
+    font-size:12px;
+}
+
+/* Alerts */
+#nav-alert {
+    border-top:0px;
+    border-left:0px;
+    border-right:0px;
+}
 
 #nav-alert.alert-don {
     color: #333;
@@ -212,20 +246,33 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
     margin-top:0px;
 }
 
-#nav-skip {
-    position:absolute;
-    margin-top:-5000px;
+#nav-alert.alert-success a:not(.btn),
+#nav-alert.alert-success a:hover:not(.btn),
+#nav-alert.alert-success {
+    color: #304219;
+    background:#E3EBC7;
+    border-color: #C0D481;
 }
-#nav-skip:focus {
-    width: auto;
-    line-height: 20px;
-    margin: 0 0 0 -135px;
-    padding: 10px 20px;
-    background-color: #fafafa;
-    color: #333;
-    outline: 1px dotted #000;
-    text-decoration:none;
-    font-size:12px;
+#nav-alert.alert-info a:not(.btn),
+#nav-alert.alert-info a:hover:not(.btn),
+#nav-alert.alert-info {
+    color: #0C5B7A;
+    background-color: #E1F8FC;
+    border-color: #B2D5DB;
+}
+#nav-alert.alert-warning a:not(.btn),
+#nav-alert.alert-danger a:hover:not(.btn),
+#nav-alert.alert-warning {
+    color: #A15014 !important;
+    background-color: #FFEBB5;
+    border-color: #FFCF4F;
+}
+#nav-alert.alert-danger a:not(.btn),
+#nav-alert.alert-danger a:hover:not(.btn),
+#nav-alert.alert-danger {
+    color: #AB2909 !important;
+    background-color: #fde0dc;
+    border-color: #E0B3A8;
 }
 
 #nav-alert .close {
