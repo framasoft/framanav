@@ -412,3 +412,9 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
     color:#fff;
     border-radius:5px;
 }
+
+/* Modal header title */
+.modal-header h1,.modal-header h2,.modal-header h3,
+.modal-header h4,.modal-header h5,.modal-header h6, .modal-header p {
+    font-size: 24px;
+}
