@@ -153,23 +153,23 @@ if(f$_piwik_id != '') {
     switch (f$_banniere) {
     case 0:
         f$_alert_type       = 'info';
-        f$_alert_img_left   = '<div class="col-sm-3 hidden-xs" style="padding:0"><a href="http://degooglisons-internet.org"><img src="http://degooglisons-internet.org/nav/img/stallman.png" alt="degooglisons-internet.org" class="img-responsive center-block" /></a></div>';
+        f$_alert_img_left   = '<div class="col-sm-3 hidden-xs" style="padding:0"><a href="http://degooglisons-internet.org"><img src="'+f$_nav+'img/stallman.png" alt="degooglisons-internet.org" class="img-responsive center-block" /></a></div>';
         f$_alert_img_right  = '';
         break;
     case 1:
         f$_alert_type       = 'warning';
-        f$_alert_img_left   = '<div class="col-sm-3 hidden-xs" style="padding:0"><a href="http://degooglisons-internet.org"><img src="http://degooglisons-internet.org/nav/img/aaron.png" alt="degooglisons-internet.org" class="img-responsive center-block" /></a></div>';
+        f$_alert_img_left   = '<div class="col-sm-3 hidden-xs" style="padding:0"><a href="http://degooglisons-internet.org"><img src="'+f$_nav+'img/aaron.png" alt="degooglisons-internet.org" class="img-responsive center-block" /></a></div>';
         f$_alert_img_right  = '';
         break;
     case 2:
         f$_alert_type       = 'success';
         f$_alert_img_left   = '';
-        f$_alert_img_right  = '<div class="col-sm-3 hidden-xs" style="padding:0"><a href="http://degooglisons-internet.org"><img src="http://degooglisons-internet.org/nav/img/geekette.png" alt="degooglisons-internet.org" class="img-responsive center-block" /></a></div>';
+        f$_alert_img_right  = '<div class="col-sm-3 hidden-xs" style="padding:0"><a href="http://degooglisons-internet.org"><img src="'+f$_nav+'img/geekette.png" alt="degooglisons-internet.org" class="img-responsive center-block" /></a></div>';
         break;
     case 3:
         f$_alert_type       = 'danger';
         f$_alert_img_left   = '';
-        f$_alert_img_right  = '<div class="col-sm-3 hidden-xs" style="padding:0;"><a href="http://degooglisons-internet.org"><img src="http://degooglisons-internet.org/nav/img/cyberpolice.png" alt="degooglisons-internet.org" class="img-responsive center-block" /></a></div>';
+        f$_alert_img_right  = '<div class="col-sm-3 hidden-xs" style="padding:0;"><a href="http://degooglisons-internet.org"><img src="'+f$_nav+'img/cyberpolice.png" alt="degooglisons-internet.org" class="img-responsive center-block" /></a></div>';
         break;
     }
 
