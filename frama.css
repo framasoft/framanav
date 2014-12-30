@@ -312,9 +312,6 @@ a {
     -ms-text-decoration-style: dotted;
     text-decoration-style: dotted;
 }
-a:visited {
-    color:#635182;
-}
 a:hover, a:focus {
     color:#635182;
     text-decoration:underline;
