@@ -191,6 +191,6 @@ if(f$_piwik_id != '') {
         f$_alert_type = 'warning';
         f$_alert_text =
             '<div style="margin:0 auto; max-width:800px; text-align:justify">'+
-                '<p style="font-weight:bold;font-size:16px;" class="text-center">En raison d'une mise à jour de nos serveurs, l'accès à ce site pourra être perturbée dans la soirée de dimanche. Veuillez nous excuser pour le dérangement. Plus d'informations sur <a href="http://framacloud.org/blog/">Framacloud</a> ou en suivant le hashtag #framasoft sur <a href="https://framasphere.org/tags/framasoft">Diaspora</a>/<a href="https://twitter.com/hashtag/framasoft">Twitter</a>.</p>'+
+                '<p style="font-weight:bold;font-size:16px;" class="text-center">En raison d'une mise à jour de nos serveurs, l'accès à ce site pourra être perturbée dans la soirée de dimanche. Veuillez nous excuser pour le dérangement. Plus d’informations sur <a href="http://framacloud.org/blog/">Framacloud</a> ou en suivant le hashtag #framasoft sur <a href="https://framasphere.org/tags/framasoft">Diaspora</a>/<a href="https://twitter.com/hashtag/framasoft">Twitter</a>.</p>'+
             '</div><div class="clearfix"></div>';
     }
