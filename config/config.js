@@ -104,7 +104,7 @@ switch (f$_site) {
     case 'framalab' :               f$_piwik_id = '16'; break;
     case 'framacode' :              f$_piwik_id = '17'; break;
     case 'soutenir.framasoft' :     f$_piwik_id = '18'; break;
-    case 'contact' :                f$_piwik_id = '19'; break;
+    case 'contact.framasoft' :                f$_piwik_id = '19'; break;
     case 'framanews' :              f$_piwik_id = '20'; f$_piwik_url = 'https://framanews.org/piwik/'; break;
     case 'framabag' :               f$_piwik_id = '21'; break;
     case 'framandroid' :            f$_piwik_id = '22'; break;
@@ -186,4 +186,11 @@ if(f$_piwik_id != '') {
     f$_alert_modal_text = '';
     f$_modal_don_liendl = '';
 
-
+/* Bandeau maintenance sur les VM */
+    if (/(framasoft|forum.framasoft|framablog|framakey|framadvd|framabook|framazic|famadate|framindmap|framavectoriel|framaphonie|wiki.framasoft|framalab|framacode|soutenir.framasoft|contact.framasoft|framandroid|framastart|10ans.framasoft|framasphere|framagames|git.framasoft|degooglisons-internet)/i.test(f$_site) {
+        f$_alert_type = 'warning';
+        f$_alert_text =
+            '<div style="margin:0 auto; max-width:800px; text-align:justify">'+
+                '<p style="font-weight:bold;font-size:16px;" class="text-center">En raison d'une mise à jour de nos serveurs, l'accès à ce site pourra être perturbée dans la soirée de dimanche. Veuillez nous excuser pour le dérangement. Plus d'informations sur <a href="http://framacloud.org/blog/">Framacloud</a> ou en suivant le hashtag #framasoft sur <a href="https://framasphere.org/tags/framasoft">Diaspora</a>/<a href="https://twitter.com/hashtag/framasoft">Twitter</a>.</p>'+
+            '</div><div class="clearfix"></div>';
+    }
