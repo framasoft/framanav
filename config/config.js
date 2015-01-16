@@ -187,7 +187,7 @@ if(f$_piwik_id != '') {
     f$_modal_don_liendl = '';
 
 /* Bandeau maintenance sur les VM */
-    if (/(framasoft|forum.framasoft|framablog|framakey|framadvd|framabook|framazic|famadate|framindmap|framavectoriel|framaphonie|wiki.framasoft|framalab|framacode|soutenir.framasoft|contact.framasoft|framandroid|framastart|10ans.framasoft|framasphere|framagames|git.framasoft|degooglisons-internet)/i.test(f$_site)) {
+    if (/(framasoft|forum.framasoft|framablog|framakey|framadvd|framabook|framazic|framadate|framindmap|framavectoriel|framaphonie|wiki.framasoft|framalab|framacode|soutenir.framasoft|contact.framasoft|framandroid|framastart|10ans.framasoft|framasphere|framagames|git.framasoft|degooglisons-internet)/i.test(f$_site)) {
         f$_alert_type = 'danger';
         f$_alert_text =
             '<div style="margin:0 auto; max-width:900px; text-align:justify">'+
