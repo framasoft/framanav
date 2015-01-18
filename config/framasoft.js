@@ -16,10 +16,6 @@ if(f$_url != 'http://www.framasoft.net/'
     flickr_m = flickr_t.replace('_t.jpg', '_m.jpg');
     jQuery('img[src$="_t.jpg"]').attr('src', flickr_m).css('width', '90%');
 
-    if (!f$_not_in_frame) {
-        jQuery('body').css('font-size', '100%');
-    }
-    
     f$_credits = 'framalibre';
 } else {
     f$_footer = true;
