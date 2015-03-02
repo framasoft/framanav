@@ -74,6 +74,9 @@ switch (f$_site) {
     case 'sciences.framapad' : f$_site = 'instances.framapad'; break;
     case 'noenaute' : f$_site = 'pouhiou'; break;
     case 'beta.framadate' : f$_site = 'framadate'; break;
+    case 'huit.re' : f$_site = 'frama.link'; break;
+    case 'tontonroger' : f$_site = 'framabee'; break;
+    case 'trouvons' : f$_site = 'framabee'; break;
 }
 
 // À propos
@@ -104,7 +107,7 @@ switch (f$_site) {
     case 'framalab' :               f$_piwik_id = '16'; break;
     case 'framacode' :              f$_piwik_id = '17'; break;
     case 'soutenir.framasoft' :     f$_piwik_id = '18'; break;
-    case 'contact.framasoft' :                f$_piwik_id = '19'; break;
+    case 'contact.framasoft' :      f$_piwik_id = '19'; break;
     case 'framanews' :              f$_piwik_id = '20'; f$_piwik_url = 'https://framanews.org/piwik/'; break;
     case 'framabag' :               f$_piwik_id = '21'; break;
     case 'framandroid' :            f$_piwik_id = '22'; break;
@@ -112,10 +115,15 @@ switch (f$_site) {
     case 'framapack' :              f$_piwik_id = '24'; break;
     case '10ans.framasoft' :        f$_piwik_id = '25'; break;
     case 'framasphere' :            f$_piwik_id = '26'; f$_piwik_url = 'https://framasphere.org/piwik/'; break;
-    case 'framasearch' :            f$_piwik_id = '27'; break;
+    case 'framabee' :               f$_piwik_id = '27'; break;
     case 'framagames' :             f$_piwik_id = '28'; break;
     case 'git.framasoft' :          f$_piwik_id = '29'; break;
     case 'degooglisons-internet' :  f$_piwik_id = '30'; break;
+    case 'framapic' :               f$_piwik_id = '31'; break;
+    case 'frama.link' :             f$_piwik_id = '32'; break;
+    case 'participer.framasoft' :   f$_piwik_id = '33'; break;
+    case 'framacolibri' :           f$_piwik_id = '33'; break;
+    case 'framabin' :               f$_piwik_id = '34'; break;
 }
 
 if(f$_piwik_id != '') {
@@ -147,50 +155,3 @@ if(f$_piwik_id != '') {
       g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
     })();
 }
-
-/* Bandeau Degooglisons */
-    f$_banniere = Math.floor(Math.random() * 4);
-    switch (f$_banniere) {
-    case 0:
-        f$_alert_type       = 'info';
-        f$_alert_img_left   = '<div class="col-sm-3 hidden-xs" style="padding:0"><a href="http://degooglisons-internet.org"><img src="'+f$_nav+'img/stallman.png" alt="degooglisons-internet.org" class="img-responsive center-block" /></a></div>';
-        f$_alert_img_right  = '';
-        break;
-    case 1:
-        f$_alert_type       = 'warning';
-        f$_alert_img_left   = '<div class="col-sm-3 hidden-xs" style="padding:0"><a href="http://degooglisons-internet.org"><img src="'+f$_nav+'img/aaron.png" alt="degooglisons-internet.org" class="img-responsive center-block" /></a></div>';
-        f$_alert_img_right  = '';
-        break;
-    case 2:
-        f$_alert_type       = 'success';
-        f$_alert_img_left   = '';
-        f$_alert_img_right  = '<div class="col-sm-3 hidden-xs" style="padding:0"><a href="http://degooglisons-internet.org"><img src="'+f$_nav+'img/geekette.png" alt="degooglisons-internet.org" class="img-responsive center-block" /></a></div>';
-        break;
-    case 3:
-        f$_alert_type       = 'danger';
-        f$_alert_img_left   = '';
-        f$_alert_img_right  = '<div class="col-sm-3 hidden-xs" style="padding:0;"><a href="http://degooglisons-internet.org"><img src="'+f$_nav+'img/cyberpolice.png" alt="degooglisons-internet.org" class="img-responsive center-block" /></a></div>';
-        break;
-    }
-
-    f$_alert_text =
-        '<div style="margin:0 auto; max-width:800px; text-align:justify">'+
-            f$_alert_img_left+
-            '<div class="col-sm-9" style="padding:0"><p style="font-weight:bold;font-size:16px;" class="text-center"><a href="http://degooglisons-internet.org" style="text-decoration:none"><span style="color:#6A5687">Dégooglisons</span> <span style="color:#EB7239">Internet</span> : une ambitieuse campagne.</a></p>'+
-            '<p>Les services en ligne de géants tentaculaires comme Google, Amazon, Facebook, Apple ou Microsoft (GAFAM) mettent en danger nos vies numériques.</p>'+
-            '<p>Aujourd’hui, <span style="font-weight:bold;color:#6A5687">Frama</span><span style="font-weight:bold;color:#EB7239">soft</span> '+
-            'se lance un défi audacieux : vous proposer, avec votre aide, une alternative Libre, Éthique, Décentralisée et Solidaire pour chacun de ces services.</p>'+
-            '<p style="font-weight:bold">Découvrez notre projet sur <a href="http://degooglisons-internet.org">degooglisons-internet.org</a></p></div>'+
-            f$_alert_img_right+
-        '</div><div class="clearfix"></div>';
-    f$_alert_modal_text = '';
-    f$_modal_don_liendl = '';
-
-/* Bandeau maintenance sur les VM */
-    if (/(framasoft|forum.framasoft|framablog|framakey|framadvd|framabook|framazic|framadate|framindmap|framavectoriel|framaphonie|wiki.framasoft|framalab|framacode|soutenir.framasoft|contact.framasoft|framandroid|framastart|10ans.framasoft|framasphere|framagames|git.framasoft|degooglisons-internet)/i.test(f$_site)) {
-        f$_alert_type = 'danger';
-        f$_alert_text =
-            '<div style="margin:0 auto; max-width:900px; text-align:justify">'+
-                '<p>En raison d’une mise à jour de nos serveurs, l’accès à ce site pourra être perturbé dans la soirée de dimanche. Veuillez nous excuser pour le dérangement. Plus d’informations sur <a href="http://framacloud.org/blog/">Framacloud</a> ou en suivant le hashtag #framasoft sur <a href="https://framasphere.org/tags/framasoft">Diaspora</a>/<a href="https://twitter.com/hashtag/framasoft">Twitter</a>.</p>'+
-            '</div><div class="clearfix"></div>';
-    }
