@@ -77,6 +77,7 @@ switch (f$_site) {
     case 'huit.re' : f$_site = 'frama.link'; break;
     case 'tontonroger' : f$_site = 'framabee'; break;
     case 'trouvons' : f$_site = 'framabee'; break;
+    case 'test.framacalc' : f$_site = 'framacalc'; break;
 }
 
 // À propos
