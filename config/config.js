@@ -86,7 +86,7 @@ var f$_credits = f$_site;
 
 // Piwik
 var f$_piwik_id = '';
-var f$_piwik_url = 'http://stats.framasoft.org/';
+var f$_piwik_url = 'https://stats.framasoft.org/';
 switch (f$_site) {
     case 'framasoft' :              f$_piwik_id = '1';  break;
     case 'forum.framasoft' :        f$_piwik_id = '2';  break;
