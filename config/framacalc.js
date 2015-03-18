@@ -8,6 +8,8 @@ if(f$_page('framacalc.org/_start')) {
     
     f$_footer = "true";
 
+    f$_footer = "true";
+
 } else {
     f$_jquery ='fQuery';
     // Si on n'est dans ethercalc
@@ -26,3 +28,4 @@ if(f$_page('framacalc.org/_start')) {
 }
 
 f$_host = 'ovh';
+

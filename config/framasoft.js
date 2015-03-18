@@ -5,9 +5,11 @@ f$_nav_static = true;
 // Opt-in
 f$_email_field1 = '#email_auteur';
 
-if(window.location.href != 'http://www.framasoft.net/'
+if(f$_url != 'http://www.framasoft.net/'
+   && f$_url != 'http://framasoft.net/'
    && !f$_page('framasoft.net/accueil')
-   && window.location.href != 'http://www.framasoft.org/'
+   && f$_url != 'http://www.framasoft.org/'
+   && f$_url != 'http://framasoft.org/'
    && !f$_page('framasoft.org/accueil')) {
     // Mise en forme « Juste une image »
     flickr_t = jQuery('img[src$="_t.jpg"]').attr('src');

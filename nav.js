@@ -399,8 +399,8 @@ function f$_start_jquery() {
                                         '<p>Merci de prendre quelques minutes en nous aidant à pérenniser et développer notre action.</p>'+
                                     '</div>'+
                                     '<div class="modal-footer">'+
-                                        '<p class="col-md-6 text-center"><a target="_blank" id="modal-don" href="http://soutenir.framasoft.org/?f=modal&s='+f$_site+'" class="btn btn-soutenir btn-block"><span class="fa fa-fw fa-lg fa-heart"></span> Je veux faire un don<br /> à l’association Framasoft&nbsp;<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span></a></p>'+
-                                        '<p class="col-md-6 text-center"><a target="_blank" id="modal-contact" href="http://contact.framasoft.org/participer" class="btn btn-info btn-block"><span class="fa fa-fw fa-lg fa-paw"></span> Je veux participer.<br />Par où on commence ?&nbsp;<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span></a></p>'+
+                                        '<p class="col-md-6 text-center"><a target="_blank" id="modal-don" href="https://soutenir.framasoft.org/?f=modal&s='+f$_site+'" class="btn btn-soutenir btn-block"><span class="fa fa-fw fa-lg fa-heart"></span> Je veux faire un don<br /> à l’association Framasoft&nbsp;<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span></a></p>'+
+                                        '<p class="col-md-6 text-center"><a target="_blank" id="modal-contact" href="https://participer.framasoft.org" class="btn btn-info btn-block"><span class="fa fa-fw fa-lg fa-paw"></span> Je veux participer.<br />Par où on commence ?&nbsp;<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span></a></p>'+
                                         '<p class="clearfix text-right"><a id="modal-dl" href="javascript:void(0);" class="text-primary" >Non merci, je souhaite seulement '+f$_modal_don_txtdl2+'</a></p>'+
                                     '</div>'+
                                 '</div>'+
@@ -430,7 +430,7 @@ function f$_start_jquery() {
                             '<input type="checkbox" id="fs_opt-in_checkbox" value="false" />'+
                             '<label for="fs_opt-in_checkbox">J’accepte de recevoir à cette adresse des informations importantes de la part de Framasoft</label>'+
                             '<br /><small>(Promis, nous ne revendons pas nos fichiers, même à la NSA&nbsp;! '+
-                            '<a href="http://contact.framasoft.org/newsletter" id="link-opt-in" target="_blank" >Pourquoi m’inscrire&nbsp;?&nbsp;<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span></a>)</small></div>'
+                            '<a href="https://contact.framasoft.org/newsletter" id="link-opt-in" target="_blank" >Pourquoi m’inscrire&nbsp;?&nbsp;<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span></a>)</small></div>'
                         );
 
                         f$(f$_email_field1).focusin(function() {
@@ -459,7 +459,7 @@ function f$_start_jquery() {
                                 f$('#fs_opt-in input').attr('checked', true);
                                 f$.ajax({
                                     type: "POST",
-                                    url: 'http://contact.framasoft.org/php_list/lists/?p=subscribe&id=2', // URL d'abonnement à la liste
+                                    url: 'https://contact.framasoft.org/php_list/lists/?p=subscribe&id=2', // URL d'abonnement à la liste
                                     crossDomain:true,
                                     data: 'makeconfirmed=1&htmlemail=0&list%5B5%5D=signup&listname%5B5%5D=Newsletter&email='+f$_email.replace('@','%40')+'&VerificationCodeX=&subscribe=Abonnement' // Paramètres habituellement passés dans le formulaire
                                 });
