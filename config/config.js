@@ -69,6 +69,8 @@ switch (f$_site) {
     case 'quotidien.framapad' : f$_site = 'instances.framapad'; break;
     case 'hebdo.framapad' : f$_site = 'instances.framapad'; break;
     case 'mensuel.framapad' : f$_site = 'instances.framapad'; break;
+    case 'bimestriel.framapad' : f$_site = 'instances.framapad'; break;
+    case 'semestriel.framapad' : f$_site = 'instances.framapad'; break;
     case 'annuel.framapad' : f$_site = 'instances.framapad'; break;
     case 'education.framapad' : f$_site = 'instances.framapad'; break;
     case 'sciences.framapad' : f$_site = 'instances.framapad'; break;
