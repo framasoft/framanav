@@ -322,7 +322,7 @@ function f$_start_jquery() {
 
                     // Fenêtre modale et bandeau d'alerte
                     var f$_alert_dejavu = getCookie('nav-alert');
-                    var f$_alert_modal_dejavu = getCookie('nav-alert-modal');
+                    var f$_alert_modal_dejavu = getCookie(f$_alert_modal_cookie_name);
                     f$_alert_more = '';
 
                     // Ajout de la fenêtre modale
@@ -355,7 +355,7 @@ function f$_start_jquery() {
                             });
                         }
                         f$('#modal-alert .close, #modal-close').click(function() {
-                            setCookie('nav-alert-modal',true); // cookie pour la session
+                            setCookie(f$_alert_modal_cookie_name,true); // cookie pour la session
                             f$('#modal-alert').modal('hide');
                         });
                     }
