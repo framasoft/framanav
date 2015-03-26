@@ -34,4 +34,10 @@ if(f$_page('framindmap.org/mindmaps')) {
         f$_donate = false;
     }
     f$_footer = true;
+
+    // Suppression de la nav dans l'éditeur
+    if(f$_page('framindmap.org/c/maps') && f$_page('/edit')) {
+        var f$_navcontainer = document.getElementById('framanav_container');
+        f$_navcontainer.parentNode.removeChild(f$_navcontainer);
+    }
 }
