@@ -846,3 +846,6 @@ a.bg-primary:focus {
   width: 100%;
 }
 
+cite {
+  font-style:italic;
+}
