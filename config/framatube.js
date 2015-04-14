@@ -4,4 +4,4 @@ f$_jquery = 'fQuery';
 
 f$_video_js = true;
 
-f$_host = 'online';
+f$_host = 'ovh';

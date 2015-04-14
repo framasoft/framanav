@@ -6,7 +6,6 @@ f$_modal_don_txtdl1 = 'd’utiliser';
     f$_modal_don_txtdl2 = 'créer une image';
     f$_modal_don_liendl = 'a[href="/svg-editor.html"]';
 
-f$_host = 'ovh';
 f$_credits = 'framasoft';
 
 f$_cache = false;
