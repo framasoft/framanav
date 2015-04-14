@@ -14,5 +14,4 @@ f$_alert_modal_text = '';
 f$_modal_don_liendl = '';
 f$_donate = false;
 
-f$_host = 'ovh';
 f$_credits = 'framapad';
