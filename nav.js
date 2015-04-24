@@ -247,31 +247,20 @@ function f$_start_jquery() {
             }
 
             // Bloqueur d'iframe style Flashblock
-            var f$_i=0;
-            f$('a[iframe]').click(function() {
-                // Si attribut iframe sur <a> on l'ajoute le code au clic + ajout d'un Id à l'iframe
-                f$(this).after(f$(this).attr('iframe').replace('iframe','iframe id="frame'+f$_i+'"'));
+            /* Vidéos Youtube */
+            var f$_yt_i=0;
+            jQuery('a[href*="youtube.com/watch"],a[href*="youtu.be/"]').has('img').click(function() {
+                // Si lien youtube <a> on l'ajoute le code au clic + ajout d'un Id à l'iframe
+                var f$_yt_iframe = jQuery(this).attr('href').replace(
+                    /(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com(?:\/embed\/|\/v\/|\/watch\?v=))([\w\-]{10,12})\b[?=&\w]*(?!['"][^<>]*>|<\/a>)/ig,
+                    '<iframe id="youtube'+ f$_yt_i +'" src="https://www.youtube.com/embed/$1?autoplay=1" width="560" height="315" frameborder="0" allowfullscreen ></iframe>');
+                jQuery(this).after(f$_yt_iframe);
                 // On supprime <a><img/></a>
-                f$(this).remove();
-
-                var iframe = document.getElementById('frame'+f$_i);
-                // Autoplay Soundcloud
-                if(iframe.src.indexOf('soundcloud') > -1) {
-                    iframe.src = iframe.src.replace('auto_play=false','auto_play=true');
-                // Autoplay Youtube, Vime, Dailymotion
-                } else if(iframe.src.indexOf('youtube') > -1 || iframe.src.indexOf('dailymotion') > -1 || iframe.src.indexOf('vimeo') > -1) {
-                    if(iframe.src.indexOf('?') > -1) {
-                        iframe.src = iframe.src+'&autoplay=1';
-                    } else {
-                        iframe.src = iframe.src+'?autoplay=1';
-                    }
-                // Reload de la frame (au cas où ça passerait mal)
-                } else {
-                    iframe.src = iframe.src
-                }
-                f$_i++;
+                jQuery(this).remove();
+                f$_yt_i++;
                 return false;
             });
+            /* Même chose à faire pour Soundcloud, Dailymotion, Vimeo */
 
             /** On peut ajouter des scripts jQuery "génériques" ici mais... **/
 
