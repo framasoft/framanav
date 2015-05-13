@@ -76,6 +76,7 @@ switch (f$_site) {
     case 'sciences.framapad' : f$_site = 'instances.framapad'; break;
     case 'noenaute' : f$_site = 'pouhiou'; break;
     case 'beta.framadate' : f$_site = 'framadate'; break;
+    case 'openbar.framadate' : f$_site = 'framadate'; break;
     case 'huit.re' : f$_site = 'frama.link'; break;
     case 'tontonroger' : f$_site = 'framabee'; break;
     case 'trouvons' : f$_site = 'framabee'; break;
