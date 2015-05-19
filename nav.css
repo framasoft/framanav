@@ -162,6 +162,7 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
 #framanav .navbar-brand img {
     border:none;
     margin-top:-2px;
+    display: inline;
 }
 
 #framanav .popover-title { font-weight: bold; }
