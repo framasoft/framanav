@@ -21,7 +21,7 @@ if(window.location.host == 'framadate.org') {
             jQuery('tr#addition td:eq(0)').append('<br/>'+(jQuery('#tableContainer tbody tr').length-2)+' votants');
         }
         jQuery('tr#addition td').each(function(index) {
-            countIfneedbe = jQuery('#tableContainer tbody td.bg-warning[headers]').filter('[headers*="S'+(index-1)+'"],[headers*="H'+(index-1)+'"]').length;
+            countIfneedbe = jQuery('#tableContainer tbody td.bg-warning[headers]').filter('[headers$="S'+(index-1)+'"],[headers$="H'+(index-1)+'"]').length;
             if(countIfneedbe>0) {
                 jQuery(this).append('<br/><span class="small text-muted">(+'+countIfneedbe+')</span>');
             }
