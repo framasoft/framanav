@@ -397,6 +397,7 @@ function f$_start_jquery() {
                             var dejavu = getCookie('dondl');
                             if(!dejavu) {
                                 f$('#modal-soutenir').modal('show');
+                                f$('#modal-soutenir').css('display','block'); // bugfix
                                 f$('#modal-contact, #modal-don, #modal-dl, #modal-soutenir .close').click(function() {
                                     setCookie('dondl',true,f$_modal_don_cookie);
                                     f$('#modal-soutenir').modal('hide');
