@@ -35,11 +35,6 @@ if(f$_page('framindmap.org/mindmaps')) {
     }
     f$_footer = true;
 
-    if(f$_page('framindmap.org/c/maps/')) {
-        f$_modal_don_txtdl1 = 'd’utiliser';
-        f$_modal_don_txtdl2 = 'utiliser Framindmap';
-        f$_modal_don_liendl = 'onstart';
-    }
     // Suppression de la nav dans l'éditeur
     if(f$_page('framindmap.org/c/maps') && f$_page('/edit')) {
         var f$_navcontainer = document.getElementById('framanav_container');
