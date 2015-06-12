@@ -21,8 +21,8 @@ var f$_footer = false;                              // charger le fichier footer
 // Popup de don
 var f$_modal_don_txtdl1 = 'de télécharger';
 var f$_modal_don_txtdl2 = 'télécharger';
-var f$_modal_don_liendl = '';
-var f$_modal_don_cookie = 3*24*60*60*1000;          // Expire au bout de 3 jours
+var f$_modal_don_liendl = '';                       // selecteur jQuery ou 'onstart' pour l'afficher à l'ouverture de la page
+var f$_modal_don_cookie = 7*24*60*60*1000;          // Expire au bout de 7 jours
 
 // Alertes
 var f$_alert_type = 'black';                        // warning = jaune ; danger = rouge ; info = bleu ; success = vert
@@ -129,7 +129,8 @@ switch (f$_site) {
     case 'framacolibri' :           f$_piwik_id = '33'; break;
     case 'framabin' :               f$_piwik_id = '34'; break;
     case 'framacloud' :             f$_piwik_id = '35'; break;
-    case 'git.framasoft' :          f$_piwik_id = '36'; break;
+    case 'status.framasoft' :       f$_piwik_id = '37'; break;
+    case 'framabookin' :            f$_piwik_id = '38'; break;
 }
 
 if(f$_piwik_id != '') {
