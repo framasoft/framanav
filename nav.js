@@ -1,4 +1,4 @@
-var f$_version = '141229';
+var f$_version = '140612';
 var f$_site = window.location.host
 f$_site = f$_site.replace(/^(www|test)\./i,"");
 f$_site = f$_site.replace(/\.(com|net|org|fr|pro)$/i,"");
@@ -171,11 +171,8 @@ function f$_start_jquery() {
         })
         .done(function(html) {
             // On ajoute le viewport si Responsive
-            if (f$_responsive) {
+            if (f$_responsive && !f$('meta[name="viewport"]').length) {
                 f$('head').append('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
-                console.log('Ok Responsive activé');
-            } else {
-                console.info('Responsive désactivé');
             }
 
             // On affiche le code html
@@ -396,19 +393,30 @@ function f$_start_jquery() {
                             '</div>'+
                         '</div>');
 
-                        f$(f$_modal_don_liendl).click(function() {
-                            var dejavu = getCookie('dondl')
+                        if(f$_modal_don_liendl=='onstart') {
+                            var dejavu = getCookie('dondl');
                             if(!dejavu) {
-                                link=f$(this).attr('href');
                                 f$('#modal-soutenir').modal('show');
-                                f$('#modal-contact, #modal-don, #modal-dl').click(function() {
-                                    setCookie('dondl',true,f$_modal_don_cookie)
+                                f$('#modal-contact, #modal-don, #modal-dl, #modal-soutenir .close').click(function() {
+                                    setCookie('dondl',true,f$_modal_don_cookie);
                                     f$('#modal-soutenir').modal('hide');
-                                    window.location.href = link;
                                 });
-                            return false;
                             }
-                        });
+                        } else {
+                            f$(f$_modal_don_liendl).click(function() {
+                                var dejavu = getCookie('dondl');
+                                if(!dejavu) {
+                                    link=f$(this).attr('href');
+                                    f$('#modal-soutenir').modal('show');
+                                    f$('#modal-contact, #modal-don, #modal-dl').click(function() {
+                                        setCookie('dondl',true,f$_modal_don_cookie);
+                                        f$('#modal-soutenir').modal('hide');
+                                        window.location.href = link;
+                                    });
+                                return false;
+                                }
+                            });
+                        }
                     }
 
                     // Opt-in
