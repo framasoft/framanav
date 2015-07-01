@@ -1,6 +1,7 @@
 f$_config = 'local';
 
-f$_jquery = 'fQuery';
+f$_jquery = 'html';
+f$_bootstrap = 'html';
 
 f$_nav_static = true;
 

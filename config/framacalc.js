@@ -16,6 +16,7 @@ if(f$_page('framacalc.org/_start')) {
     } else {
         f$_bootstrap_css = false;
     }
+    f$_responsive = false;
 
     // Force la désactivation des fenêtres modales, du bandeau et du macaron
     f$_alert_text = '';
