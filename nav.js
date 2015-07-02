@@ -140,7 +140,7 @@ function f$_start_jquery() {
     if(f$_extra_css) {
         f$_loadCSS(f$_nav+'config/'+f$_site+'_extra.css');
     }
-
+    
     /*
      * Nav
      */
@@ -509,6 +509,9 @@ function f$_start_jquery() {
                             }
                         });
                     }
+
+                    // Flux RSS Global
+                    f$('head').append('<link rel="alternate" type="application/rss+xml" title="Flux global de Framasoft" href="http://rss.framasoft.org/" />');
 
                     // Macaron
                     if(f$_donate) {
