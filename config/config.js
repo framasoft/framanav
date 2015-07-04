@@ -1,5 +1,8 @@
-var f$_config = 'global';                           // Paramètre pour vérifier si la config est chargée
-                                                    // ("global" ici, "local" sur config par site)
+/***********************************************************************
+ *                           Config globale                            *
+ ***********************************************************************/
+var f$_config = 'global'; // ← à virer
+                                      
 var f$_jquery = 'jQuery';                           // jQuery = jQuery de la nav ; fQuery = jQuery de la nav avec variables renommées pour éviter les conflits ; html = jQuery (1.10.2 ou +) présent dans la page
 var f$_jquery_noconflict = false;                                               // Pas utile normalement
 
@@ -52,6 +55,11 @@ var f$_email_field2 = '';
 var f$_optin_cookie_name = 'opt-in';
 var f$_optin_cookie = 365*24*60*60*1000;            // Expire au bout d'un an
 
+/***********************************************************************
+ *                          Config des sites                           *
+ ***********************************************************************/
+f$_config = 'local'; // ← à virer
+
 // Alias
 // On remplace juste la variable f$_site.
 // Cette variable n'est utilisée que pour charger les fichiers local_config,
@@ -87,7 +95,404 @@ switch (f$_site) {
 var f$_host = 'hetzner';
 var f$_credits = f$_site;
 
-// Piwik
+var f$_NoMsg = function() {
+    f$_alert_text = '';       // Pas de bandeau
+    f$_alert_modal_text = ''; // Pas de modale
+    f$_modal_don_liendl = ''; 
+    f$_donate = false;        // Pas de macaron
+}
+
+switch (f$_site) {
+    case 'bot.framasoft' :
+        f$_NoMsg();
+    break;
+    case 'connard' :
+        f$_jquery = 'fQuery';
+        f$_frama_css = false;
+        f$_NoMsg();
+    break;
+    case 'contact.framasoft' :
+        f$_jquery = 'html'; f$_bootstrap = 'html';
+        f$_nav_static = true;
+        f$_footer = true;
+        f$_email_field1 = '#wpcf7-f24-p5-o1 .wpcf7-email';
+    break;
+    case 'degooglisons-internet' :
+        f$_NoMsg();
+    break;
+    case 'forum.framasoft' :
+        f$_css_position = 'end';
+        f$_email_field1 = '#email_confirm'; f$_email_field2 = '#email';
+    break;
+    case 'frama.link' :
+        f$_modal_don_txtdl1 = 'd’utiliser';
+        f$_modal_don_txtdl2 = f$_page('frama.link') ? 'utiliser Frama.link' : 'utiliser Huit.re';
+        f$_modal_don_liendl = 'onstart';
+        f$_footer = true;
+    break;
+    case 'framabag' :
+        if(f$_page('framabag.org/u')) { // Si on n'est pas dans wallabag
+            f$_nav_extra_css = true;
+            f$_jquery = 'fQuery';
+            f$_NoMsg();
+        }
+    break;
+    case 'framabee' :
+        f$_jquery = 'html'; f$_bootstrap_js = 'html';
+        f$_footer = true;
+    break;
+    case 'framabin' :
+        f$_jquery = 'html';
+        f$_modal_don_txtdl1 = 'd’utiliser';
+        f$_modal_don_txtdl2 = 'utiliser Framabin';
+        f$_modal_don_liendl = 'onstart';
+        f$_footer = true;
+    break;
+    case 'framablog' :
+        f$_jquery = 'html'; f$_bootstrap = 'html';
+        f$_nav_static = true;
+        f$_footer = true;
+        f$_audio_js = true;
+        f$_video_js = true;
+        //Opt-in
+        //f$_email_field1 = '#c_mail';
+    break;
+    case 'framabook' :
+        f$_jquery = 'html'; f$_bootstrap = 'html';
+        f$_nav_static = true;
+        f$_footer = true;
+        f$_modal_don_liendl = 'a[href*="download-monitor/download.php?id="]';
+    break;
+    case 'framabookin' :
+        f$_jquery = 'html';
+        f$_nav_static = true;
+        if (!f$_page('framabookin.org/b')) {
+            f$_footer = true;
+        } else {
+            f$_NoMsg();
+        }
+        // Fix décalage de la nav
+        f$_extra_css = true;
+        jQuery('document').ready(function() {
+            jQuery('.ui-page').css('margin-top','-42px');
+        });
+    break;
+    case 'framacalc' :
+        if(f$_page('framacalc.org/_start')) { // Si on est sur la page d'accueil
+            
+            f$_modal_don_txtdl1 = 'd’utiliser';
+            f$_modal_don_txtdl2 = 'créer un calc';
+            f$_modal_don_liendl = 'a[href*="framacalc.org/"]';
+            f$_footer = true;
+        } else { // Si on n'est dans ethercalc
+            f$_jquery ='fQuery';
+            if (f$_not_in_frame) {
+                f$_extra_css = true;
+            } else {
+                f$_bootstrap_css = false;
+            }
+            f$_responsive = false;
+            f$_NoMsg();
+            f$_alert_modal_title = 'Avertissements';
+            f$_alert_modal_text = "<h3>Suppression automatique</h3><p>Votre calc sera supprimé au bout d'un an d'inactivité (aucun accès, aucune modification pendant un an).<br/>Ceci nous permet d'éviter de faire grossir indéfiniment la base de données.</p><h3>Information</h3><p>Nous avons changé d'instance de Framacalc le 11 février 2015 suite à des bugs répétés. Pour retrouver votre calc, il vous faudra vous rendre sur <span style='white-space: nowrap;'>http://old.framacalc.org/le_nom_de_mon_calc</span></p><p>Pour exporter votre calc au format CSV, il suffit d'ajouter \".csv\" à la fin de l'adresse du calc (<span style='white-space: nowrap;'>https://framacalc.org/le_nom_de_mon_calc.csv</span>, <span style='white-space: nowrap;'>http://old.framacalc.org/le_nom_de_mon_calc.csv</span> pour l'ancienne instance)</p>";
+            f$_alert_modal_cookie_name = 'nav-alert-modal-warning-framacalc';
+        }
+        f$_host = 'ovh';
+    break;
+    case 'framacloud' :
+        f$_jquery = 'html'; f$_bootstrap = 'html';
+        f$_nav_static = true;
+        f$_footer = true;
+        f$_audio_js = true;
+        f$_video_js = true;
+    break;
+    case 'framacode' :
+        f$_jquery = 'fQuery';
+        f$_css_position = 'start';
+        f$_footer = true;
+    break;
+    case 'framacolibri' :
+        f$_jquery = 'fQuery';
+        f$_NoMsg();
+        f$_extra_css = true;
+    break;
+    case 'framadate' :
+        f$_jquery = 'html'; f$_bootstrap_js = 'html';
+        f$_modal_don_txtdl1 = 'd’utiliser';
+        f$_modal_don_txtdl2 = 'créer un sondage';
+        f$_modal_don_liendl = 'a[href*="infos_sondage.php?choix_sondage="]';
+        if(f$_page('infos_sondage.php?choix_sondage')) { // Opt-in
+            f$_email_field1 = '#formulaire input[name="adresse"]';
+        }
+        f$_footer = true;
+        /** Extra <script> **/
+        // Somme des votes (fonctionnalité de la branche develop)
+        if(window.location.host == 'framadate.org') {
+            jQuery(document).ready(function(){
+                // Graphique
+                if(jQuery('html').attr('lang')=='fr') {
+                    jQuery('tr#addition td:eq(0)').append('<br/>'+(jQuery('#tableContainer tbody tr').length-2)+' votants');
+                    jQuery.getScript('/_charts/resultats.js');
+                }
+                // Somme des votes (fonctionnalité de la branche develop)
+                jQuery('tr#addition td').each(function(index) {
+                    countIfneedbe = jQuery('#tableContainer tbody td.bg-warning[headers]').filter('[headers$="S'+(index-1)+'"],[headers$="H'+(index-1)+'"]').length;
+                    if(countIfneedbe>0) {
+                        jQuery(this).append('<br/><span class="small text-muted">(+'+countIfneedbe+')</span>');
+                    }
+                });
+                // Tutoriel
+                if(jQuery('html').attr('lang')=='fr') {
+                    jQuery('a[href*="aqg259dth55iuhwm"]').before('<a href="javascript:void(0)" data-toggle="modal" data-target="#TutoModal">lire le tutoriel détaillé ?</a> ou ');
+                    jQuery('main .col-md-4:has(.glyphicon-question-sign)').append(
+                    '<div class="modal fade" id="TutoModal" tabindex="-1" role="dialog" aria-labelledby="TutoModalLabel">'+
+                        '<div class="modal-dialog modal-lg">'+
+                             '<div class="modal-content">'+
+                                  '<div class="modal-header">'+
+                                       '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+                                       '<h4 class="modal-title" id="TutoModalLabel">Planifier un rendez-vous rapidement avec Framadate</h4>'+
+                                  '</div>'+
+                                  '<div class="modal-body" id="TutoImport">'+
+                                  '</div>'+
+                                  '<div class="modal-footer">'+
+                                      '<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>'+
+                                  '</div>'+    
+                             '</div>'+
+                        '</div>'+
+                    '</div>'
+                    );
+                    jQuery('#TutoImport').load("_tutoriel/tutoframadate.html .row", function() {
+                        jQuery( "#TutoImport img" ).attr( "src", function( i, val ) {
+                            return '_tutoriel/'+ val;
+                        });
+                        jQuery( "#TutoImport .row" ).after('<hr role="presentation" />');
+                    });
+                }
+            });
+        }
+        /** </script> **/
+    break;
+    case 'framadvd':
+        f$_jquery = 'fQuery';
+        f$_modal_don_liendl = 'a[href*="iso.framadvd.org"]';
+        f$_nav_static = true;
+        f$_footer = true;
+        f$_video_js = true;
+    break;    
+    case 'framagames':
+        f$_modal_don_txtdl1 = 'd’utiliser';
+        f$_modal_don_txtdl2 = 'jouer';
+        f$_modal_don_liendl = '.play a';
+        f$_footer = true;
+    break;
+    case 'framakey':
+        f$_jquery = 'fQuery';
+        f$_nav_static = true;
+        f$_footer = true;
+        f$_modal_don_liendl = 'a[href*="files.framakey.org"]';
+    break;
+    case 'framalab':
+        f$_nav_static = true;
+        f$_footer = true;
+    break;
+    case 'framandroid':
+        f$_jquery = 'jQuery';
+        f$_footer = true;
+    break;
+    case 'framanews':
+        if(f$_page('framanews.org/ttrss')) {
+            // Si on n'est dans ttrss
+            f$_extra_css = true;
+            f$_jquery = 'fQuery';
+            f$_NoMsg();
+        }
+        f$_host = 'iniz';
+    break;
+    case 'framapack':
+        f$_jquery = 'html'; f$_bootstrap = 'html';
+        f$_modal_don_txtdl1 = 'd’utiliser';
+        f$_modal_don_txtdl2 = 'utiliser Framapack';
+        f$_modal_don_liendl = 'onstart';
+        f$_footer = true;
+    break;
+    case 'framapad':
+        f$_jquery = 'fQuery';
+        f$_css_position = 'end';
+        f$_modal_don_txtdl1 = 'd’utiliser';
+        f$_modal_don_txtdl2 = 'créer un pad';
+        f$_modal_don_liendl = 'a[href*=".framapad.org/p/"]';
+        f$_video_js = true;
+        f$_footer = true;
+    break;
+    case 'framaphonie':
+        f$_jquery = 'fQuery';
+        f$_css_position = 'end';
+        f$_extra_css = true;
+    break;
+    case 'framapic':
+        f$_jquery = 'fQuery';
+        f$_modal_don_txtdl1 = 'd’utiliser';
+        f$_modal_don_txtdl2 = 'utiliser Framapic';
+        f$_modal_don_liendl = 'onstart';
+        f$_footer = true;
+    break;
+    case 'framasoft':
+        f$_nav_static = true;
+        f$_email_field1 = '#email_auteur';
+        if(f$_url != 'http://www.framasoft.net/'
+           && f$_url != 'http://framasoft.net/'
+           && !f$_page('framasoft.net/accueil')
+           && f$_url != 'http://www.framasoft.org/'
+           && f$_url != 'http://framasoft.org/'
+           && !f$_page('framasoft.org/accueil')) {
+            // Mise en forme « Juste une image »
+            flickr_t = jQuery('img[src$="_t.jpg"]').attr('src');
+            flickr_m = flickr_t.replace('_t.jpg', '_m.jpg');
+            jQuery('img[src$="_t.jpg"]').attr('src', flickr_m).css('width', '90%');
+            f$_credits = 'framalibre';
+        } else {
+            f$_footer = true;
+        }
+    break;
+    case 'framasphere':
+        f$_jquery = 'html'; f$_bootstrap_js = 'html';
+        f$_css_position = 'end';
+        f$_footer = true;
+        /** Extra <script> **/
+        jQuery(document).ready(function() {
+            jQuery('link[href*=bootstrap-complete]').remove();
+            jQuery('footer').remove();
+            // A11y inscription-framasphere@framalistes.org
+            jQuery('a[href="/users/sign_up"]').attr('aria-describeby','inscription-email');
+            jQuery('a[href="/users/sign_up"]').after('<p id="inscription-email" class="alert text-left" style="font-size:smaller; max-width:250px; margin:10px auto; padding:10px; background:#eee; color:#555; border-color:#999">Si vous rencontrez des difficultés pour vous inscrire, notamment à cause du captcha, envoyez un email à inscription-framasphere@framalistes.org contenant l’identifiant que vous souhaitez utiliser.</p>');
+        });
+        /** </script> **/
+    break;
+    case 'framastats':
+        f$_jquery = 'html'; f$_bootstrap_js = 'html';
+        f$_nav_static = true;
+        f$_footer = true;
+    break;
+    case 'framatube':
+        f$_jquery = 'fQuery';
+        f$_video_js = true;
+        f$_host = 'ovh';
+    break;
+    case 'framavectoriel':
+        f$_jquery = 'fQuery';
+        if(f$_page('svg-editor')) {
+        // Si on n'est dans svg-editor
+            if (f$_not_in_frame) {
+                f$_extra_css = true;
+            } else {
+                f$_bootstrap_css = false;
+            }
+            f$_NoMsg();
+        } else {
+            f$_footer = true;
+            f$_modal_don_txtdl1 = 'd’utiliser';
+            f$_modal_don_txtdl2 = 'créer une image';
+            f$_modal_don_liendl = 'a[href="/svg-editor.html"]';
+            f$_video_js = true;
+        }
+    break;
+    case 'framazic':
+        f$_jquery = 'html'; f$_bootstrap = 'html';
+        f$_nav_static = true;
+        f$_footer = true;
+        f$_video_js = true;
+    break;
+    case 'framindmap':
+        if(f$_page('framindmap.org/mindmaps')) {
+            /* Si on n'est dans Mindmaps */
+            f$_jquery = 'fQuery';
+            f$_extra_css = true;
+            f$_NoMsg();
+        } else {
+            f$_jquery = 'html'; f$_bootstrap_js = 'html';
+            f$_bootstrap_css = false;
+            f$_footer = true;
+            f$_extra_css = true;
+            f$_video_js = true;
+            f$_email_field1 = '#user #email';
+            if(!f$_page('framindmap.org/c/login') && !f$_page('framindmap.org/c/user/registration')) {
+                f$_NoMsg();
+            }
+            if(f$_page('framindmap.org/c/maps/') && !f$_page('/edit')) {
+                f$_modal_don_txtdl1 = 'd’utiliser';
+                f$_modal_don_txtdl2 = 'utiliser Framindmap';
+                f$_modal_don_liendl = 'onstart';
+            }
+            // Suppression de la nav dans l'éditeur
+            if(f$_page('framindmap.org/c/maps') && f$_page('/edit')) {
+                var f$_navcontainer = document.getElementById('framanav_container');
+                f$_navcontainer.parentNode.removeChild(f$_navcontainer);
+            }
+        }
+    break;
+    case 'instances.framapad':
+        f$_jquery = 'fQuery';
+        if (f$_not_in_frame) {
+            f$_extra_css = true;
+        } else {
+            f$_bootstrap_css = false;
+        }
+        f$_NoMsg();
+        f$_credits = 'framapad';
+    break;
+    case 'lite.framapad':
+        f$_jquery = 'fQuery';
+        f$_extra_css = true;
+        f$_NoMsg();
+        // Message arrêt de la création des pads
+        f$_alert_modal_title = 'Création des pads désactivée';
+        f$_alert_modal_text = '<p>Nous vous informons que cette instance de Framapad (<b>lite</b>.framapad.org) ne peut plus accueillir de nouveaux pads.<p>'+
+         '<br /><p>Il reste bien évidement possible de travailler sur les pads déjà existants (ils ne seront pas supprimés)'+
+         ' mais pour en créer de nouveaux, veuillez passer par la page d’accueil du site :<br />'+
+         '<a href="http://www.framapad.org">www.framapad.org</a></p>'+
+         '<br /><p>Merci.<br />L’équipe technique</p>';
+        f$_host = 'ovh';
+        f$_credits = 'framapad';
+    break;
+    case 'lite6.framapad':
+        f$_jquery = 'fQuery';
+        f$_extra_css = true;
+        f$_NoMsg();
+        f$_host = 'hetzner';
+        f$_credits = 'framapad';
+    break;
+    case 'localhost':
+
+    break;
+    case 'participer.framasoft':
+        f$_jquery = 'html'; f$_bootstrap = 'html';
+        f$_nav_static = true;
+        f$_footer = true;
+        f$_video_js = true;
+    break;
+    case 'pouhiou':
+        f$_jquery = 'fQuery';
+        f$_frama_css = false;
+        f$_NoMsg();
+    break;
+    case 'soutenir.framasoft':
+        f$_jquery = 'html'; f$_bootstrap_js = 'html';
+        f$_NoMsg();
+        if(f$_page('add/temoignage')) {
+            f$_email_field1 = '#edit-field-t-email-0-value';
+        }
+        f$_footer = true;
+    break;
+    case 'wiki.framasoft':
+        f$_jquery = 'fQuery';
+        f$_alert_text = '';
+        f$_extra_css = true;
+    break;       
+}
+
+/***********************************************************************
+ *                               Piwik                                 *
+ **********************************************************************/
 var f$_piwik_id = '';
 var f$_piwik_url = 'https://stats.framasoft.org/';
 switch (f$_site) {
