@@ -1,14 +1,14 @@
 /***********************************************************************
  *                           Config globale                            *
  ***********************************************************************/
-var f$_config = 'global'; // ← à virer
-                                      
-var f$_jquery = 'jQuery';                           // jQuery = jQuery de la nav ; fQuery = jQuery de la nav avec variables renommées pour éviter les conflits ; html = jQuery (1.10.2 ou +) présent dans la page
-var f$_jquery_noconflict = false;                                               // Pas utile normalement
+var f$_config = 'global';
+
+var f$_jquery = 'jQuery';                           // 'jQuery' = jQuery de la nav ; 'fQuery' = jQuery de la nav avec variables renommées pour éviter les conflits ; 'html' = jQuery (1.10.2 ou +) présent dans la page
+var f$_jquery_noconflict = false;                   // Pas utile normalement
 
 var f$_cache = true;                                // Obligatoire en prod
 
-var f$_bootstrap_js = true;                         // true ; false ; html
+var f$_bootstrap_js = true;                         // true ; false ; 'html'
 var f$_bootstrap_css = true;
 var f$_css_position = 'start';                      // 'start' = head > bootstrap.css > ... /head body > nav.js ;
                                                     // 'end'   = head > ... > bootstrap.css /head body > nav.js ;
@@ -17,8 +17,6 @@ var f$_frama_css = true;
 
 var f$_nav_static = false;
 var f$_extra_css = false;                           // nav/config/nom-de-domaine_extra.css
-var f$_extra_js = false;                            // nav/config/nom-de-domaine_extra.js
-
 var f$_footer = false;                              // charger le fichier footer.html
 
 // Popup de don
@@ -44,6 +42,14 @@ var f$_alert_modal_cookie = 7*24*60*60*1000;        // Expire au bout de 7 jours
 var f$_donate = true;
 var f$_donate_blink_time = 30000;
 
+// Fonction pour désactiver tout ce qui peut géner sur certains sites
+var f$_NoMsg = function() {
+    f$_alert_text = '';       // Pas de bandeau
+    f$_alert_modal_text = ''; // Pas de modale
+    f$_modal_don_liendl = '';
+    f$_donate = false;        // Pas de macaron
+}
+
 // Audio JS
 var f$_audio_js = false;
 // Video JS
@@ -58,8 +64,6 @@ var f$_optin_cookie = 365*24*60*60*1000;            // Expire au bout d'un an
 /***********************************************************************
  *                          Config des sites                           *
  ***********************************************************************/
-f$_config = 'local'; // ← à virer
-
 // Alias
 // On remplace juste la variable f$_site.
 // Cette variable n'est utilisée que pour charger les fichiers local_config,
@@ -94,13 +98,6 @@ switch (f$_site) {
 // À propos
 var f$_host = 'hetzner';
 var f$_credits = f$_site;
-
-var f$_NoMsg = function() {
-    f$_alert_text = '';       // Pas de bandeau
-    f$_alert_modal_text = ''; // Pas de modale
-    f$_modal_don_liendl = ''; 
-    f$_donate = false;        // Pas de macaron
-}
 
 switch (f$_site) {
     case 'bot.framasoft' :
@@ -462,7 +459,7 @@ switch (f$_site) {
         f$_credits = 'framapad';
     break;
     case 'localhost':
-
+        f$_footer = false;
     break;
     case 'participer.framasoft':
         f$_jquery = 'html'; f$_bootstrap = 'html';
