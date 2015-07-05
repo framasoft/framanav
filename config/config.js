@@ -451,13 +451,6 @@ switch (f$_site) {
         f$_host = 'ovh';
         f$_credits = 'framapad';
     break;
-    case 'lite6.framapad':
-        f$_jquery = 'fQuery';
-        f$_extra_css = true;
-        f$_NoMsg();
-        f$_host = 'hetzner';
-        f$_credits = 'framapad';
-    break;
     case 'localhost':
         f$_footer = false;
     break;
