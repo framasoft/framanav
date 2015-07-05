@@ -14,12 +14,7 @@ Barre de navigation commune aux sites du réseau
 
 Installation
 --------------------
-1) Créer le fichier config/site.js contenant au moins une ligne
-```JavaScript
-    f$_config = 'local';
-```
-Prendre modèle sur config/config.js pour connaître les paramètres à personnalisables
-
+1) Voir config/config.js pour connaître les paramètres personnalisables à définir selon le site
 
 2) Se placer en ligne de commande dans le dossier du *site* et importer les fichiers du dépôt
 ```bash
@@ -27,7 +22,7 @@ Prendre modèle sur config/config.js pour connaître les paramètres à personna
     git clone https://git.framasoft.org/framasoft/framanav.git nav
 ```
 
-3) a) Ajouter le script nav.js en haut du `<body>` du site où la nav est requise :
+3) a) Ajouter le script nav.js sous le `<body>` du site, là où la nav est requise :
 ```HTML
     <script src="/nav/nav.js" type="text/javascript"></script>
 ```
@@ -40,6 +35,11 @@ var script = document.createElement('script');
     script.src="/nav/nav.js";
     document.getElementsByTagName('head')[0].appendChild(script);
 </script>
+```
+
+On peut zapper l'étape 2 en utilisant la nav d'un autre site configuré pour autoriser les requêtes Ajax cross-domain.
+```HTML
+    <script src="https://nav.framasoft.org/nav/nav.js" type="text/javascript"></script>
 ```
 
    b) Ajouter jquery.min.js et bootstrap.min.js avant si nécessaire pour le bon fonctionnement du site
@@ -59,10 +59,14 @@ mettre dans le fichier de config :
     f$_jquery = 'fQuery';
 ```
 
-Note : pour désactiver les éléments de la nav (message d'alerte, fenêtres modales, nav, macaron),
+Note : pour désactiver tout les éléments de la nav (message d'alerte, fenêtres modales, nav, macaron),
 mais profiter tout de même des CSS de bootstrap et de jQuery on peut ajouter ce paramètre au fichier de config :
 ```JavaScript
     f$_not_in_frame = false;
+```
+Pour désactiver seulement les messages d'alerte, les fenêtre modale et le macaron, 
+```JavaScript
+    f$_NoMsg();
 ```
 
 Mises à jour planifiées
@@ -73,6 +77,6 @@ Editer le crontab de l'utilisateur :
 ```
 Et ajouter une ligne à la fin
 ```
-    00 4 * * * /home/site/www/nav/cron.sh
+    00 4 * * * /home/site/www/nav/update.sh
 ```
 
