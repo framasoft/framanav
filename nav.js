@@ -1,4 +1,4 @@
-var f$_version = '140612';
+var f$_version = '140706';
 var f$_site = window.location.host
 f$_site = f$_site.replace(/^(www|test)\./i,"");
 f$_site = f$_site.replace(/\.(com|net|org|fr|pro)$/i,"");
@@ -45,29 +45,37 @@ var f$_start_config = function() {
             f$_footer = true;
         }
 
-        if (f$_jquery == 'jQuery') {
-            if (window.jQuery === undefined || window.jQuery.fn.jquery !== '1.10.2') {
-                console.log('✔ jQuery AJAX');
+        switch (f$_jquery) {
+            case 'jQuery' :
+                if (window.jQuery === undefined || window.jQuery.fn.jquery !== '1.10.2') {
+                    console.log('✔ jQuery AJAX');
+                    f$_loadScript(f$_nav+'lib/jquery/jquery.min.js', f$_start_jquery);
+                } else {
+                    console.log('✔ jQuery HTML');
+                    f$_start_jquery();
+                }
+            break;
+            case 'noConflict' :
+                console.log('✔ jQuery.noConflict AJAX');
                 f$_loadScript(f$_nav+'lib/jquery/jquery.min.js', f$_start_jquery);
-            } else {
-                console.log('✔ jQuery HTML');
-                f$_start_jquery();
-            }
-        } else if (f$_jquery == 'fQuery') {
-            if (window.fQuery === undefined) {
-                console.log('✔ fQuery AJAX');
-                f$_loadScript(f$_nav+'lib/jquery/fquery.min.js', f$_start_jquery);
-            } else {
-                console.log('✔ fQuery HTML');
-                f$_start_jquery();
-            }
-        } else {
-            if (window.jQuery === undefined) {
-                console.error('✘ jQuery');
-            } else {
-                console.log('✔ jQuery '+window.jQuery.fn.jquery+' HTML');
-                f$_start_jquery();
-            }
+            break;
+            case 'fQuery' :
+                if (window.fQuery === undefined) {
+                    console.log('✔ fQuery AJAX');
+                    f$_loadScript(f$_nav+'lib/jquery/fquery.min.js', f$_start_jquery);
+                } else {
+                    console.log('✔ fQuery HTML');
+                    f$_start_jquery();
+                }
+            break;
+            default:
+                if (window.jQuery === undefined) {
+                    console.error('✘ jQuery');
+                } else {
+                    console.log('✔ jQuery '+window.jQuery.fn.jquery+' HTML');
+                    f$_start_jquery();
+                }
+            break;
         }
 
     } else {
@@ -98,7 +106,7 @@ var f$_nav_init = function() {
         }
     }
 
-    f$_loadScript(f$_nav+'config/config.js?'+f$_version, f$_start_config);
+    f$_loadScript(f$_nav+'config.js?'+f$_version, f$_start_config);
 }; // ---> config.js
 
 f$_nav_init();
@@ -112,32 +120,32 @@ function f$_start_jquery() {
      */
     // Bootstrap
     if (f$_bootstrap_css) {
-        f$_loadCSS(f$_nav+"lib/bootstrap/css/bootstrap.min.css", f$_css_position, "all");
+        f$_loadCSS(f$_nav+'lib/bootstrap/css/bootstrap.min.css', f$_css_position, 'all');
     }
 
     // Font-awesome
     f$_loadCSS(f$_nav+'lib/font-awesome/css/font-awesome.min.css','end','all');
 
     // Nav.css
-    f$_loadCSS(f$_nav+'nav.css?'+f$_version);
+    f$_loadCSS(f$_nav+'css/nav.css?'+f$_version);
 
     // Frama.css
     if(f$_frama_css) {
-        f$_loadCSS(f$_nav+"frama.css", 'end', "all");
+        f$_loadCSS(f$_nav+'css/frama.css', 'end', 'all');
     }
 
     // Extra.css
     if(f$_extra_css) {
-        f$_loadCSS(f$_nav+'config/'+f$_site+'_extra.css');
+        f$_loadCSS(f$_nav+'css/extra/'+f$_site+'.css');
     }
-    
+
     /*
      * Nav
      */
-    if (f$_jquery == 'fQuery') {
-        var f$ = (f$_jquery_noconflict) ? fQuery.noConflict() : fQuery;
-    } else {
-        var f$ = (f$_jquery_noconflict) ? jQuery.noConflict() : jQuery;
+    switch (f$_jquery) {
+        case 'fQuery'    : var f$ = fQuery; break;
+        case 'noConflict': var f$ = jQuery.noConflict(); break;
+        default          : var f$ = jQuery;break;
     }
 
     f$(document).ready(function() {
@@ -149,7 +157,7 @@ function f$_start_jquery() {
 
         // On charge ensuite le code HTML
         f$.ajax({
-            url: f$_nav+'nav.html'
+            url: f$_nav+'html/nav.html'
         })
         .fail(function() {
             console.error('✘ nav.html');
@@ -198,7 +206,7 @@ function f$_start_jquery() {
             }
             // Si (Dés)Activation mannuel, le cookie prend la main le temps de la session
             switch (getCookie('nav_viewport')) {
-                case 'mobile': f$_mobile(); break;
+                case 'mobile' : f$_mobile(); break;
                 case 'desktop': f$_desktop(); break;
             }
             // Boutons (Dés)Activer le mode mobile
@@ -251,7 +259,7 @@ function f$_start_jquery() {
 
             // Video JS
             if (f$_video_js) {
-                f$('link[href*="/nav/nav.css"]').before('<link rel="stylesheet" type="text/css" href="'+f$_nav+'lib/video-js/video-js.css" />');
+                f$('link[href*="/nav/css/nav.css"]').before('<link rel="stylesheet" type="text/css" href="'+f$_nav+'lib/video-js/video-js.css" />');
                  // Paramètres à ajouter à la vidéo pour appliquer VideoJS en surcouche
                 f$('video').attr({
                     'class':'video-js vjs-default-skin',
@@ -273,14 +281,14 @@ function f$_start_jquery() {
             // Bloqueur d'iframe style Flashblock
             /* Vidéos Youtube */
             var f$_yt_i=0;
-            jQuery('a[href*="youtube.com/watch"],a[href*="youtu.be/"]').has('img').click(function() {
+            f$('a[href*="youtube.com/watch"],a[href*="youtu.be/"]').has('img').click(function() {
                 // Si lien youtube <a> on l'ajoute le code au clic + ajout d'un Id à l'iframe
-                var f$_yt_iframe = jQuery(this).attr('href').replace(
+                var f$_yt_iframe = f$(this).attr('href').replace(
                     /(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com(?:\/embed\/|\/v\/|\/watch\?v=))([\w\-]{10,12})\b[?=&\w]*(?!['"][^<>]*>|<\/a>)/ig,
                     '<iframe id="youtube'+ f$_yt_i +'" src="https://www.youtube.com/embed/$1?autoplay=1" width="560" height="315" frameborder="0" allowfullscreen ></iframe>');
-                jQuery(this).after(f$_yt_iframe);
+                f$(this).after(f$_yt_iframe);
                 // On supprime <a><img/></a>
-                jQuery(this).remove();
+                f$(this).remove();
                 f$_yt_i++;
                 return false;
             });
@@ -289,6 +297,13 @@ function f$_start_jquery() {
             /** On peut ajouter des scripts jQuery "génériques" ici mais... **/
 
             function go_BootStrap() {
+                // Redéfinit f$ pour Bootstrap en mode noConflict si nécessaire
+                switch (f$_jquery) {
+                    case 'fQuery'    : var f$ = fQuery; break;
+                    case 'noConflict': var f$ = jQuery.noConflict(); break;
+                    default          : var f$ = jQuery; break;
+                }
+
                 /**
                  *  Accessibilité
                  *  code issu de https://github.com/paypal/bootstrap-accessibility-plugin
@@ -515,7 +530,7 @@ function f$_start_jquery() {
 
                     // Crédits
                     if(f$_page('/html/credits.html')) {
-                        f$('#site-credits').load(f$_nav+'html/credits_'+f$_credits+'.html');
+                        f$('#site-credits').load(f$_nav+'html/credits/'+f$_credits+'.html');
                     };
 
                     // Liens À propos
@@ -525,14 +540,14 @@ function f$_start_jquery() {
 
                     // Hébergeur et Iframe Piwik sur Mentions légales
                     if(f$_page('/html/legals.html')) {
-                        f$('#modal-legals-host').load(f$_nav+'html/host_'+f$_host+'.html');
+                        f$('#modal-legals-host').load(f$_nav+'html/host/'+f$_host+'.html');
                         f$('#piwik-iframe').html('<iframe style="border: 0; height: 200px; width: 600px;" src="'+f$_piwik_url+'/index.php?module=CoreAdminHome&action=optOut&language=fr"></iframe>')
                     }
 
                     // Footer
                     if(f$_footer) {
                         f$.ajax({
-                            url: f$_nav+'footer.html'
+                            url: f$_nav+'html/footer.html'
                         })
                         .fail(function() {
                             console.error('✘ footer.html');
