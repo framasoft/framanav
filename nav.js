@@ -85,9 +85,9 @@ var f$_nav_container = false;
 var f$_nav_init = function() {
     for (var i = 0; i < f$_scripts.length; i++) {
         if (f$_scripts[i].getAttribute("src") && f$_scripts[i].getAttribute("src").indexOf("/nav.js") > -1) {
-            // Emplacement de la nav (racine ? sous-dossier ?)
-            f$_nav = f$_scripts[i].getAttribute("src").replace('nav.js',''); // = 'http://'+f$_site+'/nav/';
-
+            // Emplacement de la nav ('/nav/', '/static/nav/, '../nav/' → 'http://'+f$_site+'/nav')
+            f$_nav = f$_scripts[i].getAttribute("src").replace('nav.js','');
+            f$_nav = f$_absolutePath(f$_nav);
             // On ajout une div vide de 42px qui contiendra la nav (évite les sauts de mise en page avant le chargement des fichiers)
             if (f$_scripts[i].parentNode.tagName.toLowerCase() == 'body' ) {
                 // si nav.js est appelé en haut du body, c'est super rapide
@@ -560,7 +560,7 @@ function f$_start_jquery() {
 
                 } // </f$_not_in_frame>
 
-            }   // </go_BootStrap>
+            } // </go_BootStrap>
         }); // </nav.html>
     }); // </document.ready>
 }   // </start_jQuery>
@@ -663,4 +663,10 @@ function f$_isValidEmail(emailAddress) {
 
 function f$_page(string) {
     return (f$_url.indexOf(string) > -1);
+}
+
+function f$_absolutePath(href) {
+    var link = document.createElement("a");
+    link.href = href;
+    return (link.protocol+"//"+link.host+link.pathname+link.search+link.hash);
 }
