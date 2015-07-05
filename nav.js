@@ -33,27 +33,16 @@ var f$_not_in_frame = (top.location==self.document.location); // Pas dans une Fr
 /*******************
  *  Config globale
  *******************/
-var f$_start_global_config = function() {
+var f$_start_config = function() {
     var f$_speed = (f$_nav_container) ? '☀' : '☁';
     if (f$_config == 'global') {
         console.log('✔ '+f$_speed+' config.js');
-        f$_loadScript(f$_nav+'config/'+f$_site+'.js', f$_start_local_config);
-    } else {
-        console.error('✘ '+f$_speed+' config.js');
-    }
-}; // ---> site.js
 
-/*******************
- *  Config locale
- *******************/
-var f$_start_local_config = function() {
-    if (f$_config == 'local') {
-        console.log('✔ '+f$_site+'.js');
-
-        if(f$_page('/nav/html/')) { // Si pages « À propos » on reinit la config
+        if(f$_page('/nav/html/')) { // Si pages « À propos » on réinit la config
             f$_jquery = 'jQuery';
             f$_bootstrap_css = false;
             f$_bootstrap_js = true;
+            f$_footer = true;
         }
 
         if (f$_jquery == 'jQuery') {
@@ -80,10 +69,11 @@ var f$_start_local_config = function() {
                 f$_start_jquery();
             }
         }
+
     } else {
-        console.error('✘ '+f$_site+'.js');
+        console.error('✘ '+f$_speed+' config.js');
     }
-} // ---> jQuery
+}; // ---> jQuery
 
 /*******************
  *     Nav init
@@ -95,9 +85,9 @@ var f$_nav_container = false;
 var f$_nav_init = function() {
     for (var i = 0; i < f$_scripts.length; i++) {
         if (f$_scripts[i].getAttribute("src") && f$_scripts[i].getAttribute("src").indexOf("/nav.js") > -1) {
-            // Emplacement de la nav (racine ? sous-dossier ?)
-            f$_nav = f$_scripts[i].getAttribute("src").replace('nav.js',''); // = 'http://'+f$_site+'/nav/';
-
+            // Emplacement de la nav ('/nav/', '/static/nav/, '../nav/' → 'http://'+f$_site+'/nav')
+            f$_nav = f$_scripts[i].getAttribute("src").replace('nav.js','');
+            f$_nav = f$_absolutePath(f$_nav);
             // On ajout une div vide de 42px qui contiendra la nav (évite les sauts de mise en page avant le chargement des fichiers)
             if (f$_scripts[i].parentNode.tagName.toLowerCase() == 'body' ) {
                 // si nav.js est appelé en haut du body, c'est super rapide
@@ -108,7 +98,7 @@ var f$_nav_init = function() {
         }
     }
 
-    f$_loadScript(f$_nav+'config/config.js?'+f$_version, f$_start_global_config);
+    f$_loadScript(f$_nav+'config/config.js?'+f$_version, f$_start_config);
 }; // ---> config.js
 
 f$_nav_init();
@@ -540,7 +530,7 @@ function f$_start_jquery() {
                     }
 
                     // Footer
-                    if(f$_page('/nav/html/') || f$_footer) {
+                    if(f$_footer) {
                         f$.ajax({
                             url: f$_nav+'footer.html'
                         })
@@ -570,13 +560,7 @@ function f$_start_jquery() {
 
                 } // </f$_not_in_frame>
 
-                if(f$_extra_js) {
-                    f$.getScript(f$_nav+'config/'+f$_site+'_extra.js', function() {
-                        console.log('✔ extra.js');
-                    });
-                }
-
-            }   // </go_BootStrap>
+            } // </go_BootStrap>
         }); // </nav.html>
     }); // </document.ready>
 }   // </start_jQuery>
@@ -679,4 +663,10 @@ function f$_isValidEmail(emailAddress) {
 
 function f$_page(string) {
     return (f$_url.indexOf(string) > -1);
+}
+
+function f$_absolutePath(href) {
+    var link = document.createElement("a");
+    link.href = href;
+    return (link.protocol+"//"+link.host+link.pathname+link.search+link.hash);
 }
