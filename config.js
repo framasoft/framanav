@@ -2,9 +2,10 @@
  *                           Config globale                            *
  ***********************************************************************/
 var f$_config = 'global';
-
-var f$_jquery = 'jQuery';                           // 'jQuery' = jQuery de la nav ; 'fQuery' = jQuery de la nav avec variables renommées pour éviter les conflits ; 'html' = jQuery (1.10.2 ou +) présent dans la page
-var f$_jquery_noconflict = false;                   // Pas utile normalement
+var f$_jquery = 'jQuery';                           // 'jQuery'     = jQuery de la nav ;
+                                                    // 'html'       = jQuery (1.10.2 ou +) présent dans la page ;
+                                                    // 'noConflict' = variable $ et jQuery renommés en js ;
+                                                    // 'fQuery'     = fQuery + fBootstrap, variable $ et jQuery renommés en dur ;
 
 var f$_cache = true;                                // Obligatoire en prod
 
@@ -17,7 +18,7 @@ var f$_frama_css = true;
 
 var f$_nav_static = false;
 var f$_extra_css = false;                           // nav/config/nom-de-domaine_extra.css
-var f$_footer = false;                              // charger le fichier footer.html
+var f$_footer = true;                               // charger le fichier footer.html
 
 // Popup de don
 var f$_modal_don_txtdl1 = 'de télécharger';
@@ -66,8 +67,8 @@ var f$_optin_cookie = 365*24*60*60*1000;            // Expire au bout d'un an
  ***********************************************************************/
 // Alias
 // On remplace juste la variable f$_site.
-// Cette variable n'est utilisée que pour charger les fichiers local_config,
-// extra_css, extra_js et placer un tracker sur un lien de la modale Soutenir
+// Cette variable n'est utilisée que pour charger les fichiers extra_css,
+// credits et placer un tracker sur un lien de la modale Soutenir
 switch (f$_site) {
     case 'localhost' : f$_site = 'localhost'; break;
     case 'beta.framapad' : f$_site = 'instances.framapad'; break;
@@ -102,16 +103,17 @@ var f$_credits = f$_site;
 switch (f$_site) {
     case 'bot.framasoft' :
         f$_NoMsg();
+        f$_footer = false;
     break;
     case 'connard' :
-        f$_jquery = 'fQuery';
+        f$_jquery = 'noConflict';
         f$_frama_css = false;
         f$_NoMsg();
+        f$_footer = false;
     break;
     case 'contact.framasoft' :
         f$_jquery = 'html'; f$_bootstrap = 'html';
         f$_nav_static = true;
-        f$_footer = true;
         f$_email_field1 = '#wpcf7-f24-p5-o1 .wpcf7-email';
     break;
     case 'degooglisons-internet' :
@@ -120,35 +122,31 @@ switch (f$_site) {
     case 'forum.framasoft' :
         f$_css_position = 'end';
         f$_email_field1 = '#email_confirm'; f$_email_field2 = '#email';
+        f$_footer = false;
     break;
     case 'frama.link' :
         f$_modal_don_txtdl1 = 'd’utiliser';
         f$_modal_don_txtdl2 = f$_page('frama.link') ? 'utiliser Frama.link' : 'utiliser Huit.re';
         f$_modal_don_liendl = 'onstart';
-        f$_footer = true;
     break;
     case 'framabag' :
         if(f$_page('framabag.org/u')) { // Si on n'est pas dans wallabag
-            f$_nav_extra_css = true;
-            f$_jquery = 'fQuery';
+            f$_jquery = 'html'; f$_bootstrap_js = 'html';
             f$_NoMsg();
         }
     break;
     case 'framabee' :
         f$_jquery = 'html'; f$_bootstrap_js = 'html';
-        f$_footer = true;
     break;
     case 'framabin' :
         f$_jquery = 'html';
         f$_modal_don_txtdl1 = 'd’utiliser';
         f$_modal_don_txtdl2 = 'utiliser Framabin';
         f$_modal_don_liendl = 'onstart';
-        f$_footer = true;
     break;
     case 'framablog' :
         f$_jquery = 'html'; f$_bootstrap = 'html';
         f$_nav_static = true;
-        f$_footer = true;
         f$_audio_js = true;
         f$_video_js = true;
         //Opt-in
@@ -157,16 +155,14 @@ switch (f$_site) {
     case 'framabook' :
         f$_jquery = 'html'; f$_bootstrap = 'html';
         f$_nav_static = true;
-        f$_footer = true;
         f$_modal_don_liendl = 'a[href*="download-monitor/download.php?id="]';
     break;
     case 'framabookin' :
         f$_jquery = 'html';
         f$_nav_static = true;
-        if (!f$_page('framabookin.org/b')) {
-            f$_footer = true;
-        } else {
+        if (f$_page('framabookin.org/b')) {
             f$_NoMsg();
+            f$_footer = false;
         }
         // Fix décalage de la nav
         f$_extra_css = true;
@@ -175,13 +171,13 @@ switch (f$_site) {
         });
     break;
     case 'framacalc' :
-        if(f$_page('framacalc.org/_start')) { // Si on est sur la page d'accueil
-            
+        if(f$_page('framacalc.org/_start')) {
+         // Si on est sur la page d'accueil
             f$_modal_don_txtdl1 = 'd’utiliser';
             f$_modal_don_txtdl2 = 'créer un calc';
             f$_modal_don_liendl = 'a[href*="framacalc.org/"]';
-            f$_footer = true;
-        } else { // Si on n'est dans ethercalc
+        } else {
+         // Si on n'est dans ethercalc
             f$_jquery ='fQuery';
             if (f$_not_in_frame) {
                 f$_extra_css = true;
@@ -190,6 +186,7 @@ switch (f$_site) {
             }
             f$_responsive = false;
             f$_NoMsg();
+            f$_footer = false;
             f$_alert_modal_title = 'Avertissements';
             f$_alert_modal_text = "<h3>Suppression automatique</h3><p>Votre calc sera supprimé au bout d'un an d'inactivité (aucun accès, aucune modification pendant un an).<br/>Ceci nous permet d'éviter de faire grossir indéfiniment la base de données.</p><h3>Information</h3><p>Nous avons changé d'instance de Framacalc le 11 février 2015 suite à des bugs répétés. Pour retrouver votre calc, il vous faudra vous rendre sur <span style='white-space: nowrap;'>http://old.framacalc.org/le_nom_de_mon_calc</span></p><p>Pour exporter votre calc au format CSV, il suffit d'ajouter \".csv\" à la fin de l'adresse du calc (<span style='white-space: nowrap;'>https://framacalc.org/le_nom_de_mon_calc.csv</span>, <span style='white-space: nowrap;'>http://old.framacalc.org/le_nom_de_mon_calc.csv</span> pour l'ancienne instance)</p>";
             f$_alert_modal_cookie_name = 'nav-alert-modal-warning-framacalc';
@@ -199,18 +196,15 @@ switch (f$_site) {
     case 'framacloud' :
         f$_jquery = 'html'; f$_bootstrap = 'html';
         f$_nav_static = true;
-        f$_footer = true;
         f$_audio_js = true;
         f$_video_js = true;
     break;
     case 'framacode' :
-        f$_jquery = 'fQuery';
-        f$_css_position = 'start';
-        f$_footer = true;
     break;
     case 'framacolibri' :
         f$_jquery = 'fQuery';
         f$_NoMsg();
+        f$_footer = false
         f$_extra_css = true;
     break;
     case 'framadate' :
@@ -221,7 +215,6 @@ switch (f$_site) {
         if(f$_page('infos_sondage.php?choix_sondage')) { // Opt-in
             f$_email_field1 = '#formulaire input[name="adresse"]';
         }
-        f$_footer = true;
         /** Extra <script> **/
         // Somme des votes (fonctionnalité de la branche develop)
         if(window.location.host == 'framadate.org') {
@@ -253,7 +246,7 @@ switch (f$_site) {
                                   '</div>'+
                                   '<div class="modal-footer">'+
                                       '<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>'+
-                                  '</div>'+    
+                                  '</div>'+
                              '</div>'+
                         '</div>'+
                     '</div>'
@@ -270,31 +263,25 @@ switch (f$_site) {
         /** </script> **/
     break;
     case 'framadvd':
-        f$_jquery = 'fQuery';
+        f$_jquery = 'noConflict';
         f$_modal_don_liendl = 'a[href*="iso.framadvd.org"]';
         f$_nav_static = true;
-        f$_footer = true;
         f$_video_js = true;
-    break;    
+    break;
     case 'framagames':
         f$_modal_don_txtdl1 = 'd’utiliser';
         f$_modal_don_txtdl2 = 'jouer';
         f$_modal_don_liendl = '.play a';
-        f$_footer = true;
     break;
     case 'framakey':
-        f$_jquery = 'fQuery';
+        f$_jquery = 'noConflict';
         f$_nav_static = true;
-        f$_footer = true;
         f$_modal_don_liendl = 'a[href*="files.framakey.org"]';
     break;
     case 'framalab':
         f$_nav_static = true;
-        f$_footer = true;
     break;
     case 'framandroid':
-        f$_jquery = 'jQuery';
-        f$_footer = true;
     break;
     case 'framanews':
         if(f$_page('framanews.org/ttrss')) {
@@ -302,6 +289,7 @@ switch (f$_site) {
             f$_extra_css = true;
             f$_jquery = 'fQuery';
             f$_NoMsg();
+            f$_footer = false;
         }
         f$_host = 'iniz';
     break;
@@ -310,7 +298,6 @@ switch (f$_site) {
         f$_modal_don_txtdl1 = 'd’utiliser';
         f$_modal_don_txtdl2 = 'utiliser Framapack';
         f$_modal_don_liendl = 'onstart';
-        f$_footer = true;
     break;
     case 'framapad':
         f$_jquery = 'fQuery';
@@ -319,19 +306,18 @@ switch (f$_site) {
         f$_modal_don_txtdl2 = 'créer un pad';
         f$_modal_don_liendl = 'a[href*=".framapad.org/p/"]';
         f$_video_js = true;
-        f$_footer = true;
     break;
     case 'framaphonie':
-        f$_jquery = 'fQuery';
+        f$_jquery = 'noConflict';
         f$_css_position = 'end';
         f$_extra_css = true;
+        f$_footer = false;
     break;
     case 'framapic':
         f$_jquery = 'fQuery';
         f$_modal_don_txtdl1 = 'd’utiliser';
         f$_modal_don_txtdl2 = 'utiliser Framapic';
         f$_modal_don_liendl = 'onstart';
-        f$_footer = true;
     break;
     case 'framasoft':
         f$_nav_static = true;
@@ -347,14 +333,12 @@ switch (f$_site) {
             flickr_m = flickr_t.replace('_t.jpg', '_m.jpg');
             jQuery('img[src$="_t.jpg"]').attr('src', flickr_m).css('width', '90%');
             f$_credits = 'framalibre';
-        } else {
-            f$_footer = true;
+            f$_footer = false;
         }
     break;
     case 'framasphere':
         f$_jquery = 'html'; f$_bootstrap_js = 'html';
         f$_css_position = 'end';
-        f$_footer = true;
         /** Extra <script> **/
         jQuery(document).ready(function() {
             jQuery('link[href*=bootstrap-complete]').remove();
@@ -368,15 +352,14 @@ switch (f$_site) {
     case 'framastats':
         f$_jquery = 'html'; f$_bootstrap_js = 'html';
         f$_nav_static = true;
-        f$_footer = true;
     break;
     case 'framatube':
-        f$_jquery = 'fQuery';
+        f$_jquery = 'html';
         f$_video_js = true;
         f$_host = 'ovh';
     break;
     case 'framavectoriel':
-        f$_jquery = 'fQuery';
+        f$_jquery = 'noConflict';
         if(f$_page('svg-editor')) {
         // Si on n'est dans svg-editor
             if (f$_not_in_frame) {
@@ -385,8 +368,8 @@ switch (f$_site) {
                 f$_bootstrap_css = false;
             }
             f$_NoMsg();
+            f$_footer = false;
         } else {
-            f$_footer = true;
             f$_modal_don_txtdl1 = 'd’utiliser';
             f$_modal_don_txtdl2 = 'créer une image';
             f$_modal_don_liendl = 'a[href="/svg-editor.html"]';
@@ -396,19 +379,18 @@ switch (f$_site) {
     case 'framazic':
         f$_jquery = 'html'; f$_bootstrap = 'html';
         f$_nav_static = true;
-        f$_footer = true;
         f$_video_js = true;
     break;
     case 'framindmap':
         if(f$_page('framindmap.org/mindmaps')) {
             /* Si on n'est dans Mindmaps */
-            f$_jquery = 'fQuery';
+            f$_jquery = 'noConflict';
             f$_extra_css = true;
             f$_NoMsg();
+            f$_footer = false;
         } else {
             f$_jquery = 'html'; f$_bootstrap_js = 'html';
             f$_bootstrap_css = false;
-            f$_footer = true;
             f$_extra_css = true;
             f$_video_js = true;
             f$_email_field1 = '#user #email';
@@ -435,12 +417,14 @@ switch (f$_site) {
             f$_bootstrap_css = false;
         }
         f$_NoMsg();
+        f$_footer = false;
         f$_credits = 'framapad';
     break;
     case 'lite.framapad':
         f$_jquery = 'fQuery';
         f$_extra_css = true;
         f$_NoMsg();
+        f$_footer = false;
         // Message arrêt de la création des pads
         f$_alert_modal_title = 'Création des pads désactivée';
         f$_alert_modal_text = '<p>Nous vous informons que cette instance de Framapad (<b>lite</b>.framapad.org) ne peut plus accueillir de nouveaux pads.<p>'+
@@ -452,18 +436,17 @@ switch (f$_site) {
         f$_credits = 'framapad';
     break;
     case 'localhost':
-        f$_footer = false;
     break;
     case 'participer.framasoft':
         f$_jquery = 'html'; f$_bootstrap = 'html';
         f$_nav_static = true;
-        f$_footer = true;
         f$_video_js = true;
     break;
     case 'pouhiou':
-        f$_jquery = 'fQuery';
+        f$_jquery = 'noConflict';
         f$_frama_css = false;
         f$_NoMsg();
+        f$_footer = false;
     break;
     case 'soutenir.framasoft':
         f$_jquery = 'html'; f$_bootstrap_js = 'html';
@@ -471,13 +454,12 @@ switch (f$_site) {
         if(f$_page('add/temoignage')) {
             f$_email_field1 = '#edit-field-t-email-0-value';
         }
-        f$_footer = true;
     break;
     case 'wiki.framasoft':
-        f$_jquery = 'fQuery';
+        f$_jquery = 'noConflict';
         f$_alert_text = '';
         f$_extra_css = true;
-    break;       
+    break;
 }
 
 /***********************************************************************
