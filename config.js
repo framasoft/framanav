@@ -202,7 +202,7 @@ switch (f$_site) {
     case 'framacode' :
     break;
     case 'framacolibri' :
-        f$_jquery = 'fQuery';
+        f$_jquery = 'noConflict';
         f$_NoMsg();
         f$_footer = false
         f$_extra_css = true;
