@@ -103,13 +103,13 @@ var f$_credits = f$_site;
 switch (f$_site) {
     case 'bot.framasoft' :
         f$_NoMsg();
-        footer = false;
+        f$_footer = false;
     break;
     case 'connard' :
         f$_jquery = 'noConflict';
         f$_frama_css = false;
         f$_NoMsg();
-        footer: = false;
+        f$_footer = false;
     break;
     case 'contact.framasoft' :
         f$_jquery = 'html'; f$_bootstrap = 'html';
@@ -122,7 +122,7 @@ switch (f$_site) {
     case 'forum.framasoft' :
         f$_css_position = 'end';
         f$_email_field1 = '#email_confirm'; f$_email_field2 = '#email';
-        footer = false;
+        f$_footer = false;
     break;
     case 'frama.link' :
         f$_modal_don_txtdl1 = 'd’utiliser';
@@ -162,7 +162,7 @@ switch (f$_site) {
         f$_nav_static = true;
         if (f$_page('framabookin.org/b')) {
             f$_NoMsg();
-            footer = false;
+            f$_footer = false;
         }
         // Fix décalage de la nav
         f$_extra_css = true;
