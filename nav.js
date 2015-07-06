@@ -1,4 +1,4 @@
-var f$_version = '140706';
+var f$_version = '140706b';
 var f$_site = window.location.host
 f$_site = f$_site.replace(/^(www|test)\./i,"");
 f$_site = f$_site.replace(/\.(com|net|org|fr|pro)$/i,"");
@@ -36,7 +36,7 @@ var f$_not_in_frame = (top.location==self.document.location); // Pas dans une Fr
 var f$_start_config = function() {
     var f$_speed = (f$_nav_container) ? '☀' : '☁';
     if (f$_config == 'global') {
-        console.log('✔ '+f$_speed+' config.js');
+        console.log('✔ '+f$_speed+' config.js '+f$_version);
 
         if(f$_page('/nav/html/')) { // Si pages « À propos » on réinit la config
             f$_jquery = 'jQuery';
@@ -79,7 +79,7 @@ var f$_start_config = function() {
         }
 
     } else {
-        console.error('✘ '+f$_speed+' config.js');
+        console.error('✘ '+f$_speed+' config.js '+f$_version);
     }
 }; // ---> jQuery
 
