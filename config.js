@@ -277,6 +277,14 @@ switch (f$_site) {
         f$_jquery = 'noConflict';
         f$_nav_static = true;
         f$_modal_don_liendl = 'a[href*="files.framakey.org"]';
+        /** Extra <script> **/
+        jQuery('document').ready(function () {
+            // Bouton edit dans la colonne de gauche
+            jQuery('#sidebar a.wikilink[href$="SideBar?action=edit"]').attr('href',window.location.href+'?action=edit');
+            // Flux RSS Framablog tout pourri
+            jQuery('#sidebar div[style="padding: 2px; font-size: smaller; text-align: left; background-color: rgb(238, 238, 238); line-height: 1.3em; margin-left: −14px; -moz-border-radius:3px; border: 1px solid #999;"]').hide();
+        });
+        /** </script> **/
     break;
     case 'framalab':
         f$_nav_static = true;
