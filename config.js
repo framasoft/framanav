@@ -314,7 +314,7 @@ switch (f$_site) {
         f$_footer = false;
     break;
     case 'framapic':
-        f$_jquery = 'fQuery';
+        f$_jquery = 'noConflict';
         f$_modal_don_txtdl1 = 'd’utiliser';
         f$_modal_don_txtdl2 = 'utiliser Framapic';
         f$_modal_don_liendl = 'onstart';
