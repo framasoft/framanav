@@ -178,7 +178,7 @@ switch (f$_site) {
             f$_modal_don_liendl = 'a[href*="framacalc.org/"]';
         } else {
          // Si on n'est dans ethercalc
-            f$_jquery ='fQuery';
+            f$_jquery ='noConflict';
             if (f$_not_in_frame) {
                 f$_extra_css = true;
             } else {
@@ -295,7 +295,7 @@ switch (f$_site) {
         if(f$_page('framanews.org/ttrss')) {
             // Si on n'est dans ttrss
             f$_extra_css = true;
-            f$_jquery = 'fQuery';
+            f$_jquery = 'noConflict';
             f$_NoMsg();
             f$_footer = false;
         }
@@ -418,7 +418,7 @@ switch (f$_site) {
         }
     break;
     case 'instances.framapad':
-        f$_jquery = 'fQuery';
+        f$_jquery = 'html';
         if (f$_not_in_frame) {
             f$_extra_css = true;
         } else {
@@ -429,7 +429,7 @@ switch (f$_site) {
         f$_credits = 'framapad';
     break;
     case 'lite.framapad':
-        f$_jquery = 'fQuery';
+        f$_jquery = 'html';
         f$_extra_css = true;
         f$_NoMsg();
         f$_footer = false;
