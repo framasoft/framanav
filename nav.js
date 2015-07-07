@@ -1,4 +1,4 @@
-var f$_version = '140706b';
+var f$_version = '140707';
 var f$_site = window.location.host
 f$_site = f$_site.replace(/^(www|test)\./i,"");
 f$_site = f$_site.replace(/\.(com|net|org|fr|pro)$/i,"");
@@ -36,7 +36,9 @@ var f$_not_in_frame = (top.location==self.document.location); // Pas dans une Fr
 var f$_start_config = function() {
     var f$_speed = (f$_nav_container) ? '☀' : '☁';
     if (f$_config == 'global') {
-        console.log('✔ '+f$_speed+' config.js '+f$_version);
+        var f$_hjQv = (window.jQuery === undefined) ? 'ø' : window.jQuery.fn.jquery;
+        var f$_njQv  = '1.10.2';
+        console.log('✔ '+f$_speed+' config.js '+f$_version+' | '+f$_njQv+' | '+f$_hjQv);
 
         if(f$_page('/nav/html/')) { // Si pages « À propos » on réinit la config
             f$_jquery = 'jQuery';
@@ -47,21 +49,21 @@ var f$_start_config = function() {
 
         switch (f$_jquery) {
             case 'jQuery' :
-                if (window.jQuery === undefined || window.jQuery.fn.jquery !== '1.10.2') {
-                    console.log('✔ jQuery AJAX');
+                if (window.jQuery === undefined || window.jQuery.fn.jquery !== f$_njQv) {
+                    console.log('✔ jQuery '+f$_njQv+' AJAX');
                     f$_loadScript(f$_nav+'lib/jquery/jquery.min.js', f$_start_jquery);
                 } else {
-                    console.log('✔ jQuery HTML');
+                    console.log('✔ jQuery '+f$_hjQv+' HTML');
                     f$_start_jquery();
                 }
             break;
             case 'noConflict' :
-                console.log('✔ jQuery.noConflict AJAX');
+                console.log('✔ jQuery.noConflict '+f$_njQv+' AJAX');
                 f$_loadScript(f$_nav+'lib/jquery/jquery.min.js', f$_start_jquery);
             break;
-            case 'fQuery' :
+            case 'fQuery' : // Depreciated
                 if (window.fQuery === undefined) {
-                    console.log('✔ fQuery AJAX');
+                    console.log('✔ fQuery '+f$_njQv+' AJAX');
                     f$_loadScript(f$_nav+'lib/jquery/fquery.min.js', f$_start_jquery);
                 } else {
                     console.log('✔ fQuery HTML');
