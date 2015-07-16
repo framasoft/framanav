@@ -263,7 +263,7 @@ switch (f$_site) {
         /** </script> **/
     break;
     case 'framadvd':
-        f$_jquery = 'noConflict';
+        f$_jquery = 'html'; f$_bootstrap = 'html';
         f$_modal_don_liendl = 'a[href*="iso.framadvd.org"]';
         f$_nav_static = true;
         f$_video_js = true;
