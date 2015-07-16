@@ -309,6 +309,7 @@ switch (f$_site) {
     break;
     case 'framapad':
         f$_jquery = 'html';
+        f$_css_position = 'end';
         f$_modal_don_txtdl1 = 'd’utiliser';
         f$_modal_don_txtdl2 = 'créer un pad';
         f$_modal_don_liendl = 'a[href*=".framapad.org/p/"]';
