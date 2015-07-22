@@ -290,6 +290,8 @@ switch (f$_site) {
         f$_nav_static = true;
     break;
     case 'framandroid':
+        f$_jquery = 'html'; f$_bootstrap = 'html';
+        f$_nav_static = true;
     break;
     case 'framanews':
         if(f$_page('framanews.org/ttrss')) {
