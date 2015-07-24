@@ -159,7 +159,7 @@ function f$_start_jquery() {
 
         // On charge ensuite le code HTML
         f$.ajax({
-            url: f$_nav+'html/nav.html'+f$_version
+            url: f$_nav+'html/nav.html?'+f$_version
         })
         .fail(function() {
             console.error('✘ nav.html');
