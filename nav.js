@@ -1,4 +1,4 @@
-var f$_version = '140707';
+var f$_version = '140724';
 var f$_site = window.location.host
 f$_site = f$_site.replace(/^(www|test)\./i,"");
 f$_site = f$_site.replace(/\.(com|net|org|fr|pro)$/i,"");
@@ -159,7 +159,7 @@ function f$_start_jquery() {
 
         // On charge ensuite le code HTML
         f$.ajax({
-            url: f$_nav+'html/nav.html'
+            url: f$_nav+'html/nav.html'+f$_version
         })
         .fail(function() {
             console.error('✘ nav.html');
