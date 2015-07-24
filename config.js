@@ -62,6 +62,11 @@ var f$_email_field2 = '';
 var f$_optin_cookie_name = 'opt-in';
 var f$_optin_cookie = 365*24*60*60*1000;            // Expire au bout d'un an
 
+// Icônes
+var f$_keep_icons       = false;                    // true pour connard.pro, pouhiou.com, etc
+var f$_favicon          = false;                    // 'favicon-violet.png' par défaut
+var f$_apple_touch_icon = false;                    // f$_site+'.png' par défaut
+
 /***********************************************************************
  *                          Config des sites                           *
  ***********************************************************************/
@@ -109,6 +114,7 @@ switch (f$_site) {
         f$_jquery = 'noConflict';
         f$_frama_css = false;
         f$_NoMsg();
+        f$_keep_icons = true;
         f$_footer = false;
     break;
     case 'contact.framasoft' :
@@ -332,10 +338,8 @@ switch (f$_site) {
     case 'framasoft':
         f$_nav_static = true;
         f$_email_field1 = '#email_auteur';
-        if(f$_url != 'http://www.framasoft.net/'
-           && f$_url != 'http://framasoft.net/'
+        if(f$_url != 'http://framasoft.net/'
            && !f$_page('framasoft.net/accueil')
-           && f$_url != 'http://www.framasoft.org/'
            && f$_url != 'http://framasoft.org/'
            && !f$_page('framasoft.org/accueil')) {
             // Mise en forme « Juste une image »
@@ -343,6 +347,8 @@ switch (f$_site) {
             flickr_m = flickr_t.replace('_t.jpg', '_m.jpg');
             jQuery('img[src$="_t.jpg"]').attr('src', flickr_m).css('width', '90%');
             f$_credits = 'framalibre';
+            f$_favicon = 'favicon-bleu.png';
+            f$_apple_touch_icon = 'framalibre.png';
             f$_footer = false;
         }
     break;
@@ -456,6 +462,7 @@ switch (f$_site) {
         f$_jquery = 'noConflict';
         f$_frama_css = false;
         f$_NoMsg();
+        f$_keep_icons = true;
         f$_footer = false;
     break;
     case 'soutenir.framasoft':
@@ -547,4 +554,23 @@ if(f$_piwik_id != '') {
       var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
       g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
     })();
+}
+
+/***********************************************************************
+ *                             Favicons                                *
+ **********************************************************************/
+if (/(dvd|key|libre|android|pack|start)/i.test(f$_site)) {
+    f$_favicon = 'favicon-bleu.png';
+}
+if (/(blog|book|lang|tube|zic)/i.test(f$_site)) {
+    f$_favicon = 'favicon-rouge.png';
+}
+if (/(frama.link|bag|bee|bin|calc|cloud|date|games|git.|news|pad|pic|sphere|vectoriel|mindmap)/i.test(f$_site)) {
+    f$_favicon = 'favicon-vert.png';
+}
+if (/(forum.|code|lab|phonie|wiki.)/i.test(f$_site)) {
+    f$_favicon = 'favicon-jaune.png';
+}
+if (/(contact.|participer.|soutenir.|stats)/i.test(f$_site)) {
+    f$_favicon = 'favicon-orange.png';
 }

@@ -520,6 +520,22 @@ function f$_start_jquery() {
                     // Flux RSS Global
                     f$('head').append('<link rel="alternate" type="application/rss+xml" title="Flux global de Framasoft" href="http://rss.framasoft.org/" />');
 
+                    // Favicon et Apple touch icon
+                    if (!f$_keep_icons) {
+                        f$('link[rel*=icon]').remove();
+                        f$_favicon = (!f$_favicon) ? 'favicon-violet.png' : f$_favicon;
+                        if(!f$_apple_touch_icon) {
+                            f$.ajax({
+                                url: f$_nav+'img/icons/'+f$_site+'.png',
+                                type: 'HEAD',
+                                error: f$_apple_touch_icon = 'apple-violet.png',
+                                success: f$_apple_touch_icon = f$_site+'.png'
+                            });
+                        }
+                        f$('head').append('<link rel="icon" type="image/png" href="'+f$_nav+'img/icons/'+f$_favicon+'" />');
+                        f$('head').append('<link rel="apple-touch-icon" href="'+f$_nav+'img/icons/'+f$_apple_touch_icon+'" />');
+                    }
+
                     // Macaron
                     if(f$_donate) {
                         f$('#framanav_donation').show().delay(Math.random() * (29000 - 1000) + 1000).fadeOut(600).fadeIn(600);
