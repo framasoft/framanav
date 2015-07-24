@@ -93,7 +93,7 @@
 
 @media (min-width: 768px) {
     #framanav .nav-container {
-        width:960px;        /* largeur fixe pour que la nav tienne sur une seule ligne */
+        width:925px;        /* largeur fixe pour que la nav tienne sur une seule ligne */
     }
     #framanav.navbar .collapse { /* bug dans certaines config en box-sizing: content-box*/
         height:40px !important;
