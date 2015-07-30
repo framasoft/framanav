@@ -1,4 +1,4 @@
-var f$_version = '140724';
+var f$_version = '140725';
 var f$_site = window.location.host
 f$_site = f$_site.replace(/^(www|test)\./i,"");
 f$_site = f$_site.replace(/\.(com|net|org|fr|pro)$/i,"");
@@ -151,6 +151,11 @@ function f$_start_jquery() {
     }
 
     f$(document).ready(function() {
+        if (f$_url === 'https://framacalc.org/_start' && f$('html').attr('manifest') !== 'manifest.appcache') {
+            console.log('Reloading https://framacalc.org/_start because of bad _start version');
+            window.location.href = 'https://framacalc.org/_start?reload=1';
+        }
+
         f$.ajaxSetup({ cache: f$_cache });
 
         if(!f$_nav_container) {
