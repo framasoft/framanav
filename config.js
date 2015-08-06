@@ -106,6 +106,13 @@ var f$_host = 'hetzner';
 var f$_credits = f$_site;
 
 switch (f$_site) {
+    case 'pootle.framasoft':
+        f$_extra_css = true;
+        f$_frama_css = false;
+        f$_css_position = 'end';
+        f$_alert_modal_text = '';
+        f$_cache = false;
+    break;
     case 'bot.framasoft' :
         f$_NoMsg();
         f$_footer = false;
