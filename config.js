@@ -532,6 +532,7 @@ switch (f$_site) {
     case 'framacloud' :             f$_piwik_id = '35'; break;
     case 'status.framasoft' :       f$_piwik_id = '37'; break;
     case 'framabookin' :            f$_piwik_id = '38'; break;
+    case 'framastats' :             f$_piwik_id = '39'; break;
 }
 
 if(f$_piwik_id != '') {
