@@ -476,6 +476,7 @@ switch (f$_site) {
         f$_jquery = 'noConflict';
         f$_NoMsg();
         f$_footer = false;
+        f$_nav_static = true;
     break;
     case 'wiki.framasoft':
         f$_jquery = 'noConflict';
@@ -577,6 +578,6 @@ if (/(frama.link|bag|bee|bin|calc|cloud|date|games|git.|news|pad|pic|sphere|vect
 if (/(forum.|code|lab|phonie|wiki.)/i.test(f$_site)) {
     f$_favicon = 'favicon-jaune.png';
 }
-if (/(contact.|participer.|soutenir.|stats)/i.test(f$_site)) {
+if (/(contact.|participer.|soutenir.|stats|status.)/i.test(f$_site)) {
     f$_favicon = 'favicon-orange.png';
 }
