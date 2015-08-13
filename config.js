@@ -477,6 +477,7 @@ switch (f$_site) {
         f$_NoMsg();
         f$_footer = false;
         f$_nav_static = true;
+        f$_apple_touch_icon = 'apple-orange.png';
     break;
     case 'wiki.framasoft':
         f$_jquery = 'noConflict';
