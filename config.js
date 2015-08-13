@@ -475,6 +475,7 @@ switch (f$_site) {
     case 'status.framasoft':
         f$_jquery = 'noConflict';
         f$_NoMsg();
+        f$_footer = false;
     break;
     case 'wiki.framasoft':
         f$_jquery = 'noConflict';
