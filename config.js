@@ -106,13 +106,6 @@ var f$_host = 'hetzner';
 var f$_credits = f$_site;
 
 switch (f$_site) {
-    case 'pootle.framasoft':
-        f$_extra_css = true;
-        f$_frama_css = false;
-        f$_css_position = 'end';
-        f$_alert_modal_text = '';
-        f$_cache = false;
-    break;
     case 'bot.framasoft' :
         f$_NoMsg();
         f$_footer = false;
@@ -472,12 +465,16 @@ switch (f$_site) {
         f$_keep_icons = true;
         f$_footer = false;
     break;
-    case 'soutenir.framasoft':
-        f$_jquery = 'html'; f$_bootstrap_js = 'html';
+    case 'pootle.framasoft':
+        f$_extra_css = true;
+        f$_frama_css = false;
+        f$_css_position = 'end';
+        f$_alert_modal_text = '';
+        f$_cache = false;
+    break;
+    case 'status.framasoft':
+        f$_jquery = 'noConflict';
         f$_NoMsg();
-        if(f$_page('add/temoignage')) {
-            f$_email_field1 = '#edit-field-t-email-0-value';
-        }
     break;
     case 'wiki.framasoft':
         f$_jquery = 'noConflict';
