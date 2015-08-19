@@ -1,0 +1,44 @@
+*, *:before, *:after {
+        -webkit-box-sizing: content-box !important;
+        -moz-box-sizing: content-box !important;
+        box-sizing: content-box !important;
+}
+
+#editorcontainerbox {
+        top:42px !important;
+}
+#embed,#connectivity,#settings,#importexport,#users {
+        top:78px !important;
+}
+.stickyChat {
+        top:79px !important;
+}
+
+.toolbar ul li select {
+        height:20px !important;
+}
+#helpbubbleslink > .buttonicon {
+        font-size: 18px !important;
+}
+
+.toolbar ul li a .buttonicon {
+        top: -2px !important;
+}
+
+.popup label {
+        margin-bottom:0px;
+        font-weight:normal;
+}
+.popup input[type="text"] {
+        -webkit-box-sizing: border-box !important;
+        -moz-box-sizing: border-box !important;
+        box-sizing: border-box !important;      
+}
+
+.popup h1, .popup h2 {
+        margin-top:0px;
+        margin-bottom:0px;
+}
+#exportopena {
+        display: none;
+}
