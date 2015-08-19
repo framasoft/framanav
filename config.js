@@ -435,7 +435,7 @@ switch (f$_site) {
         f$_footer = false;
         f$_credits = 'framapad';
     break;
-    case 'beta.framapad":
+    case 'beta.framapad':
         f$_jquery = 'html';
         if (f$_not_in_frame) {
             f$_extra_css = true;
