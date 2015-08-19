@@ -76,7 +76,6 @@ var f$_apple_touch_icon = false;                    // f$_site+'.png' par défau
 // credits et placer un tracker sur un lien de la modale Soutenir
 switch (f$_site) {
     case 'localhost' : f$_site = 'localhost'; break;
-    case 'beta.framapad' : f$_site = 'instances.framapad'; break;
     case 'lite2.framapad' : f$_site = 'instances.framapad'; break;
     case 'lite3.framapad' : f$_site = 'instances.framapad'; break;
     case 'lite4.framapad' : f$_site = 'instances.framapad'; break;
@@ -434,6 +433,22 @@ switch (f$_site) {
         }
         f$_NoMsg();
         f$_footer = false;
+        f$_credits = 'framapad';
+    break;
+    case 'beta.framapad":
+        f$_jquery = 'html';
+        if (f$_not_in_frame) {
+            f$_extra_css = true;
+        } else {
+            f$_bootstrap_css = false;
+        }
+        f$_NoMsg();
+        f$_footer = false;
+        f$_alert_modal_title = 'Avertissement';
+        f$_alert_modal_text = '<p>Cette instance de Framapad (<b>beta</b>.framapad.org) est instable et ne doit servir que pour des tests.<p>'+
+        '<p>Framasoft expérimente le plugin MyPads sur cette instance jusqu’au 31 août 2015, date à laquelle les données seront probablement supprimées.</p>'+
+        '<p>Pensez à utiliser régulièrement la fonction d’export pendant cette phase de test.</p>'+
+        '<p>Merci.<br />L’équipe technique</p>';
         f$_credits = 'framapad';
     break;
     case 'lite.framapad':
