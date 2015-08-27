@@ -1,4 +1,4 @@
-var f$_version = '140725';
+var f$_version = '140827';
 var f$_site = window.location.host
 f$_site = f$_site.replace(/^(www|test)\./i,"");
 f$_site = f$_site.replace(/\.(com|net|org|fr|pro)$/i,"");
@@ -133,12 +133,12 @@ function f$_start_jquery() {
 
     // Frama.css
     if(f$_frama_css) {
-        f$_loadCSS(f$_nav+'css/frama.css', 'end', 'all');
+        f$_loadCSS(f$_nav+'css/frama.css?'+f$_version, 'end', 'all');
     }
 
     // Extra.css
     if(f$_extra_css) {
-        f$_loadCSS(f$_nav+'css/extra/'+f$_site+'.css');
+        f$_loadCSS(f$_nav+'css/extra/'+f$_site+'.css?'+f$_version);
     }
 
     /*
