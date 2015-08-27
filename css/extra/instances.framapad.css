@@ -87,8 +87,8 @@
     display: none;
 }
 #sidedivinner > div{
-    font-size:inherit !important;
+    font-size:11px !important;
 }
 #sidedivinner > div:before{
-    padding-right:10px !important;
+    padding-right:5px !important;
 }
