@@ -1,44 +1,94 @@
 *, *:before, *:after {
-        -webkit-box-sizing: content-box !important;
-        -moz-box-sizing: content-box !important;
-        box-sizing: content-box !important;
+    -webkit-box-sizing: content-box !important;
+    -moz-box-sizing: content-box !important;
+    box-sizing: content-box !important;
 }
 
 #editorcontainerbox {
-        top:42px !important;
+    top:42px !important;
 }
 #embed,#connectivity,#settings,#importexport,#users {
-        top:78px !important;
+    top:78px !important;
 }
 .stickyChat {
-        top:79px !important;
+    top:79px !important;
 }
 
 .toolbar ul li select {
-        height:20px !important;
+    height:20px !important;
 }
 #helpbubbleslink > .buttonicon {
-        font-size: 18px !important;
+    font-size: 18px !important;
 }
 
 .toolbar ul li a .buttonicon {
-        top: -2px !important;
+    top: -2px !important;
 }
 
 .popup label {
-        margin-bottom:0px;
-        font-weight:normal;
+    margin-bottom:0px;
+    font-weight:normal;
 }
 .popup input[type="text"] {
-        -webkit-box-sizing: border-box !important;
-        -moz-box-sizing: border-box !important;
-        box-sizing: border-box !important;      
+    -webkit-box-sizing: border-box !important;
+    -moz-box-sizing: border-box !important;
+    box-sizing: border-box !important;      
 }
 
 .popup h1, .popup h2 {
-        margin-top:0px;
-        margin-bottom:0px;
+    margin-top:0px;
+    margin-bottom:0px;
 }
 #exportopena {
-        display: none;
+    display: none;
+}
+*, *:before, *:after {
+    -webkit-box-sizing: content-box !important;
+    -moz-box-sizing: content-box !important;
+    box-sizing: content-box !important;
+}
+
+#editorcontainerbox {
+    top:42px !important;
+}
+#embed,#connectivity,#settings,#importexport,#users {
+    top:78px !important;
+}
+.stickyChat {
+    top:79px !important;
+}
+
+.toolbar ul li select {
+    height:20px !important;
+}
+#helpbubbleslink > .buttonicon {
+    font-size: 18px !important;
+}
+
+.toolbar ul li a .buttonicon {
+    top: -2px !important;
+}
+
+.popup label {
+    margin-bottom:0px;
+    font-weight:normal;
+}
+.popup input[type="text"] {
+    -webkit-box-sizing: border-box !important;
+    -moz-box-sizing: border-box !important;
+    box-sizing: border-box !important;      
+}
+
+.popup h1, .popup h2 {
+    margin-top:0px;
+    margin-bottom:0px;
+}
+#exportopena {
+    display: none;
+}
+#sidedivinner > div{
+    font-size:inherit !important;
+}
+#sidedivinner > div:before{
+    padding-right:10px !important;
 }
