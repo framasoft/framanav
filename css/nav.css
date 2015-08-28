@@ -5,6 +5,15 @@
     text-align:justify;
 }
 
+#framanav .dropdown { /* Force réinit pour Framadrive */
+    box-shadow:none;
+    background:transparent;
+    border-radius:none;
+    z-index:auto;
+    padding:0;
+    width:auto;
+}
+
 #framanav .dropdown-menu {
     min-width:140px;
 }
