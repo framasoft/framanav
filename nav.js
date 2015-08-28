@@ -1,4 +1,4 @@
-var f$_version = '140827';
+var f$_version = '140828';
 var f$_site = window.location.host
 f$_site = f$_site.replace(/^(www|test)\./i,"");
 f$_site = f$_site.replace(/\.(com|net|org|fr|pro)$/i,"");
