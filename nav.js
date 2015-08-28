@@ -1,4 +1,4 @@
-var f$_version = '140827';
+var f$_version = '140828';
 var f$_site = window.location.host
 f$_site = f$_site.replace(/^(www|test)\./i,"");
 f$_site = f$_site.replace(/\.(com|net|org|fr|pro)$/i,"");
@@ -178,6 +178,7 @@ function f$_start_jquery() {
                 link=f$(this).attr('src');
                 f$(this).attr('src',link.replace('nav/',f$_nav));
             });
+            f$('#framanav .navbar-brand img').attr('src',f$_nav+'img/logo.png');
 
             // On ajoute le viewport si Responsive
             var f$_btn_desktop = f$('.framanav-desktop');
