@@ -273,6 +273,16 @@ switch (f$_site) {
         f$_nav_static = true;
         f$_video_js = true;
     break;
+    case 'framadrive':
+        f$_jquery = 'html';
+        f$_nav_static= true;
+        if(f$_page('index.php/app') || f$_page('index.php/setting')) {
+            f$_footer = false;
+            f$_NoMsg();
+        } else {
+            f$_footer = true;
+        }
+    break;
     case 'framagames':
         f$_modal_don_txtdl1 = 'd’utiliser';
         f$_modal_don_txtdl2 = 'jouer';
@@ -434,6 +444,7 @@ switch (f$_site) {
         f$_NoMsg();
         f$_footer = false;
         f$_credits = 'framapad';
+        f$_apple_touch_icon = 'framapad.png';
     break;
     case 'beta.framapad':
         f$_jquery = 'html';
@@ -450,6 +461,7 @@ switch (f$_site) {
         '<p>Pensez à utiliser régulièrement la fonction d’export pendant cette phase de test.</p>'+
         '<p>Merci.<br />L’équipe technique</p>';
         f$_credits = 'framapad';
+        f$_apple_touch_icon = 'framapad.png';
     break;
     case 'lite.framapad':
         f$_jquery = 'html';
@@ -465,6 +477,7 @@ switch (f$_site) {
          '<br /><p>Merci.<br />L’équipe technique</p>';
         f$_host = 'ovh';
         f$_credits = 'framapad';
+        f$_apple_touch_icon = 'framapad.png';
     break;
     case 'localhost':
     break;
@@ -548,6 +561,7 @@ switch (f$_site) {
     case 'status.framasoft' :       f$_piwik_id = '37'; break;
     case 'framabookin' :            f$_piwik_id = '38'; break;
     case 'framastats' :             f$_piwik_id = '39'; break;
+    case 'framadrive' :             f$_piwik_id = '40'; break;
 }
 
 if(f$_piwik_id != '') {
@@ -588,7 +602,7 @@ if (/(dvd|key|libre|android|pack|start)/i.test(f$_site)) {
 if (/(blog|book|lang|tube|zic)/i.test(f$_site)) {
     f$_favicon = 'favicon-rouge.png';
 }
-if (/(frama.link|bag|bee|bin|calc|cloud|date|games|git.|news|pad|pic|sphere|vectoriel|mindmap)/i.test(f$_site)) {
+if (/(frama.link|bag|bee|bin|calc|cloud|date|drive|games|git.|news|pad|pic|sphere|vectoriel|mindmap)/i.test(f$_site)) {
     f$_favicon = 'favicon-vert.png';
 }
 if (/(forum.|code|lab|phonie|wiki.)/i.test(f$_site)) {
