@@ -89,8 +89,7 @@ switch (f$_site) {
     case 'bimestriel.framapad' : f$_site = 'instances.framapad'; break;
     case 'semestriel.framapad' : f$_site = 'instances.framapad'; break;
     case 'annuel.framapad' : f$_site = 'instances.framapad'; break;
-    case 'education.framapad' : f$_site = 'instances.framapad'; break;
-    case 'sciences.framapad' : f$_site = 'instances.framapad'; break;
+    case 'mypads.framapad' : f$_site = 'instances.framapad'; break;
     case 'noenaute' : f$_site = 'pouhiou'; break;
     case 'beta.framadate' : f$_site = 'framadate'; break;
     case 'openbar.framadate' : f$_site = 'framadate'; break;
