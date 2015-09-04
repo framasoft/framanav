@@ -329,6 +329,12 @@ switch (f$_site) {
         f$_modal_don_txtdl1 = 'd’utiliser';
         f$_modal_don_txtdl2 = 'créer un pad';
         f$_modal_don_liendl = 'a[href*=".framapad.org/p/"]';
+        f$_alert_type = 'warning';
+        f$_alert_text =
+            '<div style="margin:0 auto; max-width:800px;">'+
+                '<p class="text-center">L’instance <b>mensuel</b>.framapad.org rencontre des difficultés pour synchroniser les données.<br/> Nous efforçons de résoudre ce problème.'+
+                '<br/>Plus d’informations sur <a href="https://status.framasoft.org">status.framasoft.org</a> ou en suivant le hashtag #framasoft sur <a href="https://framasphere.org/tags/framasoft">Diaspora</a>/<a href="https://twitter.com/hashtag/framasoft">Twitter</a>.</p>'+
+            '</div>';
         f$_video_js = true;
     break;
     case 'framaphonie':
