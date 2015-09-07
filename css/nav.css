@@ -102,10 +102,13 @@
 
 @media (min-width: 768px) {
     #framanav .nav-container {
-        width:925px;        /* largeur fixe pour que la nav tienne sur une seule ligne */
+        width:960px;        /* largeur fixe pour que la nav tienne sur une seule ligne */
     }
     #framanav.navbar .collapse { /* bug dans certaines config en box-sizing: content-box*/
         height:40px !important;
+    }
+    #framanav .navbar-collapse {
+        padding: 0 !important;
     }
 }
 @media (max-width: 768px) { /* la nav pour tablette/mobile n'a pas ce problème */
