@@ -262,7 +262,6 @@ switch (f$_site) {
         /** </script> **/
     break;
     case 'framalab':
-        f$_nav_static = true;
     break;
     case 'framandroid':
         f$_jquery = 'html'; f$_bootstrap = 'html';
