@@ -222,7 +222,7 @@ switch (f$_site) {
         f$_alert_type = 'warning';
         f$_alert_text =
             '<div style="margin:0 auto; max-width:800px;">'+
-                '<p class="text-center">Framadate sera mis à jour samedi 19 en début d'après-midi. Cette opération entraînera une coupure du service.'+
+                '<p class="text-center">Framadate sera mis à jour samedi 19 en début d’après-midi. Cette opération entraînera une coupure du service.'+
                 '<br/>Plus d’informations sur <a href="https://status.framasoft.org">status.framasoft.org</a> ou en suivant le hashtag #framasoft sur <a href="https://framasphere.org/tags/framasoft">Diaspora</a>/<a href="https://twitter.com/hashtag/framasoft">Twitter</a>.</p>'+
             '</div>';
         /** Extra <script> **/
