@@ -219,12 +219,6 @@ switch (f$_site) {
         if(f$_page('infos_sondage.php?choix_sondage')) { // Opt-in
             f$_email_field1 = '#formulaire input[name="adresse"]';
         }
-        f$_alert_type = 'warning';
-        f$_alert_text =
-            '<div style="margin:0 auto; max-width:800px;">'+
-                '<p class="text-center">Framadate sera mis à jour samedi 19 en début d’après-midi. Cette opération entraînera une coupure du service.'+
-                '<br/>Plus d’informations sur <a href="https://status.framasoft.org">status.framasoft.org</a> ou en suivant le hashtag #framasoft sur <a href="https://framasphere.org/tags/framasoft">Diaspora</a>/<a href="https://twitter.com/hashtag/framasoft">Twitter</a>.</p>'+
-            '</div>';
         /** Extra <script> **/
         if(window.location.host == 'framadate.org') {
             jQuery(document).ready(function(){
