@@ -323,7 +323,6 @@ switch (f$_site) {
             f$_credits = 'framalibre';
             f$_favicon = 'favicon-bleu.png';
             f$_apple_touch_icon = 'framalibre.png';
-            f$_footer = false;
         }
     break;
     case 'framasphere':
