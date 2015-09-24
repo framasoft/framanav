@@ -234,9 +234,9 @@ switch (f$_site) {
         f$_video_js = true;
     break;
     case 'framadrive':
-        f$_jquery = 'html';
+        f$_jquery = 'html'; f$_bootstrap = 'html';
         f$_nav_static= true;
-        if(f$_page('index.php/app') || f$_page('index.php/setting')) {
+        if( (f$_page('index.php/app') && !f$_page('registration')) || f$_page('index.php/setting')) {
             f$_footer = false;
             f$_NoMsg();
         } else {
