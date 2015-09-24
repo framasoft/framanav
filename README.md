@@ -63,12 +63,7 @@ et si c'est vraiment trop la merde :) mettre :
     f$_jquery = 'fQuery';
 ```
 
-Note : pour désactiver tout les éléments de la nav (message d'alerte, fenêtres modales, nav, macaron),
-mais profiter tout de même des CSS de bootstrap et de jQuery on peut ajouter ce paramètre au fichier de config :
-```JavaScript
-    f$_not_in_frame = false;
-```
-Pour désactiver seulement les messages d'alerte, les fenêtre modale et le macaron, 
+Note : pour désactiver les messages d'alerte, les fenêtre modale et le macaron :
 ```JavaScript
     f$_NoMsg();
 ```

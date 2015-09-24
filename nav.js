@@ -1,4 +1,4 @@
-var f$_version = '140828';
+var f$_version = '140924';
 var f$_site = window.location.host
 f$_site = f$_site.replace(/^(www|test)\./i,"");
 f$_site = f$_site.replace(/\.(com|net|org|fr|pro)$/i,"");
@@ -91,6 +91,7 @@ var f$_start_config = function() {
 var f$_scripts = document.getElementsByTagName('script');
 var f$_nav = ''; // racine de la nav
 var f$_nav_container = false;
+var f$_nav_container_html = (f$_not_in_frame) ? '<div id="framanav_container" class="hidden-print" style="height:42px; opacity : 0"></div>' : '<div id="framanav_container" style="display:none"></div>';
 
 var f$_nav_init = function() {
     for (var i = 0; i < f$_scripts.length; i++) {
@@ -101,8 +102,7 @@ var f$_nav_init = function() {
             // On ajout une div vide de 42px qui contiendra la nav (évite les sauts de mise en page avant le chargement des fichiers)
             if (f$_scripts[i].parentNode.tagName.toLowerCase() == 'body' ) {
                 // si nav.js est appelé en haut du body, c'est super rapide
-                var navContainer = (f$_not_in_frame) ? '<div id="framanav_container" style="height:42px"></div>' : '<div id="framanav_container"></div>';
-                document.write(navContainer);
+                document.write(f$_nav_container_html);
                 f$_nav_container = true;
             } // sinon c'est dans le head, il faut attendre document.ready (voir plus bas)
         }
@@ -159,7 +159,7 @@ function f$_start_jquery() {
         f$.ajaxSetup({ cache: f$_cache });
 
         if(!f$_nav_container) {
-            (f$_not_in_frame) ? f$('body').prepend('<div id="framanav_container" style="height:42px"></div>') : f$('body').prepend('<div id="framanav_container"></div>');
+            f$('body').prepend(f$_nav_container_html);
         }
 
         // On charge ensuite le code HTML
@@ -171,7 +171,6 @@ function f$_start_jquery() {
         })
         .done(function(html) {
             // On affiche le code html
-            f$('#framanav_container').addClass('hidden-print');
             f$('#framanav_container').prepend(html);
             // Correctif sur les url relatives (les images) dans le code html
             f$('img[src^="nav/"]').each(function(){
@@ -226,6 +225,8 @@ function f$_start_jquery() {
                 f$_desktop();
                 document.cookie = 'nav_viewport=desktop;expire=0';
             });
+
+            f$('#framanav_container').css('opacity','1');
 
             /*******************
              *   BootStrap JS
@@ -302,10 +303,140 @@ function f$_start_jquery() {
             });
             /* Même chose à faire pour Soundcloud, Dailymotion, Vimeo */
 
+            // Flux RSS Global
+            f$('head').append('<link rel="alternate" type="application/rss+xml" title="Flux global de Framasoft" href="http://rss.framasoft.org/" />');
+
+            // Favicon et Apple touch icon
+            if (!f$_keep_icons) {
+                f$('link[rel*=icon]').remove();
+                f$_favicon = (!f$_favicon) ? 'favicon-violet.png' : f$_favicon;
+                if(!f$_apple_touch_icon) {
+                    f$.ajax({
+                        url: f$_nav+'img/icons/'+f$_site+'.png',
+                        type: 'HEAD',
+                        error: f$_apple_touch_icon = 'apple-violet.png',
+                        success: f$_apple_touch_icon = f$_site+'.png'
+                    });
+                }
+                f$('head').append('<link rel="icon" type="image/png" href="'+f$_nav+'img/icons/'+f$_favicon+'" />');
+                f$('head').append('<link rel="apple-touch-icon" href="'+f$_nav+'img/icons/'+f$_apple_touch_icon+'" />');
+            }
+
+            // Opt-in
+            var f$_optin_dejavu = getCookie('opt-in');
+            if (f$_email_field1!='' && !f$_optin_dejavu) {
+                f$(f$_email_field1).after(
+                    '<div class="alert alert-info fade in" id="fs_opt-in">'+
+                    '<input type="checkbox" id="fs_opt-in_checkbox" value="false" />'+
+                    '<label for="fs_opt-in_checkbox">J’accepte de recevoir à cette adresse des informations importantes de la part de Framasoft</label>'+
+                    '<br /><small>(Promis, nous ne revendons pas nos fichiers, même à la NSA&nbsp;! '+
+                    '<a href="https://contact.framasoft.org/newsletter" id="link-opt-in" target="_blank" >Pourquoi m’inscrire&nbsp;?&nbsp;<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span></a>)</small></div>'
+                );
+
+                f$(f$_email_field1).focusin(function() {
+                    f$('#fs_opt-in_error').remove();
+                    // Ajout du cookie (expire au bout d'un an)
+                    setCookie(f$_optin_cookie_name,true,f$_optin_cookie);
+                });
+
+                // Requête ajax crossdomain lorsque la case est cochée
+                f$('#fs_opt-in input, #fs_opt-in label').on('click', function() {
+                    f$('#fs_opt-in_error').remove();
+                    f$_email = f$(f$_email_field1).val();
+                    if(f$_email_field2!='' && f$(f$_email_field1).val()!=f$(f$_email_field2).val()) { // Cas où il y a un champs pour confirmer email
+                        f$(f$_email_field1).after(
+                            '<div class="alert alert-danger fade in" id="fs_opt-in_error">'+
+                            'Les adresses emails ne correspondent pas.</div>'
+                        );
+                        return false;
+                    } else if( !f$_isValidEmail(f$(f$_email_field1).val())) {
+                        f$(f$_email_field1).after(
+                            '<div class="alert alert-danger fade in" id="fs_opt-in_error">'+
+                            'L’adresse email '+f$_email+' n’est pas valide.</div>'
+                        );
+                        return false;
+                    } else {
+                        f$('#fs_opt-in input').attr('checked', true);
+                        f$.ajax({
+                            type: "POST",
+                            url: 'https://contact.framasoft.org/php_list/lists/?p=subscribe&id=2', // URL d'abonnement à la liste
+                            crossDomain:true,
+                            data: 'makeconfirmed=1&htmlemail=0&list%5B5%5D=signup&listname%5B5%5D=Newsletter&email='+f$_email.replace('@','%40')+'&VerificationCodeX=&subscribe=Abonnement' // Paramètres habituellement passés dans le formulaire
+                        });
+                        // On supprime la case à cocher (pas possible de décocher ; l'annulation se fait depuis le mail reçu)
+                        f$('#fs_opt-in').remove();
+                        // Message d'alert pour confirmer l'inscription
+                        f$(f$_email_field1).after(
+                            '<div class="alert alert-success fade in" id="fs_opt-in_confirm" aria-live="polite">'+
+                            '<button type="button" class="close" data-dismiss="alert" title="Fermer"><span aria-hidden="true">&times;</span><span class="sr-only">Fermer</span></button>'+
+                            'Votre adresse email <strong>'+f$_email+'</strong> a été ajoutée à notre liste. Vous devriez avoir reçu un email de confirmation.</div>'
+                        );
+                    }
+                });
+            }
+
+            // Footer
+            if(f$_footer && f$_not_in_frame) {
+                f$.ajax({
+                    url: f$_nav+'html/footer.html'
+                })
+                .fail(function() {
+                    console.error('✘ footer.html');
+                })
+                .done(function(html) {
+                    f$('body').append(html);
+                    if(f$('body').height() < f$(window).height()) {
+                        f$('#framafooter').css('position','absolute');
+                    } else {
+                        f$('#framafooter').css('position','relative');
+                    }
+                    f$('#framafooter a[href^="/nav/html/"]').attr('href', function() {
+                        return f$(this).attr('href')
+                                       .replace('/nav/html/', f$_nav+'html/')
+                                       .replace('credits.html', 'credits.html#'+f$_credits)
+                                       .replace('legals.html', 'legals.html#'+f$_host);
+                    });
+                });
+                f$(window).on('resize', function() {
+                    f$('#framafooter').css('position','relative');
+                    if(f$('body').height() < f$(window).height()) {
+                        f$('#framafooter').css('position','absolute');
+                    } else {
+                        f$('#framafooter').css('position','relative');
+                    }
+                });
+            }
+
+            // Macaron
+            if(f$_donate && f$_not_in_frame) {
+                f$('#framanav_donation').show().delay(Math.random() * (29000 - 1000) + 1000).fadeOut(600).fadeIn(600);
+            }
+
+            // Liens À propos
+            f$('nav a[href^="/nav/html/"]').attr('href', function() {
+                return f$(this).attr('href')
+                               .replace('/nav/html/', f$_nav+'html/')
+                               .replace('credits.html', 'credits.html#'+f$_credits)
+                               .replace('legals.html', 'legals.html#'+f$_host);
+            });
+
+            // Crédits
+            if(f$_page('/html/credits.html') && location.hash) {
+                f$('#site-credits').load(f$_nav+'html/credits/'+location.hash.replace('#','')+'.html');
+            };
+
+            // Hébergeur et Iframe Piwik sur Mentions légales
+            if(f$_page('/html/legals.html')) {
+                if(location.hash) {
+                    f$('#modal-legals-host').load(f$_nav+'html/host/'+location.hash.replace('#','')+'.html');
+                }
+                f$('#piwik-iframe').html('<iframe style="border: 0; height: 200px; width: 600px;" src="'+f$_piwik_url+'/index.php?module=CoreAdminHome&action=optOut&language=fr"></iframe>')
+            }
+
             /** On peut ajouter des scripts jQuery "génériques" ici mais... **/
 
             function go_BootStrap() {
-                // Redéfinit f$ pour Bootstrap en mode noConflict si nécessaire
+                // Redéfini f$ pour Bootstrap en mode noConflict si nécessaire
                 switch (f$_jquery) {
                     case 'fQuery'    : var f$ = fQuery; break;
                     case 'noConflict': var f$ = jQuery.noConflict(); break;
@@ -330,7 +461,6 @@ function f$_start_jquery() {
                 /** Fin accessibilité **/
 
                 if (f$_not_in_frame) { // Pas de bandeau, nav, modale et macaron en mode iframe
-                    f$('#framanav').fadeIn('fast');
 
                     if(f$_nav_static || f$_page('/nav/html/')) {
                         f$('#framanav_container ~ *:not(script):first').css('margin-top', '+=42');
@@ -340,6 +470,11 @@ function f$_start_jquery() {
                             'top':'0',
                             'z-index':'1000'
                         });
+                    }
+
+                    // Liens de la nav à ouvrir dans un onglet
+                    if(!f$_page('/nav/html/')) {
+                        f$('#framanav .dropdown-menu a').attr('target','_blank').append('<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span>');
                     }
 
                     /** ... on ajoute surtout les scripts qui font appel à BootStrap et jQuery ici **/
@@ -469,136 +604,7 @@ function f$_start_jquery() {
                             });
                         }
                     }
-
-                    // Opt-in
-                    var f$_optin_dejavu = getCookie('opt-in');
-                    if (f$_email_field1!='' && !f$_optin_dejavu) {
-                        f$(f$_email_field1).after(
-                            '<div class="alert alert-info fade in" id="fs_opt-in">'+
-                            '<input type="checkbox" id="fs_opt-in_checkbox" value="false" />'+
-                            '<label for="fs_opt-in_checkbox">J’accepte de recevoir à cette adresse des informations importantes de la part de Framasoft</label>'+
-                            '<br /><small>(Promis, nous ne revendons pas nos fichiers, même à la NSA&nbsp;! '+
-                            '<a href="https://contact.framasoft.org/newsletter" id="link-opt-in" target="_blank" >Pourquoi m’inscrire&nbsp;?&nbsp;<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span></a>)</small></div>'
-                        );
-
-                        f$(f$_email_field1).focusin(function() {
-                            f$('#fs_opt-in_error').remove();
-                            // Ajout du cookie (expire au bout d'un an)
-                            setCookie(f$_optin_cookie_name,true,f$_optin_cookie);
-                        });
-
-                        // Requête ajax crossdomain lorsque la case est cochée
-                        f$('#fs_opt-in input, #fs_opt-in label').on('click', function() {
-                            f$('#fs_opt-in_error').remove();
-                            f$_email = f$(f$_email_field1).val();
-                            if(f$_email_field2!='' && f$(f$_email_field1).val()!=f$(f$_email_field2).val()) { // Cas où il y a un champs pour confirmer email
-                                f$(f$_email_field1).after(
-                                    '<div class="alert alert-danger fade in" id="fs_opt-in_error">'+
-                                    'Les adresses emails ne correspondent pas.</div>'
-                                );
-                                return false;
-                            } else if( !f$_isValidEmail(f$(f$_email_field1).val())) {
-                                f$(f$_email_field1).after(
-                                    '<div class="alert alert-danger fade in" id="fs_opt-in_error">'+
-                                    'L’adresse email '+f$_email+' n’est pas valide.</div>'
-                                );
-                                return false;
-                            } else {
-                                f$('#fs_opt-in input').attr('checked', true);
-                                f$.ajax({
-                                    type: "POST",
-                                    url: 'https://contact.framasoft.org/php_list/lists/?p=subscribe&id=2', // URL d'abonnement à la liste
-                                    crossDomain:true,
-                                    data: 'makeconfirmed=1&htmlemail=0&list%5B5%5D=signup&listname%5B5%5D=Newsletter&email='+f$_email.replace('@','%40')+'&VerificationCodeX=&subscribe=Abonnement' // Paramètres habituellement passés dans le formulaire
-                                });
-                                // On supprime la case à cocher (pas possible de décocher ; l'annulation se fait depuis le mail reçu)
-                                f$('#fs_opt-in').remove();
-                                // Message d'alert pour confirmer l'inscription
-                                f$(f$_email_field1).after(
-                                    '<div class="alert alert-success fade in" id="fs_opt-in_confirm" aria-live="polite">'+
-                                    '<button type="button" class="close" data-dismiss="alert" title="Fermer"><span aria-hidden="true">&times;</span><span class="sr-only">Fermer</span></button>'+
-                                    'Votre adresse email <strong>'+f$_email+'</strong> a été ajoutée à notre liste. Vous devriez avoir reçu un email de confirmation.</div>'
-                                );
-                            }
-                        });
-                    }
-
-                    // Flux RSS Global
-                    f$('head').append('<link rel="alternate" type="application/rss+xml" title="Flux global de Framasoft" href="http://rss.framasoft.org/" />');
-
-                    // Favicon et Apple touch icon
-                    if (!f$_keep_icons) {
-                        f$('link[rel*=icon]').remove();
-                        f$_favicon = (!f$_favicon) ? 'favicon-violet.png' : f$_favicon;
-                        if(!f$_apple_touch_icon) {
-                            f$.ajax({
-                                url: f$_nav+'img/icons/'+f$_site+'.png',
-                                type: 'HEAD',
-                                error: f$_apple_touch_icon = 'apple-violet.png',
-                                success: f$_apple_touch_icon = f$_site+'.png'
-                            });
-                        }
-                        f$('head').append('<link rel="icon" type="image/png" href="'+f$_nav+'img/icons/'+f$_favicon+'" />');
-                        f$('head').append('<link rel="apple-touch-icon" href="'+f$_nav+'img/icons/'+f$_apple_touch_icon+'" />');
-                    }
-
-                    // Macaron
-                    if(f$_donate) {
-                        f$('#framanav_donation').show().delay(Math.random() * (29000 - 1000) + 1000).fadeOut(600).fadeIn(600);
-                    }
-
-                    // Liens de la nav à ouvrir dans un onglet
-                    if(!f$_page('/nav/html/')) {
-                        f$('#framanav .dropdown-menu a').attr('target','_blank').append('<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span>');
-                    }
-
-                    // Crédits
-                    if(f$_page('/html/credits.html')) {
-                        f$('#site-credits').load(f$_nav+'html/credits/'+f$_credits+'.html');
-                    };
-
-                    // Liens À propos
-                    f$('nav a[href^="/nav/html/"]').attr('href', function() {
-                        return f$(this).attr('href').replace('/nav/html/', f$_nav+'html/');
-                    });
-
-                    // Hébergeur et Iframe Piwik sur Mentions légales
-                    if(f$_page('/html/legals.html')) {
-                        f$('#modal-legals-host').load(f$_nav+'html/host/'+f$_host+'.html');
-                        f$('#piwik-iframe').html('<iframe style="border: 0; height: 200px; width: 600px;" src="'+f$_piwik_url+'/index.php?module=CoreAdminHome&action=optOut&language=fr"></iframe>')
-                    }
-
-                    // Footer
-                    if(f$_footer) {
-                        f$.ajax({
-                            url: f$_nav+'html/footer.html'
-                        })
-                        .fail(function() {
-                            console.error('✘ footer.html');
-                        })
-                        .done(function(html) {
-                            f$('body').append(html);
-                            if(f$('body').height() < f$(window).height()) {
-                                f$('#framafooter').css('position','absolute');
-                            } else {
-                                f$('#framafooter').css('position','relative');
-                            }
-                            f$('#framafooter a[href^="/nav/html/"]').attr('href', function() {
-                                return f$(this).attr('href').replace('/nav/html/', f$_nav+'html/');
-                            });
-                        });
-                        f$(window).on('resize', function() {
-                            f$('#framafooter').css('position','relative');
-                            if(f$('body').height() < f$(window).height()) {
-                                f$('#framafooter').css('position','absolute');
-                            } else {
-                                f$('#framafooter').css('position','relative');
-                            }
-                        });
-                    }
-
-                } // </f$_not_in_frame>
-
+                }// </f$_not_in_frame>
             } // </go_BootStrap>
         }); // </nav.html>
     }); // </document.ready>
