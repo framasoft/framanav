@@ -11,4 +11,3 @@ sur lesquel ont été remplacés :
 'jQuery' → 'fQuery'
     '$(' → 'f$('
     '$.' → 'f$.'
-Sur fbootstrap-accessibility, la première occurence du $ a également été remplacée par f$
