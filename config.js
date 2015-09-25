@@ -76,28 +76,17 @@ var f$_apple_touch_icon = false;                    // f$_site+'.png' par défau
 // credits et placer un tracker sur un lien de la modale Soutenir
 switch (f$_site) {
     case 'localhost' : f$_site = 'localhost'; break;
-    case 'lite2.framapad' : f$_site = 'instances.framapad'; break;
-    case 'lite3.framapad' : f$_site = 'instances.framapad'; break;
-    case 'lite4.framapad' : f$_site = 'instances.framapad'; break;
-    case 'lite5.framapad' : f$_site = 'instances.framapad'; break;
-    case 'lite6.framapad' : f$_site = 'instances.framapad'; break;
-    case 'full1.framapad' : f$_site = 'instances.framapad'; break;
-    case 'full2.framapad' : f$_site = 'instances.framapad'; break;
-    case 'quotidien.framapad' : f$_site = 'instances.framapad'; break;
-    case 'hebdo.framapad' : f$_site = 'instances.framapad'; break;
-    case 'mensuel.framapad' : f$_site = 'instances.framapad'; break;
-    case 'bimestriel.framapad' : f$_site = 'instances.framapad'; break;
-    case 'semestriel.framapad' : f$_site = 'instances.framapad'; break;
-    case 'annuel.framapad' : f$_site = 'instances.framapad'; break;
-    case 'mypads.framapad' : f$_site = 'instances.framapad'; break;
     case 'noenaute' : f$_site = 'pouhiou'; break;
-    case 'beta.framadate' : f$_site = 'framadate'; break;
-    case 'openbar.framadate' : f$_site = 'framadate'; break;
     case 'huit.re' : f$_site = 'frama.link'; break;
     case 'tontonroger' : f$_site = 'framabee'; break;
     case 'trouvons' : f$_site = 'framabee'; break;
     case 'test.framacalc' : f$_site = 'framacalc'; break;
 }
+if (f$_site.indexOf('framaboard') > -1) { f$_site = 'framaboard'; }
+if (f$_site.indexOf('framadate') > -1)  { f$_site = 'framadate'; }
+if (f$_site.indexOf('framapad') > -1
+    && !(f$_site.indexOf('beta.') > -1)
+    && !(f$_site.indexOf('lite.') > -1)) { f$_site = 'instances.framapad'; }
 
 // À propos
 var f$_host = 'hetzner';
@@ -155,6 +144,17 @@ switch (f$_site) {
         f$_video_js = true;
         //Opt-in
         //f$_email_field1 = '#c_mail';
+    break;
+    case 'framaboard' :
+        if(f$_page('.framaboard')) {
+            f$_jquery = 'html';f$_bootstrap = 'html';
+            f$_footer = false;
+            f$_NoMsg();
+            f$_bootstrap_css = false;
+            jQuery(document).ready(function() {
+                jQuery('h1 .logo').html('<b class="violet">Frama</b><b class="vert">board</b>').removeClass('logo');
+            });
+        }
     break;
     case 'framabook' :
         f$_jquery = 'html'; f$_bootstrap = 'html';
@@ -526,6 +526,8 @@ switch (f$_site) {
     case 'framabookin' :            f$_piwik_id = '38'; break;
     case 'framastats' :             f$_piwik_id = '39'; break;
     case 'framadrive' :             f$_piwik_id = '40'; break;
+    case 'framaboard' :             f$_piwik_id = '41'; break;
+    case 'framadrop' :              f$_piwik_id = '42'; break;
 }
 
 if(f$_piwik_id != '') {
@@ -566,7 +568,7 @@ if (/(dvd|key|libre|android|pack|start)/i.test(f$_site)) {
 if (/(blog|book|lang|tube|zic)/i.test(f$_site)) {
     f$_favicon = 'favicon-rouge.png';
 }
-if (/(frama.link|bag|bee|bin|calc|cloud|date|drive|games|git.|news|pad|pic|sphere|vectoriel|mindmap)/i.test(f$_site)) {
+if (/(frama.link|bag|bee|bin|calc|cloud|date|drive|games|git.|news|pad|pic|sphere|vectoriel|mindmap|board|drive|drop)/i.test(f$_site)) {
     f$_favicon = 'favicon-vert.png';
 }
 if (/(forum.|code|lab|phonie|wiki.)/i.test(f$_site)) {
