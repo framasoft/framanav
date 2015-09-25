@@ -156,6 +156,17 @@ switch (f$_site) {
         //Opt-in
         //f$_email_field1 = '#c_mail';
     break;
+    case 'framaboard' :
+        if(f$_page('kanboard/')) {
+            f$_jquery = 'html';f$_bootstrap = 'html';
+            f$_footer = false;
+            f$_NoMsg();
+            f$_bootstrap_css = false;
+            jQuery(document).ready(function() {
+                jQuery('h1 .logo').html('<b class="violet">Frama</b><b class="vert">board</b>').removeClass('logo');
+            });
+        }
+    break;
     case 'framabook' :
         f$_jquery = 'html'; f$_bootstrap = 'html';
         f$_nav_static = true;
@@ -526,6 +537,8 @@ switch (f$_site) {
     case 'framabookin' :            f$_piwik_id = '38'; break;
     case 'framastats' :             f$_piwik_id = '39'; break;
     case 'framadrive' :             f$_piwik_id = '40'; break;
+    case 'framaboard' :             f$_piwik_id = '41'; break;
+    case 'framadrop' :              f$_piwik_id = '42'; break;
 }
 
 if(f$_piwik_id != '') {
@@ -566,7 +579,7 @@ if (/(dvd|key|libre|android|pack|start)/i.test(f$_site)) {
 if (/(blog|book|lang|tube|zic)/i.test(f$_site)) {
     f$_favicon = 'favicon-rouge.png';
 }
-if (/(frama.link|bag|bee|bin|calc|cloud|date|drive|games|git.|news|pad|pic|sphere|vectoriel|mindmap)/i.test(f$_site)) {
+if (/(frama.link|bag|bee|bin|calc|cloud|date|drive|games|git.|news|pad|pic|sphere|vectoriel|mindmap|board|drive|drop)/i.test(f$_site)) {
     f$_favicon = 'favicon-vert.png';
 }
 if (/(forum.|code|lab|phonie|wiki.)/i.test(f$_site)) {
