@@ -76,28 +76,17 @@ var f$_apple_touch_icon = false;                    // f$_site+'.png' par défau
 // credits et placer un tracker sur un lien de la modale Soutenir
 switch (f$_site) {
     case 'localhost' : f$_site = 'localhost'; break;
-    case 'lite2.framapad' : f$_site = 'instances.framapad'; break;
-    case 'lite3.framapad' : f$_site = 'instances.framapad'; break;
-    case 'lite4.framapad' : f$_site = 'instances.framapad'; break;
-    case 'lite5.framapad' : f$_site = 'instances.framapad'; break;
-    case 'lite6.framapad' : f$_site = 'instances.framapad'; break;
-    case 'full1.framapad' : f$_site = 'instances.framapad'; break;
-    case 'full2.framapad' : f$_site = 'instances.framapad'; break;
-    case 'quotidien.framapad' : f$_site = 'instances.framapad'; break;
-    case 'hebdo.framapad' : f$_site = 'instances.framapad'; break;
-    case 'mensuel.framapad' : f$_site = 'instances.framapad'; break;
-    case 'bimestriel.framapad' : f$_site = 'instances.framapad'; break;
-    case 'semestriel.framapad' : f$_site = 'instances.framapad'; break;
-    case 'annuel.framapad' : f$_site = 'instances.framapad'; break;
-    case 'mypads.framapad' : f$_site = 'instances.framapad'; break;
     case 'noenaute' : f$_site = 'pouhiou'; break;
-    case 'beta.framadate' : f$_site = 'framadate'; break;
-    case 'openbar.framadate' : f$_site = 'framadate'; break;
     case 'huit.re' : f$_site = 'frama.link'; break;
     case 'tontonroger' : f$_site = 'framabee'; break;
     case 'trouvons' : f$_site = 'framabee'; break;
     case 'test.framacalc' : f$_site = 'framacalc'; break;
 }
+if (f$_site.indexOf('framaboard') > -1) { f$_site = 'framaboard'; }
+if (f$_site.indexOf('framadate') > -1)  { f$_site = 'framadate'; }
+if (f$_site.indexOf('framapad') > -1
+    && !(f$_site.indexOf('beta.') > -1)
+    && !(f$_site.indexOf('lite.') > -1)) { f$_site = 'instances.framapad'; }
 
 // À propos
 var f$_host = 'hetzner';
@@ -157,7 +146,7 @@ switch (f$_site) {
         //f$_email_field1 = '#c_mail';
     break;
     case 'framaboard' :
-        if(f$_page('kanboard/')) {
+        if(f$_page('.framaboard')) {
             f$_jquery = 'html';f$_bootstrap = 'html';
             f$_footer = false;
             f$_NoMsg();
