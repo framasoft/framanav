@@ -17,3 +17,7 @@
     display: block !important;
     visibility: visible !important;
 }
+
+#draft-status {
+    height: 25px;
+}
