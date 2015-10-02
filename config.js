@@ -84,7 +84,7 @@ switch (f$_site) {
 }
 if (f$_site.indexOf('framaboard') > -1) { f$_site = 'framaboard'; }
 if (f$_site.indexOf('framadate') > -1)  { f$_site = 'framadate'; }
-if (f$_site.indexOf('framapad') > -1
+if (f$_site.indexOf('.framapad') > -1
     && !(f$_site.indexOf('beta.') > -1)
     && !(f$_site.indexOf('lite.') > -1)) { f$_site = 'instances.framapad'; }
 
