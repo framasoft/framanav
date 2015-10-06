@@ -247,6 +247,7 @@ switch (f$_site) {
             f$_NoMsg();
         } else {
             f$_footer = true;
+            f$_video_js = true;
         }
     break;
     case 'framagames':
@@ -289,6 +290,7 @@ switch (f$_site) {
         f$_modal_don_txtdl2 = 'utiliser Framapack';
         f$_modal_don_liendl = 'onstart';
     break;
+//-- <framapad> ----------------------------------------------------------------
     case 'framapad':
         f$_jquery = 'html';
         f$_css_position = 'end';
@@ -303,6 +305,57 @@ switch (f$_site) {
             '</div>';*/
         f$_video_js = true;
     break;
+        case 'instances.framapad':
+        f$_jquery = 'html';
+        if (f$_not_in_frame) {
+            f$_extra_css = true;
+        } else {
+            f$_bootstrap_css = false;
+        }
+        f$_NoMsg();
+        f$_footer = false;
+        f$_credits = 'framapad';
+        f$_apple_touch_icon = 'framapad.png';
+    break;
+    case 'beta.framapad':
+        f$_jquery = 'html';
+        if (f$_not_in_frame) {
+            f$_extra_css = true;
+        } else {
+            f$_bootstrap_css = false;
+        }
+        f$_NoMsg();
+        f$_footer = false;
+        f$_alert_modal_title = 'Avertissement';
+        f$_alert_modal_text = '<p>Cette instance de Framapad (<b>beta</b>.framapad.org) est instable et ne doit servir que pour des tests.<p>'+
+        '<p>Framasoft expérimente le plugin MyPads sur cette instance jusqu’au 31 août 2015, date à laquelle les données seront probablement supprimées.</p>'+
+        '<p>Pensez à utiliser régulièrement la fonction d’export pendant cette phase de test.</p>'+
+        '<p>Merci.<br />L’équipe technique</p>';
+        f$_credits = 'framapad';
+        f$_apple_touch_icon = 'framapad.png';
+    break;
+    case 'lite.framapad':
+        f$_jquery = 'html';
+        f$_extra_css = true;
+        f$_NoMsg();
+        f$_footer = false;
+        // Message arrêt de la création des pads
+        f$_alert_modal_title = 'Création des pads désactivée';
+        f$_alert_modal_text = '<p>Nous vous informons que cette instance de Framapad (<b>lite</b>.framapad.org) ne peut plus accueillir de nouveaux pads.<p>'+
+         '<br /><p>Il reste bien évidement possible de travailler sur les pads déjà existants (ils ne seront pas supprimés)'+
+         ' mais pour en créer de nouveaux, veuillez passer par la page d’accueil du site :<br />'+
+         '<a href="http://www.framapad.org">www.framapad.org</a></p>'+
+         '<br /><p>Merci.<br />L’équipe technique</p>';
+        f$_host = 'ovh';
+        f$_credits = 'framapad';
+        f$_apple_touch_icon = 'framapad.png';
+    break;
+    case 'mypads.framapad':
+        f$_NoMsg();
+        f$_footer = false;
+        f$_jquery = 'html';
+    break;
+//-- </framapad> ---------------------------------------------------------------
     case 'framaphonie':
         f$_jquery = 'noConflict';
         f$_css_position = 'end';
@@ -403,51 +456,6 @@ switch (f$_site) {
                 f$_navcontainer.parentNode.removeChild(f$_navcontainer);
             }
         }
-    break;
-    case 'instances.framapad':
-        f$_jquery = 'html';
-        if (f$_not_in_frame) {
-            f$_extra_css = true;
-        } else {
-            f$_bootstrap_css = false;
-        }
-        f$_NoMsg();
-        f$_footer = false;
-        f$_credits = 'framapad';
-        f$_apple_touch_icon = 'framapad.png';
-    break;
-    case 'beta.framapad':
-        f$_jquery = 'html';
-        if (f$_not_in_frame) {
-            f$_extra_css = true;
-        } else {
-            f$_bootstrap_css = false;
-        }
-        f$_NoMsg();
-        f$_footer = false;
-        f$_alert_modal_title = 'Avertissement';
-        f$_alert_modal_text = '<p>Cette instance de Framapad (<b>beta</b>.framapad.org) est instable et ne doit servir que pour des tests.<p>'+
-        '<p>Framasoft expérimente le plugin MyPads sur cette instance jusqu’au 31 août 2015, date à laquelle les données seront probablement supprimées.</p>'+
-        '<p>Pensez à utiliser régulièrement la fonction d’export pendant cette phase de test.</p>'+
-        '<p>Merci.<br />L’équipe technique</p>';
-        f$_credits = 'framapad';
-        f$_apple_touch_icon = 'framapad.png';
-    break;
-    case 'lite.framapad':
-        f$_jquery = 'html';
-        f$_extra_css = true;
-        f$_NoMsg();
-        f$_footer = false;
-        // Message arrêt de la création des pads
-        f$_alert_modal_title = 'Création des pads désactivée';
-        f$_alert_modal_text = '<p>Nous vous informons que cette instance de Framapad (<b>lite</b>.framapad.org) ne peut plus accueillir de nouveaux pads.<p>'+
-         '<br /><p>Il reste bien évidement possible de travailler sur les pads déjà existants (ils ne seront pas supprimés)'+
-         ' mais pour en créer de nouveaux, veuillez passer par la page d’accueil du site :<br />'+
-         '<a href="http://www.framapad.org">www.framapad.org</a></p>'+
-         '<br /><p>Merci.<br />L’équipe technique</p>';
-        f$_host = 'ovh';
-        f$_credits = 'framapad';
-        f$_apple_touch_icon = 'framapad.png';
     break;
     case 'localhost':
     break;
