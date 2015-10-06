@@ -90,7 +90,7 @@ if (f$_site.indexOf('.framapad') > -1
     && !(f$_site.indexOf('mypads.') > -1)
     && !(f$_site.indexOf('lite.') > -1) ) { f$_site = 'instances.framapad'; }
 if (f$_site.indexOf('mypads.framapad') > -1 
-    && (f$_page('/pad/view') || f$_page('/p/'))) {
+    && f$_page('/p/')) {
    f$_site = 'instances.framapad'; 
 }
 
