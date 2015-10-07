@@ -461,3 +461,20 @@ body.apropos #piwik-iframe {
     margin-left:auto;
     margin-right:auto;
 }
+
+@media (min-width: 992px) {
+    #degooglisons ul {
+        min-width:280px !important;
+        margin-left:-86px;
+    }
+    #degooglisons li {
+        width:50%;
+        float:left;
+    }
+    #degooglisons li.divider,
+    #degooglisons li:nth-child(1) {
+        width:100%;
+        text-align:center;
+
+    }
+}

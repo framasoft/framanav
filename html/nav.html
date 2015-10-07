@@ -92,7 +92,7 @@
                 </ul>
             </li>
 
-           <li class="dropdown">
+           <li class="dropdown" id="degooglisons">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Services libres<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><a href="http://degooglisons-internet.org" rel="popover"
@@ -101,22 +101,27 @@
                         <i class="fa fa-fw fa-lg fa-shield"></i>&nbsp;<b>Dégooglisons Internet</b>
                     </a></li>
                     <li  role="presentation" class="divider"></li>
-                    <li><a href="https://framapad.org" rel="popover"
+                    <li><a href="https://framapad.org" rel="popover" data-placement="left"
                         data-content="Écrivons tous ensemble sur le même document dans une interface de rédaction collective en ligne. Aucune inscription requise, on se donne un pseudo, une couleur et on se lance !"
                         title="Éditer collaborativement">
                         <i class="fa fa-fw fa-lg fa-align-left"></i>&nbsp;Framapad
-                    </a></li>
-                    <li><a href="https://framadate.org" rel="popover"
-                        data-content="Framadate c’est un peu comme Doodle mais en libre. Rien de plus simple de créer un rendez-vous ou un sondage sans inscription pour y inviter vos collaborateurs."
-                        title="Organiser des rendez-vous et des sondages">
-                        <i class="fa fa-fw fa-lg fa-calendar"></i>&nbsp;Framadate
                     </a></li>
                     <li><a href="https://framacalc.org" rel="popover"
                         data-content="Framacalc est au tableur ce que Framapad est au traitement de texte, autrement dit la possibilité d’éditer simplement et collectivement en ligne sur un même document."
                         title="Un tableur collaboratif">
                         <i class="fa fa-fw fa-lg fa-th"></i>&nbsp;Framacalc
                     </a></li>
-                    <li><a href="https://framindmap.org" rel="popover"
+                    <li><a href="https://framadate.org" rel="popover" data-placement="left"
+                        data-content="Framadate c’est un peu comme Doodle mais en libre. Rien de plus simple de créer un rendez-vous ou un sondage sans inscription pour y inviter vos collaborateurs."
+                        title="Organiser des rendez-vous et des sondages">
+                        <i class="fa fa-fw fa-lg fa-calendar"></i>&nbsp;Framadate
+                    </a></li>
+                    <li><a href="https://framaboard.org" rel="popover"
+                        data-content="Framaboard est un gestionnaire collaboartif de tâches et de projets, en suivant la méthode Kanban. Son système visuel permet de s’y retrouver au premier coup d’œil, quelque soit votre habitude à utiliser ce genre d’outil."
+                        title="Gérer des projets">
+                        <i class="fa fa-fw fa-lg fa-dashboard"></i>&nbsp;Framaboard
+                    </a></li>
+                    <li><a href="https://framindmap.org" rel="popover" data-placement="left"
                         data-content="Interface fluide et intuitive pour créer rapidement et simplement des cartes heuristiques à même votre navigateur. Pertinent en situation de brainstorming ou de prise de notes."
                         title="Créer des cartes mentales">
                         <i class="fa fa-fw fa-lg fa-sitemap fa-rotate-270"></i>&nbsp;Fra<span lang="en">mindmap</span>
@@ -126,35 +131,57 @@
                         title="Dessiner en vectoriel">
                         <i class="fa fa-fw fa-lg fa-paint-brush"></i>&nbsp;Framavectoriel
                     </a></li>
+
                     <li  role="presentation" class="divider"></li>
-                    <li><a href="https://framabee.org" rel="popover"
+
+                    <li><a href="https://framabee.org" rel="popover" data-placement="left"
                         data-content="Framabee est un meta-moteur de recherche libre et anonyme. Vos recherches effectuées au travers de ce moteur sont envoyées à différents moteurs avant d’être affichées dans votre navigateur. L’intérêt ? Notre moteur est alors un intermédiaire entre vous et Google (et autres), ainsi vos données personnelles (adresse IP, historique de vos recherches, géolocalisation, profil) ne sont pas enregistrées chez eux."
                         title="Le moteur qui butine les internets pour vous">
                         <i class="fa fa-fw fa-lg fa-search"></i>&nbsp;Frama<span lang="en">bee</span>
                     </a></li>
-                    <li><a href="https://framasphere.org" rel="popover"
+
+                    <li><a href="https://git.framasoft.org" rel="popover"
+                        data-content="Framagit est un outil qui s’adresse avant tout aux développeurs. Il permet d’héberger vos projets de logiciels libres et de travailler collaborativement dessus."
+                        title="Héberger du code libre">
+                        <i class="fa fa-fw fa-lg fa-git"></i>&nbsp;Frama<span lang="en">git</span>
+                    </a></li>
+                    <li  role="presentation" class="divider"></li>
+
+                    <li><a href="https://framasphere.org" rel="popover" data-placement="left"
                         data-content="Framasphère est un réseau social libre, basé sur le logiciel décentralisé Diaspora*. Retrouvez vos amis sur Framasphère - ou d’autres pods Diaspora* - et échangez avec eux sans être pisté."
                         title="Le réseau social libre">
                         <i class="fa fa-fw fa-lg fa-asterisk"></i>&nbsp;Framasphère
                     </a></li>
+
                     <li><a href="https://framabag.org" rel="popover"
                         data-content="Framabag vous permet de mettre de côté les articles que vous n’avez pas le temps de lire tout de suite."
                         title="Ne ratez plus aucun article !">
                         <i class="fa fa-fw fa-lg fa-briefcase"></i>&nbsp;Framabag
                     </a></li>
-                    <li><a href="https://framanews.org" rel="popover"
+                    <li><a href="https://framanews.org" rel="popover" data-placement="left"
                         data-content="En vous abonnant aux flux RSS de vos sites préférés, restez informés de toutes leurs actualités avec Framanews !"
                         title="Suivre l’actualité">
                         <i class="fa fa-fw fa-lg fa-newspaper-o"></i>&nbsp;Frama<span lang="en">news</span>
                     </a></li>
-                    <li  role="presentation" class="divider"></li>
                     <li><a href="http://framagames.org" rel="popover"
                         data-content="Framagames est une compilation de jeux libres qui se jouent en ligne, se téléchargent sur son PC, sa tablette… et ne nécessitent aucune installation supplémentaire."
                         title="Jouer en ligne ou déconnecté">
                         <i class="fa fa-fw fa-lg fa-gamepad"></i>&nbsp;Frama<span lang="en">games</span>
                     </a></li>
+
                     <li  role="presentation" class="divider"></li>
-                    <li><a href="https://framabin.org" rel="popover"
+
+                    <li><a href="https://framadrive.org" rel="popover" data-placement="left"
+                        data-content="Framadrive vous permet de stocker vos documents en ligne, de les synchroniser sur vos ordinateurs, mobiles, etc… et de les partager avec qui vous voulez."
+                        title="Héberger ses documents en ligne">
+                        <i class="fa fa-fw fa-lg fa-cloud-upload"></i>&nbsp;Frama<span lang="en">drive</span>
+                    </a></li>
+                    <li><a href="https://framadrop.org" rel="popover"
+                        data-content="Avec Framadrop, fini les pièces jointes trop lourdes qui empêchent l’envoi d’un email. Ce service libre vous permet de partager facilement des fichiers de manière sécurisé."
+                        title="Partager des fichiers anonymement">
+                        <i class="fa fa-fw fa-lg fa-send"></i>&nbsp;Frama<span lang="en">drop</span>
+                    </a></li>
+                    <li><a href="https://framabin.org" rel="popover" data-placement="left"
                         data-content="Avec Framabin, vous pouvez partager des informations que seuls vous et votre correspondant aurez le pouvoir de déchiffrer, et ceci de manière très simple."
                         title="Transmettre des données chiffrées">
                         <i class="fa fa-fw fa-lg fa-paste"></i>&nbsp;Frama<span lang="en">bin</span>
@@ -164,17 +191,12 @@
                         title="Partager des images anonymement">
                         <i class="fa fa-fw fa-lg fa-photo"></i>&nbsp;Framapic
                     </a></li>
-                    <li><a href="https://frama.link" rel="popover"
+                    <li><a href="https://frama.link" rel="popover" data-placement="left"
                         data-content="Avec Frama.link, il est possible de raccourcir des adresses web trop longues. Sur les réseaux sociaux et le microblogging, un lien raccourci permet d’économiser de l’espace et gagner en clarté."
                         title="Réduire des liens">
                         <i class="fa fa-fw fa-lg fa-link"></i>&nbsp;Frama<span lang="en">link</span>
                     </a></li>
-                    <li  role="presentation" class="divider"></li>
-                    <li><a href="https://git.framasoft.org" rel="popover"
-                        data-content="Framagit est un outil qui s’adresse avant tout aux développeurs. Il permet d’héberger vos projets de logiciels libres et de travailler collaborativement dessus."
-                        title="Héberger du code libre">
-                        <i class="fa fa-fw fa-lg fa-git"></i>&nbsp;Frama<span lang="en">git</span>
-                    </a></li>
+
                 </ul>
             </li>
 

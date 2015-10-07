@@ -32,7 +32,6 @@ var f$_alert_text = '';                             // /!\ aux \' dans le texte
 var f$_alert_cookie_name = 'nav-alert';
 var f$_alert_cookie = 7*24*60*60*1000;              // Expire au bout de 7 jours
 
-var f$_alert_modal_btn = false;                     // bouton "plus d'info" dans le bandeau pour ouvrir la fenêtre modale
 var f$_alert_modal_title = '';                      // /!\ aux \' dans le texte
 var f$_alert_modal_text = '';                       // idem
 var f$_alert_modal_onstart = true;                  // s'affiche à l'ouverture de la page ?
@@ -67,6 +66,43 @@ var f$_keep_icons       = false;                    // true pour connard.pro, po
 var f$_favicon          = false;                    // 'favicon-violet.png' par défaut
 var f$_apple_touch_icon = false;                    // f$_site+'.png' par défaut
 
+/* Bandeau Degooglisons */
+    f$_banniere = Math.floor(Math.random() * 3);
+    switch (f$_banniere) {
+    case 0:
+        f$_alert_type       = 'info';
+        f$_alert_img_left   = '<div class="col-sm-3 hidden-xs" style="padding:0;padding-right:10px; max-width: 150px;" aria-hidden="true"><a href="https://degooglisons-internet.org"><img src="'+f$_nav+'img/stallman.png" alt="" class="img-responsive center-block" /></a></div>';
+        f$_alert_img_right  = '';
+        break;
+    case 1:
+        f$_alert_type       = 'warning';
+        f$_alert_img_left   = '<div class="col-sm-3 hidden-xs" style="padding:0;padding-right:10px; max-width: 150px;" aria-hidden="true"><a href="https://degooglisons-internet.org"><img src="'+f$_nav+'img/aaron.png" alt="" class="img-responsive center-block" /></a></div>';
+        f$_alert_img_right  = '';
+        break;
+    case 2:
+        f$_alert_type       = 'success';
+        f$_alert_img_left   = '';
+        f$_alert_img_right  = '<div class="col-sm-3 hidden-xs" style="padding:0;padding-left:10px; max-width: 150px;" aria-hidden="true"><a href="https://degooglisons-internet.org"><img src="'+f$_nav+'img/geekette.png" alt="" class="img-responsive center-block" /></a></div>';
+        break;
+    }
+
+    f$_alert_text =
+        '<div style="margin:0 auto; max-width:800px; text-align:justify">'+
+            f$_alert_img_left+
+            '<div class="col-sm-9" style="padding:0">'+
+                '<p style="font-weight:bold;font-size:16px;" class="text-center">'+
+                    '<a href="https://degooglisons-internet.org" style="text-decoration:none"><b class="frama">Dégooglisons</b> <b class="soft">Internet</b>, l’an 2.</a>'+
+                '</p>'+
+                '<p>Les services en ligne de géants tentaculaires comme Google, Apple, Facebook, Amazon ou Microsoft (GAFAM) mettent en danger nos vies numériques.</p>'+
+                '<p>Pour cette 2e année, <b class="frama">Frama</b><b class="soft">soft</b> continue le défi de vous proposer '+
+                    'une alternative Libre, Éthique, Décentralisée et Solidaire à chacun de ces services.'+
+                '</p>'+
+                '<p class="text-center"><b>Le succès de <a href="https://degooglisons-internet.org">cette campagne est entre vos mains</a> !</b></p></div>'+
+            f$_alert_img_right+
+        '</div><div class="clearfix"></div>';
+    f$_alert_modal_text = '';
+    f$_modal_don_liendl = '';
+
 /***********************************************************************
  *                          Config des sites                           *
  ***********************************************************************/
@@ -89,9 +125,9 @@ if (f$_site.indexOf('.framapad') > -1
     && !(f$_site.indexOf('nav.') > -1)
     && !(f$_site.indexOf('mypads.') > -1)
     && !(f$_site.indexOf('lite.') > -1) ) { f$_site = 'instances.framapad'; }
-if (f$_site.indexOf('mypads.framapad') > -1 
+if (f$_site.indexOf('mypads.framapad') > -1
     && f$_page('/p/')) {
-   f$_site = 'instances.framapad'; 
+   f$_site = 'instances.framapad';
 }
 
 // À propos

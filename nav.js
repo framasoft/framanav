@@ -1,4 +1,4 @@
-var f$_version = '140924';
+var f$_version = '141008';
 var f$_site = window.location.host
 f$_site = f$_site.replace(/^(www|test)\./i,"");
 f$_site = f$_site.replace(/\.(com|net|org|fr|pro)$/i,"");
@@ -494,7 +494,6 @@ function f$_start_jquery() {
                     // Fenêtre modale et bandeau d'alerte
                     var f$_alert_dejavu = getCookie('nav-alert');
                     var f$_alert_modal_dejavu = getCookie(f$_alert_modal_cookie_name);
-                    f$_alert_more = '';
 
                     // Ajout de la fenêtre modale
                     if (f$_alert_modal_text!='') {
@@ -513,9 +512,6 @@ function f$_start_jquery() {
                                 '</div>'+
                             '</div>'+
                         '</div>');
-                        if(f$_alert_modal_btn) {
-                            f$_alert_more = ' <button type="button" id="nav-alert-more" class="btn btn-'+f$_alert_type+' btn-xs">plus d’infos</button>';
-                        }
 
                         if(!f$_alert_modal_dejavu && f$_alert_modal_onstart) {
                             f$('#modal-close').after('<button class="btn btn-primary" id="modal-set-cookie" >Ne plus afficher</button>')
@@ -533,11 +529,17 @@ function f$_start_jquery() {
 
                     // Ajout du bandeau d'alerte
                     if (f$_alert_text!='' && !f$_alert_dejavu) {
-                        f$_alert_margin_top = (f$_nav_static) ? ' margin-top:42px;': '';
+
+                        f$_alert_margin_top = '';
+                        if (f$_nav_static || f$_page('/nav/html/')) {
+                            f$('#framanav_container ~ *:not(script):first').css('margin-top', '-=42');
+                            f$_alert_margin_top = ' padding-top:42px;';
+                        }
+
                         f$('#framanav_container').after(
                             '<div id="nav-alert" lang="fr" class="alert alert-'+f$_alert_type+' fade in" style="border-radius:0;'+f$_alert_margin_top+'">'+
                                 '<button type="button" class="close" data-dismiss="alert" title="Fermer"><span aria-hidden="true">&times;</span><span class="sr-only">Fermer</span></button>'+
-                                '<p style="text-align:center">'+f$_alert_text+f$_alert_more+'</p>'+
+                                '<p style="text-align:center">'+f$_alert_text+'</p>'+
                             '</div>'
                         );
 
@@ -546,10 +548,6 @@ function f$_start_jquery() {
                             setCookie(f$_alert_cookie_name,true,f$_alert_cookie);
                         });
 
-                        // Ouvrir la modal sur "plus d'info"
-                        f$('#nav-alert-more').click(function() {
-                            f$('#modal-alert').modal('show');
-                        });
                     }
 
                     // Fenêtre modal pour dons sur téléchargements
