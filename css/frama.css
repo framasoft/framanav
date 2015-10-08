@@ -784,6 +784,7 @@ fieldset[disabled] .btn-link:focus {
 }
 
 /* Cleaning */
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a,
 a.btn,
 .nav-pills a,
 .nav-container a,
