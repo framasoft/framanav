@@ -305,8 +305,9 @@ h1 {font-family: "DejaVu Sans", Verdana, Geneva, sans-serif; font-weight:bold; }
 .fc_light { color: #fff;}
 .fc_dark { color: #333;}
 
+a { color:#0C5B7A; }
+
 a, a:link {
-    color:#0C5B7A;
     text-decoration:underline;
     -moz-text-decoration-style: dotted;
     -webkit-text-decoration-style: dotted;
@@ -323,7 +324,7 @@ a:hover, a:focus {
 }
 
 #results #main_results a:visited { // Framabee only
-    color:#635182;
+    color:#635182 !important;
 }
 
 /* Text */
