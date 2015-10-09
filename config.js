@@ -575,7 +575,7 @@ switch (f$_site) {
     case 'status.framasoft' :       f$_piwik_id = '37'; break;
     case 'framabookin' :            f$_piwik_id = '38'; break;
     case 'framastats' :             f$_piwik_id = '39'; break;
-    case 'framadrive' :             f$_piwik_id = '40'; break;
+    case 'framadrive' :             f$_piwik_id = '40'; f$_piwik_url = 'https://framadrive.org/'; break;
     case 'framaboard' :             f$_piwik_id = '41'; break;
     case 'framadrop' :              f$_piwik_id = '42'; break;
 }
