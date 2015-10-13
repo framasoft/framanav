@@ -346,8 +346,7 @@ switch (f$_site) {
         if(/(beta.framapad)/i.test(window.location.host)) {
             f$_alert_modal_title = 'Avertissement';
             f$_alert_modal_text = '<p>Cette instance de Framapad (<b>beta</b>.framapad.org) est instable et ne doit servir que pour des tests.<p>'+
-            '<p>Framasoft expérimente le plugin MyPads sur cette instance jusqu’au 31 août 2015, date à laquelle les données seront probablement supprimées.</p>'+
-            '<p>Pensez à utiliser régulièrement la fonction d’export pendant cette phase de test.</p>'+
+            '<p>Pensez à utiliser régulièrement la fonction d’export pendant vos tests.</p>'+
             '<p>Merci.<br />L’équipe technique</p>';
         }
         if(/(lite.framapad|lite2.|lite3.|lite4.|lite5.)/i.test(window.location.host)) {
