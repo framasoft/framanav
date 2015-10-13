@@ -54,3 +54,15 @@
 #framanav .dropdown-menu .divider {
     background-color: rgb(229, 229, 229) !important;
 }
+@media (min-width: 992px) {
+    #degooglisons li {
+        width:50%;
+        float:left;
+    }
+    #degooglisons li.divider,
+    #degooglisons li:nth-child(1) {
+        width:100%;
+        text-align:center;
+
+    }
+}

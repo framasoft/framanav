@@ -118,16 +118,16 @@ switch (f$_site) {
     case 'trouvons' : f$_site = 'framabee'; break;
     case 'test.framacalc' : f$_site = 'framacalc'; break;
 }
+
+if (/(n1.|n2.|n3.|n4.|n5.|n6.|nav.)/i.test(f$_site)) { f$_site = 'nav'; }
+
 if (f$_site.indexOf('framaboard') > -1) { f$_site = 'framaboard'; }
+
 if (f$_site.indexOf('framadate') > -1)  { f$_site = 'framadate'; }
-if (f$_site.indexOf('.framapad') > -1
-    && !(f$_site.indexOf('beta.') > -1)
-    && !(f$_site.indexOf('nav.') > -1)
-    && !(f$_site.indexOf('mypads.') > -1)
-    && !(f$_site.indexOf('lite.') > -1) ) { f$_site = 'instances.framapad'; }
-if (f$_site.indexOf('mypads.framapad') > -1
-    && f$_page('/p/')) {
-   f$_site = 'instances.framapad';
+
+if ((f$_site.indexOf('.framapad') > -1 && !(f$_site.indexOf('mypads.') > -1))
+    || (f$_site.indexOf('mypads.framapad') > -1 && f$_page('/p/'))) {
+    f$_site = 'instances.framapad';
 }
 
 // À propos
@@ -135,10 +135,7 @@ var f$_host = 'hetzner';
 var f$_credits = f$_site;
 
 switch (f$_site) {
-    case 'bot.framasoft' :
-        f$_NoMsg();
-        f$_footer = false;
-    break;
+    case 'bot.framasoft' : f$_NoMsg(); f$_footer = false; break;
     case 'connard' :
         f$_jquery = 'noConflict';
         f$_frama_css = false;
@@ -147,13 +144,10 @@ switch (f$_site) {
         f$_footer = false;
     break;
     case 'contact.framasoft' :
-        f$_jquery = 'html'; f$_bootstrap = 'html';
         f$_nav_static = true;
         f$_email_field1 = '#wpcf7-f24-p5-o1 .wpcf7-email';
     break;
-    case 'degooglisons-internet' :
-        f$_NoMsg();
-    break;
+    case 'degooglisons-internet' : f$_NoMsg(); break;
     case 'forum.framasoft' :
         f$_css_position = 'end';
         f$_email_field1 = '#email_confirm'; f$_email_field2 = '#email';
@@ -180,7 +174,6 @@ switch (f$_site) {
         f$_modal_don_liendl = 'onstart';
     break;
     case 'framablog' :
-        f$_jquery = 'html'; f$_bootstrap = 'html';
         f$_nav_static = true;
         f$_audio_js = true;
         f$_video_js = true;
@@ -199,7 +192,6 @@ switch (f$_site) {
         }
     break;
     case 'framabook' :
-        f$_jquery = 'html'; f$_bootstrap = 'html';
         f$_nav_static = true;
         f$_modal_don_liendl = 'a[href*="download-monitor/download.php?id="]';
     break;
@@ -239,11 +231,7 @@ switch (f$_site) {
         }
         f$_host = 'ovh';
     break;
-    case 'framacloud' :
-        f$_jquery = 'html'; f$_bootstrap = 'html';
-        f$_nav_static = true;
-        f$_audio_js = true;
-        f$_video_js = true;
+    case 'framacloud' : f$_nav_static = true; f$_audio_js = true; f$_video_js = true;
     break;
     case 'framacode' :
     break;
@@ -270,7 +258,6 @@ switch (f$_site) {
         /** </script> **/
     break;
     case 'framadvd':
-        f$_jquery = 'html'; f$_bootstrap = 'html';
         f$_modal_don_liendl = 'a[href*="iso.framadvd.org"]';
         f$_nav_static = true;
         f$_video_js = true;
@@ -304,12 +291,8 @@ switch (f$_site) {
         });
         /** </script> **/
     break;
-    case 'framalab':
-    break;
-    case 'framandroid':
-        f$_jquery = 'html'; f$_bootstrap = 'html';
-        f$_nav_static = true;
-    break;
+    case 'framalab': break;
+    case 'framandroid': f$_nav_static = true; break;
     case 'framanews':
         if(f$_page('framanews.org/ttrss')) {
             // Si on n'est dans ttrss
@@ -341,55 +324,42 @@ switch (f$_site) {
             '</div>';*/
         f$_video_js = true;
     break;
-        case 'instances.framapad':
-        f$_jquery = 'html';
-        if (f$_not_in_frame) {
-            f$_extra_css = true;
-        } else {
-            f$_bootstrap_css = false;
-        }
-        f$_NoMsg();
-        f$_footer = false;
-        f$_credits = 'framapad';
-        f$_apple_touch_icon = 'framapad.png';
-    break;
-    case 'beta.framapad':
-        f$_jquery = 'html';
-        if (f$_not_in_frame) {
-            f$_extra_css = true;
-        } else {
-            f$_bootstrap_css = false;
-        }
-        f$_NoMsg();
-        f$_footer = false;
-        f$_alert_modal_title = 'Avertissement';
-        f$_alert_modal_text = '<p>Cette instance de Framapad (<b>beta</b>.framapad.org) est instable et ne doit servir que pour des tests.<p>'+
-        '<p>Framasoft expérimente le plugin MyPads sur cette instance jusqu’au 31 août 2015, date à laquelle les données seront probablement supprimées.</p>'+
-        '<p>Pensez à utiliser régulièrement la fonction d’export pendant cette phase de test.</p>'+
-        '<p>Merci.<br />L’équipe technique</p>';
-        f$_credits = 'framapad';
-        f$_apple_touch_icon = 'framapad.png';
-    break;
-    case 'lite.framapad':
-        f$_jquery = 'html';
-        f$_extra_css = true;
-        f$_NoMsg();
-        f$_footer = false;
-        // Message arrêt de la création des pads
-        f$_alert_modal_title = 'Création des pads désactivée';
-        f$_alert_modal_text = '<p>Nous vous informons que cette instance de Framapad (<b>lite</b>.framapad.org) ne peut plus accueillir de nouveaux pads.<p>'+
-         '<br /><p>Il reste bien évidement possible de travailler sur les pads déjà existants (ils ne seront pas supprimés)'+
-         ' mais pour en créer de nouveaux, veuillez passer par la page d’accueil du site :<br />'+
-         '<a href="http://www.framapad.org">www.framapad.org</a></p>'+
-         '<br /><p>Merci.<br />L’équipe technique</p>';
-        f$_host = 'ovh';
-        f$_credits = 'framapad';
-        f$_apple_touch_icon = 'framapad.png';
-    break;
     case 'mypads.framapad':
+        f$_jquery = 'html';
         f$_NoMsg();
         f$_footer = false;
+        f$_credits = 'framapad';
+        f$_apple_touch_icon = 'framapad.png';
+    break;
+    case 'instances.framapad':
         f$_jquery = 'html';
+        if (f$_not_in_frame) {
+            f$_extra_css = true;
+        } else {
+            f$_bootstrap_css = false;
+        }
+        f$_NoMsg();
+        jQuery('document').ready(function () {
+            jQuery('#loading').append('<p class="small">Si le pad refuse de s’afficher, essayez de télécharger<br/>l’export <a href="'+location.href+'/export/html">html</a> ou <a href="'+location.href+'/export/txt">txt</a> de votre document et <a href="https://contact.framasoft.org/#framapad">contactez-nous</a>.</p>');
+        });
+        f$_footer = false;
+        f$_credits = 'framapad';
+        f$_apple_touch_icon = 'framapad.png';
+        if(/(beta.framapad)/i.test(window.location.host)) {
+            f$_alert_modal_title = 'Avertissement';
+            f$_alert_modal_text = '<p>Cette instance de Framapad (<b>beta</b>.framapad.org) est instable et ne doit servir que pour des tests.<p>'+
+            '<p>Framasoft expérimente le plugin MyPads sur cette instance jusqu’au 31 août 2015, date à laquelle les données seront probablement supprimées.</p>'+
+            '<p>Pensez à utiliser régulièrement la fonction d’export pendant cette phase de test.</p>'+
+            '<p>Merci.<br />L’équipe technique</p>';
+        }
+        if(/(lite.framapad|lite2.|lite3.|lite4.|lite5.)/i.test(window.location.host)) {
+            f$_alert_modal_title = 'Création des pads désactivée';
+            f$_alert_modal_text = '<p>Nous vous informons que cette instance de Framapad ('+window.location.host+') ne peut plus accueillir de nouveaux pads.<p>'+
+            '<p>Il reste bien évidement possible de travailler sur les pads déjà existants (ils ne seront pas supprimés)'+
+            ' mais pour en créer de nouveaux, veuillez passer par <a href="https://framapad.org">la page d’accueil du site</a></p>'+
+            '<p>Merci.<br />L’équipe technique</p>';
+            f$_host = 'ovh';
+        }
     break;
 //-- </framapad> ---------------------------------------------------------------
     case 'framaphonie':
@@ -461,7 +431,6 @@ switch (f$_site) {
         }
     break;
     case 'framazic':
-        f$_jquery = 'html'; f$_bootstrap = 'html';
         f$_nav_static = true;
         f$_video_js = true;
     break;
@@ -493,10 +462,11 @@ switch (f$_site) {
             }
         }
     break;
-    case 'localhost':
+    case 'localhost':   break;
+    case 'nav':
+        f$_apple_touch_icon = 'framasoft.png';
     break;
     case 'participer.framasoft':
-        f$_jquery = 'html'; f$_bootstrap = 'html';
         f$_nav_static = true;
         f$_video_js = true;
     break;
@@ -539,7 +509,6 @@ switch (f$_site) {
     case 'framablog' :              f$_piwik_id = '3';  break;
     case 'framapad' :               f$_piwik_id = '4';  break;
     case 'instances.framapad' :     f$_piwik_id = '4';  break;
-    case 'lite.framapad' :          f$_piwik_id = '4';  break;
     case 'framakey' :               f$_piwik_id = '5';  break;
     case 'framadvd' :               f$_piwik_id = '6';  break;
     case 'framabook' :              f$_piwik_id = '7';  break;
@@ -618,7 +587,7 @@ if (/(dvd|key|libre|android|pack|start)/i.test(f$_site)) {
 if (/(blog|book|lang|tube|zic)/i.test(f$_site)) {
     f$_favicon = 'favicon-rouge.png';
 }
-if (/(frama.link|bag|bee|bin|calc|cloud|date|drive|games|git.|news|pad|pic|sphere|vectoriel|mindmap|board|drive|drop)/i.test(f$_site)) {
+if (/(frama.link|bag|bee|bin|calc|cloud|date|games|git.|news|pad|pic|sphere|vectoriel|mindmap|board|drive|drop)/i.test(f$_site)) {
     f$_favicon = 'favicon-vert.png';
 }
 if (/(forum.|code|lab|phonie|wiki.)/i.test(f$_site)) {
@@ -627,3 +596,9 @@ if (/(forum.|code|lab|phonie|wiki.)/i.test(f$_site)) {
 if (/(contact.|participer.|soutenir.|stats|status.)/i.test(f$_site)) {
     f$_favicon = 'favicon-orange.png';
 }
+
+if (/^(bot.framasoft|contact.framasoft|degooglisons-internet|forum.framasoft|framabag|framabee|framabin|framablog|framaboard|framabookin|framabook|framacalc|framacloud|framacode|framacolibri|framadate|framadrive|framadrop|framadvd|framagames|framakey|framalab|framalang|frama.link|framandroid|framanews|framapack|framaphonie|framapic|framasoft|framasphere|framastart|framastats|framatube|framavectoriel|framazic|framindmap|participer.framasoft|soutenir.framasoft|wiki.framasoft)$/i.test(f$_site)) {
+    f$_apple_touch_icon = f$_site+'.png';
+}
+
+

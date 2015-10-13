@@ -310,14 +310,7 @@ function f$_start_jquery() {
             if (!f$_keep_icons) {
                 f$('link[rel*=icon]').remove();
                 f$_favicon = (!f$_favicon) ? 'favicon-violet.png' : f$_favicon;
-                if(!f$_apple_touch_icon) {
-                    f$.ajax({
-                        url: f$_nav+'img/icons/'+f$_site+'.png',
-                        type: 'HEAD',
-                        error: f$_apple_touch_icon = 'apple-violet.png',
-                        success: f$_apple_touch_icon = f$_site+'.png'
-                    });
-                }
+                f$_apple_touch_icon = (!f$_apple_touch_icon) ? 'apple-violet.png' : f$_apple_touch_icon;
                 f$('head').append('<link rel="icon" type="image/png" href="'+f$_nav+'img/icons/'+f$_favicon+'" />');
                 f$('head').append('<link rel="apple-touch-icon" href="'+f$_nav+'img/icons/'+f$_apple_touch_icon+'" />');
             }
