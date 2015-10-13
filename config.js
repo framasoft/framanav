@@ -311,8 +311,6 @@ switch (f$_site) {
     break;
 //-- <framapad> ----------------------------------------------------------------
     case 'framapad':
-        f$_jquery = 'html';
-        f$_css_position = 'end';
         f$_modal_don_txtdl1 = 'd’utiliser';
         f$_modal_don_txtdl2 = 'créer un pad';
         f$_modal_don_liendl = 'a[href*=".framapad.org/p/"]';
@@ -600,5 +598,3 @@ if (/(contact.|participer.|soutenir.|stats|status.)/i.test(f$_site)) {
 if (/^(bot.framasoft|contact.framasoft|degooglisons-internet|forum.framasoft|framabag|framabee|framabin|framablog|framaboard|framabookin|framabook|framacalc|framacloud|framacode|framacolibri|framadate|framadrive|framadrop|framadvd|framagames|framakey|framalab|framalang|frama.link|framandroid|framanews|framapack|framapad|framaphonie|framapic|framasoft|framasphere|framastart|framastats|framatube|framavectoriel|framazic|framindmap|participer.framasoft|soutenir.framasoft|wiki.framasoft)$/i.test(f$_site)) {
     f$_apple_touch_icon = f$_site+'.png';
 }
-
-
