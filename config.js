@@ -118,15 +118,17 @@ switch (f$_site) {
     case 'trouvons' : f$_site = 'framabee'; break;
     case 'test.framacalc' : f$_site = 'framacalc'; break;
 }
-if (f$_site.indexOf('framaboard') > -1) { f$_site = 'framaboard'; }
-if (f$_site.indexOf('framadate') > -1)  { f$_site = 'framadate'; }
-if (f$_site.indexOf('.framapad') > -1
-        && !(f$_site.indexOf('nav.') > -1)
-        && !(f$_site.indexOf('mypads.') > -1))
-    || (f$_site.indexOf('mypads.framapad') > -1 && f$_page('/p/')) {
-   f$_site = 'instances.framapad';
-}
+
 if (/(n1.|n2.|n3.|n4.|n5.|n6.|nav.)/i.test(f$_site)) { f$_site = 'nav'; }
+
+if (f$_site.indexOf('framaboard') > -1) { f$_site = 'framaboard'; }
+
+if (f$_site.indexOf('framadate') > -1)  { f$_site = 'framadate'; }
+
+if ((f$_site.indexOf('.framapad') > -1 && !(f$_site.indexOf('mypads.') > -1))
+    || (f$_site.indexOf('mypads.framapad') > -1 && f$_page('/p/'))) {
+    f$_site = 'instances.framapad';
+}
 
 // À propos
 var f$_host = 'hetzner';
