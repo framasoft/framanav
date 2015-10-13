@@ -1,4 +1,4 @@
-var f$_version = '141008';
+var f$_version = '141013';
 var f$_site = window.location.host
 f$_site = f$_site.replace(/^(www|test)\./i,"");
 f$_site = f$_site.replace(/\.(com|net|org|fr|pro)$/i,"");
@@ -390,7 +390,7 @@ function f$_start_jquery() {
                                        .replace('legals.html', 'legals.html#'+f$_host);
                     });
                 });
-                f$(window).on('resize', function() {
+                f$(window).on('resize, scroll', function() {
                     f$('#framafooter').css('position','relative');
                     if(f$('body').height() < f$(window).height()) {
                         f$('#framafooter').css('position','absolute');
