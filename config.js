@@ -181,10 +181,12 @@ switch (f$_site) {
         //Opt-in
         //f$_email_field1 = '#c_mail';
         f$_alert_type = 'warning';
+        f$_alert_cookie_name = 'nav-nldw';
         f$_alert_text =
-        '<div style="margin:0 auto; max-width:800px;">'+
-            '<p class="text-center">Avant-première des <a href="http://framablog.org/2015/10/23/les-nouveaux-loups-du-web-lavant-premiere/">« Nouveaux Loups du Web », documentaire de Cullen Hoback</a> (Paris, 15/11), suivi d’un débat animé par La Quadrature et Framasoft</p>'+
+        '<div style="margin:0 auto; max-width:750px;">'+
+            '<p class="text-center">Avant-première des <strong><a href="http://framablog.org/2015/10/23/les-nouveaux-loups-du-web-lavant-premiere/">« Nouveaux Loups du Web », documentaire de Cullen Hoback</a></strong>, (Paris, 15/11) suivi d’un débat animé par La Quadrature et Framasoft</p>'+
         '</div>';
+        
     break;
     case 'framaboard' :
         if(f$_page('.framaboard')) {
@@ -393,9 +395,10 @@ switch (f$_site) {
             f$_apple_touch_icon = 'framalibre.png';
         } else {
             f$_alert_type = 'warning';
+            f$_alert_cookie_name = 'nav-nldw';
             f$_alert_text =
-            '<div style="margin:0 auto; max-width:800px;">'+
-                '<p class="text-center">Avant-première des <a href="http://framablog.org/2015/10/23/les-nouveaux-loups-du-web-lavant-premiere/">« Nouveaux Loups du Web », documentaire de Cullen Hoback</a> (Paris, 15/11), suivi d’un débat animé par La Quadrature et Framasoft</p>'+
+            '<div style="margin:0 auto; max-width:750px;">'+
+                '<p class="text-center">Avant-première des <strong><a href="http://framablog.org/2015/10/23/les-nouveaux-loups-du-web-lavant-premiere/">« Nouveaux Loups du Web », documentaire de Cullen Hoback</a></strong>, (Paris, 15/11) suivi d’un débat animé par La Quadrature et Framasoft</p>'+
             '</div>';
         }
     break;
