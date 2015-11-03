@@ -526,7 +526,7 @@ function f$_start_jquery() {
                         f$_alert_margin_top = '';
                         if (f$_nav_static || f$_page('/nav/html/')) {
                             f$('#framanav_container ~ *:not(script):first').css('margin-top', '-=42');
-                            f$_alert_margin_top = ' padding-top:42px;';
+                            f$_alert_margin_top = ' padding-top:52px;';
                         }
 
                         f$('#framanav_container').after(
