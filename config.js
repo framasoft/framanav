@@ -256,6 +256,14 @@ switch (f$_site) {
         if(f$_page('infos_sondage.php?choix_sondage')) { // Opt-in
             f$_email_field1 = '#formulaire input[name="adresse"]';
         }
+        if(f$_page('/admin')) {
+            f$_alert_type = 'danger';
+            f$_alert_cookie_name = 'nav-bugdate';
+            f$_alert_text =
+            '<div style="margin:0 auto; max-width:800px;">'+
+                '<p class="text-center">Depuis la dernière mise à jour de Framadate, <a href="https://git.framasoft.org/framasoft/framadate/issues/109">la suppression des colonnes des sondages ne fonctionne plus</a>. Les developpeurs bénévoles tentent de corriger ce bug au plus vite. Désolé pour le désagrément.</p>'+
+            '</div>';
+        }
         /** Extra <script> **/
         if(window.location.host == 'framadate.org') {
             jQuery(document).ready(function(){
