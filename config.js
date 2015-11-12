@@ -420,7 +420,7 @@ switch (f$_site) {
         f$_jquery = 'html';
         f$_video_js = true;
         f$_host = 'ovh';
-        f$_page('/embed_player') {
+        if(f$_page('/embed_player')) {
             f$_not_in_frame = false;
             f$_NoMsg();
         }
