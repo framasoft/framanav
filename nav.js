@@ -1,4 +1,4 @@
-var f$_version = '141013';
+var f$_version = '151112';
 var f$_site = window.location.host
 f$_site = f$_site.replace(/^(www|test)\./i,"");
 f$_site = f$_site.replace(/\.(com|net|org|fr|pro)$/i,"");
@@ -6,6 +6,13 @@ f$_site = f$_site.replace(/\.(com|net|org|fr|pro)$/i,"");
 var f$_url = window.location.href;
 
 var f$_not_in_frame = (top.location==self.document.location); // Pas dans une Frame
+
+// Détection du navigateur
+var f$_isOpera = !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+var f$_isFirefox = typeof InstallTrigger !== 'undefined';
+var f$_isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+var f$_isChrome = !!window.chrome && !f$_isOpera;
+var f$_isIE = /*@cc_on!@*/false || !!document.documentMode;
 
 // console n'existe pas sur IE8
 (function() {
@@ -274,7 +281,12 @@ function f$_start_jquery() {
                     'class':'video-js vjs-default-skin',
                     'data-setup':'{}'});
                 // Numérotation des vidéos (pour pouvoir utiliser l'API : videojs('id').ready() )
-                f$('video').each(function(index) { f$(this).attr('id','f_video_'+index); });
+                f$('video').each(function(index) { 
+                    if(f$(this).has('source[type*="webm"]').length && (f$_isFirefox || f$_isOpera || f$_isChrome)) {
+                        f$(this).children('source[type*="mp4"]').remove();
+                    }
+                    f$(this).attr('id','f_video_'+index); 
+                });
 
                 f$.getScript(f$_nav+'lib/video-js/video.js', function() {
                     console.log('✔ video.js');
