@@ -103,12 +103,6 @@ var f$_apple_touch_icon = false;                    // f$_site+'.png' par défau
     f$_alert_modal_text = '';
     f$_modal_don_liendl = '';
 */
-    f$_alert_type = 'warning';
-    f$_alert_cookie_name = 'nav-nldw';
-    f$_alert_text =
-    '<div style="margin:0 auto; max-width:750px;">'+
-        '<p class="text-center">Avant-première des <strong><a href="http://framablog.org/2015/10/23/les-nouveaux-loups-du-web-lavant-premiere/">« Nouveaux Loups du Web », documentaire de Cullen Hoback</a></strong>, (Paris, 15/11) suivi d’un débat animé par La Quadrature et Framasoft</p>'+
-    '</div>';
 
 /***********************************************************************
  *                          Config des sites                           *
