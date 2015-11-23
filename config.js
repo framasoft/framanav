@@ -280,6 +280,12 @@ switch (f$_site) {
         } else {
             f$_footer = true;
             f$_video_js = true;
+            f$_alert_type = 'info';
+            f$_alert_cookie_name = 'drive-update';
+            f$_alert_text =
+            '<div style="margin:0 auto; max-width:800px;">'+
+                '<p class="text-center">Attention, Framadrive sera en maintenance et indisponible mardi 24/11 dès 10h. Coupure prévue : 15 min. Plus d’infos sur <a href="https://status.framasoft.org/">status.framasoft.org</a>.</p>'+
+            '</div>';
         }
     break;
     case 'framagames':
