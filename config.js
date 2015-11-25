@@ -167,6 +167,9 @@ switch (f$_site) {
     break;
     case 'framabee' :
         f$_jquery = 'html'; f$_bootstrap_js = 'html';
+        jQuery(document).ready(function() {
+            jQuery('#q').focus(); jQuery('.footer').hide(); jQuery('body').css('margin-bottom','0');
+        });
     break;
     case 'framabin' :
         f$_jquery = 'html';
