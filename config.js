@@ -235,6 +235,16 @@ switch (f$_site) {
         }
         f$_host = 'ovh';
     break;
+    case 'framacarte' :
+        f$_modal_don_txtdl1 = 'd’utiliser';
+        f$_modal_don_txtdl2 = 'créer une carte';
+        f$_modal_don_liendl = 'a.btn-primary[href*="/map/new/"]';
+        if(f$_page('map/new') && f$_not_in_frame) {
+            f$_extra_css = true;
+            f$_NoMsg();
+            f$_footer = false;
+        }
+    break;
     case 'framacloud' : f$_nav_static = true; f$_audio_js = true; f$_video_js = true;
     break;
     case 'framacode' :
@@ -553,6 +563,7 @@ switch (f$_site) {
     case 'framadrive' :             f$_piwik_id = '40'; f$_piwik_url = 'https://framadrive.org/'; break;
     case 'framaboard' :             f$_piwik_id = '41'; break;
     case 'framadrop' :              f$_piwik_id = '42'; break;
+    case 'framacarte' :             f$_piwik_id = '43'; break;
 }
 
 if(f$_piwik_id != '') {
@@ -593,7 +604,7 @@ if (/(dvd|key|libre|android|pack|start)/i.test(f$_site)) {
 if (/(blog|book|lang|tube|zic)/i.test(f$_site)) {
     f$_favicon = 'favicon-rouge.png';
 }
-if (/(frama.link|bag|bee|bin|calc|cloud|date|games|git.|news|pad|pic|sphere|vectoriel|mindmap|board|drive|drop)/i.test(f$_site)) {
+if (/(frama.link|bag|bee|bin|calc|carte|cloud|date|games|git.|news|pad|pic|sphere|vectoriel|mindmap|board|drive|drop)/i.test(f$_site)) {
     f$_favicon = 'favicon-vert.png';
 }
 if (/(forum.|code|lab|phonie|wiki.)/i.test(f$_site)) {
@@ -603,6 +614,6 @@ if (/(contact.|participer.|soutenir.|stats|status.)/i.test(f$_site)) {
     f$_favicon = 'favicon-orange.png';
 }
 
-if (/^(bot.framasoft|contact.framasoft|degooglisons-internet|forum.framasoft|framabag|framabee|framabin|framablog|framaboard|framabookin|framabook|framacalc|framacloud|framacode|framacolibri|framadate|framadrive|framadrop|framadvd|framagames|framakey|framalab|framalang|frama.link|framandroid|framanews|framapack|framapad|framaphonie|framapic|framasoft|framasphere|framastart|framastats|framatube|framavectoriel|framazic|framindmap|participer.framasoft|soutenir.framasoft|wiki.framasoft)$/i.test(f$_site)) {
+if (/^(bot.framasoft|contact.framasoft|degooglisons-internet|forum.framasoft|framabag|framabee|framabin|framablog|framaboard|framabookin|framabook|framacalc|framacarte|framacloud|framacode|framacolibri|framadate|framadrive|framadrop|framadvd|framagames|framakey|framalab|framalang|frama.link|framandroid|framanews|framapack|framapad|framaphonie|framapic|framasoft|framasphere|framastart|framastats|framatube|framavectoriel|framazic|framindmap|participer.framasoft|soutenir.framasoft|wiki.framasoft)$/i.test(f$_site)) {
     f$_apple_touch_icon = f$_site+'.png';
 }
