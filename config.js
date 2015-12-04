@@ -247,11 +247,14 @@ switch (f$_site) {
     break;
     case 'framadate' :
         f$_jquery = 'html'; f$_bootstrap_js = 'html';
-        f$_modal_don_txtdl1 = 'd’utiliser';
-        f$_modal_don_txtdl2 = 'créer un sondage';
-        f$_modal_don_liendl = 'a[href*="create_poll.php?"]';
-        if(f$_page('create_poll.php?')) { // Opt-in
-            f$_email_field1 = '#formulaire input#email';
+        var f$_dateLang = document.getElementsByTagName("html")[0].getAttribute("lang");
+        if(f$_dateLang == "fr" ) {
+            f$_modal_don_txtdl1 = 'd’utiliser';
+            f$_modal_don_txtdl2 = 'créer un sondage';
+            f$_modal_don_liendl = 'a[href*="create_poll.php?"]';
+            if(f$_page('create_poll.php?')) { // Opt-in
+                f$_email_field1 = '#formulaire input#email';
+            }
         }
         /** Extra <script> **/
         if(window.location.host == 'framadate.org') {
