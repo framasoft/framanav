@@ -68,15 +68,6 @@ var f$_start_config = function() {
                 console.log('✔ jQuery.noConflict '+f$_njQv+' AJAX');
                 f$_loadScript(f$_nav+'lib/jquery/jquery.min.js', f$_start_jquery);
             break;
-            case 'fQuery' : // Depreciated
-                if (window.fQuery === undefined) {
-                    console.log('✔ fQuery '+f$_njQv+' AJAX');
-                    f$_loadScript(f$_nav+'lib/jquery/fquery.min.js', f$_start_jquery);
-                } else {
-                    console.log('✔ fQuery HTML');
-                    f$_start_jquery();
-                }
-            break;
             default:
                 if (window.jQuery === undefined) {
                     console.error('✘ jQuery');
@@ -152,7 +143,6 @@ function f$_start_jquery() {
      * Nav
      */
     switch (f$_jquery) {
-        case 'fQuery'    : var f$ = fQuery; break;
         case 'noConflict': var f$ = jQuery.noConflict(); break;
         default          : var f$ = jQuery;break;
     }
@@ -243,17 +233,10 @@ function f$_start_jquery() {
                     console.log('✔ Bootstrap HTML');
                     go_BootStrap();
                 } else {
-                    if (f$_jquery == 'fQuery') {
-                        f$.getScript(f$_nav+'lib/bootstrap/js/fbootstrap.min.js', function() {
-                            console.log('✔ fBootstrap Ajax');
-                            go_BootStrap();
-                        });
-                    } else {
-                        f$.getScript(f$_nav+'lib/bootstrap/js/bootstrap.min.js', function() {
-                            console.log('✔ Bootstrap Ajax');
-                            go_BootStrap();
-                        });
-                    }
+                    f$.getScript(f$_nav+'lib/bootstrap/js/bootstrap.min.js', function() {
+                        console.log('✔ Bootstrap Ajax');
+                        go_BootStrap();
+                    });
                 }
             } else {
                 console.info('✘ Bootstrap');
@@ -281,11 +264,11 @@ function f$_start_jquery() {
                     'class':'video-js vjs-default-skin',
                     'data-setup':'{}'});
                 // Numérotation des vidéos (pour pouvoir utiliser l'API : videojs('id').ready() )
-                f$('video').each(function(index) { 
+                f$('video').each(function(index) {
                     if(f$(this).has('source[type*="webm"]').length && (f$_isFirefox || f$_isOpera || f$_isChrome)) {
                         f$(this).children('source[type*="mp4"]').remove();
                     }
-                    f$(this).attr('id','f_video_'+index); 
+                    f$(this).attr('id','f_video_'+index);
                 });
 
                 f$.getScript(f$_nav+'lib/video-js/video.js', function() {
@@ -443,7 +426,6 @@ function f$_start_jquery() {
             function go_BootStrap() {
                 // Redéfini f$ pour Bootstrap en mode noConflict si nécessaire
                 switch (f$_jquery) {
-                    case 'fQuery'    : var f$ = fQuery; break;
                     case 'noConflict': var f$ = jQuery.noConflict(); break;
                     default          : var f$ = jQuery; break;
                 }

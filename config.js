@@ -5,7 +5,6 @@ var f$_config = 'global';
 var f$_jquery = 'jQuery';                           // 'jQuery'     = jQuery de la nav ;
                                                     // 'html'       = jQuery (1.10.2 ou +) présent dans la page ;
                                                     // 'noConflict' = variable $ et jQuery renommés en js ;
-                                                    // 'fQuery'     = fQuery + fBootstrap, variable $ et jQuery renommés en dur ;
 
 var f$_cache = true;                                // Obligatoire en prod
 
@@ -385,7 +384,6 @@ switch (f$_site) {
     break;
     case 'framapic':
         f$_jquery = 'noConflict';
-        f$_css_position = 'end'; jQuery(document).ready(function() { jQuery('body').css('background','#eee'); });
         f$_modal_don_txtdl1 = 'd’utiliser';
         f$_modal_don_txtdl2 = 'utiliser Framapic';
         f$_modal_don_liendl = 'onstart';

@@ -17,3 +17,7 @@
 #storage-alert-container {
     top: 42px;
 }
+
+#storage-tooltip-container {
+    top: 102px;
+}
