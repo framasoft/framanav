@@ -385,7 +385,6 @@ switch (f$_site) {
     break;
     case 'framapic':
         f$_jquery = 'noConflict';
-        f$_css_position = 'end'; jQuery(document).ready(function() { jQuery('body').css('background','#eee'); });
         f$_modal_don_txtdl1 = 'd’utiliser';
         f$_modal_don_txtdl2 = 'utiliser Framapic';
         f$_modal_don_liendl = 'onstart';
