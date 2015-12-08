@@ -354,6 +354,8 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
     margin-bottom:10px;
     font-size:13px;
     padding:10px;
+    min-width: 555px; /* wordpress */
+    line-height: 17px;
 }
 #fs_opt-in small {
     font-size:11px;
@@ -362,6 +364,7 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
 #fs_opt-in input {
     margin:0;
     width:auto !important;
+    display:inline !important;
 }
 
 #fs_opt-in label {

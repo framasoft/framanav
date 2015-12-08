@@ -135,9 +135,6 @@ var f$_host = 'hetzner';
 var f$_credits = f$_site;
 
 switch (f$_site) {
-    case 'dev.framakey' : 
-        f$_email_field1 = '#email';
-    break;
     case 'bot.framasoft' : f$_NoMsg(); f$_footer = false; break;
     case 'connard' :
         f$_jquery = 'noConflict';
@@ -183,8 +180,7 @@ switch (f$_site) {
         f$_nav_static = true;
         f$_audio_js = true;
         f$_video_js = true;
-        //Opt-in
-        //f$_email_field1 = '#c_mail';
+        f$_email_field1 = '#commentform #email';
     break;
     case 'framaboard' :
         if(f$_page('.framaboard')) {
@@ -195,6 +191,8 @@ switch (f$_site) {
             jQuery(document).ready(function() {
                 jQuery('h1 .logo').html('<b class="violet">Frama</b><b class="vert">board</b>').removeClass('logo');
             });
+        } else {
+            f$_email_field1 = '#registration #email';
         }
     break;
     case 'framabook' :
@@ -247,7 +245,11 @@ switch (f$_site) {
             f$_footer = false;
         }
     break;
-    case 'framacloud' : f$_nav_static = true; f$_audio_js = true; f$_video_js = true;
+    case 'framacloud' :
+        f$_nav_static = true;
+        f$_audio_js = true;
+        f$_video_js = true;
+        f$_email_field1 = '#commentform #email';
     break;
     case 'framacode' :
     break;
