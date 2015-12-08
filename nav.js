@@ -316,7 +316,7 @@ function f$_start_jquery() {
                 f$(f$_email_field1).after(
                     '<div class="alert alert-info fade in" id="fs_opt-in">'+
                     '<input type="checkbox" id="fs_opt-in_checkbox" value="false" />'+
-                    '<label for="fs_opt-in_checkbox">J’accepte de recevoir à cette adresse des informations importantes de la part de Framasoft</label>'+
+                    '<label for="fs_opt-in_checkbox">J’accepte que Framasoft m’envoie à cette adresse des informations importantes</label>'+
                     '<br /><small>(Promis, nous ne revendons pas nos fichiers, même à la NSA&nbsp;! '+
                     '<a href="https://contact.framasoft.org/newsletter" id="link-opt-in" target="_blank" >Pourquoi m’inscrire&nbsp;?&nbsp;<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span></a>)</small></div>'
                 );
