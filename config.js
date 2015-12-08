@@ -135,7 +135,7 @@ var f$_host = 'hetzner';
 var f$_credits = f$_site;
 
 switch (f$_site) {
-    case 'dev.framakey.org' : 
+    case 'dev.framakey' : 
         f$_email_field1 = '#email';
     break;
     case 'bot.framasoft' : f$_NoMsg(); f$_footer = false; break;
