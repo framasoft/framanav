@@ -349,7 +349,7 @@ function f$_start_jquery() {
                             type: "POST",
                             url: 'https://contact.framasoft.org/php_list/lists/?p=subscribe&id=2', // URL d'abonnement à la liste
                             crossDomain:true,
-                            data: 'makeconfirmed=1&htmlemail=0&list%5B5%5D=signup&listname%5B5%5D=Newsletter&email='+f$_email.replace('@','%40')+'&VerificationCodeX=&subscribe=Abonnement' // Paramètres habituellement passés dans le formulaire
+                            data: 'makeconfirmed=1&htmlemail=1&list%5B5%5D=signup&listname%5B5%5D=Newsletter&email='+f$_email.replace('@','%40')+'&VerificationCodeX=&subscribe=Abonnement' // Paramètres habituellement passés dans le formulaire
                         });
                         // On supprime la case à cocher (pas possible de décocher ; l'annulation se fait depuis le mail reçu)
                         f$('#fs_opt-in').remove();
