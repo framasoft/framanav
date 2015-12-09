@@ -354,8 +354,12 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
     margin-bottom:10px;
     font-size:13px;
     padding:10px;
-    min-width: 555px; /* wordpress */
     line-height: 17px;
+}
+#commentform #fs_opt-in,
+#commentform #fs_opt-in_confirm,
+#commentform #fs_opt-in_error {  /* wordpress */
+    min-width: 555px;
 }
 #fs_opt-in small {
     font-size:11px;
