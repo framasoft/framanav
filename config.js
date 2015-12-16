@@ -360,7 +360,7 @@ switch (f$_site) {
         f$_NoMsg();
         jQuery('document').ready(function () {
             jQuery('#loading').append('<p class="small">Si le pad refuse de s’afficher, essayez de télécharger<br/>l’export <a href="'+location.href+'/export/html">html</a> ou <a href="'+location.href+'/export/txt">txt</a> de votre document et <a href="https://contact.framasoft.org/#framapad">contactez-nous</a>.</p>');
-            jQuery('#exportopena, #exportetherpad').hide();
+            jQuery('#exportopena, #exportetherpada').hide();
         });
         f$_footer = false;
         f$_credits = 'framapad';
