@@ -239,7 +239,7 @@ switch (f$_site) {
         f$_modal_don_txtdl1 = 'd’utiliser';
         f$_modal_don_txtdl2 = 'créer une carte';
         f$_modal_don_liendl = 'a.btn-primary[href*="/map/new/"]';
-        if(f$_page('map/new') && f$_not_in_frame) {
+        if(f$_page('/map/') && f$_not_in_frame) {
             f$_extra_css = true;
             f$_NoMsg();
             f$_footer = false;
