@@ -109,7 +109,7 @@ var f$_dd = f$_today.getDate();
 var f$_mm = f$_today.getMonth()+1;
 var f$_yyyy = f$_today.getFullYear();
 
-if(f$_mm == 12 && (31-f$_dd) < 15) {
+if(f$_mm == 12 && (31-f$_dd) < 15 && f$_site != 'soutenir.framasoft') {
     f$_rebours = ((31-f$_dd) == 1) ? '24 heures' : 31-f$_dd+' jours';
     f$_alert_type = 'info';
     f$_alert_text =
