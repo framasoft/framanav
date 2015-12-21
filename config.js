@@ -103,6 +103,22 @@ var f$_apple_touch_icon = false;                    // f$_site+'.png' par défau
     f$_modal_don_liendl = '';
 */
 
+// Bandeau soutenir défiscalisation
+var f$_today = new Date();
+var f$_dd = f$_today.getDate();
+var f$_mm = f$_today.getMonth()+1;
+var f$_yyyy = f$_today.getFullYear();
+
+if(f$_mm == 12 && (31-f$_dd) < 15) {
+    f$_rebours = ((31-f$_dd) == 1) ? '24 heures' : 31-f$_dd+' jours';
+    f$_alert_type = 'info';
+    f$_alert_text =
+        '<div style="margin:0 auto; max-width:800px;">'+
+            '<p class="text-center">Rappel : il vous reste <b>'+f$_rebours+'</b> pour faire un <b>don défiscalisé en '+f$_yyyy+'</b> à Framasoft.'+
+            '<br/>Merci pour votre soutien <a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir"><i class="fa fa-heart"></i><span class="sr-only">Faire un don ?</a></p>'+
+        '</div>';
+}
+
 /***********************************************************************
  *                          Config des sites                           *
  ***********************************************************************/
@@ -229,9 +245,6 @@ switch (f$_site) {
             f$_responsive = false;
             f$_NoMsg();
             f$_footer = false;
-            f$_alert_modal_title = 'Avertissements';
-            f$_alert_modal_text = "<h3>Suppression automatique</h3><p>Votre calc sera supprimé au bout d'un an d'inactivité (aucun accès, aucune modification pendant un an).<br/>Ceci nous permet d'éviter de faire grossir indéfiniment la base de données.</p><h3>Information</h3><p>Nous avons changé d'instance de Framacalc le 11 février 2015 suite à des bugs répétés. Pour retrouver votre calc, il vous faudra vous rendre sur <span style='white-space: nowrap;'>http://old.framacalc.org/le_nom_de_mon_calc</span></p><p>Pour exporter votre calc au format CSV, il suffit d'ajouter \".csv\" à la fin de l'adresse du calc (<span style='white-space: nowrap;'>https://framacalc.org/le_nom_de_mon_calc.csv</span>, <span style='white-space: nowrap;'>http://old.framacalc.org/le_nom_de_mon_calc.csv</span> pour l'ancienne instance)</p>";
-            f$_alert_modal_cookie_name = 'nav-alert-modal-warning-framacalc';
         }
         f$_host = 'ovh';
     break;
