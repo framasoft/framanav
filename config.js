@@ -580,6 +580,8 @@ switch (f$_site) {
     case 'framaboard' :             f$_piwik_id = '41'; break;
     case 'framadrop' :              f$_piwik_id = '42'; break;
     case 'framacarte' :             f$_piwik_id = '43'; break;
+    case 'framaforms' :             f$_piwik_id = '44'; break;
+    case 'framapetition' :          f$_piwik_id = '45'; break;
 }
 
 if(f$_piwik_id != '') {
@@ -620,7 +622,7 @@ if (/(dvd|key|libre|android|pack|start)/i.test(f$_site)) {
 if (/(blog|book|lang|tube|zic)/i.test(f$_site)) {
     f$_favicon = 'favicon-rouge.png';
 }
-if (/(frama.link|bag|bee|bin|calc|carte|cloud|date|games|git.|news|pad|pic|sphere|vectoriel|mindmap|board|drive|drop)/i.test(f$_site)) {
+if (/(frama.link|bag|bee|bin|calc|carte|cloud|date|forms|games|git.|news|pad|petition|pic|sphere|vectoriel|mindmap|board|drive|drop)/i.test(f$_site)) {
     f$_favicon = 'favicon-vert.png';
 }
 if (/(forum.|code|lab|phonie|wiki.)/i.test(f$_site)) {
