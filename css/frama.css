@@ -562,7 +562,7 @@ fieldset[disabled] .btn-success.active {
     background-color: #fff;
 }
 .btn-info {
-    color:rgba(255, 255, 255, 0.87);
+    color:rgba(255, 255, 255, 0.87) !important;
     text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
     background-color: #11809E;
     border-color: #11809E;
