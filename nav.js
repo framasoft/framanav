@@ -558,6 +558,7 @@ function f$_start_jquery() {
                                         '<p class="col-md-6 text-center"><a target="_blank" id="modal-don" href="https://soutenir.framasoft.org/?f=modal&s='+f$_site+'" class="btn btn-soutenir btn-block"><span class="fa fa-fw fa-lg fa-heart"></span> Je veux faire un don<br /> à l’association Framasoft&nbsp;<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span></a></p>'+
                                         '<p class="col-md-6 text-center"><a target="_blank" id="modal-contact" href="https://participer.framasoft.org" class="btn btn-info btn-block"><span class="fa fa-fw fa-lg fa-paw"></span> Je veux participer.<br />Par où on commence ?&nbsp;<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span></a></p>'+
                                         '<p class="clearfix text-right"><a id="modal-dl" href="javascript:void(0);" class="text-primary" >Non merci, je souhaite seulement '+f$_modal_don_txtdl2+'</a></p>'+
+                                        '<p class="clearfix text-right"><a id="modal-dl2" href="javascript:void(0);" class="text-primary" >Je soutiens déjà Framasoft</a></p>'+
                                     '</div>'+
                                 '</div>'+
                             '</div>'+
@@ -572,6 +573,10 @@ function f$_start_jquery() {
                                     setCookie('dondl',true,f$_modal_don_cookie);
                                     f$('#modal-soutenir').modal('hide');
                                 });
+                                f$('#modal-dl2').click(function() {
+                                    setCookie('dondl',true,365*24*60*60*1000);
+                                    f$('#modal-soutenir').modal('hide');
+                                });
                             }
                         } else {
                             f$(f$_modal_don_liendl).click(function() {
@@ -584,7 +589,12 @@ function f$_start_jquery() {
                                         f$('#modal-soutenir').modal('hide');
                                         window.location.href = link;
                                     });
-                                return false;
+                                    f$('#modal-dl2').click(function() {
+                                        setCookie('dondl',true,365*24*60*60*1000);
+                                        f$('#modal-soutenir').modal('hide');
+                                        window.location.href = link;
+                                    });
+                                    return false;
                                 }
                             });
                         }
