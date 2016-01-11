@@ -245,6 +245,15 @@ switch (f$_site) {
             f$_responsive = false;
             f$_NoMsg();
             f$_footer = false;
+            jQuery(document).ready(function() {
+                setTimeout(function() {
+                    if ($('#SocialCalc-graphtab')) {
+                        $('#SocialCalc-graphtab').parent().append(
+                            '<td style="'+$('#SocialCalc-graphtab').attr('style')+'" onclick="window.open(\'/history/'+window.location.pathname+'\');">Anciennes révisions</td>'
+                        );
+                    }
+                }, 5000);
+            });
         }
         f$_host = 'ovh';
     break;
