@@ -249,7 +249,7 @@ switch (f$_site) {
                 setTimeout(function() {
                     if ($('#SocialCalc-graphtab')) {
                         $('#SocialCalc-graphtab').parent().append(
-                            '<td style="'+$('#SocialCalc-graphtab').attr('style')+'" onclick="window.open(\'/history/'+window.location.pathname+'\');">Anciennes révisions</td>'
+                            '<td style="'+$('#SocialCalc-graphtab').attr('style')+'" onclick="window.open(\'/history'+window.location.pathname+'\');">Anciennes révisions</td>'
                         );
                     }
                 }, 5000);
