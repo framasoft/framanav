@@ -385,7 +385,7 @@ function f$_start_jquery() {
                                        .replace('legals.html', 'legals.html#'+f$_host);
                     });
                 });
-                f$(window).on('resize, scroll', function() {
+                f$(window).on('resize, scroll, click', function() {
                     f$('#framafooter').css('position','relative');
                     if(f$('body').height() < f$(window).height()) {
                         f$('#framafooter').css('position','absolute');
