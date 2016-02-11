@@ -200,12 +200,13 @@ switch (f$_site) {
     break;
     case 'framaboard' :
         if(f$_page('.framaboard')) {
-            f$_jquery = 'html';f$_bootstrap = 'html';
+            f$_jquery = 'html'; f$_bootstrap_js = 'html';
             f$_footer = false;
             f$_NoMsg();
             f$_bootstrap_css = false;
             jQuery(document).ready(function() {
-                jQuery('h1 .logo').html('<b class="violet">Frama</b><b class="vert">board</b>').removeClass('logo');
+                jQuery('h1 .logo a').html('<b class="violet">Frama</b><b class="vert">board</b>');
+                jQuery('h1 .logo').removeClass('logo');
             });
         } else {
             f$_email_field1 = '#registration #email';
