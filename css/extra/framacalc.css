@@ -6,6 +6,16 @@
 #tableeditor {
     margin: 16px 10px 10px 8px;
 }
+#tableeditor > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) {
+    background-color: rgb(204, 204, 204) !important;
+}
+#SocialCalc-edittools img {
+    border: none !important;
+    background-color: rgb(204, 204, 204) !important;
+}
+#SocialCalc-edittools img:hover {
+    background-color: rgb(220, 220, 220) !important;
+}
 #msg {
         top:48px;
 }
