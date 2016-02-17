@@ -230,7 +230,7 @@ switch (f$_site) {
         });
     break;
     case 'framacalc' :
-        if(f$_page('framacalc.org/_start')) {
+        if(f$_page('framacalc.org/_start') || window.location.href == 'https://framacalc.org/') {
          // Si on est sur la page d'accueil
             f$_modal_don_txtdl1 = 'd’utiliser';
             f$_modal_don_txtdl2 = 'créer un calc';
