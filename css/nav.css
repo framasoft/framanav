@@ -184,7 +184,8 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
     z-index: 1029 !important;
 }
 
-.navbar-default .navbar-nav > li > a.btn-soutenir {
+.navbar-default .navbar-nav > li > a.btn-soutenir,
+.navbar-default .navbar-nav > li > a.btn-info {
     font-size:12px !important;
     color: #fff;
     text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
@@ -200,6 +201,20 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
 .navbar-default .navbar-nav > li > a.btn-soutenir:active {
     color: #fff;
     background-color: #C48a1b;
+}
+#btn-benevalo {
+    width: 135px;
+    display:none;
+    text-align:center;
+}
+.navbar-default .navbar-nav > li > a.btn-info {
+    background-color: #11809E;
+}
+.navbar-default .navbar-nav > li > a.btn-info:hover,
+.navbar-default .navbar-nav > li > a.btn-info:focus,
+.navbar-default .navbar-nav > li > a.btn-info:active {
+    color: #fff;
+    background-color: #0C5B7A;
 }
 
 /* --- on s'assure on a bien une nav collée en haut en cas de petit écran --- */

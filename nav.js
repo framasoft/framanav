@@ -1,4 +1,4 @@
-var f$_version = '151112';
+var f$_version = '160217';
 var f$_site = window.location.host
 f$_site = f$_site.replace(/^(www|test)\./i,"");
 f$_site = f$_site.replace(/\.(com|net|org|fr|pro)$/i,"");
@@ -224,6 +224,17 @@ function f$_start_jquery() {
             });
 
             f$('#framanav_container').css('opacity','1');
+
+            // Bénévalo
+            // Le bouton soutenir remplacé par un bouton bénévalo
+            // pendant 3 jours autour de la pleine lune
+            var f$_today = Math.floor(new Date().getTime() / 1000);
+            var f$_fullMoon = 1453603580; // 24/01/2016 02:46:20
+            var f$_moonRev = 2551443;     // 29j 12h 44m 3s
+
+            if((f$_today - f$_fullMoon)%f$_moonRev < 129600 || (f$_today - f$_fullMoon)%f$_moonRev > f$_moonRev-129600) {
+              f$('#btn-benevalo').show().prev().hide();
+            }
 
             /*******************
              *   BootStrap JS
