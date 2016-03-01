@@ -237,7 +237,7 @@ switch (f$_site) {
             f$_modal_don_liendl = 'a[href*="framacalc.org/"]';
             jQuery(document).ready(function() {
                 jQuery('#expiration-help').after('<div class="alert alert-warning col-sm-12 small">Pour cause d’instabilité du service nous désactivons temporairement la possibilité d’importer des fichiers .csv, .ods et .xlsx</div>');
-            }
+            });
         } else {
          // Si on n'est dans ethercalc
             f$_jquery ='noConflict';
