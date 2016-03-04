@@ -231,7 +231,7 @@ switch (f$_site) {
     break;
     case 'framacalc' :
         if(f$_page('framacalc.org/_start') || window.location.href == 'https://framacalc.org/') {
-         // Si on est sur la page d'accueil
+        // Si on est sur la page d'accueil
             f$_modal_don_txtdl1 = 'd’utiliser';
             f$_modal_don_txtdl2 = 'créer un calc';
             f$_modal_don_liendl = 'a[href*="framacalc.org/"]';
@@ -239,7 +239,13 @@ switch (f$_site) {
                 jQuery('#expiration-help').after('<div class="alert alert-warning col-sm-12 small">Pour cause d’instabilité du service nous désactivons temporairement la possibilité d’importer des fichiers .csv, .ods et .xlsx</div>');
             });
         } else {
-         // Si on n'est dans ethercalc
+        // Si on n'est dans ethercalc
+            // Calcs à onglets
+            if(top.location.href.indexOf('framacalc.org/=') > -1) {
+                document.getElementById("framanav_container").style="height:42px; opacity:0";
+                f$_not_in_frame = true;
+            }
+
             f$_jquery ='noConflict';
             if (f$_not_in_frame) {
                 f$_extra_css = true;
@@ -249,6 +255,8 @@ switch (f$_site) {
             f$_responsive = false;
             f$_NoMsg();
             f$_footer = false;
+
+            // ERT
             jQuery(document).ready(function() {
                 function calc_exists() {
                     jQuery.ajax('/ert/rev_exists'+window.location.pathname, {
@@ -258,7 +266,7 @@ switch (f$_site) {
                             if (data.exists) {
                                 setTimeout(function() {
                                     if ($('#SocialCalc-graphtab')) { $('#SocialCalc-graphtab').parent().append(
-                                        '<td style="'+$('#SocialCalc-graphtab').attr('style')+'" onclick="window.open(\'/ert'+window.location.pathname+'\');">Anciennes révisions</td>'
+                                        '<td style="'+$('#SocialCalc-graphtab').attr('style')+'" onclick="window.open(\'/ert'+window.location.pathname+'\');">Anciennes$
                                     );}
                                 }, 5000);
                             } else {
@@ -271,6 +279,10 @@ switch (f$_site) {
                 }
                 calc_exists();
             });
+            
+            // Fix CSS
+            // force le recalcul des dimensions
+            jQuery(document).ready(function() { jQuery(window).trigger('resize'); });
         }
         f$_host = 'ovh';
     break;
