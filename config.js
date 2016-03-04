@@ -477,6 +477,12 @@ switch (f$_site) {
         f$_jquery = 'html';
         f$_video_js = true;
         f$_host = 'ovh';
+        f$_alert_type = 'info';
+        f$_alert_text =
+            '<div style="margin:0 auto; max-width:800px;">'+
+                '<p class="text-center"><b class="violet">Frama</b><b class="rouge">tube</b> est réservé à l’usage exclusif de <b class="violet">Frama</b><b class="orange">soft</b> pour le moment.'+
+                '<br/>L’hebergement de vidéos sera <a href="https://degooglisons-internet.org/liste/#2017">ouvert au public en 2017</a> si nous en avons les moyens.</p>'+
+            '</div>';
         if(f$_page('/embed_player')) {
             f$_not_in_frame = false;
             f$_NoMsg();
