@@ -266,7 +266,7 @@ switch (f$_site) {
                             if (data.exists) {
                                 setTimeout(function() {
                                     if ($('#SocialCalc-graphtab')) { $('#SocialCalc-graphtab').parent().append(
-                                        '<td style="'+$('#SocialCalc-graphtab').attr('style')+'" onclick="window.open(\'/ert'+window.location.pathname+'\');">Anciennes$
+                                        '<td style="'+$('#SocialCalc-graphtab').attr('style')+'" onclick="window.open(\'/ert'+window.location.pathname+'\');">Anciennes révisions</td>'
                                     );}
                                 }, 5000);
                             } else {
