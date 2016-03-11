@@ -561,7 +561,7 @@ switch (f$_site) {
         f$_cache = false;
     break;
     case 'status.framasoft':
-        f$_jquery = 'noConflict';
+        f$_jquery = 'html';
         f$_NoMsg();
         f$_footer = false;
         f$_nav_static = true;
