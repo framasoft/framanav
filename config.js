@@ -173,6 +173,7 @@ switch (f$_site) {
         f$_modal_don_txtdl1 = 'd’utiliser';
         f$_modal_don_txtdl2 = f$_page('frama.link') ? 'utiliser Frama.link' : 'utiliser Huit.re';
         f$_modal_don_liendl = 'onstart';
+        f$_video_js = true;
     break;
     case 'framabag' :
         if(f$_page('framabag.org/u')) { // Si on n'est pas dans wallabag
@@ -191,6 +192,7 @@ switch (f$_site) {
         f$_modal_don_txtdl1 = 'd’utiliser';
         f$_modal_don_txtdl2 = 'utiliser Framabin';
         f$_modal_don_liendl = 'onstart';
+        f$_video_js = true;
     break;
     case 'framablog' :
         f$_nav_static = true;
@@ -342,6 +344,9 @@ switch (f$_site) {
             f$_video_js = true;
         }
     break;
+    case 'framadrop':
+        f$_video_js = true;
+    break;
     case 'framagames':
         f$_modal_don_txtdl1 = 'd’utiliser';
         f$_modal_don_txtdl2 = 'jouer';
@@ -440,6 +445,7 @@ switch (f$_site) {
         f$_modal_don_txtdl1 = 'd’utiliser';
         f$_modal_don_txtdl2 = 'utiliser Framapic';
         f$_modal_don_liendl = 'onstart';
+        f$_video_js = true;
     break;
     case 'framasoft':
         f$_nav_static = true;
