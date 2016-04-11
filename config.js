@@ -278,7 +278,7 @@ switch (f$_site) {
                 }
                 calc_exists();
             });
-            
+
             // Fix CSS
             // force le recalcul des dimensions
             jQuery(document).ready(function() { jQuery(window).trigger('resize'); });
@@ -629,6 +629,8 @@ switch (f$_site) {
     case 'framacarte' :             f$_piwik_id = '43'; break;
     case 'framaforms' :             f$_piwik_id = '44'; break;
     case 'framapetition' :          f$_piwik_id = '45'; break;
+    case 'framavox' :               f$_piwik_id = '47'; break;
+    case 'framateam' :              f$_piwik_id = '48'; break;
 }
 
 if(f$_piwik_id != '') {
@@ -669,7 +671,7 @@ if (/(dvd|key|libre|android|pack|start)/i.test(f$_site)) {
 if (/(blog|book|lang|tube|zic)/i.test(f$_site)) {
     f$_favicon = 'favicon-rouge.png';
 }
-if (/(frama.link|bag|bee|bin|calc|carte|cloud|date|forms|games|git.|news|pad|petition|pic|sphere|vectoriel|mindmap|board|drive|drop)/i.test(f$_site)) {
+if (/(frama.link|bag|bee|bin|calc|carte|cloud|date|forms|games|git.|news|pad|petition|pic|sphere|team|vectoriel|vox|mindmap|board|drive|drop)/i.test(f$_site)) {
     f$_favicon = 'favicon-vert.png';
 }
 if (/(forum.|code|lab|phonie|wiki.)/i.test(f$_site)) {
@@ -679,6 +681,6 @@ if (/(contact.|participer.|soutenir.|stats|status.)/i.test(f$_site)) {
     f$_favicon = 'favicon-orange.png';
 }
 
-if (/^(bot.framasoft|contact.framasoft|degooglisons-internet|forum.framasoft|framabag|framabee|framabin|framablog|framaboard|framabookin|framabook|framacalc|framacarte|framacloud|framacode|framacolibri|framadate|framadrive|framadrop|framadvd|framagames|framakey|framalab|framalang|frama.link|framandroid|framanews|framapack|framapad|framaphonie|framapic|framasoft|framasphere|framastart|framastats|framatube|framavectoriel|framazic|framindmap|participer.framasoft|soutenir.framasoft|wiki.framasoft)$/i.test(f$_site)) {
+if (/^(bot.framasoft|contact.framasoft|degooglisons-internet|forum.framasoft|framabag|framabee|framabin|framablog|framaboard|framabookin|framabook|framacalc|framacarte|framacloud|framacode|framacolibri|framadate|framadrive|framadrop|framadvd|framagames|framakey|framalab|framalang|frama.link|framandroid|framanews|framapack|framapad|framaphonie|framapic|framasoft|framasphere|framastart|framastats|framateam|framatube|framavectoriel|framavox|framazic|framindmap|participer.framasoft|soutenir.framasoft|wiki.framasoft)$/i.test(f$_site)) {
     f$_apple_touch_icon = f$_site+'.png';
 }
