@@ -125,7 +125,7 @@ if(f$_mm == 12 && (31-f$_dd) < 15 && f$_site != 'soutenir.framasoft') {
  ***********************************************************************/
 // Alias
 // On remplace juste la variable f$_site.
-// Cette variable n'est utilisée que pour charger les fichiers extra_css,
+// Cette variable n'est utilisée que pour charger les fichiers ext_css,
 // credits et placer un tracker sur un lien de la modale Soutenir
 switch (f$_site) {
     case 'localhost' : f$_site = 'localhost'; break;
@@ -321,7 +321,7 @@ switch (f$_site) {
                 f$_email_field1 = '#formulaire input#email';
             }
         }
-        /** Extra <script> **/
+        /** <script> **/
         if(window.location.host == 'framadate.org') {
             jQuery(document).ready(function(){
                 jQuery.getScript('/_charts/extra.js');
@@ -357,7 +357,7 @@ switch (f$_site) {
         f$_jquery = 'noConflict';
         f$_nav_static = true;
         f$_modal_don_liendl = 'a[href*="files.framakey.org"]';
-        /** Extra <script> **/
+        /** <script> **/
         jQuery('document').ready(function () {
             // Bouton edit dans la colonne de gauche
             jQuery('#sidebar a.wikilink[href$="SideBar?action=edit"]').attr('href',window.location.href+'?action=edit');
@@ -461,7 +461,7 @@ switch (f$_site) {
     case 'framasphere':
         f$_jquery = 'html'; f$_bootstrap_js = 'html';
         f$_css_position = 'end';
-        /** Extra <script> **/
+        /** <script> **/
         jQuery(document).ready(function() {
             jQuery('link[href*=bootstrap-complete]').remove();
         });
@@ -479,7 +479,7 @@ switch (f$_site) {
             f$_footer = false;
             f$_NoMsg();
         } else {
-            f$_extra_css = true;
+            f$_ext_css = true;
         }
     break;
     case 'framatube':
