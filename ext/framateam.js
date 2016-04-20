@@ -10,19 +10,19 @@ if(!(f$_page('channel')||f$_page('admin_console'))) {
                 '    <div id="carousel-team" class="carousel slide" role="presentation">'+
                 '        <div class="carousel-inner">'+
                 '            <div class="item active">'+
-                '                <img src="https://framaboard.org/img/slide-tableau.png" alt="" />'+
+                '                <img src="'+f$_nav+'ext/'+f$_site+'-slide-1.jpg" alt="" />'+
                 '                <div class="carousel-caption">'+
                 '                    <p>Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic.</p>'+
                 '                </div>'+
                 '            </div>'+
                 '            <div class="item">'+
-                '                <img src="https://framaboard.org/img/slide-tableau.png" alt="" />'+
+                '                <img src="'+f$_nav+'ext/'+f$_site+'-slide-1.jpg" alt="" />'+
                 '                <div class="carousel-caption">'+
                 '                    <p>Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.</p>'+
                 '                </div>'+
                 '            </div>'+
                 '            <div class="item">'+
-                '                <img src="https://framaboard.org/img/slide-tableau.png" alt="" />'+
+                '                <img src="'+f$_nav+'ext/'+f$_site+'-slide-1.jpg" alt="" />'+
                 '                <div class="carousel-caption">'+
                 '                    <p>Dandelion cucumber earthnut pea peanut soko zucchini.</p>'+
                 '                </div>'+
