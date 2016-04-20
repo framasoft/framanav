@@ -16,7 +16,8 @@ var f$_responsive = true;
 var f$_frama_css = true;
 
 var f$_nav_static = false;
-var f$_extra_css = false;                           // nav/config/nom-de-domaine_extra.css
+var f$_ext_css = false;                             // nav/ext/nom-de-domaine.css
+var f$_ext_js = false;                              // nav/ext/nom-de-domaine.js ; false ; 'jQuery' ; 'loadScript'
 var f$_footer = true;                               // charger le fichier footer.html
 
 // Popup de don
@@ -124,7 +125,7 @@ if(f$_mm == 12 && (31-f$_dd) < 15 && f$_site != 'soutenir.framasoft') {
  ***********************************************************************/
 // Alias
 // On remplace juste la variable f$_site.
-// Cette variable n'est utilisée que pour charger les fichiers extra_css,
+// Cette variable n'est utilisée que pour charger les fichiers ext_css,
 // credits et placer un tracker sur un lien de la modale Soutenir
 switch (f$_site) {
     case 'localhost' : f$_site = 'localhost'; break;
@@ -226,7 +227,7 @@ switch (f$_site) {
             f$_footer = false;
         }
         // Fix décalage de la nav
-        f$_extra_css = true;
+        f$_ext_css = true;
         jQuery('document').ready(function() {
             jQuery('.ui-page').css('margin-top','-42px');
         });
@@ -247,7 +248,7 @@ switch (f$_site) {
 
             f$_jquery ='noConflict';
             if (f$_not_in_frame) {
-                f$_extra_css = true;
+                f$_ext_css = true;
             } else {
                 f$_bootstrap_css = false;
             }
@@ -290,7 +291,7 @@ switch (f$_site) {
         f$_modal_don_txtdl2 = 'créer une carte';
         f$_modal_don_liendl = 'a.btn-primary[href*="/map/new/"]';
         if(f$_page('/map/') && f$_not_in_frame) {
-            f$_extra_css = true;
+            f$_ext_css = true;
             f$_NoMsg();
             f$_footer = false;
         }
@@ -307,7 +308,7 @@ switch (f$_site) {
         f$_jquery = 'noConflict';
         f$_NoMsg();
         f$_footer = false
-        f$_extra_css = true;
+        f$_ext_css = true;
     break;
     case 'framadate' :
         f$_jquery = 'html'; f$_bootstrap_js = 'html';
@@ -320,7 +321,7 @@ switch (f$_site) {
                 f$_email_field1 = '#formulaire input#email';
             }
         }
-        /** Extra <script> **/
+        /** <script> **/
         if(window.location.host == 'framadate.org') {
             jQuery(document).ready(function(){
                 jQuery.getScript('/_charts/extra.js');
@@ -356,7 +357,7 @@ switch (f$_site) {
         f$_jquery = 'noConflict';
         f$_nav_static = true;
         f$_modal_don_liendl = 'a[href*="files.framakey.org"]';
-        /** Extra <script> **/
+        /** <script> **/
         jQuery('document').ready(function () {
             // Bouton edit dans la colonne de gauche
             jQuery('#sidebar a.wikilink[href$="SideBar?action=edit"]').attr('href',window.location.href+'?action=edit');
@@ -370,7 +371,7 @@ switch (f$_site) {
     case 'framanews':
         if(f$_page('framanews.org/ttrss')) {
             // Si on n'est dans ttrss
-            f$_extra_css = true;
+            f$_ext_css = true;
             f$_jquery = 'noConflict';
             f$_NoMsg();
             f$_footer = false;
@@ -388,12 +389,6 @@ switch (f$_site) {
         f$_modal_don_txtdl1 = 'd’utiliser';
         f$_modal_don_txtdl2 = 'créer un pad';
         f$_modal_don_liendl = 'a[href*=".framapad.org/p/"]';
-        /*f$_alert_type = 'warning';
-        f$_alert_text =
-            '<div style="margin:0 auto; max-width:800px;">'+
-                '<p class="text-center">L’instance <b>mensuel</b>.framapad.org rencontre des difficultés pour synchroniser les données.<br/> Nous nous efforçons de résoudre ce problème.'+
-                '<br/>Plus d’informations sur <a href="https://status.framasoft.org">status.framasoft.org</a> ou en suivant le hashtag #framasoft sur <a href="https://framasphere.org/tags/framasoft">Diaspora</a>/<a href="https://twitter.com/hashtag/framasoft">Twitter</a>.</p>'+
-            '</div>';*/
         f$_video_js = true;
     break;
     case 'mypads.framapad':
@@ -406,7 +401,7 @@ switch (f$_site) {
     case 'instances.framapad':
         f$_jquery = 'html';
         if (f$_not_in_frame) {
-            f$_extra_css = true;
+            f$_ext_css = true;
         } else {
             f$_bootstrap_css = false;
         }
@@ -437,7 +432,7 @@ switch (f$_site) {
     case 'framaphonie':
         f$_jquery = 'noConflict';
         f$_css_position = 'end';
-        f$_extra_css = true;
+        f$_ext_css = true;
         f$_footer = false;
     break;
     case 'framapic':
@@ -466,7 +461,7 @@ switch (f$_site) {
     case 'framasphere':
         f$_jquery = 'html'; f$_bootstrap_js = 'html';
         f$_css_position = 'end';
-        /** Extra <script> **/
+        /** <script> **/
         jQuery(document).ready(function() {
             jQuery('link[href*=bootstrap-complete]').remove();
         });
@@ -475,6 +470,17 @@ switch (f$_site) {
     case 'framastats':
         f$_jquery = 'html'; f$_bootstrap_js = 'html';
         f$_nav_static = true;
+    break;
+    case 'framateam':
+        f$_jquery = 'html'; f$_bootstrap_js = 'html';
+        f$_ext_js = true;
+        if(f$_page('channel')||f$_page('admin_console')) {
+            f$_nav_static = true;
+            f$_footer = false;
+            f$_NoMsg();
+        } else {
+            f$_ext_css = true;
+        }
     break;
     case 'framatube':
         f$_jquery = 'html';
@@ -496,7 +502,7 @@ switch (f$_site) {
         if(f$_page('svg-editor')) {
         // Si on n'est dans svg-editor
             if (f$_not_in_frame) {
-                f$_extra_css = true;
+                f$_ext_css = true;
             } else {
                 f$_bootstrap_css = false;
             }
@@ -509,6 +515,10 @@ switch (f$_site) {
             f$_video_js = true;
         }
     break;
+    case 'framavox':
+        f$_jquery = 'html'; f$_bootstrap_js = 'html';
+        f$_nav_static = true;
+    break;
     case 'framazic':
         f$_nav_static = true;
         f$_video_js = true;
@@ -517,13 +527,13 @@ switch (f$_site) {
         if(f$_page('framindmap.org/mindmaps')) {
             /* Si on n'est dans Mindmaps */
             f$_jquery = 'noConflict';
-            f$_extra_css = true;
+            f$_ext_css = true;
             f$_NoMsg();
             f$_footer = false;
         } else {
             f$_jquery = 'html'; f$_bootstrap_js = 'html';
             f$_bootstrap_css = false;
-            f$_extra_css = true;
+            f$_ext_css = true;
             f$_video_js = true;
             f$_email_field1 = '#user #email';
             if(!f$_page('framindmap.org/c/login') && !f$_page('framindmap.org/c/user/registration')) {
@@ -557,7 +567,7 @@ switch (f$_site) {
         f$_footer = false;
     break;
     case 'pootle.framasoft':
-        f$_extra_css = true;
+        f$_ext_css = true;
         f$_frama_css = false;
         f$_css_position = 'end';
         f$_alert_modal_text = '';
@@ -573,7 +583,7 @@ switch (f$_site) {
     case 'wiki.framasoft':
         f$_jquery = 'noConflict';
         f$_alert_text = '';
-        f$_extra_css = true;
+        f$_ext_css = true;
     break;
 }
 

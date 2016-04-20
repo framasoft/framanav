@@ -1,4 +1,4 @@
-var f$_version = '160217';
+var f$_version = '160420';
 var f$_site = window.location.host
 f$_site = f$_site.replace(/^(www|test)\./i,"");
 f$_site = f$_site.replace(/\.(com|net|org|fr|pro)$/i,"");
@@ -134,9 +134,9 @@ function f$_start_jquery() {
         f$_loadCSS(f$_nav+'css/frama.css?'+f$_version, 'end', 'all');
     }
 
-    // Extra.css
-    if(f$_extra_css) {
-        f$_loadCSS(f$_nav+'css/extra/'+f$_site+'.css?'+f$_version);
+    // Ext.css
+    if(f$_ext_css) {
+        f$_loadCSS(f$_nav+'ext/'+f$_site+'.css?'+f$_version);
     }
 
     /*
@@ -151,6 +151,13 @@ function f$_start_jquery() {
         if (f$_url === 'https://framacalc.org/_start' && f$('html').attr('manifest') !== 'manifest.appcache') {
             console.log('Reloading https://framacalc.org/_start because of bad _start version');
             window.location.href = 'https://framacalc.org/_start?reload=1';
+        }
+
+        // Ext.js
+        if (typeof f$_ext_js === "function") {
+            f$_ext_js();
+        } else if(f$_ext_js) {
+            f$.getScript(f$_nav+'ext/'+f$_site+'.js');
         }
 
         f$.ajaxSetup({ cache: f$_cache });
