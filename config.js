@@ -515,6 +515,10 @@ switch (f$_site) {
             f$_video_js = true;
         }
     break;
+    case 'framavox':
+        f$_jquery = 'html'; f$_bootstrap_js = 'html';
+        f$_nav_static = true;
+    break;
     case 'framazic':
         f$_nav_static = true;
         f$_video_js = true;
