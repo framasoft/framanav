@@ -518,6 +518,14 @@ switch (f$_site) {
     case 'framavox':
         f$_jquery = 'html'; f$_bootstrap_js = 'html';
         f$_nav_static = true;
+        f$_ext_css = true;
+        if(!(f$_page('/marketing')||f$_page('users/sign')||f$_page('/start_group')||f$_page('users/password/new'))) {
+            f$_footer = false;
+            f$_NoMsg();
+            f$_ext_js = function() {
+                jQuery('.lmo-navbar__logo').html('<b class="violet">Frama</b><b class="vert">vox</b>');
+            }
+        }
     break;
     case 'framazic':
         f$_nav_static = true;
