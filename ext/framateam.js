@@ -133,7 +133,7 @@ if(!(f$_page('channel')||f$_page('admin_console')||f$_page('/pl/'))) {
 /** Dans le tchat **/
 } else {
 
-    jQuery('#channel_view > .container-fluid').css('padding-top','42px');
+    jQuery('#channel_view  .channel_view > .container-fluid').css('padding-top','42px');
     jQuery('#channel_view').css('margin-top','-=42');
 
 }
