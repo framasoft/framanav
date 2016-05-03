@@ -1,4 +1,4 @@
-var f$_version = '160420';
+var f$_version = '160503';
 var f$_site = window.location.host
 f$_site = f$_site.replace(/^(www|test)\./i,"");
 f$_site = f$_site.replace(/\.(com|net|org|fr|pro)$/i,"");
@@ -44,7 +44,7 @@ var f$_start_config = function() {
     var f$_speed = (f$_nav_container) ? '☀' : '☁';
     if (f$_config == 'global') {
         var f$_hjQv = (window.jQuery === undefined) ? 'ø' : window.jQuery.fn.jquery;
-        var f$_njQv  = '1.11.3';
+        var f$_njQv  = '1.12.3';
         console.log('✔ '+f$_speed+' config.js '+f$_version+' | '+f$_njQv+' | '+f$_hjQv);
 
         if(f$_page('/nav/html/')) { // Si pages « À propos » on réinit la config
