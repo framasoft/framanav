@@ -152,6 +152,12 @@ body.pages {
   margin-bottom: 10px !important;
 }
 
+.sessions.new .alert,
+.registrations.create .alert,
+.registrations.new .alert {
+  margin:0 auto;
+}
+
 .container {
   max-width:100%;
 }

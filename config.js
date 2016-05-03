@@ -516,8 +516,8 @@ switch (f$_site) {
         }
     break;
     case 'framavox':
-        f$_jquery = 'html'; f$_bootstrap_js = 'html';
-        f$_nav_static = true;
+        f$_jquery = 'html'; //f$_bootstrap_js = 'html';
+        f$_nav_static = !(f$_page('/marketing'));
         f$_ext_css = true;
         if(!(f$_page('/marketing')||f$_page('users/sign')||f$_page('/start_group')||f$_page('users/password/new'))) {
             f$_footer = false;
