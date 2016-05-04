@@ -482,6 +482,11 @@ switch (f$_site) {
             f$_ext_css = true;
         }
     break;
+    case 'docs.framateam':
+        f$_nav_static = true;
+        f$_footer = false;
+        f$_NoMsg();
+    break;
     case 'framatube':
         f$_jquery = 'html';
         f$_video_js = true;
