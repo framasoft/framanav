@@ -25,7 +25,7 @@ img.ombre {
   font-size:50px;
 }
 
-.carousel { margin:1em 0 4em; }
+.carousel { margin:1em auto 4em; max-width:1060px; }
 
 .carousel-inner {
   padding-bottom:75px;
@@ -77,6 +77,10 @@ img.ombre {
   border-top: 1px solid #ddd;
 }
 
+.carousel-caption .h3 {
+  margin-top:10px;
+}
+
 .carousel img {
   width: 100%;
   margin: 0;
@@ -106,6 +110,10 @@ img.ombre {
   text-align:center;
 }
 
+#signup-user-complete .margin--extra {
+  text-align:left;
+}
+
 .signup-team__container .btn {
   padding: 6px 12px;
   font-size: 14px;
@@ -124,12 +132,21 @@ img.ombre {
   display: inline-block;
   min-width: auto;
   height:auto;
-  width:400px;
   padding: 10px 16px;
   font-size: 18px;
   line-height: 1.3333333;
   border-radius: 6px;
-  margin:0px auto;
+  margin: 0px auto;
+  white-space: normal;
+  text-align:center;
+}
+
+#signup-team .btn-link.gitlab {
+  display: block;
+  margin: 0px 0px 0px auto;
+  width: 60%;
+  text-align: right;
+  font-size: 14px;
 }
 
 #signup-team .btn.btn-custom-login.gitlab {
@@ -158,7 +175,7 @@ img.ombre {
   background:#fff !important;
 }
 
-.signup-team__container .btn-custom-login.gitlab,
+.signup-team__container .btn-custom-login.email,
 .btn-primary {
   color: #fff !important;
   text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
@@ -166,9 +183,9 @@ img.ombre {
   border-color: #6A5687 !important;
 }
 
-.signup-team__container .btn-custom-login.gitlab:hover,
-.signup-team__container .btn-custom-login.gitlab:focus,
-.signup-team__container .btn-custom-login.gitlab:active,
+.signup-team__container .btn-custom-login.email:hover,
+.signup-team__container .btn-custom-login.email:focus,
+.signup-team__container .btn-custom-login.email:active,
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active {
@@ -177,16 +194,16 @@ img.ombre {
   border-color: #635182 !important;
 }
 
-.signup-team__container .btn-custom-login.email {
+.signup-team__container .btn-custom-login.gitlab {
   color: #fff !important;
   text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
   background-color: #11809E !important;
   border-color: #11809E !important;
 }
 
-.signup-team__container .btn-custom-login.email:hover,
-.signup-team__container .btn-custom-login.email:focus,
-.signup-team__container .btn-custom-login.email:active {
+.signup-team__container .btn-custom-login.gitlab:hover,
+.signup-team__container .btn-custom-login.gitlab:focus,
+.signup-team__container .btn-custom-login.gitlab:active {
   color: #fff !important;
   background-color: #0C5B7A !important;
   border-color: #0C5B7A !important;
@@ -194,7 +211,7 @@ img.ombre {
 
 #Options p .btn,
 #login .margin--extra .btn {
-  margin-top: 10px;
-  margin-bottom: 0px;
+  margin-top: 0px;
+  margin-bottom: 10px;
   width:268px;
 }
