@@ -474,7 +474,7 @@ switch (f$_site) {
     case 'framateam':
         f$_jquery = 'html'; f$_bootstrap_js = 'html';
         f$_ext_js = true;
-        if(f$_page('channel')||f$_page('admin_console')||f$_page('/pl/')) {
+        if(f$_page('/channel')||f$_page('/admin_console')||f$_page('/pl/')) {
             f$_nav_static = true;
             f$_footer = false;
             f$_NoMsg();

@@ -1,5 +1,5 @@
 /** Pas dans le tchat **/
-if(!(f$_page('channel')||f$_page('admin_console')||f$_page('/pl/'))) {
+if(!(f$_page('/channel')||f$_page('/admin_console')||f$_page('/pl/'))) {
     f$_header = '<header role="banner">'+
                 '    <h1><a href="/"><span class="frama">Frama</span><span class="services">team</span></a></h1>'+
                 '    <p class="lead">Communication collaborative</p>'+
