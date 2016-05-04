@@ -89,9 +89,9 @@ if(!(f$_page('/channel')||f$_page('/admin_console')||f$_page('/pl/'))) {
     jQuery('#login .form-group:has(a[href$="reset_password"])').addClass('pull-right').css('margin-top','7px');
     jQuery('#login .form-group:has(button.btn-primary)').before(jQuery('.form-group:has(a[href$="reset_password"])'));
 
-    // Connexion uniquement par Nom d'utilisateur
-    jQuery('#login .or__container, #login form:eq(0)').hide();
-    jQuery('#login form:eq(1)').addClass('well').css('margin-bottom','20px');
+    // Connexion uniquement par email
+    jQuery('#login .or__container, #login form:eq(1)').hide();
+    jQuery('#login form:eq(0)').addClass('well').css('margin-bottom','20px');
 
     // Gitlab passe après
     jQuery('#login .gitlab')
