@@ -202,7 +202,7 @@ if(!(f$_page('/channel')||f$_page('/admin_console')||f$_page('/pl/'))) {
     jQuery('.tutorial__step h1').html('<b class="violet">Frama</b><b class="vert">team</b>');
 
     // Si page en anglais et première visite
-    var f$_stepDejavu = getCookie('stepDejavu');
+    var f$_stepDejavu = getCookie('stepDejavu'+window.mm_user.id);
 
     if(!f$_stepDejavu) {
         if(window.mm_user.locale == 'en') {
@@ -218,9 +218,9 @@ if(!(f$_page('/channel')||f$_page('/admin_console')||f$_page('/pl/'))) {
               url: 'https://framateam.org/api/v1/users/update',
               data: JSON.stringify(newUser),
               dataType: 'json',
-              success: function() {setCookie('stepDejavu',true,365*24*60*60*1000); window.location.reload()}
+              success: function() {setCookie('stepDejavu'+window.mm_user.id,true,365*24*60*60*1000); window.location.reload()}
             });
-            setCookie('stepDejavu',true,365*24*60*60*1000);
+            setCookie('stepDejavu'+window.mm_user.id,true,365*24*60*60*1000);
         }
     }
 }
