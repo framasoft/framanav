@@ -50,7 +50,7 @@ if(!(f$_page('/channel')||f$_page('/admin_console')||f$_page('/pl/'))) {
                 '        <h2>Prise en main</h2>'+
                 '        <p class="text-center" role="presentation"><span class="glyphicon glyphicon-question-sign"></span></p>'+
                 '        <p><b class="violet">Frama</b><b class="vert">team</b> est un service de <b>tchat</b> libre qui permet de communiquer avec son équipe en notifiant ses collègues, de conserver ses conversations et d’y faire des recherches.</p>'+
-                '        <ol><li>Créez votre équipe</li><li>Invitez vos membres</li><li>Créez vos canaux de communication (publiques ou privés)</li></ol>'+
+                '        <ol><li>Créez votre équipe</li><li>Invitez vos membres</li><li>Créez vos canaux de communication (publics ou privés)</li></ol>'+
                 '        <p>Pour apprendre à mettre en page vos messages, utiliser des émoticônes, partager des images et documents et maîtriser <b class="violet">Frama</b><b class="vert">team</b>, consultez nos pages d’aide :</p>'+
                 '        <p class="text-center"><a href="http://docs.framateam.org" class="btn btn-primary">Aide »</a></p>'+
                 '        <p>(traduction de la documentation officielle par l’équipe <a href="https://participer.framasoft.org/traduction-rejoignez-framalang"><b class="violet">Frama</b><b class="rouge">lang</b></a>)</p>'+
