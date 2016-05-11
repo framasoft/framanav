@@ -284,7 +284,7 @@ switch (f$_site) {
             // force le recalcul des dimensions
             jQuery(document).ready(function() { jQuery(window).trigger('resize'); });
         }
-        f$_host = 'ovh';
+        f$_host = 'hetzner';
     break;
     case 'framacarte' :
         f$_modal_don_txtdl1 = 'd’utiliser';
@@ -376,7 +376,7 @@ switch (f$_site) {
             f$_NoMsg();
             f$_footer = false;
         }
-        f$_host = 'iniz';
+        f$_host = 'hetzner';
     break;
     case 'framapack':
         f$_jquery = 'html'; f$_bootstrap = 'html';
@@ -441,7 +441,7 @@ switch (f$_site) {
             '<p>Il reste bien évidement possible de travailler sur les pads déjà existants (ils ne seront pas supprimés)'+
             ' mais pour en créer de nouveaux, veuillez passer par <a href="https://framapad.org">la page d’accueil du site</a></p>'+
             '<p>Merci.<br />L’équipe technique</p>';
-            f$_host = 'ovh';
+            f$_host = 'hetzner';
         }
     break;
 //-- </framapad> ---------------------------------------------------------------
@@ -506,7 +506,7 @@ switch (f$_site) {
     case 'framatube':
         f$_jquery = 'html';
         f$_video_js = true;
-        f$_host = 'ovh';
+        f$_host = 'hetzner';
         f$_alert_type = 'info';
         f$_alert_text =
             '<div style="margin:0 auto; max-width:800px;">'+
