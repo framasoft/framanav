@@ -417,7 +417,7 @@ switch (f$_site) {
             f$_alert_modal_title = 'Nouvelles fonctionnalités';
             f$_alert_modal_text =
             '<p>Nous avons apporté des modifications au fonctionnement de Framapad.</p>'+
-            '<ul>'+
+            '<ul style="margin-left:30px">'+
                 '<li>Réactivation des couleurs d’identification (auteurs identifiés par le surlignage en couleur).</li>'+
                 '<li>Possibilité d’afficher une table des matières, en fonction des titres utilisés dans votre pad.</li>'+
                 '<li>Possibilité d’afficher le pad en mode « page ».</li>'+
