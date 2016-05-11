@@ -207,6 +207,7 @@ switch (f$_site) {
             f$_footer = false;
             f$_NoMsg();
             f$_bootstrap_css = false;
+            f$_ext_css = true;
             jQuery(document).ready(function() {
                 jQuery('h1 .logo a').html('<b class="violet">Frama</b><b class="vert">board</b>');
                 jQuery('h1 .logo').removeClass('logo');
@@ -413,6 +414,22 @@ switch (f$_site) {
         f$_footer = false;
         f$_credits = 'framapad';
         f$_apple_touch_icon = 'framapad.png';
+        if(/(lite6.|mypads.|quotidien.|hebdo.|mensuel.|mestriel.|annuel.)/i.test(window.location.host)) {
+            f$_alert_modal_title = 'Nouvelles fonctionnalités';
+            f$_alert_modal_text =
+            '<p>Nous avons apporté des modifications au fonctionnement de Framapad.</p>'+
+            '<ul>'+
+                '<li>Réactivation des couleurs d’identification (auteurs identifiés par le surlignage en couleur).</li>'+
+                '<li>Possibilité d’afficher une table des matières, en fonction des titres utilisés dans votre pad.</li>'+
+                '<li>Possibilité d’afficher le pad en mode « page ».</li>'+
+                '<li>Affichage du noms des auteurs au survol du texte.</li>'+
+            '</ul>'+
+            '<p>Ces modifications peuvent être activées/désactivées au niveau des paramètres de Framapad (roue crantée en haut à droite).</p>'+
+            '<p>Pour plus d’informations, voir notre <a href="https://wiki.framasoft.org/projets/framapad">documentation</a>.</p>';
+            f$_alert_modal_cookie_name = 'newFeatures201605';
+            f$_alert_modal_cookie = 365*24*60*60*1000;
+
+        }
         if(/(beta.framapad)/i.test(window.location.host)) {
             f$_alert_modal_title = 'Avertissement';
             f$_alert_modal_text = '<p>Cette instance de Framapad (<b>beta</b>.framapad.org) est instable et ne doit servir que pour des tests.<p>'+
@@ -522,8 +539,8 @@ switch (f$_site) {
     break;
     case 'framavox':
         f$_jquery = 'html'; //f$_bootstrap_js = 'html';
-        f$_nav_static = !(f$_page('/marketing'));
         f$_ext_css = true;
+        f$_nav_static = !(f$_page('/marketing'));
         if(!(f$_page('/marketing')||f$_page('users/sign')||f$_page('/start_group')||f$_page('users/password/new'))) {
             f$_footer = false;
             f$_NoMsg();

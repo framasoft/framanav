@@ -201,6 +201,8 @@ if(!(f$_page('/channel')||f$_page('/admin_console')||f$_page('/pl/'))) {
 
     jQuery('.tutorial__step h1').html('<b class="violet">Frama</b><b class="vert">team</b>');
 
+    jQuery('a[href*="docs.mattermost.com"]').attr('href', function(){return jQuery(this).attr('href').replace('docs.mattermost.com', 'docs.framateam.org')});
+
     // Si page en anglais et première visite
     var f$_stepDejavu = getCookie('stepDejavu'+window.mm_user.id);
 
