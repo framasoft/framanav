@@ -284,7 +284,7 @@ switch (f$_site) {
             // force le recalcul des dimensions
             jQuery(document).ready(function() { jQuery(window).trigger('resize'); });
         }
-        f$_host = 'hetzner';
+        f$_host = 'ovh';
     break;
     case 'framacarte' :
         f$_modal_don_txtdl1 = 'd’utiliser';
