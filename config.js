@@ -206,8 +206,7 @@ switch (f$_site) {
             f$_jquery = 'html'; f$_bootstrap_js = 'html';
             f$_footer = false;
             f$_NoMsg();
-            f$_bootstrap_css = false;
-            f$_ext_css = true;
+            f$_bootstrap_css = false; /* framaboard.css chargé en dur en amont de nav.css et frama.css */
             jQuery(document).ready(function() {
                 jQuery('h1 .logo a').html('<b class="violet">Frama</b><b class="vert">board</b>');
                 jQuery('h1 .logo').removeClass('logo');
