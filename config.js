@@ -207,6 +207,7 @@ switch (f$_site) {
             f$_footer = false;
             f$_NoMsg();
             f$_bootstrap_css = false;
+            f$_ext_css = true;
             jQuery(document).ready(function() {
                 jQuery('h1 .logo a').html('<b class="violet">Frama</b><b class="vert">board</b>');
                 jQuery('h1 .logo').removeClass('logo');
@@ -522,8 +523,8 @@ switch (f$_site) {
     break;
     case 'framavox':
         f$_jquery = 'html'; //f$_bootstrap_js = 'html';
-        f$_nav_static = !(f$_page('/marketing'));
         f$_ext_css = true;
+        f$_nav_static = !(f$_page('/marketing'));
         if(!(f$_page('/marketing')||f$_page('users/sign')||f$_page('/start_group')||f$_page('users/password/new'))) {
             f$_footer = false;
             f$_NoMsg();

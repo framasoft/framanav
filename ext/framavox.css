@@ -19,6 +19,8 @@ img.ombre {
   width: 80%;
 }
 
+body.pages {padding-top:42px;}
+
 #tuto-faq p[role="presentation"] .glyphicon,
 #le-logiciel p[role="presentation"] .glyphicon,
 #jardin p[role="presentation"] .glyphicon {
