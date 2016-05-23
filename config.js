@@ -229,7 +229,7 @@ switch (f$_site) {
         }
         // Fix décalage de la nav
         f$_ext_css = true;
-        f$_ext_js = function() { jQuery('.ui-page').css('margin-top','-42px'); });
+        f$_ext_js = function() { jQuery('.ui-page').css('margin-top','-42px') };
     break;
     case 'framacalc' :
         if(f$_page('framacalc.org/_start') || window.location.href == 'https://framacalc.org/') {
