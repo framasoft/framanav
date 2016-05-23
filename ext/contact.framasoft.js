@@ -1,0 +1,205 @@
+jQuery(document).ready(function(){
+  // Liste des projets
+  var list = [
+    {col: 0, f:"Frama",   s:"libre",      c:"b", fa:"fa-linux",                 title:"Annuaire de logiciels libres"},
+    {col: 0, f:"Frama",   s:"key",        c:"b", fa:"fa-usb",                   title:"Clé usb"},
+    {col: 0, f:"Frama",   s:"DVD",        c:"b", fa:"fa-play-circle-o",         title:"DVD"},
+    {col: 0, f:"Frama",   s:"pack",       c:"b", fa:"fa-download",              title:"Installateur de logiciels",
+                                          git:  "framasoft/framapack"},
+    {col: 0, f:"Frama",   s:"blog",       c:"r", fa:"fa-pencil",                title:"Blog"},
+    {col: 0, f:"Frama",   s:"book",       c:"r", fa:"fa-book",                  title:"Livres"},
+    {col: 0, f:"Frama",   s:"bookin",     c:"r", fa:"fa-coffee",                title:"Bibliothèque",
+                                          git:  "framasoft/framabookin",
+                                          soft: "BicBucStriim",
+                                          site: "https://github.com/rvolz/BicBucStriim"},
+    {col: 0, f:"Frama",   s:"tube",       c:"r", fa:"fa-film",                  title:"Vidéos"},
+    {col: 0, f:"Frama",   s:"zic",        c:"r", fa:"fa-music",                 title:"Musique"},
+    {col: 0, f:"Fram",    s:"agora",      c:"j", fa:"fa-comments",              title:"Forum"},
+    {col: 0, f:"EnVente", s:"Libre",      c:"j", fa:"fa-shopping-cart",         title:"Boutique"},
+    {col: 1, f:"Frama",   s:"pad",        c:"v", fa:"fa-align-left",            title:"Traitement de texte",
+                                          git:  "framasoft/framapad",
+                                          soft: "Etherpad",
+                                          site: "https://github.com/ether/etherpad-lite"},
+    {col: 1, f:"Frama",   s:"calc",       c:"v", fa:"fa-th",                    title:"Tableur",
+                                          git:  "framasoft/framacalc",
+                                          soft: "Ethercalc",
+                                          site: "https://github.com/audreyt/ethercalc"},
+    {col: 1, f:"Frama",   s:"date",       c:"v", fa:"fa-calendar",              title:"Alternative à Doodle",
+                                          git:  "framasoft/framadate"},
+    {col: 1, f:"Frama",   s:"board",      c:"v", fa:"fa-dashboard",             title:"Alternative à Trello",
+                                          git:  "framasoft/framaboard",
+                                          soft : "Kanboard",
+                                          site: "https://github.com/fguillot/kanboard"},
+    {col: 1, f:"Fra",     s:"mindmap",    c:"v", fa:"fa-sitemap fa-rotate-270", title:"Cartes mentales",
+                                          git:  "framasoft/framindmap",
+                                          soft: "Wisemapping",
+                                          site: "https://bitbucket.org/wisemapping/wisemapping-open-source"},
+    {col: 1, f:"Frama",   s:"vectoriel",  c:"v", fa:"fa-paint-brush",           title:"Dessin",
+                                          git:  "framasoft/framavectoriel",
+                                          soft: "SVG-Edit",
+                                          site: "https://github.com/SVG-Edit/svgedit"},
+    {col: 1, f:"Frama",   s:"bee",        c:"v", fa:"fa-search",                title:"Moteur de recherche",
+                                          soft: "Searx",
+                                          site: "https://github.com/asciimoo/searx"},
+    {col: 1, f:"Frama",   s:"carte",      c:"v", fa:"fa-map",                   title:"Cartes géographiques personnalisées",
+                                          git:  "framasoft/framacarte",
+                                          soft: "uMap",
+                                          site: "https://github.com/umap-project"},
+    {col: 1, f:"Frama",   s:"sphère",     c:"v", fa:"fa-asterisk",              title:"Réseau social Diaspora*",
+                                          git:  "framasoft/framasphere",
+                                          soft: "Diaspora*",
+                                          site: "https://github.com/diaspora"},
+    {col: 2, f:"Frama",   s:"team",       c:"v", fa:"fa-comments-o",              title:"Communication collaborative",
+                                          soft: "Mattermost",
+                                          site: "https://github.com/mattermost"},
+    {col: 2, f:"Frama",   s:"bag",        c:"v", fa:"fa-briefcase",             title:"Alternative à Pocket",
+                                          git:  "framasoft/framabag",
+                                          soft: "Wallabag",
+                                          site: "https://github.com/wallabag"},
+    {col: 2, f:"Frama",   s:"news",       c:"v", fa:"fa-newspaper-o",           title:"Lecteur de flux RSS",
+                                          git:  "framasoft/framanews",
+                                          soft: "TTRSS",
+                                          site: "https://tt-rss.org/gitlab/fox/tt-rss/wikis/home"},
+    {col: 2, f:"Frama",   s:"games",      c:"v", fa:"fa-gamepad",               title:"Compilation de jeux en ligne",
+                                          git:  "framasoft/framagames"},
+    {col: 2, f:"Frama",   s:"drive",      c:"v", fa:"fa-cloud-upload",          title:"Alternative à Dropbox",
+                                          git:  "framasoft/framadrive",
+                                          soft: "Owncloud",
+                                          site: "https://github.com/owncloud/"},
+    {col: 2, f:"Frama",   s:"drop",       c:"v", fa:"fa-send",                  title:"Alternative à WeTransfer",
+                                          git:  "framasoft/framadrop",
+                                          soft: "Lufi",
+                                          site: "https://git.framasoft.org/luc/lufi"},
+    {col: 2, f:"Frama",   s:"bin",        c:"v", fa:"fa-paste",                 title:"Alternative à Pastebin",
+                                          git:  "framasoft/framabin",
+                                          soft: "Zerobin",
+                                          site: "https://github.com/sebsauvage/ZeroBin"},
+    {col: 2, f:"Frama",   s:"pic",        c:"v", fa:"fa-photo",                 title:"Partage d’images",
+                                          git:  "framasoft/framapic",
+                                          soft: "Lutim",
+                                          site: "https://git.framasoft.org/luc/lutim"},
+    {col: 2, f:"Frama",   s:"link",       c:"v", fa:"fa-link",                  title:"Raccourcisseur d’URL",
+                                          git:  "framasoft/framalink",
+                                          soft: "LSTU",
+                                          site: "https://git.framasoft.org/luc/lstu"},
+    {col: 2, f:"Frama",   s:"git",        c:"v", fa:"fa-git",                   title:"Alternative à Github",
+                                          soft: "Gitlab",
+                                          site: "https://about.gitlab.com/contributing/"},
+    {col: 2, f:"Dégooglisons",   s:" Internet",        c:"o", fa:"fa-shield",   title:"Campagne de sensibilitation",
+                                          git: "framasoft/degooglisons"}
+  ];
+
+  // Menu projets
+  var aideList       = ['<div class="list-group col-sm-4">', '<div class="list-group col-sm-4">', '<div class="list-group col-sm-4">'];
+  var partList = ['<div class="col-sm-6"><table class="table table-bordered" role="presentation">', '', '<div class="col-sm-6"><table class="table table-bordered" role="presentation">'];
+  var projetId  = [];
+
+  list.forEach(function(projet) {
+    var fc = 'orange';
+    switch (projet.c)   {
+      case 'r': fc = 'rouge';  break;
+      case 'b': fc = 'bleu';   break;
+      case 'v': fc = 'vert';   break;
+      case 'j': fc = 'jaune';  break;
+      case 'o': fc = 'orange'; break;
+    }
+    projetId.push(projet.f.toLowerCase()+projet.s);
+    if(projet.f != 'Dégooglisons') {
+      aideList[projet.col] += '<button type="button" class="list-group-item '+projetId+'" title="'+projet.title+'"><i class="fa fa-fw fa-lg '+projet.fa+'"></i>&nbsp;<b class="violet">'+projet.f+'</b><b class="'+fc+'">'+projet.s+'</b></button>';
+    }
+    if(projet.git || projet.soft) {
+      partList[projet.col] += '<tr><td class="'+projetId+'"><i class="fa fa-fw fa-lg '+projet.fa+'"></i>&nbsp;<b class="violet">'+projet.f+'</b><b class="'+fc+'">'+projet.s+'</b>';
+      if(projet.git) {
+        partList[projet.col] += ' <a href="https://git.framasoft.org/'+projet.git+'/issues" class="pull-right"><i class="fa fa-fw fa-lg fa-git"></i><span class="sr-only">git</span></a></td>';
+      }
+      if(projet.soft) {
+        partList[projet.col] += ' </td><td>'+projet.soft+' <a href="'+projet.site+'" class="pull-right"><i class="fa fa-fw fa-lg fa-code-fork"></i><span class="sr-only">source</span></a></td></tr>';
+      } else {
+        partList[projet.col] += ' </td><td></td></tr>';
+      }
+    }
+
+  })
+  aideList[0] += '</div>'; aideList[1] += '</div>'; aideList[2] += '</div>';
+  partList[1] += '</table></div>'; partList[2] += '</table></div>';
+
+  // Nettoyage Wordpress
+  jQuery('#menu br:not("[data-f]"), p:empty').remove();
+
+  // Init avec JS
+  jQuery('.faq[id], .formContact').hide();
+  jQuery('#menu').show(); jQuery('#msgCom').removeClass('col-sm-offset-3');
+  jQuery('#aide h2').after('<div class="row col-xs-12">'+aideList[0]+aideList[1]+aideList[2]+'</div>');
+  jQuery('#participer .well').after('<div class="row col-xs-12">'+partList[0]+partList[1]+partList[2]+'</div>');
+
+  // Menu aiguillage
+  var cOpt = jQuery('#concerne').html();
+  jQuery('#menu a').click(function () {
+
+    jQuery(this).tab('show');
+    jQuery('.formContact').show();
+    jQuery('#concerne').html(cOpt);
+
+    var f$_target = jQuery(this).attr('href');
+    switch (f$_target) {
+      case '#general'  :
+        jQuery('#concerne option:gt(6)').remove();
+        jQuery('#concerne').parent().parent().show();
+        break;
+      case '#aide'     :
+        jQuery('#concerne').parent().parent().hide();
+        break;
+      case '#soutenir' :
+        jQuery('#concerne option').prop('selected', false);
+        jQuery('#concerne option[value^="Soutiens"]').prop('selected', true)
+        jQuery('#concerne').parent().parent().hide();
+        break;
+      case '#participer' :
+        jQuery('#concerne option').prop('selected', false);
+        jQuery('#concerne option[value^="Participer"]').prop('selected', true)
+        jQuery('#concerne').parent().parent().hide();
+        break;
+    }
+
+    jQuery('html, body').animate({
+      scrollTop: jQuery(f$_target).offset().top-50
+    }, 'slow');
+    jQuery(f$_target).focus();
+
+  })
+
+  // Sélection projet onclick
+  jQuery('#aide .list-group-item').click(function() {
+    f$_projet = jQuery(this).text();
+    f$_projetId = f$_projet.substr(1).toLowerCase();
+    jQuery('.faq[id]').hide();
+    if (projetId.indexOf(f$_projetId)>-1) {
+      jQuery('#'+f$_projetId).show();
+    }
+    jQuery('#aide .list-group-item').removeClass('fb_g2'); jQuery('#aide .list-group-item .fa-check').remove();
+    jQuery(this).addClass('fb_g2').prepend('<i class="fa fa-check pull-right"></i>');
+    jQuery('#concerne option').prop('selected', false);
+    jQuery('#concerne option[value$="'+f$_projet.substr(2)+'"]').prop('selected', true);
+
+    jQuery('html, body').animate({
+      scrollTop: jQuery('#aide .fa-question-circle').offset().top-50
+    }, 'slow');
+  })
+
+  // Pré-sélection
+  /*jQuery('.wpcf7-form-control').each(function(){
+    jQuery(this).attr('id',jQuery(this).attr('name'));
+  });
+  var f$_scroll_once = false;
+  jQuery("body").bind("DOMSubtreeModified", function() {
+    if (window.location.hash && jQuery('#framafooter').height() && !f$_scroll_once) {
+        var f$_hash=window.location.hash.substr(2);
+        jQuery('html, body').animate({
+            scrollTop: jQuery('#wpcf7-f423-p326-o1').offset().top-50
+        }, 'fast');
+        jQuery('#aide').trigger('click');jQuery('.list-group-item[class$=["'+f$_hash+'"]').trigger('click');
+        f$_scroll_once = true;
+    }
+  });*/
+
+})

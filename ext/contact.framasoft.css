@@ -1,0 +1,26 @@
+#menu {
+  display:none;
+}
+
+.row.col-xs-12 {
+  margin-left:0;
+}
+
+#menu a {
+  min-height:76px;
+  text-decoration:none
+}
+
+#menu .fa-stack{
+  float:left;
+  margin-right:15px;
+  font-size:28px
+}
+
+#menu a .h4{
+  line-height:30px
+}
+
+.faq, .formContact{
+  max-width:570px;margin:0 auto
+}

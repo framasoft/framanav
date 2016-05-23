@@ -163,6 +163,7 @@ switch (f$_site) {
     case 'contact.framasoft' :
         f$_nav_static = true;
         f$_email_field1 = '#wpcf7-f24-p5-o1 .wpcf7-email';
+        f$_ext_js = f$_ext_css = (window.location.href == 'https://contact.framasoft.org/');
     break;
     case 'degooglisons-internet' : f$_NoMsg(); break;
     case 'forum.framasoft' :
@@ -228,9 +229,7 @@ switch (f$_site) {
         }
         // Fix décalage de la nav
         f$_ext_css = true;
-        jQuery('document').ready(function() {
-            jQuery('.ui-page').css('margin-top','-42px');
-        });
+        f$_ext_js = function() { jQuery('.ui-page').css('margin-top','-42px'); });
     break;
     case 'framacalc' :
         if(f$_page('framacalc.org/_start') || window.location.href == 'https://framacalc.org/') {
