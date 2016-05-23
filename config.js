@@ -163,7 +163,7 @@ switch (f$_site) {
     case 'contact.framasoft' :
         f$_nav_static = true;
         f$_email_field1 = '#wpcf7-f24-p5-o1 .wpcf7-email';
-        f$_ext_js = f$_ext_css = (window.location.href == 'https://contact.framasoft.org/');
+        f$_ext_js = f$_ext_css = ((window.location.href == 'https://contact.framasoft.org/') || f$_page('contact.framasoft.org/#')) ;
     break;
     case 'degooglisons-internet' : f$_NoMsg(); break;
     case 'forum.framasoft' :
