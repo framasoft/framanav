@@ -123,83 +123,117 @@ jQuery(document).ready(function(){
   aideList[0] += '</div>'; aideList[1] += '</div>'; aideList[2] += '</div>';
   partList[1] += '</table></div>'; partList[2] += '</table></div>';
 
-  // Nettoyage Wordpress
-  jQuery('#menu br:not("[data-f]"), p:empty').remove();
+  /** Accueil **/
+  if (jQuery('body').hasClass('home')) {
+    // Nettoyage Wordpress
+    jQuery('#menu br:not("[data-f]"), p:empty').remove();
 
-  // Init avec JS
-  jQuery('.faq[id], .formContact').hide();
-  jQuery('#menu').show(); jQuery('#msgCom').removeClass('col-sm-offset-3');
-  jQuery('#aide h2').after('<div class="row col-xs-12">'+aideList[0]+aideList[1]+aideList[2]+'</div>');
-  jQuery('#participer .well').after('<div class="row col-xs-12">'+partList[0]+partList[1]+partList[2]+'</div>');
+    // Init avec JS
+    jQuery('.faq[id], .formContact').hide();
+    jQuery('#menu').show(); jQuery('#msgCom').removeClass('col-sm-offset-3');
+    jQuery('#aide h2').after('<div class="row col-xs-12">'+aideList[0]+aideList[1]+aideList[2]+'</div>');
+    jQuery('#participer .well').after('<div class="row col-xs-12">'+partList[0]+partList[1]+partList[2]+'</div>');
 
-  // Menu aiguillage
-  var cOpt = jQuery('#concerne').html();
-  jQuery('#menu a').click(function () {
+    // Menu aiguillage
+    var cOpt = jQuery('#concerne').html();
+    jQuery('#menu a').click(function () {
 
-    jQuery(this).tab('show');
-    jQuery('.formContact').show();
-    jQuery('#concerne').html(cOpt);
+      jQuery(this).tab('show');
+      jQuery('.formContact').show();
+      jQuery('#concerne').html(cOpt);
 
-    var f$_target = jQuery(this).attr('href');
-    switch (f$_target) {
-      case '#general'  :
-        jQuery('#concerne option:gt(6)').remove();
-        jQuery('#concerne').parent().parent().show();
-        break;
-      case '#aide'     :
-        jQuery('#concerne').parent().parent().hide();
-        break;
-      case '#soutenir' :
-        jQuery('#concerne option').prop('selected', false);
-        jQuery('#concerne option[value^="Soutiens"]').prop('selected', true)
-        jQuery('#concerne').parent().parent().hide();
-        break;
-      case '#participer' :
-        jQuery('#concerne option').prop('selected', false);
-        jQuery('#concerne option[value^="Participer"]').prop('selected', true)
-        jQuery('#concerne').parent().parent().hide();
-        break;
+      var f$_target = jQuery(this).attr('href');
+      switch (f$_target) {
+        case '#general'  :
+          jQuery('#concerne option:gt(6)').remove();
+          jQuery('#concerne').parent().parent().show();
+          break;
+        case '#aide'     :
+          jQuery('#concerne').parent().parent().hide();
+          break;
+        case '#soutenir' :
+          jQuery('#concerne option').prop('selected', false);
+          jQuery('#concerne option[value^="Soutiens"]').prop('selected', true)
+          jQuery('#concerne').parent().parent().hide();
+          break;
+        case '#participer' :
+          jQuery('#concerne option').prop('selected', false);
+          jQuery('#concerne option[value^="Participer"]').prop('selected', true)
+          jQuery('#concerne').parent().parent().hide();
+          break;
+      }
+
+      jQuery('html, body').animate({
+        scrollTop: jQuery(f$_target).offset().top-50
+      }, 'slow');
+      jQuery(f$_target).focus();
+
+    })
+
+    // Sélection projet onclick
+    jQuery('#aide .list-group-item').click(function() {
+      f$_projet = jQuery(this).text();
+      f$_projetId = f$_projet.substr(1).toLowerCase();
+      jQuery('.faq[id]').hide();
+      if (projetId.indexOf(f$_projetId)>-1) {
+        jQuery('#'+f$_projetId).show();
+      }
+      jQuery('#aide .list-group-item').removeClass('fb_g2'); jQuery('#aide .list-group-item .fa-check').remove();
+      jQuery(this).addClass('fb_g2').prepend('<i class="fa fa-check pull-right"></i>');
+      jQuery('#concerne option').prop('selected', false);
+      jQuery('#concerne option[value$="'+f$_projet.substr(2)+'"]').prop('selected', true);
+
+      jQuery('html, body').animate({
+        scrollTop: jQuery('#aide .fa-question-circle').offset().top-50
+      }, 'slow');
+    })
+
+    // Pré-sélection
+    /*jQuery('.wpcf7-form-control').each(function(){
+      jQuery(this).attr('id',jQuery(this).attr('name'));
+    });
+    var f$_scroll_once = false;
+    jQuery("body").bind("DOMSubtreeModified", function() {
+      if (window.location.hash && jQuery('#framafooter').height() && !f$_scroll_once) {
+          var f$_hash=window.location.hash.substr(2);
+          jQuery('html, body').animate({
+              scrollTop: jQuery('#wpcf7-f423-p326-o1').offset().top-50
+          }, 'fast');
+          jQuery('#aide').trigger('click');jQuery('.list-group-item[class$=["'+f$_hash+'"]').trigger('click');
+          f$_scroll_once = true;
+      }
+    });*/
+  }
+
+  /** FAQ **/
+  if(jQuery('body').hasClass('.page-id-472')) {
+    jQuery('.list-group-item-text').hide();
+    jQuery('.list-group-item > p,.list-group-item-heading > p').remove();
+
+    jQuery('.list-group-item-heading')
+      .prepend('<i class="fa fa-chevron-down pull-right"></i>')
+      .toggle(function() {
+        // masque tout
+        jQuery('.list-group-item-text').hide();
+        jQuery('.list-group .fa-chevron-up').removeClass('fa-chevron-up').addClass('fa-chevron-down');
+        jQuery('.list-group-item').removeClass('fb_j0');
+        // affiche la réponse
+        jQuery(this).next().show();
+        jQuery(this).children('.fa').removeClass('fa-chevron-down').addClass('fa-chevron-up');
+        jQuery(this).parent().addClass('fb_j0');
+      }, function() {
+        // masque la réponse
+        jQuery(this).next().hide();
+        jQuery(this).children('.fa').removeClass('fa-chevron-up').addClass('fa-chevron-down');
+        jQuery(this).parent().removeClass('fb_j0');
+      });
+
+    if (window.location.hash) {
+      var f$_hash=window.location.hash;
+      jQuery('html, body').animate({
+        scrollTop: jQuery(f$_hash).offset().top
+      }, 'fast');
+      jQuery(f$_hash).parent('.list-group-item-heading').trigger('click');
     }
-
-    jQuery('html, body').animate({
-      scrollTop: jQuery(f$_target).offset().top-50
-    }, 'slow');
-    jQuery(f$_target).focus();
-
-  })
-
-  // Sélection projet onclick
-  jQuery('#aide .list-group-item').click(function() {
-    f$_projet = jQuery(this).text();
-    f$_projetId = f$_projet.substr(1).toLowerCase();
-    jQuery('.faq[id]').hide();
-    if (projetId.indexOf(f$_projetId)>-1) {
-      jQuery('#'+f$_projetId).show();
-    }
-    jQuery('#aide .list-group-item').removeClass('fb_g2'); jQuery('#aide .list-group-item .fa-check').remove();
-    jQuery(this).addClass('fb_g2').prepend('<i class="fa fa-check pull-right"></i>');
-    jQuery('#concerne option').prop('selected', false);
-    jQuery('#concerne option[value$="'+f$_projet.substr(2)+'"]').prop('selected', true);
-
-    jQuery('html, body').animate({
-      scrollTop: jQuery('#aide .fa-question-circle').offset().top-50
-    }, 'slow');
-  })
-
-  // Pré-sélection
-  /*jQuery('.wpcf7-form-control').each(function(){
-    jQuery(this).attr('id',jQuery(this).attr('name'));
-  });
-  var f$_scroll_once = false;
-  jQuery("body").bind("DOMSubtreeModified", function() {
-    if (window.location.hash && jQuery('#framafooter').height() && !f$_scroll_once) {
-        var f$_hash=window.location.hash.substr(2);
-        jQuery('html, body').animate({
-            scrollTop: jQuery('#wpcf7-f423-p326-o1').offset().top-50
-        }, 'fast');
-        jQuery('#aide').trigger('click');jQuery('.list-group-item[class$=["'+f$_hash+'"]').trigger('click');
-        f$_scroll_once = true;
-    }
-  });*/
-
+  }
 })
