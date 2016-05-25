@@ -27,36 +27,41 @@
   max-width:570px;margin:0 auto
 }
 
-/* FAQ (.page-id-472  en test) */
-.page-id-472 .list-group-item-text{
-  padding:0px 15px;
-  margin:0px
+.home form .alert {
+  margin-top:20px;
 }
 
-.page-id-472 .list-group-item-text hr{
-  margin:0px 0px 17px;
-  border-color:#ccc;
+/* FAQ */
+.foire-aux-questions h2 {
+  font-size: 24px;
+  line-height: 1.1;
+  margin-top:30px;
+  padding-left:15px
 }
 
-.page-id-472 .list-group-item-heading{
+.foire-aux-questions .list-group-item-heading{
   cursor:pointer;
   padding:15px 15px;
   margin:0px;
+  font-size: 18px;
+  line-height: 1.1;
 }
 
-.page-id-472 .list-group-item{
+.foire-aux-questions .list-group-item-text{
+  padding: 0px;
+  margin: 0px 15px;
+  padding-top: 15px;
+  border-top: 1px solid #ccc;
+}
+
+.foire-aux-questions .list-group-item{
   padding:0;
 }
 
-.page-id-472 .list-group-item-heading a{
+.foire-aux-questions .list-group-item-heading a{
   position:relative;
   top:-70px;
   visibility:hidden;
-}
-
-.page-id-472 h2.h3{
-  margin-top:30px;
-  padding-left:15px
 }
 
 #content .entry-content li {

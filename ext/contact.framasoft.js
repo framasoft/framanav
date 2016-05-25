@@ -103,12 +103,13 @@ jQuery(document).ready(function(){
       case 'j': fc = 'jaune';  break;
       case 'o': fc = 'orange'; break;
     }
-    projetId.push(projet.f.toLowerCase()+projet.s);
+    projet.id = projet.f.toLowerCase()+projet.s;
+    projetId.push(projet.id);
     if(projet.f != 'Dégooglisons') {
-      aideList[projet.col] += '<button type="button" class="list-group-item '+projetId+'" title="'+projet.title+'"><i class="fa fa-fw fa-lg '+projet.fa+'"></i>&nbsp;<b class="violet">'+projet.f+'</b><b class="'+fc+'">'+projet.s+'</b></button>';
+      aideList[projet.col] += '<button type="button" class="list-group-item '+projet.id+'" title="'+projet.title+'"><i class="fa fa-fw fa-lg '+projet.fa+'"></i>&nbsp;<b class="violet">'+projet.f+'</b><b class="'+fc+'">'+projet.s+'</b></button>';
     }
     if(projet.git || projet.soft) {
-      partList[projet.col] += '<tr><td class="'+projetId+'"><i class="fa fa-fw fa-lg '+projet.fa+'"></i>&nbsp;<b class="violet">'+projet.f+'</b><b class="'+fc+'">'+projet.s+'</b>';
+      partList[projet.col] += '<tr><td class="'+projet.id+'"><i class="fa fa-fw fa-lg '+projet.fa+'"></i>&nbsp;<b class="violet">'+projet.f+'</b><b class="'+fc+'">'+projet.s+'</b>';
       if(projet.git) {
         partList[projet.col] += ' <a href="https://git.framasoft.org/'+projet.git+'/issues" class="pull-right"><i class="fa fa-fw fa-lg fa-git"></i><span class="sr-only">git</span></a></td>';
       }
@@ -129,10 +130,49 @@ jQuery(document).ready(function(){
     jQuery('#menu br:not("[data-f]"), p:empty').remove();
 
     // Init avec JS
-    jQuery('.faq[id], .formContact').hide();
+    jQuery('.faq[id],.formContact').hide();
     jQuery('#menu').show(); jQuery('#msgCom').removeClass('col-sm-offset-3');
     jQuery('#aide h2').after('<div class="row col-xs-12">'+aideList[0]+aideList[1]+aideList[2]+'</div>');
     jQuery('#participer .well').after('<div class="row col-xs-12">'+partList[0]+partList[1]+partList[2]+'</div>');
+
+    // Alertes
+    jQuery('.wpcf7 form .your-message').after(
+      '<p class="alert alert-warning framalibre"><b class="label label-warning">Attention</b> Il ne sera donné <b>aucune réponse aux questions concernant le fonctionnement de logiciels libres</b>. Nous ne connaissons pas tous les logiciels qui figurent dans notre annuaire. Pour cela, merci d’utiliser <a href="http://forum.framasoft.org">nos forums</a> ou les réseaux sociaux.</p>'+
+      '<p class="alert alert-warning framapad">N’oubliez pas de <b>nous donner l’adresse du pad</b> qui vous pose problème dans votre message.</p>'+
+      '<p class="alert alert-warning framaboard">N’oubliez pas de <b>nous donner l’adresse de votre espace</b> <b class="violet">Frama</b><b class="vert">board</b> ainsi que <b>votre identifiant</b> dans votre message.</p>'+
+      '<p class="alert alert-warning framadate">N’oubliez pas de <b>nous donner l’adresse du sondage</b> qui vous pose problème dans votre message.</p>'+
+      '<p class="alert alert-warning framadrive">N’oubliez pas de <b>nous donner l’identifiant de votre compte</b> dans votre message.</p>'
+    );
+    jQuery('.wpcf7 form .alert-warning,.faq .alert-warning').hide();
+
+    // FAQ : Import et formatage
+    if(jQuery('#faq_import').length < 1) {
+      jQuery('#content').prepend('<div id="faq_export" class="hidden"></div>');
+      jQuery('#content').prepend('<div id="faq_import" class="hidden"></div>');
+    }
+
+    jQuery('#faq_import').load("https://contact.framasoft.org/foire-aux-questions/ #content .list-group", function() {
+      // On crée les listes
+      jQuery('#faq_import .list-group').each(function() {
+        jQuery('#faq_export').append('<ul id="faq_'+jQuery(this).attr('id')+'"></ul>');
+      });
+      // On remplit avec les liens
+      jQuery('#faq_import .list-group h3').each(function(){
+        jQuery('#faq_'+jQuery(this).parent().parent().attr('id'))
+          .append('<li><a href="https://contact.framasoft.org/foire-aux-questions/#'+jQuery(this).children('a').attr('id')+'">'+
+            jQuery(this).text()+
+          '</a></li>');
+      });
+      // On injecte avant le formulaire
+      jQuery('#general .faq h3').after(jQuery('#faq_export #faq_contact-press'));
+      jQuery('#aide .faq h3').after(jQuery('#faq_export #faq_framacloud_autre'));
+      jQuery('#participer .faq h3').after(jQuery('#faq_export #faq_benevolat'));
+      jQuery('#soutenir .faq h3').after(jQuery('#faq_export #faq_les_dons'));
+      jQuery('#faq_export ul[id^="faq_fra"]').each(function(){
+        var framaId = jQuery(this).attr('id').replace('faq_','');
+        jQuery('#aide #div_'+framaId+'.faq h4').after(jQuery('#faq_export #faq_'+framaId));
+      });
+    });
 
     // Menu aiguillage
     var cOpt = jQuery('#concerne').html();
@@ -174,9 +214,11 @@ jQuery(document).ready(function(){
     jQuery('#aide .list-group-item').click(function() {
       f$_projet = jQuery(this).text();
       f$_projetId = f$_projet.substr(1).toLowerCase();
+      jQuery('.wpcf7 form .alert-warning').hide();
       jQuery('.faq[id]').hide();
       if (projetId.indexOf(f$_projetId)>-1) {
-        jQuery('#'+f$_projetId).show();
+        jQuery('#div_'+f$_projetId).show();
+        jQuery('.wpcf7 form .alert-warning.'+f$_projetId).show();
       }
       jQuery('#aide .list-group-item').removeClass('fb_g2'); jQuery('#aide .list-group-item .fa-check').remove();
       jQuery(this).addClass('fb_g2').prepend('<i class="fa fa-check pull-right"></i>');
@@ -189,24 +231,25 @@ jQuery(document).ready(function(){
     })
 
     // Pré-sélection
-    /*jQuery('.wpcf7-form-control').each(function(){
-      jQuery(this).attr('id',jQuery(this).attr('name'));
-    });
-    var f$_scroll_once = false;
-    jQuery("body").bind("DOMSubtreeModified", function() {
-      if (window.location.hash && jQuery('#framafooter').height() && !f$_scroll_once) {
-          var f$_hash=window.location.hash.substr(2);
-          jQuery('html, body').animate({
-              scrollTop: jQuery('#wpcf7-f423-p326-o1').offset().top-50
-          }, 'fast');
-          jQuery('#aide').trigger('click');jQuery('.list-group-item[class$=["'+f$_hash+'"]').trigger('click');
-          f$_scroll_once = true;
+    if (window.location.hash) {
+      var f$_hash=window.location.hash;
+      switch(f$_hash) {
+        case '#general' : jQuery('#menu a[href="#general"]').trigger('click'); break;
+        case '#participer' : jQuery('#menu a[href="#participer"]').trigger('click'); break;
+        case '#soutenir' : jQuery('#menu a[href="#soutenir"]').trigger('click'); break;
+        case '#aide' : jQuery('#menu a[href="#aide"]').trigger('click'); break;
+        // Framaprojets
+        default :
+          if(f$_hash.indexOf('#frama')>-1) {
+            jQuery('#menu a[href="#aide"]').trigger('click');
+            jQuery('#aide .list-group-item.'+f$_hash.substr(1)).trigger('click');
+          }
       }
-    });*/
+    }
   }
 
   /** FAQ **/
-  if(jQuery('body').hasClass('.page-id-472')) {
+  if(jQuery('body').hasClass('foire-aux-questions')) {
     jQuery('.list-group-item-text').hide();
     jQuery('.list-group-item > p,.list-group-item-heading > p').remove();
 
