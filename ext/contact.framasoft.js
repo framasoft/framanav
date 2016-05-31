@@ -3,7 +3,7 @@ jQuery(document).ready(function(){
   var list = [
     {col: 0, f:"Frama",   s:"libre",      c:"b", fa:"fa-linux",                 title:"Annuaire de logiciels libres"},
     {col: 0, f:"Frama",   s:"key",        c:"b", fa:"fa-usb",                   title:"Clé usb"},
-    {col: 0, f:"Frama",   s:"DVD",        c:"b", fa:"fa-play-circle-o",         title:"DVD"},
+    {col: 0, f:"Frama",   s:"dvd",        c:"b", fa:"fa-play-circle-o",         title:"DVD"},
     {col: 0, f:"Frama",   s:"pack",       c:"b", fa:"fa-download",              title:"Installateur de logiciels",
                                           git:  "framasoft/framapack"},
     {col: 0, f:"Frama",   s:"blog",       c:"r", fa:"fa-pencil",                title:"Blog"},
