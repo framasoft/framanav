@@ -163,3 +163,16 @@ body.pages {
 .container {
   max-width:100%;
 }
+
+.start-menu__modal-backdrop[style*="block"] {
+  display:none !important;
+}
+
+.thread-lintel__wrapper {
+  top:86px;
+}
+
+.start-menu__start-button {
+    background: #6A5687;
+}
+
