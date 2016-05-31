@@ -542,9 +542,7 @@ switch (f$_site) {
         if(!(f$_page('/marketing')||f$_page('users/sign')||f$_page('/start_group')||f$_page('users/password/new'))) {
             f$_footer = false;
             f$_NoMsg();
-            f$_ext_js = function() {
-                jQuery('.lmo-navbar__logo').html('<b class="violet">Frama</b><b class="vert">vox</b>');
-            }
+            f$_ext_js = true;
         }
     break;
     case 'framazic':
