@@ -271,6 +271,10 @@ jQuery(document).ready(function(){
         jQuery(this).parent().removeClass('fb_j0');
       });
 
+    jQuery('.list-group-item').each(function(){
+        jQuery(this).find('.list-group-item-text').append('<p class="text-right" style="margin:-12px 0 5px"><a href="#'+jQuery(this).find('h3 a[id]').attr('id')+'" class="fc_g4"><i class="fa fa-link"></i></a></p>');
+    })
+
     if (window.location.hash) {
       var f$_hash=window.location.hash;
       jQuery('html, body').animate({
