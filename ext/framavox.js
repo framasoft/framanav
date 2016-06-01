@@ -31,7 +31,7 @@ if(jQuery('meta[property="og:locale"]').attr('content').indexOf('fr')>-1) {
             } else {
                 timeago = timeago.replace('a ', '1 ').replace('an ', '1 ');
                 if(timeago.indexOf('Fermée') >-1 && !(timeago.indexOf('Fermée depuis ') >-1)) {
-                    timeago = 'Fermé depuis '+timeago.replace(' ago', '');
+                    timeago = 'Fermée depuis '+timeago.replace(' ago', '');
                 } else if(timeago.indexOf(' ago') >-1) {
                     timeago = 'depuis '+timeago.replace(' ago', '');
                 }
