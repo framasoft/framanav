@@ -125,11 +125,13 @@
     color:#333;
     text-decoration:none;
 }
-#framanav .popover.right {
-    margin-top:25px;
+#framanav .popover.right,
+#framanav .popover.left {
+    margin-top:35px;
 }
-#framanav .popover.right .arrow {
-    margin-top:-35px;
+#framanav .popover.right .arrow,
+#framanav .popover.left .arrow {
+    margin-top:-45px;
 }
 
 #framanav .popover.bottom {

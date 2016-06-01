@@ -822,11 +822,12 @@ fieldset[disabled] .btn-link:focus {
 }
 
 .popover.bottom>.arrow:after,.popover.right>.arrow:after,.popover.top>.arrow:after,.popover.left>.arrow:after {
-	border-color:transparent
+	border-color:transparent;
 }
 
 .popover .popover-title {
-	background:rgba(0,0,0,0.05)
+	background:rgba(0,0,0,0.05);
+    line-height:18px;
 }
 
 /* Cleaning */
