@@ -30,7 +30,7 @@ if(jQuery('meta[property="og:locale"]').attr('content').indexOf('fr')>-1) {
                 timeago = timeago.replace('in a few', 'dans quelques');
             } else {
                 timeago = timeago.replace('a ', '1 ').replace('an ', '1 ');
-                if(timeago.indexOf('Fermé') >-1) {
+                if(timeago.indexOf('Fermé') >-1 && !(timeago.indexOf('Fermé depuis ') >-1)) {
                     timeago = 'Fermé depuis '+timeago.replace(' ago', '');
                 } else if(timeago.indexOf(' ago') >-1) {
                     timeago = 'depuis '+timeago.replace(' ago', '');
