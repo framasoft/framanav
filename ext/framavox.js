@@ -1,14 +1,14 @@
 jQuery('.lmo-navbar__logo').html('<b class="violet">Frama</b><b class="vert">vox</b>');
 
-if(jQuery('meta[property="og:locale"]').attr('content').indexOf('fr')>-1) {
+if(jQuery('meta[property="og:locale"]').attr('content') && jQuery('meta[property="og:locale"]').attr('content').indexOf('fr')>-1) {
 
     // Traductions manquantes
     jQuery('.comment-form textarea').attr('placeholder','Dites quelque chose…');
-    jQuery('.email-settings-page__learn-more-link').attr('href','#lien-vers-la-doc').text('En savoir plus sur les réglages de courriel…');
+    jQuery('.email-settings-page__learn-more-link').attr('href','https://framavox.org/docs/').text('En savoir plus sur les réglages de courriel…');
     jQuery('.membership-requests-page__previous-request-response span').text(function(){return jQuery(this).text().replace('Approved', 'Approuvée') });
 
     // Aide
-    jQuery('a[href*="//loomio.gitbooks.io"]').attr('href','#lien-vers-la-doc');
+    jQuery('a[href*="//loomio.gitbooks.io"]').attr('href','https://framavox.org/docs/');
     // On masque le tuto vidéo
     jQuery('.group-welcome-modal__close-button').trigger('click');
     jQuery('.group-help-card__video-wrapper').hide();
@@ -16,16 +16,16 @@ if(jQuery('meta[property="og:locale"]').attr('content').indexOf('fr')>-1) {
         'src':'https://framatube.org/media/tutoriel-framapad/embed_player',
         'ng-src':'https://framatube.org/media/tutoriel-framapad/embed_player'
     });
-    
+
     setInterval(function() {
- 
+
         // Traductions manquantes
         jQuery('title:contains("Loomio")').text(function(){return jQuery(this).text().replace('Loomio', 'Framavox') });
 
         // Dates en anglais
         jQuery('.timeago span').each(function(){
             var timeago = jQuery(this).text();
-            
+
             if(timeago.indexOf('in a few') >-1) {
                 timeago = timeago.replace('in a few', 'dans quelques');
             } else {
@@ -35,7 +35,7 @@ if(jQuery('meta[property="og:locale"]').attr('content').indexOf('fr')>-1) {
                 }
                 timeago = timeago.replace('depuis Fermée', 'Fermée depuis').replace('in ', 'dans ');
             }
-            
+
             timeago = timeago.replace('second', 'second').replace('hour', 'heure')
                    .replace('day', 'jour').replace('months', 'mois').replace('month', 'mois')
                    .replace('year', 'année')
@@ -45,9 +45,9 @@ if(jQuery('meta[property="og:locale"]').attr('content').indexOf('fr')>-1) {
 
         jQuery('.timeago span, .smart-time span').each(function(){
             var date = jQuery(this).attr('title').split(' ');
-            
+
             if(date.length == 6) { // Si date en anglais
-                
+
                 date[0] = date[0].replace('Monday', 'Lundi').replace('Tuesday', 'Mardi')
                     .replace('Wednesday','Mercredi').replace('Thursday','Jeudi')
                     .replace('Friday','Vendredi').replace('Saturday','Samedi')
@@ -65,10 +65,10 @@ if(jQuery('meta[property="og:locale"]').attr('content').indexOf('fr')>-1) {
                 if(date[5] == 'pm') {
                     var hours = parseInt(date[4].substr(0, 2));
                     if(hours < 12) {
-                        date[4] = date[4].replace(hours+':', hours+12+':'); 
+                        date[4] = date[4].replace(hours+':', hours+12+':');
                     }
                 } else {
-                    date[4] = date[4].replace('12:','0:');                      
+                    date[4] = date[4].replace('12:','0:');
                 }
 
                 jQuery(this).attr('title', date[0]+' '+date[2]+' '+date[1]+' à '+date[4]);
