@@ -31,7 +31,7 @@ body.pages {padding-top:42px;}
 
 .carousel-inner {
   padding-bottom:75px;
-  box-shadow:0px 6px 9px rgba(50, 50, 50, 0.5);
+  box-shadow:0px 2px 6px rgba(50, 50, 50, 0.5);
 }
 
 .carousel-control.right, .carousel-control.left {
