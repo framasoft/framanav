@@ -27,7 +27,7 @@ body.pages {padding-top:42px;}
   font-size:50px;
 }
 
-.carousel { margin:1em 0 4em; }
+.carousel { margin:1em auto 4em; max-width:1060px; }
 
 .carousel-inner {
   padding-bottom:75px;
@@ -77,6 +77,10 @@ body.pages {padding-top:42px;}
   height: 78px !important;
   text-shadow: none;
   border-top: 1px solid #ddd;
+}
+
+.carousel-caption .h3 {
+  margin-top:10px;
 }
 
 .carousel img {
