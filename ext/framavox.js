@@ -9,13 +9,6 @@ if(jQuery('meta[property="og:locale"]').attr('content') && jQuery('meta[property
 
     // Aide
     jQuery('a[href*="//loomio.gitbooks.io"]').attr('href','https://framavox.org/docs/');
-    // On masque le tuto vidéo
-    jQuery('.group-welcome-modal__close-button').trigger('click');
-    jQuery('.group-help-card__video-wrapper').hide();
-    jQuery('iframe[src="https://www.youtube.com/embed/CoYYNthNxOY"]').attr({
-        'src':'https://framatube.org/media/tutoriel-framapad/embed_player',
-        'ng-src':'https://framatube.org/media/tutoriel-framapad/embed_player'
-    });
 
     setInterval(function() {
 

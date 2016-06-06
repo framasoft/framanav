@@ -539,6 +539,7 @@ switch (f$_site) {
         f$_jquery = 'html'; //f$_bootstrap_js = 'html';
         f$_ext_css = true;
         f$_nav_static = !(f$_page('/marketing'));
+        f$_video_js = f$_page('/marketing');
         if(!(f$_page('/marketing')||f$_page('users/sign')||f$_page('/start_group')||f$_page('users/password/new'))) {
             f$_footer = false;
             f$_NoMsg();
