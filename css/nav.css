@@ -504,3 +504,8 @@ body.apropos #piwik-iframe {
 
     }
 }
+
+ /* Hack pour n'afficher la nav que lorsque la feuille de style est prête */
+#framanav[style="display:none"] {
+    display:block !important;
+}
