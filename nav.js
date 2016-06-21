@@ -160,7 +160,7 @@ function f$_start_jquery() {
             f$.getScript(f$_nav+'ext/'+f$_site+'.js');
         }
 
-        f$.ajaxSetup({ cache: f$_cache });
+        f$.ajaxSetup({ cache: true });
 
         if(!f$_nav_container) {
             f$('body').prepend(f$_nav_container_html);
@@ -719,12 +719,146 @@ function f$_isValidEmail(emailAddress) {
     }
 }
 
+/** Depreciated → i$() **/
 function f$_page(string) {
     return (f$_url.indexOf(string) > -1);
+}
+
+function i$(string, location) {
+    switch (location) {
+        case 'h' : location = window.location.host; break;
+        case 'u' : location = window.location.href; break;
+        default: location = window.location.href; return (location.indexOf(string) > -1); break;
+    }
+
+    if( typeof string === 'object' || typeof string === 'function' ) { // RegExp
+        return (string.test(location));
+    } else { // String
+        return (location == string);
+    }
 }
 
 function f$_absolutePath(href) {
     var link = document.createElement("a");
     link.href = href;
     return (link.protocol+"//"+link.host+link.pathname+link.search+link.hash);
+}
+
+/***********************************************************************
+ *                           Config globale                            *
+ ***********************************************************************/
+var f$_jquery = 'jQuery';                           // 'jQuery'     = jQuery de la nav ;
+                                                    // 'html'       = jQuery (1.12.3 ou +) présent dans la page ;
+                                                    // 'noConflict' = variable $ et jQuery renommés en js ;
+
+var f$_bootstrap_js = true;                         // true ; false ; 'html'
+var f$_bootstrap_css = true;
+var f$_css_position = 'start';                      // 'start' = head > bootstrap.css > ... /head body > nav.js ;
+                                                    // 'end'   = head > ... > bootstrap.css /head body > nav.js ;
+var f$_responsive = true;
+var f$_frama_css = true;
+
+var f$_nav_static = false;
+var f$_ext_css = false;                             // nav/ext/nom-de-domaine.css
+var f$_ext_js = false;                              // nav/ext/nom-de-domaine.js ; false ; 'jQuery' ; 'loadScript'
+var f$_footer = true;                               // charger le fichier footer.html
+
+// Popup de don
+var f$_modal_don_txtdl1 = 'de télécharger';
+var f$_modal_don_txtdl2 = 'télécharger';
+var f$_modal_don_liendl = '';                       // selecteur jQuery ou 'onstart' pour l'afficher à l'ouverture de la page
+var f$_modal_don_cookie = 7*24*60*60*1000;          // Expire au bout de 7 jours
+
+// Alertes
+var f$_alert_type = 'black';                        // warning = jaune ; danger = rouge ; info = bleu ; success = vert
+var f$_alert_text = '';                             // /!\ aux \' dans le texte
+var f$_alert_cookie_name = 'nav-alert';
+var f$_alert_cookie = 7*24*60*60*1000;              // Expire au bout de 7 jours
+
+var f$_alert_modal_title = '';                      // /!\ aux \' dans le texte
+var f$_alert_modal_text = '';                       // idem
+var f$_alert_modal_onstart = true;                  // s'affiche à l'ouverture de la page ?
+var f$_alert_modal_cookie_name = 'nav-alert-modal';
+var f$_alert_modal_cookie = 7*24*60*60*1000;        // Expire au bout de 7 jours
+
+// Faire un don (macaron)
+var f$_donate = true;
+var f$_donate_blink_time = 30000;
+
+// Fonction pour désactiver tout ce qui peut géner sur certains sites
+var f$_NoMsg = function() {
+    f$_alert_text = '';       // Pas de bandeau
+    f$_alert_modal_text = ''; // Pas de modale
+    f$_modal_don_liendl = '';
+    f$_donate = false;        // Pas de macaron
+}
+
+// Audio JS
+var f$_audio_js = false;
+// Video JS
+var f$_video_js = false;
+
+// Opt-in
+var f$_email_field1 = '';
+var f$_email_field2 = '';
+var f$_optin_cookie_name = 'opt-in';
+var f$_optin_cookie = 365*24*60*60*1000;            // Expire au bout d'un an
+
+// Icônes
+var f$_keep_icons       = false;                    // true pour connard.pro, pouhiou.com, etc
+var f$_favicon          = false;                    // 'favicon-violet.png' par défaut
+var f$_apple_touch_icon = false;                    // f$_site+'.png' par défaut
+
+/* Bandeau Degooglisons
+    f$_banniere = Math.floor(Math.random() * 3);
+    switch (f$_banniere) {
+    case 0:
+        f$_alert_type       = 'info';
+        f$_alert_img_left   = '<div class="col-sm-3 hidden-xs" style="padding:0;padding-right:10px; max-width: 150px;" aria-hidden="true"><a href="https://degooglisons-internet.org"><img src="'+f$_nav+'img/stallman.png" alt="" class="img-responsive center-block" /></a></div>';
+        f$_alert_img_right  = '';
+        break;
+    case 1:
+        f$_alert_type       = 'warning';
+        f$_alert_img_left   = '<div class="col-sm-3 hidden-xs" style="padding:0;padding-right:10px; max-width: 150px;" aria-hidden="true"><a href="https://degooglisons-internet.org"><img src="'+f$_nav+'img/aaron.png" alt="" class="img-responsive center-block" /></a></div>';
+        f$_alert_img_right  = '';
+        break;
+    case 2:
+        f$_alert_type       = 'success';
+        f$_alert_img_left   = '';
+        f$_alert_img_right  = '<div class="col-sm-3 hidden-xs" style="padding:0;padding-left:10px; max-width: 150px;" aria-hidden="true"><a href="https://degooglisons-internet.org"><img src="'+f$_nav+'img/geekette.png" alt="" class="img-responsive center-block" /></a></div>';
+        break;
+    }
+
+    f$_alert_text =
+        '<div style="margin:0 auto; max-width:800px; text-align:justify">'+
+            f$_alert_img_left+
+            '<div class="col-sm-9" style="padding:0">'+
+                '<p style="font-weight:bold;font-size:16px;" class="text-center">'+
+                    '<a href="https://degooglisons-internet.org" style="text-decoration:none"><b class="frama">Dégooglisons</b> <b class="soft">Internet</b>, l’an 2.</a>'+
+                '</p>'+
+                '<p>Les services en ligne de géants tentaculaires comme Google, Apple, Facebook, Amazon ou Microsoft (GAFAM) mettent en danger nos vies numériques.</p>'+
+                '<p>Pour cette 2e année, <b class="frama">Frama</b><b class="soft">soft</b> continue le défi de vous proposer '+
+                    'une alternative Libre, Éthique, Décentralisée et Solidaire à chacun de ces services.'+
+                '</p>'+
+                '<p class="text-center"><b>Le succès de <a href="https://degooglisons-internet.org">cette campagne est entre vos mains</a> !</b></p></div>'+
+            f$_alert_img_right+
+        '</div><div class="clearfix"></div>';
+    f$_alert_modal_text = '';
+    f$_modal_don_liendl = '';
+*/
+
+// Bandeau soutenir défiscalisation
+var f$_today = new Date();
+var f$_dd = f$_today.getDate();
+var f$_mm = f$_today.getMonth()+1;
+var f$_yyyy = f$_today.getFullYear();
+
+if(f$_mm == 12 && (31-f$_dd) < 15 && f$_site != 'soutenir.framasoft') {
+    f$_rebours = ((31-f$_dd) == 1) ? '24 heures' : 31-f$_dd+' jours';
+    f$_alert_type = 'info';
+    f$_alert_text =
+        '<div style="margin:0 auto; max-width:800px;">'+
+            '<p class="text-center">Rappel : il vous reste <b>'+f$_rebours+'</b> pour faire un <b>don défiscalisé en '+f$_yyyy+'</b> à Framasoft.'+
+            '<br/>Merci pour votre soutien <a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir"><i class="fa fa-heart"></i><span class="sr-only">Faire un don ?</a></p>'+
+        '</div>';
 }

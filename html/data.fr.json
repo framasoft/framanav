@@ -1,0 +1,777 @@
+{
+  "#comment": {
+    "p": "prefix Frama",
+    "s": "suffixe (ou nom du site)",
+    "a": "en ou abbr ; s'applique sur le suffixe",
+    "c": "couleur : b = bleu, r = rouge, v = vert, o = orange, j = jaune, f = violet",
+    "i": "classe CSS pour l'icône Font awesome",
+    "l": "URL du projet",
+
+    "git": "dépôt Framagit",
+    "soft": "nom du logiciel source",
+    "src": "URL du site de développement du logiciel",
+    "cloud": "URL du tuto Framacloud",
+
+    "d0": "infobulle Contact",
+    "t1": "titre Accueil / Nav",
+    "d1": "description Accueil / Nav",
+
+    "t2": "titre DIo",
+    "d2": "description courte DIo",
+    "d3": "description longue DIo",
+    "d4": "description très longue DIo (modale)"
+  },
+  "meta": {
+    "home": {
+      "p": "Frama",
+      "s": "soft",
+      "c": "o",
+      "l": "https://framasoft.org"
+    },
+    "soutenir": {
+      "s": "Faire un don ?",
+      "i": "fa-heart",
+      "l": "https://soutenir.framasoft.org",
+
+      "t1": "Parce que libre ne signifie pas gratuit",
+      "d1": "Framasoft ne serait rien sans sa communauté de bénévoles mais ne pourrait pas fonctionner non plus sans le service de l’association qui a des frais et emploie cinq indispensables permanents. Notre financement dépend de vous, c’est-à-dire des dons individuels collectés sur Internet. Si vous pensez que nous le méritons…"
+    },
+    "benevalo": {
+      "s": "Bénévalo",
+      "i": "fa-paw",
+      "l": "https://soutenir.framasoft.org/node/add/benevalo",
+
+      "t1": "Le bénévolat valorisé, qu’est-ce que c’est ?",
+      "d1": "Amis bénévoles, vous avez contribué récemment à l’activité de Framasoft ? C’est le moment de remplir votre bénévolat valorisé. Le « bénévalo » permet de rendre compte de l’activité des bénévoles et de confirmer que Framasoft reste bien une association majoritairement non lucrative. C’est important pour nous."
+    },
+    "modale-don": {
+      "t" : "Soutenez Framasoft",
+      "d" : [
+        "<p>Vous êtes sur le point %f$_modal_don_txtdl1% une ressource <b>libre</b> issue de la vingtaine de projets du réseau Framasoft.</p>",
+        "<p>Cette ressource est <b>gratuite</b> (et le sera tant que nous existerons) parce que <b>Framasoft est une association d’intérêt général à but non lucratif</b> dont l’objectif est justement la diffusion du logiciel libre et sa culture au plus large public.",
+        "<p>Mais tout ceci est rendu possible parce que Framasoft est <b>soutenue par les dons (défiscalisables) de ses utilisateurs</b>.</p>",
+        "<p>Merci de prendre quelques minutes en nous aidant à pérenniser et développer notre action.</p>"
+      ],
+      "b1" : "Je veux faire un don<br /> à l’association Framasoft",
+      "b2" : "Je veux participer.<br />Par où on commence ?",
+      "b3" : "Non merci, je souhaite seulement %f$_modal_don_txtdl2%",
+      "b4" : "Je soutiens déjà Framasoft"
+    },
+    "optin": {
+      "t": "J’accepte que Framasoft m’envoie à cette adresse des informations importantes",
+      "d1": "(Promis, nous ne revendons pas nos fichiers, même à la NSA !",
+      "d2": "Pourquoi m’inscrire ?",
+      "e1": "Les adresses emails ne correspondent pas.",
+      "e2": "L’adresse email %f$_email% n’est pas valide.",
+      "s1": "Votre adresse email <strong>%f$_email%</strong> a été ajoutée à notre liste. Vous devriez avoir reçu un email de confirmation."
+    }
+  },
+  "t": {
+    "new-window": "nouvelle fenêtre",
+    "close": "Fermer",
+    "never-show": "Ne plus afficher",
+    "toggle": "Afficher/masquer le menu",
+    "skip": "Sauter le menu",
+    "pause": "Pause",
+    "play": "Lecture",
+    "slide-prev": "Diapo précédente",
+    "slide-next": "Diapo suivante",
+    "mobile": "Activer le mode mobile",
+    "desktop": "Désactiver le mode mobile",
+    "type-your-email": "Saisissez votre courriel",
+    "your-email": "Votre courriel",
+    "subscribe":"S'abonner",
+    "to-the-newsletter": " à la lettre d’informations"
+  },
+  "menus": {
+    "soft": "Logiciel libre",
+    "culture": "Culture libre",
+    "services": "Services libres",
+    "vrac": "Libr'en vrac",
+    "follow": "Nous suivre",
+    "about": "À propos",
+    "community": "Communauté",
+    "site": "Site"
+  },
+  "f": {
+    "libre": {
+      "p": "Frama",
+      "s": "libre",
+      "c": "b",
+      "i": "fa-linux",
+      "l": "http://framalibre.org",
+
+      "d0": "Annuaire de logiciels libres",
+      "t1": "L’annuaire de logiciels libres",
+      "d1": "Plus de 1600 logiciels classés, testés et commentés dans le projet historique et fondateur de Framasoft. On y trouve également des tutoriels et des articles de fond."
+
+    },
+    "key": {
+      "p": "Frama",
+      "s": "key",
+      "a": "en",
+      "c": "b",
+      "i": "fa-usb",
+      "l": "https://framakey.org",
+
+      "d0": "Clé usb",
+      "t1": "Le plein de liberté dans une simple clé",
+      "d1": "Dans une clé USB (ou tout autre support mobile) utiliser en mode nomade une centaine de logiciels libres portables pour Windows, tester voire installer une distribution GNU/Linux ou encore avoir accès hors ligne à toute la Wikipédia francophone."
+    },
+    "dvd": {
+      "p": "Frama",
+      "s": "dvd",
+      "a": "abbr",
+      "c": "b",
+      "i": "fa-play-circle-o",
+      "l": "http://framadvd.org",
+
+      "d0": "DVD",
+      "t1": "Le plein de liberté dans un DVD",
+      "d1": "Un DVD rempli non seulement des meilleurs logiciels libres pour Windows, Mac et GNU/Linux (avec une distribution dedans) mais aussi de la culture libre (textes, photos, audios et vidéos). Existe en une version spéciale école."
+    },
+    "pack": {
+      "p": "Frama",
+      "s": "pack",
+      "c": "b",
+      "i": "fa-download",
+      "l": "http://framapack.org",
+
+      "d0": "Installateur de logiciels",
+      "t1": "Distribution massive",
+      "d1": "Pratique, sur Framapack on fait son marché des meilleurs logiciels libres Windows dans leur dernière version. On les sélectionne et ils s’installent tous ensemble d’un simple clic !"
+    },
+    "start": {
+      "p": "Frama",
+      "s": "start",
+      "c": "b",
+      "i": "fa-rocket",
+      "l": "http://framastart.org",
+
+      "t1": "Framastart",
+      "d1": "Le meilleur des logiciels libres sur une seule page."
+    },
+    "blog": {
+      "p": "Frama",
+      "s": "blog",
+      "c": "r",
+      "i": "fa-pencil",
+      "l": "http://framablog.org",
+
+      "d0": "Blog",
+      "t1": "L’actualité du « Libre »",
+      "d1": "Chroniques quotidiennes autour du Libre en général et du logiciel libre en particulier. De riches débats dans les commentaires, de nombreuses traductions originales et les annonces des nouveautés de l’ensemble du réseau Framasoft."
+    },
+    "book": {
+      "p": "Frama",
+      "s": "book",
+      "a": "en",
+      "c": "r",
+      "i": "fa-book",
+      "l": "http://framabook.org",
+
+      "d0": "Livres",
+      "t1": "Le pari du livre libre",
+      "d1": "Notre maison d’édition qui comporte une vingtaine de titres autour du logiciel libre, initiation à la programmation, réflexion sur le droit d’auteur mais aussi des BD et même un roman. Un livre libre offre au lecteur les mêmes libertés qu’un logiciel libre."
+    },
+    "bookin": {
+      "p": "Frama",
+      "s": "bookin",
+      "c": "r",
+      "i": "fa-coffee",
+      "l": "http://framabookin.org",
+      "git": "https://framagit.org/framasoft/framabookin",
+      "soft": "BicBucStriim",
+      "src": "https://github.com/rvolz/BicBucStriim",
+      "cloud": "http://framacloud.org/cultiver-son-jardin/installation-d-un-serveur-opds/",
+
+      "d0": "Bibliothèque",
+      "t1": "Une bibliothèque numérique libre",
+      "d1": "Notre bibliothèque numérique qui contient quelques centaines d’ouvrages libres ou du domaine public. Elle est consultable en ligne sur les plateformes mobiles (smartphones, tablettes, liseuses…) et peut aussi être ajoutée directement dans votre application préférée de lecture d’ebook grâce au flux OPDS."
+    },
+    "lang": {
+      "p": "Frama",
+      "s": "lang",
+      "c": "r",
+      "i": "fa-language",
+      "l": "http://framablog.org",
+
+      "t1": "Traduction collaborative",
+      "d1": "Traduire tous ensemble, principalement de l’anglais vers le français, dans la convivialité en bénéficiant de la force d’Internet et de la bonne volonté de ses habitants. Il peut s’agir d’articles, de sous-titrage et même de livres entiers !"
+    },
+    "tube": {
+      "p": "Frama",
+      "s": "tube",
+      "c": "r",
+      "i": "fa-film",
+      "l": "https://framatube.org",
+
+      "d0": "Vidéos",
+      "t1": "Notre « YouTube » du Libre",
+      "d1": "Vidéos en français (ou sous-titrées en français) autour du logiciel libre en particulier et du Libre en général. Interviews, conférences, documentaires, extraits télévisés… pour s’informer mais aussi informer les autres."
+    },
+    "zic": {
+      "p": "Frama",
+      "s": "zic",
+      "c": "r",
+      "i": "fa-music",
+      "l": "http://framazic.org",
+
+      "d0": "Musique",
+      "t1": "Quand la musique est libre",
+      "d1": "Une « musique libre » est une musique qui offre au mélomane les mêmes libertés qu’un logiciel libre. Un site dédié permettant de mieux la comprendre accompagné d’une petite sélection permettant de constater que la qualité est au rendez-vous."
+    },
+    "dio": {
+      "p": "Dégooglisons ",
+      "s": "Internet",
+      "c": "o",
+      "i": "fa-shield",
+      "l": "https://degooglisons-internet.org",
+
+      "d0": "Campagne de sensibilitation",
+      "t1": "<b class='violet'>Dégooglisons</b> <b class='orange'>Internet</b> : une ambitieuse campagne.",
+      "d1": "Les services en ligne de géants tentaculaires comme Google, Amazon, Facebook, Apple ou Microsoft (GAFAM) mettent en danger nos vies numériques. Aujourd’hui, <b class='violet'>Frama</b><b class='orange'>soft</b> se lance un défi audacieux : vous proposer, avec votre aide, une alternative Libre, Éthique, Décentralisé et Solidaire pour chacun de ces services."
+    },
+    "pad": {
+      "p": "Frama",
+      "s": "pad",
+      "c": "v",
+      "i": "fa-align-left",
+      "l": "https://framapad.org",
+      "git": "https://framagit.org/framasoft/framapad",
+      "soft": "Etherpad",
+      "src": "https://github.com/ether/etherpad-lite",
+
+      "d0": "Traitement de texte",
+      "t1": "Éditer collaborativement",
+      "d1": "Écrivons tous ensemble sur le même document dans une interface de rédaction collective en ligne. Aucune inscription requise, on se donne un pseudo, une couleur et on se lance !",
+
+      "t2": "Outil de rédaction collaborative",
+      "d2": "Rédaction collaborative",
+      "d3": "Du traitement de texte en ligne et à plusieurs !",
+      "d4" : [
+        "<p>",
+          "%f.pad.F% est un service de rédaction collaborative en ligne basé sur le logiciel %f.pad.soft%.",
+        "</p>",
+        "<p>",
+          "Un « pad » est un éditeur de texte en ligne. Son vrai plus ? L’édition collaborative : les contributions de chaque",
+          "utilisateur apparaissent immédiatement dans les pads de tous les participants, signalées par un code couleur.",
+        "</p>",
+        "<p class=\"violet\">Fonctionnalités :</p>",
+        "<ul>",
+          "<li>Ouvrir un pad public ou privé</li>",
+          "<li>Rédiger votre document</li>",
+          "<li>Inviter des collaborateurs</li>",
+          "<li>Un code couleur pour chacun</li>",
+          "<li>Tchat intégré</li>",
+          "<li>Historique des versions</li>",
+          "<li>Exporter votre travail</li>",
+          "<li>Et bientôt : gérer des sessions et des groupes avec MyPads !</li>",
+        "</ul>"
+      ]
+    },
+    "calc": {
+      "p": "Frama",
+      "s": "calc",
+      "c": "v",
+      "i": "fa-th",
+      "l": "https://framacalc.org",
+      "git":  "https://framagit.org/framasoft/framacalc",
+      "soft": "Ethercalc",
+      "src": "https://github.com/audreyt/ethercalc",
+
+      "d0": "Tableur",
+      "t1": "Un tableur collaboratif",
+      "d1": "Framacalc est au tableur ce que Framapad est au traitement de texte, autrement dit la possibilité d’éditer simplement et collectivement en ligne sur un même document."
+    },
+    "date": {
+      "p": "Frama",
+      "s": "date",
+      "a": "en",
+      "c": "v",
+      "i": "fa-calendar",
+      "l": "https://framadate.org",
+      "git":  "https://framagit.org/framasoft/framadate",
+
+      "d0": "Alternative à Doodle",
+      "t1": "Organiser des rendez-vous et des sondages",
+      "d1": "Framadate c’est un peu comme Doodle mais en libre. Rien de plus simple de créer un rendez-vous ou un sondage sans inscription pour y inviter vos collaborateurs."
+    },
+    "board": {
+      "p": "Frama",
+      "s": "board",
+      "a": "en",
+      "c": "v",
+      "i": "fa-dashboard",
+      "l": "https://framaboard.org",
+      "git":  "https://framagit.org/framasoft/framaboard",
+      "soft": "Kanboard",
+      "src": "https://github.com/fguillot/kanboard",
+
+      "d0": "Alternative à Trello",
+      "t1": "Gérer des projets",
+      "d1": "Framaboard est un gestionnaire collaboratif de tâches et de projets, en suivant la méthode Kanban. Son système visuel permet de s’y retrouver au premier coup d’œil, quelque soit votre habitude à utiliser ce genre d’outil."
+    },
+    "mindmap": {
+      "p": "Fra",
+      "s": "mindmap",
+      "a": "en",
+      "c": "v",
+      "i": "fa-sitemap fa-rotate-270",
+      "l": "https://framindmap.org",
+      "git":  "https://framagit.org/framasoft/framindmap",
+      "soft": "Wisemapping",
+      "src": "https://bitbucket.org/wisemapping/wisemapping-open-source",
+
+      "d0": "Cartes mentales",
+      "t1": "Créer des cartes mentales",
+      "d1": "Interface fluide et intuitive pour créer rapidement et simplement des cartes heuristiques à même votre navigateur. Pertinent en situation de brainstorming ou de prise de notes."
+    },
+    "vectoriel": {
+      "p": "Frama",
+      "s": "vectoriel",
+      "c": "v",
+      "i": "fa-paint-brush",
+      "l": "http://framavectoriel.org",
+      "git":  "https://framagit.org/framasoft/framavectoriel",
+      "soft": "SVG-Edit",
+      "src": "https://github.com/SVG-Edit/svgedit",
+
+      "d0": "Dessin",
+      "t1": "Dessiner en vectoriel",
+      "d1": "Pour créer et éditer simplement et rapidement de belles images en ligne au format ouvert SVG. Les enfants adorent !"
+    },
+    "bee": {
+      "p": "Frama",
+      "s": "bee",
+      "a": "en",
+      "c": "v",
+      "i": "fa-search",
+      "l": "https://framabee.org",
+      "soft": "Searx",
+      "src": "https://github.com/asciimoo/searx",
+
+      "d0": "Moteur de recherche",
+      "t1": "Le moteur qui butine les internets pour vous",
+      "d1": "Framabee est un meta-moteur de recherche libre et anonyme. Vos recherches effectuées au travers de ce moteur sont envoyées à différents moteurs avant d’être affichées dans votre navigateur. L’intérêt ? Notre moteur est alors un intermédiaire entre vous et Google (et autres), ainsi vos données personnelles (adresse IP, historique de vos recherches, géolocalisation, profil) ne sont pas enregistrées chez eux."
+    },
+    "carte": {
+      "p": "Frama",
+      "s": "carte",
+      "c": "v",
+      "i": "fa-map",
+      "l": "https://framacarte.org",
+      "git":  "https://framagit.org/framasoft/framacarte",
+      "soft": "uMap",
+      "src": "https://github.com/umap-project",
+
+      "d0": "Cartes géographiques personnalisées",
+      "t1": "Cartographie personnalisée",
+      "d1": "Framacarte vous permet de dessiner, marquer, colorier, annoter… les fonds de carte d’OpenStreetMap pour les afficher ensuite dans votre site web ou les imprimer."
+    },
+    "sphere": {
+      "p": "Frama",
+      "s": "sphère",
+      "c": "v",
+      "i": "fa-asterisk",
+      "l": "https://framasphere.org",
+      "git":  "https://framagit.org/framasoft/framasphere",
+      "soft": "Disapora*",
+      "src": "https://github.com/diaspora",
+
+      "d0": "Réseau social Diaspora*",
+      "t1": "Le réseau social libre",
+      "d1": "Framasphère est un réseau social libre, basé sur le logiciel décentralisé Diaspora*. Retrouvez vos amis sur Framasphère - ou d’autres pods Diaspora* - et échangez avec eux sans être pisté."
+    },
+    "team": {
+      "p": "Frama",
+      "s": "team",
+      "a": "en",
+      "c": "v",
+      "i": "fa-comments-o",
+      "l": "https://framateam.org",
+      "soft": "Mattermost",
+      "src": "https://github.com/mattermost",
+
+      "d0": "Communication collaborative",
+      "t1": "Communication collaborative",
+      "d1": "Framateam est un service de tchat libre qui permet de communiquer avec son équipe en notifiant ses collègues, de conserver ses conversations et d’y faire des recherches."
+    },
+    "vox": {
+      "p": "Frama",
+      "s": "vox",
+      "c": "v",
+      "i": "fa-bullhorn",
+      "l": "https://framavox.org",
+      "git":  "https://framagit.org/framasoft/framasphere",
+      "soft": "Loomio",
+      "src": "https://github.com/loomio",
+      "cloud": "http://framacloud.org/cultiver-son-jardin/installation-de-loomio/",
+
+      "d0": "Prise de décision",
+      "t1": "Décider ensemble",
+      "d1": "Framavox vous aide à prendre des décisions communautaires. Discutez, échangez, mettez-vous d’accord et passez à l’action, le tout dans les délais que vous vous êtes fixés au départ."
+    },
+    "games": {
+      "p": "Frama",
+      "s": "games",
+      "a": "en",
+      "c": "v",
+      "i": "fa-gamepad",
+      "l": "http://framagames.org",
+      "git":  "https://framagit.org/framasoft/framagames",
+      "soft": "Divers",
+
+      "d0": "Compilation de jeux en ligne",
+      "t1": "Jouer en ligne ou déconnecté",
+      "d1": "Framagames est une compilation de jeux libres qui se jouent en ligne, se téléchargent sur son PC, sa tablette… et ne nécessitent aucune installation supplémentaire."
+    },
+    "bag": {
+      "p": "Frama",
+      "s": "bag",
+      "c": "v",
+      "i": "fa-briefcase",
+      "l": "https://framabag.org",
+      "git":  "https://framagit.org/framasoft/framabag",
+      "soft": "Wallabag",
+      "src": "https://github.com/wallabag",
+      "cloud": "http://framacloud.org/cultiver-son-jardin/installation-de-wallabag/",
+
+      "d0": "Alternative à Pocket",
+      "t1": "Ne ratez plus aucun article !",
+      "d1": "Framabag vous permet de mettre de côté les articles que vous n’avez pas le temps de lire tout de suite."
+    },
+    "news": {
+      "p": "Frama",
+      "s": "news",
+      "a": "en",
+      "c": "v",
+      "i": "fa-newspaper-o",
+      "l": "https://framanews.org",
+      "git":  "https://framagit.org/framasoft/framanews",
+      "soft": "TT-RSS",
+      "src": "https://tt-rss.org/gitlab/fox/tt-rss/wikis/home",
+
+      "d0": "Lecteur de flux RSS",
+      "t1": "Suivre l’actualité",
+      "d1": "En vous abonnant aux flux RSS de vos sites préférés, restez informés de toutes leurs actualités avec Framanews !"
+    },
+    "drive": {
+      "p": "Frama",
+      "s": "drive",
+      "a": "en",
+      "c": "v",
+      "i": "fa-cloud-upload",
+      "l": "https://framadrive.org",
+      "git":  "https://framagit.org/framasoft/framadrive",
+      "soft": "Owncloud",
+      "src": "https://github.com/owncloud/",
+      "cloud": "http://framacloud.org/cultiver-son-jardin/installation-de-owncloud/",
+
+      "d0": "Alternative à Dropbox",
+      "t1": "Héberger ses documents en ligne",
+      "d1": "Framadrive vous permet de stocker vos documents en ligne, de les synchroniser sur vos ordinateurs, mobiles, etc… et de les partager avec qui vous voulez."
+    },
+    "drop": {
+      "p": "Frama",
+      "s": "drop",
+      "c": "v",
+      "i": "fa-send",
+      "l": "https://framadrop.org",
+      "git":  "https://framagit.org/framasoft/framadrop",
+      "soft": "Lufi",
+      "src": "https://framagit.org/luc/lufi",
+      "cloud": "http://framacloud.org/cultiver-son-jardin/installation-de-lufi/",
+
+      "d0": "Alternative à WeTransfer",
+      "t1": "Partager des fichiers anonymement",
+      "d1": "Avec Framadrop, fini les pièces jointes trop lourdes qui empêchent l’envoi d’un email. Ce service libre vous permet de partager facilement des fichiers de manière sécurisé."
+    },
+    "bin": {
+      "p": "Frama",
+      "s": "bin",
+      "a": "en",
+      "c": "v",
+      "i": "fa-paste",
+      "l": "https://framabin.org",
+      "git":  "https://framagit.org/framasoft/framabin",
+      "soft": "Zerobin",
+      "src": "https://github.com/sebsauvage/ZeroBin",
+      "cloud": "http://framacloud.org/cultiver-son-jardin/installation-de-zerobin/",
+
+      "d0": "Alternative à Pastebin",
+      "t1": "Transmettre des données chiffrées",
+      "d1": "Avec Framabin, vous pouvez partager des informations que seuls vous et votre correspondant aurez le pouvoir de déchiffrer, et ceci de manière très simple."
+    },
+    "pic": {
+      "p": "Frama",
+      "s": "pic",
+      "c": "v",
+      "i": "fa-photo",
+      "l": "https://framapic.org",
+      "git":  "https://framagit.org/framasoft/framapic",
+      "soft": "Lutim",
+      "src": "https://framagit.org/luc/lutim",
+      "cloud": "http://framacloud.org/cultiver-son-jardin/installation-de-lutim/",
+
+      "d0": "Partage d’images",
+      "t1": "Partager des images anonymement",
+      "d1": "Framapic vous permet de partager facilement des images, par exemple pour les publier sur Twitter, Facebook, ou… Framasphère !"
+    },
+    "link": {
+      "p": "Frama",
+      "s": "link",
+      "a": "en",
+      "c": "v",
+      "i": "fa-link",
+      "l": "https://frama.link",
+      "git":  "https://framagit.org/framasoft/framalink",
+      "soft": "LSTU",
+      "src": "https://framagit.org/luc/lstu",
+      "cloud": "http://framacloud.org/cultiver-son-jardin/installation-de-lstu/",
+
+      "d0": "Raccourcisseur d’URL",
+      "t1": "Réduire des liens",
+      "d1": "Avec Frama.link, il est possible de raccourcir des adresses web trop longues. Sur les réseaux sociaux et le microblogging, un lien raccourci permet d’économiser de l’espace et gagner en clarté."
+    },
+    "git": {
+      "p": "Frama",
+      "s": "git",
+      "a": "en",
+      "c": "v",
+      "i": "fa-git",
+      "l": "https://framagit.org",
+      "git":  "https://framagit.org/framasoft/framalink",
+      "soft": "Gitlab",
+      "src": "https://about.gitlab.com/contributing/",
+
+      "d0": "Alternative à Github",
+      "t1": "Héberger du code libre",
+      "d1": "Framagit est un outil qui s’adresse avant tout aux développeurs. Il permet d’héberger vos projets de logiciels libres et de travailler collaborativement dessus."
+    },
+    "evl": {
+      "p": "EnVente",
+      "s": "Libre",
+      "c": "j",
+      "i": "fa-shopping-cart",
+      "l": "http://enventelibre.org/40-framasoft",
+
+      "d0": "Boutique",
+      "t1": "Notre libre petite boutique",
+      "d1": "L’espace vente des différents produits Framasoft qui peuvent se matérialiser : Framakey, Framabook, Framadvd mais aussi des goodies et des tee-shirts."
+    },
+    "agora": {
+      "p": "Fram",
+      "s": "agora",
+      "c": "j",
+      "i": "fa-comment",
+      "l": "https://forum.framasoft.org",
+
+      "d0": "Forum",
+      "t1": "Le forum du réseau Framasoft",
+      "d1": "Vous avez une question ? Nous avons (peut-être) une réponse ! « Si tu ne sais pas, demande. Si tu sais, partage. » Framagora est notre convivial espace d’échange d’informations autour du Libre."
+    },
+    "irc": {
+      "p": "Canal ",
+      "s": "IRC",
+      "a": "abbr",
+      "c": "j",
+      "i": "fa-comments-o",
+      "l": "https://contact.framasoft.org/irc/",
+
+      "t1": "Canal IRC",
+      "d1": "Si vous souhaitez tchatter avec la communauté, un salon #framasoft est ouvert sur Freenode.net"
+    },
+    "wiki": {
+      "p": "Frama",
+      "s": "wiki",
+      "c": "j",
+      "i": "fa-puzzle-piece",
+      "l": "https://wiki.framasoft.org",
+
+      "t1": "Framawiki",
+      "d1": "Le wiki de Framasoft"
+    },
+    "vvl": {
+      "s": "Veni Vidi Libri",
+      "c": "j",
+      "i": "fa-legal",
+      "l": "http://vvlibri.org",
+
+      "t1": "Veni Vidi Libri",
+      "d1": "Tout ce que vous avez toujours voulu savoir sur les licences libres."
+    },
+    "ptilouk": {
+      "s": "Ptilouk",
+      "c": "j",
+      "i": "fa-picture-o",
+      "l": "http://ptilouk.net",
+
+      "t1": "Ptilouk",
+      "d1": "Bandes dessinées libres"
+    },
+    "noenaute": {
+      "s": "NoeNaute",
+      "c": "j",
+      "i": "fa-book",
+      "l": "http://noenaute.fr",
+
+      "t1": "NoeNaute",
+      "d1": "Romans feuilleton geeks et libres"
+    },
+    "planete-libre": {
+      "s": "Planet-libre",
+      "c": "j",
+      "i": "fa-book",
+      "l": "http://planet-libre.org",
+
+      "t1": "Planet-libre",
+      "d1": "Sélection de nouvelles du libre francophone."
+    },
+    "clibre": {
+      "s": "CLibre.eu",
+      "c": "j",
+      "i": "fa-leaf",
+      "l": "http://clibre.eu",
+
+      "t1": "CLibre.eu",
+      "d1": "Un annuaire des principaux logiciels et alternatives libres"
+    },
+    "diaspora": {
+      "s": "Diaspora*",
+      "c": "f",
+      "i": "fa-asterisk",
+      "l": "https://framasphere.org/u/framasoft",
+
+      "t1": "Framasoft sur Diaspora*",
+      "d1": "Notre compte sur le réseau social libre Diaspora*"
+    },
+    "twitter": {
+      "s": "Twitter",
+      "c": "f",
+      "i": "fa-twitter",
+      "l": "https://twitter.com/framasoft",
+
+      "t1": "Framasoft sur Twitter",
+      "d1": "Notre compte de microblogging sur Twitter (oui, on sait…)"
+    },
+    "facebook": {
+      "s": "Facebook",
+      "c": "f",
+      "i": "fa-facebook",
+      "l": "https://www.facebook.com/framasoft",
+
+      "t1": "Framasoft sur Facebook",
+      "d1": "Framasoft est <i>aussi</i> sur Facebook (oui, on sait aussi…)"
+    },
+    "gplus": {
+      "s": "Google+",
+      "c": "f",
+      "i": "fa-google-plus",
+      "l": "https://plus.google.com/113481533567002271362",
+
+      "t1": "Framasoft sur Google+",
+      "d1": "Framasoft est malheureusement <i>aussi</i> sur Google+ (rhalala…)"
+    },
+    "newsletter": {
+      "s": "Newsletter",
+      "a": "en",
+      "c": "f",
+      "i": "fa-envelope-o",
+      "l": "https://contact.framasoft.org/newsletter",
+
+      "t1": "Lettre d’informations",
+      "d1": "Rejoignez <b>nos 60 000</b> abonnés à notre lettre d’informations."
+    },
+    "rss": {
+      "p": "Flux ",
+      "s": "RSS",
+      "a": "abbr",
+      "c": "f",
+      "i": "fa-rss",
+      "l": "http://rss.framasoft.org",
+
+      "t1": "Flux RSS",
+      "d1": "Flux RSS agrégé des différents sites."
+    },
+    "contact": {
+      "s": "Nous contacter",
+      "c": "f",
+      "i": "fa-envelope",
+      "l": "https://contact.framasoft.org",
+
+      "t1": "Contacter Framasoft",
+      "d1": "Vous souhaitez prendre contact avec nous ?"
+    },
+    "wikipedia": {
+      "s": "Wikipédia",
+      "c": "f",
+      "i": "fa-wikipedia-w",
+      "l": "https://fr.wikipedia.org/wiki/Framasoft",
+
+      "t1": "Article Framasoft sur Wikipédia",
+      "d1": "Parcourez le (long) article Framasoft sur l’(incontournable) encyclopédie libre Wikipédia."
+    },
+    "asso": {
+      "s": "L’association",
+      "c": "o",
+      "i": "fa-home",
+      "l": "https://soutenir.framasoft.org/association"
+    },
+    "charte": {
+      "s": "Notre charte",
+      "c": "o",
+      "i": "fa-heart",
+      "l": "https://framasoft.org/nav/html/charte.html"
+    },
+    "participer": {
+      "s": "Participer",
+      "c": "o",
+      "i": "fa-paw",
+      "l": "https://participer.framasoft.org"
+    },
+    "benevalo": {
+      "s": "Bénévolat valorisé",
+      "c": "o",
+      "i": "fa-trophy",
+      "l": "https://soutenir.framasoft.org/benevolat"
+    },
+    "partenaires": {
+      "s": "Partenaires",
+      "c": "o",
+      "i": "fa-group",
+      "l": "https://soutenir.framasoft.org/partenaires"
+    },
+    "legals": {
+      "s": "Mentions légales",
+      "c": "o",
+      "i": "fa-university",
+      "l": "https://framasoft.org/nav/html/legals.html"
+    },
+    "cgu": {
+      "s": "CGU",
+      "a": "abbr",
+      "c": "o",
+      "i": "fa-legal",
+      "l": "https://framasoft.org/nav/html/cgu.html"
+    },
+    "credits": {
+      "s": "Crédits",
+      "c": "o",
+      "i": "fa-creative-commons",
+      "l": "https://framasoft.org/nav/html/credits.html"
+    },
+    "stats": {
+      "s": "Statistiques",
+      "c": "o",
+      "i": "fa-chart",
+      "l": "http://framastats.org"
+    },
+    "status": {
+      "s": "État des services",
+      "c": "o",
+      "i": "fa-heartbeat",
+      "l": "https://status.framasoft.org"
+    }
+  }
+}
