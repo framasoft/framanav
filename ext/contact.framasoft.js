@@ -259,20 +259,22 @@ jQuery(document).ready(function(){
 
     jQuery('.list-group-item-heading')
       .prepend('<i class="fa fa-chevron-down pull-right"></i>')
-      .toggle(function() {
-        // masque tout
-        jQuery('.list-group-item-text').hide();
-        jQuery('.list-group .fa-chevron-up').removeClass('fa-chevron-up').addClass('fa-chevron-down');
-        jQuery('.list-group-item').removeClass('fb_j0');
-        // affiche la réponse
-        jQuery(this).next().show();
-        jQuery(this).children('.fa').removeClass('fa-chevron-down').addClass('fa-chevron-up');
-        jQuery(this).parent().addClass('fb_j0');
-      }, function() {
-        // masque la réponse
-        jQuery(this).next().hide();
-        jQuery(this).children('.fa').removeClass('fa-chevron-up').addClass('fa-chevron-down');
-        jQuery(this).parent().removeClass('fb_j0');
+      .click(function() {
+        if (jQuery(this).next(':hidden').length !== 0) {
+          // masque tout
+          jQuery('.list-group-item-text').hide();
+          jQuery('.list-group .fa-chevron-up').removeClass('fa-chevron-up').addClass('fa-chevron-down');
+          jQuery('.list-group-item').removeClass('fb_j0');
+          // affiche la réponse
+          jQuery(this).next().show();
+          jQuery(this).children('.fa').removeClass('fa-chevron-down').addClass('fa-chevron-up');
+          jQuery(this).parent().addClass('fb_j0');
+        } else {
+          // masque la réponse
+          jQuery(this).next().hide();
+          jQuery(this).children('.fa').removeClass('fa-chevron-up').addClass('fa-chevron-down');
+          jQuery(this).parent().removeClass('fb_j0');
+        }
       });
 
     jQuery('.list-group-item').each(function(){
