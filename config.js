@@ -1,256 +1,313 @@
-var f$_config = 'global';
-
 /***********************************************************************
  *                          Config des sites                           *
  ***********************************************************************/
 // Alias
-// On remplace juste la variable f$_site.
+// On remplace juste la variable n$.site.
 // Cette variable n'est utilisée que pour charger les fichiers ext_css,
 // credits et placer un tracker sur un lien de la modale Soutenir
-switch (f$_site) {
-    case 'localhost' : f$_site = 'localhost'; break;
-    case 'noenaute' : f$_site = 'pouhiou'; break;
-    case 'huit.re' : f$_site = 'frama.link'; break;
-    case 'tontonroger' : f$_site = 'framabee'; break;
-    case 'trouvons' : f$_site = 'framabee'; break;
-    case 'test.framacalc' : f$_site = 'framacalc'; break;
+switch (n$.site) {
+    case 'localhost' : n$.site = 'localhost'; break;
+    case 'noenaute' : n$.site = 'pouhiou'; break;
+    case 'huit.re' : n$.site = 'frama.link'; break;
+    case 'tontonroger' : n$.site = 'framabee'; break;
+    case 'trouvons' : n$.site = 'framabee'; break;
 }
 
-if (/(n1.|n2.|n3.|n4.|n5.|n6.|nav.)/i.test(f$_site)) { f$_site = 'nav'; }
+//i$(/framaboard)/i, 'h')
+if (n$.host.indexOf('framaboard') > -1) { n$.site = 'board'; }
 
-if (f$_site.indexOf('framaboard') > -1) { f$_site = 'framaboard'; }
+//i$(/framadate)/i, 'h')
+if (n$.host.indexOf('framadate') > -1)  { n$.site = 'date'; }
 
-if (f$_site.indexOf('framadate') > -1)  { f$_site = 'framadate'; }
-
-if ((f$_site.indexOf('.framapad') > -1 && !(f$_site.indexOf('mypads.') > -1))
-    || (f$_site.indexOf('mypads.framapad') > -1 && f$_page('/p/'))) {
-    f$_site = 'instances.framapad';
+if (i$('mypads.framapad.org', 'h')) {
+  n$.site = 'mypads';
 }
 
-// À propos
-var f$_host = 'hetzner';
-var f$_credits = f$_site;
+//i$(/.framapad)/i, 'h') etc
+if ((n$.host.indexOf('.framapad') > -1 && !(n$.host.indexOf('mypads.') > -1))
+    || (n$.host.indexOf('mypads.framapad') > -1 && i$('/p/'))) {
+  n$.site = 'etherpad';
+}
 
-switch (f$_site) {
-    case 'bot.framasoft' : f$_NoMsg(); f$_footer = false; break;
-    case 'connard' :
-        f$_jquery = 'noConflict';
-        f$_frama_css = false;
-        f$_NoMsg();
-        f$_keep_icons = true;
-        f$_footer = false;
-    break;
-    case 'contact.framasoft' :
-        f$_nav_static = true;
-        f$_email_field1 = '#wpcf7-f24-p5-o1 .wpcf7-email';
-        f$_ext_js = f$_ext_css = true;
-    break;
-    case 'degooglisons-internet' : f$_NoMsg(); break;
-    case 'forum.framasoft' :
-        f$_css_position = 'end';
-        f$_email_field1 = '#email_confirm'; f$_email_field2 = '#email';
-        f$_footer = false;
-    break;
-    case 'frama.link' :
-        f$_modal_don_txtdl1 = 'd’utiliser';
-        f$_modal_don_txtdl2 = f$_page('frama.link') ? 'utiliser Frama.link' : 'utiliser Huit.re';
-        f$_modal_don_liendl = 'onstart';
-        f$_video_js = true;
-    break;
-    case 'framabag' :
-        if(f$_page('framabag.org/u')) { // Si on n'est pas dans wallabag
-            f$_jquery = 'html'; f$_bootstrap_js = 'html';
-            f$_NoMsg();
-        }
-    break;
-    case 'framabee' :
-        f$_jquery = 'html'; f$_bootstrap_js = 'html';
-        jQuery(document).ready(function() {
-            jQuery('#q').focus(); jQuery('.footer').hide(); jQuery('body').css('margin-bottom','0');
-        });
-    break;
-    case 'framabin' :
-        f$_jquery = 'html';
-        f$_modal_don_txtdl1 = 'd’utiliser';
-        f$_modal_don_txtdl2 = 'utiliser Framabin';
-        f$_modal_don_liendl = 'onstart';
-        f$_video_js = true;
-    break;
-    case 'framablog' :
-        f$_nav_static = true;
-        f$_audio_js = true;
-        f$_video_js = true;
-        f$_email_field1 = '#commentform #email';
-    break;
-    case 'framaboard' :
-        if(f$_page('.framaboard')) {
-            f$_jquery = 'html'; f$_bootstrap_js = 'html';
-            f$_footer = false;
-            f$_NoMsg();
-            f$_bootstrap_css = false; /* framaboard.css chargé en dur en amont de nav.css et frama.css */
-            jQuery(document).ready(function() {
-                jQuery('h1 .logo a').html('<b class="violet">Frama</b><b class="vert">board</b>');
-                jQuery('h1 .logo').removeClass('logo');
-            });
-        } else {
-            f$_email_field1 = '#registration #email';
-        }
-    break;
-    case 'framabook' :
-        f$_nav_static = true;
-        f$_modal_don_liendl = 'a[href*="download-monitor/download.php?id="]';
-    break;
-    case 'framabookin' :
-        f$_jquery = 'html';
-        f$_nav_static = true;
-        if (f$_page('framabookin.org/b')) {
-            f$_NoMsg();
-            f$_footer = false;
-        }
-        // Fix décalage de la nav
-        f$_ext_css = true;
-        f$_ext_js = function() { jQuery('.ui-page').css('margin-top','-42px') };
-    break;
-    case 'framacalc' :
-        if(f$_page('framacalc.org/_start') || window.location.href == 'https://framacalc.org/') {
-        // Si on est sur la page d'accueil
-            f$_modal_don_txtdl1 = 'd’utiliser';
-            f$_modal_don_txtdl2 = 'créer un calc';
-            f$_modal_don_liendl = 'a[href*="framacalc.org/"]';
-        } else {
-        // Si on n'est dans ethercalc
-            // Calcs à onglets
-            if(top.location.href.indexOf('framacalc.org/=') > -1) {
-                document.getElementById("framanav_container").style="height:42px; opacity:0";
-                f$_not_in_frame = true;
-            }
+var l$ = {
+  piwik: {
+    id: '',
+    url: 'https://stats.framasoft.org/'
+  }
+};
 
-            f$_jquery ='noConflict';
-            if (f$_not_in_frame) {
-                f$_ext_css = true;
-            } else {
-                f$_bootstrap_css = false;
-            }
-            f$_responsive = false;
-            f$_NoMsg();
-            f$_footer = false;
+switch (n$.site) {
+  case 'bot' :
+    l$ = { mute: true, footer: false };
+  break;
 
-            f$_ext_js = function() {jQuery(window).trigger('resize')}; //recalcul des dimensions
+  case 'connard' :
+    l$ = {
+      js: { j$: 'noConflict' },
+      css: { frama: false },
+      mute: true,
+      icons: { keep: true },
+      footer: false
+    }
+  break;
+
+  case 'contact':
+    l$ = {
+      js: { ext: true },
+      css: { ext: true },
+      fixed: true,
+      optin: ['#wpcf7-f24-p5-o1 .wpcf7-email'],
+    }
+  break;
+
+  case 'degooglisons-internet':
+    l$ = { mute: true }
+  break;
+
+  case 'forum':
+    l$ = {
+      css: { order: 10234 },
+      optin: ['#email_confirm', '#email'],
+      footer: false
+    }
+  break;
+
+  case 'link':
+    l$ = {
+      js: { video: true },
+      modal: {
+        don : ['onstart', 'd’utiliser', 'utiliser '+n$.name]
+      }
+    }
+  break;
+
+  case 'bag':
+    if(i$('framabag.org/u')) {
+      l$ = {
+        js: { j$: 'html', b$: 'html' },
+        mute: true
+      }
+    }
+  break;
+
+  case 'bee':
+    l$ = {
+      js: {
+        j$: 'html', b$: 'html',
+        ext: function() { jQuery('#q').focus(); jQuery('.footer').hide(); jQuery('body').css('margin-bottom','0') }
+      }
+    }
+  break;
+
+  case 'bin':
+    l$ = {
+      js: {j$: 'html', video: true },
+      modal: {
+        don: ['onstart', 'd’utiliser', 'utiliser '+n$.name]
+      }
+    }
+  break;
+
+  case 'blog':
+    l$ = {
+      js: { audio: true, video: true },
+      optin: ['#commentform #email'],
+      fixed : true
+    }
+  break;
+
+  case 'board':
+    if (i$('.framaboard')) { // dans Kanboard
+      l$ = {
+        js: {
+          j$: 'html', b$: 'html',
+          ext: function() {
+            jQuery('h1 .logo a').html('<b class="violet">Frama</b><b class="vert">board</b>');
+            jQuery('h1 .logo').removeClass('logo');
+          }
+        },
+        css: { b$: false }, // board.css chargé en dur en amont de nav.css et frama.css ; tester en remplaçant par "order: 01423"
+        footer: false,
+        mute: true
+      }
+    } else {
+      l$.optin = ['#registration #email'];
+    }
+  break;
+
+  case 'book':
+    l$ = {
+      fixed : true,
+      modal: { don: ['a[href*="download-monitor/download.php?id="]'] }
+    }
+  break;
+
+  case 'bookin':
+    l$ = {
+      js: {
+        j$: 'html',
+        ext: function() { jQuery('.ui-page').css('margin-top','-42px') }
+      },
+      fixed: true
+    }
+    if (i$('framabookin.org/b')) {
+      l$.css.ext = true;
+      l$.mute = true;
+      l$.footer = false;
+    }
+  break;
+
+  case 'calc':
+    // Calcs à onglets sont dans des frame
+    if(top.location.href.indexOf('framacalc.org/=') > -1) {
+      document.getElementById("framanav_container").style="height:42px; opacity:0";
+      n$.inframe = false;
+    }
+    if (i$('framacalc.org/_start') || i$('https://framacalc.org/', 'u')) {
+      // Si on est sur la page d'accueil
+      l$.modal.don = ['a[href*="framacalc.org/"]', 'd’utiliser', 'créer un calc'];
+
+    } else { // dans Ethercalc
+      l$ = {
+        js: {
+          j$: 'noConflict',
+          ext: function() { jQuery(window).trigger('resize') }
+        },
+        css: {
+          b$: !n$.inframe,
+          ext: !n$.inframe
+        },
+        mobile: false,
+        mute: true,
+        footer: false,
+        host: 'ovh'
+      }
+    }
+  break;
+
+  case 'carte':
+    l$.modal.don = ['a.btn-primary[href*="/map/new/"]', 'd’utiliser', 'créer une carte'];
+
+    if(i$('/map/') && !n$.inframe) {
+      l$.mute = true;
+      l$.footer = true;
+      l$.css.ext = true;
+    }
+  break;
+
+  case 'cloud':
+    l$ = {
+      js: { audio: true, video: true },
+      fixed: true,
+      optin: ['#commentform #email']
+    }
+  break;
+
+
+  case 'colibri':
+    l$ = {
+      js: { j$ : 'noConflict' },
+      css: { ext: true },
+      mute: true,
+      footer: false
+    }
+  break;
+
+  case 'date':
+    l$.js = {j$: 'html', b$ : 'html' };
+
+    if(i$Lang('fr')) {
+      l$.modal.don = ['a[href*="create_poll.php?"]', 'd’utiliser', 'créer un sondage'];
+      if(i$('create_poll.php?')) {
+        l$.optin ['#formulaire input#email'];
+      }
+    }
+    if( i$('framadate.org', 'h') ) {
+      l$.js.ext = function(){ jQuery.getScript('/_charts/extra.js') };
+    }
+  break;
+
+  case 'dvd':
+    l$ = {
+      js: { video : true },
+      modal: { don: ['a[href*="iso.framadvd.org"]'] },
+      fixed: true
+    }
+  break;
+
+  case 'drive':
+    l$ = {
+      js: { j$: 'html', b$: 'html' },
+      fixed: true,
+    }
+    if( (i$('index.php/app') && !i$('registration')) || i$('index.php/setting') ) {
+      l$.footer = false;
+      l$.mute = true;
+    } else {
+      l$.js.video = true;
+    }
+  break;
+
+  case 'drop':
+    l$.js.video = true;
+  break;
+
+  case 'games':
+    l$.modal.don = ['.play a', 'd’utiliser', 'jouer'];
+  break;
+
+  case 'key':
+    l$ = {
+      js: {
+        j$: 'noConflict',
+        ext: function () {
+            jQuery('#sidebar a.wikilink[href$="SideBar?action=edit"]').attr('href',window.location.href+'?action=edit'); // Bouton edit
+            jQuery('#sidebar div[style*="background-color: rgb(238"]:contains("Framablog")').hide(); // Flux RSS Framablog
         }
-        f$_host = 'ovh';
-    break;
-    case 'framacarte' :
-        f$_modal_don_txtdl1 = 'd’utiliser';
-        f$_modal_don_txtdl2 = 'créer une carte';
-        f$_modal_don_liendl = 'a.btn-primary[href*="/map/new/"]';
-        if(f$_page('/map/') && f$_not_in_frame) {
-            f$_ext_css = true;
-            f$_NoMsg();
-            f$_footer = false;
-        }
-    break;
-    case 'framacloud' :
-        f$_nav_static = true;
-        f$_audio_js = true;
-        f$_video_js = true;
-        f$_email_field1 = '#commentform #email';
-    break;
-    case 'framacode' :
-    break;
-    case 'framacolibri' :
-        f$_jquery = 'noConflict';
-        f$_NoMsg();
-        f$_footer = false
-        f$_ext_css = true;
-    break;
-    case 'framadate' :
-        f$_jquery = 'html'; f$_bootstrap_js = 'html';
-        var f$_dateLang = document.getElementsByTagName("html")[0].getAttribute("lang");
-        if(f$_dateLang == "fr" ) {
-            f$_modal_don_txtdl1 = 'd’utiliser';
-            f$_modal_don_txtdl2 = 'créer un sondage';
-            f$_modal_don_liendl = 'a[href*="create_poll.php?"]';
-            if(f$_page('create_poll.php?')) { // Opt-in
-                f$_email_field1 = '#formulaire input#email';
-            }
-        }
-        /** <script> **/
-        if(window.location.host == 'framadate.org') {
-            jQuery(document).ready(function(){
-                jQuery.getScript('/_charts/extra.js');
-            });
-        }
-        /** </script> **/
-    break;
-    case 'framadvd':
-        f$_modal_don_liendl = 'a[href*="iso.framadvd.org"]';
-        f$_nav_static = true;
-        f$_video_js = true;
-    break;
-    case 'framadrive':
-        f$_jquery = 'html'; f$_bootstrap = 'html';
-        f$_nav_static= true;
-        if( (f$_page('index.php/app') && !f$_page('registration')) || f$_page('index.php/setting')) {
-            f$_footer = false;
-            f$_NoMsg();
-        } else {
-            f$_footer = true;
-            f$_video_js = true;
-        }
-    break;
-    case 'framadrop':
-        f$_video_js = true;
-    break;
-    case 'framagames':
-        f$_modal_don_txtdl1 = 'd’utiliser';
-        f$_modal_don_txtdl2 = 'jouer';
-        f$_modal_don_liendl = '.play a';
-    break;
-    case 'framakey':
-        f$_jquery = 'noConflict';
-        f$_nav_static = true;
-        f$_modal_don_liendl = 'a[href*="files.framakey.org"]';
-        /** <script> **/
-        jQuery('document').ready(function () {
-            // Bouton edit dans la colonne de gauche
-            jQuery('#sidebar a.wikilink[href$="SideBar?action=edit"]').attr('href',window.location.href+'?action=edit');
-            // Flux RSS Framablog tout pourri
-            jQuery('#sidebar div[style="padding: 2px; font-size: smaller; text-align: left; background-color: rgb(238, 238, 238); line-height: 1.3em; margin-left: −14px; -moz-border-radius:3px; border: 1px solid #999;"]').hide();
-        });
-        /** </script> **/
-    break;
-    case 'framalab': break;
-    case 'framandroid': f$_nav_static = true; break;
-    case 'framanews':
-        if(f$_page('framanews.org/ttrss')) {
-            // Si on n'est dans ttrss
-            f$_ext_css = true;
-            f$_jquery = 'noConflict';
-            f$_NoMsg();
-            f$_footer = false;
-        }
-        f$_host = 'iniz';
-    break;
-    case 'framapack':
-        f$_jquery = 'html'; f$_bootstrap = 'html';
-        f$_modal_don_txtdl1 = 'd’utiliser';
-        f$_modal_don_txtdl2 = 'utiliser Framapack';
-        f$_modal_don_liendl = 'onstart';
-    break;
-//-- <framapad> ----------------------------------------------------------------
-    case 'framapad':
-        f$_modal_don_txtdl1 = 'd’utiliser';
-        f$_modal_don_txtdl2 = 'créer un pad';
-        f$_modal_don_liendl = 'a[href*=".framapad.org/p/"]';
-        f$_video_js = true;
-    break;
-    case 'mypads.framapad':
-        f$_jquery = 'html';
-        f$_NoMsg();
-        f$_footer = false;
-        f$_credits = 'framapad';
-        f$_apple_touch_icon = 'framapad.png';
-        f$_ext_js = function() {
+      },
+      fixed: true,
+      modal: { don: ['a[href*="files.framakey.org"]'] }
+    }
+  break;
+
+  case 'android':
+    l$ = { fixed: true }
+  break;
+
+  case 'news':
+    if(i$('framanews.org/ttrss')) {
+      l$ = {
+        js: {
+          j$: 'noConflict',
+          ext: function() { jQuery(window).trigger('resize') }
+        },
+        css: { ext: true },
+        mute: true,
+        footer: false
+      }
+    }
+  break;
+
+  case 'pack':
+    l$ = {
+      js: { j$: 'html', b$: 'html' },
+      modal: { don: ['onstart', 'd’utiliser','utiliser '+n$.name] }
+    }
+  break;
+
+//-- <framapad> --------------------------------------------------------
+  case 'pad':
+    l$ = {
+      js: { video: true },
+      modal: { don: ['a[href*=".framapad.org/p/"]', 'd’utiliser','créer un pad'] }
+    }
+  break;
+
+  case 'mypads':
+    l$ = {
+      js: {
+        j$ : 'html',
+        ext: function() {
           setInterval(function() {
             if(jQuery('section.pad iframe').length > 0) {
               jQuery('main section.col-md-9').removeClass('col-md-9').addClass('col-md-12');
@@ -260,281 +317,332 @@ switch (f$_site) {
               jQuery('main aside.col-md-12').removeClass('col-md-12').addClass('col-md-3');
             }
           }, 1000)
-        };
-    break;
-    case 'instances.framapad':
-        f$_jquery = 'html';
-        if (f$_not_in_frame) {
-            f$_ext_css = true;
-        } else {
-            f$_bootstrap_css = false;
         }
-        f$_NoMsg();
-        jQuery('document').ready(function () {
+      },
+      mute: true,
+      footer: false,
+      credits: 'pad',
+      icons: { apple: 'pad.png' }
+    }
+  break;
+
+  case 'etherpad': // dans Etherpad
+    l$ = {
+      js: {
+        j$: 'html',
+        ext: function () {
             jQuery('#loading').append('<p class="small">Si le pad refuse de s’afficher, essayez de télécharger<br/>l’export <a href="'+location.href+'/export/html">html</a> ou <a href="'+location.href+'/export/txt">txt</a> de votre document et <a href="https://contact.framasoft.org/#framapad">contactez-nous</a>.</p>');
             jQuery('#exportopena, #exportetherpada').hide();
-        });
-        f$_footer = false;
-        f$_credits = 'framapad';
-        f$_apple_touch_icon = 'framapad.png';
-        if(/(lite6.|mypads.|quotidien.|hebdo.|mensuel.|mestriel.|annuel.)/i.test(window.location.host)) {
-            f$_alert_modal_title = 'Nouvelles fonctionnalités';
-            f$_alert_modal_text =
-            '<p>Nous avons apporté des modifications au fonctionnement de Framapad.</p>'+
-            '<ul style="margin-left:30px">'+
-                '<li>Réactivation des couleurs d’identification (auteurs identifiés par le surlignage en couleur).</li>'+
-                '<li>Possibilité d’afficher une table des matières, en fonction des titres utilisés dans votre pad.</li>'+
-                '<li>Possibilité d’afficher le pad en mode « page ».</li>'+
-                '<li>Affichage du noms des auteurs au survol du texte.</li>'+
-            '</ul>'+
-            '<p>Ces modifications peuvent être activées/désactivées au niveau des paramètres de Framapad (roue crantée en haut à droite).</p>'+
-            '<p>Pour plus d’informations, voir notre <a href="https://wiki.framasoft.org/projets/framapad">documentation</a>.</p>';
-            f$_alert_modal_cookie_name = 'newFeatures201605';
-            f$_alert_modal_cookie = 365*24*60*60*1000;
+        }
+      },
+      css: {
+        b$: !n$.inframe,
+        ext: !n$.inframe
+      },
+      mute: true,
+      footer: false,
+      credits: 'pad',
+      icons: { apple: 'pad.png' }
+    }
 
+    if(i$(/(lite6.|mypads.|quotidien.|hebdo.|uel.|mestriel.)/i, 'h')) {
+      modal.info[0] = 'Nouvelles fonctionnalités';
+      modal.info[1] =
+          '<p>Nous avons apporté des modifications au fonctionnement de Framapad.</p>'+
+          '<ul style="margin-left:30px">'+
+              '<li>Réactivation des couleurs d’identification (auteurs identifiés par le surlignage en couleur).</li>'+
+              '<li>Possibilité d’afficher une table des matières, en fonction des titres utilisés dans votre pad.</li>'+
+              '<li>Possibilité d’afficher le pad en mode « page ».</li>'+
+              '<li>Affichage du noms des auteurs au survol du texte.</li>'+
+          '</ul>'+
+          '<p>Ces modifications peuvent être activées/désactivées au niveau des paramètres de Framapad (roue crantée en haut à droite).</p>'+
+          '<p>Pour plus d’informations, voir notre <a href="https://wiki.framasoft.org/projets/framapad">documentation</a>.</p>';
+      modal.info[2] = 'newFeatures201605';
+      modal.info[3] = 365*24*60*60*1000;
+    }
+    if(i$(/(beta.framapad)/i, 'h')) {
+      modal.info[0] = 'Avertissement';
+      modal.info[1] = '<p>Cette instance de Framapad (<b>beta</b>.framapad.org) est instable et ne doit servir que pour des tests.<p>'+
+          '<p>Pensez à utiliser régulièrement la fonction d’export pendant vos tests.</p>'+
+          '<p>Merci.<br />L’équipe technique</p>';
+    }
+    if( i$(/(lite.framapad|lite[2-5].)/i, 'h')) {
+      modal.info[0] = 'Création des pads désactivée';
+      modal.info[1] = '<p>Nous vous informons que cette instance de Framapad ('+window.location.host+') ne peut plus accueillir de nouveaux pads.<p>'+
+          '<p>Il reste bien évidement possible de travailler sur les pads déjà existants (ils ne seront pas supprimés)'+
+          ' mais pour en créer de nouveaux, veuillez passer par <a href="https://framapad.org">la page d’accueil du site</a></p>'+
+          '<p>Merci.<br />L’équipe technique</p>';
+      host = 'ovh';
+    }
+  break;
+//-- </framapad> -------------------------------------------------------
+
+  case 'phonie':
+    l$ = {
+      js: { j$: 'noConflict' },
+      css: {
+        order: 10234,
+        ext: true
+      },
+      footer: false
+    }
+  break;
+
+  case 'pic':
+    l$ = {
+      js: {
+        j$: 'noConflict',
+        video: true
+      },
+      modal: { don: ['onstart', 'd’utiliser','utiliser '+n$.name] }
+    }
+  break;
+
+  case 'soft':
+    l$ = {
+      fixed: true,
+      optin: ['#email_auteur']
+    }
+
+    if(!i$('http://framasoft.org/', 'u') && !i$('framasoft.org/accueil')
+        && !i$('framasoft.org/nav')) {
+      l$.js.ext = function() { // Mise en forme « Juste une image »
+        flickr_t = jQuery('img[src$="_t.jpg"]').attr('src');
+        if(flickr_t) {
+          flickr_m = flickr_t.replace('_t.jpg', '_m.jpg');
+          jQuery('img[src$="_t.jpg"]').attr('src', flickr_m).css('width', '90%');
         }
-        if(/(beta.framapad)/i.test(window.location.host)) {
-            f$_alert_modal_title = 'Avertissement';
-            f$_alert_modal_text = '<p>Cette instance de Framapad (<b>beta</b>.framapad.org) est instable et ne doit servir que pour des tests.<p>'+
-            '<p>Pensez à utiliser régulièrement la fonction d’export pendant vos tests.</p>'+
-            '<p>Merci.<br />L’équipe technique</p>';
-        }
-        if(/(lite.framapad|lite2.|lite3.|lite4.|lite5.)/i.test(window.location.host)) {
-            f$_alert_modal_title = 'Création des pads désactivée';
-            f$_alert_modal_text = '<p>Nous vous informons que cette instance de Framapad ('+window.location.host+') ne peut plus accueillir de nouveaux pads.<p>'+
-            '<p>Il reste bien évidement possible de travailler sur les pads déjà existants (ils ne seront pas supprimés)'+
-            ' mais pour en créer de nouveaux, veuillez passer par <a href="https://framapad.org">la page d’accueil du site</a></p>'+
-            '<p>Merci.<br />L’équipe technique</p>';
-            f$_host = 'ovh';
-        }
-    break;
-//-- </framapad> ---------------------------------------------------------------
-    case 'framaphonie':
-        f$_jquery = 'noConflict';
-        f$_css_position = 'end';
-        f$_ext_css = true;
-        f$_footer = false;
-    break;
-    case 'framapic':
-        f$_jquery = 'noConflict';
-        f$_modal_don_txtdl1 = 'd’utiliser';
-        f$_modal_don_txtdl2 = 'utiliser Framapic';
-        f$_modal_don_liendl = 'onstart';
-        f$_video_js = true;
-    break;
-    case 'framasoft':
-        f$_nav_static = true;
-        f$_email_field1 = '#email_auteur';
-        if(f$_url != 'http://framasoft.net/'
-           && !f$_page('framasoft.net/accueil')
-           && f$_url != 'http://framasoft.org/'
-           && !f$_page('framasoft.org/accueil')) {
-            // Mise en forme « Juste une image »
-            flickr_t = jQuery('img[src$="_t.jpg"]').attr('src');
-            flickr_m = flickr_t.replace('_t.jpg', '_m.jpg');
-            jQuery('img[src$="_t.jpg"]').attr('src', flickr_m).css('width', '90%');
-            f$_credits = 'framalibre';
-            f$_favicon = 'favicon-bleu.png';
-            f$_apple_touch_icon = 'framalibre.png';
-        }
-    break;
-    case 'framasphere':
-        f$_jquery = 'html'; f$_bootstrap_js = 'html';
-        f$_css_position = 'end';
-        /** <script> **/
-        jQuery(document).ready(function() {
-            jQuery('link[href*=bootstrap-complete]').remove();
-        });
-        /** </script> **/
-    break;
-    case 'framastats':
-        f$_jquery = 'html'; f$_bootstrap_js = 'html';
-        f$_nav_static = true;
-    break;
-    case 'framateam':
-        f$_jquery = 'html'; f$_bootstrap_js = 'html';
-        f$_ext_js = true;
-        if(f$_page('/channel')||f$_page('/admin_console')||f$_page('/pl/')) {
-            f$_nav_static = true;
-            f$_footer = false;
-            f$_NoMsg();
-        } else {
-            f$_ext_css = true;
-        }
-    break;
-    case 'docs.framateam':
-        f$_nav_static = true;
-        f$_footer = false;
-        f$_NoMsg();
-    break;
-    case 'framatube':
-        f$_jquery = 'html';
-        f$_video_js = true;
-        f$_host = 'ovh';
-        f$_alert_type = 'info';
-        f$_alert_text =
-            '<div style="margin:0 auto; max-width:800px;">'+
-                '<p class="text-center"><b class="violet">Frama</b><b class="rouge">tube</b> est réservé à l’usage exclusif de <b class="violet">Frama</b><b class="orange">soft</b> pour le moment.'+
-                '<br/>L’hebergement de vidéos sera <a href="https://degooglisons-internet.org/liste/#2017">ouvert au public en 2017</a> si nous en avons les moyens.</p>'+
-            '</div>';
-        if(f$_page('/embed_player')) {
-            f$_not_in_frame = false;
-            f$_NoMsg();
-        }
-    break;
-    case 'framavectoriel':
-        f$_jquery = 'noConflict';
-        if(f$_page('svg-editor')) {
-        // Si on n'est dans svg-editor
-            if (f$_not_in_frame) {
-                f$_ext_css = true;
-            } else {
-                f$_bootstrap_css = false;
-            }
-            f$_NoMsg();
-            f$_footer = false;
-        } else {
-            f$_modal_don_txtdl1 = 'd’utiliser';
-            f$_modal_don_txtdl2 = 'créer une image';
-            f$_modal_don_liendl = 'a[href="/svg-editor.html"]';
-            f$_video_js = true;
-        }
-    break;
-    case 'framavox':
-        f$_jquery = 'html'; //f$_bootstrap_js = 'html';
-        f$_ext_css = true;
-        f$_nav_static = !(f$_page('/marketing'));
-        f$_video_js = f$_page('/marketing');
-        if(!(f$_page('/marketing')||f$_page('users/sign')||f$_page('/start_group')||f$_page('users/password/new'))) {
-            f$_footer = false;
-            f$_NoMsg();
-            f$_ext_js = true;
-        }
-    break;
-    case 'framazic':
-        f$_nav_static = true;
-        f$_video_js = true;
-    break;
-    case 'framindmap':
-        if(f$_page('framindmap.org/mindmaps')) {
-            /* Si on n'est dans Mindmaps */
-            f$_jquery = 'noConflict';
-            f$_ext_css = true;
-            f$_NoMsg();
-            f$_footer = false;
-        } else {
-            f$_jquery = 'html'; f$_bootstrap_js = 'html';
-            f$_bootstrap_css = false;
-            f$_ext_css = true;
-            f$_video_js = true;
-            f$_email_field1 = '#user #email';
-            if(!f$_page('framindmap.org/c/login') && !f$_page('framindmap.org/c/user/registration')) {
-                f$_NoMsg();
-            }
-            if(f$_page('framindmap.org/c/maps/') && !f$_page('/edit')) {
-                f$_modal_don_txtdl1 = 'd’utiliser';
-                f$_modal_don_txtdl2 = 'utiliser Framindmap';
-                f$_modal_don_liendl = 'onstart';
-            }
-            // Suppression de la nav dans l'éditeur
-            if(f$_page('framindmap.org/c/maps') && f$_page('/edit')) {
-                var f$_navcontainer = document.getElementById('framanav_container');
-                f$_navcontainer.parentNode.removeChild(f$_navcontainer);
-            }
-        }
-    break;
-    case 'localhost':   break;
-    case 'nav':
-        f$_apple_touch_icon = 'framasoft.png';
-    break;
-    case 'participer.framasoft':
-        f$_nav_static = true;
-        f$_video_js = true;
-    break;
-    case 'pouhiou':
-        f$_jquery = 'noConflict';
-        f$_frama_css = false;
-        f$_NoMsg();
-        f$_keep_icons = true;
-        f$_footer = false;
-    break;
-    case 'pootle.framasoft':
-        f$_ext_css = true;
-        f$_frama_css = false;
-        f$_css_position = 'end';
-        f$_alert_modal_text = '';
-    break;
-    case 'status.framasoft':
-        f$_jquery = 'html';
-        f$_NoMsg();
-        f$_footer = false;
-        f$_nav_static = true;
-        f$_apple_touch_icon = 'apple-orange.png';
-    break;
-    case 'wiki.framasoft':
-        f$_jquery = 'noConflict';
-        f$_alert_text = '';
-        f$_ext_css = true;
-    break;
+      }
+      l$.credits = 'libre';
+      l$.icons.fav = 'favicon-bleu.png';
+      l$.icons.apple = 'libre.png';
+    }
+  break;
+
+  case 'sphere':
+    l$ = {
+      js: {
+        j$: 'html', b$: 'html',
+        ext: function() { jQuery('link[href*=bootstrap-complete]').remove(); }
+      },
+      css: {order: 10234 }
+    }
+  break;
+
+  case 'stats':
+    l$ = {
+      js: { j$: 'html', b$: 'html' },
+      fixed: true
+    }
+  break;
+
+  case 'team':
+    l$ = {
+      js: { j$: 'html', b$: 'html', ext: true },
+    }
+
+    if(i$('/channel')||i$('/admin_console')||i$('/pl/')) {
+      l$.fixed = true;
+      l$.footer = false;
+      l$.mute = true;
+    } else {
+      l$.css.ext = true;
+    }
+  break;
+
+  case 'docsteam':
+    l$ = {
+      fixed: true,
+      footer: false,
+      mute: true
+    }
+  break;
+
+  case 'tube':
+    l$ = {
+      js: { j$: 'html', video: true },
+      host: 'ovh',
+      alert: [
+        'info',
+        '<b class="violet">Frama</b><b class="rouge">tube</b> est réservé à l’usage exclusif de <b class="violet">Frama</b><b class="orange">soft</b> pour le moment.'+
+        '<br/>L’hebergement de vidéos sera <a href="https://degooglisons-internet.org/liste/#2017">ouvert au public en 2017</a> si nous en avons les moyens.'
+      ]
+    }
+
+    if(i$('/embed_player')) {
+      n$.inframe = true;
+      l$.mute = true;
+    }
+  break;
+
+  case 'vectoriel':
+    if(i$('svg-editor')) { // Dans SVG-Editor
+      l$ = {
+        js: { j$: 'noConflict' },
+        css: {
+          b$: !n$.inframe,
+          ext: !n$.inframe
+        },
+        mute: true,
+        footer: false
+      }
+    } else {
+      l$.modal.don = ['a[href="/svg-editor.html"]', 'd’utiliser', 'créer une image'];
+      l$.js.video = true;
+    }
+  break;
+
+  case 'vox':
+    l$ = {
+      js: { j$: 'html' },
+      css: { ext: true }
+    }
+
+    l$.fixed = !(i$('/marketing'));
+    l$.js.video = i$('/marketing');
+
+    if(!(i$('/marketing')||i$('users/sign')||i$('/start_group')||i$('users/password/new'))) {
+      l$.footer = false;
+      l$.mute = true;
+      l$.js.ext = true;
+    }
+  break;
+
+  case 'zic':
+    l$ = {
+      js: { video : true },
+      fixed: true
+    }
+  break;
+
+  case 'mindmap':
+    if(i$('framindmap.org/mindmaps')) { // Dans Mindmaps
+      l$ = {
+        js: { j$: 'noConflict' },
+        css: { ext: true },
+        mute: true,
+        footer: false
+      }
+    } else { // Dans Wisemapping (et accueil)
+      l$ = {
+        js: { j$: 'html', b$: 'html', video: true },
+        css: { b$: false, ext: true },
+        optin: ['#user #email']
+      }
+
+      l$.mute = (!i$('framindmap.org/c/login') && !i$('framindmap.org/c/user/registration'));
+
+      if(i$('framindmap.org/c/maps/') && !i$('/edit')) {
+        l$.modal.don = ['onstart', 'd’utiliser', 'utiliser '+n$.name]
+        // [Fix] Suppression de la nav dans l'éditeur
+        var f$_navcontainer = document.getElementById('framanav_container');
+        f$_navcontainer.parentNode.removeChild(f$_navcontainer);
+      }
+    }
+  break;
+
+  case 'participer':
+    l$ = {
+      js: { video: true },
+      fixed: true
+    }
+  break;
+
+  case 'pouhiou': // pouhiou.com + noenaute.fr
+    l$ = {
+      js: { j$: 'noConflict' },
+      css: { frama: false },
+      mute: true,
+      footer: false,
+      icons: { keep: true }
+    }
+  break;
+
+  case 'pootle':
+    l$ = {
+      css: {
+        order: 10234,
+        frama: false, // en attente
+        ext: true
+      },
+      mute: true
+    }
+  break;
+
+  case 'status':
+    l$ = {
+      js: { j$: 'html' },
+      mute: true,
+      footer: false,
+      fixed: true,
+      icons: { apple: 'apple-orange.png' }
+    }
+  break;
+
+  case 'wiki':
+    l$ = {
+      js: { j$: 'noConflict' },
+      css: { ext: true },
+      alert: ['']
+    }
+  break;
 }
 
 /***********************************************************************
  *                               Piwik                                 *
  **********************************************************************/
-var f$_piwik_id = '';
-var f$_piwik_url = 'https://stats.framasoft.org/';
-switch (f$_site) {
-    case 'framasoft' :              f$_piwik_id = '1';  break;
-    case 'forum.framasoft' :        f$_piwik_id = '2';  break;
-    case 'framablog' :              f$_piwik_id = '3';  break;
-    case 'framapad' :               f$_piwik_id = '4';  break;
-    case 'instances.framapad' :     f$_piwik_id = '4';  break;
-    case 'framakey' :               f$_piwik_id = '5';  break;
-    case 'framadvd' :               f$_piwik_id = '6';  break;
-    case 'framabook' :              f$_piwik_id = '7';  break;
-    case 'framatube' :              f$_piwik_id = '8';  break;
-    case 'framazic' :               f$_piwik_id = '9';  break;
-    case 'framadate' :              f$_piwik_id = '10'; break;
-    case 'framacalc' :              f$_piwik_id = '11'; break;
-    case 'framindmap' :             f$_piwik_id = '12'; break;
-    case 'framavectoriel' :         f$_piwik_id = '13'; break;
-    case 'framaphonie' :            f$_piwik_id = '14'; break;
-    case 'wiki.framasoft' :         f$_piwik_id = '15'; break;
-    case 'framalab' :               f$_piwik_id = '16'; break;
-    case 'framacode' :              f$_piwik_id = '17'; break;
-    case 'soutenir.framasoft' :     f$_piwik_id = '18'; break;
-    case 'contact.framasoft' :      f$_piwik_id = '19'; break;
-    case 'framanews' :              f$_piwik_id = '20'; break;
-    case 'framabag' :               f$_piwik_id = '21'; break;
-    case 'framandroid' :            f$_piwik_id = '22'; break;
-    case 'framastart' :             f$_piwik_id = '23'; break;
-    case 'framapack' :              f$_piwik_id = '24'; break;
-    case '10ans.framasoft' :        f$_piwik_id = '25'; break;
-    case 'framasphere' :            f$_piwik_id = '26'; break;
-    case 'framabee' :               f$_piwik_id = '27'; break;
-    case 'framagames' :             f$_piwik_id = '28'; break;
-    case 'git.framasoft' :          f$_piwik_id = '29'; break;
-    case 'degooglisons-internet' :  f$_piwik_id = '30'; break;
-    case 'framapic' :               f$_piwik_id = '31'; break;
-    case 'frama.link' :             f$_piwik_id = '32'; break;
-    case 'participer.framasoft' :   f$_piwik_id = '33'; break;
-    case 'framacolibri' :           f$_piwik_id = '33'; break;
-    case 'framabin' :               f$_piwik_id = '34'; break;
-    case 'framacloud' :             f$_piwik_id = '35'; break;
-    case 'status.framasoft' :       f$_piwik_id = '37'; break;
-    case 'framabookin' :            f$_piwik_id = '38'; break;
-    case 'framastats' :             f$_piwik_id = '39'; break;
-    case 'framadrive' :             f$_piwik_id = '40'; f$_piwik_url = 'https://framadrive.org/'; break;
-    case 'framaboard' :             f$_piwik_id = '41'; break;
-    case 'framadrop' :              f$_piwik_id = '42'; break;
-    case 'framacarte' :             f$_piwik_id = '43'; break;
-    case 'framaforms' :             f$_piwik_id = '44'; break;
-    case 'framapetition' :          f$_piwik_id = '45'; break;
-    case 'framavox' :               f$_piwik_id = '47'; break;
-    case 'framateam' :              f$_piwik_id = '48'; break;
+switch (n$.site) {
+    case 'soft' :                  l$.piwik.id = '1';  break;
+    case 'forum' :                 l$.piwik.id = '2';  break;
+    case 'blog' :                  l$.piwik.id = '3';  break;
+    case 'pad' :                   l$.piwik.id = '4';  break;
+    case 'etherpad' :              l$.piwik.id = '4';  break;
+    case 'key' :                   l$.piwik.id = '5';  break;
+    case 'dvd' :                   l$.piwik.id = '6';  break;
+    case 'book' :                  l$.piwik.id = '7';  break;
+    case 'tube' :                  l$.piwik.id = '8';  break;
+    case 'zic' :                   l$.piwik.id = '9';  break;
+    case 'date' :                  l$.piwik.id = '10'; break;
+    case 'calc' :                  l$.piwik.id = '11'; break;
+    case 'mindmap' :               l$.piwik.id = '12'; break;
+    case 'vectoriel' :             l$.piwik.id = '13'; break;
+    case 'phonie' :                l$.piwik.id = '14'; break;
+    case 'wiki' :                  l$.piwik.id = '15'; break;
+    case 'lab' :                   l$.piwik.id = '16'; break;
+    case 'code' :                  l$.piwik.id = '17'; break;
+    case 'soutenir' :              l$.piwik.id = '18'; break;
+    case 'contact' :               l$.piwik.id = '19'; break;
+    case 'news' :                  l$.piwik.id = '20'; break;
+    case 'bag' :                   l$.piwik.id = '21'; break;
+    case 'android' :               l$.piwik.id = '22'; break;
+    case 'start' :                 l$.piwik.id = '23'; break;
+    case 'pack' :                  l$.piwik.id = '24'; break;
+    case '10ans' :                 l$.piwik.id = '25'; break;
+    case 'sphere' :                l$.piwik.id = '26'; break;
+    case 'bee' :                   l$.piwik.id = '27'; break;
+    case 'games' :                 l$.piwik.id = '28'; break;
+    case 'git' :                   l$.piwik.id = '29'; break;
+    case 'degooglisons-internet' : l$.piwik.id = '30'; break;
+    case 'pic' :                   l$.piwik.id = '31'; break;
+    case 'link' :                  l$.piwik.id = '32'; break;
+    case 'participer' :            l$.piwik.id = '33'; break;
+    case 'colibri' :               l$.piwik.id = '33'; break;
+    case 'bin' :                   l$.piwik.id = '34'; break;
+    case 'cloud' :                 l$.piwik.id = '35'; break;
+    case 'status' :                l$.piwik.id = '37'; break;
+    case 'bookin' :                l$.piwik.id = '38'; break;
+    case 'stats' :                 l$.piwik.id = '39'; break;
+    case 'drive' :                 l$.piwik.id = '40'; l$.piwik.url = 'https://framadrive.org/'; break;
+    case 'board' :                 l$.piwik.id = '41'; break;
+    case 'drop' :                  l$.piwik.id = '42'; break;
+    case 'carte' :                 l$.piwik.id = '43'; break;
+    case 'forms' :                 l$.piwik.id = '44'; break;
+    case 'petition' :              l$.piwik.id = '45'; break;
+    case 'vox' :                   l$.piwik.id = '47'; break;
+    case 'team' :                  l$.piwik.id = '48'; break;
 }
 
-if(f$_piwik_id != '') {
+if(l$.piwik.id != '') {
     var _paq = _paq || [];
 
     _paq.push([function() {
@@ -555,9 +663,9 @@ if(f$_piwik_id != '') {
     _paq.push(["enableLinkTracking"]);
 
     (function() {
-      var u=f$_piwik_url;
+      var u=l$.piwik.url;
       _paq.push(["setTrackerUrl", u+"piwik.php"]);
-      _paq.push(["setSiteId", f$_piwik_id]);
+      _paq.push(["setSiteId", l$.piwik.id]);
       var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
       g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
     })();
@@ -566,22 +674,22 @@ if(f$_piwik_id != '') {
 /***********************************************************************
  *                             Favicons                                *
  **********************************************************************/
-if (/(dvd|key|libre|android|pack|start)/i.test(f$_site)) {
-    f$_favicon = 'favicon-bleu.png';
+if (i$(/(dvd|key|libre|android|pack|start)/i,'h')) {
+    l$.icons.fav = 'favicon-bleu.png';
 }
-if (/(blog|book|lang|tube|zic)/i.test(f$_site)) {
-    f$_favicon = 'favicon-rouge.png';
+if (i$(/(blog|book|lang|tube|zic)/i,'h')) {
+    l$.icons.fav = 'favicon-rouge.png';
 }
-if (/(frama.link|bag|bee|bin|calc|carte|cloud|date|forms|games|git.|news|pad|petition|pic|sphere|team|vectoriel|vox|mindmap|board|drive|drop)/i.test(f$_site)) {
-    f$_favicon = 'favicon-vert.png';
+if (i$(/(link|bag|bee|bin|calc|carte|cloud|date|forms|games|git|news|pad|petition|pic|sphere|team|vectoriel|vox|mindmap|board|drive|drop)/i,'h')) {
+    l$.icons.fav = 'favicon-vert.png';
 }
-if (/(forum.|code|lab|phonie|wiki.)/i.test(f$_site)) {
-    f$_favicon = 'favicon-jaune.png';
+if (i$(/(forum.|code|lab|phonie|wiki.)/i,'h')) {
+    l$.icons.fav = 'favicon-jaune.png';
 }
-if (/(contact.|participer.|soutenir.|stats|status.)/i.test(f$_site)) {
-    f$_favicon = 'favicon-orange.png';
+if (i$(/(contact.|participer.|soutenir.|stats|status.)/i,'h')) {
+    l$.icons.fav = 'favicon-orange.png';
 }
 
-if (/^(bot.framasoft|contact.framasoft|degooglisons-internet|forum.framasoft|framabag|framabee|framabin|framablog|framaboard|framabookin|framabook|framacalc|framacarte|framacloud|framacode|framacolibri|framadate|framadrive|framadrop|framadvd|framagames|framakey|framalab|framalang|frama.link|framandroid|framanews|framapack|framapad|framaphonie|framapic|framasoft|framasphere|framastart|framastats|framateam|framatube|framavectoriel|framavox|framazic|framindmap|participer.framasoft|soutenir.framasoft|wiki.framasoft)$/i.test(f$_site)) {
-    f$_apple_touch_icon = f$_site+'.png';
+if (i$(/(bot.|contact.|degooglisons-internet|forum.|bag|bee|bin|blog|board|bookin|book|calc|carte|cloud|code|colibri|date|drive|drop|dvd|games|key|lab|lang|link|android|news|pack|pad|phonie|pic|soft|sphere|start|stats|team|tube|vectoriel|vox|zic|mindmap|participer.|soutenir.|wiki.)/i,'h')) {
+    l$.icons.apple = n$.site+'.png';
 }

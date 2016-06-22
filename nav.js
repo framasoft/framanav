@@ -1,18 +1,55 @@
-var f$_version = '160503';
-var f$_site = window.location.host
-f$_site = f$_site.replace(/^(www|test)\./i,"");
-f$_site = f$_site.replace(/\.(com|net|org|fr|pro)$/i,"");
+/****************
+ *  Conventions *
+ ****************
+ f$() = alias jQuery
+ f$Example() et i$Example() = fonctions globale
+ f$_  = variables
 
-var f$_url = window.location.href;
+ j$ = jQuery
+ b$ = Bootstrap
 
-var f$_not_in_frame = (top.location==self.document.location); // Pas dans une Frame
+ n${} = variables globales de la nav
+ d${} = données (texte, liens, icônes, couleurs, etc)
+ c${} = config du site
+ l${} = config locale des sites
+ **/
 
-// Détection du navigateur
-var f$_isOpera = !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
-var f$_isFirefox = typeof InstallTrigger !== 'undefined';
-var f$_isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
-var f$_isChrome = !!window.chrome && !f$_isOpera;
-var f$_isIE = /*@cc_on!@*/false || !!document.documentMode;
+var n$ = {
+  version: '160621', // n° version de la nav
+  f$ : '1.12.4',     // n° version de notre jQuery
+  b$ : '3.3.6',      // n° version de Bootsrap
+  host: window.location.host,
+  url: window.location.href,
+  inframe: top.location!=self.document.location,
+  nav: {
+    url: '',
+    set: false,
+    html: '<div id="framanav_container" class="hidden-print" style="height:42px; opacity : 0"></div>'
+  },
+  browser: {
+    agent: navigator.userAgent,
+    opera: !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0,
+    firefox: typeof InstallTrigger !== 'undefined',
+    safari: Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0,
+    chrome: !!window.chrome && !(!!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0),
+    ie: /*@cc_on!@*/false || !!document.documentMode
+  }
+};
+  n$.site = n$.host.replace(/^(www|test)\./i,'').replace(/\.(com|net|org|fr|pro)$/i,''); // Domaine et sous-domaine
+  n$.name = n$.site[0].toUpperCase()+n$.site.slice(1);                                   // Nom du service
+  n$.site = n$.site.replace(/(\.framasoft|frama\.)/i,'')
+                   .replace(/framand/i,'and')
+                   .replace(/framin/i,'min')
+                   .replace(/frama/i,'');
+
+  if (n$.inframe) { n$.nav.html = '<div id="framanav_container" style="display:none"></div>' };
+
+  if (window.jQuery === undefined) {
+    n$.j$ = 'ø';    // n° version du jQuery local
+  } else {
+    n$.j$ = window.jQuery.fn.jquery;
+    f$ = jQuery;   // alias (on l'écrase plus bas mais ça permet de pouvoir l'utiliser plus tôt)
+  }
 
 // console n'existe pas sur IE8
 (function() {
@@ -31,42 +68,42 @@ var f$_isIE = /*@cc_on!@*/false || !!document.documentMode;
   }
 })();
 
-/**
- * f$() = jQuery() = $()
- * f$_  = variables ou fonctions
- * f$   = free $oftware = frama$oft :P
- **/
-
 /*******************
  *  Config globale
  *******************/
 var f$_start_config = function() {
-    var f$_speed = (f$_nav_container) ? '☀' : '☁';
-    if (f$_config == 'global') {
-        var f$_hjQv = (window.jQuery === undefined) ? 'ø' : window.jQuery.fn.jquery;
-        var f$_njQv  = '1.12.3';
-        console.log('✔ '+f$_speed+' config.js '+f$_version+' | '+f$_njQv+' | '+f$_hjQv);
+    n$.nav.speed = (n$.nav.set) ? '☀' : '☁';
+    if (l$) {
+        console.log('✔ '+n$.nav.speed+' config.js '+n$.version+' | '+n$.f$+' | '+n$.j$);
 
-        if(f$_page('/nav/html/')) { // Si pages « À propos » on réinit la config
-            f$_jquery = 'jQuery';
+        if(i$('/nav/html/')) { // Si pages « À propos » on réinit la config
+            c$.js[0] = 'jQuery';
             f$_bootstrap_css = false;
-            f$_bootstrap_js = true;
-            f$_footer = true;
+            c$.js.b$ = true;
+            c$.footer = true;
+            c$.icons.apple = 'soft.png';
         }
 
-        switch (f$_jquery) {
+        if(c$.mute) {
+          c$.alert[1] = '';      // Pas de bandeau
+          c$.modal.info[1] = ''; // Pas de modale
+          c$.modal.don[0] = '';
+          c$.donate = false;     // Pas de macaron
+        }
+
+        switch (c$.js[0]) {
             case 'jQuery' :
-                if (window.jQuery === undefined || window.jQuery.fn.jquery !== f$_njQv) {
-                    console.log('✔ jQuery '+f$_njQv+' AJAX');
-                    f$_loadScript(f$_nav+'lib/jquery/jquery.min.js', f$_start_jquery);
+                if (window.jQuery === undefined || window.jQuery.fn.jquery !== n$.f$) {
+                    console.log('✔ jQuery '+n$.f$+' AJAX');
+                    f$LoadJS(f$_nav+'lib/jquery/jquery.min.js', f$_start_jquery);
                 } else {
-                    console.log('✔ jQuery '+f$_hjQv+' HTML');
+                    console.log('✔ jQuery '+n$.j$+' HTML');
                     f$_start_jquery();
                 }
             break;
             case 'noConflict' :
-                console.log('✔ jQuery.noConflict '+f$_njQv+' AJAX');
-                f$_loadScript(f$_nav+'lib/jquery/jquery.min.js', f$_start_jquery);
+                console.log('✔ jQuery.noConflict '+n$.f$+' AJAX');
+                f$LoadJS(f$_nav+'lib/jquery/jquery.min.js', f$_start_jquery);
             break;
             default:
                 if (window.jQuery === undefined) {
@@ -79,7 +116,7 @@ var f$_start_config = function() {
         }
 
     } else {
-        console.error('✘ '+f$_speed+' config.js '+f$_version);
+        console.error('✘ '+n$.nav.speed+' config.js '+n$.version);
     }
 }; // ---> jQuery
 
@@ -87,26 +124,26 @@ var f$_start_config = function() {
  *     Nav init
  *******************/
 var f$_scripts = document.getElementsByTagName('script');
-var f$_nav = ''; // racine de la nav
-var f$_nav_container = false;
-var f$_nav_container_html = (f$_not_in_frame) ? '<div id="framanav_container" class="hidden-print" style="height:42px; opacity : 0"></div>' : '<div id="framanav_container" style="display:none"></div>';
+
+/** Deprecated **/
+var f$_nav = n$.nav.url;
 
 var f$_nav_init = function() {
     for (var i = 0; i < f$_scripts.length; i++) {
         if (f$_scripts[i].getAttribute("src") && f$_scripts[i].getAttribute("src").indexOf("/nav.js") > -1) {
-            // Emplacement de la nav ('/nav/', '/static/nav/, '../nav/' → 'http://'+f$_site+'/nav')
+            // Emplacement de la nav ('/nav/', '/static/nav/, '../nav/' → 'http://'+n$.site+'/nav')
             f$_nav = f$_scripts[i].getAttribute("src").replace('nav.js','');
-            f$_nav = f$_absolutePath(f$_nav);
+            f$_nav = f$Link(f$_nav);
             // On ajout une div vide de 42px qui contiendra la nav (évite les sauts de mise en page avant le chargement des fichiers)
             if (f$_scripts[i].parentNode.tagName.toLowerCase() == 'body' ) {
                 // si nav.js est appelé en haut du body, c'est super rapide
-                document.write(f$_nav_container_html);
-                f$_nav_container = true;
+                document.write(n$.nav.html);
+                n$.set = true;
             } // sinon c'est dans le head, il faut attendre document.ready (voir plus bas)
         }
     }
 
-    f$_loadScript(f$_nav+'config.js?'+f$_version, f$_start_config);
+    f$LoadJS(f$_nav+'config.js?'+n$.version, f$_start_config);
 }; // ---> config.js
 
 f$_nav_init();
@@ -120,55 +157,55 @@ function f$_start_jquery() {
      */
     // Bootstrap
     if (f$_bootstrap_css) {
-        f$_loadCSS(f$_nav+'lib/bootstrap/css/bootstrap.min.css', f$_css_position, 'all');
+        f$LoadCSS(f$_nav+'lib/bootstrap/css/bootstrap.min.css', f$_css_position, 'all');
     }
 
     // Font-awesome
-    f$_loadCSS(f$_nav+'lib/font-awesome/css/font-awesome.min.css','end','all');
+    f$LoadCSS(f$_nav+'lib/font-awesome/css/font-awesome.min.css','end','all');
 
     // Nav.css
-    f$_loadCSS(f$_nav+'css/nav.css?'+f$_version);
+    f$LoadCSS(f$_nav+'css/nav.css?'+n$.version);
 
     // Frama.css
     if(f$_frama_css) {
-        f$_loadCSS(f$_nav+'css/frama.css?'+f$_version, 'end', 'all');
+        f$LoadCSS(f$_nav+'css/frama.css?'+n$.version, 'end', 'all');
     }
 
     // Ext.css
     if(f$_ext_css) {
-        f$_loadCSS(f$_nav+'ext/'+f$_site+'.css?'+f$_version);
+        f$LoadCSS(f$_nav+'ext/'+n$.site+'.css?'+n$.version);
     }
 
     /*
      * Nav
      */
-    switch (f$_jquery) {
+    switch (c$.js[0]) {
         case 'noConflict': var f$ = jQuery.noConflict(); break;
         default          : var f$ = jQuery;break;
     }
 
     f$(document).ready(function() {
-        if (f$_url === 'https://framacalc.org/_start' && f$('html').attr('manifest') !== 'manifest.appcache') {
+        if (i$('https://framacalc.org/_start', 'u') && f$('html').attr('manifest') !== 'manifest.appcache') {
             console.log('Reloading https://framacalc.org/_start because of bad _start version');
             window.location.href = 'https://framacalc.org/_start?reload=1';
         }
 
         // Ext.js
-        if (typeof f$_ext_js === "function") {
-            f$_ext_js();
-        } else if(f$_ext_js) {
-            f$.getScript(f$_nav+'ext/'+f$_site+'.js');
+        if (typeof c$.js.ext === "function") {
+            c$.js.ext();
+        } else if(c$.js.ext) {
+            f$.getScript(f$_nav+'ext/'+n$.site+'.js');
         }
 
         f$.ajaxSetup({ cache: true });
 
-        if(!f$_nav_container) {
-            f$('body').prepend(f$_nav_container_html);
+        if(!n$.nav.set) {
+            f$('body').prepend(n$.nav.html);
         }
 
         // On charge ensuite le code HTML
         f$.ajax({
-            url: f$_nav+'html/nav.html?'+f$_version
+            url: f$_nav+'html/nav.html?'+n$.version
         })
         .fail(function() {
             console.error('✘ nav.html');
@@ -207,7 +244,7 @@ function f$_start_jquery() {
                 f$_btn_mobile.show();
             }
 
-            if (f$_responsive) {
+            if (c$.mobile) {
             // Viewport mobile si Responsive dans la config
             // Boutons « Désactiver mode mobile » par défaut
                 f$_mobile();
@@ -216,7 +253,7 @@ function f$_start_jquery() {
                 f$_desktop();
             }
             // Si (Dés)Activation mannuel, le cookie prend la main le temps de la session
-            switch (getCookie('nav_viewport')) {
+            switch (f$Cookie('r','nav_viewport')) {
                 case 'mobile' : f$_mobile(); break;
                 case 'desktop': f$_desktop(); break;
             }
@@ -246,13 +283,13 @@ function f$_start_jquery() {
             /*******************
              *   BootStrap JS
              *******************/
-            if (f$_bootstrap_js) {
-                if (typeof f$().modal == 'function' || f$_bootstrap_js == 'html') {
+            if (c$.js.b$) {
+                if (typeof f$().modal == 'function' || c$.js.b$ == 'html') {
                     console.log('✔ Bootstrap HTML');
                     go_BootStrap();
                 } else {
                     f$.getScript(f$_nav+'lib/bootstrap/js/bootstrap.min.js', function() {
-                        console.log('✔ Bootstrap Ajax');
+                        console.log('✔ Bootstrap AJAX');
                         go_BootStrap();
                     });
                 }
@@ -262,7 +299,7 @@ function f$_start_jquery() {
 
 
             // Audio JS
-            if (f$_audio_js) {
+            if (c$.js.audio) {
                 f$('audio').each(function() {
                     f$(this).wrap('<div class="audio" />');
                         var outer = this.outerHTML;
@@ -275,7 +312,7 @@ function f$_start_jquery() {
             }
 
             // Video JS
-            if (f$_video_js) {
+            if (c$.js.video) {
                 f$('link[href*="/nav/css/nav.css"]').before('<link rel="stylesheet" type="text/css" href="'+f$_nav+'lib/video-js/video-js.css" />');
                  // Paramètres à ajouter à la vidéo pour appliquer VideoJS en surcouche
                 f$('video').attr({
@@ -283,7 +320,7 @@ function f$_start_jquery() {
                     'data-setup':'{}'});
                 // Numérotation des vidéos (pour pouvoir utiliser l'API : videojs('id').ready() )
                 f$('video').each(function(index) {
-                    if(f$(this).has('source[type*="webm"]').length && (f$_isFirefox || f$_isOpera || f$_isChrome)) {
+                    if(f$(this).has('source[type*="webm"]').length && (n$.browser.firefox || n$.browser.opera || ns.browser.chrome)) {
                         f$(this).children('source[type*="mp4"]').remove();
                     }
                     f$(this).attr('id','f_video_'+index);
@@ -320,18 +357,18 @@ function f$_start_jquery() {
             f$('head').append('<link rel="alternate" type="application/rss+xml" title="Flux global de Framasoft" href="http://rss.framasoft.org/" />');
 
             // Favicon et Apple touch icon
-            if (!f$_keep_icons) {
+            if (!c$.icons.keep) {
                 f$('link[rel*=icon]').remove();
-                f$_favicon = (!f$_favicon) ? 'favicon-violet.png' : f$_favicon;
-                f$_apple_touch_icon = (!f$_apple_touch_icon) ? 'apple-violet.png' : f$_apple_touch_icon;
-                f$('head').append('<link rel="icon" type="image/png" href="'+f$_nav+'img/icons/'+f$_favicon+'" />');
-                f$('head').append('<link rel="apple-touch-icon" href="'+f$_nav+'img/icons/'+f$_apple_touch_icon+'" />');
+                c$.icons.fav = (!c$.icons.fav) ? 'favicon-violet.png' : c$.icons.fav;
+                c$.icons.apple = (!c$.icons.apple) ? 'apple-violet.png' : c$.icons.apple;
+                f$('head').append('<link rel="icon" type="image/png" href="'+f$_nav+'img/icons/'+c$.icons.fav+'" />');
+                f$('head').append('<link rel="apple-touch-icon" href="'+f$_nav+'img/icons/'+c$.icons.apple+'" />');
             }
 
             // Opt-in
-            var f$_optin_dejavu = getCookie('opt-in');
-            if (f$_email_field1!='' && !f$_optin_dejavu) {
-                f$(f$_email_field1).after(
+            var f$_optin_dejavu = f$Cookie('r','opt-in');
+            if (c$.optin[0]!='' && !f$_optin_dejavu) {
+                f$(c$.optin[0]).after(
                     '<div class="alert alert-info fade in" id="fs_opt-in">'+
                     '<input type="checkbox" id="fs_opt-in_checkbox" value="false" />'+
                     '<label for="fs_opt-in_checkbox">J’accepte que Framasoft m’envoie à cette adresse des informations importantes</label>'+
@@ -339,24 +376,24 @@ function f$_start_jquery() {
                     '<a href="https://contact.framasoft.org/newsletter" id="link-opt-in" target="_blank" >Pourquoi m’inscrire&nbsp;?&nbsp;<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span></a>)</small></div>'
                 );
 
-                f$(f$_email_field1).focusin(function() {
+                f$(c$.optin[0]).focusin(function() {
                     f$('#fs_opt-in_error').remove();
                     // Ajout du cookie (expire au bout d'un an)
-                    setCookie(f$_optin_cookie_name,true,f$_optin_cookie);
+                    f$Cookie('w',c$.optin[2],true,c$.optin[3]);
                 });
 
                 // Requête ajax crossdomain lorsque la case est cochée
                 f$('#fs_opt-in input, #fs_opt-in label').on('click', function() {
                     f$('#fs_opt-in_error').remove();
-                    f$_email = f$(f$_email_field1).val();
-                    if(f$_email_field2!='' && f$(f$_email_field1).val()!=f$(f$_email_field2).val()) { // Cas où il y a un champs pour confirmer email
-                        f$(f$_email_field1).after(
+                    f$_email = f$(c$.optin[0]).val();
+                    if(c$.optin[1]!='' && f$(c$.optin[0]).val()!=f$(c$.optin[1]).val()) { // Cas où il y a un champs pour confirmer email
+                        f$(c$.optin[0]).after(
                             '<div class="alert alert-danger fade in" id="fs_opt-in_error">'+
                             'Les adresses emails ne correspondent pas.</div>'
                         );
                         return false;
-                    } else if( !f$_isValidEmail(f$(f$_email_field1).val())) {
-                        f$(f$_email_field1).after(
+                    } else if( !i$Email(f$(c$.optin[0]).val())) {
+                        f$(c$.optin[0]).after(
                             '<div class="alert alert-danger fade in" id="fs_opt-in_error">'+
                             'L’adresse email '+f$_email+' n’est pas valide.</div>'
                         );
@@ -372,7 +409,7 @@ function f$_start_jquery() {
                         // On supprime la case à cocher (pas possible de décocher ; l'annulation se fait depuis le mail reçu)
                         f$('#fs_opt-in').remove();
                         // Message d'alert pour confirmer l'inscription
-                        f$(f$_email_field1).after(
+                        f$(c$.optin[0]).after(
                             '<div class="alert alert-success fade in" id="fs_opt-in_confirm" aria-live="polite">'+
                             '<button type="button" class="close" data-dismiss="alert" title="Fermer"><span aria-hidden="true">&times;</span><span class="sr-only">Fermer</span></button>'+
                             'Votre adresse email <strong>'+f$_email+'</strong> a été ajoutée à notre liste. Vous devriez avoir reçu un email de confirmation.</div>'
@@ -382,7 +419,7 @@ function f$_start_jquery() {
             }
 
             // Footer
-            if(f$_footer && f$_not_in_frame) {
+            if(c$.footer && !n$.inframe) {
                 f$.ajax({
                     url: f$_nav+'html/footer.html'
                 })
@@ -399,8 +436,8 @@ function f$_start_jquery() {
                     f$('#framafooter a[href^="/nav/html/"]').attr('href', function() {
                         return f$(this).attr('href')
                                        .replace('/nav/html/', f$_nav+'html/')
-                                       .replace('credits.html', 'credits.html#'+f$_credits)
-                                       .replace('legals.html', 'legals.html#'+f$_host);
+                                       .replace('credits.html', 'credits.html#'+c$.credits)
+                                       .replace('legals.html', 'legals.html#'+c$.host);
                     });
                 });
                 f$(window).on('resize, scroll, click', function() {
@@ -414,7 +451,7 @@ function f$_start_jquery() {
             }
 
             // Macaron
-            if(f$_donate && f$_not_in_frame) {
+            if(c$.donate && !n$.inframe) {
                 f$('#framanav_donation').show().delay(Math.random() * (29000 - 1000) + 1000).fadeOut(600).fadeIn(600);
             }
 
@@ -422,28 +459,28 @@ function f$_start_jquery() {
             f$('nav a[href^="/nav/html/"]').attr('href', function() {
                 return f$(this).attr('href')
                                .replace('/nav/html/', f$_nav+'html/')
-                               .replace('credits.html', 'credits.html#'+f$_credits)
-                               .replace('legals.html', 'legals.html#'+f$_host);
+                               .replace('credits.html', 'credits.html#'+c$.credits)
+                               .replace('legals.html', 'legals.html#'+c$.host);
             });
 
             // Crédits
-            if(f$_page('/html/credits.html') && location.hash) {
+            if(i$('/html/credits.html') && location.hash) {
                 f$('#site-credits').load(f$_nav+'html/credits/'+location.hash.replace('#','')+'.html');
             };
 
             // Hébergeur et Iframe Piwik sur Mentions légales
-            if(f$_page('/html/legals.html')) {
+            if(i$('/html/legals.html')) {
                 if(location.hash) {
                     f$('#modal-legals-host').load(f$_nav+'html/host/'+location.hash.replace('#','')+'.html');
                 }
-                f$('#piwik-iframe').html('<iframe style="border: 0; height: 200px; width: 600px;" src="'+f$_piwik_url+'/index.php?module=CoreAdminHome&action=optOut&language=fr"></iframe>')
+                f$('#piwik-iframe').html('<iframe style="border: 0; height: 200px; width: 600px;" src="'+c$.piwik.url+'/index.php?module=CoreAdminHome&action=optOut&language=fr"></iframe>')
             }
 
             /** On peut ajouter des scripts jQuery "génériques" ici mais... **/
 
             function go_BootStrap() {
                 // Redéfini f$ pour Bootstrap en mode noConflict si nécessaire
-                switch (f$_jquery) {
+                switch (c$.js[0]) {
                     case 'noConflict': var f$ = jQuery.noConflict(); break;
                     default          : var f$ = jQuery; break;
                 }
@@ -465,9 +502,9 @@ function f$_start_jquery() {
                 }
                 /** Fin accessibilité **/
 
-                if (f$_not_in_frame) { // Pas de bandeau, nav, modale et macaron en mode iframe
+                if (!n$.inframe) { // Pas de bandeau, nav, modale et macaron en mode iframe
 
-                    if(f$_nav_static || f$_page('/nav/html/')) {
+                    if(c$.fixed || i$('/nav/html/')) {
                         f$('#framanav_container ~ *:not(script):first').css('margin-top', '+=42');
                         f$('#framanav_container').css({
                             'position':'fixed',
@@ -478,7 +515,7 @@ function f$_start_jquery() {
                     }
 
                     // Liens de la nav à ouvrir dans un onglet
-                    if(!f$_page('/nav/html/')) {
+                    if(!i$('/nav/html/')) {
                         f$('#framanav .dropdown-menu a').attr('target','_blank').append('<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span>');
                     }
 
@@ -497,20 +534,20 @@ function f$_start_jquery() {
                     }
 
                     // Fenêtre modale et bandeau d'alerte
-                    var f$_alert_dejavu = getCookie('nav-alert');
-                    var f$_alert_modal_dejavu = getCookie(f$_alert_modal_cookie_name);
+                    var f$_alert_dejavu = f$Cookie('r','nav-alert');
+                    var f$_alert_modal_dejavu = f$Cookie('r',c$.modal.info[2]);
 
                     // Ajout de la fenêtre modale
-                    if (f$_alert_modal_text!='') {
+                    if (c$.modal.info[0]!='') {
                         f$('body').append(
                         '<div class="modal fade" lang="fr" id="modal-alert" tabindex="-1" role="dialog" aria-labelledby="modal-alertLabel" aria-hidden="true">'+
                             '<div class="modal-dialog">'+
                                 '<div class="modal-content">'+
                                     '<div class="modal-header">'+
                                         '<button type="button" class="close" data-dismiss="modal" title="Fermer"><span aria-hidden="true">&times;</span><span class="sr-only">Fermer</span></button>'+
-                                        '<h1 id="modal-alertLabel">'+f$_alert_modal_title+'</h1>'+
+                                        '<h1 id="modal-alertLabel">'+c$.modal.info[0]+'</h1>'+
                                     '</div>'+
-                                    '<div class="modal-body">'+f$_alert_modal_text+'</div>'+
+                                    '<div class="modal-body">'+c$.modal.info[1]+'</div>'+
                                     '<div class="modal-footer">'+
                                         '<button class="btn" id="modal-close" data-dismiss="modal">Fermer</button>'+
                                     '</div>'+
@@ -518,45 +555,45 @@ function f$_start_jquery() {
                             '</div>'+
                         '</div>');
 
-                        if(!f$_alert_modal_dejavu && f$_alert_modal_onstart) {
+                        if(!f$_alert_modal_dejavu) {
                             f$('#modal-close').after('<button class="btn btn-primary" id="modal-set-cookie" >Ne plus afficher</button>')
                             f$('#modal-alert').modal('show');
                             f$('#modal-set-cookie').click(function() {
-                                setCookie(f$_alert_modal_cookie_name,true,f$_alert_modal_cookie); // cookie pour 7 jours par défaut (cf config.js)
+                                f$Cookie('w',c$.modal.info[2],true,c$.modal.info[3]); // cookie pour 7 jours par défaut (cf config.js)
                                 f$('#modal-alert').modal('hide');
                             });
                         }
                         f$('#modal-alert .close, #modal-close').click(function() {
-                            setCookie(f$_alert_modal_cookie_name,true); // cookie pour la session
+                            f$Cookie('w',c$.modal.info[2],true); // cookie pour la session
                             f$('#modal-alert').modal('hide');
                         });
                     }
 
                     // Ajout du bandeau d'alerte
-                    if (f$_alert_text!='' && !f$_alert_dejavu) {
+                    if (c$.alert[1]!='' && !f$_alert_dejavu) {
 
                         f$_alert_margin_top = '';
-                        if (f$_nav_static || f$_page('/nav/html/')) {
+                        if (c$.fixed || i$('/nav/html/')) {
                             f$('#framanav_container ~ *:not(script):first').css('margin-top', '-=42');
                             f$_alert_margin_top = ' padding-top:52px;';
                         }
 
                         f$('#framanav_container').after(
-                            '<div id="nav-alert" lang="fr" class="alert alert-'+f$_alert_type+' fade in" style="border-radius:0;'+f$_alert_margin_top+'">'+
+                            '<div id="nav-alert" lang="fr" class="alert alert-'+c$.alert[0]+' fade in" style="border-radius:0;'+f$_alert_margin_top+'">'+
                                 '<button type="button" class="close" data-dismiss="alert" title="Fermer"><span aria-hidden="true">&times;</span><span class="sr-only">Fermer</span></button>'+
-                                '<p style="text-align:center">'+f$_alert_text+'</p>'+
+                                '<div style="margin:0 auto; max-width:800px;"><p class="text-center">'+c$.alert[1]+'</p></div>'+
                             '</div>'
                         );
 
                         // Cookie enregistré en fermant (7 jours par défaut cf config.js)
                         f$('#nav-alert').bind('closed.bs.alert', function () {
-                            setCookie(f$_alert_cookie_name,true,f$_alert_cookie);
+                            f$Cookie('w',c$.alert[2],true,c$.alert[3]);
                         });
 
                     }
 
                     // Fenêtre modal pour dons sur téléchargements
-                    if (f$_modal_don_liendl!='') {
+                    if (c$.modal.don[0]!='') {
                         f$('body').append(
                         '<div class="modal fade" lang="fr" id="modal-soutenir" tabindex="-1" role="dialog" aria-labelledby="modal-soutenirLabel" aria-hidden="true">'+
                             '<div class="modal-dialog">'+
@@ -567,48 +604,48 @@ function f$_start_jquery() {
                                     '</div>'+
                                     '<div class="modal-body">'+
                                         '<div id="lldemars-framasoft"></div>'+
-                                        '<p>Vous êtes sur le point '+f$_modal_don_txtdl1+' une ressource <b>libre</b> issue de la vingtaine de projets du réseau Framasoft.</p>'+
+                                        '<p>Vous êtes sur le point '+c$.modal.don[1]+' une ressource <b>libre</b> issue de la vingtaine de projets du réseau Framasoft.</p>'+
                                         '<p>Cette ressource est <b>gratuite</b> (et le sera tant que nous existerons) parce que <b>Framasoft est une association d’intérêt général à but non lucratif</b> dont l’objectif est justement la diffusion du logiciel libre et sa culture au plus large public.'+
                                         '<p>Mais tout ceci est rendu possible parce que Framasoft est <b>soutenue par les dons (défiscalisables) de ses utilisateurs</b>.</p>'+
                                         '<p>Merci de prendre quelques minutes en nous aidant à pérenniser et développer notre action.</p>'+
                                     '</div>'+
                                     '<div class="modal-footer">'+
-                                        '<p class="col-md-6 text-center"><a target="_blank" id="modal-don" href="https://soutenir.framasoft.org/?f=modal&s='+f$_site+'" class="btn btn-soutenir btn-block"><span class="fa fa-fw fa-lg fa-heart"></span> Je veux faire un don<br /> à l’association Framasoft&nbsp;<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span></a></p>'+
+                                        '<p class="col-md-6 text-center"><a target="_blank" id="modal-don" href="https://soutenir.framasoft.org/?f=modal&s='+n$.site+'" class="btn btn-soutenir btn-block"><span class="fa fa-fw fa-lg fa-heart"></span> Je veux faire un don<br /> à l’association Framasoft&nbsp;<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span></a></p>'+
                                         '<p class="col-md-6 text-center"><a target="_blank" id="modal-contact" href="https://participer.framasoft.org" class="btn btn-info btn-block"><span class="fa fa-fw fa-lg fa-paw"></span> Je veux participer.<br />Par où on commence ?&nbsp;<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span></a></p>'+
-                                        '<p class="clearfix text-right"><a id="modal-dl" href="javascript:void(0);" class="text-primary" >Non merci, je souhaite seulement '+f$_modal_don_txtdl2+'</a></p>'+
+                                        '<p class="clearfix text-right"><a id="modal-dl" href="javascript:void(0);" class="text-primary" >Non merci, je souhaite seulement '+c$.modal.don[2]+'</a></p>'+
                                         '<p class="clearfix text-right"><a id="modal-dl2" href="javascript:void(0);" class="text-primary" >Je soutiens déjà Framasoft</a></p>'+
                                     '</div>'+
                                 '</div>'+
                             '</div>'+
                         '</div>');
 
-                        if(f$_modal_don_liendl=='onstart') {
-                            var dejavu = getCookie('dondl');
+                        if(c$.modal.don[0]=='onstart') {
+                            var dejavu = f$Cookie('r', 'dondl');
                             if(!dejavu) {
                                 f$('#modal-soutenir').modal('show');
                                 f$('#modal-soutenir').css('display','block'); // bugfix
                                 f$('#modal-contact, #modal-don, #modal-dl, #modal-soutenir .close').click(function() {
-                                    setCookie('dondl',true,f$_modal_don_cookie);
+                                    f$Cookie('w','dondl',true,c$.modal.don[3]);
                                     f$('#modal-soutenir').modal('hide');
                                 });
                                 f$('#modal-dl2').click(function() {
-                                    setCookie('dondl',true,365*24*60*60*1000);
+                                    f$Cookie('w','dondl',true,365*24*60*60*1000);
                                     f$('#modal-soutenir').modal('hide');
                                 });
                             }
                         } else {
-                            f$(f$_modal_don_liendl).click(function() {
-                                var dejavu = getCookie('dondl');
+                            f$(c$.modal.don[0]).click(function() {
+                                var dejavu = f$Cookie('r','dondl');
                                 if(!dejavu) {
                                     link=f$(this).attr('href');
                                     f$('#modal-soutenir').modal('show');
                                     f$('#modal-contact, #modal-don, #modal-dl').click(function() {
-                                        setCookie('dondl',true,f$_modal_don_cookie);
+                                        f$Cookie('w','dondl',true,c$.modal.don[3]);
                                         f$('#modal-soutenir').modal('hide');
                                         window.location.href = link;
                                     });
                                     f$('#modal-dl2').click(function() {
-                                        setCookie('dondl',true,365*24*60*60*1000);
+                                        f$Cookie('w','dondl',true,365*24*60*60*1000);
                                         f$('#modal-soutenir').modal('hide');
                                         window.location.href = link;
                                     });
@@ -617,7 +654,7 @@ function f$_start_jquery() {
                             });
                         }
                     }
-                }// </f$_not_in_frame>
+                }// </!n$.inframe>
             } // </go_BootStrap>
         }); // </nav.html>
     }); // </document.ready>
@@ -625,189 +662,251 @@ function f$_start_jquery() {
 
 /************** Fonctions globales ****************/
 // Cookies
-function setCookie(sName, sValue, sTime) {
-    sTime = typeof sTime !== 'undefined' ? sTime : 365*24*60*60*1000;
-    var today = new Date(), expires = new Date();
-    expires.setTime(today.getTime() + sTime);
-    document.cookie = sName + "=" + encodeURIComponent(sValue) + ";expires=" + expires.toGMTString();
-}
+function f$Cookie(set, name, value, time) {
 
-function getCookie(sName) {
-    var oRegex = new RegExp("(?:; )?" + sName + "=([^;]*);?");
+  if (set == 'w') {
+
+    time = typeof time !== 'undefined' ? time : 365*24*60*60*1000;
+    var today = new Date(), expires = new Date();
+    expires.setTime(today.getTime() + time);
+    document.cookie = name + "=" + encodeURIComponent(sValue) + ";expires=" + expires.toGMTString();
+
+  } else {
+
+    var oRegex = new RegExp("(?:; )?" + name + "=([^;]*);?");
     if (oRegex.test(document.cookie)) {
         return decodeURIComponent(RegExp["$1"]);
     } else {
         return null;
     }
+
+  }
+
 }
 
 // Fonction d'ajout de scripts
-function f$_loadScript(url, callback, forceCallback) {
-    if (!this.loadedScript) {
-        this.loadedScript = new Array();
-    }
+function f$LoadJS(url, callback) {
+  if (!this.loadedScript) {
+    this.loadedScript = new Array();
+  }
 
-    // indexOf n'existe pas pour IE8
-    if (!Array.prototype.indexOf) {
-        Array.prototype.indexOf = function(elt /*, from*/) {
-        var len = this.length >>> 0;
-        var from = Number(arguments[1]) || 0;
-        from = (from < 0)
+  // indexOf n'existe pas pour IE8
+  if (!Array.prototype.indexOf) {
+    Array.prototype.indexOf = function(elt /*, from*/) {
+      var len = this.length >>> 0;
+      var from = Number(arguments[1]) || 0;
+      from = (from < 0)
              ? Math.ceil(from)
              : Math.floor(from);
-        if (from < 0)
-          from += len;
-        for (; from < len; from++) {
-          if (from in this &&
-              this[from] === elt)
-            return from;
-        }
-        return -1;
-        };
-    }
-    // fin teste indexOf
+      if (from < 0)
+        from += len;
+      for (; from < len; from++) {
+        if (from in this &&
+            this[from] === elt)
+        return from;
+      }
+      return -1;
+    };
+  } // fin indexOf
 
-    if (this.loadedScript.indexOf(url) == -1) {
-        this.loadedScript.push(url);
-        var head = document.getElementsByTagName("head")[0];
-        var e = document.createElement("script");
-        e.src = url;
-        e.type = "text/javascript";
-        e.charset ="utf-8";
+  if (this.loadedScript.indexOf(url) == -1) {
+    this.loadedScript.push(url);
+    var head = document.getElementsByTagName("head")[0];
+    var e = document.createElement("script");
+    e.src = url;
+    e.type = "text/javascript";
+    e.charset ="utf-8";
 
-        var done = false;
-        e.onload = e.onreadystatechange = function() {
-            if ( !done && (!this.readyState ||
-                this.readyState === "loaded" || this.readyState === "complete") ) {
-                done = true;
-                callback();
-                // Handle memory leak in IE
-                e.onload = e.onreadystatechange = null;
-            }
-        };
+    var done = false;
+    e.onload = e.onreadystatechange = function() {
+      if ( !done && (!this.readyState ||
+        this.readyState === "loaded" || this.readyState === "complete") ) {
+        done = true;
+        callback();
+        e.onload = e.onreadystatechange = null; // Handle memory leak in IE
+      }
+    };
 
-        head.appendChild(e);
-    } else {
-        if (forceCallback) { // pas utilisé
-            callback();
-        }
-    }
+    head.appendChild(e);
+  }
 }
 
 // Ajout de CSS
-function f$_loadCSS(url, position, media) {
-    if (position==undefined) position='end';
-    if (media==undefined) media='screen';
-    var f$_link = document.createElement('link');
-        f$_link.rel = "stylesheet";
-        f$_link.media=media;
-        f$_link.href= url;
+function f$LoadCSS(url, position, media) {
+  if (position==undefined) position='end';
+  if (media==undefined) media='screen';
+  var f$_link = document.createElement('link');
+      f$_link.rel = "stylesheet";
+      f$_link.media=media;
+      f$_link.href= url;
 
-    if (position == 'start') {
-        document.getElementsByTagName('head')[0].insertBefore(f$_link, document.getElementsByTagName('head')[0].firstChild);
-    } else {
-        document.getElementsByTagName('head')[0].appendChild(f$_link);
-    }
+  if (position == 'start') {
+    document.getElementsByTagName('head')[0].insertBefore(f$_link, document.getElementsByTagName('head')[0].firstChild);
+  } else {
+    document.getElementsByTagName('head')[0].appendChild(f$_link);
+  }
 }
 
-function f$_isValidEmail(emailAddress) {
-    var pattern = new RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i);
-    if (pattern.test(emailAddress)==true) {
-        return true;
-    } else {
-       return false;
-    }
-}
-
-/** Depreciated → i$() **/
+/** Deprecated → i$() **/
 function f$_page(string) {
-    return (f$_url.indexOf(string) > -1);
+    return (n$.url.indexOf(string) > -1);
 }
 
+// Sur quel site/page on est ?
 function i$(string, location) {
-    switch (location) {
-        case 'h' : location = window.location.host; break;
-        case 'u' : location = window.location.href; break;
-        default: location = window.location.href; return (location.indexOf(string) > -1); break;
-    }
+  switch (location) {
+    case 'h' : location = window.location.host; break;
+    case 'u' : location = window.location.href; break;
+    default:
+      location = window.location.href;
+      return (location.indexOf(string) > -1);
+    break;
+  }
 
-    if( typeof string === 'object' || typeof string === 'function' ) { // RegExp
-        return (string.test(location));
-    } else { // String
-        return (location == string);
-    }
+  if( typeof string === 'object' || typeof string === 'function' ) { // RegExp
+    return (string.test(location));
+  } else { // String
+    return (location == string);
+  }
 }
 
-function f$_absolutePath(href) {
-    var link = document.createElement("a");
-    link.href = href;
-    return (link.protocol+"//"+link.host+link.pathname+link.search+link.hash);
+// Est-ce une adresse email valide ?
+function i$Email(emailAddress) {
+  var pattern = new RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i);
+  return pattern.test(emailAddress)==true;
+}
+
+// Dans quel langue est la page web ?
+function i$Lang(lg) {
+  var lang = '';
+  var html = document.getElementsByTagName("html");
+  var meta = document.getElementsByTagName('script');
+
+  if(html[0].getAttribute("lang")) {
+
+    lang = html[0].getAttribute("lang");
+
+  } else if(html[0].getAttribute("locale")) {
+
+    lang = html[0].getAttribute("locale");
+
+  } else {
+
+    for (var i = 0; i < meta.length; i++) {
+      if ((meta[i].getAttribute("http-equiv") && meta[i].getAttribute("content")
+           && meta[i].getAttribute("http-equiv").indexOf("Language") > -1)
+        ||(meta[i].getAttribute("property") && meta[i].getAttribute("content")
+           && meta[i].getAttribute("property").indexOf("locale") > -1)) {
+
+          lang = meta[i].getAttribute("content");
+
+      }
+    }
+  }
+  return (lang.substr(0,2).toLowerCase() == lg)
+}
+
+// Conversion en url absolue
+function f$Link(href) {
+  var link = document.createElement("a");
+  link.href = href;
+  return (link.protocol+"//"+link.host+link.pathname+link.search+link.hash);
+}
+
+// Mise à jour de la config
+function f$c$(site, l$) {
+  function merge(obj1, obj2) {
+    for (var p in obj2) {
+      try {
+        if ( obj2[p].constructor==Object ) {
+          obj1[p] = merge(obj1[p], obj2[p]);
+        } else {
+          obj1[p] = obj2[p];
+        }
+      } catch(e) {
+        obj1[p] = obj2[p];
+      }
+    }
+    return obj1;
+  }
+
+  if(n$.site == site) {
+    for (var key in l$) {
+       if (l$.hasOwnProperty(key)) {
+          var obj = l$[key];
+          for (var prop in obj) {
+             if (obj.hasOwnProperty(prop)) {
+                //alert(prop + " = " + obj[prop]);
+             }
+          }
+       }
+    }
+  }
 }
 
 /***********************************************************************
  *                           Config globale                            *
  ***********************************************************************/
-var f$_jquery = 'jQuery';                           // 'jQuery'     = jQuery de la nav ;
-                                                    // 'html'       = jQuery (1.12.3 ou +) présent dans la page ;
-                                                    // 'noConflict' = variable $ et jQuery renommés en js ;
+var c$ = {
+  js: {
+    j$: 'jQuery',                   // 'jQuery'     = jQuery de la nav ;
+                                    // 'html'       = jQuery (1.12.4 ou +) présent dans la page ;
+                                    // 'noConflict' = variable $ et jQuery renommés en js ;
+    b$: 'bootstrap',                // 'bootstrap'  = bootstrap de la nav;
+                                    // 'html'       = bootstrap présent dans la page ;
+                                    //  false       = on désactive bootstrap
+    ext: false,                     // ext/n$.site.js si true ou bien une fonction lancée au dom.ready
+    audio: false,
+    video: false
+  },
+  css: {
+    order: 01234,                   /** cas possibles : 01234, 10234, 01423 **/
+    b$: true,                       // 0 : bootstrap
+                                    // 1 : css du site
+                                    // 2 : font-awesome + nav.css
+    frama: true,                    // 3 : frama.css
+    ext:false                       // 4 : nav/ext/n$.site.css si true
+  },
+  mobile: true, // activer le viewport
+  fixed: false, // position de la nav
 
-var f$_bootstrap_js = true;                         // true ; false ; 'html'
+  footer: true,
+
+  donate: true, // macaron
+  modal: {
+    don: ['', 'de télécharger', 'télécharger', 604800000],
+    /**
+      0 : sélecteur jQuery ou 'onstart' pour l'afficher à l'ouverture de la page
+      3 : durée du cookie (7 jours)
+     **/
+    info: ['', '', 'n$modal-info', 604800000],
+    /** [titre, texte, nom du cookie, durée du cookie (7 jours)] **/
+  },
+  alert: ['black', '', 'n$alert', 604800000],
+  /** [couleur (classes bootstrap), texte, nom du cookie, durée du cookie (7 jours)] **/
+  mute: false,  // désactive macaron, modal, alert
+
+  optin: ['', '', 'n$optin', 604800000],
+  /** [sélecteur email1, email2, nom du cookie, durée du cookie (7 jours)] **/
+
+  icons: {
+    keep: false, // garder les icônes du site (connard.pro, pouhiou.com)
+    fav: false,  // favicon-violet.png
+    apple: false // n$.site+'.png'
+  },
+  host: 'hetzner',
+  credits: n$.site,
+  piwik: {
+    id: '',
+    url: 'https://stats.framasoft.org/'
+  }
+};
+
 var f$_bootstrap_css = true;
 var f$_css_position = 'start';                      // 'start' = head > bootstrap.css > ... /head body > nav.js ;
                                                     // 'end'   = head > ... > bootstrap.css /head body > nav.js ;
-var f$_responsive = true;
 var f$_frama_css = true;
-
-var f$_nav_static = false;
 var f$_ext_css = false;                             // nav/ext/nom-de-domaine.css
-var f$_ext_js = false;                              // nav/ext/nom-de-domaine.js ; false ; 'jQuery' ; 'loadScript'
-var f$_footer = true;                               // charger le fichier footer.html
-
-// Popup de don
-var f$_modal_don_txtdl1 = 'de télécharger';
-var f$_modal_don_txtdl2 = 'télécharger';
-var f$_modal_don_liendl = '';                       // selecteur jQuery ou 'onstart' pour l'afficher à l'ouverture de la page
-var f$_modal_don_cookie = 7*24*60*60*1000;          // Expire au bout de 7 jours
-
-// Alertes
-var f$_alert_type = 'black';                        // warning = jaune ; danger = rouge ; info = bleu ; success = vert
-var f$_alert_text = '';                             // /!\ aux \' dans le texte
-var f$_alert_cookie_name = 'nav-alert';
-var f$_alert_cookie = 7*24*60*60*1000;              // Expire au bout de 7 jours
-
-var f$_alert_modal_title = '';                      // /!\ aux \' dans le texte
-var f$_alert_modal_text = '';                       // idem
-var f$_alert_modal_onstart = true;                  // s'affiche à l'ouverture de la page ?
-var f$_alert_modal_cookie_name = 'nav-alert-modal';
-var f$_alert_modal_cookie = 7*24*60*60*1000;        // Expire au bout de 7 jours
-
-// Faire un don (macaron)
-var f$_donate = true;
-var f$_donate_blink_time = 30000;
-
-// Fonction pour désactiver tout ce qui peut géner sur certains sites
-var f$_NoMsg = function() {
-    f$_alert_text = '';       // Pas de bandeau
-    f$_alert_modal_text = ''; // Pas de modale
-    f$_modal_don_liendl = '';
-    f$_donate = false;        // Pas de macaron
-}
-
-// Audio JS
-var f$_audio_js = false;
-// Video JS
-var f$_video_js = false;
-
-// Opt-in
-var f$_email_field1 = '';
-var f$_email_field2 = '';
-var f$_optin_cookie_name = 'opt-in';
-var f$_optin_cookie = 365*24*60*60*1000;            // Expire au bout d'un an
-
-// Icônes
-var f$_keep_icons       = false;                    // true pour connard.pro, pouhiou.com, etc
-var f$_favicon          = false;                    // 'favicon-violet.png' par défaut
-var f$_apple_touch_icon = false;                    // f$_site+'.png' par défaut
 
 /* Bandeau Degooglisons
     f$_banniere = Math.floor(Math.random() * 3);
@@ -853,12 +952,13 @@ var f$_dd = f$_today.getDate();
 var f$_mm = f$_today.getMonth()+1;
 var f$_yyyy = f$_today.getFullYear();
 
-if(f$_mm == 12 && (31-f$_dd) < 15 && f$_site != 'soutenir.framasoft') {
+if(f$_mm == 12 && (31-f$_dd) < 15 && n$.site != 'soutenir.framasoft') {
     f$_rebours = ((31-f$_dd) == 1) ? '24 heures' : 31-f$_dd+' jours';
-    f$_alert_type = 'info';
-    f$_alert_text =
-        '<div style="margin:0 auto; max-width:800px;">'+
-            '<p class="text-center">Rappel : il vous reste <b>'+f$_rebours+'</b> pour faire un <b>don défiscalisé en '+f$_yyyy+'</b> à Framasoft.'+
-            '<br/>Merci pour votre soutien <a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir"><i class="fa fa-heart"></i><span class="sr-only">Faire un don ?</a></p>'+
-        '</div>';
+    c$.alert[0] = 'info';
+    c$.alert[1] =
+        'Rappel : il vous reste <b>'+f$_rebours+'</b> pour faire un <b>don défiscalisé en '+f$_yyyy+'</b> à Framasoft.'+
+        '<br/>Merci pour votre soutien <a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir"><i class="fa fa-heart"></i><span class="sr-only">Faire un don ?</a>';
 }
+
+
+//f$c$('localhost', c$);
