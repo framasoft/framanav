@@ -46,7 +46,7 @@
   font-size: 18px;
   line-height: 1.1;
 }
-.foire-aux-questions .list-group-item-heading[style="display:none"] {
+.foire-aux-questions .list-group-item-heading[style="display: none;"] {
   display:block !important;
 }
 
