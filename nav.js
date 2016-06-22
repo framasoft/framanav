@@ -44,7 +44,7 @@ var f$_start_config = function() {
     var f$_speed = (f$_nav_container) ? '☀' : '☁';
     if (f$_config == 'global') {
         var f$_hjQv = (window.jQuery === undefined) ? 'ø' : window.jQuery.fn.jquery;
-        var f$_njQv  = '1.12.3';
+        var f$_njQv  = '1.12.4';
         console.log('✔ '+f$_speed+' config.js '+f$_version+' | '+f$_njQv+' | '+f$_hjQv);
 
         if(f$_page('/nav/html/')) { // Si pages « À propos » on réinit la config
@@ -748,7 +748,7 @@ function f$_absolutePath(href) {
  *                           Config globale                            *
  ***********************************************************************/
 var f$_jquery = 'jQuery';                           // 'jQuery'     = jQuery de la nav ;
-                                                    // 'html'       = jQuery (1.12.3 ou +) présent dans la page ;
+                                                    // 'html'       = jQuery (1.12.4 ou +) présent dans la page ;
                                                     // 'noConflict' = variable $ et jQuery renommés en js ;
 
 var f$_bootstrap_js = true;                         // true ; false ; 'html'
