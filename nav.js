@@ -42,6 +42,8 @@ var n$ = {
                    .replace(/framin/i,'min')
                    .replace(/frama/i,'');
 
+n$.name = 'Framapic';
+
   if (n$.inframe) { n$.nav.html = '<div id="framanav_container" style="display:none"></div>' };
 
   if (window.jQuery === undefined) {
@@ -50,6 +52,8 @@ var n$ = {
     n$.j$ = window.jQuery.fn.jquery;
     f$ = jQuery;   // alias (on l'écrase plus bas mais ça permet de pouvoir l'utiliser plus tôt)
   }
+
+var d$ = {};
 
 // console n'existe pas sur IE8
 (function() {
@@ -203,69 +207,200 @@ function f$_start_jquery() {
             f$('body').prepend(n$.nav.html);
         }
 
-        // On charge ensuite le code HTML
-        f$.ajax({
-            url: f$_nav+'html/nav.html?'+n$.version
-        })
+        // On charge ensuite les données
+        f$.getJSON( f$_nav+'html/data.fr.json' )
         .fail(function() {
-            console.error('✘ nav.html');
+            console.error('✘ data.fr.json');
         })
-        .done(function(html) {
-            // On affiche le code html
-            f$('#framanav_container').prepend(html);
-            // Correctif sur les url relatives (les images) dans le code html
-            f$('img[src^="nav/"]').each(function(){
-                link=f$(this).attr('src');
-                f$(this).attr('src',link.replace('nav/',f$_nav));
-            });
-            f$('#framanav .navbar-brand img').attr('src',f$_nav+'img/logo.png');
+        .done(function(data) {
 
-            // On ajoute le viewport si Responsive
+          // Formatage et traitement des données
+          d$ = data; /** passage en global pour lecture dans la console **/
+          var f$_color = ''; var f$_menu = ''; var f$_popover = '';
+          for (var k in d$.menus) { d$.menus[k].nav ='' }
+          d$.menus.follow.footer = ''; d$.menus.about.site = '';
+          // Class couleurs + Dropdown menu
+          for (var k in d$.f) {
+            switch ( d$.f[k].c ) {
+              case 'b': f$_color = 'bleu';   f$_menu = 'soft';     break;
+              case 'r': f$_color = 'rouge';  f$_menu = 'culture';  break;
+              case 'v': f$_color = 'vert';   f$_menu = 'services'; break;
+              case 'j': f$_color = 'jaune';  f$_menu = 'vrac';     break;
+              case 'f': f$_color = 'violet'; f$_menu = 'follow';   break;
+              case 'o': f$_color = 'orange'; f$_menu = (k != 'dio') ? 'about' : 'services'; break;
+            }
+            // Nom du projet coloré (html)
+            // Préfix violet
+            if ( d$.f[k].p == undefined ) {
+               d$.f[k].html = d$.f[k].p = '';
+            } else {
+              d$.f[k].html = '<b class="violet">'+d$.f[k].p+'</b>';
+            }
+            // Suffixe coloré (anglais, accronyme)
+            switch (d$.f[k].a) {
+              case 'en'  : d$.f[k].html += '<b class="'+f$_color+'" lang="en">'+d$.f[k].s+'</b>'; break;
+              case 'abbr': d$.f[k].html += '<b class="'+f$_color+'"><abbr>'+d$.f[k].s+'</abbr></b>'; break;
+              default    : d$.f[k].html += '<b class="'+f$_color+'">'+d$.f[k].s+'</b>'; break;
+            }
+
+            // Nom du projet nu (name)
+            d$.f[k].name = d$.f[k].p+d$.f[k].s;
+            // Popovers
+            f$_popover = ( d$.f[k].d1 != undefined && d$.f[k].t1 != undefined )
+              ? 'rel="popover" data-content="'+d$.f[k].d1+'" title="'+d$.f[k].t1+'"'
+              : '';
+            // Attribution des entrées dans chaque menu
+            d$.menus[f$_menu].nav += '<li class="fs_'+f$_menu+' fs_'+k+'"><a href="'+d$.f[k].l+'" '+f$_popover+'><i class="fa fa-fw fa-lg '+d$.f[k].i+'"></i>&nbsp;'+d$.f[k].name+'</a></li>';
+
+            // "Nous suivre" dans le footer
+            if ((f$_menu == 'follow') && !(/(newsletter|contact|wikipedia)/i).test(k)) {
+              d$.menus['follow'].footer += '<li class="fs_'+k+'"><a href="'+d$.f[k].l+'" title="'+d$.f[k].t1+'"><i class="fa fa-fw fa-2x '+d$.f[k].i+'"></i><span class="sr-only">'+d$.f[k].name+'</span></a></li>';
+            }
+            // "À propos" du site
+            if(n$.name == d$.f[k].name) {
+              f$_soft = (d$.f[k].soft != undefined) ? ' ('+d$.f[k].soft+')' : '';
+              d$.menus['about'].site += '<li class="dropdown-header">'+d$.f[k].html+f$_soft+'</li><li role="presentation" class="divider"></li>';
+              if(d$.f[k].git != undefined) {
+                d$.menus['about'].site += '<li class="fs_about fs_git"><a href="'+d$.f[k].git+'"><i class="fa fa-fw fa-lg '+d$.f.git.i+'"></i>&nbsp;'+d$.f.git.p+d$.f.git.s+'</a></li>';
+              }
+              if(d$.f[k].src != undefined) {
+                d$.menus['about'].site += '<li class="fs_about fs_src"><a href="'+d$.f[k].src+'"><i class="fa fa-fw fa-lg fa-code-fork"></i>&nbsp;'+d$.t.source+f$_soft+'</a></li>';
+              }
+              d$.f.aide.l = d$.f.aide.l.replace('#aide','#'+n$.name.toLowerCase());
+              d$.f.faq.l = d$.f.faq.l+'#'+n$.name.toLowerCase();
+            }
+
+          }
+
+          var html =
+' <nav class="navbar navbar-default" id="framanav" role="menubar" style="display:none">'+
+
+'   <button type="button" class="navbar-toggle text-muted" data-toggle="collapse" data-target=".navbar-ex1-collapse">'+
+'     <span class="sr-only">'+d$.t.toggle+'</span><i class="fa fa-fw fa-lg fa-bars"></i>'+
+'   </button>'+
+
+'   <div class="nav-container">'+
+'     <div class="navbar-header">'+
+'       <a class="navbar-brand" href="'+d$.meta.home.l+'">'+
+'         <img src="'+f$_nav+'img/logo.png"/>'+
+'         <span class="hidden-sm"><b class="violet">'+d$.meta.home.p+'</b><b class="orange">'+d$.meta.home.s+'</b></span>'+
+'       </a>'+
+'       <a href="#nav-end" id="nav-skip">'+d$.t.skip+'</a>'+
+'     </div>'+
+
+'   <div class="collapse navbar-collapse navbar-ex1-collapse">'+
+'     <ul class="nav navbar-nav">';
+
+          for (var k in d$.menus) {
+            if(k != 'site' && k != 'community') {
+              html +=
+'       <li class="dropdown">'+
+'         <a href="#" class="dropdown-toggle" data-toggle="dropdown">'+d$.menus[k].name+'<b class="caret"></b></a>'+
+'         <ul class="dropdown-menu">'+d$.menus[k].nav+'</ul>'+
+'       </li>';
+            }
+          }
+
+          html +=
+'       <li><a href="'+d$.meta.soutenir.l+'/?f=nav" class="btn-soutenir" rel="popover" data-placement="bottom"'+
+'              data-content="'+d$.meta.soutenir.d1+'" title="'+d$.meta.soutenir.t1+'">'+
+'         <i class="fa fa-lg '+d$.meta.soutenir.i+'"></i>&nbsp;'+d$.meta.soutenir.s+
+'       </a></li>'+
+'       <li id="btn-benevalo"><a href="'+d$.meta.benevalo.l+'" class="btn-info" rel="popover" data-placement="bottom"'+
+'                                data-content="'+d$.meta.benevalo.d1+'" title="'+d$.meta.benevalo.t1+'">'+
+'         <i class="fa fa-lg '+d$.meta.benevalo.i+'"></i>&nbsp;'+d$.meta.benevalo.s+
+'       </a></li>'+
+'      </ul>'+
+'   </div>'+
+' </div>'+
+'  <a id="nav-end" class="sr-only"></a>'+
+'</nav>'+
+'<a href="'+d$.meta.soutenir.l+'/?f=macaron" id="framanav_donation" rel="donBadge" style="display:none" class="hidden-xs"><span class="sr-only">'+d$.meta.soutenir.s+'</span></a>';
+
+
+            /** On injecte le code html **/
+            f$('#framanav_container').prepend(html);
+            // Présentation 2 colonnes pour Services et À propos
+            f$('#framanav .dropdown:eq(2)').attr('id','fs_services');
+            f$('#framanav .dropdown:eq(5)').attr('id','fs_about');
+            // Placement des popovers à gauche
+            f$('#framanav #fs_services li:odd a').attr('data-placement','left');
+            // À propos
+            f$('#fs_about li').has('a[href*="status."]').after(d$.menus['about'].site);
+            f$('#fs_about .fs_git').before(f$('#fs_about .fs_aide,#fs_about .fs_faq'));
+
+
+            f$('#fs_about ul').prepend('<li class="dropdown-header"><b class="violet">'+d$.meta.home.p+'</b><b class="orange">'+d$.meta.home.s+'</b></li><li role="presentation" class="divider"></li>');
+            f$('#fs_services li:eq(0)').addClass('dropdown-header');
+            f$('#fs_services li:eq(0) a').wrapInner('<b>');
+            // Ajout des dividers
+            f$('#framanav .dropdown-menu li')
+              .has(
+                'a[href*="degooglisons"], a[href*="vect"], a[href*="carte.org"], a[href*="news.org"],'+
+                'a[href*="enventelibre"], a[href*="wiki."], a[href*="plus.google"], a[href*="status."]'
+              )
+              .after('<li role="presentation" class="divider"></li>');
+
+            /**
+             * Mobile/Desktop
+             **/
+            // On ajoute du viewport et des boutons mobile/desktop
+            f$('#fs_about').append(
+              '<li  role="presentation" class="divider"></li>'+
+              '<li class="framanav-mobile"><a href="javascript:void(0);">'+
+              '  <i class="fa fa-fw fa-lg fa-mobile"></i>&nbsp;'+d$.t.mobile+
+              '</a></li>'+
+              '<li class="framanav-desktop"><a href="javascript:void(0);">'+
+              '  <i class="fa fa-fw fa-lg fa-desktop"></i>&nbsp;'+d$.t.desktop+
+              '</a></li>'
+            );
+
             var f$_btn_desktop = f$('.framanav-desktop');
             var f$_btn_mobile = f$('.framanav-mobile');
 
             function f$_mobile() {
-                var f$_viewport = f$('meta[name="viewport"]');
-                if (f$_viewport.length==0) {
-                    f$('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
-                } else {
-                    f$_viewport.attr('content','width=device-width, initial-scale=1.0');
-                }
-                f$_btn_desktop.addClass('visible-xs-inline').show();
-                f$_btn_mobile.hide();
+              var f$_viewport = f$('meta[name="viewport"]');
+              if (f$_viewport.length==0) {
+                f$('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
+              } else {
+                f$_viewport.attr('content','width=device-width, initial-scale=1.0');
+              }
+              f$_btn_desktop.addClass('visible-xs-inline').show();
+              f$_btn_mobile.hide();
             };
 
             function f$_desktop() {
-                var f$_viewport = f$('meta[name="viewport"]');
-                if (f$_viewport.length) {
-                    f$_viewport.attr('content','width=1024');
-                }
-                f$_btn_desktop.removeClass('visible-xs-inline').hide();
-                f$_btn_mobile.show();
+              var f$_viewport = f$('meta[name="viewport"]');
+              if (f$_viewport.length) {
+                f$_viewport.attr('content','width=1024');
+              }
+              f$_btn_desktop.removeClass('visible-xs-inline').hide();
+              f$_btn_mobile.show();
             }
 
             if (c$.mobile) {
             // Viewport mobile si Responsive dans la config
             // Boutons « Désactiver mode mobile » par défaut
-                f$_mobile();
+              f$_mobile();
             } else if (f$('meta[name="viewport"]').length==0) {
             // Bouton « Activer mode mobile » par défaut
-                f$_desktop();
+              f$_desktop();
             }
             // Si (Dés)Activation mannuel, le cookie prend la main le temps de la session
             switch (f$Cookie('r','nav_viewport')) {
-                case 'mobile' : f$_mobile(); break;
-                case 'desktop': f$_desktop(); break;
+              case 'mobile' : f$_mobile(); break;
+              case 'desktop': f$_desktop(); break;
             }
             // Boutons (Dés)Activer le mode mobile
             f$_btn_mobile.on('click', function() {
-                f$_mobile();
-                document.cookie = 'nav_viewport=mobile;expire=0';
+              f$_mobile();
+              document.cookie = 'nav_viewport=mobile;expire=0';
             });
             f$_btn_desktop.on('click', function() {
-                f$_desktop();
-                document.cookie = 'nav_viewport=desktop;expire=0';
+              f$_desktop();
+              document.cookie = 'nav_viewport=desktop;expire=0';
             });
+            /** Fin Mobile/Desktop **/
 
             f$('#framanav_container').css('opacity','1');
 
@@ -284,170 +419,211 @@ function f$_start_jquery() {
              *   BootStrap JS
              *******************/
             if (c$.js.b$) {
-                if (typeof f$().modal == 'function' || c$.js.b$ == 'html') {
-                    console.log('✔ Bootstrap HTML');
-                    go_BootStrap();
-                } else {
-                    f$.getScript(f$_nav+'lib/bootstrap/js/bootstrap.min.js', function() {
-                        console.log('✔ Bootstrap AJAX');
-                        go_BootStrap();
-                    });
-                }
+              if (typeof f$().modal == 'function' || c$.js.b$ == 'html') {
+                console.log('✔ Bootstrap HTML');
+                go_BootStrap();
+              } else {
+                f$.getScript(f$_nav+'lib/bootstrap/js/bootstrap.min.js', function() {
+                  console.log('✔ Bootstrap AJAX');
+                  go_BootStrap();
+                });
+              }
             } else {
-                console.info('✘ Bootstrap');
+              console.info('✘ Bootstrap');
             }
-
 
             // Audio JS
             if (c$.js.audio) {
-                f$('audio').each(function() {
-                    f$(this).wrap('<div class="audio" />');
-                        var outer = this.outerHTML;
-                    var regex = new RegExp('<' + this.tagName, 'i');
-                        var newTag = outer.replace(regex, '<video');
-                        regex = new RegExp('</' + this.tagName, 'i');
-                        newTag = newTag.replace(regex, '</video');
-                    f$(this).replaceWith(newTag);
-                });
+              f$('audio').each(function() {
+                f$(this).wrap('<div class="audio" />');
+                var outer = this.outerHTML;
+                var regex = new RegExp('<' + this.tagName, 'i');
+                  var newTag = outer.replace(regex, '<video');
+                  regex = new RegExp('</' + this.tagName, 'i');
+                  newTag = newTag.replace(regex, '</video');
+                f$(this).replaceWith(newTag);
+              });
             }
 
             // Video JS
             if (c$.js.video) {
-                f$('link[href*="/nav/css/nav.css"]').before('<link rel="stylesheet" type="text/css" href="'+f$_nav+'lib/video-js/video-js.css" />');
-                 // Paramètres à ajouter à la vidéo pour appliquer VideoJS en surcouche
-                f$('video').attr({
-                    'class':'video-js vjs-default-skin',
-                    'data-setup':'{}'});
-                // Numérotation des vidéos (pour pouvoir utiliser l'API : videojs('id').ready() )
-                f$('video').each(function(index) {
-                    if(f$(this).has('source[type*="webm"]').length && (n$.browser.firefox || n$.browser.opera || ns.browser.chrome)) {
-                        f$(this).children('source[type*="mp4"]').remove();
-                    }
-                    f$(this).attr('id','f_video_'+index);
-                });
+              f$('link[href*="/nav/css/nav.css"]').before('<link rel="stylesheet" type="text/css" href="'+f$_nav+'lib/video-js/video-js.css" />');
+              // Paramètres à ajouter à la vidéo pour appliquer VideoJS en surcouche
+              f$('video').attr({
+                'class':'video-js vjs-default-skin',
+                'data-setup':'{}'});
+              // Numérotation des vidéos (pour pouvoir utiliser l'API : videojs('id').ready() )
+              f$('video').each(function(index) {
+                if(f$(this).has('source[type*="webm"]').length && (n$.browser.firefox || n$.browser.opera || ns.browser.chrome)) {
+                  f$(this).children('source[type*="mp4"]').remove();
+                }
+                f$(this).attr('id','f_video_'+index);
+              });
 
-                f$.getScript(f$_nav+'lib/video-js/video.js', function() {
-                    console.log('✔ video.js');
-                    videojs.options.flash.swf = f$_nav+'lib/video-js/video-js.swf';
-                    // On "clique" sur les sous-titres Français
-                    // pour chaque vidéo dès que VideoJS est prêt
-                    f$('video').each(function(index) {
-                            videojs('f_video_'+index).ready(function() { f$("li.vjs-menu-item:contains('Français')").trigger('click'); });
-                    });
+              f$.getScript(f$_nav+'lib/video-js/video.js', function() {
+                console.log('✔ video.js');
+                videojs.options.flash.swf = f$_nav+'lib/video-js/video-js.swf';
+                // On "clique" sur les sous-titres Français
+                // pour chaque vidéo dès que VideoJS est prêt
+                f$('video').each(function(index) {
+                  videojs('f_video_'+index).ready(function() { f$("li.vjs-menu-item:contains('Français')").trigger('click'); });
                 });
+              });
             }
 
             // Bloqueur d'iframe style Flashblock
             /* Vidéos Youtube */
             var f$_yt_i=0;
             f$('a[href*="youtube.com/watch"],a[href*="youtu.be/"]').has('img').click(function() {
-                // Si lien youtube <a> on l'ajoute le code au clic + ajout d'un Id à l'iframe
-                var f$_yt_iframe = f$(this).attr('href').replace(
-                    /(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com(?:\/embed\/|\/v\/|\/watch\?v=))([\w\-]{10,12})\b[?=&\w]*(?!['"][^<>]*>|<\/a>)/ig,
-                    '<iframe id="youtube'+ f$_yt_i +'" src="https://www.youtube.com/embed/$1?autoplay=1" width="560" height="315" frameborder="0" allowfullscreen ></iframe>');
-                f$(this).after(f$_yt_iframe);
-                // On supprime <a><img/></a>
-                f$(this).remove();
-                f$_yt_i++;
-                return false;
+              // Si lien youtube <a> on l'ajoute le code au clic + ajout d'un Id à l'iframe
+              var f$_yt_iframe = f$(this).attr('href').replace(
+                /(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com(?:\/embed\/|\/v\/|\/watch\?v=))([\w\-]{10,12})\b[?=&\w]*(?!['"][^<>]*>|<\/a>)/ig,
+                '<iframe id="youtube'+ f$_yt_i +'" src="https://www.youtube.com/embed/$1?autoplay=1" width="560" height="315" frameborder="0" allowfullscreen ></iframe>');
+              f$(this).after(f$_yt_iframe);
+              // On supprime <a><img/></a>
+              f$(this).remove();
+              f$_yt_i++;
+              return false;
             });
-            /* Même chose à faire pour Soundcloud, Dailymotion, Vimeo */
+            /** Même chose à faire pour Soundcloud, Dailymotion, Vimeo **/
 
             // Flux RSS Global
-            f$('head').append('<link rel="alternate" type="application/rss+xml" title="Flux global de Framasoft" href="http://rss.framasoft.org/" />');
+            f$('head').append('<link rel="alternate" type="application/rss+xml" title="'+d$.f.rss.d1+'" href="'+d$.f.rss.l+'" />');
 
             // Favicon et Apple touch icon
             if (!c$.icons.keep) {
-                f$('link[rel*=icon]').remove();
-                c$.icons.fav = (!c$.icons.fav) ? 'favicon-violet.png' : c$.icons.fav;
-                c$.icons.apple = (!c$.icons.apple) ? 'apple-violet.png' : c$.icons.apple;
-                f$('head').append('<link rel="icon" type="image/png" href="'+f$_nav+'img/icons/'+c$.icons.fav+'" />');
-                f$('head').append('<link rel="apple-touch-icon" href="'+f$_nav+'img/icons/'+c$.icons.apple+'" />');
+              f$('link[rel*=icon]').remove();
+              c$.icons.fav = (!c$.icons.fav) ? 'favicon-violet.png' : c$.icons.fav;
+              c$.icons.apple = (!c$.icons.apple) ? 'apple-violet.png' : c$.icons.apple;
+              f$('head').append('<link rel="icon" type="image/png" href="'+f$_nav+'img/icons/'+c$.icons.fav+'" />');
+              f$('head').append('<link rel="apple-touch-icon" href="'+f$_nav+'img/icons/'+c$.icons.apple+'" />');
             }
 
             // Opt-in
             var f$_optin_dejavu = f$Cookie('r','opt-in');
             if (c$.optin[0]!='' && !f$_optin_dejavu) {
-                f$(c$.optin[0]).after(
-                    '<div class="alert alert-info fade in" id="fs_opt-in">'+
-                    '<input type="checkbox" id="fs_opt-in_checkbox" value="false" />'+
-                    '<label for="fs_opt-in_checkbox">J’accepte que Framasoft m’envoie à cette adresse des informations importantes</label>'+
-                    '<br /><small>(Promis, nous ne revendons pas nos fichiers, même à la NSA&nbsp;! '+
-                    '<a href="https://contact.framasoft.org/newsletter" id="link-opt-in" target="_blank" >Pourquoi m’inscrire&nbsp;?&nbsp;<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span></a>)</small></div>'
-                );
+              f$(c$.optin[0]).after(
+                '<div class="alert alert-info fade in" id="fs_opt-in">'+
+                '  <input type="checkbox" id="fs_opt-in_checkbox" value="false" />'+
+                '  <label for="fs_opt-in_checkbox">'+d$.meta.optin.t+'</label>'+
+                '  <br /><small>'+d$.meta.optin.d1+
+                '    <a href="'+d$.f.newsletter.l+'" id="link-opt-in" target="_blank" >'+d$.meta.optin.d2+'&nbsp;'+
+                '      <i class="fa fa-external-link new-window"></i>'+
+                '      <span class="sr-only"> ('+d$.t.new-window+')</span>'+
+                '    </a>)'+
+                '  </small>'+
+                '</div>'
+              );
 
-                f$(c$.optin[0]).focusin(function() {
-                    f$('#fs_opt-in_error').remove();
-                    // Ajout du cookie (expire au bout d'un an)
-                    f$Cookie('w',c$.optin[2],true,c$.optin[3]);
-                });
+              f$(c$.optin[0]).focusin(function() {
+                f$('#fs_opt-in_error').remove();
+                // Ajout du cookie (expire au bout d'un an)
+                f$Cookie('w',c$.optin[2],true,c$.optin[3]);
+              });
 
-                // Requête ajax crossdomain lorsque la case est cochée
-                f$('#fs_opt-in input, #fs_opt-in label').on('click', function() {
-                    f$('#fs_opt-in_error').remove();
-                    f$_email = f$(c$.optin[0]).val();
-                    if(c$.optin[1]!='' && f$(c$.optin[0]).val()!=f$(c$.optin[1]).val()) { // Cas où il y a un champs pour confirmer email
-                        f$(c$.optin[0]).after(
-                            '<div class="alert alert-danger fade in" id="fs_opt-in_error">'+
-                            'Les adresses emails ne correspondent pas.</div>'
-                        );
-                        return false;
-                    } else if( !i$Email(f$(c$.optin[0]).val())) {
-                        f$(c$.optin[0]).after(
-                            '<div class="alert alert-danger fade in" id="fs_opt-in_error">'+
-                            'L’adresse email '+f$_email+' n’est pas valide.</div>'
-                        );
-                        return false;
-                    } else {
-                        f$('#fs_opt-in input').attr('checked', true);
-                        f$.ajax({
-                            type: "POST",
-                            url: 'https://contact.framasoft.org/php_list/lists/?p=subscribe&id=2', // URL d'abonnement à la liste
-                            crossDomain:true,
-                            data: 'makeconfirmed=1&htmlemail=1&list%5B5%5D=signup&listname%5B5%5D=Newsletter&email='+f$_email.replace('@','%40')+'&VerificationCodeX=&subscribe=Abonnement' // Paramètres habituellement passés dans le formulaire
-                        });
-                        // On supprime la case à cocher (pas possible de décocher ; l'annulation se fait depuis le mail reçu)
-                        f$('#fs_opt-in').remove();
-                        // Message d'alert pour confirmer l'inscription
-                        f$(c$.optin[0]).after(
-                            '<div class="alert alert-success fade in" id="fs_opt-in_confirm" aria-live="polite">'+
-                            '<button type="button" class="close" data-dismiss="alert" title="Fermer"><span aria-hidden="true">&times;</span><span class="sr-only">Fermer</span></button>'+
-                            'Votre adresse email <strong>'+f$_email+'</strong> a été ajoutée à notre liste. Vous devriez avoir reçu un email de confirmation.</div>'
-                        );
-                    }
-                });
+              // Requête ajax crossdomain lorsque la case est cochée
+              f$('#fs_opt-in input, #fs_opt-in label').on('click', function() {
+                f$('#fs_opt-in_error').remove();
+                f$_email = f$(c$.optin[0]).val();
+                if(c$.optin[1]!='' && f$(c$.optin[0]).val()!=f$(c$.optin[1]).val()) { // Cas où il y a un champs pour confirmer email
+                  f$(c$.optin[0]).after(
+                    '<div class="alert alert-danger fade in" id="fs_opt-in_error">'+
+                    'Les adresses emails ne correspondent pas.</div>'
+                  );
+                  return false;
+                } else if( !i$Email(f$(c$.optin[0]).val())) {
+                  f$(c$.optin[0]).after(
+                    '<div class="alert alert-danger fade in" id="fs_opt-in_error">'+
+                    'L’adresse email '+f$_email+' n’est pas valide.</div>'
+                  );
+                  return false;
+                } else {
+                  f$('#fs_opt-in input').attr('checked', true);
+                  f$.ajax({
+                    type: "POST",
+                    url: 'https://contact.framasoft.org/php_list/lists/?p=subscribe&id=2', // URL d'abonnement à la liste
+                    crossDomain:true,
+                    data: 'makeconfirmed=1&htmlemail=1&list%5B5%5D=signup&listname%5B5%5D=Newsletter&email='+f$_email.replace('@','%40')+'&VerificationCodeX=&subscribe=Abonnement' // Paramètres habituellement passés dans le formulaire
+                  });
+                  // On supprime la case à cocher (pas possible de décocher ; l'annulation se fait depuis le mail reçu)
+                  f$('#fs_opt-in').remove();
+                  // Message d'alert pour confirmer l'inscription
+                  f$(c$.optin[0]).after(
+                    '<div class="alert alert-success fade in" id="fs_opt-in_confirm" aria-live="polite">'+
+                    '<button type="button" class="close" data-dismiss="alert" title="Fermer"><span aria-hidden="true">&times;</span><span class="sr-only">Fermer</span></button>'+
+                    'Votre adresse email <strong>'+f$_email+'</strong> a été ajoutée à notre liste. Vous devriez avoir reçu un email de confirmation.</div>'
+                  );
+                }
+              });
             }
 
             // Footer
             if(c$.footer && !n$.inframe) {
-                f$.ajax({
-                    url: f$_nav+'html/footer.html'
-                })
-                .fail(function() {
-                    console.error('✘ footer.html');
-                })
-                .done(function(html) {
-                    f$('body').append(html);
-                    if(f$('body').height() < f$(window).height()) {
-                        f$('#framafooter').css('position','absolute');
-                    } else {
-                        f$('#framafooter').css('position','relative');
-                    }
-                    f$('#framafooter a[href^="/nav/html/"]').attr('href', function() {
-                        return f$(this).attr('href')
-                                       .replace('/nav/html/', f$_nav+'html/')
-                                       .replace('credits.html', 'credits.html#'+c$.credits)
-                                       .replace('legals.html', 'legals.html#'+c$.host);
-                    });
-                });
-                f$(window).on('resize, scroll, click', function() {
-                    f$('#framafooter').css('position','relative');
-                    if(f$('body').height() < f$(window).height()) {
-                        f$('#framafooter').css('position','absolute');
-                    } else {
-                        f$('#framafooter').css('position','relative');
-                    }
-                });
+
+              html =
+' <footer id="framafooter" class="row hidden-print" role="contentinfo">'+
+'   <div class="container">'+
+'     <div class="clearfix col-sm-8">'+
+'       <nav class="col-xs-4">'+
+'         <h1>'+d$.meta.home.p+d$.meta.home.s+'</h1>'+
+'         <ul class="list-unstyled">'+
+'           <li><a href="'+d$.f.asso.l+'">'+d$.f.asso.name+'</a></li>'+
+'           <li><a href="'+d$.f.charte.l+'">'+d$.f.charte.name+'</a></li>'+
+'           <li><a href="'+d$.f.contact.l+'">'+d$.f.contact.name+'</a></li>'+
+'         </ul>'+
+'       </nav>'+
+'       <nav class="col-xs-4">'+
+'         <h1>'+d$.menus.community.name+'</h1>'+
+'         <ul class="list-unstyled">'+
+'           <li><a href="'+d$.f.participer.l+'">'+d$.f.participer.name+'</a></li>'+
+'           <li><a href="'+d$.f.benevalo.l+'">'+d$.f.benevalo.name+'</a></li>'+
+'           <li><a href="'+d$.f.partenaires.l+'">'+d$.f.partenaires.name+'</a></li>'+
+'         </ul>'+
+'       </nav>'+
+'       <nav class="col-xs-4">'+
+'         <h1>'+d$.menus.site.name+'</h1>'+
+'         <ul class="list-unstyled">'+
+'           <li><a href="'+d$.f.legals.l+'#'+c$.host+'">'+d$.f.legals.name+'</a></li>'+
+'           <li><a href="'+d$.f.cgu.l+'"><abbr>'+d$.f.cgu.name+'</abbr></a></li>'+
+'           <li><a href="'+d$.f.credits.l+'#'+c$.credits+'">'+d$.f.credits.name+'</a></li>'+
+'         </ul>'+
+'       </nav>'+
+'     </div>'+
+'     <div class="col-sm-4">'+
+'       <div class="col-xs-12">'+
+'         <h1>'+d$.menus.follow.name+'</h1>'+
+'         <ul class="list-inline">'+d$.menus.follow.footer+'</ul>'+
+'         <h2><span lang="en">'+d$.f.newsletter.name+'</span></h2>'+
+'         <form action="https://contact.framasoft.org/php_list/lists/?p=subscribe&amp;id=2" method="post" name="subscribeform">'+
+'           <div class="input-group input-group-sm">'+
+'             <input class="form-control" title="'+d$.t['type-your-email']+'" name="email" size="40" type="text" placeholder="'+d$.t['your-email']+'" />'+
+'               <span class="input-group-btn">'+
+'                 <button class="btn btn-default" name="subscribe" type="submit" value="Abonnement">'+d$.t.subscribe+'<span class="sr-only">'+d$.t['to-the-newsletter']+'</span></button>'+
+'               </span>'+
+'             </div>'+
+'             <input name="htmlemail" type="hidden" value="1" /> <input name="list[5]" type="hidden" value="signup" /> <input name="listname[5]" type="hidden" value="Newsletter" />'+
+'             <div style="display: none;"><input name="VerificationCodeX" size="20" type="text" value="" /></div>'+
+'         </form>'+
+'       </div>'+
+'     </div>'+
+'   </div>'+
+' </footer>';
+
+              f$('body').append(html);
+              if(f$('body').height() < f$(window).height()) {
+                f$('#framafooter').css('position','absolute');
+              } else {
+                f$('#framafooter').css('position','relative');
+              }
+
+              f$(window).on('resize, scroll, click', function() {
+                f$('#framafooter').css('position','relative');
+                if(f$('body').height() < f$(window).height()) {
+                  f$('#framafooter').css('position','absolute');
+                } else {
+                  f$('#framafooter').css('position','relative');
+                }
+              });
             }
 
             // Macaron

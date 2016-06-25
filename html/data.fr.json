@@ -45,17 +45,17 @@
       "d1": "Amis bénévoles, vous avez contribué récemment à l’activité de Framasoft ? C’est le moment de remplir votre bénévolat valorisé. Le « bénévalo » permet de rendre compte de l’activité des bénévoles et de confirmer que Framasoft reste bien une association majoritairement non lucrative. C’est important pour nous."
     },
     "modale-don": {
-      "t" : "Soutenez Framasoft",
-      "d" : [
-        "<p>Vous êtes sur le point %f$_modal_don_txtdl1% une ressource <b>libre</b> issue de la vingtaine de projets du réseau Framasoft.</p>",
+      "t": "Soutenez Framasoft",
+      "d": [
+        "<p>Vous êtes sur le point %c$.modal.don[1]% une ressource <b>libre</b> issue de la vingtaine de projets du réseau Framasoft.</p>",
         "<p>Cette ressource est <b>gratuite</b> (et le sera tant que nous existerons) parce que <b>Framasoft est une association d’intérêt général à but non lucratif</b> dont l’objectif est justement la diffusion du logiciel libre et sa culture au plus large public.",
         "<p>Mais tout ceci est rendu possible parce que Framasoft est <b>soutenue par les dons (défiscalisables) de ses utilisateurs</b>.</p>",
         "<p>Merci de prendre quelques minutes en nous aidant à pérenniser et développer notre action.</p>"
       ],
-      "b1" : "Je veux faire un don<br /> à l’association Framasoft",
-      "b2" : "Je veux participer.<br />Par où on commence ?",
-      "b3" : "Non merci, je souhaite seulement %f$_modal_don_txtdl2%",
-      "b4" : "Je soutiens déjà Framasoft"
+      "b1": "Je veux faire un don<br /> à l’association Framasoft",
+      "b2": "Je veux participer.<br />Par où on commence ?",
+      "b3": "Non merci, je souhaite seulement %c$.modal.don[2]%",
+      "b4": "Je soutiens déjà Framasoft"
     },
     "optin": {
       "t": "J’accepte que Framasoft m’envoie à cette adresse des informations importantes",
@@ -81,17 +81,18 @@
     "type-your-email": "Saisissez votre courriel",
     "your-email": "Votre courriel",
     "subscribe":"S'abonner",
-    "to-the-newsletter": " à la lettre d’informations"
+    "to-the-newsletter": " à la lettre d’informations",
+    "source": "Source"
   },
   "menus": {
-    "soft": "Logiciel libre",
-    "culture": "Culture libre",
-    "services": "Services libres",
-    "vrac": "Libr'en vrac",
-    "follow": "Nous suivre",
-    "about": "À propos",
-    "community": "Communauté",
-    "site": "Site"
+    "soft": { "name": "Logiciel libre" },
+    "culture": { "name": "Culture libre" },
+    "services": { "name": "Services libres" },
+    "vrac": { "name": "Libr'en vrac" },
+    "follow": { "name": "Nous suivre" },
+    "about": { "name": "À propos" },
+    "community": { "name": "Communauté" },
+    "site": { "name": "Site" }
   },
   "f": {
     "libre": {
@@ -249,7 +250,7 @@
       "t2": "Outil de rédaction collaborative",
       "d2": "Rédaction collaborative",
       "d3": "Du traitement de texte en ligne et à plusieurs !",
-      "d4" : [
+      "d4": [
         "<p>",
           "%f.pad.F% est un service de rédaction collaborative en ligne basé sur le logiciel %f.pad.soft%.",
         "</p>",
@@ -291,7 +292,7 @@
       "c": "v",
       "i": "fa-calendar",
       "l": "https://framadate.org",
-      "git":  "https://framagit.org/framasoft/framadate",
+      "git": "https://framagit.org/framasoft/framadate",
 
       "d0": "Alternative à Doodle",
       "t1": "Organiser des rendez-vous et des sondages",
@@ -541,7 +542,6 @@
       "c": "v",
       "i": "fa-git",
       "l": "https://framagit.org",
-      "git":  "https://framagit.org/framasoft/framalink",
       "soft": "Gitlab",
       "src": "https://about.gitlab.com/contributing/",
 
@@ -694,15 +694,6 @@
       "t1": "Flux RSS",
       "d1": "Flux RSS agrégé des différents sites."
     },
-    "contact": {
-      "s": "Nous contacter",
-      "c": "f",
-      "i": "fa-envelope",
-      "l": "https://contact.framasoft.org",
-
-      "t1": "Contacter Framasoft",
-      "d1": "Vous souhaitez prendre contact avec nous ?"
-    },
     "wikipedia": {
       "s": "Wikipédia",
       "c": "f",
@@ -718,17 +709,17 @@
       "i": "fa-home",
       "l": "https://soutenir.framasoft.org/association"
     },
-    "charte": {
-      "s": "Notre charte",
-      "c": "o",
-      "i": "fa-heart",
-      "l": "https://framasoft.org/nav/html/charte.html"
-    },
     "participer": {
       "s": "Participer",
       "c": "o",
       "i": "fa-paw",
       "l": "https://participer.framasoft.org"
+    },
+    "charte": {
+      "s": "Notre charte",
+      "c": "o",
+      "i": "fa-heart",
+      "l": "https://framasoft.org/nav/html/charte.html"
     },
     "benevalo": {
       "s": "Bénévolat valorisé",
@@ -736,11 +727,45 @@
       "i": "fa-trophy",
       "l": "https://soutenir.framasoft.org/benevolat"
     },
+    "contact": {
+      "s": "Nous contacter",
+      "c": "o",
+      "i": "fa-envelope",
+      "l": "https://contact.framasoft.org",
+
+      "t1": "Contacter Framasoft",
+      "d1": "Vous souhaitez prendre contact avec nous ?"
+    },
     "partenaires": {
       "s": "Partenaires",
       "c": "o",
       "i": "fa-group",
       "l": "https://soutenir.framasoft.org/partenaires"
+    },
+    "stats": {
+      "s": "Statistiques",
+      "c": "o",
+      "i": "fa-line-chart",
+      "l": "http://framastats.org"
+    },
+    "status": {
+      "s": "État des services",
+      "c": "o",
+      "i": "fa-heartbeat",
+      "l": "https://status.framasoft.org"
+    },
+    "aide": {
+      "s": "Aide",
+      "c": "o",
+      "i": "fa-life-ring",
+      "l": "https://contact.framasoft.org/#aide"
+    },
+    "faq": {
+      "s": "FAQ",
+      "a": "abbr",
+      "c": "o",
+      "i": "fa-question-circle",
+      "l": "https://contact.framasoft.org/foire-aux-questions/"
     },
     "legals": {
       "s": "Mentions légales",
@@ -760,18 +785,6 @@
       "c": "o",
       "i": "fa-creative-commons",
       "l": "https://framasoft.org/nav/html/credits.html"
-    },
-    "stats": {
-      "s": "Statistiques",
-      "c": "o",
-      "i": "fa-chart",
-      "l": "http://framastats.org"
-    },
-    "status": {
-      "s": "État des services",
-      "c": "o",
-      "i": "fa-heartbeat",
-      "l": "https://status.framasoft.org"
     }
   }
 }
