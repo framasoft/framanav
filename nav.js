@@ -85,6 +85,8 @@ var f$_start_config = function() {
       c$.js.j$ = 'jQuery'; /** Deprecated → i$jQuery() **/
       f$_bootstrap_css = false;
       c$.js.b$ = true;
+      c$.css.b$ = false;
+      c$.css.ext = false;
       c$.footer = true;
       c$.icons.apple = 'soft.png';
     }
@@ -103,14 +105,14 @@ var f$_start_config = function() {
       case 'jQuery' :
         console.log('✔ jQuery '+n$.f$+' '+i$jQuery());
         if (i$jQuery() == 'AJAX') {
-          f$LoadJS(f$_nav+'lib/jquery/jquery.min.js', f$_start_jquery);
+          f$LoadJS(n$.nav.url+'lib/jquery/jquery.min.js', f$_start_jquery);
         } else {
           f$_start_jquery();
         }
       break;
       case 'noConflict' :
         console.log('✔ jQuery.noConflict '+n$.f$+' AJAX');
-        f$LoadJS(f$_nav+'lib/jquery/jquery.min.js', f$_start_jquery);
+        f$LoadJS(n$.nav.url+'lib/jquery/jquery.min.js', f$_start_jquery);
       break;
       default:
         if (window.jQuery === undefined) {
@@ -132,15 +134,12 @@ var f$_start_config = function() {
  *******************/
 var f$_scripts = document.getElementsByTagName('script');
 
-/** Deprecated **/
-var f$_nav = n$.nav.url;
-
 var f$_nav_init = function() {
   for (var i = 0; i < f$_scripts.length; i++) {
     if (f$_scripts[i].getAttribute("src") && f$_scripts[i].getAttribute("src").indexOf("/nav.js") > -1) {
       // Emplacement de la nav ('/nav/', '/static/nav/, '../nav/' → 'http://'+n$.site+'/nav')
-      f$_nav = f$_scripts[i].getAttribute("src").replace('nav.js','');
-      f$_nav = f$Link(f$_nav);
+      n$.nav.url = f$_scripts[i].getAttribute("src").replace('nav.js','');
+      n$.nav.url = f$Link(n$.nav.url);
       // On ajout une div vide de 42px qui contiendra la nav (évite les sauts de mise en page avant le chargement des fichiers)
       if (f$_scripts[i].parentNode.tagName.toLowerCase() == 'body' ) {
         // si nav.js est appelé en haut du body, c'est super rapide
@@ -150,7 +149,7 @@ var f$_nav_init = function() {
     }
   }
 
-  f$LoadJS(f$_nav+'config.js?'+n$.version, f$_start_config);
+  f$LoadJS(n$.nav.url+'config.js?'+n$.version, f$_start_config);
 }; // ---> config.js
 
 f$_nav_init();
@@ -162,26 +161,7 @@ function f$_start_jquery() {
     /*
      * CSS
      */
-    // Bootstrap
-    if (f$_bootstrap_css) {
-        f$LoadCSS(f$_nav+'lib/bootstrap/css/bootstrap.min.css', f$_css_position, 'all');
-    }
-
-    // Font-awesome
-    f$LoadCSS(f$_nav+'lib/font-awesome/css/font-awesome.min.css','end','all');
-
-    // Nav.css
-    f$LoadCSS(f$_nav+'css/nav.css?'+n$.version);
-
-    // Frama.css
-    if(f$_frama_css) {
-        f$LoadCSS(f$_nav+'css/frama.css?'+n$.version, 'end', 'all');
-    }
-
-    // Ext.css
-    if(f$_ext_css) {
-        f$LoadCSS(f$_nav+'ext/'+n$.site+'.css?'+n$.version);
-    }
+    f$LoadCSS(c$.css);
 
     /*
      * Nav
@@ -202,7 +182,7 @@ function f$_start_jquery() {
         if (typeof c$.js.ext === "function") {
             c$.js.ext();
         } else if(c$.js.ext) {
-            f$.getScript(f$_nav+'ext/'+n$.site+'.js');
+            f$.getScript(n$.nav.url+'ext/'+n$.site+'.js');
         }
 
         f$.ajaxSetup({ cache: true });
@@ -212,7 +192,7 @@ function f$_start_jquery() {
         }
 
         // On charge ensuite les données
-        f$.getJSON( f$_nav+'html/data.fr.json' )
+        f$.getJSON( n$.nav.url+'html/data.fr.json' )
         .fail(function() {
             console.error('✘ data.fr.json');
         })
@@ -286,7 +266,7 @@ function f$_start_jquery() {
 '   <div class="nav-container">'+
 '     <div class="navbar-header">'+
 '       <a class="navbar-brand" href="'+d$.meta.home.l+'">'+
-'         <img src="'+f$_nav+'img/logo.png"/>'+
+'         <img src="'+n$.nav.url+'img/logo.png"/>'+
 '         <span class="hidden-sm"><b class="violet">'+d$.meta.home.p+'</b><b class="orange">'+d$.meta.home.s+'</b></span>'+
 '       </a>'+
 '       <a href="#nav-end" id="nav-skip">'+d$.t.skip+'</a>'+
@@ -427,7 +407,7 @@ function f$_start_jquery() {
                 console.log('✔ Bootstrap HTML');
                 go_BootStrap();
               } else {
-                f$.getScript(f$_nav+'lib/bootstrap/js/bootstrap.min.js', function() {
+                f$.getScript(n$.nav.url+'lib/bootstrap/js/bootstrap.min.js', function() {
                   console.log('✔ Bootstrap AJAX');
                   go_BootStrap();
                 });
@@ -451,7 +431,7 @@ function f$_start_jquery() {
 
             // Video JS
             if (c$.js.video) {
-              f$('link[href*="/nav/css/nav.css"]').before('<link rel="stylesheet" type="text/css" href="'+f$_nav+'lib/video-js/video-js.css" />');
+              f$('link[href*="/nav/css/nav.css"]').before('<link href="'+n$.nav.url+'lib/video-js/video-js.css" media="all" rel="stylesheet"/>');
               // Paramètres à ajouter à la vidéo pour appliquer VideoJS en surcouche
               f$('video').attr({
                 'class':'video-js vjs-default-skin',
@@ -464,9 +444,9 @@ function f$_start_jquery() {
                 f$(this).attr('id','f_video_'+index);
               });
 
-              f$.getScript(f$_nav+'lib/video-js/video.js', function() {
+              f$.getScript(n$.nav.url+'lib/video-js/video.js', function() {
                 console.log('✔ video.js');
-                videojs.options.flash.swf = f$_nav+'lib/video-js/video-js.swf';
+                videojs.options.flash.swf = n$.nav.url+'lib/video-js/video-js.swf';
                 // On "clique" sur les sous-titres Français
                 // pour chaque vidéo dès que VideoJS est prêt
                 f$('video').each(function(index) {
@@ -499,8 +479,8 @@ function f$_start_jquery() {
               f$('link[rel*=icon]').remove();
               c$.icons.fav = (!c$.icons.fav) ? 'favicon-violet.png' : c$.icons.fav;
               c$.icons.apple = (!c$.icons.apple) ? 'apple-violet.png' : c$.icons.apple;
-              f$('head').append('<link rel="icon" type="image/png" href="'+f$_nav+'img/icons/'+c$.icons.fav+'" />');
-              f$('head').append('<link rel="apple-touch-icon" href="'+f$_nav+'img/icons/'+c$.icons.apple+'" />');
+              f$('head').append('<link rel="icon" type="image/png" href="'+n$.nav.url+'img/icons/'+c$.icons.fav+'" />');
+              f$('head').append('<link rel="apple-touch-icon" href="'+n$.nav.url+'img/icons/'+c$.icons.apple+'" />');
             }
 
             // Opt-in
@@ -638,20 +618,20 @@ function f$_start_jquery() {
             // Liens À propos
             f$('nav a[href^="/nav/html/"]').attr('href', function() {
                 return f$(this).attr('href')
-                               .replace('/nav/html/', f$_nav+'html/')
+                               .replace('/nav/html/', n$.nav.url+'html/')
                                .replace('credits.html', 'credits.html#'+c$.credits)
                                .replace('legals.html', 'legals.html#'+c$.host);
             });
 
             // Crédits
             if(i$('/html/credits.html') && location.hash) {
-                f$('#site-credits').load(f$_nav+'html/credits/'+location.hash.replace('#','')+'.html');
+                f$('#site-credits').load(n$.nav.url+'html/credits/'+location.hash.replace('#','')+'.html');
             };
 
             // Hébergeur et Iframe Piwik sur Mentions légales
             if(i$('/html/legals.html')) {
                 if(location.hash) {
-                    f$('#modal-legals-host').load(f$_nav+'html/host/'+location.hash.replace('#','')+'.html');
+                    f$('#modal-legals-host').load(n$.nav.url+'html/host/'+location.hash.replace('#','')+'.html');
                 }
                 f$('#piwik-iframe').html('<iframe style="border: 0; height: 200px; width: 600px;" src="'+c$.piwik.url+'/index.php?module=CoreAdminHome&action=optOut&language=fr"></iframe>')
             }
@@ -912,18 +892,56 @@ function f$LoadJS(url, callback) {
 }
 
 // Ajout de CSS
-function f$LoadCSS(url, position, media) {
-  if (position==undefined) position='end';
-  if (media==undefined) media='screen';
-  var f$_link = document.createElement('link');
-      f$_link.rel = "stylesheet";
-      f$_link.media=media;
-      f$_link.href= url;
+function f$LoadCSS(css) {
+  function AddLink(stylesheet, position) {
+    var link = document.createElement('link');
+        link.rel = "stylesheet";
 
-  if (position == 'start') {
-    document.getElementsByTagName('head')[0].insertBefore(f$_link, document.getElementsByTagName('head')[0].firstChild);
-  } else {
-    document.getElementsByTagName('head')[0].appendChild(f$_link);
+    switch( stylesheet ) {
+      case '0': // Bootstrap
+        link.media = (css.b$) ? 'all' : 'none';
+        link.href  = n$.nav.url+'lib/bootstrap/css/bootstrap.min.css';
+      break;
+      case '2': // Font-Awesome
+        link.media = 'all';
+        link.href   = n$.nav.url+'lib/font-awesome/css/font-awesome.min.css';
+      break;
+      case '3': // Nav
+        link.media = 'screen';
+        link.href   = n$.nav.url+'css/nav.css?'+n$.version;
+      break;
+      case '4': // Frama
+        link.media = (css.frama) ? 'all' : 'none';
+        link.href   = n$.nav.url+'css/frama.css?'+n$.version;
+      break;
+      case '5': // Ext
+        link.media = (css.ext) ? 'all' : 'none';
+        link.href   = n$.nav.url+'ext/'+n$.site+'.css?'+n$.version;
+      break;
+    }
+    if(link.media != 'none' && stylesheet != '1') {
+      // Ajout au début du <head>
+      if ( position != undefined ) {
+        document.getElementsByTagName('head')[0].insertBefore(
+          link,
+          document.getElementsByTagName('head')[0].firstChild
+        );
+      // Ajout à la fin <head>
+      } else {
+        document.getElementsByTagName('head')[0].appendChild(link);
+      }
+    }
+  }
+
+  /** Parcours décroissant à partir de la position du '1' (= css du site)
+   *  exemple 02-1-345 → on commence par le 2 puis le 0 **/
+  for(var i = css.order.indexOf('1'); i >= 0; i--) {
+    AddLink(css.order[i], 'first');
+  }
+  /** Parcours croissant pour le reste
+   * exemple 02-1-345 → dans l'ordre 3, 4 et 5 **/
+  for(var i = css.order.indexOf('1'); i < css.order.length; i++) {
+    AddLink(css.order[i]);
   }
 }
 
@@ -1012,7 +1030,7 @@ function f$Link(href) {
   return (link.protocol+"//"+link.host+link.pathname+link.search+link.hash);
 }
 
-// Mise à jour de la config
+// Import de la config l$ dans c$
 function f$MergeConfig(global, local) {
 
   function MergeRecursive(obj1, obj2) {
@@ -1053,12 +1071,13 @@ var c$ = {
     video: false
   },
   css: {
-    order: '01234',                 /** cas possibles : 01234, 10234, 01423 **/
+    order: '012345',                /** cas possibles : 012345, 102345, 015234 **/
     b$: true,                       // 0 : bootstrap
                                     // 1 : css du site
-                                    // 2 : font-awesome + nav.css
-    frama: true,                    // 3 : frama.css
-    ext:false                       // 4 : nav/ext/n$.site.css si true
+                                    // 2 : font-awesome
+                                    // 3 : nav.css
+    frama: true,                    // 4 : frama.css
+    ext:false                       // 5 : nav/ext/n$.site.css si true
   },
   mobile: true, // activer le viewport
   fixed: false, // position de la nav
@@ -1095,29 +1114,23 @@ var c$ = {
   }
 };
 
-var f$_bootstrap_css = true;
-var f$_css_position = 'start';                      // 'start' = head > bootstrap.css > ... /head body > nav.js ;
-                                                    // 'end'   = head > ... > bootstrap.css /head body > nav.js ;
-var f$_frama_css = true;
-var f$_ext_css = false;                             // nav/ext/nom-de-domaine.css
-
 /* Bandeau Degooglisons
     f$_banniere = Math.floor(Math.random() * 3);
     switch (f$_banniere) {
     case 0:
         f$_alert_type       = 'info';
-        f$_alert_img_left   = '<div class="col-sm-3 hidden-xs" style="padding:0;padding-right:10px; max-width: 150px;" aria-hidden="true"><a href="https://degooglisons-internet.org"><img src="'+f$_nav+'img/stallman.png" alt="" class="img-responsive center-block" /></a></div>';
+        f$_alert_img_left   = '<div class="col-sm-3 hidden-xs" style="padding:0;padding-right:10px; max-width: 150px;" aria-hidden="true"><a href="https://degooglisons-internet.org"><img src="'+n$.nav.url+'img/stallman.png" alt="" class="img-responsive center-block" /></a></div>';
         f$_alert_img_right  = '';
         break;
     case 1:
         f$_alert_type       = 'warning';
-        f$_alert_img_left   = '<div class="col-sm-3 hidden-xs" style="padding:0;padding-right:10px; max-width: 150px;" aria-hidden="true"><a href="https://degooglisons-internet.org"><img src="'+f$_nav+'img/aaron.png" alt="" class="img-responsive center-block" /></a></div>';
+        f$_alert_img_left   = '<div class="col-sm-3 hidden-xs" style="padding:0;padding-right:10px; max-width: 150px;" aria-hidden="true"><a href="https://degooglisons-internet.org"><img src="'+n$.nav.url+'img/aaron.png" alt="" class="img-responsive center-block" /></a></div>';
         f$_alert_img_right  = '';
         break;
     case 2:
         f$_alert_type       = 'success';
         f$_alert_img_left   = '';
-        f$_alert_img_right  = '<div class="col-sm-3 hidden-xs" style="padding:0;padding-left:10px; max-width: 150px;" aria-hidden="true"><a href="https://degooglisons-internet.org"><img src="'+f$_nav+'img/geekette.png" alt="" class="img-responsive center-block" /></a></div>';
+        f$_alert_img_right  = '<div class="col-sm-3 hidden-xs" style="padding:0;padding-left:10px; max-width: 150px;" aria-hidden="true"><a href="https://degooglisons-internet.org"><img src="'+n$.nav.url+'img/geekette.png" alt="" class="img-responsive center-block" /></a></div>';
         break;
     }
 

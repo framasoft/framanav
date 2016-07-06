@@ -1,6 +1,9 @@
 /***********************************************************************
  *                          Config des sites                           *
  ***********************************************************************/
+
+var l$ = {};
+
 // Alias
 // On remplace juste la variable n$.site.
 // Cette variable n'est utilisée que pour charger les fichiers ext_css,
@@ -28,13 +31,12 @@ if ((n$.host.indexOf('.framapad') > -1 && !(n$.host.indexOf('mypads.') > -1))
   n$.site = 'etherpad';
 }
 
-var l$ = {};
-
 switch (n$.site) {
   case 'agent':
     n$.name = 'Framapic';
     l$ = {
-      js: { video: true },
+      js: { video: true, ext: true },
+      css: { order: '012345', ext: true },
       footer: false,
       modal: { don: ['a[href*=".framapad.org/p/"]', 'd’utiliser','créer un pad'] }
     }
@@ -68,7 +70,7 @@ switch (n$.site) {
 
   case 'forum':
     l$ = {
-      css: { order: '10234' },
+      css: { order: '102345' },
       optin: ['#email_confirm', '#email'],
       footer: false
     }
@@ -128,7 +130,7 @@ switch (n$.site) {
             jQuery('h1 .logo').removeClass('logo');
           }
         },
-        css: { b$: false }, // board.css chargé en dur en amont de nav.css et frama.css ; tester en remplaçant par "order: 01423"
+        css: { b$: false }, // board.css chargé en dur en amont de nav.css et frama.css ; tester en remplaçant par "order: 015234"
         footer: false,
         mute: true
       }
@@ -383,7 +385,7 @@ switch (n$.site) {
     l$ = {
       js: { j$: 'noConflict' },
       css: {
-        order: '10234',
+        order: '102345',
         ext: true
       },
       footer: false
@@ -427,7 +429,7 @@ switch (n$.site) {
         j$: 'html', b$: 'html',
         ext: function() { jQuery('link[href*=bootstrap-complete]').remove(); }
       },
-      css: {order: '10234' }
+      css: {order: '102345' }
     }
   break;
 
@@ -563,7 +565,7 @@ switch (n$.site) {
   case 'pootle':
     l$ = {
       css: {
-        order: '10234',
+        order: '102345',
         frama: false, // en attente
         ext: true
       },
