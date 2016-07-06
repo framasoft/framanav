@@ -41,8 +41,7 @@ var n$ = {
                    .replace(/framand/i,'and')
                    .replace(/framin/i,'min')
                    .replace(/frama/i,'');
-
-n$.name = 'Framapic';
+  n$.site = (/Framatech/i.test(window.navigator.userAgent)) ? 'agent' : n$.site;     // Config locale
 
   if (n$.inframe) { n$.nav.html = '<div id="framanav_container" style="display:none"></div>' };
 
@@ -76,52 +75,56 @@ var d$ = {};
  *  Config globale
  *******************/
 var f$_start_config = function() {
-    n$.nav.speed = (n$.nav.set) ? '☀' : '☁';
-    if (l$) {
-        console.log('✔ '+n$.nav.speed+' config.js '+n$.version+' | '+n$.f$+' | '+n$.j$);
+  f$MergeConfig(c$, l$);
 
-        if(i$('/nav/html/')) { // Si pages « À propos » on réinit la config
-            c$.js[0] = 'jQuery';
-            f$_bootstrap_css = false;
-            c$.js.b$ = true;
-            c$.footer = true;
-            c$.icons.apple = 'soft.png';
-        }
+  n$.nav.speed = (n$.nav.set) ? '☀' : '☁';
+  if (l$) {
+      console.log('✔ '+n$.nav.speed+' config.js '+n$.version+' | '+n$.f$+' | '+n$.j$+' → '+i$jQuery()+' ?');
 
-        if(c$.mute) {
-          c$.alert[1] = '';      // Pas de bandeau
-          c$.modal.info[1] = ''; // Pas de modale
-          c$.modal.don[0] = '';
-          c$.donate = false;     // Pas de macaron
-        }
-
-        switch (c$.js[0]) {
-            case 'jQuery' :
-                if (window.jQuery === undefined || window.jQuery.fn.jquery !== n$.f$) {
-                    console.log('✔ jQuery '+n$.f$+' AJAX');
-                    f$LoadJS(f$_nav+'lib/jquery/jquery.min.js', f$_start_jquery);
-                } else {
-                    console.log('✔ jQuery '+n$.j$+' HTML');
-                    f$_start_jquery();
-                }
-            break;
-            case 'noConflict' :
-                console.log('✔ jQuery.noConflict '+n$.f$+' AJAX');
-                f$LoadJS(f$_nav+'lib/jquery/jquery.min.js', f$_start_jquery);
-            break;
-            default:
-                if (window.jQuery === undefined) {
-                    console.error('✘ jQuery');
-                } else {
-                    console.log('✔ jQuery '+window.jQuery.fn.jquery+' HTML');
-                    f$_start_jquery();
-                }
-            break;
-        }
-
-    } else {
-        console.error('✘ '+n$.nav.speed+' config.js '+n$.version);
+    if(i$('/nav/html/')) { // Si pages « À propos » on réinit la config
+      c$.js.j$ = 'jQuery'; /** Deprecated → i$jQuery() **/
+      f$_bootstrap_css = false;
+      c$.js.b$ = true;
+      c$.footer = true;
+      c$.icons.apple = 'soft.png';
     }
+
+    if(c$.mute) {
+      c$.alert[1] = '';      // Pas de bandeau
+      c$.modal.info[1] = ''; // Pas de modale
+      c$.modal.don[0] = '';
+      c$.donate = false;     // Pas de macaron
+    }
+
+    /** Deprecated → i$jQuery()
+     *  à passer sur i$jQuery() après vérif
+     *  et supprimer le paramètre de config si tout est ok **/
+    switch (c$.js.j$) {
+      case 'jQuery' :
+        console.log('✔ jQuery '+n$.f$+' '+i$jQuery());
+        if (i$jQuery() == 'AJAX') {
+          f$LoadJS(f$_nav+'lib/jquery/jquery.min.js', f$_start_jquery);
+        } else {
+          f$_start_jquery();
+        }
+      break;
+      case 'noConflict' :
+        console.log('✔ jQuery.noConflict '+n$.f$+' AJAX');
+        f$LoadJS(f$_nav+'lib/jquery/jquery.min.js', f$_start_jquery);
+      break;
+      default:
+        if (window.jQuery === undefined) {
+          console.error('✘ jQuery');
+        } else {
+          console.log('✔ jQuery '+window.jQuery.fn.jquery+' HTML');
+          f$_start_jquery();
+        }
+      break;
+    }
+
+  } else {
+    console.error('✘ '+n$.nav.speed+' config.js '+n$.version);
+  }
 }; // ---> jQuery
 
 /*******************
@@ -133,21 +136,21 @@ var f$_scripts = document.getElementsByTagName('script');
 var f$_nav = n$.nav.url;
 
 var f$_nav_init = function() {
-    for (var i = 0; i < f$_scripts.length; i++) {
-        if (f$_scripts[i].getAttribute("src") && f$_scripts[i].getAttribute("src").indexOf("/nav.js") > -1) {
-            // Emplacement de la nav ('/nav/', '/static/nav/, '../nav/' → 'http://'+n$.site+'/nav')
-            f$_nav = f$_scripts[i].getAttribute("src").replace('nav.js','');
-            f$_nav = f$Link(f$_nav);
-            // On ajout une div vide de 42px qui contiendra la nav (évite les sauts de mise en page avant le chargement des fichiers)
-            if (f$_scripts[i].parentNode.tagName.toLowerCase() == 'body' ) {
-                // si nav.js est appelé en haut du body, c'est super rapide
-                document.write(n$.nav.html);
-                n$.set = true;
-            } // sinon c'est dans le head, il faut attendre document.ready (voir plus bas)
-        }
+  for (var i = 0; i < f$_scripts.length; i++) {
+    if (f$_scripts[i].getAttribute("src") && f$_scripts[i].getAttribute("src").indexOf("/nav.js") > -1) {
+      // Emplacement de la nav ('/nav/', '/static/nav/, '../nav/' → 'http://'+n$.site+'/nav')
+      f$_nav = f$_scripts[i].getAttribute("src").replace('nav.js','');
+      f$_nav = f$Link(f$_nav);
+      // On ajout une div vide de 42px qui contiendra la nav (évite les sauts de mise en page avant le chargement des fichiers)
+      if (f$_scripts[i].parentNode.tagName.toLowerCase() == 'body' ) {
+        // si nav.js est appelé en haut du body, c'est super rapide
+        document.write(n$.nav.html);
+        n$.set = true;
+      } // sinon c'est dans le head, il faut attendre document.ready (voir plus bas)
     }
+  }
 
-    f$LoadJS(f$_nav+'config.js?'+n$.version, f$_start_config);
+  f$LoadJS(f$_nav+'config.js?'+n$.version, f$_start_config);
 }; // ---> config.js
 
 f$_nav_init();
@@ -183,9 +186,10 @@ function f$_start_jquery() {
     /*
      * Nav
      */
-    switch (c$.js[0]) {
-        case 'noConflict': var f$ = jQuery.noConflict(); break;
-        default          : var f$ = jQuery;break;
+    /** Deprecated → i$jQuery() **/
+    switch (c$.js.j$) {
+      case 'noConflict': var f$ = jQuery.noConflict(); break;
+      default          : var f$ = jQuery; break;
     }
 
     f$(document).ready(function() {
@@ -656,7 +660,7 @@ function f$_start_jquery() {
 
             function go_BootStrap() {
                 // Redéfini f$ pour Bootstrap en mode noConflict si nécessaire
-                switch (c$.js[0]) {
+                switch (c$.js.j$) { /** Deprecated → i$jQuery() **/
                     case 'noConflict': var f$ = jQuery.noConflict(); break;
                     default          : var f$ = jQuery; break;
                 }
@@ -982,7 +986,26 @@ function i$Lang(lg) {
   return (lang.substr(0,2).toLowerCase() == lg)
 }
 
-// Conversion en url absolue
+// Version de jQuery à utiliser
+/** si undefined              → AJAX
+    si 1.9.0 < jquery < 3.0.0 → HTML
+    sinon                     → noConflict **/
+function i$jQuery() {
+  if (window.jQuery === undefined) {
+    return 'AJAX';
+  } else {
+    var version = window.jQuery.fn.jquery.split(' ')[0].split('.');
+    if ( (version[0] < 2 && version[1] < 9)                        // < 1.9
+         || (version[0] == 1 && version[1] == 9 && version[2] < 1) // 1.9.0
+         || (version[0] > 2) ) {                                   // 3.x
+      return 'noConflict';
+    } else {
+      return 'HTML';
+    }
+  }
+}
+
+// Conversion en url absolue (c'est le navigateur qui fait lui-même le boulot)
 function f$Link(href) {
   var link = document.createElement("a");
   link.href = href;
@@ -990,12 +1013,17 @@ function f$Link(href) {
 }
 
 // Mise à jour de la config
-function f$c$(site, l$) {
-  function merge(obj1, obj2) {
+function f$MergeConfig(global, local) {
+
+  function MergeRecursive(obj1, obj2) {
     for (var p in obj2) {
       try {
-        if ( obj2[p].constructor==Object ) {
-          obj1[p] = merge(obj1[p], obj2[p]);
+        if ( obj2[p].constructor == Object ) {
+          obj1[p] = MergeRecursive(obj1[p], obj2[p]);
+        } else if (obj2[p].constructor == Array) {
+          for (var i = 0; i < obj2[p].length; i++) {
+            obj1[p][i] = obj2[p][i];
+          }
         } else {
           obj1[p] = obj2[p];
         }
@@ -1006,18 +1034,7 @@ function f$c$(site, l$) {
     return obj1;
   }
 
-  if(n$.site == site) {
-    for (var key in l$) {
-       if (l$.hasOwnProperty(key)) {
-          var obj = l$[key];
-          for (var prop in obj) {
-             if (obj.hasOwnProperty(prop)) {
-                //alert(prop + " = " + obj[prop]);
-             }
-          }
-       }
-    }
-  }
+  MergeRecursive(global, local);
 }
 
 /***********************************************************************
@@ -1036,7 +1053,7 @@ var c$ = {
     video: false
   },
   css: {
-    order: 01234,                   /** cas possibles : 01234, 10234, 01423 **/
+    order: '01234',                 /** cas possibles : 01234, 10234, 01423 **/
     b$: true,                       // 0 : bootstrap
                                     // 1 : css du site
                                     // 2 : font-awesome + nav.css
@@ -1135,6 +1152,3 @@ if(f$_mm == 12 && (31-f$_dd) < 15 && n$.site != 'soutenir.framasoft') {
         'Rappel : il vous reste <b>'+f$_rebours+'</b> pour faire un <b>don défiscalisé en '+f$_yyyy+'</b> à Framasoft.'+
         '<br/>Merci pour votre soutien <a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir"><i class="fa fa-heart"></i><span class="sr-only">Faire un don ?</a>';
 }
-
-
-//f$c$('localhost', c$);

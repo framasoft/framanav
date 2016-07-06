@@ -6,11 +6,10 @@
 // Cette variable n'est utilisée que pour charger les fichiers ext_css,
 // credits et placer un tracker sur un lien de la modale Soutenir
 switch (n$.site) {
-    case 'localhost' : n$.site = 'localhost'; break;
-    case 'noenaute' : n$.site = 'pouhiou'; break;
-    case 'huit.re' : n$.site = 'frama.link'; break;
-    case 'tontonroger' : n$.site = 'framabee'; break;
-    case 'trouvons' : n$.site = 'framabee'; break;
+  case 'noenaute' : n$.site = 'pouhiou'; break;
+  case 'huit.re' : n$.site = 'frama.link'; break;
+  case 'tontonroger' : n$.site = 'framabee'; break;
+  case 'trouvons' : n$.site = 'framabee'; break;
 }
 
 //i$(/framaboard)/i, 'h')
@@ -29,14 +28,17 @@ if ((n$.host.indexOf('.framapad') > -1 && !(n$.host.indexOf('mypads.') > -1))
   n$.site = 'etherpad';
 }
 
-var l$ = {
-  piwik: {
-    id: '',
-    url: 'https://stats.framasoft.org/'
-  }
-};
+var l$ = {};
 
 switch (n$.site) {
+  case 'agent':
+    n$.name = 'Framapic';
+    l$ = {
+      js: { video: true },
+      footer: false,
+      modal: { don: ['a[href*=".framapad.org/p/"]', 'd’utiliser','créer un pad'] }
+    }
+  break;
   case 'bot' :
     l$ = { mute: true, footer: false };
   break;
@@ -66,7 +68,7 @@ switch (n$.site) {
 
   case 'forum':
     l$ = {
-      css: { order: 10234 },
+      css: { order: '10234' },
       optin: ['#email_confirm', '#email'],
       footer: false
     }
@@ -381,7 +383,7 @@ switch (n$.site) {
     l$ = {
       js: { j$: 'noConflict' },
       css: {
-        order: 10234,
+        order: '10234',
         ext: true
       },
       footer: false
@@ -425,7 +427,7 @@ switch (n$.site) {
         j$: 'html', b$: 'html',
         ext: function() { jQuery('link[href*=bootstrap-complete]').remove(); }
       },
-      css: {order: 10234 }
+      css: {order: '10234' }
     }
   break;
 
@@ -561,7 +563,7 @@ switch (n$.site) {
   case 'pootle':
     l$ = {
       css: {
-        order: 10234,
+        order: '10234',
         frama: false, // en attente
         ext: true
       },
@@ -591,105 +593,110 @@ switch (n$.site) {
 /***********************************************************************
  *                               Piwik                                 *
  **********************************************************************/
+l$.piwik = {
+  id: '',
+  url: 'https://stats.framasoft.org/'
+};
+
 switch (n$.site) {
-    case 'soft' :                  l$.piwik.id = '1';  break;
-    case 'forum' :                 l$.piwik.id = '2';  break;
-    case 'blog' :                  l$.piwik.id = '3';  break;
-    case 'pad' :                   l$.piwik.id = '4';  break;
-    case 'etherpad' :              l$.piwik.id = '4';  break;
-    case 'key' :                   l$.piwik.id = '5';  break;
-    case 'dvd' :                   l$.piwik.id = '6';  break;
-    case 'book' :                  l$.piwik.id = '7';  break;
-    case 'tube' :                  l$.piwik.id = '8';  break;
-    case 'zic' :                   l$.piwik.id = '9';  break;
-    case 'date' :                  l$.piwik.id = '10'; break;
-    case 'calc' :                  l$.piwik.id = '11'; break;
-    case 'mindmap' :               l$.piwik.id = '12'; break;
-    case 'vectoriel' :             l$.piwik.id = '13'; break;
-    case 'phonie' :                l$.piwik.id = '14'; break;
-    case 'wiki' :                  l$.piwik.id = '15'; break;
-    case 'lab' :                   l$.piwik.id = '16'; break;
-    case 'code' :                  l$.piwik.id = '17'; break;
-    case 'soutenir' :              l$.piwik.id = '18'; break;
-    case 'contact' :               l$.piwik.id = '19'; break;
-    case 'news' :                  l$.piwik.id = '20'; break;
-    case 'bag' :                   l$.piwik.id = '21'; break;
-    case 'android' :               l$.piwik.id = '22'; break;
-    case 'start' :                 l$.piwik.id = '23'; break;
-    case 'pack' :                  l$.piwik.id = '24'; break;
-    case '10ans' :                 l$.piwik.id = '25'; break;
-    case 'sphere' :                l$.piwik.id = '26'; break;
-    case 'bee' :                   l$.piwik.id = '27'; break;
-    case 'games' :                 l$.piwik.id = '28'; break;
-    case 'git' :                   l$.piwik.id = '29'; break;
-    case 'degooglisons-internet' : l$.piwik.id = '30'; break;
-    case 'pic' :                   l$.piwik.id = '31'; break;
-    case 'link' :                  l$.piwik.id = '32'; break;
-    case 'participer' :            l$.piwik.id = '33'; break;
-    case 'colibri' :               l$.piwik.id = '33'; break;
-    case 'bin' :                   l$.piwik.id = '34'; break;
-    case 'cloud' :                 l$.piwik.id = '35'; break;
-    case 'status' :                l$.piwik.id = '37'; break;
-    case 'bookin' :                l$.piwik.id = '38'; break;
-    case 'stats' :                 l$.piwik.id = '39'; break;
-    case 'drive' :                 l$.piwik.id = '40'; l$.piwik.url = 'https://framadrive.org/'; break;
-    case 'board' :                 l$.piwik.id = '41'; break;
-    case 'drop' :                  l$.piwik.id = '42'; break;
-    case 'carte' :                 l$.piwik.id = '43'; break;
-    case 'forms' :                 l$.piwik.id = '44'; break;
-    case 'petition' :              l$.piwik.id = '45'; break;
-    case 'vox' :                   l$.piwik.id = '47'; break;
-    case 'team' :                  l$.piwik.id = '48'; break;
+  case 'soft' :                  l$.piwik.id = '1';  break;
+  case 'forum' :                 l$.piwik.id = '2';  break;
+  case 'blog' :                  l$.piwik.id = '3';  break;
+  case 'pad' :                   l$.piwik.id = '4';  break;
+  case 'etherpad' :              l$.piwik.id = '4';  break;
+  case 'key' :                   l$.piwik.id = '5';  break;
+  case 'dvd' :                   l$.piwik.id = '6';  break;
+  case 'book' :                  l$.piwik.id = '7';  break;
+  case 'tube' :                  l$.piwik.id = '8';  break;
+  case 'zic' :                   l$.piwik.id = '9';  break;
+  case 'date' :                  l$.piwik.id = '10'; break;
+  case 'calc' :                  l$.piwik.id = '11'; break;
+  case 'mindmap' :               l$.piwik.id = '12'; break;
+  case 'vectoriel' :             l$.piwik.id = '13'; break;
+  case 'phonie' :                l$.piwik.id = '14'; break;
+  case 'wiki' :                  l$.piwik.id = '15'; break;
+  case 'lab' :                   l$.piwik.id = '16'; break;
+  case 'code' :                  l$.piwik.id = '17'; break;
+  case 'soutenir' :              l$.piwik.id = '18'; break;
+  case 'contact' :               l$.piwik.id = '19'; break;
+  case 'news' :                  l$.piwik.id = '20'; break;
+  case 'bag' :                   l$.piwik.id = '21'; break;
+  case 'android' :               l$.piwik.id = '22'; break;
+  case 'start' :                 l$.piwik.id = '23'; break;
+  case 'pack' :                  l$.piwik.id = '24'; break;
+  case '10ans' :                 l$.piwik.id = '25'; break;
+  case 'sphere' :                l$.piwik.id = '26'; break;
+  case 'bee' :                   l$.piwik.id = '27'; break;
+  case 'games' :                 l$.piwik.id = '28'; break;
+  case 'git' :                   l$.piwik.id = '29'; break;
+  case 'degooglisons-internet' : l$.piwik.id = '30'; break;
+  case 'pic' :                   l$.piwik.id = '31'; break;
+  case 'link' :                  l$.piwik.id = '32'; break;
+  case 'participer' :            l$.piwik.id = '33'; break;
+  case 'colibri' :               l$.piwik.id = '33'; break;
+  case 'bin' :                   l$.piwik.id = '34'; break;
+  case 'cloud' :                 l$.piwik.id = '35'; break;
+  case 'status' :                l$.piwik.id = '37'; break;
+  case 'bookin' :                l$.piwik.id = '38'; break;
+  case 'stats' :                 l$.piwik.id = '39'; break;
+  case 'drive' :                 l$.piwik.id = '40'; l$.piwik.url = 'https://framadrive.org/'; break;
+  case 'board' :                 l$.piwik.id = '41'; break;
+  case 'drop' :                  l$.piwik.id = '42'; break;
+  case 'carte' :                 l$.piwik.id = '43'; break;
+  case 'forms' :                 l$.piwik.id = '44'; break;
+  case 'petition' :              l$.piwik.id = '45'; break;
+  case 'vox' :                   l$.piwik.id = '47'; break;
+  case 'team' :                  l$.piwik.id = '48'; break;
 }
 
 if(l$.piwik.id != '') {
-    var _paq = _paq || [];
+  var _paq = _paq || [];
 
-    _paq.push([function() {
-        var self = this;
-        function getOriginalVisitorCookieTimeout() {
-            var now = new Date(),
-            nowTs = Math.round(now.getTime() / 1000),
-            visitorInfo = self.getVisitorInfo();
-            var createTs = parseInt(visitorInfo[2]);
-            var cookieTimeout = 33696000; // 13 mois en secondes
-            var originalTimeout = createTs + cookieTimeout - nowTs;
-            return originalTimeout;
-        }
-        this.setVisitorCookieTimeout( getOriginalVisitorCookieTimeout() );
-    }]);
+  _paq.push([function() {
+    var self = this;
+    function getOriginalVisitorCookieTimeout() {
+      var now = new Date(),
+      nowTs = Math.round(now.getTime() / 1000),
+      visitorInfo = self.getVisitorInfo();
+      var createTs = parseInt(visitorInfo[2]);
+      var cookieTimeout = 33696000; // 13 mois en secondes
+      var originalTimeout = createTs + cookieTimeout - nowTs;
+      return originalTimeout;
+    }
+    this.setVisitorCookieTimeout( getOriginalVisitorCookieTimeout() );
+  }]);
 
-    _paq.push(["trackPageView"]);
-    _paq.push(["enableLinkTracking"]);
+  _paq.push(["trackPageView"]);
+  _paq.push(["enableLinkTracking"]);
 
-    (function() {
-      var u=l$.piwik.url;
-      _paq.push(["setTrackerUrl", u+"piwik.php"]);
-      _paq.push(["setSiteId", l$.piwik.id]);
-      var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
-      g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
-    })();
+  (function() {
+    var u=l$.piwik.url;
+    _paq.push(["setTrackerUrl", u+"piwik.php"]);
+    _paq.push(["setSiteId", l$.piwik.id]);
+    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+  })();
 }
 
 /***********************************************************************
  *                             Favicons                                *
  **********************************************************************/
 if (i$(/(dvd|key|libre|android|pack|start)/i,'h')) {
-    l$.icons.fav = 'favicon-bleu.png';
+  l$.icons.fav = 'favicon-bleu.png';
 }
 if (i$(/(blog|book|lang|tube|zic)/i,'h')) {
-    l$.icons.fav = 'favicon-rouge.png';
+  l$.icons.fav = 'favicon-rouge.png';
 }
 if (i$(/(link|bag|bee|bin|calc|carte|cloud|date|forms|games|git|news|pad|petition|pic|sphere|team|vectoriel|vox|mindmap|board|drive|drop)/i,'h')) {
-    l$.icons.fav = 'favicon-vert.png';
+  l$.icons.fav = 'favicon-vert.png';
 }
 if (i$(/(forum.|code|lab|phonie|wiki.)/i,'h')) {
-    l$.icons.fav = 'favicon-jaune.png';
+  l$.icons.fav = 'favicon-jaune.png';
 }
 if (i$(/(contact.|participer.|soutenir.|stats|status.)/i,'h')) {
-    l$.icons.fav = 'favicon-orange.png';
+  l$.icons.fav = 'favicon-orange.png';
 }
 
 if (i$(/(bot.|contact.|degooglisons-internet|forum.|bag|bee|bin|blog|board|bookin|book|calc|carte|cloud|code|colibri|date|drive|drop|dvd|games|key|lab|lang|link|android|news|pack|pad|phonie|pic|soft|sphere|start|stats|team|tube|vectoriel|vox|zic|mindmap|participer.|soutenir.|wiki.)/i,'h')) {
-    l$.icons.apple = n$.site+'.png';
+  l$.icons.apple = n$.site+'.png';
 }
