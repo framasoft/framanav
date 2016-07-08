@@ -35,10 +35,34 @@ switch (n$.site) {
   case 'agent':
     n$.name = 'Framapic';
     l$ = {
-      js: { video: true, ext: true },
       css: { order: '012345', ext: true },
       footer: false,
-      modal: { don: ['a[href*=".framapad.org/p/"]', 'd’utiliser','créer un pad'] }
+      credits: 'pad'
+    }
+    if(i$('noConflict')) l$ = { js: { j$: 'noConflict' } }
+    if(i$('media')) {
+      l$ = {
+        js: { video: true, audio: true, ext: true },
+      }
+    }
+    if(i$('verbose')) {
+      l$ = {
+        js : { ext: true },
+        fixed: i$('fixed'),
+        modal: {
+          don: ['a[href="index.html"]', 'd’utiliser','créer un pad'],
+          info: [
+            'Veggie ipsum',
+            '<p>Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip. Sea lettuce lettuce water chestnut eggplant winter purslane fennel azuki bean earthnut pea sierra leone bologi leek soko chicory celtuce parsley jÃ­cama salsify.</p>'+
+            '<p>Celery quandong swiss chard chicory earthnut pea potato. Salsify taro catsear garlic gram celery bitterleaf wattle seed collard greens nori. Grape wattle seed kombu beetroot horseradish carrot squash brussels sprout chard.<p>'
+          ]
+        },
+        optin: ['#email'],
+        alert: [
+          'info',
+          'Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic.'
+        ]
+      }
     }
   break;
   case 'bot' :

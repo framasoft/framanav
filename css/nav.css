@@ -1,3 +1,14 @@
+.fnav-fixed {
+    padding-top:42px;
+}
+
+.fnav-fixed #framanav_container {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000
+}
+
 #framanav,
 #framanav .dropdown-menu li {
     font-size: 12px !important;
@@ -249,6 +260,8 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
     border-top:0px;
     border-left:0px;
     border-right:0px;
+    border-radius:0 !important;
+    padding-top:52px;
 }
 
 #nav-alert.alert-don {

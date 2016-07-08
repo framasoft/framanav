@@ -22,6 +22,7 @@
     "d4": "description très longue DIo (modale)"
   },
   "meta": {
+    "lg": "fr",
     "home": {
       "p": "Frama",
       "s": "soft",
@@ -44,7 +45,7 @@
       "t1": "Le bénévolat valorisé, qu’est-ce que c’est ?",
       "d1": "Amis bénévoles, vous avez contribué récemment à l’activité de Framasoft ? C’est le moment de remplir votre bénévolat valorisé. Le « bénévalo » permet de rendre compte de l’activité des bénévoles et de confirmer que Framasoft reste bien une association majoritairement non lucrative. C’est important pour nous."
     },
-    "modale-don": {
+    "modaldon": {
       "t": "Soutenez Framasoft",
       "d": [
         "<p>Vous êtes sur le point %c$.modal.don[1]% une ressource <b>libre</b> issue de la vingtaine de projets du réseau Framasoft.</p>",
@@ -67,9 +68,9 @@
     }
   },
   "t": {
-    "new-window": "nouvelle fenêtre",
+    "newwindow": "nouvelle fenêtre",
     "close": "Fermer",
-    "never-show": "Ne plus afficher",
+    "nevershow": "Ne plus afficher",
     "toggle": "Afficher/masquer le menu",
     "skip": "Sauter le menu",
     "pause": "Pause",
@@ -84,7 +85,7 @@
     "to-the-newsletter": " à la lettre d’informations",
     "source": "Source"
   },
-  "menus": {
+  "menu": {
     "soft": { "name": "Logiciel libre" },
     "culture": { "name": "Culture libre" },
     "services": { "name": "Services libres" },
