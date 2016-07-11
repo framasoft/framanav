@@ -105,11 +105,12 @@ var f$_start_config = function() {
      *  et supprimer le paramètre de config si tout est ok **/
     switch (c$.js.j$) {
       case 'jQuery' :
-        console.log('✔ jQuery '+n$.f$+' '+i$jQuery());
         if (i$jQuery() == 'AJAX') {
           f$LoadJS(n$.nav.url+'lib/jquery/jquery.min.js', f$_start_jquery);
+          console.log('✔ jQuery '+n$.f$+' AJAX');
         } else {
           f$_start_jquery();
+          console.log('✔ jQuery '+n$.j$+' HTML');
         }
       break;
       case 'noConflict' :
@@ -120,7 +121,7 @@ var f$_start_config = function() {
         if (window.jQuery === undefined) {
           console.error('✘ jQuery');
         } else {
-          console.log('✔ jQuery '+window.jQuery.fn.jquery+' HTML');
+          console.log('✔ jQuery '+n$.j$+' HTML');
           f$_start_jquery();
         }
       break;

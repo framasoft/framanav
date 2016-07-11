@@ -10,24 +10,17 @@ var l$ = {};
 // credits et placer un tracker sur un lien de la modale Soutenir
 switch (n$.site) {
   case 'noenaute' : n$.site = 'pouhiou'; break;
-  case 'huit.re' : n$.site = 'frama.link'; break;
-  case 'tontonroger' : n$.site = 'framabee'; break;
-  case 'trouvons' : n$.site = 'framabee'; break;
+  case 'huit.re' : n$.site = 'link'; break;
+  case 'tontonroger' : n$.site = 'bee'; break;
+  case 'trouvons' : n$.site = 'bee'; break;
 }
+// Config pour domaine et sous-domaine
+if (i$(/framaboard)/i, 'h'))        { n$.site = 'board' }
+if (i$(/framadate)/i, 'h'))         { n$.site = 'date' }
 
-//i$(/framaboard)/i, 'h')
-if (n$.host.indexOf('framaboard') > -1) { n$.site = 'board'; }
-
-//i$(/framadate)/i, 'h')
-if (n$.host.indexOf('framadate') > -1)  { n$.site = 'date'; }
-
-if (i$('mypads.framapad.org', 'h')) {
-  n$.site = 'mypads';
-}
-
-//i$(/.framapad)/i, 'h') etc
-if ((n$.host.indexOf('.framapad') > -1 && !(n$.host.indexOf('mypads.') > -1))
-    || (n$.host.indexOf('mypads.framapad') > -1 && i$('/p/'))) {
+if (i$('mypads.framapad.org', 'h')) { n$.site = 'mypads' }
+if (i$(/.framapad)/i, 'h') && !i$(/mypads.)/i, 'h'))
+    || (i$(/mypads.framapad)/i, 'h') && i$('/p/')) {
   n$.site = 'etherpad';
 }
 
