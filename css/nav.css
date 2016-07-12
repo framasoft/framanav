@@ -1,3 +1,14 @@
+.fnav-fixed {
+    padding-top:42px;
+}
+
+.fnav-fixed #framanav_container {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000
+}
+
 #framanav,
 #framanav .dropdown-menu li {
     font-size: 12px !important;
@@ -249,6 +260,8 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
     border-top:0px;
     border-left:0px;
     border-right:0px;
+    border-radius:0 !important;
+    padding-top:52px;
 }
 
 #nav-alert.alert-don {
@@ -271,6 +284,11 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
     font-family: "DejaVu Sans",Verdana,Geneva,sans-serif !important;
     text-shadow:none;
 }
+
+.fnav-fixed #nav-alert.alert {
+    margin-bottom: 42px;
+}
+
 #nav-alert.alert p {
     margin-bottom:5px;
     margin-top:0px;
@@ -489,19 +507,22 @@ body.apropos #piwik-iframe {
 }
 
 @media (min-width: 992px) {
-    #degooglisons ul {
-        min-width:280px !important;
-        margin-left:-86px;
+    #fs_services ul,
+    #fs_about ul {
+        min-width:320px !important;
+        margin-left:-106px;
     }
-    #degooglisons li {
+    #fs_services li,
+    #fs_about li {
         width:50%;
         float:left;
     }
-    #degooglisons li.divider,
-    #degooglisons li:nth-child(1) {
+    #fs_services li.divider,
+    #fs_services li.dropdown-header,
+    #fs_about li.divider,
+    #fs_about li.dropdown-header {
         width:100%;
         text-align:center;
-
     }
 }
 

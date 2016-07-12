@@ -1,18 +1,60 @@
-var f$_version = '160503';
-var f$_site = window.location.host
-f$_site = f$_site.replace(/^(www|test)\./i,"");
-f$_site = f$_site.replace(/\.(com|net|org|fr|pro)$/i,"");
+/****************
+ *  Conventions *
+ ****************
+ f$() = alias jQuery
+ f$Example() et i$Example() = fonctions globale
+ f$_  = variables
 
-var f$_url = window.location.href;
+ j$ = jQuery
+ b$ = Bootstrap
 
-var f$_not_in_frame = (top.location==self.document.location); // Pas dans une Frame
+ n${} = variables globales de la nav
+ d${} = données (texte, liens, icônes, couleurs, etc)
+ h${} = html
+ c${} = config du site
+ l${} = config locale des sites
+ **/
 
-// Détection du navigateur
-var f$_isOpera = !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
-var f$_isFirefox = typeof InstallTrigger !== 'undefined';
-var f$_isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
-var f$_isChrome = !!window.chrome && !f$_isOpera;
-var f$_isIE = /*@cc_on!@*/false || !!document.documentMode;
+var n$ = {
+  version: '160621', // n° version de la nav
+  f$ : '1.12.4',     // n° version de notre jQuery
+  b$ : '3.3.6',      // n° version de Bootsrap
+  host: window.location.host,
+  url: window.location.href,
+  inframe: top.location!=self.document.location,
+  nav: {
+    url: '',
+    set: false,
+    html: '<div id="framanav_container" class="hidden-print" style="height:42px; opacity : 0"></div>'
+  },
+  browser: {
+    agent: navigator.userAgent,
+    opera: !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0,
+    firefox: typeof InstallTrigger !== 'undefined',
+    safari: Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0,
+    chrome: !!window.chrome && !(!!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0),
+    ie: /*@cc_on!@*/false || !!document.documentMode
+  }
+};
+  n$.site = n$.host.replace(/^(www|test)\./i,'').replace(/\.(com|net|org|fr|pro)$/i,''); // Domaine et sous-domaine
+  n$.name = n$.site[0].toUpperCase()+n$.site.slice(1);                                   // Nom du service
+  n$.site = n$.site.replace(/(\.framasoft|frama\.)/i,'')
+                   .replace(/framand/i,'and')
+                   .replace(/framin/i,'min')
+                   .replace(/frama/i,'');
+  n$.site = (/Framatech/i.test(window.navigator.userAgent)) ? 'agent' : n$.site;     // Config locale
+
+  if (n$.inframe) { n$.nav.html = '<div id="framanav_container" style="display:none"></div>' };
+
+  if (window.jQuery === undefined) {
+    n$.j$ = 'ø';    // n° version du jQuery local
+  } else {
+    n$.j$ = window.jQuery.fn.jquery;
+    f$ = jQuery;   // alias (on l'écrase plus bas mais ça permet de pouvoir l'utiliser plus tôt)
+  }
+
+var d$ = {};
+var h$ = {};
 
 // console n'existe pas sur IE8
 (function() {
@@ -31,82 +73,86 @@ var f$_isIE = /*@cc_on!@*/false || !!document.documentMode;
   }
 })();
 
-/**
- * f$() = jQuery() = $()
- * f$_  = variables ou fonctions
- * f$   = free $oftware = frama$oft :P
- **/
-
 /*******************
  *  Config globale
  *******************/
 var f$_start_config = function() {
-    var f$_speed = (f$_nav_container) ? '☀' : '☁';
-    if (f$_config == 'global') {
-        var f$_hjQv = (window.jQuery === undefined) ? 'ø' : window.jQuery.fn.jquery;
-        var f$_njQv  = '1.12.4';
-        console.log('✔ '+f$_speed+' config.js '+f$_version+' | '+f$_njQv+' | '+f$_hjQv);
+  f$Merge(c$, l$);
 
-        if(f$_page('/nav/html/')) { // Si pages « À propos » on réinit la config
-            f$_jquery = 'jQuery';
-            f$_bootstrap_css = false;
-            f$_bootstrap_js = true;
-            f$_footer = true;
-        }
+  n$.nav.speed = (n$.nav.set) ? '☀' : '☁';
+  if (l$) {
+      console.log('✔ '+n$.nav.speed+' config.js '+n$.version+' | '+n$.f$+' | '+n$.j$+' → '+i$jQuery()+' ?');
 
-        switch (f$_jquery) {
-            case 'jQuery' :
-                if (window.jQuery === undefined || window.jQuery.fn.jquery !== f$_njQv) {
-                    console.log('✔ jQuery '+f$_njQv+' AJAX');
-                    f$_loadScript(f$_nav+'lib/jquery/jquery.min.js', f$_start_jquery);
-                } else {
-                    console.log('✔ jQuery '+f$_hjQv+' HTML');
-                    f$_start_jquery();
-                }
-            break;
-            case 'noConflict' :
-                console.log('✔ jQuery.noConflict '+f$_njQv+' AJAX');
-                f$_loadScript(f$_nav+'lib/jquery/jquery.min.js', f$_start_jquery);
-            break;
-            default:
-                if (window.jQuery === undefined) {
-                    console.error('✘ jQuery');
-                } else {
-                    console.log('✔ jQuery '+window.jQuery.fn.jquery+' HTML');
-                    f$_start_jquery();
-                }
-            break;
-        }
-
-    } else {
-        console.error('✘ '+f$_speed+' config.js '+f$_version);
+    if(i$('/nav/html/')) { // Si pages « À propos » on réinit la config
+      c$.js.j$ = 'AJAX'; /** Deprecated → i$jQuery() **/
+      f$_bootstrap_css = false;
+      c$.js.b$ = true;
+      c$.css.b$ = false;
+      c$.css.ext = false;
+      c$.footer = true;
+      c$.icons.apple = 'soft.png';
     }
+
+    if(c$.mute) {
+      c$.alert[1] = '';      // Pas de bandeau
+      c$.modal.info[1] = ''; // Pas de modale
+      c$.modal.don[0] = '';
+      c$.donate = false;     // Pas de macaron
+    }
+
+    /** Deprecated → i$jQuery()
+     *  à passer sur i$jQuery() après vérif
+     *  et supprimer le paramètre de config si tout est ok **/
+    switch (c$.js.j$) {
+      case 'AJAX' :
+        if (i$jQuery() == 'AJAX') {
+          f$LoadJS(n$.nav.url+'lib/jquery/jquery.min.js', f$_start_jquery);
+          console.log('✔ jQuery '+n$.f$+' AJAX');
+        } else {
+          f$_start_jquery();
+          console.log('✔ jQuery '+n$.j$+' HTML');
+        }
+      break;
+      case 'noConflict' :
+        console.log('✔ jQuery.noConflict '+n$.f$+' AJAX');
+        f$LoadJS(n$.nav.url+'lib/jquery/jquery.min.js', f$_start_jquery);
+      break;
+      default:
+        if (window.jQuery === undefined) {
+          console.error('✘ jQuery');
+        } else {
+          console.log('✔ jQuery '+n$.j$+' HTML');
+          f$_start_jquery();
+        }
+      break;
+    }
+
+  } else {
+    console.error('✘ '+n$.nav.speed+' config.js '+n$.version);
+  }
 }; // ---> jQuery
 
 /*******************
  *     Nav init
  *******************/
 var f$_scripts = document.getElementsByTagName('script');
-var f$_nav = ''; // racine de la nav
-var f$_nav_container = false;
-var f$_nav_container_html = (f$_not_in_frame) ? '<div id="framanav_container" class="hidden-print" style="height:42px; opacity : 0"></div>' : '<div id="framanav_container" style="display:none"></div>';
 
 var f$_nav_init = function() {
-    for (var i = 0; i < f$_scripts.length; i++) {
-        if (f$_scripts[i].getAttribute("src") && f$_scripts[i].getAttribute("src").indexOf("/nav.js") > -1) {
-            // Emplacement de la nav ('/nav/', '/static/nav/, '../nav/' → 'http://'+f$_site+'/nav')
-            f$_nav = f$_scripts[i].getAttribute("src").replace('nav.js','');
-            f$_nav = f$_absolutePath(f$_nav);
-            // On ajout une div vide de 42px qui contiendra la nav (évite les sauts de mise en page avant le chargement des fichiers)
-            if (f$_scripts[i].parentNode.tagName.toLowerCase() == 'body' ) {
-                // si nav.js est appelé en haut du body, c'est super rapide
-                document.write(f$_nav_container_html);
-                f$_nav_container = true;
-            } // sinon c'est dans le head, il faut attendre document.ready (voir plus bas)
-        }
+  for (var i = 0; i < f$_scripts.length; i++) {
+    if (f$_scripts[i].getAttribute("src") && f$_scripts[i].getAttribute("src").indexOf("/nav.js") > -1) {
+      // Emplacement de la nav ('/nav/', '/static/nav/, '../nav/' → 'http://'+n$.site+'/nav')
+      n$.nav.url = f$_scripts[i].getAttribute("src").replace('nav.js','');
+      n$.nav.url = f$Link(n$.nav.url);
+      // On ajout une div vide de 42px qui contiendra la nav (évite les sauts de mise en page avant le chargement des fichiers)
+      if (f$_scripts[i].parentNode.tagName.toLowerCase() == 'body' ) {
+        // si nav.js est appelé en haut du body, c'est super rapide
+        document.write(n$.nav.html);
+        n$.nav.set = true;
+      } // sinon c'est dans le head, il faut attendre document.ready (voir plus bas)
     }
+  }
 
-    f$_loadScript(f$_nav+'config.js?'+f$_version, f$_start_config);
+  f$LoadJS(n$.nav.url+'config.js?'+n$.version, f$_start_config);
 }; // ---> config.js
 
 f$_nav_init();
@@ -115,737 +161,993 @@ f$_nav_init();
  *     jQuery
  *******************/
 function f$_start_jquery() {
-    /*
-     * CSS
-     */
-    // Bootstrap
-    if (f$_bootstrap_css) {
-        f$_loadCSS(f$_nav+'lib/bootstrap/css/bootstrap.min.css', f$_css_position, 'all');
+  /*
+   * CSS
+   */
+  f$LoadCSS(c$.css);
+
+  /*
+   * Nav
+   */
+  /** Deprecated → i$jQuery() **/
+  switch (c$.js.j$) {
+    case 'noConflict': var f$ = jQuery.noConflict(); break;
+    default          : var f$ = jQuery; break;
+  }
+
+  f$(document).ready(function() {
+    if (i$('https://framacalc.org/_start', 'u') && f$('html').attr('manifest') !== 'manifest.appcache') {
+      console.log('Reloading https://framacalc.org/_start because of bad _start version');
+      window.location.href = 'https://framacalc.org/_start?reload=1';
     }
 
-    // Font-awesome
-    f$_loadCSS(f$_nav+'lib/font-awesome/css/font-awesome.min.css','end','all');
+    f$.ajaxSetup({ cache: true });
 
-    // Nav.css
-    f$_loadCSS(f$_nav+'css/nav.css?'+f$_version);
+    if(!n$.nav.set) f$('body').prepend(n$.nav.html);
 
-    // Frama.css
-    if(f$_frama_css) {
-        f$_loadCSS(f$_nav+'css/frama.css?'+f$_version, 'end', 'all');
+    // On charge ensuite les données
+    f$_i18n = {};
+    if (i$Lang('en')) {
+      f$.getJSON( n$.nav.url+'html/data.en.json' )
+        .fail(function() { console.error('✘ data.en.json') })
+        .done( function(data) { f$_i18n = data; });
     }
 
-    // Ext.css
-    if(f$_ext_css) {
-        f$_loadCSS(f$_nav+'ext/'+f$_site+'.css?'+f$_version);
-    }
+    f$.getJSON( n$.nav.url+'html/data.fr.json' )
+      .fail(function() { console.error('✘ data.fr.json') })
+      .done(function(data) {
 
-    /*
-     * Nav
-     */
-    switch (f$_jquery) {
-        case 'noConflict': var f$ = jQuery.noConflict(); break;
-        default          : var f$ = jQuery;break;
-    }
+        // Formatage et traitement des données
+        d$ = data; /** passage en global pour lecture dans la console **/
 
-    f$(document).ready(function() {
-        if (f$_url === 'https://framacalc.org/_start' && f$('html').attr('manifest') !== 'manifest.appcache') {
-            console.log('Reloading https://framacalc.org/_start because of bad _start version');
-            window.location.href = 'https://framacalc.org/_start?reload=1';
+        // Import i18n dans d$
+        f$Merge(d$, f$_i18n);
+
+        var f$_color = ''; var f$_menu = '';
+        for (var k in d$.menu) { d$.menu[k].nav ='' }
+        d$.menu.follow.footer = ''; d$.menu.about.site = '';
+
+
+        h$ = {
+          framasoft: '<b class="violet">'+d$.meta.home.p+'</b><b class="orange">'+d$.meta.home.s+'</b>',
+          rssLink : '<link rel="alternate" type="application/rss+xml" title="'+d$.f.rss.d1+'" href="'+d$.f.rss.l+'" />',
+          newwindow: '&nbsp;<i class="fa fa-external-link new-window"></i>'+h$SR('('+d$.t.newwindow+')')+'</span>',
+          divider: '<li role="presentation" class="divider"></li>',
+          menu: d$.menu,
+          f: {}
+        }
+
+        // Class couleurs + Dropdown menu
+        for (var k in d$.f) {
+          switch ( d$.f[k].c ) {
+            case 'b': f$_color = 'bleu';   f$_menu = 'soft';     break;
+            case 'r': f$_color = 'rouge';  f$_menu = 'culture';  break;
+            case 'v': f$_color = 'vert';   f$_menu = 'services'; break;
+            case 'j': f$_color = 'jaune';  f$_menu = 'vrac';     break;
+            case 'f': f$_color = 'violet'; f$_menu = 'follow';   break;
+            case 'o': f$_color = 'orange'; f$_menu = (k != 'dio') ? 'about' : 'services'; break;
+          }
+          // Nom du projet coloré (html)
+          // Préfix violet
+          h$.f[k] = {};
+
+          if ( d$.f[k].p == undefined ) {
+            h$.f[k].html = d$.f[k].p = '';
+          } else {
+            h$.f[k].html = '<b class="violet">'+d$.f[k].p+'</b>';
+          }
+          // Suffixe coloré (anglais, accronyme)
+          switch (d$.f[k].a) {
+            case 'en'  : h$.f[k].html += '<b class="'+f$_color+'" lang="en">'+d$.f[k].s+'</b>'; break;
+            case 'abbr': h$.f[k].html += '<b class="'+f$_color+'"><abbr>'+d$.f[k].s+'</abbr></b>'; break;
+            default    : h$.f[k].html += '<b class="'+f$_color+'">'+d$.f[k].s+'</b>'; break;
+          }
+
+          // Nom du projet nu (name)
+          h$.f[k].name = d$.f[k].p+d$.f[k].s;
+
+          // Attribution des entrées dans chaque menu
+          h$.menu[f$_menu].nav += '<li class="fs_'+f$_menu+' fs_'+k+'"><a href="'+d$.f[k].l+'" '+h$Popover(d$.f[k].t1, d$.f[k].d1)+'>'+h$icon(d$.f[k].i)+'&nbsp;'+h$.f[k].name+'</a></li>';
+
+          // "Nous suivre" dans le footer
+          if ((f$_menu == 'follow') && !(/(newsletter|contact|wikipedia)/i).test(k)) {
+            h$.menu['follow'].footer += '<li class="fs_'+k+'"><a href="'+d$.f[k].l+'" title="'+d$.f[k].t1+'"><i class="fa fa-fw fa-2x '+d$.f[k].i+'"></i>'+h$SR(d$.f[k].name)+'</a></li>';
+          }
+          // "À propos" du site
+          if(n$.name == d$.f[k].name) {
+            f$_soft = (d$.f[k].soft != undefined) ? ' ('+d$.f[k].soft+')' : '';
+            h$.menu['about'].site += '<li class="dropdown-header">'+d$.f[k].html+f$_soft+'</li>'+h$.divider;
+            if(d$.f[k].git != undefined) {
+              h$.menu['about'].site += '<li class="fs_about fs_git"><a href="'+d$.f[k].git+'">'+h$icon(d$.f.git.i)+'&nbsp;'+d$.f.git.p+d$.f.git.s+'</a></li>';
+            }
+            if(d$.f[k].src != undefined) {
+              h$.menu['about'].site += '<li class="fs_about fs_src"><a href="'+d$.f[k].src+'">'+h$icon('fa-code-fork')+'&nbsp;'+d$.t.source+f$_soft+'</a></li>';
+            }
+            h$.f.aide.l = d$.f.aide.l.replace('#aide','#'+n$.name.toLowerCase());
+            h$.f.faq.l = d$.f.faq.l+'#'+n$.name.toLowerCase();
+          }
+        }
+        // Switch mobile/desktop
+        h$.menu['about'].nav +=
+          h$.divider+
+          '<li class="framanav-mobile"><a href="javascript:void(0);">'+
+            h$icon('fa-mobile')+'&nbsp;'+d$.t.mobile+
+          '</a></li>'+
+          '<li class="framanav-desktop"><a href="javascript:void(0);">'+
+            h$icon('fa-desktop')+'&nbsp;'+d$.t.desktop+
+          '</a></li>';
+
+        h$.nav =
+'<nav class="navbar navbar-default" id="framanav" role="menubar" style="display:none">'+
+  '<button type="button" class="navbar-toggle text-muted" data-toggle="collapse" data-target=".navbar-ex1-collapse">'+
+    h$SR(d$.t.toggle)+h$icon('fa-bars')+
+  '</button>'+
+  '<div class="nav-container">'+
+    '<div class="navbar-header">'+
+      '<a class="navbar-brand" href="'+d$.meta.home.l+'">'+
+        '<img src="'+n$.nav.url+'img/logo.png"/>'+
+        '<span class="hidden-sm">'+h$.framasoft+'</span>'+
+      '</a>'+
+      '<a href="#nav-end" id="nav-skip">'+d$.t.skip+'</a>'+
+    '</div>'+
+    '<div class="collapse navbar-collapse navbar-ex1-collapse">'+
+      '<ul class="nav navbar-nav">';
+          for (var k in d$.menu) {
+            if(k != 'site' && k != 'community') {
+              h$.nav +=
+        '<li class="dropdown" id="fs_'+k+'">'+
+          '<a href="#" class="dropdown-toggle" data-toggle="dropdown">'+h$.menu[k].name+'<b class="caret"></b></a>'+
+          '<ul class="dropdown-menu">'+h$.menu[k].nav+'</ul>'+
+        '</li>';
+            }
+          }
+        h$.nav +=
+        '<li><a href="'+d$.meta.soutenir.l+'/?f=nav" class="btn-soutenir" '+h$Popover(d$.meta.soutenir.t1, d$.meta.soutenir.d1, 'bottom')+'>'+
+          h$icon(d$.meta.soutenir.i)+'&nbsp;'+d$.meta.soutenir.s+
+        '</a></li>'+
+        '<li id="btn-benevalo"><a href="'+d$.meta.benevalo.l+'" class="btn-info" '+h$Popover(d$.meta.benevalo.t1, d$.meta.benevalo.d1, 'bottom')+'>'+
+          h$icon(d$.meta.benevalo.i)+'&nbsp;'+d$.meta.benevalo.s+
+        '</a></li>'+
+      '</ul>'+
+    '</div>'+
+  '</div>'+
+  '<a id="nav-end" class="sr-only"></a>'+
+'</nav>'+
+'<a href="'+d$.meta.soutenir.l+'/?f=macaron" id="framanav_donation" rel="donBadge" style="display:none" class="hidden-xs">'+h$SR(d$.meta.soutenir.s)+'</a>';
+
+        /** On balance le code html **/
+        f$('#framanav_container').prepend(h$.nav);
+        // Placement des popovers à gauche
+        f$('#fs_services li:odd a, #fs_about li:even a').attr('data-placement','left');
+        // Réagencement À propos
+        f$('#fs_about li').has('a[href*="status."]').after(d$.menu['about'].site);
+        f$('#fs_about .fs_git').before(f$('#fs_about .fs_aide,#fs_about .fs_faq'));
+
+        f$('#fs_about ul').prepend('<li class="dropdown-header">'+h$.framasoft+'</li>'+h$.divider);
+        f$('#fs_services li:eq(0)').addClass('dropdown-header');
+        f$('#fs_services li:eq(0) a').wrapInner('<b>');
+        // Ajout des dividers
+        f$('#framanav .dropdown-menu li')
+          .has(
+            'a[href*="degooglisons"], a[href*="vect"], a[href*="carte.org"], a[href*="news.org"],'+
+            'a[href*="enventelibre"], a[href*="wiki."], a[href*="plus.google"], a[href*="status."]'
+          )
+          .after(h$.divider);
+
+        /**
+         * Mobile/Desktop
+         **/
+        // On ajoute du viewport et des boutons mobile/desktop
+        var f$_btn_desktop = f$('.framanav-desktop');
+        var f$_btn_mobile = f$('.framanav-mobile');
+
+        function f$_mobile() {
+          var f$_viewport = f$('meta[name="viewport"]');
+          if (f$_viewport.length==0) {
+            f$('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
+          } else {
+            f$_viewport.attr('content','width=device-width, initial-scale=1.0');
+          }
+          f$_btn_desktop.addClass('visible-xs-inline').show();
+          f$_btn_mobile.hide();
+        };
+
+        function f$_desktop() {
+          var f$_viewport = f$('meta[name="viewport"]');
+          if (f$_viewport.length) {
+            f$_viewport.attr('content','width=1024');
+          }
+          f$_btn_desktop.removeClass('visible-xs-inline').hide();
+          f$_btn_mobile.show();
+        }
+
+        if (c$.mobile) {
+        // Viewport mobile si Responsive dans la config
+        // Boutons « Désactiver mode mobile » par défaut
+          f$_mobile();
+        } else if (f$('meta[name="viewport"]').length==0) {
+        // Bouton « Activer mode mobile » par défaut
+          f$_desktop();
+        }
+        // Si (Dés)Activation mannuel, le cookie prend la main le temps de la session
+        switch (f$Cookie('r','nav_viewport')) {
+          case 'mobile' : f$_mobile(); break;
+          case 'desktop': f$_desktop(); break;
+        }
+        // Boutons (Dés)Activer le mode mobile
+        f$_btn_mobile.on('click', function() {
+          f$_mobile();
+          document.cookie = 'nav_viewport=mobile;expire=0';
+        });
+        f$_btn_desktop.on('click', function() {
+          f$_desktop();
+          document.cookie = 'nav_viewport=desktop;expire=0';
+        });
+        /** Fin Mobile/Desktop **/
+
+        f$('#framanav_container').css('opacity','1');
+
+        f$Benevalo();
+
+        /*******************
+         *   BootStrap JS
+         *******************/
+        if (c$.js.b$) {
+          if (typeof f$().modal == 'function' || c$.js.b$ == 'html') {
+            console.log('✔ Bootstrap HTML');
+            go_BootStrap();
+          } else {
+            f$.getScript(n$.nav.url+'lib/bootstrap/js/bootstrap.min.js', function() {
+              console.log('✔ Bootstrap AJAX');
+              go_BootStrap();
+            });
+          }
+        } else {
+          console.info('✘ Bootstrap');
+        }
+
+        // Audio JS
+        if (c$.js.audio) {
+          f$('audio').each(function() {
+            f$(this).wrap('<div class="audio" />');
+            var outer = this.outerHTML;
+            var regex = new RegExp('<' + this.tagName, 'i');
+              var newTag = outer.replace(regex, '<video');
+              regex = new RegExp('</' + this.tagName, 'i');
+              newTag = newTag.replace(regex, '</video');
+            f$(this).replaceWith(newTag);
+          });
+        }
+
+        // Video JS
+        if (c$.js.video) {
+          f$('link[href*="/nav/css/nav.css"]').before('<link href="'+n$.nav.url+'lib/video-js/video-js.css" media="all" rel="stylesheet"/>');
+          // Paramètres à ajouter à la vidéo pour appliquer VideoJS en surcouche
+          f$('video').attr({
+            'class':'video-js vjs-default-skin',
+            'data-setup':'{}'});
+          // Numérotation des vidéos (pour pouvoir utiliser l'API : videojs('id').ready() )
+          f$('video').each(function(index) {
+            if(f$(this).has('source[type*="webm"]').length && (n$.browser.firefox || n$.browser.opera || ns.browser.chrome)) {
+              f$(this).children('source[type*="mp4"]').remove();
+            }
+            f$(this).attr('id','f_video_'+index);
+          });
+
+          f$.getScript(n$.nav.url+'lib/video-js/video.js', function() {
+            console.log('✔ video.js');
+            videojs.options.flash.swf = n$.nav.url+'lib/video-js/video-js.swf';
+            // On "clique" sur les sous-titres Français
+            // pour chaque vidéo dès que VideoJS est prêt
+            f$('video').each(function(index) {
+              videojs('f_video_'+index).ready(function() { f$("li.vjs-menu-item:contains('Français')").trigger('click'); });
+            });
+          });
+        }
+
+        // Bloqueur d'iframe style Flashblock
+        /* Vidéos Youtube */
+        var f$_yt_i=0;
+        f$('a[href*="youtube.com/watch"],a[href*="youtu.be/"]').has('img').click(function() {
+          // Si lien youtube <a> on l'ajoute le code au clic + ajout d'un Id à l'iframe
+          var f$_yt_iframe = f$(this).attr('href').replace(
+            /(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com(?:\/embed\/|\/v\/|\/watch\?v=))([\w\-]{10,12})\b[?=&\w]*(?!['"][^<>]*>|<\/a>)/ig,
+            '<iframe id="youtube'+ f$_yt_i +'" src="https://www.youtube.com/embed/$1?autoplay=1" width="560" height="315" frameborder="0" allowfullscreen ></iframe>');
+          f$(this).after(f$_yt_iframe);
+          // On supprime <a><img/></a>
+          f$(this).remove();
+          f$_yt_i++;
+          return false;
+        });
+        /** Même chose à faire pour Soundcloud, Dailymotion, Vimeo **/
+
+        // Flux RSS Global
+        f$('head').append(h$.rssLink);
+
+        // Favicon et Apple touch icon
+        if (!c$.icons.keep) {
+          f$('link[rel*=icon]').remove();
+          c$.icons.fav = (!c$.icons.fav) ? 'favicon-violet.png' : c$.icons.fav;
+          c$.icons.apple = (!c$.icons.apple) ? 'apple-violet.png' : c$.icons.apple;
+          f$('head').append('<link rel="icon" type="image/png" href="'+n$.nav.url+'img/icons/'+c$.icons.fav+'" />');
+          f$('head').append('<link rel="apple-touch-icon" href="'+n$.nav.url+'img/icons/'+c$.icons.apple+'" />');
+        }
+
+        // Opt-in
+        var f$_optin_dejavu = f$Cookie('r','opt-in');
+        if (c$.optin[0]!='' && !f$_optin_dejavu) {
+          f$(c$.optin[0]).after(
+            h$Alert('info', 'fs_opt-in',
+              '<input type="checkbox" id="fs_opt-in_checkbox" value="false" />'+
+              '<label for="fs_opt-in_checkbox">'+d$.meta.optin.t+'</label>'+
+              '<br /><small>'+d$.meta.optin.d1+
+                '&nbsp;<a href="'+d$.f.newsletter.l+'" id="link-opt-in" target="_blank" >'+d$.meta.optin.d2+h$.newwindow+'</a>'+
+              '</small>'
+            )
+          );
+
+          f$(c$.optin[0]).focusin(function() {
+            f$('#fs_opt-in_error').remove();
+            // Ajout du cookie (expire au bout d'un an)
+            f$Cookie('w',c$.optin[2],true,c$.optin[3]);
+          });
+
+          // Requête ajax crossdomain lorsque la case est cochée
+          f$('#fs_opt-in input, #fs_opt-in label').on('click', function() {
+            f$('#fs_opt-in_error').remove();
+            f$_email = f$(c$.optin[0]).val();
+            if(c$.optin[1]!='' && f$(c$.optin[0]).val()!=f$(c$.optin[1]).val()) { // Cas où il y a un champs pour confirmer email
+              f$(c$.optin[0]).after(
+                h$Alert('danger', 'fs_opt-in_error', d$.meta.optin.e2)
+              );
+              return false;
+            } else if( !i$Email(f$(c$.optin[0]).val())) {
+              f$(c$.optin[0]).after(
+                h$Alert('danger', 'fs_opt-in_error', d$.meta.optin.e2.replace('%f$_email%', f$_email))
+              );
+              return false;
+            } else {
+              f$('#fs_opt-in input').attr('checked', true);
+              f$.ajax({
+                type: "POST",
+                url: 'https://contact.framasoft.org/php_list/lists/?p=subscribe&id=2', // URL d'abonnement à la liste
+                crossDomain:true,
+                data: 'makeconfirmed=1&htmlemail=1&list%5B5%5D=signup&listname%5B5%5D=Newsletter&email='+f$_email.replace('@','%40')+'&VerificationCodeX=&subscribe=Abonnement' // Paramètres habituellement passés dans le formulaire
+              });
+              // On supprime la case à cocher (pas possible de décocher ; l'annulation se fait depuis le mail reçu)
+              f$('#fs_opt-in').remove();
+              // Message d'alert pour confirmer l'inscription
+              f$(c$.optin[0]).after(
+                h$Alert(
+                  'success', 'fs_opt-in_confirm',
+                  d$.meta.optin.s1.replace('%f$_email%', f$_email),
+                  true
+                )
+              );
+            }
+          });
+        }
+
+        // Footer
+        if(c$.footer && !n$.inframe) {
+
+          h$.footer =
+'<footer id="framafooter" class="row hidden-print" role="contentinfo">'+
+  '<div class="container">'+
+    '<div class="clearfix col-sm-8">'+
+      '<nav class="col-xs-4">'+
+        '<h1>'+d$.meta.home.p+d$.meta.home.s+'</h1>'+
+        '<ul class="list-unstyled">'+
+          '<li><a href="'+d$.f.asso.l+'">'+h$.f.asso.name+'</a></li>'+
+          '<li><a href="'+d$.f.charte.l+'">'+h$.f.charte.name+'</a></li>'+
+          '<li><a href="'+d$.f.contact.l+'">'+h$.f.contact.name+'</a></li>'+
+        '</ul>'+
+      '</nav>'+
+      '<nav class="col-xs-4">'+
+        '<h1>'+d$.menu.community.name+'</h1>'+
+        '<ul class="list-unstyled">'+
+          '<li><a href="'+d$.f.participer.l+'">'+h$.f.participer.name+'</a></li>'+
+          '<li><a href="'+d$.f.benevalo.l+'">'+h$.f.benevalo.name+'</a></li>'+
+          '<li><a href="'+d$.f.partenaires.l+'">'+h$.f.partenaires.name+'</a></li>'+
+        '</ul>'+
+      '</nav>'+
+      '<nav class="col-xs-4">'+
+        '<h1>'+d$.menu.site.name+'</h1>'+
+        '<ul class="list-unstyled">'+
+          '<li><a href="'+d$.f.legals.l+'#'+c$.host+'">'+h$.f.legals.name+'</a></li>'+
+          '<li><a href="'+d$.f.cgu.l+'"><abbr>'+h$.f.cgu.name+'</abbr></a></li>'+
+          '<li><a href="'+d$.f.credits.l+'#'+c$.credits+'">'+h$.f.credits.name+'</a></li>'+
+        '</ul>'+
+      '</nav>'+
+    '</div>'+
+    '<div class="col-sm-4">'+
+      '<div class="col-xs-12">'+
+        '<h1>'+d$.menu.follow.name+'</h1>'+
+        '<ul class="list-inline">'+h$.menu.follow.footer+'</ul>'+
+        '<h2>'+h$.f.newsletter.name+'</h2>'+
+        '<form action="https://contact.framasoft.org/php_list/lists/?p=subscribe&amp;id=2" method="post" name="subscribeform">'+
+          '<div class="input-group input-group-sm">'+
+            '<input class="form-control" title="'+d$.t['type-your-email']+'" name="email" size="40" type="text" placeholder="'+d$.t['your-email']+'" />'+
+              '<span class="input-group-btn">'+
+              '  <button class="btn btn-default" name="subscribe" type="submit" value="subscribe">'+d$.t.subscribe+h$SR(d$.t['to-the-newsletter'])+'</button>'+
+              '</span>'+
+            '</div>'+
+            '<input name="htmlemail" type="hidden" value="1" /> <input name="list[5]" type="hidden" value="signup" /> <input name="listname[5]" type="hidden" value="Newsletter" />'+
+            '<div style="display: none;"><input name="VerificationCodeX" size="20" type="text" value="" /></div>'+
+        '</form>'+
+      '</div>'+
+    '</div>'+
+  '</div>'+
+'</footer>';
+
+          f$('body').append(h$.footer);
+
+          if(f$('body').height() < f$(window).height()) {
+            f$('#framafooter').css('position','absolute');
+          } else {
+            f$('#framafooter').css('position','relative');
+          }
+
+          f$(window).on('resize, scroll, click', function() {
+            f$('#framafooter').css('position','relative');
+            if(f$('body').height() < f$(window).height()) {
+              f$('#framafooter').css('position','absolute');
+            } else {
+              f$('#framafooter').css('position','relative');
+            }
+          });
+        }
+
+        // Macaron
+        if(c$.donate && !n$.inframe) {
+          f$('#framanav_donation').show().delay(Math.random() * (29000 - 1000) + 1000).fadeOut(600).fadeIn(600);
+        }
+
+        // Liens À propos
+        f$('nav a[href^="/nav/html/"]').attr('href', function() {
+          return f$(this).attr('href')
+                         .replace('/nav/html/', n$.nav.url+'html/')
+                         .replace('credits.html', 'credits.html#'+c$.credits)
+                         .replace('legals.html', 'legals.html#'+c$.host);
+        });
+
+        // Crédits
+        if(i$('/html/credits.html') && location.hash) {
+          f$('#site-credits').load(n$.nav.url+'html/credits/'+location.hash.replace('#','')+'.html');
+        };
+
+        // Hébergeur et Iframe Piwik sur Mentions légales
+        if(i$('/html/legals.html')) {
+          if(location.hash) {
+            f$('#modal-legals-host').load(n$.nav.url+'html/host/'+location.hash.replace('#','')+'.html');
+          }
+          f$('#piwik-iframe').html('<iframe style="border: 0; height: 200px; width: 600px;" src="'+c$.piwik.url+'/index.php?module=CoreAdminHome&action=optOut&language=fr"></iframe>')
         }
 
         // Ext.js
-        if (typeof f$_ext_js === "function") {
-            f$_ext_js();
-        } else if(f$_ext_js) {
-            f$.getScript(f$_nav+'ext/'+f$_site+'.js');
+        if (typeof c$.js.ext === "function") {
+          c$.js.ext();
+        } else if(c$.js.ext) {
+          f$.getScript(n$.nav.url+'ext/'+n$.site+'.js');
         }
+        /** On peut ajouter des scripts jQuery "génériques" ici mais... **/
 
-        f$.ajaxSetup({ cache: true });
+        function go_BootStrap() {
+          // Redéfini f$ pour Bootstrap en mode noConflict si nécessaire
+          switch (c$.js.j$) { /** Deprecated → i$jQuery() **/
+            case 'noConflict': var f$ = jQuery.noConflict(); break;
+            default          : var f$ = jQuery; break;
+          }
 
-        if(!f$_nav_container) {
-            f$('body').prepend(f$_nav_container_html);
-        }
+          /**
+           *  Accessibilité
+           *  code issu de https://github.com/paypal/bootstrap-accessibility-plugin
+           **/
+          // Modal
+          if(typeof f$().modal == 'function') {
+            var modalhide =   f$.fn.modal.Constructor.prototype.hide;
+            f$.fn.modal.Constructor.prototype.hide = function(){
+              var modalOpener = this.$element.parent().find('[data-target="#' + this.$element.attr('id') + '"]');
+                modalhide.apply(this, arguments);
+                modalOpener.focus();
+            }
+          }
+          /** Fin accessibilité **/
 
-        // On charge ensuite le code HTML
-        f$.ajax({
-            url: f$_nav+'html/nav.html?'+f$_version
-        })
-        .fail(function() {
-            console.error('✘ nav.html');
-        })
-        .done(function(html) {
-            // On affiche le code html
-            f$('#framanav_container').prepend(html);
-            // Correctif sur les url relatives (les images) dans le code html
-            f$('img[src^="nav/"]').each(function(){
-                link=f$(this).attr('src');
-                f$(this).attr('src',link.replace('nav/',f$_nav));
-            });
-            f$('#framanav .navbar-brand img').attr('src',f$_nav+'img/logo.png');
+          if (!n$.inframe) { // Pas de bandeau, nav, modale et macaron en mode iframe
 
-            // On ajoute le viewport si Responsive
-            var f$_btn_desktop = f$('.framanav-desktop');
-            var f$_btn_mobile = f$('.framanav-mobile');
+            if(c$.fixed || i$('/nav/html/')) {
+              f$('body').addClass('fnav-fixed');
+            }
 
-            function f$_mobile() {
-                var f$_viewport = f$('meta[name="viewport"]');
-                if (f$_viewport.length==0) {
-                    f$('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
-                } else {
-                    f$_viewport.attr('content','width=device-width, initial-scale=1.0');
+            // Liens de la nav à ouvrir dans un onglet
+            if(!i$('/nav/html/')) {
+              f$('#framanav .dropdown-menu a').attr('target','_blank').append(h$.newwindow);
+            }
+
+            /** ... on ajoute surtout les scripts qui font appel à BootStrap et jQuery ici **/
+
+            // Activation des popovers
+            if(typeof f$().popover == 'function') {
+              f$('a[rel="popover"]').each(function() {
+                f$(this).popover({
+                  html: true,
+                  trigger: 'focus hover'
+                });
+                f$(this).removeAttr('title');
+              });
+            }
+
+            // Modal et Alert d'info
+            var f$_alert_dejavu = f$Cookie('r','nav-alert');
+            var f$_modalInfo_dejavu = f$Cookie('r',c$.modal.info[2]);
+
+            // Modal
+            if (c$.modal.info[0]!='') {
+              f$('body').append(
+                h$Modal( // id, title, body, footer
+                  'finfo', c$.modal.info[0],
+                  c$.modal.info[1],
+                  '<button class="btn" id="modal-close" data-dismiss="modal">'+d$.t.close+'</button>'+
+                  '<button class="btn btn-primary" id="modal-set-cookie" >'+d$.t.nevershow+'</button>'
+                )
+              );
+
+              if(!f$_modalInfo_dejavu) {
+                f$('#modal-finfo').modal('show');
+                f$('#modal-set-cookie').click(function() {
+                  f$Cookie('w',c$.modal.info[2],true,c$.modal.info[3]); // cookie pour 7 jours par défaut (cf config ci-dessous)
+                  f$('#modal-finfo').modal('hide');
+                });
+                f$('#modal-finfo .close, #modal-close').click(function() {
+                  f$Cookie('w',c$.modal.info[2],true); // cookie pour la session
+                  f$('#modal-finfo').modal('hide');
+                });
+              }
+            }
+
+            // Alert
+            if (c$.alert[1]!='' && !f$_alert_dejavu) {
+
+              f$_alert_margin_top = '';
+              if (c$.fixed || i$('/nav/html/')) {
+                f$('#framanav_container ~ *:not(script):first').css('margin-top', '-=42');
+              }
+
+              f$('#framanav_container').after(
+                h$Alert(
+                  c$.alert[0], 'nav-alert',
+                  '<div style="margin:0 auto; max-width:800px;"><p class="text-center">'+c$.alert[1]+'</p></div>',
+                  true
+                )
+              );
+
+              // Cookie enregistré en fermant (7 jours par défaut cf config.js)
+              f$('#nav-alert').bind('closed.bs.alert', function () {
+                f$Cookie('w',c$.alert[2],true,c$.alert[3]);
+              });
+
+            }
+
+            // Fenêtre modal pour dons sur téléchargements
+            if (c$.modal.don[0]!='') {
+              f$('body').append(
+                h$Modal(
+                  'soutenir', d$.meta.modaldon.t,
+                  // body
+                  '<div id="lldemars-framasoft"></div>'+
+                  d$.meta.modaldon.d[0].replace('%c$.modal.don[1]%', c$.modal.don[1])+
+                  d$.meta.modaldon.d[1]+d$.meta.modaldon.d[2]+d$.meta.modaldon.d[3],
+                  // footer
+                  '<p class="col-md-6 text-center"><a target="_blank" id="modal-don" href="'+d$.meta.soutenir.l+'/?f=modal&s='+n$.site+'" class="btn btn-soutenir btn-block">'+h$icon(d$.meta.soutenir.i)+' '+d$.meta.modaldon.b1+h$.newwindow+'</a></p>'+
+                  '<p class="col-md-6 text-center"><a target="_blank" id="modal-contact" href="'+d$.f.participer.l+'" class="btn btn-info btn-block">'+h$icon(d$.f.participer.i)+' '+d$.meta.modaldon.b2+h$.newwindow+'</a></p>'+
+                  '<p class="clearfix text-right"><a id="modal-dl" href="javascript:void(0);" class="text-primary" >'+d$.meta.modaldon.b3.replace('%c$.modal.don[2]%',c$.modal.don[2])+'</a></p>'+
+                  '<p class="clearfix text-right"><a id="modal-dl2" href="javascript:void(0);" class="text-primary" >'+d$.meta.modaldon.b4+'</a></p>'
+                )
+              );
+
+              if(c$.modal.don[0]=='onstart') {
+                var dejavu = f$Cookie('r', 'dondl');
+                if(!dejavu) {
+                  f$('#modal-soutenir').modal('show');
+                  f$('#modal-soutenir').css('display','block'); // bugfix
+                  f$('#modal-contact, #modal-don, #modal-dl, #modal-soutenir .close').click(function() {
+                    f$Cookie('w','dondl',true,c$.modal.don[3]);
+                    f$('#modal-soutenir').modal('hide');
+                  });
+                  f$('#modal-dl2').click(function() {
+                    f$Cookie('w','dondl',true,365*24*60*60*1000);
+                    f$('#modal-soutenir').modal('hide');
+                  });
                 }
-                f$_btn_desktop.addClass('visible-xs-inline').show();
-                f$_btn_mobile.hide();
-            };
-
-            function f$_desktop() {
-                var f$_viewport = f$('meta[name="viewport"]');
-                if (f$_viewport.length) {
-                    f$_viewport.attr('content','width=1024');
-                }
-                f$_btn_desktop.removeClass('visible-xs-inline').hide();
-                f$_btn_mobile.show();
-            }
-
-            if (f$_responsive) {
-            // Viewport mobile si Responsive dans la config
-            // Boutons « Désactiver mode mobile » par défaut
-                f$_mobile();
-            } else if (f$('meta[name="viewport"]').length==0) {
-            // Bouton « Activer mode mobile » par défaut
-                f$_desktop();
-            }
-            // Si (Dés)Activation mannuel, le cookie prend la main le temps de la session
-            switch (getCookie('nav_viewport')) {
-                case 'mobile' : f$_mobile(); break;
-                case 'desktop': f$_desktop(); break;
-            }
-            // Boutons (Dés)Activer le mode mobile
-            f$_btn_mobile.on('click', function() {
-                f$_mobile();
-                document.cookie = 'nav_viewport=mobile;expire=0';
-            });
-            f$_btn_desktop.on('click', function() {
-                f$_desktop();
-                document.cookie = 'nav_viewport=desktop;expire=0';
-            });
-
-            f$('#framanav_container').css('opacity','1');
-
-            // Bénévalo
-            // Le bouton soutenir remplacé par un bouton bénévalo
-            // pendant 3 jours autour de la pleine lune
-            var f$_today = Math.floor(new Date().getTime() / 1000);
-            var f$_fullMoon = 1453603580; // 24/01/2016 02:46:20
-            var f$_moonRev = 2551443;     // 29j 12h 44m 3s
-
-            if((f$_today - f$_fullMoon)%f$_moonRev < 129600 || (f$_today - f$_fullMoon)%f$_moonRev > f$_moonRev-129600) {
-              f$('#btn-benevalo').show().prev().hide();
-            }
-
-            /*******************
-             *   BootStrap JS
-             *******************/
-            if (f$_bootstrap_js) {
-                if (typeof f$().modal == 'function' || f$_bootstrap_js == 'html') {
-                    console.log('✔ Bootstrap HTML');
-                    go_BootStrap();
-                } else {
-                    f$.getScript(f$_nav+'lib/bootstrap/js/bootstrap.min.js', function() {
-                        console.log('✔ Bootstrap Ajax');
-                        go_BootStrap();
+              } else {
+                f$(c$.modal.don[0]).click(function() {
+                  var dejavu = f$Cookie('r','dondl');
+                  if(!dejavu) {
+                    link=f$Link(f$(this).attr('href'));
+                    f$('#modal-soutenir').modal('show');
+                    f$('#modal-contact, #modal-don, #modal-dl').click(function() {
+                      f$Cookie('w','dondl',true,c$.modal.don[3]);
+                      f$('#modal-soutenir').modal('hide');
+                      window.location.href = link;
                     });
-                }
-            } else {
-                console.info('✘ Bootstrap');
-            }
-
-
-            // Audio JS
-            if (f$_audio_js) {
-                f$('audio').each(function() {
-                    f$(this).wrap('<div class="audio" />');
-                        var outer = this.outerHTML;
-                    var regex = new RegExp('<' + this.tagName, 'i');
-                        var newTag = outer.replace(regex, '<video');
-                        regex = new RegExp('</' + this.tagName, 'i');
-                        newTag = newTag.replace(regex, '</video');
-                    f$(this).replaceWith(newTag);
-                });
-            }
-
-            // Video JS
-            if (f$_video_js) {
-                f$('link[href*="/nav/css/nav.css"]').before('<link rel="stylesheet" type="text/css" href="'+f$_nav+'lib/video-js/video-js.css" />');
-                 // Paramètres à ajouter à la vidéo pour appliquer VideoJS en surcouche
-                f$('video').attr({
-                    'class':'video-js vjs-default-skin',
-                    'data-setup':'{}'});
-                // Numérotation des vidéos (pour pouvoir utiliser l'API : videojs('id').ready() )
-                f$('video').each(function(index) {
-                    if(f$(this).has('source[type*="webm"]').length && (f$_isFirefox || f$_isOpera || f$_isChrome)) {
-                        f$(this).children('source[type*="mp4"]').remove();
-                    }
-                    f$(this).attr('id','f_video_'+index);
-                });
-
-                f$.getScript(f$_nav+'lib/video-js/video.js', function() {
-                    console.log('✔ video.js');
-                    videojs.options.flash.swf = f$_nav+'lib/video-js/video-js.swf';
-                    // On "clique" sur les sous-titres Français
-                    // pour chaque vidéo dès que VideoJS est prêt
-                    f$('video').each(function(index) {
-                            videojs('f_video_'+index).ready(function() { f$("li.vjs-menu-item:contains('Français')").trigger('click'); });
+                    f$('#modal-dl2').click(function() {
+                      f$Cookie('w','dondl',true,365*24*60*60*1000);
+                      f$('#modal-soutenir').modal('hide');
+                      window.location.href = link;
                     });
+                    return false;
+                  }
                 });
+              }
             }
-
-            // Bloqueur d'iframe style Flashblock
-            /* Vidéos Youtube */
-            var f$_yt_i=0;
-            f$('a[href*="youtube.com/watch"],a[href*="youtu.be/"]').has('img').click(function() {
-                // Si lien youtube <a> on l'ajoute le code au clic + ajout d'un Id à l'iframe
-                var f$_yt_iframe = f$(this).attr('href').replace(
-                    /(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com(?:\/embed\/|\/v\/|\/watch\?v=))([\w\-]{10,12})\b[?=&\w]*(?!['"][^<>]*>|<\/a>)/ig,
-                    '<iframe id="youtube'+ f$_yt_i +'" src="https://www.youtube.com/embed/$1?autoplay=1" width="560" height="315" frameborder="0" allowfullscreen ></iframe>');
-                f$(this).after(f$_yt_iframe);
-                // On supprime <a><img/></a>
-                f$(this).remove();
-                f$_yt_i++;
-                return false;
-            });
-            /* Même chose à faire pour Soundcloud, Dailymotion, Vimeo */
-
-            // Flux RSS Global
-            f$('head').append('<link rel="alternate" type="application/rss+xml" title="Flux global de Framasoft" href="http://rss.framasoft.org/" />');
-
-            // Favicon et Apple touch icon
-            if (!f$_keep_icons) {
-                f$('link[rel*=icon]').remove();
-                f$_favicon = (!f$_favicon) ? 'favicon-violet.png' : f$_favicon;
-                f$_apple_touch_icon = (!f$_apple_touch_icon) ? 'apple-violet.png' : f$_apple_touch_icon;
-                f$('head').append('<link rel="icon" type="image/png" href="'+f$_nav+'img/icons/'+f$_favicon+'" />');
-                f$('head').append('<link rel="apple-touch-icon" href="'+f$_nav+'img/icons/'+f$_apple_touch_icon+'" />');
-            }
-
-            // Opt-in
-            var f$_optin_dejavu = getCookie('opt-in');
-            if (f$_email_field1!='' && !f$_optin_dejavu) {
-                f$(f$_email_field1).after(
-                    '<div class="alert alert-info fade in" id="fs_opt-in">'+
-                    '<input type="checkbox" id="fs_opt-in_checkbox" value="false" />'+
-                    '<label for="fs_opt-in_checkbox">J’accepte que Framasoft m’envoie à cette adresse des informations importantes</label>'+
-                    '<br /><small>(Promis, nous ne revendons pas nos fichiers, même à la NSA&nbsp;! '+
-                    '<a href="https://contact.framasoft.org/newsletter" id="link-opt-in" target="_blank" >Pourquoi m’inscrire&nbsp;?&nbsp;<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span></a>)</small></div>'
-                );
-
-                f$(f$_email_field1).focusin(function() {
-                    f$('#fs_opt-in_error').remove();
-                    // Ajout du cookie (expire au bout d'un an)
-                    setCookie(f$_optin_cookie_name,true,f$_optin_cookie);
-                });
-
-                // Requête ajax crossdomain lorsque la case est cochée
-                f$('#fs_opt-in input, #fs_opt-in label').on('click', function() {
-                    f$('#fs_opt-in_error').remove();
-                    f$_email = f$(f$_email_field1).val();
-                    if(f$_email_field2!='' && f$(f$_email_field1).val()!=f$(f$_email_field2).val()) { // Cas où il y a un champs pour confirmer email
-                        f$(f$_email_field1).after(
-                            '<div class="alert alert-danger fade in" id="fs_opt-in_error">'+
-                            'Les adresses emails ne correspondent pas.</div>'
-                        );
-                        return false;
-                    } else if( !f$_isValidEmail(f$(f$_email_field1).val())) {
-                        f$(f$_email_field1).after(
-                            '<div class="alert alert-danger fade in" id="fs_opt-in_error">'+
-                            'L’adresse email '+f$_email+' n’est pas valide.</div>'
-                        );
-                        return false;
-                    } else {
-                        f$('#fs_opt-in input').attr('checked', true);
-                        f$.ajax({
-                            type: "POST",
-                            url: 'https://contact.framasoft.org/php_list/lists/?p=subscribe&id=2', // URL d'abonnement à la liste
-                            crossDomain:true,
-                            data: 'makeconfirmed=1&htmlemail=1&list%5B5%5D=signup&listname%5B5%5D=Newsletter&email='+f$_email.replace('@','%40')+'&VerificationCodeX=&subscribe=Abonnement' // Paramètres habituellement passés dans le formulaire
-                        });
-                        // On supprime la case à cocher (pas possible de décocher ; l'annulation se fait depuis le mail reçu)
-                        f$('#fs_opt-in').remove();
-                        // Message d'alert pour confirmer l'inscription
-                        f$(f$_email_field1).after(
-                            '<div class="alert alert-success fade in" id="fs_opt-in_confirm" aria-live="polite">'+
-                            '<button type="button" class="close" data-dismiss="alert" title="Fermer"><span aria-hidden="true">&times;</span><span class="sr-only">Fermer</span></button>'+
-                            'Votre adresse email <strong>'+f$_email+'</strong> a été ajoutée à notre liste. Vous devriez avoir reçu un email de confirmation.</div>'
-                        );
-                    }
-                });
-            }
-
-            // Footer
-            if(f$_footer && f$_not_in_frame) {
-                f$.ajax({
-                    url: f$_nav+'html/footer.html'
-                })
-                .fail(function() {
-                    console.error('✘ footer.html');
-                })
-                .done(function(html) {
-                    f$('body').append(html);
-                    if(f$('body').height() < f$(window).height()) {
-                        f$('#framafooter').css('position','absolute');
-                    } else {
-                        f$('#framafooter').css('position','relative');
-                    }
-                    f$('#framafooter a[href^="/nav/html/"]').attr('href', function() {
-                        return f$(this).attr('href')
-                                       .replace('/nav/html/', f$_nav+'html/')
-                                       .replace('credits.html', 'credits.html#'+f$_credits)
-                                       .replace('legals.html', 'legals.html#'+f$_host);
-                    });
-                });
-                f$(window).on('resize, scroll, click', function() {
-                    f$('#framafooter').css('position','relative');
-                    if(f$('body').height() < f$(window).height()) {
-                        f$('#framafooter').css('position','absolute');
-                    } else {
-                        f$('#framafooter').css('position','relative');
-                    }
-                });
-            }
-
-            // Macaron
-            if(f$_donate && f$_not_in_frame) {
-                f$('#framanav_donation').show().delay(Math.random() * (29000 - 1000) + 1000).fadeOut(600).fadeIn(600);
-            }
-
-            // Liens À propos
-            f$('nav a[href^="/nav/html/"]').attr('href', function() {
-                return f$(this).attr('href')
-                               .replace('/nav/html/', f$_nav+'html/')
-                               .replace('credits.html', 'credits.html#'+f$_credits)
-                               .replace('legals.html', 'legals.html#'+f$_host);
-            });
-
-            // Crédits
-            if(f$_page('/html/credits.html') && location.hash) {
-                f$('#site-credits').load(f$_nav+'html/credits/'+location.hash.replace('#','')+'.html');
-            };
-
-            // Hébergeur et Iframe Piwik sur Mentions légales
-            if(f$_page('/html/legals.html')) {
-                if(location.hash) {
-                    f$('#modal-legals-host').load(f$_nav+'html/host/'+location.hash.replace('#','')+'.html');
-                }
-                f$('#piwik-iframe').html('<iframe style="border: 0; height: 200px; width: 600px;" src="'+f$_piwik_url+'/index.php?module=CoreAdminHome&action=optOut&language=fr"></iframe>')
-            }
-
-            /** On peut ajouter des scripts jQuery "génériques" ici mais... **/
-
-            function go_BootStrap() {
-                // Redéfini f$ pour Bootstrap en mode noConflict si nécessaire
-                switch (f$_jquery) {
-                    case 'noConflict': var f$ = jQuery.noConflict(); break;
-                    default          : var f$ = jQuery; break;
-                }
-
-                /**
-                 *  Accessibilité
-                 *  code issu de https://github.com/paypal/bootstrap-accessibility-plugin
-                 **/
-                // Alert
-                f$('.close').removeAttr('aria-hidden').wrapInner('<span aria-hidden="true"></span>').append('<span class="sr-only">Fermer</span>');
-                // Modal
-                if(typeof f$().modal == 'function') {
-                    var modalhide =   f$.fn.modal.Constructor.prototype.hide;
-                    f$.fn.modal.Constructor.prototype.hide = function(){
-                        var modalOpener = this.$element.parent().find('[data-target="#' + this.$element.attr('id') + '"]');
-                        modalhide.apply(this, arguments);
-                        modalOpener.focus();
-                    }
-                }
-                /** Fin accessibilité **/
-
-                if (f$_not_in_frame) { // Pas de bandeau, nav, modale et macaron en mode iframe
-
-                    if(f$_nav_static || f$_page('/nav/html/')) {
-                        f$('#framanav_container ~ *:not(script):first').css('margin-top', '+=42');
-                        f$('#framanav_container').css({
-                            'position':'fixed',
-                            'width':'100%',
-                            'top':'0',
-                            'z-index':'1000'
-                        });
-                    }
-
-                    // Liens de la nav à ouvrir dans un onglet
-                    if(!f$_page('/nav/html/')) {
-                        f$('#framanav .dropdown-menu a').attr('target','_blank').append('<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span>');
-                    }
-
-                    /** ... on ajoute surtout les scripts qui font appel à BootStrap et jQuery ici **/
-                    // Activation des popovers
-                    if(typeof f$().popover == 'function') {
-                        f$('a[rel="popover"]').each(function() {
-                            f$(this).popover({
-                                html: true,
-                                trigger: 'focus hover',
-                                // utilisation de 'template' pour ajout du lien sur la popover en mode tactile
-                                //template: '<div class="popover" role="tooltip"><div class="arrow"></div><a href="'+f$(this).attr('href')+'"><h3 class="popover-title"></h3><div class="popover-content"></div></a></div>'
-                            });
-                            f$(this).removeAttr('title');
-                        });
-                    }
-
-                    // Fenêtre modale et bandeau d'alerte
-                    var f$_alert_dejavu = getCookie('nav-alert');
-                    var f$_alert_modal_dejavu = getCookie(f$_alert_modal_cookie_name);
-
-                    // Ajout de la fenêtre modale
-                    if (f$_alert_modal_text!='') {
-                        f$('body').append(
-                        '<div class="modal fade" lang="fr" id="modal-alert" tabindex="-1" role="dialog" aria-labelledby="modal-alertLabel" aria-hidden="true">'+
-                            '<div class="modal-dialog">'+
-                                '<div class="modal-content">'+
-                                    '<div class="modal-header">'+
-                                        '<button type="button" class="close" data-dismiss="modal" title="Fermer"><span aria-hidden="true">&times;</span><span class="sr-only">Fermer</span></button>'+
-                                        '<h1 id="modal-alertLabel">'+f$_alert_modal_title+'</h1>'+
-                                    '</div>'+
-                                    '<div class="modal-body">'+f$_alert_modal_text+'</div>'+
-                                    '<div class="modal-footer">'+
-                                        '<button class="btn" id="modal-close" data-dismiss="modal">Fermer</button>'+
-                                    '</div>'+
-                                '</div>'+
-                            '</div>'+
-                        '</div>');
-
-                        if(!f$_alert_modal_dejavu && f$_alert_modal_onstart) {
-                            f$('#modal-close').after('<button class="btn btn-primary" id="modal-set-cookie" >Ne plus afficher</button>')
-                            f$('#modal-alert').modal('show');
-                            f$('#modal-set-cookie').click(function() {
-                                setCookie(f$_alert_modal_cookie_name,true,f$_alert_modal_cookie); // cookie pour 7 jours par défaut (cf config.js)
-                                f$('#modal-alert').modal('hide');
-                            });
-                        }
-                        f$('#modal-alert .close, #modal-close').click(function() {
-                            setCookie(f$_alert_modal_cookie_name,true); // cookie pour la session
-                            f$('#modal-alert').modal('hide');
-                        });
-                    }
-
-                    // Ajout du bandeau d'alerte
-                    if (f$_alert_text!='' && !f$_alert_dejavu) {
-
-                        f$_alert_margin_top = '';
-                        if (f$_nav_static || f$_page('/nav/html/')) {
-                            f$('#framanav_container ~ *:not(script):first').css('margin-top', '-=42');
-                            f$_alert_margin_top = ' padding-top:52px;';
-                        }
-
-                        f$('#framanav_container').after(
-                            '<div id="nav-alert" lang="fr" class="alert alert-'+f$_alert_type+' fade in" style="border-radius:0;'+f$_alert_margin_top+'">'+
-                                '<button type="button" class="close" data-dismiss="alert" title="Fermer"><span aria-hidden="true">&times;</span><span class="sr-only">Fermer</span></button>'+
-                                '<p style="text-align:center">'+f$_alert_text+'</p>'+
-                            '</div>'
-                        );
-
-                        // Cookie enregistré en fermant (7 jours par défaut cf config.js)
-                        f$('#nav-alert').bind('closed.bs.alert', function () {
-                            setCookie(f$_alert_cookie_name,true,f$_alert_cookie);
-                        });
-
-                    }
-
-                    // Fenêtre modal pour dons sur téléchargements
-                    if (f$_modal_don_liendl!='') {
-                        f$('body').append(
-                        '<div class="modal fade" lang="fr" id="modal-soutenir" tabindex="-1" role="dialog" aria-labelledby="modal-soutenirLabel" aria-hidden="true">'+
-                            '<div class="modal-dialog">'+
-                                '<div class="modal-content">'+
-                                    '<div class="modal-header">'+
-                                        '<button type="button" class="close" data-dismiss="modal" title="Fermer"><span aria-hidden="true">&times;</span><span class="sr-only">Fermer</span></button>'+
-                                        '<h1 id="modal-soutenirLabel">Soutenez Framasoft</h1>'+
-                                    '</div>'+
-                                    '<div class="modal-body">'+
-                                        '<div id="lldemars-framasoft"></div>'+
-                                        '<p>Vous êtes sur le point '+f$_modal_don_txtdl1+' une ressource <b>libre</b> issue de la vingtaine de projets du réseau Framasoft.</p>'+
-                                        '<p>Cette ressource est <b>gratuite</b> (et le sera tant que nous existerons) parce que <b>Framasoft est une association d’intérêt général à but non lucratif</b> dont l’objectif est justement la diffusion du logiciel libre et sa culture au plus large public.'+
-                                        '<p>Mais tout ceci est rendu possible parce que Framasoft est <b>soutenue par les dons (défiscalisables) de ses utilisateurs</b>.</p>'+
-                                        '<p>Merci de prendre quelques minutes en nous aidant à pérenniser et développer notre action.</p>'+
-                                    '</div>'+
-                                    '<div class="modal-footer">'+
-                                        '<p class="col-md-6 text-center"><a target="_blank" id="modal-don" href="https://soutenir.framasoft.org/?f=modal&s='+f$_site+'" class="btn btn-soutenir btn-block"><span class="fa fa-fw fa-lg fa-heart"></span> Je veux faire un don<br /> à l’association Framasoft&nbsp;<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span></a></p>'+
-                                        '<p class="col-md-6 text-center"><a target="_blank" id="modal-contact" href="https://participer.framasoft.org" class="btn btn-info btn-block"><span class="fa fa-fw fa-lg fa-paw"></span> Je veux participer.<br />Par où on commence ?&nbsp;<span class="fa fa-external-link new-window"></span><span class="sr-only"> (nouvelle fenêtre)</span></a></p>'+
-                                        '<p class="clearfix text-right"><a id="modal-dl" href="javascript:void(0);" class="text-primary" >Non merci, je souhaite seulement '+f$_modal_don_txtdl2+'</a></p>'+
-                                        '<p class="clearfix text-right"><a id="modal-dl2" href="javascript:void(0);" class="text-primary" >Je soutiens déjà Framasoft</a></p>'+
-                                    '</div>'+
-                                '</div>'+
-                            '</div>'+
-                        '</div>');
-
-                        if(f$_modal_don_liendl=='onstart') {
-                            var dejavu = getCookie('dondl');
-                            if(!dejavu) {
-                                f$('#modal-soutenir').modal('show');
-                                f$('#modal-soutenir').css('display','block'); // bugfix
-                                f$('#modal-contact, #modal-don, #modal-dl, #modal-soutenir .close').click(function() {
-                                    setCookie('dondl',true,f$_modal_don_cookie);
-                                    f$('#modal-soutenir').modal('hide');
-                                });
-                                f$('#modal-dl2').click(function() {
-                                    setCookie('dondl',true,365*24*60*60*1000);
-                                    f$('#modal-soutenir').modal('hide');
-                                });
-                            }
-                        } else {
-                            f$(f$_modal_don_liendl).click(function() {
-                                var dejavu = getCookie('dondl');
-                                if(!dejavu) {
-                                    link=f$(this).attr('href');
-                                    f$('#modal-soutenir').modal('show');
-                                    f$('#modal-contact, #modal-don, #modal-dl').click(function() {
-                                        setCookie('dondl',true,f$_modal_don_cookie);
-                                        f$('#modal-soutenir').modal('hide');
-                                        window.location.href = link;
-                                    });
-                                    f$('#modal-dl2').click(function() {
-                                        setCookie('dondl',true,365*24*60*60*1000);
-                                        f$('#modal-soutenir').modal('hide');
-                                        window.location.href = link;
-                                    });
-                                    return false;
-                                }
-                            });
-                        }
-                    }
-                }// </f$_not_in_frame>
-            } // </go_BootStrap>
-        }); // </nav.html>
-    }); // </document.ready>
+          }// </!n$.inframe>
+        } // </go_BootStrap>
+      }); // </nav.html>
+  }); // </document.ready>
 }   // </start_jQuery>
 
-/************** Fonctions globales ****************/
+/************************ Fonctions globales **************************/
+//----------------------Fonctions f$ -----------------------------------
+// Conversion en url absolue (c'est le navigateur qui fait lui-même le boulot)
+function f$Link(href) {
+  var link = document.createElement("a");
+  link.href = href;
+  return (link.protocol+"//"+link.host+link.pathname+link.search+link.hash);
+}
+
+// Import de la config l$ dans c$
+// ou du fichier de lang (en) dans d$ (fr)
+function f$Merge(global, local) {
+
+  function MergeRecursive(obj1, obj2) {
+    for (var p in obj2) {
+      try {
+        if ( obj2[p].constructor == Object ) {
+          obj1[p] = MergeRecursive(obj1[p], obj2[p]);
+        } else if (obj2[p].constructor == Array) {
+          for (var i = 0; i < obj2[p].length; i++) {
+            obj1[p][i] = obj2[p][i];
+          }
+        } else {
+          obj1[p] = obj2[p];
+        }
+      } catch(e) {
+        obj1[p] = obj2[p];
+      }
+    }
+    return obj1;
+  }
+
+  MergeRecursive(global, local);
+}
+
 // Cookies
-function setCookie(sName, sValue, sTime) {
-    sTime = typeof sTime !== 'undefined' ? sTime : 365*24*60*60*1000;
+function f$Cookie(set, name, value, time) {
+
+  if (set == 'w') {
+
+    time = typeof time !== 'undefined' ? time : 365*24*60*60*1000;
     var today = new Date(), expires = new Date();
-    expires.setTime(today.getTime() + sTime);
-    document.cookie = sName + "=" + encodeURIComponent(sValue) + ";expires=" + expires.toGMTString();
-}
+    expires.setTime(today.getTime() + time);
+    document.cookie = name + "=" + encodeURIComponent(value) + ";expires=" + expires.toGMTString();
 
-function getCookie(sName) {
-    var oRegex = new RegExp("(?:; )?" + sName + "=([^;]*);?");
+  } else {
+
+    var oRegex = new RegExp("(?:; )?" + name + "=([^;]*);?");
     if (oRegex.test(document.cookie)) {
-        return decodeURIComponent(RegExp["$1"]);
+      return decodeURIComponent(RegExp["$1"]);
     } else {
-        return null;
+      return null;
     }
+
+  }
+
 }
 
-// Fonction d'ajout de scripts
-function f$_loadScript(url, callback, forceCallback) {
-    if (!this.loadedScript) {
-        this.loadedScript = new Array();
-    }
+// Ajout de scripts (quand jQuery est prêt utiliser plutôt f$.getScript())
+function f$LoadJS(url, callback) {
+  if (!this.loadedScript) {
+    this.loadedScript = new Array();
+  }
 
-    // indexOf n'existe pas pour IE8
-    if (!Array.prototype.indexOf) {
-        Array.prototype.indexOf = function(elt /*, from*/) {
-        var len = this.length >>> 0;
-        var from = Number(arguments[1]) || 0;
-        from = (from < 0)
-             ? Math.ceil(from)
-             : Math.floor(from);
-        if (from < 0)
-          from += len;
-        for (; from < len; from++) {
-          if (from in this &&
-              this[from] === elt)
-            return from;
-        }
-        return -1;
-        };
-    }
-    // fin teste indexOf
+  // indexOf n'existe pas pour IE8
+  if (!Array.prototype.indexOf) {
+    Array.prototype.indexOf = function(elt /*, from*/) {
+      var len = this.length >>> 0;
+      var from = Number(arguments[1]) || 0;
+      from = (from < 0)
+           ? Math.ceil(from)
+           : Math.floor(from);
+      if (from < 0)
+        from += len;
+      for (; from < len; from++) {
+        if (from in this &&
+            this[from] === elt)
+        return from;
+      }
+      return -1;
+    };
+  } // fin indexOf
 
-    if (this.loadedScript.indexOf(url) == -1) {
-        this.loadedScript.push(url);
-        var head = document.getElementsByTagName("head")[0];
-        var e = document.createElement("script");
-        e.src = url;
-        e.type = "text/javascript";
-        e.charset ="utf-8";
+  if (this.loadedScript.indexOf(url) == -1) {
+    this.loadedScript.push(url);
+    var head = document.getElementsByTagName("head")[0];
+    var e = document.createElement("script");
+    e.src = url;
+    e.type = "text/javascript";
+    e.charset ="utf-8";
 
-        var done = false;
-        e.onload = e.onreadystatechange = function() {
-            if ( !done && (!this.readyState ||
-                this.readyState === "loaded" || this.readyState === "complete") ) {
-                done = true;
-                callback();
-                // Handle memory leak in IE
-                e.onload = e.onreadystatechange = null;
-            }
-        };
+    var done = false;
+    e.onload = e.onreadystatechange = function() {
+      if ( !done && (!this.readyState ||
+        this.readyState === "loaded" || this.readyState === "complete") ) {
+        done = true;
+        callback();
+        e.onload = e.onreadystatechange = null; // Handle memory leak in IE
+      }
+    };
 
-        head.appendChild(e);
-    } else {
-        if (forceCallback) { // pas utilisé
-            callback();
-        }
-    }
+    head.appendChild(e);
+  }
 }
 
 // Ajout de CSS
-function f$_loadCSS(url, position, media) {
-    if (position==undefined) position='end';
-    if (media==undefined) media='screen';
-    var f$_link = document.createElement('link');
-        f$_link.rel = "stylesheet";
-        f$_link.media=media;
-        f$_link.href= url;
+function f$LoadCSS(css) {
+  function AddLink(stylesheet, position) {
+    var link = document.createElement('link');
+        link.rel = "stylesheet";
 
-    if (position == 'start') {
-        document.getElementsByTagName('head')[0].insertBefore(f$_link, document.getElementsByTagName('head')[0].firstChild);
-    } else {
-        document.getElementsByTagName('head')[0].appendChild(f$_link);
+    switch( stylesheet ) {
+      case '0': // Bootstrap
+        link.media = (css.b$) ? 'all' : 'none';
+        link.href  = n$.nav.url+'lib/bootstrap/css/bootstrap.min.css';
+      break;
+      case '2': // Font-Awesome
+        link.media = 'all';
+        link.href   = n$.nav.url+'lib/font-awesome/css/font-awesome.min.css';
+      break;
+      case '3': // Nav
+        link.media = 'screen';
+        link.href   = n$.nav.url+'css/nav.css?'+n$.version;
+      break;
+      case '4': // Frama
+        link.media = (css.frama) ? 'all' : 'none';
+        link.href   = n$.nav.url+'css/frama.css?'+n$.version;
+      break;
+      case '5': // Ext
+        link.media = (css.ext) ? 'all' : 'none';
+        link.href   = n$.nav.url+'ext/'+n$.site+'.css?'+n$.version;
+      break;
     }
+    if(link.media != 'none' && stylesheet != '1') {
+      // Ajout au début du <head>
+      if ( position != undefined ) {
+        document.getElementsByTagName('head')[0].insertBefore(
+          link,
+          document.getElementsByTagName('head')[0].firstChild
+        );
+      // Ajout à la fin <head>
+      } else {
+        document.getElementsByTagName('head')[0].appendChild(link);
+      }
+    }
+  }
+
+  /** Parcours décroissant à partir de la position du '1' (= css du site)
+   *  exemple 02-1-345 → on commence par le 2 puis le 0 **/
+  for(var i = css.order.indexOf('1'); i >= 0; i--) {
+    AddLink(css.order[i], 'first');
+  }
+  /** Parcours croissant pour le reste
+   * exemple 02-1-345 → dans l'ordre 3, 4 et 5 **/
+  for(var i = css.order.indexOf('1'); i < css.order.length; i++) {
+    AddLink(css.order[i]);
+  }
 }
 
-function f$_isValidEmail(emailAddress) {
-    var pattern = new RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i);
-    if (pattern.test(emailAddress)==true) {
-        return true;
-    } else {
-       return false;
-    }
+// Bénévalo
+function f$Benevalo() {
+  // Le bouton soutenir remplacé par un bouton bénévalo
+  // pendant 3 jours autour de la pleine lune
+  var today = Math.floor(new Date().getTime() / 1000);
+  var fullMoon = 1453603580; // 24/01/2016 02:46:20
+  var moonRev = 2551443;     // 29j 12h 44m 3s
+
+  if((today - fullMoon)%moonRev < 129600 || (today - fullMoon)%moonRev > moonRev-129600) {
+    f$('#btn-benevalo').show().prev().hide();
+  }
 }
 
-/** Depreciated → i$() **/
+//----------------------Fonctions HTML ---------------------------------
+// Modales
+function h$Modal(id, title, body, footer) {
+  var html =
+    '<div class="modal fade" lang="'+d$.meta.lg+'" id="modal-'+id+'" tabindex="-1" role="dialog" aria-labelledby="modal-'+id+'Label" aria-hidden="true">'+
+      '<div class="modal-dialog">'+
+        '<div class="modal-content">'+
+          '<div class="modal-header">'+
+            '<button type="button" class="close" data-dismiss="modal" title="'+d$.t.close+'"><i aria-hidden="true">&times;</i>'+h$SR(d$.t.close)+'</button>'+
+            '<h1 id="modal-'+id+'Label">'+title+'</h1>'+
+          '</div>'+
+          '<div class="modal-body">'+body+'</div>'+
+          '<div class="modal-footer">'+footer+'</div>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
+  return html;
+}
+
+// Popover
+function h$Popover(title, description, placement) {
+  html = ( title != undefined && description != undefined )
+       ? 'rel="popover" data-content="'+description+'" title="'+title+'"'
+       : '';
+  html += ( placement != undefined )
+        ? ' data-placement="'+placement+'"'
+        : '';
+  return html;
+}
+
+// Alert
+function h$Alert(type, id, body, close) {
+  close = ( close )
+        ? '<button type="button" class="close" data-dismiss="alert" title="'+d$.t.close+'"><i aria-hidden="true">&times;</i>'+h$SR(d$.t.close)+'</button>'
+        : ''
+  html = '<div class="alert alert-'+type+' fade in" id="'+id+'">'+close+body+'</div>'
+  return html;
+}
+
+// Texte pour lecteur d'écran
+function h$SR(text) {
+  return '<span class="sr-only">'+text+'</span>';
+}
+
+// Icône Font-Awesome
+function h$icon(classCSS) {
+  return '<i class="fa fa-fw fa-lg '+classCSS+'"></i>';
+}
+
+//----------------------Fonctions i$ -----------------------------------
+/** Deprecated → i$() **/
 function f$_page(string) {
-    return (f$_url.indexOf(string) > -1);
+  return (n$.url.indexOf(string) > -1);
 }
 
+// Sur quel site/page on est ?
 function i$(string, location) {
-    switch (location) {
-        case 'h' : location = window.location.host; break;
-        case 'u' : location = window.location.href; break;
-        default: location = window.location.href; return (location.indexOf(string) > -1); break;
-    }
+  switch (location) {
+    case 'h' : location = window.location.host; break;
+    case 'u' : location = window.location.href; break;
+    default:
+      location = window.location.href;
+      return (location.indexOf(string) > -1);
+    break;
+  }
 
-    if( typeof string === 'object' || typeof string === 'function' ) { // RegExp
-        return (string.test(location));
-    } else { // String
-        return (location == string);
-    }
+  if( typeof string === 'object' || typeof string === 'function' ) { // RegExp
+    return (string.test(location));
+  } else { // String
+    return (location == string);
+  }
 }
 
-function f$_absolutePath(href) {
-    var link = document.createElement("a");
-    link.href = href;
-    return (link.protocol+"//"+link.host+link.pathname+link.search+link.hash);
+// Est-ce une adresse email valide ?
+function i$Email(emailAddress) {
+  var pattern = new RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i);
+  return pattern.test(emailAddress)==true;
+}
+
+// Dans quel langue est la page web ?
+function i$Lang(lg) {
+  var lang = '';
+  var html = document.getElementsByTagName("html");
+  var meta = document.getElementsByTagName('script');
+
+  if(html[0].getAttribute("lang")) {
+
+    lang = html[0].getAttribute("lang");
+
+  } else if(html[0].getAttribute("locale")) {
+
+    lang = html[0].getAttribute("locale");
+
+  } else {
+
+    for (var i = 0; i < meta.length; i++) {
+      if ((meta[i].getAttribute("http-equiv") && meta[i].getAttribute("content")
+           && meta[i].getAttribute("http-equiv").indexOf("Language") > -1)
+        ||(meta[i].getAttribute("property") && meta[i].getAttribute("content")
+           && meta[i].getAttribute("property").indexOf("locale") > -1)) {
+
+          lang = meta[i].getAttribute("content");
+
+      }
+    }
+  }
+  return (lang.substr(0,2).toLowerCase() == lg)
+}
+
+// Version de jQuery à utiliser
+/**
+  si undefined              → AJAX
+  si 1.9.0 < jquery < 3.0.0 → HTML
+  sinon                     → noConflict
+  /!\ si $ déjà défini (prototype, mootools, etc)
+  **/
+function i$jQuery() {
+  if (window.jQuery === undefined) {
+    return 'AJAX';
+  } else {
+    var version = window.jQuery.fn.jquery.split(' ')[0].split('.');
+    if ( (version[0] < 2 && version[1] < 9)                        // < 1.9
+         || (version[0] == 1 && version[1] == 9 && version[2] < 1) // 1.9.0
+         || (version[0] > 2) ) {                                   // 3.x
+      return 'noConflict';
+    } else {
+      return 'HTML';
+    }
+  }
 }
 
 /***********************************************************************
  *                           Config globale                            *
  ***********************************************************************/
-var f$_jquery = 'jQuery';                           // 'jQuery'     = jQuery de la nav ;
-                                                    // 'html'       = jQuery (1.12.4 ou +) présent dans la page ;
-                                                    // 'noConflict' = variable $ et jQuery renommés en js ;
+var c$ = {
+  js: {
+    j$: i$jQuery(),                 // 'AJAX'       = jQuery de la nav ;
+                                    // 'HTML'       = jQuery (1.9.1 ou +) présent dans la page ;
+                                    // 'noConflict' = variable $ et jQuery renommés en js ;
+    b$: 'bootstrap',                // 'bootstrap'  = bootstrap de la nav;
+                                    // 'html'       = bootstrap présent dans la page ;
+                                    //  false       = on désactive bootstrap
+    ext: false,                     // ext/n$.site.js si true ou bien une fonction lancée au dom.ready
+    audio: false,
+    video: false
+  },
+  css: {
+    order: '012345',                /** cas possibles : 012345, 102345, 015234 **/
+    b$: true,                       // 0 : bootstrap
+                                    // 1 : css du site
+                                    // 2 : font-awesome
+                                    // 3 : nav.css
+    frama: true,                    // 4 : frama.css
+    ext:false                       // 5 : nav/ext/n$.site.css si true
+  },
+  mobile: true, // activer le viewport
+  fixed: false, // position de la nav
 
-var f$_bootstrap_js = true;                         // true ; false ; 'html'
-var f$_bootstrap_css = true;
-var f$_css_position = 'start';                      // 'start' = head > bootstrap.css > ... /head body > nav.js ;
-                                                    // 'end'   = head > ... > bootstrap.css /head body > nav.js ;
-var f$_responsive = true;
-var f$_frama_css = true;
+  footer: true,
 
-var f$_nav_static = false;
-var f$_ext_css = false;                             // nav/ext/nom-de-domaine.css
-var f$_ext_js = false;                              // nav/ext/nom-de-domaine.js ; false ; 'jQuery' ; 'loadScript'
-var f$_footer = true;                               // charger le fichier footer.html
+  donate: true, // macaron
+  modal: {
+    don: ['', 'de télécharger', 'télécharger', 604800000],
+    /**
+      0 : sélecteur jQuery ou 'onstart' pour l'afficher à l'ouverture de la page
+      3 : durée du cookie (7 jours)
+     **/
+    info: ['', '', 'n$modal-info', 604800000],
+    /** [titre, texte, nom du cookie, durée du cookie (7 jours)] **/
+  },
+  alert: ['black', '', 'n$alert', 604800000],
+  /** [couleur (classes bootstrap), texte, nom du cookie, durée du cookie (7 jours)] **/
+  mute: false,  // désactive macaron, modal, alert
 
-// Popup de don
-var f$_modal_don_txtdl1 = 'de télécharger';
-var f$_modal_don_txtdl2 = 'télécharger';
-var f$_modal_don_liendl = '';                       // selecteur jQuery ou 'onstart' pour l'afficher à l'ouverture de la page
-var f$_modal_don_cookie = 7*24*60*60*1000;          // Expire au bout de 7 jours
+  optin: ['', '', 'n$optin', 604800000],
+  /** [sélecteur email1, email2, nom du cookie, durée du cookie (7 jours)] **/
 
-// Alertes
-var f$_alert_type = 'black';                        // warning = jaune ; danger = rouge ; info = bleu ; success = vert
-var f$_alert_text = '';                             // /!\ aux \' dans le texte
-var f$_alert_cookie_name = 'nav-alert';
-var f$_alert_cookie = 7*24*60*60*1000;              // Expire au bout de 7 jours
-
-var f$_alert_modal_title = '';                      // /!\ aux \' dans le texte
-var f$_alert_modal_text = '';                       // idem
-var f$_alert_modal_onstart = true;                  // s'affiche à l'ouverture de la page ?
-var f$_alert_modal_cookie_name = 'nav-alert-modal';
-var f$_alert_modal_cookie = 7*24*60*60*1000;        // Expire au bout de 7 jours
-
-// Faire un don (macaron)
-var f$_donate = true;
-var f$_donate_blink_time = 30000;
-
-// Fonction pour désactiver tout ce qui peut géner sur certains sites
-var f$_NoMsg = function() {
-    f$_alert_text = '';       // Pas de bandeau
-    f$_alert_modal_text = ''; // Pas de modale
-    f$_modal_don_liendl = '';
-    f$_donate = false;        // Pas de macaron
-}
-
-// Audio JS
-var f$_audio_js = false;
-// Video JS
-var f$_video_js = false;
-
-// Opt-in
-var f$_email_field1 = '';
-var f$_email_field2 = '';
-var f$_optin_cookie_name = 'opt-in';
-var f$_optin_cookie = 365*24*60*60*1000;            // Expire au bout d'un an
-
-// Icônes
-var f$_keep_icons       = false;                    // true pour connard.pro, pouhiou.com, etc
-var f$_favicon          = false;                    // 'favicon-violet.png' par défaut
-var f$_apple_touch_icon = false;                    // f$_site+'.png' par défaut
-
-/* Bandeau Degooglisons
-    f$_banniere = Math.floor(Math.random() * 3);
-    switch (f$_banniere) {
-    case 0:
-        f$_alert_type       = 'info';
-        f$_alert_img_left   = '<div class="col-sm-3 hidden-xs" style="padding:0;padding-right:10px; max-width: 150px;" aria-hidden="true"><a href="https://degooglisons-internet.org"><img src="'+f$_nav+'img/stallman.png" alt="" class="img-responsive center-block" /></a></div>';
-        f$_alert_img_right  = '';
-        break;
-    case 1:
-        f$_alert_type       = 'warning';
-        f$_alert_img_left   = '<div class="col-sm-3 hidden-xs" style="padding:0;padding-right:10px; max-width: 150px;" aria-hidden="true"><a href="https://degooglisons-internet.org"><img src="'+f$_nav+'img/aaron.png" alt="" class="img-responsive center-block" /></a></div>';
-        f$_alert_img_right  = '';
-        break;
-    case 2:
-        f$_alert_type       = 'success';
-        f$_alert_img_left   = '';
-        f$_alert_img_right  = '<div class="col-sm-3 hidden-xs" style="padding:0;padding-left:10px; max-width: 150px;" aria-hidden="true"><a href="https://degooglisons-internet.org"><img src="'+f$_nav+'img/geekette.png" alt="" class="img-responsive center-block" /></a></div>';
-        break;
-    }
-
-    f$_alert_text =
-        '<div style="margin:0 auto; max-width:800px; text-align:justify">'+
-            f$_alert_img_left+
-            '<div class="col-sm-9" style="padding:0">'+
-                '<p style="font-weight:bold;font-size:16px;" class="text-center">'+
-                    '<a href="https://degooglisons-internet.org" style="text-decoration:none"><b class="frama">Dégooglisons</b> <b class="soft">Internet</b>, l’an 2.</a>'+
-                '</p>'+
-                '<p>Les services en ligne de géants tentaculaires comme Google, Apple, Facebook, Amazon ou Microsoft (GAFAM) mettent en danger nos vies numériques.</p>'+
-                '<p>Pour cette 2e année, <b class="frama">Frama</b><b class="soft">soft</b> continue le défi de vous proposer '+
-                    'une alternative Libre, Éthique, Décentralisée et Solidaire à chacun de ces services.'+
-                '</p>'+
-                '<p class="text-center"><b>Le succès de <a href="https://degooglisons-internet.org">cette campagne est entre vos mains</a> !</b></p></div>'+
-            f$_alert_img_right+
-        '</div><div class="clearfix"></div>';
-    f$_alert_modal_text = '';
-    f$_modal_don_liendl = '';
-*/
+  icons: {
+    keep: false, // garder les icônes du site (connard.pro, pouhiou.com)
+    fav: false,  // favicon-violet.png
+    apple: false // n$.site+'.png'
+  },
+  host: 'hetzner',
+  credits: n$.site,
+  piwik: {
+    id: '',
+    url: 'https://stats.framasoft.org/'
+  }
+};
 
 // Bandeau soutenir défiscalisation
 var f$_today = new Date();
@@ -853,12 +1155,10 @@ var f$_dd = f$_today.getDate();
 var f$_mm = f$_today.getMonth()+1;
 var f$_yyyy = f$_today.getFullYear();
 
-if(f$_mm == 12 && (31-f$_dd) < 15 && f$_site != 'soutenir.framasoft') {
-    f$_rebours = ((31-f$_dd) == 1) ? '24 heures' : 31-f$_dd+' jours';
-    f$_alert_type = 'info';
-    f$_alert_text =
-        '<div style="margin:0 auto; max-width:800px;">'+
-            '<p class="text-center">Rappel : il vous reste <b>'+f$_rebours+'</b> pour faire un <b>don défiscalisé en '+f$_yyyy+'</b> à Framasoft.'+
-            '<br/>Merci pour votre soutien <a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir"><i class="fa fa-heart"></i><span class="sr-only">Faire un don ?</a></p>'+
-        '</div>';
+if(f$_mm == 12 && (31-f$_dd) < 15 && n$.site != 'soutenir.framasoft') {
+  f$_rebours = ((31-f$_dd) == 1) ? '24 heures' : 31-f$_dd+' jours';
+  c$.alert[0] = 'info';
+  c$.alert[1] =
+    'Rappel : il vous reste <b>'+f$_rebours+'</b> pour faire un <b>don défiscalisé en '+f$_yyyy+'</b> à Framasoft.'+
+    '<br/>Merci pour votre soutien <a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir"><i class="fa fa-heart"></i><span class="sr-only">Faire un don ?</a>';
 }

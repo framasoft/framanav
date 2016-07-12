@@ -14,7 +14,7 @@ Barre de navigation commune aux sites du réseau
 
 Installation
 --------------------
-1) Voir config/config.js pour connaître les paramètres personnalisables à définir selon le site
+1) Voir à la fin du fichier `nav.js` pour connaître les paramètres personnalisables à définir selon le site
 
 2) Se placer en ligne de commande dans le dossier du *site* et importer les fichiers du dépôt
 ```bash
@@ -22,7 +22,7 @@ Installation
     git clone https://framagit.org/framasoft/framanav.git nav
 ```
 
-3) a) Ajouter le script nav.js sous le `<body>` du site, là où la nav est requise :
+3) a) Ajouter le script `nav.js` sous le `<body>` du site, là où la nav est requise :
 ```HTML
     <script src="/nav/nav.js" type="text/javascript"></script>
 ```
@@ -37,7 +37,7 @@ var script = document.createElement('script');
 </script>
 ```
 
-On peut zapper l'étape 2 en utilisant la nav d'un autre site configuré pour autoriser les requêtes Ajax cross-domain.
+On peut zapper l'étape 2 en utilisant la nav d'un autre site configurée pour autoriser les requêtes Ajax cross-domain.
 ```HTML
     <script src="https://framasoft.org/nav/nav.js" type="text/javascript"></script>
 ```
@@ -49,20 +49,60 @@ On peut zapper l'étape 2 en utilisant la nav d'un autre site configuré pour au
 ```
 pour utiliser ces versions de jQuery ou Bootstrap avec la nav, mettre dans le fichier de config :
 ```JavaScript
-    f$_jquery = 'html';
-    f$_bootstrap_js = 'html';
+    l$ = {
+      js: { j$: 'html', b$: 'html' }
+    }
 ```
 
-Si jQuery existe déjà sur le site dans une version antérieure à la 1.10.2 et qu'il y a de nombreuses incompatibilités,
+Si jQuery existe déjà sur le site dans une version antérieure à la 1.9.1 et qu'il y a de nombreuses incompatibilités,
 mettre dans le fichier de config :
 ```JavaScript
-    f$_jquery = 'noConflict';
+    l$ = {
+      js: { j$: 'noConflict' }
+    }
 ```
 
-Note : pour désactiver les messages d'alerte, les fenêtre modale et le macaron :
+Note : A priori, il ne devrait plus être nécessaire de préciser ces variables si la fonction `i$jQuery` joue bien son rôle de détection.
+
+Note2 : pour désactiver les messages d'alerte, les fenêtre modale et le macaron :
 ```JavaScript
-    f$_NoMsg();
+    l$ = {
+      mute: true
+    }
 ```
+
+Tester/Configurer
+--------------------
+### Config.js
+Par défaut, la nav charge la config globale `c$` à la fin du fichier `nav.js` puis importe les ajustements selon le site sur lequel on se trouve `l$` dans le fichier `config.js`.
+
+Il est possible de tester le bon fonctionnement d'une nouvelle config en production  (notamment si on ajoute/modifie lourdement des scripts ou fonctions personnalisés) sans aucune incidence sur l'expérience des utilisateurs.
+En ajoutant « Framatech » à l'UserAgent de son navigateur, la nav charge la section `agent` du fichier `config.js`.
+
+La fonction i$() sert à détecter sur quelle page, domaine, sous-domaine, etc on se trouve pour affiner la config.
+
+La fonction i$Lang('en') sert à détecter si la page qu'on visite est en anglais
+(l'internationnalisation de la nav se fait en fonction de la langue officielle de la page pas en fonction des paramètre de navigation).
+
+### Tests
+De même, lorsqu'on modifie le cœur de la nav, une série de pages d'exemple dans le dossier `test` permettent de vérifier grossièrement que rien ne sera cassé.
+
+### Débuggage
+Dans la console doit apparaître sur chaque site : `✔ config.js`, `✔ jQuery`, `✔ Bootstrap` et éventuellement `✔ video.js`.
+
+À la ligne config, il y a un `☀` si la nav est appelé juste après le body (chargement rapide) ou un `☁` sinon (chargement plus lent).
+Ensuite, se suivent 3 numéros de version : celui de la nav, celui de jQuery fourni par la nav et celui de jQuery trouvé dans le code html de la page.
+
+La ligne jQuery, indique le mode utilisé (noConflict ou pas), la version utilisée, et le mode de chargement (direct en HTML ou via une requête AJAX).
+La ligne Bootstrap indique le mode chargement.
+
+Il est possible d'obtenir des informations détaillées en consultant manuellement le contenu des variables :
+
+ * n${} = variables globales de la nav
+ * d${} = données localisées (texte, liens, icônes, couleurs, etc)
+ * h${} = code html utile généré
+ * c${} = config complète du site
+ * l${} = config ajustée du site par rapport à la config globale
 
 Mises à jour planifiées
 --------------------
