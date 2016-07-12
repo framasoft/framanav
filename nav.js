@@ -77,7 +77,7 @@ var h$ = {};
  *  Config globale
  *******************/
 var f$_start_config = function() {
-  f$MergeConfig(c$, l$);
+  f$Merge(c$, l$);
 
   n$.nav.speed = (n$.nav.set) ? '☀' : '☁';
   if (l$) {
@@ -186,14 +186,22 @@ function f$_start_jquery() {
     if(!n$.nav.set) f$('body').prepend(n$.nav.html);
 
     // On charge ensuite les données
+    f$_i18n = {};
+    if (i$Lang('en')) {
+      f$.getJSON( n$.nav.url+'html/data.en.json' )
+        .fail(function() { console.error('✘ data.en.json') })
+        .done( function(data) { f$_i18n = data; });
+    }
+
     f$.getJSON( n$.nav.url+'html/data.fr.json' )
-      .fail(function() {
-        console.error('✘ data.fr.json');
-      })
+      .fail(function() { console.error('✘ data.fr.json') })
       .done(function(data) {
 
         // Formatage et traitement des données
         d$ = data; /** passage en global pour lecture dans la console **/
+
+        // Import i18n dans d$
+        f$Merge(d$, f$_i18n);
 
         var f$_color = ''; var f$_menu = '';
         for (var k in d$.menu) { d$.menu[k].nav ='' }
@@ -310,7 +318,7 @@ function f$_start_jquery() {
         /** On balance le code html **/
         f$('#framanav_container').prepend(h$.nav);
         // Placement des popovers à gauche
-        f$('#framanav #fs_services li:odd a').attr('data-placement','left');
+        f$('#fs_services li:odd a, #fs_about li:even a').attr('data-placement','left');
         // Réagencement À propos
         f$('#fs_about li').has('a[href*="status."]').after(d$.menu['about'].site);
         f$('#fs_about .fs_git').before(f$('#fs_about .fs_aide,#fs_about .fs_faq'));
@@ -790,7 +798,8 @@ function f$Link(href) {
 }
 
 // Import de la config l$ dans c$
-function f$MergeConfig(global, local) {
+// ou du fichier de lang (en) dans d$ (fr)
+function f$Merge(global, local) {
 
   function MergeRecursive(obj1, obj2) {
     for (var p in obj2) {

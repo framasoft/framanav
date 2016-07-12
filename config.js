@@ -15,12 +15,12 @@ switch (n$.site) {
   case 'trouvons' : n$.site = 'bee'; break;
 }
 // Config pour domaine et sous-domaine
-if (i$(/framaboard)/i, 'h'))        { n$.site = 'board' }
-if (i$(/framadate)/i, 'h'))         { n$.site = 'date' }
+if (i$(/framaboard/i, 'h'))        { n$.site = 'board' }
+if (i$(/framadate/i, 'h'))         { n$.site = 'date' }
 
 if (i$('mypads.framapad.org', 'h')) { n$.site = 'mypads' }
-if (i$(/.framapad)/i, 'h') && !i$(/mypads.)/i, 'h'))
-    || (i$(/mypads.framapad)/i, 'h') && i$('/p/')) {
+if ( (i$(/.framapad/i, 'h') && !i$(/mypads./i, 'h'))
+    || (i$(/mypads.framapad/i, 'h') && i$('/p/')) ) {
   n$.site = 'etherpad';
 }
 
