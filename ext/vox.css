@@ -180,3 +180,7 @@ body.pages {
     background: #6A5687;
 }
 
+.group-theme__upload-photo {
+  top:42px;
+  width:150px;
+}
