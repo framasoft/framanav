@@ -249,8 +249,9 @@
   display:block;
 }
 
-.outMM #framafooter {
+.outMM #framafooter[style] {
   display:block;
+  position: relative !important;
 }
 
 /*******************
