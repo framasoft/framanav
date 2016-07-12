@@ -657,7 +657,6 @@ function f$_start_jquery() {
           if (!n$.inframe) { // Pas de bandeau, nav, modale et macaron en mode iframe
 
             if(c$.fixed || i$('/nav/html/')) {
-              f$('#framanav_container ~ *:not(script):first').css('margin-top', '+=42');
               f$('body').addClass('fnav-fixed');
             }
 
@@ -1096,7 +1095,7 @@ function i$jQuery() {
  ***********************************************************************/
 var c$ = {
   js: {
-    j$: i$jQuery(),                 // 'AJAX'     = jQuery de la nav ;
+    j$: i$jQuery(),                 // 'AJAX'       = jQuery de la nav ;
                                     // 'HTML'       = jQuery (1.9.1 ou +) présent dans la page ;
                                     // 'noConflict' = variable $ et jQuery renommés en js ;
     b$: 'bootstrap',                // 'bootstrap'  = bootstrap de la nav;

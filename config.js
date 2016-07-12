@@ -30,6 +30,7 @@ switch (n$.site) {
     l$ = {
       css: { order: '012345', ext: true },
       footer: false,
+      fixed: i$('fixed'),
       credits: 'pad'
     }
     if(i$('noConflict')) l$ = { js: { j$: 'noConflict' } }

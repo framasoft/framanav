@@ -284,6 +284,11 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
     font-family: "DejaVu Sans",Verdana,Geneva,sans-serif !important;
     text-shadow:none;
 }
+
+.fnav-fixed #nav-alert.alert {
+    margin-bottom: 42px;
+}
+
 #nav-alert.alert p {
     margin-bottom:5px;
     margin-top:0px;
