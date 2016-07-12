@@ -1,18 +1,51 @@
-h1 {
+/************************* *
+ * En dehors de Mattermost *
+ * *********************** */
+.outMM { background: #eee !important; }
+
+.outMM h1 {
   font-family: "DejaVu Sans",Verdana,Geneva,sans-serif !important;
   font-size: 48px;
   font-weight: bold;
 }
 
-.lead { font-style:italic; }
+.outMM .lead { font-style:italic; }
 
-.container.ombre {
+.outMM .container-fluid {
+  /* = .container.ombre */
   margin-top: 30px;
   margin-bottom: 30px;
   padding: 20px 30px;
+  /* = .ombre */
+  background-color: #FFF;
+  box-shadow: -4px 6px 9px rgba(50, 50, 50, 0.5);
+  /* = replace Mattermost style */
+  height:auto !important;
+  /* = .container de BS */
+  margin-right: auto;
+  margin-left: auto;
+}
+.outMM .container-fluid[style] {
+  margin-top: 72px !important;
 }
 
-img.ombre {
+@media (min-width: 768px) {
+  .outMM .container-fluid {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .outMM .container-fluid {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .outMM .container-fluid {
+    width: 1170px;
+  }
+}
+
+.outMM img.ombre {
   box-shadow: 0px 2px 6px rgba(50, 50, 50, 0.4);
   margin: 10px;
   padding: 0px;
@@ -87,7 +120,7 @@ img.ombre {
 }
 
 /* Fix Mattermost */
-.btn {
+.outMM .btn {
   border-radius: 4px;
   -moz-transition: none;
   -o-transition: none;
@@ -95,26 +128,12 @@ img.ombre {
   transition: none;
 }
 
-.signup-team__container {
+.outMM .signup-team__container {
   padding:0px;
   max-width:auto;
 }
 
-#login h2.signup-team__subdomain,
-#signup-team .form-group.margin--extra-2x {
-  display:none;
-}
-
-.signup-team__container .margin--extra {
-  margin-top: auto;
-  text-align:center;
-}
-
-#signup-user-complete .margin--extra {
-  text-align:left;
-}
-
-.signup-team__container .btn {
+.outMM .signup-team__container .btn {
   padding: 6px 12px;
   font-size: 14px;
   line-height: 1.42857143;
@@ -124,34 +143,6 @@ img.ombre {
   margin-bottom:10px;
 }
 
-.signup-team__container .btn.gitlab .icon {
-  background-image: url("https://framateam.org/static/images/gitlabLogo.png");
-}
-
-#signup-team .btn { /* .btn-lg */
-  display: inline-block;
-  min-width: auto;
-  height:auto;
-  padding: 10px 16px;
-  font-size: 18px;
-  line-height: 1.3333333;
-  border-radius: 6px;
-  margin: 0px auto;
-  white-space: normal;
-  text-align:center;
-}
-
-#signup-team .btn-link.gitlab {
-  display: block;
-  margin: 0px 0px 0px auto;
-  width: 60%;
-  text-align: right;
-  font-size: 14px;
-}
-
-#signup-team .btn.btn-custom-login.gitlab {
-  margin-bottom:10px;
-}
 
 #ListModal .btn-default {
   color: #333;
@@ -175,43 +166,118 @@ img.ombre {
   background:#fff !important;
 }
 
-.signup-team__container .btn-custom-login.email,
-.btn-primary {
+.outMM .signup-team__container .btn-custom-login.email,
+.outMM .btn-primary {
   color: #fff !important;
   text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
   background-color: #6A5687 !important;
   border-color: #6A5687 !important;
 }
 
-.signup-team__container .btn-custom-login.email:hover,
-.signup-team__container .btn-custom-login.email:focus,
-.signup-team__container .btn-custom-login.email:active,
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary:active {
+.outMM .signup-team__container .btn-custom-login.email:hover,
+.outMM .signup-team__container .btn-custom-login.email:focus,
+.outMM .signup-team__container .btn-custom-login.email:active,
+.outMM .btn-primary:hover,
+.outMM .btn-primary:focus,
+.outMM .btn-primary:active {
   color: #fff !important;
   background-color: #635182 !important;
   border-color: #635182 !important;
 }
 
-.signup-team__container .btn-custom-login.gitlab {
+.outMM .signup-team__container .btn-custom-login.gitlab {
   color: #fff !important;
   text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
   background-color: #11809E !important;
   border-color: #11809E !important;
 }
 
-.signup-team__container .btn-custom-login.gitlab:hover,
-.signup-team__container .btn-custom-login.gitlab:focus,
-.signup-team__container .btn-custom-login.gitlab:active {
+.outMM .signup-team__container .btn-custom-login.gitlab:hover,
+.outMM .signup-team__container .btn-custom-login.gitlab:focus,
+.outMM .signup-team__container .btn-custom-login.gitlab:active {
   color: #fff !important;
   background-color: #0C5B7A !important;
   border-color: #0C5B7A !important;
 }
 
-#Options p .btn,
-#login .margin--extra .btn {
-  margin-top: 0px;
-  margin-bottom: 10px;
-  width:268px;
+.outMM#ct-login .signup__email-container,
+.outMM#ct-signup_user_complete .signup-team__container .inner__content { /* = .well */
+  min-height: 20px;
+  padding: 19px;
+  margin-bottom: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
 }
+#ct-login.outMM .signup__email-container {
+  padding-bottom: 0;
+}
+
+.signup-header,               /* Bandeau Déconnexion / Accueil / Page précédente */
+.signup-team-logo,            /* Logo Mattermost */
+.signup-team__container h1,   /* Titre Framateam */
+.signup-team__container h4:nth-child(2),
+.signup-team__container h4:nth-child(3), /* Sous-titre */
+.row.footer {                  /* Footer Mattermost */
+  display:none;
+}
+
+/* /select_team */
+.outMM .margin--extra,               /* Créer équipe + Console admin */
+.outMM .signup-team__container .signup__content:nth-child(5) {
+  display:none;
+}
+/* /signup_user_complete */
+.outMM .signup-team__container .or__container,
+.outMM .signup-team__container > span.color--light,
+.outMM .signup-team__container > p {
+  display:none;
+}
+
+/* /login */
+.outMM#ct-login .signup__content > div > .form-group, /* Pas de compte ? */
+.outMM .signup__content .or__container,
+.outMM .signup__content h5 {
+  display:none;
+}
+
+/* Trop de ménage ? */
+.outMM form .margin--extra,
+#ListModalLabel {
+  display:block;
+}
+
+.outMM #framafooter {
+  display:block;
+}
+
+/*******************
+ * Dans Mattermost *
+ *******************/
+.inMM #root {
+  margin-top: 0 !important;
+  padding-top: 42px !important;
+}
+
+.inMM .sidebar--left .dropdown-menu {
+  width: 250px;
+  max-width: 250px;
+}
+
+.inMM .navbar-right .dropdown-menu { right: -100px }
+
+.inMM .admin-sidebar {
+  top: 42px;
+  padding-bottom:42px;
+}
+
+.inMM #framafooter {
+  display:none;
+}
+
+/***************** *
+ * Partout
+ * *************** */
+.error-bar{ display:none }

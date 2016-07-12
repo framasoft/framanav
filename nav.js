@@ -16,7 +16,7 @@
  **/
 
 var n$ = {
-  version: '160621', // n° version de la nav
+  version: '160712', // n° version de la nav
   f$ : '1.12.4',     // n° version de notre jQuery
   b$ : '3.3.6',      // n° version de Bootsrap
   host: window.location.host,
