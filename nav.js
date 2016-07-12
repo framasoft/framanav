@@ -84,7 +84,7 @@ var f$_start_config = function() {
       console.log('✔ '+n$.nav.speed+' config.js '+n$.version+' | '+n$.f$+' | '+n$.j$+' → '+i$jQuery()+' ?');
 
     if(i$('/nav/html/')) { // Si pages « À propos » on réinit la config
-      c$.js.j$ = 'jQuery'; /** Deprecated → i$jQuery() **/
+      c$.js.j$ = 'AJAX'; /** Deprecated → i$jQuery() **/
       f$_bootstrap_css = false;
       c$.js.b$ = true;
       c$.css.b$ = false;
@@ -104,7 +104,7 @@ var f$_start_config = function() {
      *  à passer sur i$jQuery() après vérif
      *  et supprimer le paramètre de config si tout est ok **/
     switch (c$.js.j$) {
-      case 'jQuery' :
+      case 'AJAX' :
         if (i$jQuery() == 'AJAX') {
           f$LoadJS(n$.nav.url+'lib/jquery/jquery.min.js', f$_start_jquery);
           console.log('✔ jQuery '+n$.f$+' AJAX');
@@ -1096,8 +1096,8 @@ function i$jQuery() {
  ***********************************************************************/
 var c$ = {
   js: {
-    j$: 'jQuery',                   // 'jQuery'     = jQuery de la nav ;
-                                    // 'html'       = jQuery (1.12.4 ou +) présent dans la page ;
+    j$: i$jQuery(),                 // 'AJAX'     = jQuery de la nav ;
+                                    // 'HTML'       = jQuery (1.9.1 ou +) présent dans la page ;
                                     // 'noConflict' = variable $ et jQuery renommés en js ;
     b$: 'bootstrap',                // 'bootstrap'  = bootstrap de la nav;
                                     // 'html'       = bootstrap présent dans la page ;
