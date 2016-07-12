@@ -447,7 +447,7 @@ switch (n$.site) {
         j$: 'html', b$: 'html',
         ext: function() { jQuery('link[href*=bootstrap-complete]').remove(); }
       },
-      css: {order: '102345' }
+      css: { order: '102345' }
     }
   break;
 
@@ -460,15 +460,10 @@ switch (n$.site) {
 
   case 'team':
     l$ = {
-      js: { j$: 'html', b$: 'html', ext: true },
-    }
-
-    if(i$('/channel')||i$('/admin_console')||i$('/pl/')) {
-      l$.fixed = true;
-      l$.footer = false;
-      l$.mute = true;
-    } else {
-      l$.css.ext = true;
+      js: { j$: 'noConflict', b$: 'html', ext: true },
+      css: { ext: true },
+      fixed: true,
+      mute: ( i$('/channel') || i$('/tutorial') || i$('/admin_console') || i$('/pl/') )
     }
   break;
 
