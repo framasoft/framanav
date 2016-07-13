@@ -410,7 +410,6 @@ switch (n$.site) {
 
   case 'phonie':
     l$ = {
-      js: { j$: 'noConflict' },
       css: {
         order: '102345',
         ext: true
