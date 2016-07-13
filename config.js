@@ -27,6 +27,7 @@ if ( (i$(/.framapad/i, 'h') && !i$(/mypads./i, 'h'))
 switch (n$.site) {
   case 'agent':
     n$.name = 'Framapic';
+    if(i$('#iframe')) n$.inframe = true;
     l$ = {
       css: { order: '012345', ext: true },
       footer: false,
@@ -58,6 +59,7 @@ switch (n$.site) {
         ]
       }
     }
+
   break;
   case 'bot' :
     l$ = { mute: true, footer: false };

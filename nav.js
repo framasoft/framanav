@@ -44,7 +44,7 @@ var n$ = {
                    .replace(/frama/i,'');
   n$.site = (/Framatech/i.test(window.navigator.userAgent)) ? 'agent' : n$.site;     // Config locale
 
-  if (n$.inframe) { n$.nav.html = '<div id="framanav_container" style="display:none"></div>' };
+  if (n$.inframe) n$.nav.html = '<div id="framanav_container" style="display:none"></div>';
 
   if (window.jQuery === undefined) {
     n$.j$ = 'ø';    // n° version du jQuery local
@@ -207,6 +207,7 @@ function f$_start_jquery() {
         for (var k in d$.menu) { d$.menu[k].nav ='' }
         d$.menu.follow.footer = ''; d$.menu.about.site = '';
 
+        if (n$.inframe) f$('#framanav_container').hide();
 
         h$ = {
           framasoft: '<b class="violet">'+d$.meta.home.p+'</b><b class="orange">'+d$.meta.home.s+'</b>',
