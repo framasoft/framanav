@@ -187,8 +187,9 @@ switch (n$.site) {
     }
     if (i$('framacalc.org/_start') || i$('https://framacalc.org/', 'u')) {
       // Si on est sur la page d'accueil
-      l$.modal.don = ['a[href*="framacalc.org/"]', 'd’utiliser', 'créer un calc'];
-
+      l$.modal = {
+        don: ['a[href*="framacalc.org/"]', 'd’utiliser', 'créer un calc']
+      }
     } else { // dans Ethercalc
       l$ = {
         js: {
@@ -208,7 +209,7 @@ switch (n$.site) {
   break;
 
   case 'carte':
-    l$.modal.don = ['a.btn-primary[href*="/map/new/"]', 'd’utiliser', 'créer une carte'];
+    l$.modal = { don: ['a.btn-primary[href*="/map/new/"]', 'd’utiliser', 'créer une carte'] };
 
     if(i$('/map/') && !n$.inframe) {
       l$.mute = true;
@@ -239,7 +240,7 @@ switch (n$.site) {
     l$.js = {j$: 'html', b$ : 'html' };
 
     if(i$Lang('fr')) {
-      l$.modal.don = ['a[href*="create_poll.php?"]', 'd’utiliser', 'créer un sondage'];
+      l$.modal = { don: ['a[href*="create_poll.php?"]', 'd’utiliser', 'créer un sondage'] };
       if(i$('create_poll.php?')) {
         l$.optin ['#formulaire input#email'];
       }
@@ -275,7 +276,7 @@ switch (n$.site) {
   break;
 
   case 'games':
-    l$.modal.don = ['.play a', 'd’utiliser', 'jouer'];
+    l$.modal = { don: ['.play a', 'd’utiliser', 'jouer'] };
   break;
 
   case 'key':
@@ -368,8 +369,9 @@ switch (n$.site) {
     }
 
     if(i$(/(lite6.|mypads.|quotidien.|hebdo.|uel.|mestriel.)/i, 'h')) {
-      modal.info[0] = 'Nouvelles fonctionnalités';
-      modal.info[1] =
+      l$.modal = {
+        info: [
+          'Nouvelles fonctionnalités',
           '<p>Nous avons apporté des modifications au fonctionnement de Framapad.</p>'+
           '<ul style="margin-left:30px">'+
               '<li>Réactivation des couleurs d’identification (auteurs identifiés par le surlignage en couleur).</li>'+
@@ -378,22 +380,32 @@ switch (n$.site) {
               '<li>Affichage du noms des auteurs au survol du texte.</li>'+
           '</ul>'+
           '<p>Ces modifications peuvent être activées/désactivées au niveau des paramètres de Framapad (roue crantée en haut à droite).</p>'+
-          '<p>Pour plus d’informations, voir notre <a href="https://wiki.framasoft.org/projets/framapad">documentation</a>.</p>';
-      modal.info[2] = 'newFeatures201605';
-      modal.info[3] = 365*24*60*60*1000;
+          '<p>Pour plus d’informations, voir notre <a href="https://wiki.framasoft.org/projets/framapad">documentation</a>.</p>',
+          'newFeatures201605',
+          365*24*60*60*1000
+        ]
+      }
     }
     if(i$(/(beta.framapad)/i, 'h')) {
-      modal.info[0] = 'Avertissement';
-      modal.info[1] = '<p>Cette instance de Framapad (<b>beta</b>.framapad.org) est instable et ne doit servir que pour des tests.<p>'+
+      l$.modal = {
+        info: [
+          'Avertissement',
+          '<p>Cette instance de Framapad (<b>beta</b>.framapad.org) est instable et ne doit servir que pour des tests.<p>'+
           '<p>Pensez à utiliser régulièrement la fonction d’export pendant vos tests.</p>'+
-          '<p>Merci.<br />L’équipe technique</p>';
+          '<p>Merci.<br />L’équipe technique</p>'
+        ]
+      }
     }
     if( i$(/(lite.framapad|lite[2-5].)/i, 'h')) {
-      modal.info[0] = 'Création des pads désactivée';
-      modal.info[1] = '<p>Nous vous informons que cette instance de Framapad ('+window.location.host+') ne peut plus accueillir de nouveaux pads.<p>'+
+      l$.modal = {
+        info: [
+          'Création des pads désactivée',
+          '<p>Nous vous informons que cette instance de Framapad ('+n$.host+') ne peut plus accueillir de nouveaux pads.<p>'+
           '<p>Il reste bien évidement possible de travailler sur les pads déjà existants (ils ne seront pas supprimés)'+
           ' mais pour en créer de nouveaux, veuillez passer par <a href="https://framapad.org">la page d’accueil du site</a></p>'+
-          '<p>Merci.<br />L’équipe technique</p>';
+          '<p>Merci.<br />L’équipe technique</p>'
+        ]
+      };
       host = 'ovh';
     }
   break;
@@ -506,7 +518,7 @@ switch (n$.site) {
         footer: false
       }
     } else {
-      l$.modal.don = ['a[href="/svg-editor.html"]', 'd’utiliser', 'créer une image'];
+      l$.modal = { don: ['a[href="/svg-editor.html"]', 'd’utiliser', 'créer une image'] };
       l$.js.video = true;
     }
   break;
@@ -550,7 +562,7 @@ switch (n$.site) {
       l$.mute = (!i$('framindmap.org/c/login') && !i$('framindmap.org/c/user/registration'));
 
       if(i$('framindmap.org/c/maps/') && !i$('/edit')) {
-        l$.modal.don = ['onstart', 'd’utiliser', 'utiliser '+n$.name]
+        l$.modal = { don: ['onstart', 'd’utiliser', 'utiliser '+n$.name] }
         // [Fix] Suppression de la nav dans l'éditeur
         var f$_navcontainer = document.getElementById('framanav_container');
         f$_navcontainer.parentNode.removeChild(f$_navcontainer);
