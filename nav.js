@@ -254,9 +254,9 @@ function f$_start_jquery() {
             h$.menu['follow'].footer += '<li class="fs_'+k+'"><a href="'+d$.f[k].l+'" title="'+d$.f[k].t1+'"><i class="fa fa-fw fa-2x '+d$.f[k].i+'"></i>'+h$SR(d$.f[k].name)+'</a></li>';
           }
           // "À propos" du site
-          if(n$.name == d$.f[k].name) {
+          if(n$.name == h$.f[k].name) {
             f$_soft = (d$.f[k].soft != undefined) ? ' ('+d$.f[k].soft+')' : '';
-            h$.menu['about'].site += '<li class="dropdown-header">'+d$.f[k].html+f$_soft+'</li>'+h$.divider;
+            h$.menu['about'].site += '<li class="dropdown-header">'+h$.f[k].html+f$_soft+'</li>'+h$.divider;
             if(d$.f[k].git != undefined) {
               h$.menu['about'].site += '<li class="fs_about fs_git"><a href="'+d$.f[k].git+'">'+h$icon(d$.f.git.i)+'&nbsp;'+d$.f.git.p+d$.f.git.s+'</a></li>';
             }
