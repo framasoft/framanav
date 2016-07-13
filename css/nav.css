@@ -35,7 +35,7 @@
 }
 
 #framanav .dropdown-menu > li > a {
-    padding: 3px 15px;
+    padding: 5px 15px;
 }
 
 #framanav .dropdown a .caret {
@@ -491,6 +491,7 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
 /* Fix Theme Wordpress Virtue */
 #framanav .navbar-brand span.hidden-sm {
     display:inline !important;
+    margin-left: 10px;
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -533,6 +534,10 @@ body.apropos #piwik-iframe {
         text-align:center;
         padding:0;
     }
+}
+
+#framanav li.dropdown-header:not(.fs_dio) {
+  padding: 5px 0;
 }
 
  /* Hack pour n'afficher la nav que lorsque la feuille de style est prête */
