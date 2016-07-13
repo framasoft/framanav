@@ -554,9 +554,9 @@ function f$_start_jquery() {
       '<nav class="col-xs-4">'+
         '<h1>'+d$.menu.site.name+'</h1>'+
         '<ul class="list-unstyled">'+
-          '<li><a href="'+d$.f.legals.l+'#'+c$.host+'">'+h$.f.legals.name+'</a></li>'+
+          '<li><a href="'+d$.f.legals.l+'">'+h$.f.legals.name+'</a></li>'+
           '<li><a href="'+d$.f.cgu.l+'"><abbr>'+h$.f.cgu.name+'</abbr></a></li>'+
-          '<li><a href="'+d$.f.credits.l+'#'+c$.credits+'">'+h$.f.credits.name+'</a></li>'+
+          '<li><a href="'+d$.f.credits.l+'">'+h$.f.credits.name+'</a></li>'+
         '</ul>'+
       '</nav>'+
     '</div>'+
@@ -604,9 +604,8 @@ function f$_start_jquery() {
         }
 
         // Liens À propos
-        f$('nav a[href^="/nav/html/"], #fs_about a').attr('href', function() {
+        f$('#framafooter a[href*="/nav/html/"], #fs_about a').attr('href', function() {
           return f$(this).attr('href')
-                         .replace('/nav/html/', n$.nav.url+'html/')
                          .replace('credits.html', 'credits.html#'+c$.credits)
                          .replace('legals.html', 'legals.html#'+c$.host);
         });
