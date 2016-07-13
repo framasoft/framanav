@@ -604,7 +604,7 @@ function f$_start_jquery() {
         }
 
         // Liens À propos
-        f$('nav a[href^="/nav/html/"]').attr('href', function() {
+        f$('nav a[href^="/nav/html/"], #fs_about a').attr('href', function() {
           return f$(this).attr('href')
                          .replace('/nav/html/', n$.nav.url+'html/')
                          .replace('credits.html', 'credits.html#'+c$.credits)

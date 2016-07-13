@@ -280,7 +280,7 @@ switch (n$.site) {
   case 'key':
     l$ = {
       js: {
-        j$: 'noConflict',
+        //j$: 'noConflict',
         ext: function () {
             jQuery('#sidebar a.wikilink[href$="SideBar?action=edit"]').attr('href',window.location.href+'?action=edit'); // Bouton edit
             jQuery('#sidebar div[style*="background-color: rgb(238"]:contains("Framablog")').hide(); // Flux RSS Framablog
