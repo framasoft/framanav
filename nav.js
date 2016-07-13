@@ -330,8 +330,8 @@ function f$_start_jquery() {
         // Ajout des dividers
         f$('#framanav .dropdown-menu li')
           .has(
-            'a[href*="degooglisons"], a[href*="vect"], a[href*="carte.org"], a[href*="news.org"],'+
-            'a[href*="enventelibre"], a[href*="wiki."], a[href*="plus.google"], a[href*="status."]'
+            'a[href*="degooglisons"], a[href*="vectoriel.org"], a[href*="carte.org"], a[href*="news.org"],'+
+            'a[href*="enventelibre.org"], a[href*="wiki."], a[href*="plus.google"], a[href*="status."]'
           )
           .after(h$.divider);
 
