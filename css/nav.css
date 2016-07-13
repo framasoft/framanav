@@ -76,6 +76,9 @@
 #framanav .dropdown:nth-child(5) .dropdown-menu li a:hover {background-color: #6A5687 !important;color:#fff !important;} /* violet nous suivre */
 #framanav .dropdown:nth-child(6) .dropdown-menu li a:hover {background-color: #C05827 !important;color:#fff !important;} /* orange a propos */
 
+#framanav .violet { color: #6A5687;}
+#framanav .orange { color: #C05827;}
+
 #framanav .frama { color: #6A5687; vertical-align:top !important;}
 #framanav .soft { color: #EB7239; vertical-align:top !important;}
 

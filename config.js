@@ -67,7 +67,6 @@ switch (n$.site) {
 
   case 'connard' :
     l$ = {
-      js: { j$: 'noConflict' },
       css: { frama: false },
       mute: true,
       icons: { keep: true },
@@ -272,7 +271,7 @@ switch (n$.site) {
   break;
 
   case 'drop':
-    l$.js.video = true;
+    l$.js { video = true };
   break;
 
   case 'games':
