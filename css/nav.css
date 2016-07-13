@@ -192,14 +192,10 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
     margin-right:15px;
 }
 
-#framanav .navbar-brand img {
-    border:none;
-    margin-top:-2px;
-    display: inline;
-}
-
 #framanav .navbar-brand img,
 #framanav .navbar-brand b {
+  border:none;
+  display: inline;
   vertical-align:top;
 }
 
@@ -493,12 +489,12 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
 }
 
 /* Fix Theme Wordpress Virtue */
-.frama.hidden-sm, .soft.hidden-sm {
+#framanav .navbar-brand span.hidden-sm {
     display:inline !important;
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-  .frama.hidden-sm, .soft.hidden-sm {
+  #framanav .navbar-brand span.hidden-sm {
     display: none !important;
   }
 }
