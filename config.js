@@ -2,7 +2,7 @@
  *                          Config des sites                           *
  ***********************************************************************/
 
-var l$ = {};
+var l$ = { js: {}, css: {}, modal: {}, icons: {}, piwik: {} };
 
 // Alias
 // On remplace juste la variable n$.site.
@@ -422,10 +422,8 @@ switch (n$.site) {
 
   case 'soft':
     l$ = {
-      js: {},
       fixed: true,
-      optin: ['#email_auteur'],
-      icons: {}
+      optin: ['#email_auteur']
     }
 
     if(!i$('http://framasoft.org/', 'u') && !i$('framasoft.org/accueil')
@@ -513,14 +511,12 @@ switch (n$.site) {
 
   case 'vox':
     l$ = {
-      js: { j$: 'html' },
-      css: { ext: true }
+      js: { video: i$('/marketing') },
+      css: { ext: true },
+      fixed: !i$('/marketing')
     }
 
-    l$.fixed = !(i$('/marketing'));
-    l$.js.video = i$('/marketing');
-
-    if(!(i$('/marketing')||i$('users/sign')||i$('/start_group')||i$('users/password/new'))) {
+    if( !i$(/(\/marketing|users\/sign|\/start_group|users\/password\/new)/i, 'u') ) {
       l$.footer = false;
       l$.mute = true;
       l$.js.ext = true;
@@ -698,8 +694,6 @@ if(l$.piwik.id != '') {
 /***********************************************************************
  *                             Favicons                                *
  **********************************************************************/
-l$.icons = (l$.icons == undefined) ? {} : l$.icons ; 
-
 if (i$(/(dvd|key|libre|android|pack|start)/i,'h')) {
   l$.icons.fav = 'favicon-bleu.png';
 }
