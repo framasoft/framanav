@@ -2,7 +2,7 @@
  *                          Config des sites                           *
  ***********************************************************************/
 
-var l$ = { js: {}, css: {}, modal: {}, icons: {}, piwik: {} };
+var l$ = {};
 
 // Alias
 // On remplace juste la variable n$.site.
@@ -422,8 +422,10 @@ switch (n$.site) {
 
   case 'soft':
     l$ = {
+      js: {},
       fixed: true,
-      optin: ['#email_auteur']
+      optin: ['#email_auteur'],
+      icons: {}
     }
 
     if(!i$('http://framasoft.org/', 'u') && !i$('framasoft.org/accueil')
@@ -694,6 +696,8 @@ if(l$.piwik.id != '') {
 /***********************************************************************
  *                             Favicons                                *
  **********************************************************************/
+l$.icons = (l$.icons == undefined) ? {} : l$.icons ;
+
 if (i$(/(dvd|key|libre|android|pack|start)/i,'h')) {
   l$.icons.fav = 'favicon-bleu.png';
 }
