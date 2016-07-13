@@ -1,5 +1,5 @@
 #framanav li {
-  margin:0;
+  margin: 0;
 }
 
 body {
@@ -7,5 +7,9 @@ body {
 }
 
 #dokuwiki__usertools {
-    top: 50px;
+  top: 50px;
+}
+
+#dokuwiki__site {
+  max-width: 90em;
 }

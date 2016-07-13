@@ -605,8 +605,9 @@ switch (n$.site) {
   break;
 
   case 'wiki':
+    n$.inframe = i$('mediamanager.php');
     l$ = {
-      js: { j$: 'noConflict' },
+//      js: { j$: 'noConflict' },
       css: { ext: true },
       alert: ['']
     }
