@@ -523,6 +523,7 @@ body.apropos #piwik-iframe {
     #fs_about li.dropdown-header {
         width:100%;
         text-align:center;
+        padding:0;
     }
 }
 

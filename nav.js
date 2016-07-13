@@ -37,9 +37,9 @@ var n$ = {
   }
 };
   n$.site = n$.host.replace(/^(www|test)\./i,'').replace(/\.(com|net|org|fr|pro)$/i,''); // Domaine et sous-domaine
-  n$.name = n$.site[0].toUpperCase()+n$.site.slice(1);                                   // Nom du service
-  n$.site = n$.site.replace(/(\.framasoft|frama\.)/i,'')
-                   .replace(/framand/i,'and')
+  n$.name = n$.site[0].toUpperCase()+n$.site.slice(1).replace('.framasoft', '');         // Nom du service
+  n$.site = n$.site.replace(/framand/i,'and')
+                   .replace(/(\.framasoft|frama\.)/i,'')
                    .replace(/framin/i,'min')
                    .replace(/frama/i,'');
   n$.site = (/Framatech/i.test(window.navigator.userAgent)) ? 'agent' : n$.site;     // Config locale
@@ -263,8 +263,8 @@ function f$_start_jquery() {
             if(d$.f[k].src != undefined) {
               h$.menu['about'].site += '<li class="fs_about fs_src"><a href="'+d$.f[k].src+'">'+h$icon('fa-code-fork')+'&nbsp;'+d$.t.source+f$_soft+'</a></li>';
             }
-            h$.f.aide.l = d$.f.aide.l.replace('#aide','#'+n$.name.toLowerCase());
-            h$.f.faq.l = d$.f.faq.l+'#'+n$.name.toLowerCase();
+            d$.f.aide.l = d$.f.aide.l.replace('#aide','#'+n$.name.toLowerCase());
+            d$.f.faq.l = d$.f.faq.l+'#'+n$.name.toLowerCase();
           }
         }
         // Switch mobile/desktop
