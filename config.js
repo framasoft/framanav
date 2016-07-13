@@ -271,7 +271,7 @@ switch (n$.site) {
   break;
 
   case 'drop':
-    l$.js { video = true };
+    l$.js = { video: true };
   break;
 
   case 'games':
