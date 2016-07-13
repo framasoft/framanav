@@ -198,6 +198,11 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
     display: inline;
 }
 
+#framanav .navbar-brand img,
+#framanav .navbar-brand b {
+  vertical-align:top;
+}
+
 #framanav .popover-title { font-weight: bold; }
 
 .modal-backdrop {

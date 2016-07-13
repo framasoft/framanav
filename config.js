@@ -576,7 +576,6 @@ switch (n$.site) {
 
   case 'pouhiou': // pouhiou.com + noenaute.fr
     l$ = {
-      js: { j$: 'noConflict' },
       css: { frama: false },
       mute: true,
       footer: false,
