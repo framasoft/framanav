@@ -17,6 +17,10 @@
     display: block;
 }
 
+#framanav li {
+  margin: 0;
+}
+
 #framanav .dropdown { /* Force réinit pour Framadrive */
     box-shadow:none;
     background:transparent;
