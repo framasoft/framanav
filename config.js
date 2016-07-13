@@ -87,6 +87,7 @@ switch (n$.site) {
   break;
 
   case 'forum':
+    n$.name = 'Framagora'
     l$ = {
       css: { order: '102345' },
       optin: ['#email_confirm', '#email'],
@@ -123,7 +124,7 @@ switch (n$.site) {
 
   case 'bin':
     l$ = {
-      js: {j$: 'html', video: true },
+      js: { video: true },
       modal: {
         don: ['onstart', 'd’utiliser', 'utiliser '+n$.name]
       }
