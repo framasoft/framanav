@@ -700,10 +700,10 @@ if(l$.piwik.id != '') {
 
   (function() {
     var u=l$.piwik.url;
-    _paq.push(["setTrackerUrl", u+"piwik.php"]);
+    _paq.push(["setTrackerUrl", u+"p.php"]);
     _paq.push(["setSiteId", l$.piwik.id]);
     var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
-    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+    g.defer=true; g.async=true; g.src=u+"p.js"; s.parentNode.insertBefore(g,s);
   })();
 }
 
