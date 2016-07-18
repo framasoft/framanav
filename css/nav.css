@@ -523,14 +523,14 @@ body.apropos #piwik-iframe {
     }
     #fs_services li,
     #fs_about li {
-        width:50%;
+        width:50% !important;
         float:left;
     }
     #fs_services li.divider,
     #fs_services li.dropdown-header,
     #fs_about li.divider,
     #fs_about li.dropdown-header {
-        width:100%;
+        width:100% !important;
         text-align:center;
         padding:0;
     }
