@@ -1,10 +1,9 @@
 // Tutoriel
 d$.f.date.modal = {
-  id: 'TutoModal',
   title: '',
   file: '',
   link: '',
-  or: '',
+  or: ''
 }
 
 if( i$Lang('fr') ) {
@@ -22,15 +21,16 @@ if( i$Lang('en') ) {
 }
 
 if( d$.f.date.modal.file != '' ) {
-  f$('a[href*="aqg259dth55iuhwm"]:contains("exemple")').before('<a href="javascript:void(0)" data-toggle="modal" data-target="#TutoModal">'+d$.f.date.modal.link+'</a> '+d$.f.date.modal.or+' ');
+  f$('a[href*="aqg259dth55iuhwm"]:contains("exemple")').before('<a href="javascript:void(0)" data-toggle="modal" data-target="#modal-Tuto">'+d$.f.date.modal.link+'</a> '+d$.f.date.modal.or+' ');
   f$('main .col-md-4:has(.glyphicon-question-sign)').append(
-    h$Modal('TutoModal', d$.f.date.modal.title, '', '<button class="btn" id="modal-close" data-dismiss="modal">'+d$.t.close+'</button>')
+    h$Modal('Tuto', d$.f.date.modal.title, '', '<button class="btn" id="modal-close" data-dismiss="modal">'+d$.t.close+'</button>')
   );
-  f$('#TutoModal .modal-body').load('_tutoriel/'+d$.f.date.modal.file+' .row', function() {
-    f$( "#TutoModal .modal-body img" ).attr( "src", function( i, val ) {
+  f$('#modal-Tuto .modal-dialog').addClass('modal-lg');
+  f$('#modal-Tuto .modal-body').load('_tutoriel/'+d$.f.date.modal.file+' .row', function() {
+    f$( "#modal-Tuto .modal-body img" ).attr( "src", function( i, val ) {
       return '_tutoriel/'+ val;
     });
-    f$( "#TutoModal .modal-body .row" ).after('<hr role="presentation" />');
+    f$( "#modal-Tuto .modal-body .row" ).after('<hr role="presentation" />');
   });
 }
 
@@ -46,5 +46,3 @@ f$('#message-container a[href$="edit"]').after(function(){
 }).remove();
 
 f$('head').append('<style>.yes .btn,.yes .btn:hover { color: #677835 !important;}.ifneedbe .btn,.ifneedbe .btn:hover { color: #C48A1B !important;}.no .btn,.no .btn:hover{color: #AD220F !important;}.ifneedbe input[type="radio"]:checked + label,.yes input[type="radio"]:checked + label { color: #fff !important;}.no .btn.startunchecked {color:#AD220F !important;}.no input[type="radio"]:checked + label:not(.startunchecked){color:#fff !important}</style>');
-
-});

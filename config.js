@@ -248,28 +248,10 @@ switch (n$.site) {
   break;
 
   case 'date':
-    if ( i$Agent() ) {
-
-      l$.js = { ext: i$('framadate.org', 'h') };
-      if(i$Lang('fr')) {
-        l$.modal = { don: ['a[href*="create_poll.php?"]', 'd’utiliser', 'créer un sondage'] };
-        if(i$('create_poll.php?')) l$.optin ['#formulaire input#email'];
-      }
-
-    } else {
-
-      l$.js = {j$: 'html', b$ : 'html' };
-
-      if(i$Lang('fr')) {
-        l$.modal = { don: ['a[href*="create_poll.php?"]', 'd’utiliser', 'créer un sondage'] };
-        if(i$('create_poll.php?')) {
-          l$.optin ['#formulaire input#email'];
-        }
-      }
-      if( i$('framadate.org', 'h') ) {
-        l$.js.ext = function(){ jQuery.getScript('/_charts/extra.js') };
-      }
-
+    l$.js = { ext: i$('framadate.org', 'h') };
+    if(i$Lang('fr')) {
+      l$.modal = { don: ['a[href*="create_poll.php?"]', 'd’utiliser', 'créer un sondage'] };
+      if(i$('create_poll.php?')) l$.optin ['#formulaire input#email'];
     }
   break;
 
