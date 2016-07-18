@@ -388,7 +388,7 @@ function f$_start_jquery() {
 
         f$('#framanav_container').css('opacity','1');
 
-        f$Benevalo();
+        f$Benevalo(f$);
 
         /*******************
          *   BootStrap JS
@@ -947,7 +947,7 @@ function f$LoadCSS(css) {
 }
 
 // Bénévalo
-function f$Benevalo() {
+function f$Benevalo(f$) {
   // Le bouton soutenir remplacé par un bouton bénévalo
   // pendant 3 jours autour de la pleine lune
   var today = Math.floor(new Date().getTime() / 1000);
