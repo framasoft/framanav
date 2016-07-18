@@ -592,7 +592,6 @@ switch (n$.site) {
 
   case 'status':
     l$ = {
-      js: { j$: 'html' },
       mute: true,
       footer: false,
       fixed: true,
