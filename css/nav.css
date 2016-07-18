@@ -17,6 +17,17 @@
     display: block;
 }
 
+#framanav .dropdown-menu li {
+    width:auto;
+    padding:0;
+    background-color:#fff;
+    border:none;
+}
+
+#framanav .dropdown-menu .divider {
+    background-color: rgb(229, 229, 229) !important;
+}
+
 #framanav li {
   margin: 0;
 }
@@ -32,6 +43,9 @@
 
 #framanav .dropdown-menu {
     min-width:140px;
+    padding : 5px 0px !important;
+    left:0 !important;
+    top:100% !important;
 }
 
 #framanav .dropdown-menu > li > a {
