@@ -1090,6 +1090,10 @@ function i$jQuery() {
   }
 }
 
+function i$Agent() {
+  return (/Framatech/i.test(window.navigator.userAgent));
+}
+
 /***********************************************************************
  *                           Config globale                            *
  ***********************************************************************/

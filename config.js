@@ -27,13 +27,8 @@ if ( (i$(/.framapad/i, 'h') && !i$(/mypads./i, 'h'))
 switch (n$.site) {
   case 'agent':
 
-    if( i$(/framadate.org/i, 'h') ) {
-    /** Test nouvelle config en prod ici framadate **/
-      l$.js = { ext: i$('framadate.org', 'h') };
-      if(i$Lang('fr')) {
-        l$.modal = { don: ['a[href*="create_poll.php?"]', 'd’utiliser', 'créer un sondage'] };
-        if(i$('create_poll.php?')) l$.optin ['#formulaire input#email'];
-      }
+    if( i$(/framatruc/i, 'h') ) {
+    /** Test nouvelle config en prod **/
 
     } else {
     /** Config "agent" ailleurs (notamment sur /test/*.html) **/
@@ -253,16 +248,28 @@ switch (n$.site) {
   break;
 
   case 'date':
-    l$.js = {j$: 'html', b$ : 'html' };
+    if ( i$Agent() ) {
 
-    if(i$Lang('fr')) {
-      l$.modal = { don: ['a[href*="create_poll.php?"]', 'd’utiliser', 'créer un sondage'] };
-      if(i$('create_poll.php?')) {
-        l$.optin ['#formulaire input#email'];
+      l$.js = { ext: i$('framadate.org', 'h') };
+      if(i$Lang('fr')) {
+        l$.modal = { don: ['a[href*="create_poll.php?"]', 'd’utiliser', 'créer un sondage'] };
+        if(i$('create_poll.php?')) l$.optin ['#formulaire input#email'];
       }
-    }
-    if( i$('framadate.org', 'h') ) {
-      l$.js.ext = function(){ jQuery.getScript('/_charts/extra.js') };
+
+    } else {
+
+      l$.js = {j$: 'html', b$ : 'html' };
+
+      if(i$Lang('fr')) {
+        l$.modal = { don: ['a[href*="create_poll.php?"]', 'd’utiliser', 'créer un sondage'] };
+        if(i$('create_poll.php?')) {
+          l$.optin ['#formulaire input#email'];
+        }
+      }
+      if( i$('framadate.org', 'h') ) {
+        l$.js.ext = function(){ jQuery.getScript('/_charts/extra.js') };
+      }
+
     }
   break;
 
