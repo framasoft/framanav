@@ -454,7 +454,6 @@ switch (n$.site) {
   case 'sphere':
     l$ = {
       js: {
-        j$: 'html', b$: 'html',
         ext: function() { jQuery('link[href*=bootstrap-complete]').remove(); }
       },
       css: { order: '102345' }
