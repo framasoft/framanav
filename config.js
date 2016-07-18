@@ -27,7 +27,7 @@ if ( (i$(/.framapad/i, 'h') && !i$(/mypads./i, 'h'))
 switch (n$.site) {
   case 'agent':
 
-    if( i$(/framadate.org/i, 'h') {
+    if( i$(/framadate.org/i, 'h') ) {
     /** Test nouvelle config en prod ici framadate **/
       l$.js = { ext: i$('framadate.org', 'h') };
       if(i$Lang('fr')) {
