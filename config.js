@@ -1,4 +1,4 @@
-/***********************************************************************
+ /***********************************************************************
  *                          Config des sites                           *
  ***********************************************************************/
 
@@ -118,12 +118,7 @@ switch (n$.site) {
   break;
 
   case 'bag':
-    if(i$('framabag.org/u')) {
-      l$ = {
-        js: { j$: 'html', b$: 'html' },
-        mute: true
-      }
-    }
+    l$ = { mute: i$('framabag.org/u') }
   break;
 
   case 'bee':
@@ -237,10 +232,8 @@ switch (n$.site) {
     }
   break;
 
-
   case 'colibri':
     l$ = {
-      js: { j$ : 'noConflict' },
       css: { ext: true },
       mute: true,
       footer: false
@@ -469,10 +462,7 @@ switch (n$.site) {
   break;
 
   case 'stats':
-    l$ = {
-      js: { j$: 'html', b$: 'html' },
-      fixed: true
-    }
+    l$ = { fixed: true }
   break;
 
   case 'team':
