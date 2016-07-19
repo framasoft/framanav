@@ -75,6 +75,10 @@ h1, h2, h3, h4, h5, h6,
 
 h1 {font-family: "DejaVu Sans", Verdana, Geneva, sans-serif; font-weight:bold; }
 
+header .lead {
+  font-style:italic;
+}
+
 .trait { /* hr */
     background-color: #EEE;
     height: 11px;
@@ -84,7 +88,29 @@ h1 {font-family: "DejaVu Sans", Verdana, Geneva, sans-serif; font-weight:bold; }
 
 .ombre {
     background-color: #FFF;
-    box-shadow: -4px 6px 9px rgba(50, 50, 50, 0.5);
+    -webkit-box-shadow: -4px 6px 9px rgba(50, 50, 50, 0.5);
+    -moz-box-shadow:    -4px 6px 9px rgba(50, 50, 50, 0.5);
+    box-shadow:         -4px 6px 9px rgba(50, 50, 50, 0.5);
+}
+
+.container.ombre {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    padding: 20px 30px;
+}
+
+img.ombre {
+    box-shadow: 0px 2px 6px rgba(50, 50, 50, 0.4);
+    margin:10px;
+    padding:0;
+    width:90%;
+}
+
+#tuto-faq p[role="presentation"] .glyphicon,
+#tuto-video p[role="presentation"] .glyphicon,
+#le-logiciel p[role="presentation"] .glyphicon,
+#jardin p[role="presentation"] .glyphicon {
+    font-size:50px;
 }
 
 .signature {
@@ -830,6 +856,123 @@ fieldset[disabled] .btn-link:focus {
     line-height:18px;
 }
 
+/* Navigation interne (hors container) */
+#internav ul {
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+#internav li a {
+    color: #666;
+    padding: 12px 15px;
+    text-decoration: none;
+    border:none !important;
+    line-height: 14px;
+}
+#internav li a:hover,
+#internav li a:focus,
+#internav li a.active {
+    background: #767676;
+    color: #fff;
+}
+
+#internav form div {
+    margin-top: 4px;
+    margin-left: 25px
+}
+
+/* Carousel */
+.carousel {
+  margin:1em auto 4em;
+  max-width:1060px;
+}
+
+.carousel-inner {
+    padding-bottom:75px;
+    box-shadow:0px 3px 3px rgba(50, 50, 50, 0.5);
+}
+
+.carousel-inner > .item {
+  position: absolute;
+  top: -999999em;
+  display: block;
+  -webkit-transition: 0.6s ease-in-out left;
+  -moz-transition: 0.6s ease-in-out left;
+  -o-transition: 0.6s ease-in-out left;
+  transition: 0.6s ease-in-out left;
+}
+.carousel-inner > .active {
+  top: 0;
+}
+.carousel-inner > .active,
+.carousel-inner > .next,
+.carousel-inner > .prev {
+  position: relative;
+}
+.carousel-inner > .next,
+.carousel-inner > .prev {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.carousel-control.right, .carousel-control.left{
+    background-image:none !important;
+    color:#eee!important;
+}
+
+#play-pause {
+    position: absolute;
+    margin-top: -100px;
+    margin-left:30px;
+    left: 0%;
+}
+
+#play-pause a {
+    cursor: pointer;
+    font-size: 30px;
+    z-index: 1000 !important;
+    background: #f3f3f3 !important;
+    border-radius: 30px;
+    color: #767676 !important;
+    width: 40px;
+    height: 40px;
+    padding-left: 2px;
+    padding-top: 2px;
+    position:absolute!important;
+    opacity:1;
+    text-shadow:none;
+    box-shadow:0px 1px 1px rgba(50, 50, 50, 0.5);
+}
+#play-pause a:hover {
+    color: #555 !important;
+}
+
+.carousel a{
+    border-bottom: none!important;
+}
+
+.carousel-caption{
+    background: #f3f3f3 !important;
+    bottom:-75px!important;
+    color: #333 !important;
+    left:0!important;
+    right:0!important;
+    position:absolute!important;
+    height:78px !important;
+    text-shadow:none;
+    border-top:1px solid #ddd;
+}
+
+.carousel-caption .h3 {
+  margin-top:10px;
+}
+
+.carousel img {
+    width:100%;
+    margin:0;
+}
+
+
 /* Cleaning */
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a,
 a.btn,
@@ -876,30 +1019,7 @@ a.bg-primary:focus {
   outline: dotted 1px black;
 }
 
-.carousel-inner > .item {
-  position: absolute;
-  top: -999999em;
-  display: block;
-  -webkit-transition: 0.6s ease-in-out left;
-  -moz-transition: 0.6s ease-in-out left;
-  -o-transition: 0.6s ease-in-out left;
-  transition: 0.6s ease-in-out left;
-}
-.carousel-inner > .active {
-  top: 0;
-}
-.carousel-inner > .active,
-.carousel-inner > .next,
-.carousel-inner > .prev {
-  position: relative;
-}
-.carousel-inner > .next,
-.carousel-inner > .prev {
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
-
 cite {
   font-style:italic;
 }
+
