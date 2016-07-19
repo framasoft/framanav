@@ -310,7 +310,6 @@ switch (n$.site) {
 
   case 'pack':
     l$ = {
-      js: { j$: 'html', b$: 'html' },
       modal: { don: ['onstart', 'd’utiliser','utiliser '+n$.name] }
     }
   break;
