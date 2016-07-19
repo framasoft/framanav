@@ -258,14 +258,13 @@ switch (n$.site) {
 
   case 'drive':
     l$ = {
-      js: { j$: 'html', b$: 'html' },
       fixed: true,
     }
     if( (i$('index.php/app') && !i$('registration')) || i$('index.php/setting') ) {
       l$.footer = false;
       l$.mute = true;
     } else {
-      l$.js.video = true;
+      l$.js = { video: true };
     }
   break;
 
