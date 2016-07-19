@@ -124,7 +124,6 @@ switch (n$.site) {
   case 'bee':
     l$ = {
       js: {
-        j$: 'html', b$: 'html',
         ext: function() { jQuery('#q').focus(); jQuery('.footer').hide(); jQuery('body').css('margin-bottom','0') }
       }
     }
@@ -199,7 +198,6 @@ switch (n$.site) {
     } else { // dans Ethercalc
       l$ = {
         js: {
-          j$: 'noConflict',
           ext: function() { jQuery(window).trigger('resize') }
         },
         css: {
@@ -540,7 +538,7 @@ switch (n$.site) {
       }
     } else { // Dans Wisemapping (et accueil)
       l$ = {
-        js: { j$: 'html', b$: 'html', video: true },
+        js: { video: true },
         css: { b$: false, ext: true },
         optin: ['#user #email']
       }
