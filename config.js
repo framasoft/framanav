@@ -419,10 +419,7 @@ switch (n$.site) {
 
   case 'pic':
     l$ = {
-      js: {
-        j$: 'noConflict',
-        video: true
-      },
+      js: { video: true },
       modal: { don: ['onstart', 'd’utiliser','utiliser '+n$.name] }
     }
   break;
@@ -472,7 +469,7 @@ switch (n$.site) {
     }
   break;
 
-  case 'docsteam':
+  case 'docs.team':
     l$ = {
       fixed: true,
       footer: false,
@@ -538,7 +535,6 @@ switch (n$.site) {
   case 'mindmap':
     if(i$('framindmap.org/mindmaps')) { // Dans Mindmaps
       l$ = {
-        js: { j$: 'noConflict' },
         css: { ext: true },
         mute: true,
         footer: false

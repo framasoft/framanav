@@ -857,9 +857,10 @@ fieldset[disabled] .btn-link:focus {
 }
 
 /* Navigation interne (hors container) */
+
 #internav ul {
     margin-top: 0px;
-    margin-bottom: 10px;
+    margin-bottom: -10px;
 }
 #internav li a {
     color: #666;
