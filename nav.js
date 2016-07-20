@@ -94,10 +94,10 @@ var f$_start_config = function() {
     }
 
     if(c$.mute) {
-      if(l$.alert[1] == undefined) c$.alert[1] = '';           // Pas de bandeau
-      if(l$.modal.info[0] == undefined) c$.modal.info[0] = ''; // Pas de modale
-      if(l$.modal.don[0] == undefined) c$.modal.don[0] = '';
-      c$.donate = false;                                       // Pas de macaron
+      if(l$.alert == undefined) c$.alert[1] = '';           // Pas de bandeau
+      if(l$.modal.info == undefined) c$.modal.info[0] = ''; // Pas de modale
+      if(l$.modal.don == undefined) c$.modal.don[0] = '';
+      c$.donate = false;                                    // Pas de macaron
     }
 
     /** Deprecated → i$jQuery()
