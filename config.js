@@ -479,7 +479,7 @@ switch (n$.site) {
     if(!i$('http://framasoft.org/', 'u') && !i$(/org\/accueil|org\/nav/i, 'u')) { // dans l'annuaire
       l$ = {
         js: {
-          ext = function() { // Mise en forme « Juste une image »
+          ext: function() { // Mise en forme « Juste une image »
             flickr_t = jQuery('img[src$="_t.jpg"]').attr('src');
             if(flickr_t) {
               flickr_m = flickr_t.replace('_t.jpg', '_m.jpg');
@@ -490,7 +490,7 @@ switch (n$.site) {
         optin: ['#email_auteur'],
         credits: 'libre',
         fixed: true,
-        icons {
+        icons: {
           fav: 'favicon-bleu.png',
           apple: 'libre.png'
         }
