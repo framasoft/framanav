@@ -215,6 +215,11 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
   vertical-align:top;
 }
 
+#framanav .navbar-brand img {
+  width: 38px;
+  height: 38px;
+}
+
 #framanav .popover-title { font-weight: bold; }
 
 .modal-backdrop {
