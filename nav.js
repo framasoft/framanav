@@ -96,7 +96,7 @@ var f$_start_config = function() {
     if(c$.mute) {
       if(l$.alert == undefined) c$.alert[1] = '';                                    // Pas de bandeau
       if(l$.modal == undefined) {
-        c$.modal.info[0] = ''; c$.modal.don[0] = '';                                 // Pas de modale 
+        c$.modal.info[0] = ''; c$.modal.don[0] = '';                                 // Pas de modale
       } else {
         if(l$.modal.info == undefined) c$.modal.info[0] = '';
         if(l$.modal.don == undefined) c$.modal.don[0] = '';
@@ -214,7 +214,7 @@ function f$_start_jquery() {
         if (n$.inframe) f$('#framanav_container').hide();
 
         h$ = {
-          framasoft: '<b class="violet">'+d$.meta.home.p+'</b><b class="orange">'+d$.meta.home.s+'</b>',
+          framasoft: !i$Agent() ? '<b class="violet">'+d$.meta.home.p+'</b><b class="orange">'+d$.meta.home.s+'</b>' : '<b class="violet">Lara</b><b class="orange">Croft</b>',
           rssLink : '<link rel="alternate" type="application/rss+xml" title="'+d$.f.rss.d1+'" href="'+d$.f.rss.l+'" />',
           newwindow: '&nbsp;<i class="fa fa-external-link new-window"></i>'+h$SR('('+d$.t.newwindow+')')+'</span>',
           divider: '<li role="presentation" class="divider"></li>',

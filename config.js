@@ -42,8 +42,6 @@ switch (n$.site) {
         fixed: i$('fixed'),
         credits: 'pad'
       }
-      // test/noConflict.html
-      if(i$('noConflict')) l$ = { js: { j$: 'noConflict' } }
       // test/medias.html
       if(i$('media')) {
         l$ = {
@@ -73,30 +71,9 @@ switch (n$.site) {
 
     }
   break;
-  case 'bot' :
-    l$ = { mute: true, footer: false };
-  break;
 
-  case 'connard' :
-    l$ = {
-      css: { frama: false },
-      mute: true,
-      icons: { keep: true },
-      footer: false
-    }
-  break;
-
-  case 'contact':
-    l$ = {
-      js: { ext: true },
-      css: { ext: true },
-      fixed: true,
-      optin: ['#wpcf7-f24-p5-o1 .wpcf7-email'],
-    }
-  break;
-
-  case 'degooglisons-internet':
-    l$ = { mute: true }
+  case 'android':
+    l$ = { fixed: true }
   break;
 
   case 'forum':
@@ -105,15 +82,6 @@ switch (n$.site) {
       css: { order: '102345' },
       optin: ['#email_confirm', '#email'],
       footer: false
-    }
-  break;
-
-  case 'link':
-    l$ = {
-      js: { video: true },
-      modal: {
-        don : ['onstart', 'd’utiliser', 'utiliser '+n$.name]
-      }
     }
   break;
 
@@ -184,6 +152,10 @@ switch (n$.site) {
     }
   break;
 
+  case 'bot' :
+    l$ = { mute: true, footer: false };
+  break;
+
   case 'calc':
     // Calcs à onglets sont dans des frame
     if(top.location.href.indexOf('framacalc.org/=') > -1) {
@@ -238,12 +210,34 @@ switch (n$.site) {
     }
   break;
 
+  case 'connard' :
+    l$ = {
+      css: { frama: false },
+      mute: true,
+      icons: { keep: true },
+      footer: false
+    }
+  break;
+
+  case 'contact':
+    l$ = {
+      js: { ext: true },
+      css: { ext: true },
+      fixed: true,
+      optin: ['#wpcf7-f24-p5-o1 .wpcf7-email'],
+    }
+  break;
+
   case 'date':
     l$.js = { ext: i$('framadate.org', 'h') };
     if(i$Lang('fr')) {
       l$.modal = { don: ['a[href*="create_poll.php?"]', 'd’utiliser', 'créer un sondage'] };
       if(i$('create_poll.php?')) l$.optin ['#formulaire input#email'];
     }
+  break;
+
+  case 'degooglisons-internet':
+    l$ = { mute: true }
   break;
 
   case 'dvd':
@@ -287,15 +281,46 @@ switch (n$.site) {
     }
   break;
 
-  case 'android':
-    l$ = { fixed: true }
+  case 'link':
+    l$ = {
+      js: { video: true },
+      modal: {
+        don : ['onstart', 'd’utiliser', 'utiliser '+n$.name]
+      }
+    }
+  break;
+
+  case 'mindmap':
+    if(i$('framindmap.org/mindmaps')) { // Dans Mindmaps
+      l$ = {
+        css: { ext: true },
+        mute: true,
+        footer: false
+      }
+    } else { // Dans Wisemapping (et accueil)
+      l$ = {
+        js: { video: true },
+        css: { b$: false, ext: true },
+        optin: ['#user #email']
+      }
+
+      l$.mute = (!i$('framindmap.org/c/login') && !i$('framindmap.org/c/user/registration'));
+
+      if(i$('framindmap.org/c/maps/') && !i$('/edit')) {
+        l$.modal = { don: ['onstart', 'd’utiliser', 'utiliser '+n$.name] }
+      }
+      if(f$_page('framindmap.org/c/maps') && f$_page('/edit')) {
+        // [Fix] Suppression de la nav dans l'éditeur
+        var f$_navcontainer = document.getElementById('framanav_container');
+        f$_navcontainer.parentNode.removeChild(f$_navcontainer);
+      }
+    }
   break;
 
   case 'news':
     if(i$('framanews.org/ttrss')) {
       l$ = {
         js: {
-          j$: 'noConflict',
           ext: function() { jQuery(window).trigger('resize') }
         },
         css: { ext: true },
@@ -405,6 +430,13 @@ switch (n$.site) {
   break;
 //-- </framapad> -------------------------------------------------------
 
+  case 'participer':
+    l$ = {
+      js: { video: true },
+      fixed: true
+    }
+  break;
+
   case 'phonie':
     l$ = {
       css: {
@@ -422,26 +454,47 @@ switch (n$.site) {
     }
   break;
 
-  case 'soft':
+  case 'pootle':
     l$ = {
-      js: {},
-      fixed: true,
-      optin: ['#email_auteur'],
-      icons: {}
+      css: {
+        order: '102345',
+        frama: false, // en attente
+        ext: true
+      },
+      mute: true
     }
+  break;
 
-    if(!i$('http://framasoft.org/', 'u') && !i$('framasoft.org/accueil')
-        && !i$('framasoft.org/nav')) {
-      l$.js.ext = function() { // Mise en forme « Juste une image »
-        flickr_t = jQuery('img[src$="_t.jpg"]').attr('src');
-        if(flickr_t) {
-          flickr_m = flickr_t.replace('_t.jpg', '_m.jpg');
-          jQuery('img[src$="_t.jpg"]').attr('src', flickr_m).css('width', '90%');
+  case 'pouhiou': // pouhiou.com + noenaute.fr
+    l$ = {
+      css: { frama: false },
+      mute: true,
+      footer: false,
+      icons: { keep: true }
+    }
+  break;
+
+  case 'soft':
+    l$ = { fixed: true }
+    if(!i$('http://framasoft.org/', 'u') && !i$(/org\/accueil|org\/nav/i, 'u')) { // dans l'annuaire
+      l$ = {
+        js: {
+          ext = function() { // Mise en forme « Juste une image »
+            flickr_t = jQuery('img[src$="_t.jpg"]').attr('src');
+            if(flickr_t) {
+              flickr_m = flickr_t.replace('_t.jpg', '_m.jpg');
+              jQuery('img[src$="_t.jpg"]').attr('src', flickr_m).css('width', '90%');
+            }
+          }
+        },
+        optin: ['#email_auteur'],
+        credits: 'libre',
+        fixed: true,
+        icons {
+          fav: 'favicon-bleu.png',
+          apple: 'libre.png'
         }
       }
-      l$.credits = 'libre';
-      l$.icons.fav = 'favicon-bleu.png';
-      l$.icons.apple = 'libre.png';
     }
   break;
 
@@ -458,6 +511,17 @@ switch (n$.site) {
     l$ = { fixed: true }
   break;
 
+
+  case 'status':
+    l$ = {
+      mute: true,
+      footer: false,
+      fixed: true,
+      icons: { apple: 'apple-orange.png' }
+    }
+  break;
+
+//-- <framateam> -------------------------------------------------------
   case 'team':
     l$ = {
       js: { j$: 'noConflict', b$: 'html', ext: true },
@@ -474,28 +538,25 @@ switch (n$.site) {
       mute: true
     }
   break;
+//-- </framateam> ------------------------------------------------------
 
   case 'tube':
+    n$.inframe = i$('/embed_player');
     l$ = {
-      js: { j$: 'html', video: true },
+      js: { video: true },
       host: 'ovh',
       alert: [
         'info',
         '<b class="violet">Frama</b><b class="rouge">tube</b> est réservé à l’usage exclusif de <b class="violet">Frama</b><b class="orange">soft</b> pour le moment.'+
         '<br/>L’hebergement de vidéos sera <a href="https://degooglisons-internet.org/liste/#2017">ouvert au public en 2017</a> si nous en avons les moyens.'
-      ]
-    }
-
-    if(i$('/embed_player')) {
-      n$.inframe = true;
-      l$.mute = true;
+      ],
+      mute: i$('/embed_player')
     }
   break;
 
   case 'vectoriel':
     if(i$('svg-editor')) { // Dans SVG-Editor
       l$ = {
-        js: { j$: 'noConflict' },
         css: {
           b$: !n$.inframe,
           ext: !n$.inframe
@@ -504,8 +565,10 @@ switch (n$.site) {
         footer: false
       }
     } else {
-      l$.modal = { don: ['a[href="/svg-editor.html"]', 'd’utiliser', 'créer une image'] };
-      l$.js.video = true;
+      l$ = {
+        js: { video: true },
+        modal: { don: ['a[href="/svg-editor.html"]', 'd’utiliser', 'créer une image'] }
+      }
     }
   break;
 
@@ -523,81 +586,18 @@ switch (n$.site) {
     }
   break;
 
-  case 'zic':
-    l$ = {
-      js: { video : true },
-      fixed: true
-    }
-  break;
-
-  case 'mindmap':
-    if(i$('framindmap.org/mindmaps')) { // Dans Mindmaps
-      l$ = {
-        css: { ext: true },
-        mute: true,
-        footer: false
-      }
-    } else { // Dans Wisemapping (et accueil)
-      l$ = {
-        js: { video: true },
-        css: { b$: false, ext: true },
-        optin: ['#user #email']
-      }
-
-      l$.mute = (!i$('framindmap.org/c/login') && !i$('framindmap.org/c/user/registration'));
-
-      if(i$('framindmap.org/c/maps/') && !i$('/edit')) {
-        l$.modal = { don: ['onstart', 'd’utiliser', 'utiliser '+n$.name] }
-      }
-      if(f$_page('framindmap.org/c/maps') && f$_page('/edit')) {
-        // [Fix] Suppression de la nav dans l'éditeur
-        var f$_navcontainer = document.getElementById('framanav_container');
-        f$_navcontainer.parentNode.removeChild(f$_navcontainer);
-      }
-    }
-  break;
-
-  case 'participer':
-    l$ = {
-      js: { video: true },
-      fixed: true
-    }
-  break;
-
-  case 'pouhiou': // pouhiou.com + noenaute.fr
-    l$ = {
-      css: { frama: false },
-      mute: true,
-      footer: false,
-      icons: { keep: true }
-    }
-  break;
-
-  case 'pootle':
-    l$ = {
-      css: {
-        order: '102345',
-        frama: false, // en attente
-        ext: true
-      },
-      mute: true
-    }
-  break;
-
-  case 'status':
-    l$ = {
-      mute: true,
-      footer: false,
-      fixed: true,
-      icons: { apple: 'apple-orange.png' }
-    }
-  break;
-
   case 'wiki':
     n$.inframe = i$('mediamanager.php');
     l$ = {
       css: { ext: true },
       alert: ['']
+    }
+  break;
+
+  case 'zic':
+    l$ = {
+      js: { video : true },
+      fixed: true
     }
   break;
 }
