@@ -320,9 +320,9 @@ switch (n$.site) {
   break;
 
   case 'mypads':
+    n$.name = 'Framapad';
     l$ = {
       js: {
-        j$ : 'html',
         ext: function() {
           setInterval(function() {
             if(jQuery('section.pad iframe').length > 0) {
@@ -343,12 +343,12 @@ switch (n$.site) {
   break;
 
   case 'etherpad': // dans Etherpad
+    n$.name = 'Framapad';
     l$ = {
       js: {
-        j$: 'html',
         ext: function () {
-            jQuery('#loading').append('<p class="small">Si le pad refuse de s’afficher, essayez de télécharger<br/>l’export <a href="'+location.href+'/export/html">html</a> ou <a href="'+location.href+'/export/txt">txt</a> de votre document et <a href="https://contact.framasoft.org/#framapad">contactez-nous</a>.</p>');
-            jQuery('#exportopena, #exportetherpada').hide();
+          jQuery('#loading').delay(2000).append('<p class="small">Si le pad refuse de s’afficher, essayez de télécharger<br/>l’export <a href="'+location.href+'/export/html">html</a> ou <a href="'+location.href+'/export/txt">txt</a> de votre document et <a href="https://contact.framasoft.org/#framapad">contactez-nous</a>.</p>');
+          jQuery('#exportopena, #exportetherpada').hide();
         }
       },
       css: {
@@ -369,8 +369,9 @@ switch (n$.site) {
           '<ul style="margin-left:30px">'+
               '<li>Réactivation des couleurs d’identification (auteurs identifiés par le surlignage en couleur).</li>'+
               '<li>Possibilité d’afficher une table des matières, en fonction des titres utilisés dans votre pad.</li>'+
-              '<li>Possibilité d’afficher le pad en mode « page ».</li>'+
+              '<li>Possibilité d’afficher le pad en mode « page ».</li>'+
               '<li>Affichage du noms des auteurs au survol du texte.</li>'+
+              '<li>Possibilité d’annoter le document dans la marge et proposer du texte de remplacement.</li>'+
           '</ul>'+
           '<p>Ces modifications peuvent être activées/désactivées au niveau des paramètres de Framapad (roue crantée en haut à droite).</p>'+
           '<p>Pour plus d’informations, voir notre <a href="https://wiki.framasoft.org/projets/framapad">documentation</a>.</p>',
