@@ -118,13 +118,13 @@ switch (n$.site) {
     if (i$('.framaboard')) { // dans Kanboard
       l$ = {
         js: {
-          j$: 'html', b$: 'html',
+          b$: 'html',
           ext: function() {
             jQuery('h1 .logo a').html('<b class="violet">Frama</b><b class="vert">board</b>');
             jQuery('h1 .logo').removeClass('logo');
           }
         },
-        css: { b$: false }, // board.css chargé en dur en amont de nav.css et frama.css ; tester en remplaçant par "order: 015234"
+        css: { order: '015234', b$: false, ext: true },
         footer: false,
         mute: true
       }
