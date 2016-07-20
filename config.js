@@ -548,6 +548,8 @@ switch (n$.site) {
 
       if(i$('framindmap.org/c/maps/') && !i$('/edit')) {
         l$.modal = { don: ['onstart', 'd’utiliser', 'utiliser '+n$.name] }
+      }
+      if(f$_page('framindmap.org/c/maps') && f$_page('/edit')) {
         // [Fix] Suppression de la nav dans l'éditeur
         var f$_navcontainer = document.getElementById('framanav_container');
         f$_navcontainer.parentNode.removeChild(f$_navcontainer);
