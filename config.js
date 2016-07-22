@@ -301,15 +301,13 @@ switch (n$.site) {
       l$ = {
         js: { video: true },
         css: { b$: false, ext: true },
-        optin: ['#user #email']
+        optin: ['#user #email'],
+        mute: (!i$('framindmap.org/c/login') && !i$('framindmap.org/c/user/registration'))
       }
-
-      l$.mute = (!i$('framindmap.org/c/login') && !i$('framindmap.org/c/user/registration'));
-
       if(i$('framindmap.org/c/maps/') && !i$('/edit')) {
         l$.modal = { don: ['onstart', 'd’utiliser', 'utiliser '+n$.name] }
       }
-      if(f$_page('framindmap.org/c/maps') && f$_page('/edit')) {
+      if(i$('framindmap.org/c/maps') && i$('/edit')) {
         // [Fix] Suppression de la nav dans l'éditeur
         var f$_navcontainer = document.getElementById('framanav_container');
         f$_navcontainer.parentNode.removeChild(f$_navcontainer);

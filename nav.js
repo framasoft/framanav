@@ -84,7 +84,6 @@ var f$_start_config = function() {
       console.log('✔ '+n$.nav.speed+' config.js '+n$.version+' | '+n$.f$+' | '+n$.j$+' → '+i$jQuery()+' ?');
 
     if(i$('/nav/html/')) { // Si pages « À propos » on réinit la config
-      c$.js.j$ = 'AJAX'; /** Deprecated → i$jQuery() **/
       f$_bootstrap_css = false;
       c$.js.b$ = true;
       c$.css.b$ = false;
@@ -104,9 +103,7 @@ var f$_start_config = function() {
       c$.donate = false;                                                             // Pas de macaron
     }
 
-    /** Deprecated → i$jQuery()
-     *  à passer sur i$jQuery() après vérif
-     *  et supprimer le paramètre de config si tout est ok **/
+    /** c$.js.j$ = i$jQuery() mais on garde l$.js.j$ en fallback pour les cas très particuliers **/
     switch (c$.js.j$) {
       case 'AJAX' :
         if (i$jQuery() == 'AJAX') {
@@ -173,7 +170,6 @@ function f$_start_jquery() {
   /*
    * Nav
    */
-  /** Deprecated → i$jQuery() **/
   switch (c$.js.j$) {
     case 'noConflict': var f$ = jQuery.noConflict(); break;
     default          : var f$ = jQuery; break;
@@ -638,7 +634,7 @@ function f$_start_jquery() {
 
         function go_BootStrap() {
           // Redéfini f$ pour Bootstrap en mode noConflict si nécessaire
-          switch (c$.js.j$) { /** Deprecated → i$jQuery() **/
+          switch (c$.js.j$) {
             case 'noConflict': var f$ = jQuery.noConflict(); break;
             default          : var f$ = jQuery; break;
           }
@@ -1013,11 +1009,6 @@ function h$icon(classCSS) {
 }
 
 //----------------------Fonctions i$ -----------------------------------
-/** Deprecated → i$() **/
-function f$_page(string) {
-  return (n$.url.indexOf(string) > -1);
-}
-
 // Sur quel site/page on est ?
 function i$(string, location) {
   switch (location) {
