@@ -947,6 +947,11 @@ a.btn,
 .dropdown-menu a,
 .nav a { text-decoration:none !important;}
 
+#mypads .container.ombre {
+  margin-top:0;
+  margin-bottom:0;
+}
+
 /* a11y (https://github.com/paypal/bootstrap-accessibility-plugin) */
 .btn:focus,
 .btn.active:focus {
