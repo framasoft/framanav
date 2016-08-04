@@ -657,6 +657,7 @@ switch (n$.site) {
   case 'petition' :              l$.piwik.id = '45'; break;
   case 'vox' :                   l$.piwik.id = '47'; break;
   case 'team' :                  l$.piwik.id = '48'; break;
+  case 'memo' :                  l$.piwik.id = '49'; break;
 }
 
 if(l$.piwik.id != '') {

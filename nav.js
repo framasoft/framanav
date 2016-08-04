@@ -41,6 +41,7 @@ var n$ = {
   n$.site = n$.site.replace(/framand/i,'and')
                    .replace(/(\.framasoft|frama\.)/i,'')
                    .replace(/framin/i,'min')
+                   .replace(/frame/i, 'me')
                    .replace(/frama/i,'');
   n$.site = (/Framatech/i.test(window.navigator.userAgent)) ? 'agent' : n$.site;     // Config locale
 
