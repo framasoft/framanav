@@ -70,9 +70,9 @@ switch (c$.js.j$) {
                     '<p class="text-center" role="presentation"><span class="glyphicon glyphicon-tree-deciduous"></span></p>'+
                     '<p>Pour participer au développement du logiciel, proposer des améliorations'+
                       ' ou simplement le télécharger, rendez-vous sur <a href="https://github.com/mattermost/platform">le site de développement</a>.</p>'+
-                    '<!--<br>'+
+                    '<br>'+
                     '<p>Si vous souhaitez installer ce logiciel pour votre propre usage et ainsi gagner en autonomie, nous vous aidons sur :</p>'+
-                    '<p class="text-center"><a href="http://framacloud.org/cultiver-son-jardin/installation-d-ethercalc/" class="btn btn-primary">framacloud.org</a></p>-->'+
+                    '<p class="text-center"><a href="http://framacloud.org/cultiver-son-jardin/installation-de-gitlab-et-mattermost/" class="btn btn-primary">framacloud.org</a></p>'+
                   '</div></div>';
 
   f$_pteams = '<div class="text-center framateam" id="Options">'+
