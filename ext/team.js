@@ -125,6 +125,9 @@ setInterval(function() {
     updateDisplay(f$_currentId);
   }
 
+  // Fix duplicate modal-backdrop
+  f$('body .modal-backdrop:eq(1)').remove(); 
+
 }, 1000);
 
 
