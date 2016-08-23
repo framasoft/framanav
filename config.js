@@ -519,14 +519,6 @@ switch (n$.site) {
     }
   break;
 
-  case 'talk':
-    l$ = {
-      fixed: true,
-      mute: !( i$('framatalk.org/accueil') || i$('https://framatalk.org/', 'u'))
-      footer: ( i$('framatalk.org/accueil') || i$('https://framatalk.org/', 'u'))
-    }
-  break;
-  
 //-- <framateam> -------------------------------------------------------
   case 'team':
     l$ = {
