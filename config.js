@@ -519,6 +519,13 @@ switch (n$.site) {
     }
   break;
 
+  case 'talk':
+    l$ = {
+      fixed: true,
+      mute: !( i$('framatalk.org/accueil') || i$('https://framatalk.org/', 'u'))
+    }
+  break;
+  
 //-- <framateam> -------------------------------------------------------
   case 'team':
     l$ = {
@@ -658,6 +665,7 @@ switch (n$.site) {
   case 'vox' :                   l$.piwik.id = '47'; break;
   case 'team' :                  l$.piwik.id = '48'; break;
   case 'memo' :                  l$.piwik.id = '49'; break;
+  case 'talk' :                  l$.piwik.id = '50'; break;
 }
 
 if(l$.piwik.id != '') {
@@ -700,7 +708,7 @@ if (i$(/(dvd|key|libre|android|pack|start)/i,'h')) {
 if (i$(/(blog|book|lang|tube|zic)/i,'h')) {
   l$.icons.fav = 'favicon-rouge.png';
 }
-if (i$(/(link|bag|bee|bin|calc|carte|cloud|date|forms|games|git|news|pad|petition|pic|sphere|team|vectoriel|vox|mindmap|board|drive|drop)/i,'h')) {
+if (i$(/(link|bag|bee|bin|calc|carte|cloud|date|forms|games|git|news|pad|petition|pic|sphere|talk|team|vectoriel|vox|mindmap|board|drive|drop)/i,'h')) {
   l$.icons.fav = 'favicon-vert.png';
 }
 if (i$(/(forum.|code|lab|phonie|wiki.)/i,'h')) {
