@@ -314,7 +314,11 @@ switch (n$.site) {
       }
     }
   break;
-
+  
+  case: 'minetest': 
+    l$.js = { video: true };
+  break;
+  
   case 'news':
     if(i$('framanews.org/ttrss')) {
       l$ = {
