@@ -315,7 +315,7 @@ switch (n$.site) {
     }
   break;
   
-  case: 'minetest': 
+  case 'minetest': 
     l$.js = { video: true };
   break;
   
