@@ -39,6 +39,7 @@ var n$ = {
   n$.site = n$.host.replace(/^(www|test)\./i,'').replace(/\.(com|net|org|fr|pro)$/i,''); // Domaine et sous-domaine
   n$.name = n$.site[0].toUpperCase()+n$.site.slice(1).replace('.framasoft', '');         // Nom du service
   n$.site = n$.site.replace(/framand/i,'and')
+                   .replace(/framage/i,'age')
                    .replace(/(\.framasoft|frama\.)/i,'')
                    .replace(/framin/i,'min')
                    .replace(/frame/i, 'me')
@@ -331,7 +332,7 @@ function f$_start_jquery() {
         // Ajout des dividers
         f$('#framanav .dropdown-menu li')
           .has(
-            'a[href*="degooglisons"], a[href*="vectoriel.org"], a[href*="carte.org"], a[href*="news.org"],'+
+            'a[href*="degooglisons"], a[href*="vectoriel.org"], a[href*="carte.org"], a[href*="minetest.org"], a[href*="news.org"],'+
             'a[href*="enventelibre.org"], a[href*="wiki."], a[href*="plus.google"], a[href*="status."]'
           )
           .after(h$.divider);

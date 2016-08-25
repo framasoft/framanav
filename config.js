@@ -659,6 +659,10 @@ switch (n$.site) {
   case 'team' :                  l$.piwik.id = '48'; break;
   case 'memo' :                  l$.piwik.id = '49'; break;
   case 'talk' :                  l$.piwik.id = '50'; break;
+  case 'minetest' :              l$.piwik.id = '51'; break;
+  case 'notes' :                 l$.piwik.id = '52'; break;
+  case 'agenda' :                l$.piwik.id = '53'; break;
+  case 'listes' :                l$.piwik.id = '54'; break;
 }
 
 if(l$.piwik.id != '') {
@@ -695,13 +699,13 @@ if(l$.piwik.id != '') {
  **********************************************************************/
 l$.icons = (l$.icons == undefined) ? {} : l$.icons ;
 
-if (i$(/(dvd|key|libre|android|pack|start)/i,'h')) {
+if (i$(/(android|dvd|key|libre|pack|start)/i,'h')) {
   l$.icons.fav = 'favicon-bleu.png';
 }
 if (i$(/(blog|book|lang|tube|zic)/i,'h')) {
   l$.icons.fav = 'favicon-rouge.png';
 }
-if (i$(/(link|bag|bee|bin|calc|carte|cloud|date|forms|games|git|news|pad|petition|pic|sphere|talk|team|vectoriel|vox|mindmap|board|drive|drop)/i,'h')) {
+if (i$(/(agenda|bag|bee|bin|board|calc|carte|cloud|date|drive|drop|forms|games|git|link|listes|memo|mindmap|minetest|news|notes|pad|petition|pic|sphere|talk|team|vectoriel|vox)/i,'h')) {
   l$.icons.fav = 'favicon-vert.png';
 }
 if (i$(/(forum.|code|lab|phonie|wiki.)/i,'h')) {
@@ -711,6 +715,7 @@ if (i$(/(contact.|participer.|soutenir.|stats|status.)/i,'h')) {
   l$.icons.fav = 'favicon-orange.png';
 }
 
-if (i$(/(bot.|contact.|degooglisons-internet|forum.|bag|bee|bin|blog|board|bookin|book|calc|carte|cloud|code|colibri|date|drive|drop|dvd|games|key|lab|lang|link|android|news|pack|pad|phonie|pic|soft|sphere|start|stats|team|tube|vectoriel|vox|zic|mindmap|participer.|soutenir.|wiki.)/i,'h')) {
+if ( i$(/(agenda|android|bag|bee|bin|blog|board|bookin|book|calc|carte|cloud|code|colibri|date|drive|drop|dvd|forms|games|key|lab|lang|link|listes|memo|mindmap|minetest|news|pack|pad|phonie|pic|soft|sphere|start|stats|talk|team|tube|vectoriel|vox|zic)/i,'h')
+   || i$(/(bot.|contact.|degooglisons-internet|forum.|participer.|soutenir.|wiki.)/i,'h') ){
   l$.icons.apple = n$.site+'.png';
 }

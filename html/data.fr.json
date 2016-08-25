@@ -19,7 +19,77 @@
     "t2": "titre DIo",
     "d2": "description courte DIo",
     "d3": "description longue DIo",
-    "d4": "description très longue DIo (modale)"
+    "d4": "description très longue DIo (modale)",
+
+    "agenda": {
+      "p": "Fram",
+      "s": "agenda",
+      "c": "v",
+      "i": "fa-calendar",
+      "l": "https://framagenda.org",
+      "git":  "https://framagit.org/framasoft/framagenda",
+      "soft": "Owncloud",
+      "src": "https://github.com/owncloud/",
+
+      "d0": "Agenda",
+      "t1": "Agenda partagé",
+      "d1": "Framaforms vous permet de créer des agendas, de les publier en ligne et de les partager."
+    },
+    "forms": {
+      "p": "Frama",
+      "s": "forms",
+      "c": "v",
+      "i": "fa-list-ul",
+      "l": "https://framaforms.org",
+      "git":  "https://framagit.org/framasoft/framaforms",
+      "soft": "Webform",
+      "src": "https://www.drupal.org/project/webform",
+
+      "d0": "Questionnaires",
+      "t1": "Création de questionnaires",
+      "d1": "Framaforms vous permet de créer les questionaires dont vous avez besoin, que ce soit dans un cadre scolaire, familial ou associatif. Créez vos questions en fonction de vos besoins, des formulaires à choix multiples aux champs de texte libre."
+    },
+    "listes": {
+      "p": "Frama",
+      "s": "listes",
+      "c": "v",
+      "i": "fa-group",
+      "l": "https://framalistes.org",
+      "soft": "Sympa",
+      "src": "https://www.sympa.org/",
+
+      "d0": "Liste de diffusion",
+      "t1": "Liste de diffusion",
+      "d1": "Framaforms sert à créer des listes de diffusion pour vous permettre d’envoyer des mails à l’ensemble des membres qui y sont inscrits."
+    },
+    "notes": {
+      "p": "Frama",
+      "s": "notes",
+      "c": "v",
+      "i": "fa-sticky-note",
+      "l": "https://framanotes.org",
+      "git":  "https://framagit.org/framasoft/framanotes",
+      "soft": "Turtl",
+      "src": "https://github.com/turtl",
+
+      "d0": "Notes",
+      "t1": "Prise de notes",
+      "d1": "Framanotes vous permet d’enregistrer des informations, sous forme de notes, images, vidéos, ou pages web et d'y accéder de n'importe où."
+    },
+    "talk": {
+      "p": "Frama",
+      "s": "talk",
+      "c": "v",
+      "i": "fa-video-camera",
+      "l": "https://framatalk.org",
+      "git":  "https://framagit.org/framasoft/framatalk",
+      "soft": "Jitsi Meet",
+      "src": "https://github.com/jitsi/jitsi-meet/",
+
+      "d0": "Visioconférence",
+      "t1": "Visioconférence",
+      "d1": "Framatalk vous permet de discuter avec vos amis sans installation complexe de logiciel ni inscription. Tout se passe entre vous et vos amis, directement depuis votre navigateur web. "
+    }
   },
   "meta": {
     "lg": "fr",
@@ -291,7 +361,7 @@
       "s": "date",
       "a": "en",
       "c": "v",
-      "i": "fa-calendar",
+      "i": "fa-calendar-check-o",
       "l": "https://framadate.org",
       "git": "https://framagit.org/framasoft/framadate",
 
@@ -414,19 +484,19 @@
       "t1": "Décider ensemble",
       "d1": "Framavox vous aide à prendre des décisions communautaires. Discutez, échangez, mettez-vous d’accord et passez à l’action, le tout dans les délais que vous vous êtes fixés au départ."
     },
-    "games": {
-      "p": "Frama",
-      "s": "games",
-      "a": "en",
+    "memo": {
+      "p": "Fra",
+      "s": "memo",
       "c": "v",
-      "i": "fa-gamepad",
-      "l": "http://framagames.org",
-      "git":  "https://framagit.org/framasoft/framagames",
-      "soft": "Divers",
+      "i": "fa-object-group",
+      "l": "https://framemo.org",
+      "git":  "https://framagit.org/framasoft/framemo",
+      "soft": "Scrumblr",
+      "src": "https://github.com/aliasaria/scrumblr",
 
-      "d0": "Compilation de jeux en ligne",
-      "t1": "Jouer en ligne ou déconnecté",
-      "d1": "Framagames est une compilation de jeux libres qui se jouent en ligne, se téléchargent sur son PC, sa tablette… et ne nécessitent aucune installation supplémentaire."
+      "d0": "Brainstorming",
+      "t1": "Mettez vos idées au clair",
+      "d1": "Framemo est un service minimaliste qui permet d’éditer et d’organiser collaborativement des idées sous forme de notes"
     },
     "bag": {
       "p": "Frama",
@@ -457,6 +527,34 @@
       "d0": "Lecteur de flux RSS",
       "t1": "Suivre l’actualité",
       "d1": "En vous abonnant aux flux RSS de vos sites préférés, restez informés de toutes leurs actualités avec Framanews !"
+    },
+    "games": {
+      "p": "Frama",
+      "s": "games",
+      "a": "en",
+      "c": "v",
+      "i": "fa-gamepad",
+      "l": "http://framagames.org",
+      "git":  "https://framagit.org/framasoft/framagames",
+      "soft": "Divers",
+
+      "d0": "Compilation de jeux en ligne",
+      "t1": "Jouer en ligne ou déconnecté",
+      "d1": "Framagames est une compilation de jeux libres qui se jouent en ligne, se téléchargent sur son PC, sa tablette… et ne nécessitent aucune installation supplémentaire."
+    },
+    "minetest": {
+      "p": "Fra",
+      "s": "minetest",
+      "a": "en",
+      "c": "v",
+      "i": "fa-cube",
+      "l": "https://framinetest.org",
+      "git":  "https://github.com/minetest",
+      "soft": "Minetest",
+
+      "d0": "L’alternative libre à Minecraft",
+      "t1": "L’alternative libre à Minecraft",
+      "d1": "Framinetest Édu est un monde du jeu « bac à sable » Minetest (monde de blocs à modifier) dédié à l'éducation, aux activités pédagogiques et au <i lang='en'>serious gaming</i>."
     },
     "drive": {
       "p": "Frama",

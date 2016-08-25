@@ -1,4 +1,26 @@
 {
+  "#comment": {
+    "agenda": {
+      "t1": "Agenda partagé",
+      "d1": "Framaforms vous permet de créer des agendas, de les publier en ligne et de les partager."
+    },
+    "forms": {
+      "t1": "Création de questionnaires",
+      "d1": "Framaforms vous permet de créer les questionaires dont vous avez besoin, que ce soit dans un cadre scolaire, familial ou associatif. Créez vos questions en fonction de vos besoins, des formulaires à choix multiples aux champs de texte libre."
+    },
+    "listes": {
+      "t1": "Liste de diffusion",
+      "d1": "Framaforms sert à créer des listes de diffusion pour vous permettre d’envoyer des mails à l’ensemble des membres qui y sont inscrits."
+    },
+    "notes": {
+      "t1": "Prise de notes",
+      "d1": "Framanotes vous permet d’enregistrer des informations, sous forme de notes, images, vidéos, ou pages web et d'y accéder de n'importe où."
+    },
+    "talk": {
+      "t1": "Visioconférence",
+      "d1": "Framatalk vous permet de discuter avec vos amis sans installation complexe de logiciel ni inscription. Tout se passe entre vous et vos amis, directement depuis votre navigateur web. "
+    }
+  },
   "meta": {
     "lg": "en",
     "soutenir": {
@@ -153,9 +175,9 @@
       "t1": "Décider ensemble",
       "d1": "Framavox vous aide à prendre des décisions communautaires. Discutez, échangez, mettez-vous d’accord et passez à l’action, le tout dans les délais que vous vous êtes fixés au départ."
     },
-    "games": {
-      "t1": "Play online or offline",
-      "d1": "Framagames is a compilation of free games you can play online or download on your computer, or your tablet… You need no prior install to play."
+    "memo": {
+      "t1": "Mettez vos idées au clair",
+      "d1": "Framemo est un service minimaliste qui permet d’éditer et d’organiser collaborativement des idées sous forme de notes"
     },
     "bag": {
       "t1": "Ne ratez plus aucun article !",
@@ -164,6 +186,14 @@
     "news": {
       "t1": "Stay tuned to the news",
       "d1": "Suscribe to RSS feed of your favorite sites, stay in tune with the news with Framanews!"
+    },
+    "games": {
+      "t1": "Play online or offline",
+      "d1": "Framagames is a compilation of free games you can play online or download on your computer, or your tablet… You need no prior install to play."
+    },
+    "minetest": {
+      "t1": "L’alternative libre à Minecraft",
+      "d1": "Framinetest Édu est un monde du jeu « bac à sable » Minetest (monde de blocs à modifier) dédié à l'éducation, aux activités pédagogiques et au <i lang='en'>serious gaming</i>."
     },
     "drive": {
       "t1": "Host documents online",
