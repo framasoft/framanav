@@ -945,7 +945,8 @@ a.btn,
 .nav-pills a,
 .nav-container a,
 .dropdown-menu a,
-.nav a { text-decoration:none !important;}
+.nav a,
+menu a { text-decoration:none !important;}
 
 #mypads .container.ombre {
   margin-top:0;

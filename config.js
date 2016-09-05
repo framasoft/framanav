@@ -290,6 +290,19 @@ switch (n$.site) {
     }
   break;
 
+  case 'listes':
+    l$ = {
+      js: {
+        ext: function() {
+          f$('footer:not([id])').remove();
+          f$('header .row, main.row').addClass('ombre');
+          f$('header h1').css('margin-top','30px');
+          f$('main').css('margin-bottom','30px');
+        }
+      }
+    }
+  break;
+
   case 'mindmap':
     if(i$('framindmap.org/mindmaps')) { // Dans Mindmaps
       l$ = {
@@ -314,11 +327,11 @@ switch (n$.site) {
       }
     }
   break;
-  
-  case 'minetest': 
+
+  case 'minetest':
     l$.js = { video: true };
   break;
-  
+
   case 'news':
     if(i$('framanews.org/ttrss')) {
       l$ = {
