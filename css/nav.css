@@ -460,8 +460,11 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
     color:#333;
     font-size:14px;
     width:100%;
+    max-width:100%;
     bottom:0;
     border-top:1px solid #ccc;
+    height:auto;
+    text-align:left;
 }
 
 #framafooter .container {
@@ -483,6 +486,7 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
     color:#333;
     text-decoration:none;
     border-bottom:none;
+    font-size:14px;
 }
 
 #framafooter a:hover,
@@ -502,6 +506,11 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
     color:#fff;
     border-radius:5px;
 }
+
+#framafooter .btn {
+    margin-top:0;
+}
+
 
 /* Modal header title */
 .modal-header h1,.modal-header h2,.modal-header h3,
