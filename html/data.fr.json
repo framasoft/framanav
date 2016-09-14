@@ -107,6 +107,14 @@
       "t1": "Parce que libre ne signifie pas gratuit",
       "d1": "Framasoft ne serait rien sans sa communauté de bénévoles mais ne pourrait pas fonctionner non plus sans le service de l’association qui a des frais et emploie cinq indispensables permanents. Notre financement dépend de vous, c’est-à-dire des dons individuels collectés sur Internet. Si vous pensez que nous le méritons…"
     },
+    "myframa": {
+      "s": "MyFrama",
+      "i": "fa-star",
+      "l": "https://my.framasoft.org",
+
+      "t1": "Marquez et partagez vos liens",
+      "d1": "MyFrama est un service en ligne libre de partage de lien."
+    },
     "benevalo": {
       "s": "Bénévalo",
       "i": "fa-paw",
