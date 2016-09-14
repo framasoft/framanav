@@ -311,6 +311,9 @@ function f$_start_jquery() {
         '<li id="btn-benevalo"><a href="'+d$.meta.benevalo.l+'" class="btn-info" '+h$Popover(d$.meta.benevalo.t1, d$.meta.benevalo.d1, 'bottom')+'>'+
           h$icon(d$.meta.benevalo.i)+'&nbsp;'+d$.meta.benevalo.s+
         '</a></li>'+
+        '<li id="btn-myframa"><a href="'+d$.meta.myframa.l+'" class="btn-primary" '+h$Popover(d$.meta.myframa.t1, d$.meta.myframa.d1, 'bottom')+'>'+
+          h$icon(d$.meta.myframa.i)+'&nbsp;'+d$.meta.myframa.s+
+        '</a></li>'+
       '</ul>'+
     '</div>'+
   '</div>'+
@@ -391,6 +394,7 @@ function f$_start_jquery() {
         f$('#framanav_container').css('opacity','1');
 
         f$Benevalo(f$);
+        if (!n$.inframe) { f$MyFrama(f$); }
 
         /*******************
          *   BootStrap JS
@@ -961,6 +965,43 @@ function f$Benevalo(f$) {
   }
 }
 
+// MyFrama
+function f$MyFrama(f$) {
+  if ( window.addEventListener ) {
+    var kkeys = [], konami = "77,77,70,70";
+    window.addEventListener("keydown", function(e){
+      kkeys.push( e.keyCode );
+      if ( kkeys.toString().indexOf( konami ) >= 0 ) {
+        if(f$('#btn-myframa').is(':hidden')) {
+          f$('#framanav .nav-container').css('width','+=135px');
+          f$('#btn-myframa').show();
+        }
+      }
+    }, true);
+  }
+
+  var bm_url = location.href;
+  var bm_title = document.title || bm_url;
+  var myframa = 'https://my.framasoft.org/?post=' + encodeURIComponent(bm_url)+
+    '&title=' + encodeURIComponent(bm_title)+
+    '&description=' + encodeURIComponent(document.getSelection())+
+    '&source=bookmarklet';
+
+  function f$popup(url) {
+    window.open(
+      url,'_blank','menubar=no,height=500,width=600,toolbar=no,scrollbars=yes,status=no,dialog=1'
+    );
+  }
+  f$('#btn-myframa').on('click', function() {
+    window.open(
+      myframa,'myframa',
+      'menubar=no,height=500,width=600,toolbar=no,scrollbars=yes,status=no,dialog=1'
+    );
+    return false;
+  });
+  f$('#btn-myframa a').attr('href', myframa)
+}
+
 //----------------------Fonctions HTML ---------------------------------
 // Modales
 function h$Modal(id, title, body, footer) {
@@ -1163,3 +1204,4 @@ if(f$_mm == 12 && (31-f$_dd) < 15 && n$.site != 'soutenir.framasoft') {
     'Rappel : il vous reste <b>'+f$_rebours+'</b> pour faire un <b>don défiscalisé en '+f$_yyyy+'</b> à Framasoft.'+
     '<br/>Merci pour votre soutien <a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir"><i class="fa fa-heart"></i><span class="sr-only">Faire un don ?</a>';
 }
+
