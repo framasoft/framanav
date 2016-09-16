@@ -347,7 +347,8 @@ switch (n$.site) {
 
   case 'pack':
     l$ = {
-      modal: { don: ['onstart', 'd’utiliser','utiliser '+n$.name] }
+      modal: { don: ['onstart', 'd’utiliser','utiliser '+n$.name] },
+      mute: i$('/admin')
     }
   break;
 
