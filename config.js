@@ -352,7 +352,7 @@ switch (n$.site) {
     l$ = {
       modal: { don: ['onstart', 'd’utiliser','utiliser '+n$.name] },
       mute: i$('/admin'),
-      footer: i$('/admin')
+      footer: !i$('/admin')
     }
   break;
 
