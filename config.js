@@ -1,6 +1,9 @@
  /***********************************************************************
  *                          Config des sites                           *
  ***********************************************************************/
+// Pour savoir à quoi correspondent les options de config, aller à la fin 
+// de nav.js. La variable c$ contient toutes les valeurs par défaut ainsi 
+// que les explications pour comprendre à quoi ça correspond.
 
 var l$ = {};
 
