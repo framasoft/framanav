@@ -335,6 +335,16 @@ switch (n$.site) {
     l$.js = { video: true };
   break;
 
+  case 'my':
+    if(i$('source=bookmarklet')) {
+      n$.inframe = true;
+      l$ = {
+        mute: true,
+        footer: false
+      }
+    }
+  break; 
+ 
   case 'news':
     if(i$('framanews.org/ttrss')) {
       l$ = {
