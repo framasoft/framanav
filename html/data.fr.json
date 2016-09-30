@@ -381,8 +381,8 @@
       "i": "fa-calendar",
       "l": "https://framagenda.org",
       "git":  "https://framagit.org/framasoft/framagenda",
-      "soft": "Owncloud",
-      "src": "https://github.com/owncloud/",
+      "soft": "Nextcloud",
+      "src": "https://github.com/nextcloud/",
 
       "d0": "Agenda",
       "t1": "Agenda partagé",
