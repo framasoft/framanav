@@ -1,26 +1,4 @@
 {
-  "#comment": {
-    "agenda": {
-      "t1": "Agenda partagé",
-      "d1": "Framaforms vous permet de créer des agendas, de les publier en ligne et de les partager."
-    },
-    "forms": {
-      "t1": "Création de questionnaires",
-      "d1": "Framaforms vous permet de créer les questionaires dont vous avez besoin, que ce soit dans un cadre scolaire, familial ou associatif. Créez vos questions en fonction de vos besoins, des formulaires à choix multiples aux champs de texte libre."
-    },
-    "listes": {
-      "t1": "Liste de diffusion",
-      "d1": "Framaforms sert à créer des listes de diffusion pour vous permettre d’envoyer des mails à l’ensemble des membres qui y sont inscrits."
-    },
-    "notes": {
-      "t1": "Prise de notes",
-      "d1": "Framanotes vous permet d’enregistrer des informations, sous forme de notes, images, vidéos, ou pages web et d'y accéder de n'importe où."
-    },
-    "talk": {
-      "t1": "Visioconférence",
-      "d1": "Framatalk vous permet de discuter avec vos amis sans installation complexe de logiciel ni inscription. Tout se passe entre vous et vos amis, directement depuis votre navigateur web. "
-    }
-  },
   "meta": {
     "lg": "en",
     "soutenir": {
@@ -80,7 +58,6 @@
     "soft": { "name": "Free Software" },
     "culture": { "name": "Free Culture" },
     "services": { "name": "Free Services" },
-    "vrac": { "name": "Bulk Libre Shop" },
     "follow": { "name": "Follow us" },
     "about": { "name": "About" },
     "community": { "name": "Community" },
@@ -107,6 +84,18 @@
       "t1": "Framastart",
       "d1": "The top free and Libre software on a single page."
     },
+    "evl": {
+      "t1": "Our Libre little shop",
+      "d1": "Online shop for various Framasoft products : Framakey, Framabook, Framadvd, goodies and t-shirts."
+    },
+    "vvl": {
+      "t1": "Veni Vidi Libri",
+      "d1": "Everything on Free licenses."
+    },
+    "clibre": {
+      "t1": "CLibre.eu",
+      "d1": "Another index of Free software and alternatives"
+    },
     "blog": {
       "t1": "Libre News",
       "d1": "Weekly report on Libre and Free Software and Culture. Rich contributions in the comments, numerous exclusive translations, interviews of individuals promoting Free and open source projects of all kind, ews from our various projects."
@@ -131,6 +120,22 @@
       "t1": "When music is getting free",
       "d1": "A « free music » offers to music lovers the same fundamental freedoms as Free software. This dedcated site lets you undersatnd this concept, along with a tasteful selection."
     },
+    "evl2": {
+      "t1": "Our Libre little shop",
+      "d1": "Online shop for various Framasoft products : Framakey, Framabook, Framadvd, goodies and t-shirts."
+    },
+    "ptilouk": {
+      "t1": "Ptilouk",
+      "d1": "Free and Libre Comics"
+    },
+    "noenaute": {
+      "t1": "NoeNaute",
+      "d1": "Geeky, Juicy, Free and Libre novels"
+    },
+    "planet-libre": {
+      "t1": "Planet-libre",
+      "d1": "Selection of french speaking  news."
+    },
     "dio": {
       "t1": "<b class='violet'>De-googl-ize</b> <b class='orange'>Internet</b> : an ambitions campaign.",
       "d1": "Online services as provided by hegemonic giants such as Google, Amazon, Facebook, Apple or Microsoft (GAFAM) are putting our digital life and privacy at risk. Today, <span style='font-weight:bold;color:#6A5687'>Frama</span><span style='font-weight:bold;color:#D2703A'>soft</span> is indulging in a big challenge : offer, with your help, a Libre, Ethic, Decentralized and Solidary alternative for every popular service."
@@ -142,6 +147,14 @@
     "calc": {
       "t1": "Collaborative Spreadsheet Edition",
       "d1": "Framacalc is a spreadsheet program that lets you edit colloratively and easily on the same online document."
+    },
+    "forms": {
+      "t1": "Création de questionnaires",
+      "d1": "Framaforms vous permet de créer les questionaires dont vous avez besoin, que ce soit dans un cadre scolaire, familial ou associatif. Créez vos questions en fonction de vos besoins, des formulaires à choix multiples aux champs de texte libre."
+    },
+    "agenda": {
+      "t1": "Agenda partagé",
+      "d1": "Framaforms vous permet de créer des agendas, de les publier en ligne et de les partager."
     },
     "date": {
       "t1": "Organize appointments and surveys",
@@ -175,13 +188,29 @@
       "t1": "Communication collaborative",
       "d1": "Framateam est un service de tchat libre qui permet de communiquer avec son équipe en notifiant ses collègues, de conserver ses conversations et d’y faire des recherches."
     },
+    "listes": {
+      "t1": "Liste de diffusion",
+      "d1": "Framaforms sert à créer des listes de diffusion pour vous permettre d’envoyer des mails à l’ensemble des membres qui y sont inscrits."
+    },
+    "talk": {
+      "t1": "Visioconférence",
+      "d1": "Framatalk vous permet de discuter avec vos amis sans installation complexe de logiciel ni inscription. Tout se passe entre vous et vos amis, directement depuis votre navigateur web. "
+    },
     "vox": {
       "t1": "Décider ensemble",
       "d1": "Framavox vous aide à prendre des décisions communautaires. Discutez, échangez, mettez-vous d’accord et passez à l’action, le tout dans les délais que vous vous êtes fixés au départ."
     },
+    "petitions": {
+      "t1": "Des pétitions sans offrir les adresses de vos soutiens",
+      "d1": "Framapetitions vous permet de lancer des pétitions sur les sujets qui vous tiennent à cœur. En quelques clics, votre pétition est publiée et les adresses de vos soutiens ne seront pas exploités par des régies publicitaires."
+    },
     "memo": {
       "t1": "Mettez vos idées au clair",
       "d1": "Framemo est un service minimaliste qui permet d’éditer et d’organiser collaborativement des idées sous forme de notes"
+    },
+    "notes": {
+      "t1": "Prise de notes",
+      "d1": "Framanotes vous permet d’enregistrer des informations, sous forme de notes, images, vidéos, ou pages web et d'y accéder de n'importe où."
     },
     "bag": {
       "t1": "Ne ratez plus aucun article !",
@@ -223,42 +252,6 @@
       "t1": "Hosting code in the open",
       "d1": "Framagit is a tool for developers. You can host your free and libre software and manage your work with easy access for contributors."
     },
-    "evl": {
-      "t1": "Our Libre little shop",
-      "d1": "Online shop for various Framasoft products : Framakey, Framabook, Framadvd, goodies and t-shirts."
-    },
-    "agora": {
-      "t1": "Framasoft network forum",
-      "d1": "Have you any question? We may have an answer!"
-    },
-    "irc": {
-      "t1": "Chan IRC",
-      "d1": "If you wish to caht with community members, a #framasoft chatroom is open on Freenode.net"
-    },
-    "wiki": {
-      "t1": "Framawiki",
-      "d1": "Framasoft Wiki"
-    },
-    "vvl": {
-      "t1": "Veni Vidi Libri",
-      "d1": "Everything on Free licenses."
-    },
-    "ptilouk": {
-      "t1": "Ptilouk",
-      "d1": "Free and Libre Comics"
-    },
-    "noenaute": {
-      "t1": "NoeNaute",
-      "d1": "Geeky, Juicy, Free and Libre novels"
-    },
-    "planete-libre": {
-      "t1": "Planet-libre",
-      "d1": "Selection of french speaking  news."
-    },
-    "clibre": {
-      "t1": "CLibre.eu",
-      "d1": "Another index of Free software and alternatives"
-    },
     "diaspora": {
       "t1": "Framasoft on Diaspora*",
       "d1": "Our account on free social media network Diaspora*"
@@ -287,6 +280,14 @@
     "wikipedia": {
       "t1": "Framasoft blopost about Wikipedia",
       "d1": "Browse our (longish) blogpost on the unbelieveable Free Wikipedia service."
+    },
+    "agora": {
+      "t1": "Framasoft network forum",
+      "d1": "Have you any question? We may have an answer!"
+    },
+    "wiki": {
+      "t1": "Framawiki",
+      "d1": "Framasoft Wiki"
     },
     "asso": {
       "s": "Our association"

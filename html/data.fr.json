@@ -19,77 +19,7 @@
     "t2": "titre DIo",
     "d2": "description courte DIo",
     "d3": "description longue DIo",
-    "d4": "description très longue DIo (modale)",
-
-    "agenda": {
-      "p": "Fram",
-      "s": "agenda",
-      "c": "v",
-      "i": "fa-calendar",
-      "l": "https://framagenda.org",
-      "git":  "https://framagit.org/framasoft/framagenda",
-      "soft": "Owncloud",
-      "src": "https://github.com/owncloud/",
-
-      "d0": "Agenda",
-      "t1": "Agenda partagé",
-      "d1": "Framaforms vous permet de créer des agendas, de les publier en ligne et de les partager."
-    },
-    "forms": {
-      "p": "Frama",
-      "s": "forms",
-      "c": "v",
-      "i": "fa-list-ul",
-      "l": "https://framaforms.org",
-      "git":  "https://framagit.org/framasoft/framaforms",
-      "soft": "Webform",
-      "src": "https://www.drupal.org/project/webform",
-
-      "d0": "Questionnaires",
-      "t1": "Création de questionnaires",
-      "d1": "Framaforms vous permet de créer les questionaires dont vous avez besoin, que ce soit dans un cadre scolaire, familial ou associatif. Créez vos questions en fonction de vos besoins, des formulaires à choix multiples aux champs de texte libre."
-    },
-    "listes": {
-      "p": "Frama",
-      "s": "listes",
-      "c": "v",
-      "i": "fa-group",
-      "l": "https://framalistes.org",
-      "soft": "Sympa",
-      "src": "https://www.sympa.org/",
-
-      "d0": "Liste de diffusion",
-      "t1": "Liste de diffusion",
-      "d1": "Framaforms sert à créer des listes de diffusion pour vous permettre d’envoyer des mails à l’ensemble des membres qui y sont inscrits."
-    },
-    "notes": {
-      "p": "Frama",
-      "s": "notes",
-      "c": "v",
-      "i": "fa-sticky-note",
-      "l": "https://framanotes.org",
-      "git":  "https://framagit.org/framasoft/framanotes",
-      "soft": "Turtl",
-      "src": "https://github.com/turtl",
-
-      "d0": "Notes",
-      "t1": "Prise de notes",
-      "d1": "Framanotes vous permet d’enregistrer des informations, sous forme de notes, images, vidéos, ou pages web et d'y accéder de n'importe où."
-    },
-    "talk": {
-      "p": "Frama",
-      "s": "talk",
-      "c": "v",
-      "i": "fa-video-camera",
-      "l": "https://framatalk.org",
-      "git":  "https://framagit.org/framasoft/framatalk",
-      "soft": "Jitsi Meet",
-      "src": "https://github.com/jitsi/jitsi-meet/",
-
-      "d0": "Visioconférence",
-      "t1": "Visioconférence",
-      "d1": "Framatalk vous permet de discuter avec vos amis sans installation complexe de logiciel ni inscription. Tout se passe entre vous et vos amis, directement depuis votre navigateur web. "
-    }
+    "d4": "description très longue DIo (modale)"
   },
   "meta": {
     "lg": "fr",
@@ -167,7 +97,6 @@
     "soft": { "name": "Logiciel libre" },
     "culture": { "name": "Culture libre" },
     "services": { "name": "Services libres" },
-    "vrac": { "name": "Libr'en vrac" },
     "follow": { "name": "Nous suivre" },
     "about": { "name": "À propos" },
     "community": { "name": "Communauté" },
@@ -230,6 +159,35 @@
 
       "t1": "Framastart",
       "d1": "Le meilleur des logiciels libres sur une seule page."
+    },
+    "evl": {
+      "p": "EnVente",
+      "s": "Libre",
+      "c": "b",
+      "i": "fa-shopping-cart",
+      "l": "http://enventelibre.org/40-framasoft",
+
+      "d0": "Boutique",
+      "t1": "Notre libre petite boutique",
+      "d1": "L’espace vente des différents produits Framasoft qui peuvent se matérialiser : Framakey, Framabook, Framadvd mais aussi des goodies et des tee-shirts."
+    },
+    "vvl": {
+      "s": "Veni Vidi Libri",
+      "c": "b",
+      "i": "fa-legal",
+      "l": "http://vvlibri.org",
+
+      "t1": "Veni Vidi Libri",
+      "d1": "Tout ce que vous avez toujours voulu savoir sur les licences libres."
+    },
+    "clibre": {
+      "s": "CLibre.eu",
+      "c": "b",
+      "i": "fa-leaf",
+      "l": "http://clibre.eu",
+
+      "t1": "CLibre.eu",
+      "d1": "Un annuaire des principaux logiciels et alternatives libres"
     },
     "blog": {
       "p": "Frama",
@@ -301,6 +259,44 @@
       "t1": "Quand la musique est libre",
       "d1": "Une « musique libre » est une musique qui offre au mélomane les mêmes libertés qu’un logiciel libre. Un site dédié permettant de mieux la comprendre accompagné d’une petite sélection permettant de constater que la qualité est au rendez-vous."
     },
+    "evl2": {
+      "p": "EnVente",
+      "s": "Libre",
+      "c": "r",
+      "i": "fa-shopping-cart",
+      "l": "http://enventelibre.org/40-framasoft",
+
+      "d0": "Boutique",
+      "t1": "Notre libre petite boutique",
+      "d1": "L’espace vente des différents produits Framasoft qui peuvent se matérialiser : Framakey, Framabook, Framadvd mais aussi des goodies et des tee-shirts."
+    },
+    "ptilouk": {
+      "s": "Ptilouk",
+      "c": "r",
+      "i": "fa-picture-o",
+      "l": "http://ptilouk.net",
+
+      "t1": "Ptilouk",
+      "d1": "Bandes dessinées libres"
+    },
+    "noenaute": {
+      "s": "NoeNaute",
+      "c": "r",
+      "i": "fa-book",
+      "l": "http://noenaute.fr",
+
+      "t1": "NoeNaute",
+      "d1": "Romans feuilleton geeks et libres"
+    },
+    "planet-libre": {
+      "s": "Planet-libre",
+      "c": "r",
+      "i": "fa-globe",
+      "l": "http://planet-libre.org",
+
+      "t1": "Planet-libre",
+      "d1": "Sélection de nouvelles du libre francophone."
+    },
     "dio": {
       "p": "Dégooglisons ",
       "s": "Internet",
@@ -363,6 +359,34 @@
       "d0": "Tableur",
       "t1": "Un tableur collaboratif",
       "d1": "Framacalc est au tableur ce que Framapad est au traitement de texte, autrement dit la possibilité d’éditer simplement et collectivement en ligne sur un même document."
+    },
+    "forms": {
+      "p": "Frama",
+      "s": "forms",
+      "c": "v",
+      "i": "fa-list-ul",
+      "l": "https://framaforms.org",
+      "git":  "https://framagit.org/framasoft/framaforms",
+      "soft": "Webform",
+      "src": "https://www.drupal.org/project/webform",
+
+      "d0": "Questionnaires",
+      "t1": "Création de questionnaires",
+      "d1": "Framaforms vous permet de créer les questionaires dont vous avez besoin, que ce soit dans un cadre scolaire, familial ou associatif. Créez vos questions en fonction de vos besoins, des formulaires à choix multiples aux champs de texte libre."
+    },
+    "agenda": {
+      "p": "Fram",
+      "s": "agenda",
+      "c": "v",
+      "i": "fa-calendar",
+      "l": "https://framagenda.org",
+      "git":  "https://framagit.org/framasoft/framagenda",
+      "soft": "Owncloud",
+      "src": "https://github.com/owncloud/",
+
+      "d0": "Agenda",
+      "t1": "Agenda partagé",
+      "d1": "Framaforms vous permet de créer des agendas, de les publier en ligne et de les partager."
     },
     "date": {
       "p": "Frama",
@@ -477,6 +501,33 @@
       "t1": "Communication collaborative",
       "d1": "Framateam est un service de tchat libre qui permet de communiquer avec son équipe en notifiant ses collègues, de conserver ses conversations et d’y faire des recherches."
     },
+    "listes": {
+      "p": "Frama",
+      "s": "listes",
+      "c": "v",
+      "i": "fa-group",
+      "l": "https://framalistes.org",
+      "soft": "Sympa",
+      "src": "https://www.sympa.org/",
+
+      "d0": "Liste de diffusion",
+      "t1": "Liste de diffusion",
+      "d1": "Framaforms sert à créer des listes de diffusion pour vous permettre d’envoyer des mails à l’ensemble des membres qui y sont inscrits."
+    },
+    "talk": {
+      "p": "Frama",
+      "s": "talk",
+      "c": "v",
+      "i": "fa-video-camera",
+      "l": "https://framatalk.org",
+      "git":  "https://framagit.org/framasoft/framatalk",
+      "soft": "Jitsi Meet",
+      "src": "https://github.com/jitsi/jitsi-meet/",
+
+      "d0": "Visioconférence",
+      "t1": "Visioconférence",
+      "d1": "Framatalk vous permet de discuter avec vos amis sans installation complexe de logiciel ni inscription. Tout se passe entre vous et vos amis, directement depuis votre navigateur web. "
+    },
     "vox": {
       "p": "Frama",
       "s": "vox",
@@ -492,6 +543,21 @@
       "t1": "Décider ensemble",
       "d1": "Framavox vous aide à prendre des décisions communautaires. Discutez, échangez, mettez-vous d’accord et passez à l’action, le tout dans les délais que vous vous êtes fixés au départ."
     },
+    "petitions": {
+      "p": "Frama",
+      "s": "petitions",
+      "c": "v",
+      "i": "fa-balance-scale",
+      "l": "https://framapetitions.org",
+      "git":  "https://framagit.org/framasoft/framapetitions",
+      "soft": "Webform",
+      "src": "https://www.drupal.org/project/webform",
+      "cloud": "http://framacloud.org/cultiver-son-jardin/installation-de-framapetitions/",
+
+      "d0": "Pétitions",
+      "t1": "Des pétitions sans offrir les adresses de vos soutiens",
+      "d1": "Framapetitions vous permet de lancer des pétitions sur les sujets qui vous tiennent à cœur. En quelques clics, votre pétition est publiée et les adresses de vos soutiens ne seront pas exploités par des régies publicitaires."
+    },
     "memo": {
       "p": "Fra",
       "s": "memo",
@@ -505,6 +571,20 @@
       "d0": "Brainstorming",
       "t1": "Mettez vos idées au clair",
       "d1": "Framemo est un service minimaliste qui permet d’éditer et d’organiser collaborativement des idées sous forme de notes"
+    },
+    "notes": {
+      "p": "Frama",
+      "s": "notes",
+      "c": "v",
+      "i": "fa-sticky-note",
+      "l": "https://framanotes.org",
+      "git":  "https://framagit.org/framasoft/framanotes",
+      "soft": "Turtl",
+      "src": "https://github.com/turtl",
+
+      "d0": "Notes",
+      "t1": "Prise de notes",
+      "d1": "Framanotes vous permet d’enregistrer des informations, sous forme de notes, images, vidéos, ou pages web et d'y accéder de n'importe où."
     },
     "bag": {
       "p": "Frama",
@@ -656,94 +736,6 @@
       "t1": "Héberger du code libre",
       "d1": "Framagit est un outil qui s’adresse avant tout aux développeurs. Il permet d’héberger vos projets de logiciels libres et de travailler collaborativement dessus."
     },
-    "evl": {
-      "p": "EnVente",
-      "s": "Libre",
-      "c": "j",
-      "i": "fa-shopping-cart",
-      "l": "http://enventelibre.org/40-framasoft",
-
-      "d0": "Boutique",
-      "t1": "Notre libre petite boutique",
-      "d1": "L’espace vente des différents produits Framasoft qui peuvent se matérialiser : Framakey, Framabook, Framadvd mais aussi des goodies et des tee-shirts."
-    },
-    "agora": {
-      "p": "Fram",
-      "s": "agora",
-      "c": "j",
-      "i": "fa-comment",
-      "l": "https://forum.framasoft.org",
-
-      "d0": "Forum",
-      "t1": "Le forum du réseau Framasoft",
-      "d1": "Vous avez une question ? Nous avons (peut-être) une réponse ! « Si tu ne sais pas, demande. Si tu sais, partage. » Framagora est notre convivial espace d’échange d’informations autour du Libre."
-    },
-    "irc": {
-      "p": "Canal ",
-      "s": "IRC",
-      "a": "abbr",
-      "c": "j",
-      "i": "fa-comments-o",
-      "l": "https://contact.framasoft.org/irc/",
-
-      "t1": "Canal IRC",
-      "d1": "Si vous souhaitez tchatter avec la communauté, un salon #framasoft est ouvert sur Freenode.net"
-    },
-    "wiki": {
-      "p": "Frama",
-      "s": "wiki",
-      "c": "j",
-      "i": "fa-puzzle-piece",
-      "l": "https://wiki.framasoft.org",
-
-      "t1": "Framawiki",
-      "d1": "Le wiki de Framasoft"
-    },
-    "vvl": {
-      "s": "Veni Vidi Libri",
-      "c": "j",
-      "i": "fa-legal",
-      "l": "http://vvlibri.org",
-
-      "t1": "Veni Vidi Libri",
-      "d1": "Tout ce que vous avez toujours voulu savoir sur les licences libres."
-    },
-    "ptilouk": {
-      "s": "Ptilouk",
-      "c": "j",
-      "i": "fa-picture-o",
-      "l": "http://ptilouk.net",
-
-      "t1": "Ptilouk",
-      "d1": "Bandes dessinées libres"
-    },
-    "noenaute": {
-      "s": "NoeNaute",
-      "c": "j",
-      "i": "fa-book",
-      "l": "http://noenaute.fr",
-
-      "t1": "NoeNaute",
-      "d1": "Romans feuilleton geeks et libres"
-    },
-    "planete-libre": {
-      "s": "Planet-libre",
-      "c": "j",
-      "i": "fa-book",
-      "l": "http://planet-libre.org",
-
-      "t1": "Planet-libre",
-      "d1": "Sélection de nouvelles du libre francophone."
-    },
-    "clibre": {
-      "s": "CLibre.eu",
-      "c": "j",
-      "i": "fa-leaf",
-      "l": "http://clibre.eu",
-
-      "t1": "CLibre.eu",
-      "d1": "Un annuaire des principaux logiciels et alternatives libres"
-    },
     "diaspora": {
       "s": "Diaspora*",
       "c": "f",
@@ -809,6 +801,27 @@
 
       "t1": "Article Framasoft sur Wikipédia",
       "d1": "Parcourez le (long) article Framasoft sur l’(incontournable) encyclopédie libre Wikipédia."
+    },
+    "agora": {
+      "p": "Fram",
+      "s": "agora",
+      "c": "f",
+      "i": "fa-comment",
+      "l": "https://forum.framasoft.org",
+
+      "d0": "Forum",
+      "t1": "Le forum du réseau Framasoft",
+      "d1": "Vous avez une question ? Nous avons (peut-être) une réponse ! « Si tu ne sais pas, demande. Si tu sais, partage. » Framagora est notre convivial espace d’échange d’informations autour du Libre."
+    },
+    "wiki": {
+      "p": "Frama",
+      "s": "wiki",
+      "c": "f",
+      "i": "fa-puzzle-piece",
+      "l": "https://wiki.framasoft.org",
+
+      "t1": "Framawiki",
+      "d1": "Le wiki de Framasoft"
     },
     "asso": {
       "s": "L’association",
