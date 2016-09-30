@@ -250,6 +250,11 @@ jQuery(document).ready(function(){
         case '#participer' : jQuery('#menu a[href="#participer"]').trigger('click'); break;
         case '#soutenir' : jQuery('#menu a[href="#soutenir"]').trigger('click'); break;
         case '#aide' : jQuery('#menu a[href="#aide"]').trigger('click'); break;
+        case '#presse' :
+          jQuery('#menu a[href="#general"]').trigger('click');
+          jQuery('#concerne option').prop('selected', false);
+          jQuery('#concerne option[value$="presse"]').prop('selected', true);
+        break;
         // Framaprojets
         default :
           if(f$_hash.indexOf('#frama')>-1) {
