@@ -253,7 +253,7 @@ function f$_start_jquery() {
           h$.menu[f$_menu].nav += '<li class="fs_'+f$_menu+' fs_'+k+'"><a href="'+d$.f[k].l+'" '+h$Popover(d$.f[k].t1, d$.f[k].d1)+'>'+h$icon(d$.f[k].i)+'&nbsp;'+h$.f[k].name+'</a></li>';
 
           // "Nous suivre" dans le footer
-          if ((f$_menu == 'follow') && !(/(newsletter|contact|wikipedia)/i).test(k)) {
+          if ((f$_menu == 'follow') && !(/(wiki|agora|newsletter|contact|wikipedia)/i).test(k)) {
             h$.menu['follow'].footer += '<li class="fs_'+k+'"><a href="'+d$.f[k].l+'" title="'+d$.f[k].t1+'"><i class="fa fa-fw fa-2x '+d$.f[k].i+'"></i>'+h$SR(d$.f[k].name)+'</a></li>';
           }
           // "À propos" du site
