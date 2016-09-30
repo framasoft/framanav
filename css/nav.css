@@ -87,10 +87,22 @@
 #framanav .dropdown:nth-child(1) .dropdown-menu li a:hover {background-color: #0C5B7A !important;color:#fff !important;} /* bleu logiciel */
 #framanav .dropdown:nth-child(2) .dropdown-menu li a:hover {background-color: #CC2D18 !important;color:#fff !important;} /* rouge culture */
 #framanav .dropdown:nth-child(3) .dropdown-menu li a:hover {background-color: #677835 !important;color:#fff !important;} /* vert services */
-#framanav .dropdown:nth-child(4) .dropdown-menu li a:hover {background-color: #C48A1B !important;color:#fff !important;} /* jaune en vrac */
+/*#framanav .dropdown:nth-child(3) .dropdown-menu li a:hover {background-color: #C48A1B !important;color:#fff !important;} /* jaune en vrac */
+#framanav .dropdown:nth-child(4) .dropdown-menu li a:hover {background-color: #6A5687 !important;color:#fff !important;} /* violet nous suivre */
+#framanav .dropdown:nth-child(5) .dropdown-menu li a:hover {background-color: #C05827 !important;color:#fff !important;} /* orange a propos */
 
-#framanav .dropdown:nth-child(5) .dropdown-menu li a:hover {background-color: #6A5687 !important;color:#fff !important;} /* violet nous suivre */
-#framanav .dropdown:nth-child(6) .dropdown-menu li a:hover {background-color: #C05827 !important;color:#fff !important;} /* orange a propos */
+#framanav .dropdown .dropdown-menu li.fs_evl a:hover,
+#framanav .dropdown .dropdown-menu li.fs_evl2 a:hover,
+#framanav .dropdown .dropdown-menu li.fs_clibre a:hover,
+#framanav .dropdown .dropdown-menu li.fs_vvl a:hover,
+#framanav .dropdown .dropdown-menu li.fs_ptilouk a:hover,
+#framanav .dropdown .dropdown-menu li.fs_noenaute a:hover,
+#framanav .dropdown .dropdown-menu li.fs_planet-libre a:hover,
+#framanav .dropdown .dropdown-menu li.fs_agora a:hover,
+#framanav .dropdown .dropdown-menu li.fs_irc a:hover,
+#framanav .dropdown .dropdown-menu li.fs_wiki a:hover { /* jaune en vrac */
+  background-color: #C48A1B !important;color:#fff !important;
+}
 
 #framanav .violet { color: #6A5687;}
 #framanav .orange { color: #EB7239;}
@@ -137,7 +149,7 @@
 
 @media (min-width: 768px) {
     #framanav .nav-container {
-        width:960px;        /* largeur fixe pour que la nav tienne sur une seule ligne */
+        width:880px;        /* largeur fixe pour que la nav tienne sur une seule ligne */
     }
     #framanav.navbar .collapse { /* bug dans certaines config en box-sizing: content-box*/
         height:40px !important;
@@ -566,13 +578,17 @@ body.apropos #piwik-iframe {
     #fs_services ul,
     #fs_about ul {
         min-width:320px !important;
-        margin-left:-106px;
     }
+
+    #fs_services ul { margin-left:-106px; }
+    #fs_about ul { margin-left:-124px; }
+
     #fs_services li,
     #fs_about li {
         width:50% !important;
         float:left;
     }
+
     #fs_services li.divider,
     #fs_services li.dropdown-header,
     #fs_about li.divider,
@@ -590,4 +606,8 @@ body.apropos #piwik-iframe {
  /* Hack pour n'afficher la nav que lorsque la feuille de style est prête */
 #framanav[style="display:none"] {
     display:block !important;
+}
+
+.fs_petitions {
+    visibility:hidden;
 }

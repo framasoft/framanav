@@ -16,7 +16,7 @@
  **/
 
 var n$ = {
-  version: '160712', // n° version de la nav
+  version: '160930', // n° version de la nav
   f$ : '1.12.4',     // n° version de notre jQuery
   b$ : '3.3.6',      // n° version de Bootsrap
   host: window.location.host,
@@ -335,8 +335,9 @@ function f$_start_jquery() {
         // Ajout des dividers
         f$('#framanav .dropdown-menu li')
           .has(
+            'a[href$="framastart.org"], a[href*="zic.org"], a[href*="enventelibre.org"],'+
             'a[href*="degooglisons"], a[href*="vectoriel.org"], a[href*="carte.org"], a[href*="minetest.org"], a[href*="news.org"],'+
-            'a[href*="enventelibre.org"], a[href*="wiki."], a[href*="plus.google"], a[href*="status."]'
+            ' a[href*="petitions.org"], a[href*="wikipedia.org"], a[href*="plus.google"], a[href*="status."]'
           )
           .after(h$.divider);
 
@@ -967,7 +968,14 @@ function f$Benevalo(f$) {
 
 // MyFrama
 function f$MyFrama(f$) {
-  if ( window.addEventListener ) {
+  var today = new Date();
+  var start = new Date(2016,9,9); // 8 = septembre
+  if(today > start) {
+    if(f$('#btn-myframa').is(':hidden')) {
+      f$('#framanav .nav-container').css('width','+=135px');
+      f$('#btn-myframa').show();
+    }
+  } else if ( window.addEventListener ) {
     var kkeys = [], konami = "77,77,70,70";
     window.addEventListener("keydown", function(e){
       kkeys.push( e.keyCode );
@@ -1197,6 +1205,8 @@ var f$_dd = f$_today.getDate();
 var f$_mm = f$_today.getMonth()+1;
 var f$_yyyy = f$_today.getFullYear();
 
+
+
 if(f$_mm == 12 && (31-f$_dd) < 15 && n$.site != 'soutenir.framasoft') {
   f$_rebours = ((31-f$_dd) == 1) ? '24 heures' : 31-f$_dd+' jours';
   c$.alert[0] = 'info';
@@ -1205,3 +1215,11 @@ if(f$_mm == 12 && (31-f$_dd) < 15 && n$.site != 'soutenir.framasoft') {
     '<br/>Merci pour votre soutien <a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir"><i class="fa fa-heart"></i><span class="sr-only">Faire un don ?</a>';
 }
 
+// Bandeau dio3
+if(f$_mm == 10 && f$_dd > 2 && f$_dd < 29 && n$.site != 'soutenir.framasoft') {
+  c$.alert[0] = 'info';
+  c$.alert[1] =
+    '<b class="violet">Frama</b><b class="orange">soft</b> entre en campagne et sort <strong><a href="https://framablog.org/?p=7449">6 nouveaux services</a></strong>.'+
+    '<br/> Nous vous rappelons que seuls vos dons rendent cela possible, merci pour <strong><a href="https://soutenir.framasoft.org">votre soutien</a></strong> '+
+    '<a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir"><i class="fa fa-heart"></i></a>';
+}
