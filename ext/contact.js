@@ -117,7 +117,7 @@ jQuery(document).ready(function(){
                                           git:  "framasoft/framalink",
                                           soft: "LSTU",
                                           site: "https://framagit.org/luc/lstu"},
-    {col: 2, f:"My",      s:"Frama",      c:"v", fa:"fa-star",                  title:"Raccourcisseur d’URL",
+    {col: 2, f:"My",      s:"Frama",      c:"v", fa:"fa-star",                  title:"Marque-pages en ligne",
                                           git:  "framasoft/myframa",
                                           soft: "Shaarli",
                                           site: "https://github.com/shaarli/Shaarli"},
