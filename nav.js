@@ -1219,7 +1219,7 @@ if(f$_mm == 12 && (31-f$_dd) < 15 && n$.site != 'soutenir.framasoft') {
 if(f$_mm == 10 && f$_dd > 2 && f$_dd < 29 && n$.site != 'soutenir.framasoft') {
   c$.alert[0] = 'info';
   c$.alert[1] =
-    '<b class="violet">Frama</b><b class="orange">soft</b> entre en campagne et sort <strong><a href="https://framablog.org/?p=7449">6 nouveaux services</a></strong>.'+
+    '<b class="violet">Frama</b><b class="orange">soft</b> entre en campagne et sort <strong><a href="https://framablog.org/2016/10/03/degooglisons-internet-an-iii-la-revanche-des-sites/">6 nouveaux services</a></strong>.'+
     '<br/> Nous vous rappelons que seuls vos dons rendent cela possible, merci pour <strong><a href="https://soutenir.framasoft.org">votre soutien</a></strong> '+
     '<a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir"><i class="fa fa-heart"></i></a>';
 }

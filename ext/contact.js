@@ -28,7 +28,7 @@ jQuery(document).ready(function(){
                                           git:  "framasoft/framaforms",
                                           soft: "Webform",
                                           site: "https://www.drupal.org/project/webform"},
-    {col: 1, f:"Fram",   s:"agenda",      c:"v", fa:"fa-calendar",              title:"Calendrier",
+    {col: 1, f:"Fram",    s:"agenda",     c:"v", fa:"fa-calendar",              title:"Calendrier",
                                           git:  "framasoft/framagenda",
                                           soft: "Nextcloud",
                                           site: "https://github.com/nextcloud/"},
@@ -67,12 +67,12 @@ jQuery(document).ready(function(){
                                           git:  "framasoft/framatalk",
                                           soft: "Jitsi Meet",
                                           site: "https://github.com/jitsi/jitsi-meet/"},
-    {col: 1, f:"Frama",   s:"vox",        c:"v", fa:"fa-bullhorn",              title:"Prise de décision",
+    {col: 2, f:"Frama",   s:"vox",        c:"v", fa:"fa-bullhorn",              title:"Prise de décision",
                                           git:  "framasoft/framavox",
                                           soft: "Loomio",
                                           site: "https://github.com/loomio"},
     {col: 2, f:"Frama",   s:"petitions",  c:"v", fa:"fa-balance-scale",         title:"Pétitions",
-                                          git:  "framasoft/framabag",
+                                          //git:  "framasoft/framapetitions",
                                           soft: "Webform",
                                           site: "https://www.drupal.org/project/webform"},
     {col: 2, f:"Fra",     s:"memo",       c:"v", fa:"fa-object-group",          title:"Brainstorming",
@@ -104,7 +104,7 @@ jQuery(document).ready(function(){
     {col: 2, f:"Frama",   s:"drop",       c:"v", fa:"fa-send",                  title:"Alternative à WeTransfer",
                                           git:  "framasoft/framadrop",
                                           soft: "Lufi",
-                                          site: "https://git.framasoft.org/luc/lufi"},
+                                          site: "https://framagit.org/luc/lufi"},
     {col: 2, f:"Frama",   s:"bin",        c:"v", fa:"fa-paste",                 title:"Alternative à Pastebin",
                                           git:  "framasoft/framabin",
                                           soft: "Zerobin",
@@ -112,11 +112,15 @@ jQuery(document).ready(function(){
     {col: 2, f:"Frama",   s:"pic",        c:"v", fa:"fa-photo",                 title:"Partage d’images",
                                           git:  "framasoft/framapic",
                                           soft: "Lutim",
-                                          site: "https://git.framasoft.org/luc/lutim"},
+                                          site: "https://framagit.org/luc/lutim"},
     {col: 2, f:"Frama",   s:"link",       c:"v", fa:"fa-link",                  title:"Raccourcisseur d’URL",
                                           git:  "framasoft/framalink",
                                           soft: "LSTU",
-                                          site: "https://git.framasoft.org/luc/lstu"},
+                                          site: "https://framagit.org/luc/lstu"},
+    {col: 2, f:"My",      s:"Frama",      c:"v", fa:"fa-star",                  title:"Raccourcisseur d’URL",
+                                          git:  "framasoft/myframa",
+                                          soft: "Shaarli",
+                                          site: "https://github.com/shaarli/Shaarli"},
     {col: 2, f:"Frama",   s:"git",        c:"v", fa:"fa-git",                   title:"Alternative à Github",
                                           soft: "Gitlab",
                                           site: "https://about.gitlab.com/contributing/"},
@@ -146,7 +150,7 @@ jQuery(document).ready(function(){
     if(projet.git || projet.soft) {
       partList[projet.col] += '<tr><td class="'+projet.id+'"><i class="fa fa-fw fa-lg '+projet.fa+'"></i>&nbsp;<b class="violet">'+projet.f+'</b><b class="'+fc+'">'+projet.s+'</b>';
       if(projet.git) {
-        partList[projet.col] += ' <a href="https://git.framasoft.org/'+projet.git+'/issues" class="pull-right"><i class="fa fa-fw fa-lg fa-git"></i><span class="sr-only">git</span></a></td>';
+        partList[projet.col] += ' <a href="https://framagit.org/'+projet.git+'/issues" class="pull-right"><i class="fa fa-fw fa-lg fa-git"></i><span class="sr-only">git</span></a></td>';
       }
       if(projet.soft) {
         partList[projet.col] += ' </td><td>'+projet.soft+' <a href="'+projet.site+'" class="pull-right"><i class="fa fa-fw fa-lg fa-code-fork"></i><span class="sr-only">source</span></a></td></tr>';
