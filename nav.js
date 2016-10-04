@@ -22,6 +22,7 @@ var n$ = {
   host: window.location.host,
   url: window.location.href,
   inframe: top.location!=self.document.location,
+  inapplication: typeof window !== 'undefined' && window.process && window.process.type === "renderer" // electron application
   nav: {
     url: '',
     set: false,
@@ -46,7 +47,7 @@ var n$ = {
                    .replace(/frama/i,'');
   n$.site = (/Framatech/i.test(window.navigator.userAgent)) ? 'agent' : n$.site;     // Config locale
 
-  if (n$.inframe) n$.nav.html = '<div id="framanav_container" style="display:none"></div>';
+  if (n$.inframe || n$.inapplication) n$.nav.html = '<div id="framanav_container" style="display:none"></div>';
 
   if (window.jQuery === undefined) {
     n$.j$ = 'ø';    // n° version du jQuery local
@@ -209,7 +210,7 @@ function f$_start_jquery() {
         for (var k in d$.menu) { d$.menu[k].nav ='' }
         d$.menu.follow.footer = ''; d$.menu.about.site = '';
 
-        if (n$.inframe) f$('#framanav_container').hide();
+        if (n$.inframe || n$.inapplication) f$('#framanav_container').hide();
 
         h$ = {
           framasoft: !i$Agent() ? '<b class="violet">'+d$.meta.home.p+'</b><b class="orange">'+d$.meta.home.s+'</b>' : '<b class="violet">Lara</b><b class="orange">Croft</b>',
@@ -395,7 +396,7 @@ function f$_start_jquery() {
         f$('#framanav_container').css('opacity','1');
 
         f$Benevalo(f$);
-        if (!n$.inframe) { f$MyFrama(f$); }
+        if (!(n$.inframe || n$.inapplication)) { f$MyFrama(f$); }
 
         /*******************
          *   BootStrap JS
@@ -537,7 +538,7 @@ function f$_start_jquery() {
         }
 
         // Footer
-        if(c$.footer && !n$.inframe) {
+        if(c$.footer && !(n$.inframe || n$.inapplication)) {
 
           h$.footer =
 '<footer id="framafooter" class="row hidden-print" role="contentinfo">'+
@@ -607,7 +608,7 @@ function f$_start_jquery() {
         }
 
         // Macaron
-        if(c$.donate && !n$.inframe) {
+        if(c$.donate && !(n$.inframe || n$.inapplication)) {
           f$('#framanav_donation').show().delay(Math.random() * (29000 - 1000) + 1000).fadeOut(600).fadeIn(600);
         }
 
@@ -661,7 +662,7 @@ function f$_start_jquery() {
           }
           /** Fin accessibilité **/
 
-          if (!n$.inframe) { // Pas de bandeau, nav, modale et macaron en mode iframe
+          if (!(n$.inframe || n$.inapplication)) { // Pas de bandeau, nav, modale et macaron en mode iframe
 
             if(c$.fixed || i$('/nav/html/')) {
               f$('body').addClass('fnav-fixed');
@@ -788,7 +789,7 @@ function f$_start_jquery() {
                 });
               }
             }
-          }// </!n$.inframe>
+          }// </!(n$.inframe || n$.inapplication)>
         } // </go_BootStrap>
       }); // </nav.html>
   }); // </document.ready>
