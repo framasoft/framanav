@@ -1176,14 +1176,14 @@ var c$ = {
       0 : sélecteur jQuery ou 'onstart' pour l'afficher à l'ouverture de la page
       3 : durée du cookie (7 jours)
      **/
-    info: ['', '', 'n$modal-info', 604800000],
+    info: ['', '', 'modal-info', 604800000],
     /** [titre, texte, nom du cookie, durée du cookie (7 jours)] **/
   },
-  alert: ['black', '', 'n$alert', 604800000],
+  alert: ['black', '', 'nav-alert', 604800000],
   /** [couleur (classes bootstrap), texte, nom du cookie, durée du cookie (7 jours)] **/
   mute: false,  // désactive macaron, modal, alert
 
-  optin: ['', '', 'n$optin', 604800000],
+  optin: ['', '', 'opt-in', 604800000],
   /** [sélecteur email1, email2, nom du cookie, durée du cookie (7 jours)] **/
 
   icons: {
