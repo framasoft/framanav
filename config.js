@@ -1,8 +1,8 @@
  /***********************************************************************
  *                          Config des sites                           *
  ***********************************************************************/
-// Pour savoir à quoi correspondent les options de config, aller à la fin 
-// de nav.js. La variable c$ contient toutes les valeurs par défaut ainsi 
+// Pour savoir à quoi correspondent les options de config, aller à la fin
+// de nav.js. La variable c$ contient toutes les valeurs par défaut ainsi
 // que les explications pour comprendre à quoi ça correspond.
 
 var l$ = {};
@@ -95,7 +95,7 @@ switch (n$.site) {
   case 'bee':
     l$ = {
       js: {
-        ext: function() { jQuery('#q').focus(); jQuery('.footer').hide(); jQuery('body').css('margin-bottom','0') }
+        ext: function() { if( jQuery('.explain').length ) { jQuery('#q').focus() }; jQuery('.footer').hide(); jQuery('body').css('margin-bottom','0') }
       }
     }
   break;
@@ -343,8 +343,8 @@ switch (n$.site) {
         footer: false
       }
     }
-  break; 
- 
+  break;
+
   case 'news':
     if(i$('framanews.org/ttrss')) {
       l$ = {
