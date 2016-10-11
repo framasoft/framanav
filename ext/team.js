@@ -126,7 +126,11 @@ setInterval(function() {
   }
 
   // Fix duplicate modal-backdrop
-  f$('body .modal-backdrop:eq(1)').remove(); 
+  f$('body .modal-backdrop:eq(1)').remove();
+  // Idem au cas où…
+  if( f$('.modal:visible').length == 0 ) {
+    f$('body .modal-backdrop').remove();
+  }
 
 }, 1000);
 

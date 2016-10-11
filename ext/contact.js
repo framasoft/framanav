@@ -175,12 +175,17 @@ jQuery(document).ready(function(){
     jQuery('#participer .well').after('<div class="row col-xs-12">'+partList[0]+partList[1]+partList[2]+'</div>');
 
     // Alertes
-    jQuery('.wpcf7 form .your-message').after(
+    jQuery('.wpcf7 form .your-message').before(
       '<p class="alert alert-warning framalibre"><b class="label label-warning">Attention</b> Il ne sera donné <b>aucune réponse aux questions concernant le fonctionnement de logiciels libres</b>. Nous ne connaissons pas tous les logiciels qui figurent dans notre annuaire. Pour cela, merci d’utiliser <a href="http://forum.framasoft.org">nos forums</a> ou les réseaux sociaux.</p>'+
       '<p class="alert alert-warning framapad">N’oubliez pas de <b>nous donner l’adresse du pad</b> qui vous pose problème dans votre message.</p>'+
-      '<p class="alert alert-warning framaboard">N’oubliez pas de <b>nous donner l’adresse de votre espace</b> <b class="violet">Frama</b><b class="vert">board</b> ainsi que <b>votre identifiant</b> dans votre message.</p>'+
+      '<p class="alert alert-warning framacalc">N’oubliez pas de <b>nous donner l’adresse du calc</b> qui vous pose problème dans votre message.</p>'+
       '<p class="alert alert-warning framadate">N’oubliez pas de <b>nous donner l’adresse du sondage</b> qui vous pose problème dans votre message.</p>'+
-      '<p class="alert alert-warning framadrive">N’oubliez pas de <b>nous donner l’identifiant de votre compte</b> dans votre message.</p>'
+      '<p class="alert alert-warning framamemo">N’oubliez pas de <b>nous donner l’adresse du memo</b> qui vous pose problème dans votre message.</p>'+
+      '<p class="alert alert-warning framaforms">N’oubliez pas de <b>nous donner l’adresse du formulaire</b> qui vous pose problème dans votre message.</p>'+
+      '<p class="alert alert-warning framaboard">N’oubliez pas de <b>nous donner l’adresse de votre espace</b> <b class="violet">Frama</b><b class="vert">board</b> ainsi que <b>votre identifiant</b> dans votre message.</p>'+
+      '<p class="alert alert-warning framadrive">N’oubliez pas de <b>nous donner l’identifiant de votre compte</b> dans votre message.</p>'+
+      '<p class="alert alert-warning framagenda">N’oubliez pas de <b>nous donner l’identifiant de votre compte</b> dans votre message.</p>'+
+      '<p class="alert alert-warning framateam">N’oubliez pas de <b>nous donner votre identifiant</b> ainsi que <b>les équipes où vous êtes inscrits</b> dans votre message.</p>'
     );
     jQuery('.wpcf7 form .alert-warning,.faq .alert-warning').hide();
 
@@ -229,6 +234,7 @@ jQuery(document).ready(function(){
           break;
         case '#aide'     :
           jQuery('#concerne').parent().parent().hide();
+          jQuery('.formContact').hide();
           break;
         case '#soutenir' :
           jQuery('#concerne option').prop('selected', false);
@@ -251,6 +257,7 @@ jQuery(document).ready(function(){
 
     // Sélection projet onclick
     jQuery('#aide .list-group-item').click(function() {
+      jQuery('.formContact').show();
       f$_projet = jQuery(this).text();
       f$_projetId = f$_projet.substr(1).toLowerCase();
       jQuery('.wpcf7 form .alert-warning').hide();
