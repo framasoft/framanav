@@ -695,6 +695,8 @@ switch (n$.site) {
   case 'notes' :                 l$.piwik.id = '52'; break;
   case 'agenda' :                l$.piwik.id = '53'; break;
   case 'listes' :                l$.piwik.id = '54'; break;
+  case 'my' :                    l$.piwik.id = '56'; break;
+  case 'troll' :                 l$.piwik.id = '57'; break;
 }
 
 if(l$.piwik.id != '') {
