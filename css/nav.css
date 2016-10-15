@@ -149,7 +149,7 @@
 
 @media (min-width: 768px) {
     #framanav .nav-container {
-        width:880px;        /* largeur fixe pour que la nav tienne sur une seule ligne */
+        width:1015px;        /* largeur fixe pour que la nav tienne sur une seule ligne */
     }
     #framanav.navbar .collapse { /* bug dans certaines config en box-sizing: content-box*/
         height:40px !important;
@@ -274,7 +274,6 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
 
 #btn-myframa {
     width: 135px;
-    display:none;
     text-align:center;
 }
 .navbar-default .navbar-nav > li > a.btn-primary {
