@@ -968,26 +968,6 @@ function f$Benevalo(f$) {
 
 // MyFrama
 function f$MyFrama(f$) {
-  var today = new Date();
-  var start = new Date(2016,9,9); // 8 = septembre
-  if(today > start) {
-    if(f$('#btn-myframa').is(':hidden')) {
-      f$('#framanav .nav-container').css('width','+=135px');
-      f$('#btn-myframa').show();
-    }
-  } else if ( window.addEventListener ) {
-    var kkeys = [], konami = "77,77,70,70";
-    window.addEventListener("keydown", function(e){
-      kkeys.push( e.keyCode );
-      if ( kkeys.toString().indexOf( konami ) >= 0 ) {
-        if(f$('#btn-myframa').is(':hidden')) {
-          f$('#framanav .nav-container').css('width','+=135px');
-          f$('#btn-myframa').show();
-        }
-      }
-    }, true);
-  }
-
   var bm_url = location.href;
   var bm_title = document.title || bm_url;
   var myframa = 'https://my.framasoft.org/?post=' + encodeURIComponent(bm_url)+
