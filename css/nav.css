@@ -24,8 +24,14 @@
     border:none;
 }
 
+#framanav .dropdown-menu li .fa {
+    opacity:1 !important;
+    margin-right:0 !important;
+}
+
 #framanav .dropdown-menu .divider {
     background-color: rgb(229, 229, 229) !important;
+    opacity:1 !important;
 }
 
 #framanav li {
