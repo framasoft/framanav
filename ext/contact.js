@@ -177,7 +177,7 @@ jQuery(document).ready(function(){
     // Alertes
     jQuery('.wpcf7 form .your-message').before(
       '<p class="alert alert-warning framalibre"><b class="label label-warning">Attention</b> Il ne sera donné <b>aucune réponse aux questions concernant le fonctionnement de logiciels libres</b>. Nous ne connaissons pas tous les logiciels qui figurent dans notre annuaire. Pour cela, merci d’utiliser <a href="http://forum.framasoft.org">nos forums</a> ou les réseaux sociaux.</p>'+
-      '<p class="alert alert-warning framapad">N’oubliez pas de <b>nous donner l’adresse du pad</b> qui vous pose problème dans votre message.</p>'+
+      '<p class="alert alert-warning framapad">N’oubliez pas de <b>nous donner l’adresse complète du pad</b> qui vous pose problème dans votre message.</p>'+
       '<p class="alert alert-warning framacalc">N’oubliez pas de <b>nous donner l’adresse du calc</b> qui vous pose problème dans votre message.</p>'+
       '<p class="alert alert-warning framadate">N’oubliez pas de <b>nous donner l’adresse du sondage</b> qui vous pose problème dans votre message.</p>'+
       '<p class="alert alert-warning framamemo">N’oubliez pas de <b>nous donner l’adresse du memo</b> qui vous pose problème dans votre message.</p>'+
