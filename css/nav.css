@@ -24,8 +24,14 @@
     border:none;
 }
 
+#framanav .dropdown-menu li .fa {
+    opacity:1 !important;
+    margin-right:0 !important;
+}
+
 #framanav .dropdown-menu .divider {
     background-color: rgb(229, 229, 229) !important;
+    opacity:1 !important;
 }
 
 #framanav li {
@@ -150,9 +156,13 @@
 @media (min-width: 768px) {
     #framanav .nav-container {
         width:1015px;        /* largeur fixe pour que la nav tienne sur une seule ligne */
+        width: -moz-fit-content;
+        width: -webkit-fit-content;
+        width: fit-content;
     }
     #framanav.navbar .collapse { /* bug dans certaines config en box-sizing: content-box*/
         height:40px !important;
+        float:left;
     }
     #framanav .navbar-collapse {
         padding: 0 !important;

@@ -397,6 +397,81 @@ function f$_start_jquery() {
         f$Benevalo(f$);
         if (!n$.inframe) { f$MyFrama(f$); }
 
+        // Footer
+        if(c$.footer && !n$.inframe) {
+
+          h$.footer =
+'<footer id="framafooter" class="row hidden-print" role="contentinfo">'+
+  '<div class="container">'+
+    '<div class="clearfix col-sm-8">'+
+      '<nav class="col-xs-4">'+
+        '<h1>'+d$.meta.home.p+d$.meta.home.s+'</h1>'+
+        '<ul class="list-unstyled">'+
+          '<li><a href="'+d$.f.asso.l+'">'+h$.f.asso.name+'</a></li>'+
+          '<li><a href="'+d$.f.charte.l+'">'+h$.f.charte.name+'</a></li>'+
+          '<li><a href="'+d$.f.contact.l+'">'+h$.f.contact.name+'</a></li>'+
+          '<li><a href="'+d$.f.stats.l+'">'+h$.f.stats.name+'</a></li>'+
+          '<li><a href="'+d$.f.status.l+'">'+h$.f.status.name+'</a></li>'+
+        '</ul>'+
+      '</nav>'+
+      '<nav class="col-xs-4">'+
+        '<h1>'+d$.menu.community.name+'</h1>'+
+        '<ul class="list-unstyled">'+
+          '<li><a href="'+d$.f.participer.l+'">'+h$.f.participer.name+'</a></li>'+
+          '<li><a href="'+d$.f.benevalo.l+'">'+h$.f.benevalo.name+'</a></li>'+
+          '<li><a href="'+d$.f.partenaires.l+'">'+h$.f.partenaires.name+'</a></li>'+
+          '<li><a href="'+d$.f.agora.l+'">'+h$.f.agora.name+'</a></li>'+
+        '</ul>'+
+      '</nav>'+
+      '<nav class="col-xs-4">'+
+        '<h1>'+d$.menu.site.name+'</h1>'+
+        '<ul class="list-unstyled">'+
+          '<li><a href="'+d$.f.aide.l+'">'+h$.f.aide.name+'</a></li>'+
+          '<li class="fs_faq"><a href="'+d$.f.faq.l+'">'+h$.f.faq.name+'</a></li>'+
+          '<li><a href="'+d$.f.legals.l+'">'+h$.f.legals.name+'</a></li>'+
+          '<li><a href="'+d$.f.cgu.l+'"><abbr>'+h$.f.cgu.name+'</abbr></a></li>'+
+          '<li><a href="'+d$.f.credits.l+'">'+h$.f.credits.name+'</a></li>'+
+        '</ul>'+
+      '</nav>'+
+    '</div>'+
+    '<div class="col-sm-4">'+
+      '<div class="col-xs-12">'+
+        '<h1>'+d$.menu.follow.name+'</h1>'+
+        '<ul class="list-inline">'+h$.menu.follow.footer+'</ul>'+
+        '<h2>'+h$.f.newsletter.name+'</h2>'+
+        '<form action="https://contact.framasoft.org/php_list/lists/?p=subscribe&amp;id=2" method="post" name="subscribeform">'+
+          '<div class="input-group input-group-sm">'+
+            '<input class="form-control" title="'+d$.t['type-your-email']+'" name="email" size="40" type="text" placeholder="'+d$.t['your-email']+'" />'+
+              '<span class="input-group-btn">'+
+              '  <button class="btn btn-default" name="subscribe" type="submit" value="subscribe">'+d$.t.subscribe+h$SR(d$.t['to-the-newsletter'])+'</button>'+
+              '</span>'+
+            '</div>'+
+            '<input name="htmlemail" type="hidden" value="1" /> <input name="list[5]" type="hidden" value="signup" /> <input name="listname[5]" type="hidden" value="Newsletter" />'+
+            '<div style="display: none;"><input name="VerificationCodeX" size="20" type="text" value="" /></div>'+
+        '</form>'+
+      '</div>'+
+    '</div>'+
+  '</div>'+
+'</footer>';
+
+          f$('body').append(h$.footer);
+
+          if(f$('body').height() < f$(window).height()) {
+            f$('#framafooter').css('position','absolute');
+          } else {
+            f$('#framafooter').css('position','relative');
+          }
+
+          f$(window).on('resize, scroll, click', function() {
+            f$('#framafooter').css('position','relative');
+            if(f$('body').height() < f$(window).height()) {
+              f$('#framafooter').css('position','absolute');
+            } else {
+              f$('#framafooter').css('position','relative');
+            }
+          });
+        }
+
         /*******************
          *   BootStrap JS
          *******************/
@@ -532,76 +607,6 @@ function f$_start_jquery() {
                   true
                 )
               );
-            }
-          });
-        }
-
-        // Footer
-        if(c$.footer && !n$.inframe) {
-
-          h$.footer =
-'<footer id="framafooter" class="row hidden-print" role="contentinfo">'+
-  '<div class="container">'+
-    '<div class="clearfix col-sm-8">'+
-      '<nav class="col-xs-4">'+
-        '<h1>'+d$.meta.home.p+d$.meta.home.s+'</h1>'+
-        '<ul class="list-unstyled">'+
-          '<li><a href="'+d$.f.asso.l+'">'+h$.f.asso.name+'</a></li>'+
-          '<li><a href="'+d$.f.charte.l+'">'+h$.f.charte.name+'</a></li>'+
-          '<li><a href="'+d$.f.contact.l+'">'+h$.f.contact.name+'</a></li>'+
-        '</ul>'+
-      '</nav>'+
-      '<nav class="col-xs-4">'+
-        '<h1>'+d$.menu.community.name+'</h1>'+
-        '<ul class="list-unstyled">'+
-          '<li><a href="'+d$.f.participer.l+'">'+h$.f.participer.name+'</a></li>'+
-          '<li><a href="'+d$.f.benevalo.l+'">'+h$.f.benevalo.name+'</a></li>'+
-          '<li><a href="'+d$.f.partenaires.l+'">'+h$.f.partenaires.name+'</a></li>'+
-        '</ul>'+
-      '</nav>'+
-      '<nav class="col-xs-4">'+
-        '<h1>'+d$.menu.site.name+'</h1>'+
-        '<ul class="list-unstyled">'+
-          '<li><a href="'+d$.f.legals.l+'">'+h$.f.legals.name+'</a></li>'+
-          '<li><a href="'+d$.f.cgu.l+'"><abbr>'+h$.f.cgu.name+'</abbr></a></li>'+
-          '<li><a href="'+d$.f.credits.l+'">'+h$.f.credits.name+'</a></li>'+
-        '</ul>'+
-      '</nav>'+
-    '</div>'+
-    '<div class="col-sm-4">'+
-      '<div class="col-xs-12">'+
-        '<h1>'+d$.menu.follow.name+'</h1>'+
-        '<ul class="list-inline">'+h$.menu.follow.footer+'</ul>'+
-        '<h2>'+h$.f.newsletter.name+'</h2>'+
-        '<form action="https://contact.framasoft.org/php_list/lists/?p=subscribe&amp;id=2" method="post" name="subscribeform">'+
-          '<div class="input-group input-group-sm">'+
-            '<input class="form-control" title="'+d$.t['type-your-email']+'" name="email" size="40" type="text" placeholder="'+d$.t['your-email']+'" />'+
-              '<span class="input-group-btn">'+
-              '  <button class="btn btn-default" name="subscribe" type="submit" value="subscribe">'+d$.t.subscribe+h$SR(d$.t['to-the-newsletter'])+'</button>'+
-              '</span>'+
-            '</div>'+
-            '<input name="htmlemail" type="hidden" value="1" /> <input name="list[5]" type="hidden" value="signup" /> <input name="listname[5]" type="hidden" value="Newsletter" />'+
-            '<div style="display: none;"><input name="VerificationCodeX" size="20" type="text" value="" /></div>'+
-        '</form>'+
-      '</div>'+
-    '</div>'+
-  '</div>'+
-'</footer>';
-
-          f$('body').append(h$.footer);
-
-          if(f$('body').height() < f$(window).height()) {
-            f$('#framafooter').css('position','absolute');
-          } else {
-            f$('#framafooter').css('position','relative');
-          }
-
-          f$(window).on('resize, scroll, click', function() {
-            f$('#framafooter').css('position','relative');
-            if(f$('body').height() < f$(window).height()) {
-              f$('#framafooter').css('position','absolute');
-            } else {
-              f$('#framafooter').css('position','relative');
             }
           });
         }
@@ -788,6 +793,32 @@ function f$_start_jquery() {
                 });
               }
             }
+
+            // Modal FAQ
+            if(d$.f.faq.l.indexOf(n$.name.toLowerCase()) > -1) {
+              f$('body').append(
+                h$Modal(
+                  'fsFAQ', d$.f.faq.s+' '+n$.name,
+                  '',
+                  '<button class="btn" id="modal-close" data-dismiss="modal">'+d$.t.close+'</button>',
+                  'lg'
+                )
+              );
+              f$('.fs_faq a').on('click', function() {
+                if(f$('#modal-fsFAQ .modal-body').html() == '') {
+                  f$('#modal-fsFAQ .modal-body').load('https://contact.framasoft.org/foire-aux-questions/ #'+n$.name.toLowerCase()+' .list-group-item', function(data) {
+                    if( $(data).find('#'+n$.name.toLowerCase()).length < 1 ) {
+                      window.location.href = f$('.fs_faq a').attr('href');
+                    } else {
+                      f$('#modal-fsFAQ').modal('show');
+                    }
+                  });
+                } else {
+                  f$('#modal-fsFAQ').modal('show');
+                }
+                return false;
+              });
+            }
           }// </!n$.inframe>
         } // </go_BootStrap>
       }); // </nav.html>
@@ -962,7 +993,8 @@ function f$Benevalo(f$) {
   var moonRev = 2551443;     // 29j 12h 44m 3s
 
   if((today - fullMoon)%moonRev < 129600 || (today - fullMoon)%moonRev > moonRev-129600) {
-    f$('#btn-benevalo').show().prev().hide();
+    f$('#btn-benevalo').show();
+    f$('#btn-benevalo').prev().hide();
   }
 }
 
@@ -992,10 +1024,11 @@ function f$MyFrama(f$) {
 
 //----------------------Fonctions HTML ---------------------------------
 // Modales
-function h$Modal(id, title, body, footer) {
+function h$Modal(id, title, body, footer, lg) {
+  lg = (lg == undefined) ? '' : ' modal-lg';
   var html =
     '<div class="modal fade" lang="'+d$.meta.lg+'" id="modal-'+id+'" tabindex="-1" role="dialog" aria-labelledby="modal-'+id+'Label" aria-hidden="true">'+
-      '<div class="modal-dialog">'+
+      '<div class="modal-dialog'+lg+'">'+
         '<div class="modal-content">'+
           '<div class="modal-header">'+
             '<button type="button" class="close" data-dismiss="modal" title="'+d$.t.close+'"><i aria-hidden="true">&times;</i>'+h$SR(d$.t.close)+'</button>'+
@@ -1187,7 +1220,7 @@ var f$_yyyy = f$_today.getFullYear();
 
 
 
-if(f$_mm == 12 && (31-f$_dd) < 15 && n$.site != 'soutenir.framasoft') {
+if(f$_mm == 12 && (31-f$_dd) < 15 && n$.site != 'soutenir') {
   f$_rebours = ((31-f$_dd) == 1) ? '24 heures' : 31-f$_dd+' jours';
   c$.alert[0] = 'info';
   c$.alert[1] =
@@ -1196,7 +1229,7 @@ if(f$_mm == 12 && (31-f$_dd) < 15 && n$.site != 'soutenir.framasoft') {
 }
 
 // Bandeau dio3
-if(f$_mm == 10 && f$_dd > 2 && f$_dd < 29 && n$.site != 'soutenir.framasoft') {
+if(f$_mm == 10 && f$_dd > 2 && f$_dd < 29 && n$.site != 'soutenir') {
   c$.alert[0] = 'info';
   c$.alert[1] =
     '<b class="violet">Frama</b><b class="orange">soft</b> entre en campagne et sort <strong><a href="https://framablog.org/2016/10/03/degooglisons-saison-3-30-services-alternatifs-aux-produits-de-google-co/">6 nouveaux services</a></strong>.'+

@@ -620,7 +620,7 @@ switch (n$.site) {
     n$.inframe = i$('mediamanager.php');
     l$ = {
       css: { ext: true },
-      alert: ['']
+      alert: ['', '']
     }
   break;
 
