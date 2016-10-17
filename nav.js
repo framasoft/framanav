@@ -1187,7 +1187,7 @@ var f$_yyyy = f$_today.getFullYear();
 
 
 
-if(f$_mm == 12 && (31-f$_dd) < 15 && n$.site != 'soutenir.framasoft') {
+if(f$_mm == 12 && (31-f$_dd) < 15 && n$.site != 'soutenir') {
   f$_rebours = ((31-f$_dd) == 1) ? '24 heures' : 31-f$_dd+' jours';
   c$.alert[0] = 'info';
   c$.alert[1] =
@@ -1196,7 +1196,7 @@ if(f$_mm == 12 && (31-f$_dd) < 15 && n$.site != 'soutenir.framasoft') {
 }
 
 // Bandeau dio3
-if(f$_mm == 10 && f$_dd > 2 && f$_dd < 29 && n$.site != 'soutenir.framasoft') {
+if(f$_mm == 10 && f$_dd > 2 && f$_dd < 29 && n$.site != 'soutenir') {
   c$.alert[0] = 'info';
   c$.alert[1] =
     '<b class="violet">Frama</b><b class="orange">soft</b> entre en campagne et sort <strong><a href="https://framablog.org/2016/10/03/degooglisons-saison-3-30-services-alternatifs-aux-produits-de-google-co/">6 nouveaux services</a></strong>.'+
