@@ -807,7 +807,7 @@ function f$_start_jquery() {
               f$('.fs_faq a').on('click', function() {
                 if(f$('#modal-fsFAQ .modal-body').html() == '') {
                   f$('#modal-fsFAQ .modal-body').load('https://contact.framasoft.org/foire-aux-questions/ #'+n$.name.toLowerCase()+' .list-group-item', function(data) {
-                    if( $(data).find('#'+n$.name.toLowerCase()).length < 1 ) {
+                    if( f$(data).find('#'+n$.name.toLowerCase()).length < 1 ) {
                       window.location.href = f$('.fs_faq a').attr('href');
                     } else {
                       f$('#modal-fsFAQ').modal('show');
