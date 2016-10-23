@@ -22,7 +22,6 @@ details,
 figcaption,
 figure,
 footer,
-header,
 hgroup,
 main,
 menu,
@@ -30,6 +29,9 @@ nav,
 section,
 summary {
   display: block;
+}
+header {
+  display: flex;
 }
 audio,
 canvas,
@@ -65,7 +67,7 @@ dfn {
 }
 h1 {
   font-size: 2em;
-  margin: 0.67em 0;
+  margin: 0;
 }
 mark {
   background: #ff0;
@@ -368,7 +370,6 @@ h1 .small,h2 .small,h3 .small,h4 .small,h5 .small,h6 .small,
   line-height: 1;
   color: #777777;
 }
-h1,.h1,
 h2,.h2,
 h3,.h3 {
   margin-top: 20px;
@@ -3838,6 +3839,10 @@ th, td {
 #popover-container {
     top:42px;
 }
+#popover-content {
+    top: 60px;
+    max-height: calc(100% - 110px);
+}
 h1 a:hover {
     text-decoration:none;
 }
@@ -3876,7 +3881,8 @@ a.btn-blue:focus,
 }
 
 .btn-blue:disabled {
-    color: #ccc;
+    color: #777;
+    text-shadow: none;
     border: 1px solid #ccc;
     background: #f7f7f7;
 }
