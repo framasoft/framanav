@@ -214,7 +214,7 @@ function f$_start_jquery() {
         h$ = {
           framasoft: !i$Agent() ? '<b class="violet">'+d$.meta.home.p+'</b><b class="orange">'+d$.meta.home.s+'</b>' : '<b class="violet">Lara</b><b class="orange">Croft</b>',
           rssLink : '<link rel="alternate" type="application/rss+xml" title="'+d$.f.rss.d1+'" href="'+d$.f.rss.l+'" />',
-          newwindow: '&nbsp;<i class="fa fa-external-link new-window"></i>'+h$SR('('+d$.t.newwindow+')')+'</span>',
+          newwindow: '&nbsp;<i class="fa fa-external-link new-window" aria-hidden="true"></i>'+h$SR('('+d$.t.newwindow+')')+'</span>',
           divider: '<li role="presentation" class="divider"></li>',
           menu: d$.menu,
           f: {}
@@ -254,7 +254,7 @@ function f$_start_jquery() {
 
           // "Nous suivre" dans le footer
           if ((f$_menu == 'follow') && !(/(wiki|agora|newsletter|contact|wikipedia)/i).test(k)) {
-            h$.menu['follow'].footer += '<li class="fs_'+k+'"><a href="'+d$.f[k].l+'" title="'+d$.f[k].t1+'"><i class="fa fa-fw fa-2x '+d$.f[k].i+'"></i>'+h$SR(d$.f[k].name)+'</a></li>';
+            h$.menu['follow'].footer += '<li class="fs_'+k+'"><a href="'+d$.f[k].l+'" title="'+d$.f[k].t1+'"><i class="fa fa-fw fa-2x '+d$.f[k].i+'" aria-hidden="true"></i>'+h$SR(d$.f[k].name)+'</a></li>';
           }
           // "À propos" du site
           if(n$.name == h$.f[k].name) {
@@ -1069,7 +1069,7 @@ function h$SR(text) {
 
 // Icône Font-Awesome
 function h$icon(classCSS) {
-  return '<i class="fa fa-fw fa-lg '+classCSS+'"></i>';
+  return '<i class="fa fa-fw fa-lg '+classCSS+'" aria-hidden="true"></i>';
 }
 
 //----------------------Fonctions i$ -----------------------------------
@@ -1225,7 +1225,7 @@ if(f$_mm == 12 && (31-f$_dd) < 15 && n$.site != 'soutenir') {
   c$.alert[0] = 'info';
   c$.alert[1] =
     'Rappel : il vous reste <b>'+f$_rebours+'</b> pour faire un <b>don défiscalisé en '+f$_yyyy+'</b> à Framasoft.'+
-    '<br/>Merci pour votre soutien <a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir"><i class="fa fa-heart"></i><span class="sr-only">Faire un don ?</a>';
+    '<br/>Merci pour votre soutien <a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir"><i class="fa fa-heart" aria-hidden="true"></i><span class="sr-only">Faire un don ?</a>';
 }
 
 // Bandeau dio3
@@ -1234,5 +1234,5 @@ if(f$_mm == 10 && f$_dd > 2 && f$_dd < 29 && n$.site != 'soutenir') {
   c$.alert[1] =
     '<b class="violet">Frama</b><b class="orange">soft</b> entre en campagne et sort <strong><a href="https://framablog.org/2016/10/03/degooglisons-saison-3-30-services-alternatifs-aux-produits-de-google-co/">6 nouveaux services</a></strong>.'+
     '<br/> Nous vous rappelons que seuls vos dons rendent cela possible, merci pour <strong><a href="https://soutenir.framasoft.org">votre soutien</a></strong> '+
-    '<a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir"><i class="fa fa-heart"></i></a>';
+    '<a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir"><i class="fa fa-heart" aria-hidden="true"></i></a>';
 }
