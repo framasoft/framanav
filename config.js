@@ -517,7 +517,7 @@ switch (n$.site) {
         apple: 'soft.png'
       }
     }
-    if(!i$('http://framasoft.org/', 'u') && !i$(/org\/accueil|org\/nav/i, 'u')) { // dans l'annuaire
+    if(!i$('https://framasoft.org/', 'u') && !i$(/org\/accueil|org\/nav/i, 'u')) { // dans l'annuaire
       l$ = {
         js: {
           ext: function() { // Mise en forme « Juste une image »
