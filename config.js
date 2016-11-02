@@ -733,23 +733,12 @@ if(l$.piwik.id != '') {
  **********************************************************************/
 l$.icons = (l$.icons == undefined) ? {} : l$.icons ;
 
-if (i$(/(android|dvd|key|libre|pack|start)/i,'h')) {
-  l$.icons.fav = 'favicon-bleu.png';
-}
-if (i$(/(blog|book|lang|tube|zic)/i,'h')) {
-  l$.icons.fav = 'favicon-rouge.png';
-}
-if (i$(/(agenda|bag|bee|bin|board|calc|carte|cloud|date|drive|drop|forms|games|git|link|listes|memo|mindmap|minetest|news|notes|pad|petition|pic|sphere|talk|team|vectoriel|vox)/i,'h')) {
-  l$.icons.fav = 'favicon-vert.png';
-}
-if (i$(/(forum.|code|lab|phonie|wiki.)/i,'h')) {
+if (i$(/(phonie)/i,'h')) {
   l$.icons.fav = 'favicon-jaune.png';
-}
-if (i$(/(contact.|participer.|soutenir.|stats|status.)/i,'h')) {
-  l$.icons.fav = 'favicon-orange.png';
 }
 
 if ( i$(/(agenda|android|bag|bee|bin|blog|board|bookin|book|calc|carte|cloud|code|colibri|date|drive|drop|dvd|forms|games|key|lab|lang|link|listes|memo|mindmap|minetest|news|pack|pad|phonie|pic|soft|sphere|start|stats|talk|team|tube|vectoriel|vox|zic)/i,'h')
    || i$(/(bot.|contact.|degooglisons-internet|forum.|participer.|soutenir.|wiki.)/i,'h') ){
   l$.icons.apple = n$.site+'.png';
+  l$.icons.fav = 'fav_'+n$.site+'.png';
 }
