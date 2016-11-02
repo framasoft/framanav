@@ -393,7 +393,10 @@ switch (n$.site) {
       mute: true,
       footer: false,
       credits: 'pad',
-      icons: { apple: 'pad.png' }
+      icons: {
+        fav: 'fav_pad.png', 
+        apple: 'pad.png'
+      }
     }
   break;
 
@@ -412,7 +415,10 @@ switch (n$.site) {
       mute: true,
       footer: false,
       credits: 'pad',
-      icons: { apple: 'pad.png' }
+      icons: {
+        fav: 'fav_pad.png', 
+        apple: 'pad.png'
+      }
     }
 
     if(i$(/(lite6.|mypads.|quotidien.|hebdo.|uel.|mestriel.)/i, 'h')) {
@@ -504,7 +510,13 @@ switch (n$.site) {
   break;
 
   case 'soft':
-    l$ = { fixed: true }
+    l$ = { 
+      fixed: true,
+      icons: {
+        fav: 'favicon-violet.png',
+        apple: 'soft.png'
+      }
+    }
     if(!i$('http://framasoft.org/', 'u') && !i$(/org\/accueil|org\/nav/i, 'u')) { // dans l'annuaire
       l$ = {
         js: {
@@ -520,7 +532,7 @@ switch (n$.site) {
         credits: 'libre',
         fixed: true,
         icons: {
-          fav: 'favicon-bleu.png',
+          fav: 'fav_libre.png',
           apple: 'libre.png'
         }
       }
@@ -545,8 +557,7 @@ switch (n$.site) {
     l$ = {
       mute: true,
       footer: false,
-      fixed: true,
-      icons: { apple: 'apple-orange.png' }
+      fixed: true
     }
   break;
 
