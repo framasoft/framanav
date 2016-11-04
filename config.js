@@ -177,7 +177,7 @@ switch (n$.site) {
         },
         css: {
           b$: !n$.inframe,
-          ext: !n$.inframe
+          ext: true
         },
         mobile: false,
         mute: true,
