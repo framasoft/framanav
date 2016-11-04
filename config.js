@@ -161,10 +161,12 @@ switch (n$.site) {
 
   case 'calc':
     // Calcs à onglets sont dans des frame
-    if(top.location.href.indexOf('framacalc.org/=') > -1) {
-      document.getElementById("framanav_container").style="height:42px; opacity:0";
-      n$.inframe = false;
-    }
+    try {
+        if(top.location.href.indexOf('framacalc.org/=') > -1) {
+            document.getElementById("framanav_container").style="height:42px; opacity:0";
+            n$.inframe = false;
+        }
+    } catch(e) { }
     if (i$('framacalc.org/_start') || i$('https://framacalc.org/', 'u')) {
       // Si on est sur la page d'accueil
       l$.modal = {
