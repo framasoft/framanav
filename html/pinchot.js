@@ -195,7 +195,7 @@ jQuery(document).ready(function() {
         "s": "lab",
         "c": "j",
         "i": "fa-flask",
-        "l": "http://framalab.org"
+        "l": "https://framalab.org"
       }
 
       d$.f['code'] = {
