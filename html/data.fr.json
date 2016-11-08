@@ -144,7 +144,7 @@
       "s": "pack",
       "c": "b",
       "i": "fa-download",
-      "l": "http://framapack.org",
+      "l": "https://framapack.org",
 
       "d0": "Installateur de logiciels",
       "t1": "Distribution massive",
@@ -165,7 +165,7 @@
       "s": "Libre",
       "c": "b",
       "i": "fa-shopping-cart",
-      "l": "http://enventelibre.org/40-framasoft",
+      "l": "https://enventelibre.org/40-framasoft",
 
       "d0": "Boutique",
       "t1": "Notre libre petite boutique",
@@ -194,7 +194,7 @@
       "s": "blog",
       "c": "r",
       "i": "fa-pencil",
-      "l": "http://framablog.org",
+      "l": "https://framablog.org",
 
       "d0": "Blog",
       "t1": "L’actualité du « Libre »",
@@ -232,7 +232,7 @@
       "s": "lang",
       "c": "r",
       "i": "fa-language",
-      "l": "http://framablog.org/framalang",
+      "l": "https://framablog.org/framalang",
 
       "t1": "Traduction collaborative",
       "d1": "Traduire tous ensemble, principalement de l’anglais vers le français, dans la convivialité en bénéficiant de la force d’Internet et de la bonne volonté de ses habitants. Il peut s’agir d’articles, de sous-titrage et même de livres entiers !"
@@ -264,7 +264,7 @@
       "s": "Libre",
       "c": "r",
       "i": "fa-shopping-cart",
-      "l": "http://enventelibre.org/40-framasoft",
+      "l": "https://enventelibre.org/40-framasoft",
 
       "d0": "Boutique",
       "t1": "Notre libre petite boutique",
@@ -788,7 +788,7 @@
       "a": "abbr",
       "c": "f",
       "i": "fa-rss",
-      "l": "http://rss.framasoft.org",
+      "l": "https://rss.framasoft.org",
 
       "t1": "Flux RSS",
       "d1": "Flux RSS agrégé des différents sites."
