@@ -335,6 +335,10 @@ switch (n$.site) {
 
   case 'minetest':
     l$.js = { video: true };
+    if(i$('/carte/')) {
+      l$.mute = true;
+      l$.footer = false;
+    }
   break;
 
   case 'my':
@@ -396,7 +400,7 @@ switch (n$.site) {
       footer: false,
       credits: 'pad',
       icons: {
-        fav: 'fav_pad.png', 
+        fav: 'fav_pad.png',
         apple: 'pad.png'
       }
     }
@@ -418,7 +422,7 @@ switch (n$.site) {
       footer: false,
       credits: 'pad',
       icons: {
-        fav: 'fav_pad.png', 
+        fav: 'fav_pad.png',
         apple: 'pad.png'
       }
     }
@@ -512,7 +516,7 @@ switch (n$.site) {
   break;
 
   case 'soft':
-    l$ = { 
+    l$ = {
       fixed: true,
       icons: {
         fav: 'favicon-violet.png',
