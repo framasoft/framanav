@@ -3893,3 +3893,7 @@ a:focus {
 div.ganttview-block-container {
     height: 31px;
 }
+
+#ui-datepicker-div {
+    z-index: 1002 !important; /* Above the nav */
+}
