@@ -311,6 +311,7 @@ switch (n$.site) {
   case 'mindmap':
     if(i$('framindmap.org/mindmaps')) { // Dans Mindmaps
       l$ = {
+        js: { j$: 'noConflict' },
         css: { ext: true },
         mute: true,
         footer: false
