@@ -35,7 +35,7 @@ if( d$.f.date.modal.file != '' ) {
 }
 
 // Bouton edit
-var f$_btn_edit = f$('#poll_form a.btn[href$="edit"]').parent().html();
+/*var f$_btn_edit = f$('#poll_form a.btn[href$="edit"]').parent().html();
 f$('#message-container a[href$="edit"]').after(function(){
   return '<div class="input-group input-group-sm">'+
     '<div class="input-group-btn">'+
@@ -43,6 +43,6 @@ f$('#message-container a[href$="edit"]').after(function(){
     '</div>'+
     '<input class="form-control" readonly="readonly" value="'+f$(this).attr('href')+'" type="text" aria-hidden="true">'+
   '</div>'
-}).remove();
+}).remove();*/
 
 f$('head').append('<style>.yes .btn,.yes .btn:hover { color: #677835 !important;}.ifneedbe .btn,.ifneedbe .btn:hover { color: #C48A1B !important;}.no .btn,.no .btn:hover{color: #AD220F !important;}.ifneedbe input[type="radio"]:checked + label,.yes input[type="radio"]:checked + label { color: #fff !important;}.no .btn.startunchecked {color:#AD220F !important;}.no input[type="radio"]:checked + label:not(.startunchecked){color:#fff !important}</style>');
