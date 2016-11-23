@@ -385,17 +385,7 @@ switch (n$.site) {
     n$.name = 'Framapad';
     l$ = {
       js: {
-        ext: function() {
-          setInterval(function() {
-            if(jQuery('section.pad iframe').length > 0) {
-              jQuery('main section.col-md-9').removeClass('col-md-9').addClass('col-md-12');
-              jQuery('main aside.col-md-3').removeClass('col-md-3').addClass('col-md-12');
-            } else {
-              jQuery('main section.col-md-12').removeClass('col-md-12').addClass('col-md-9');
-              jQuery('main aside.col-md-12').removeClass('col-md-12').addClass('col-md-3');
-            }
-          }, 1000)
-        }
+        ext: true
       },
       mute: true,
       footer: false,
