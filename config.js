@@ -427,7 +427,7 @@ switch (n$.site) {
               '<li>Réactivation des couleurs d’identification (auteurs identifiés par le surlignage en couleur).</li>'+
               '<li>Possibilité d’afficher une table des matières, en fonction des titres utilisés dans votre pad.</li>'+
               '<li>Possibilité d’afficher le pad en mode « page ».</li>'+
-              '<li>Affichage du noms des auteurs au survol du texte.</li>'+
+              '<li>Affichage du nom des auteurs au survol du texte.</li>'+
               '<li>Possibilité d’annoter le document dans la marge et proposer du texte de remplacement.</li>'+
           '</ul>'+
           '<p>Ces modifications peuvent être activées/désactivées au niveau des paramètres de Framapad (roue crantée en haut à droite).</p>'+
