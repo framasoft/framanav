@@ -142,7 +142,7 @@ f$('a[href*="/channels"]').on('click', function() {
 
 // Lien docs.framateam.org
 setInterval(function() {
-  f$('a[href*="docs.mattermost.com"]').attr('href', function(){
+  f$('a[href*="docs.mattermost.com/help"], a[href*="docs.mattermost.com/index"]').attr('href', function(){
     return f$(this).attr('href').replace('docs.mattermost.com', 'docs.framateam.org')
   });
 }, 1000);
