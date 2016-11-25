@@ -53,7 +53,7 @@ jQuery(document).ready(function(){
                                           git:  "framasoft/framacarte",
                                           soft: "uMap",
                                           site: "https://github.com/umap-project"},
-    {col: 1, f:"Frama",   s:"sphère",     c:"v", fa:"fa-asterisk",              title:"Réseau social Diaspora*",
+    {col: 1, f:"Frama",   s:"sphere",     c:"v", fa:"fa-asterisk",              title:"Réseau social Diaspora*",
                                           git:  "framasoft/framasphere",
                                           soft: "Diaspora*",
                                           site: "https://github.com/diaspora"},
