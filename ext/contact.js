@@ -190,6 +190,14 @@ jQuery(document).ready(function(){
     );
     jQuery('.wpcf7 form .alert-warning,.faq .alert-warning').hide();
 
+    jQuery('.wpcf7 form .your-message textarea').after(
+        '<p class="alert alert-info bienveillance" style="display:none"><b>Votre message est-il bienveillant ?</b><br>Nous sommes '+
+        '<a href="https://soutenir.framasoft.org">une petite association vivant exclusivement des dons</a> et '+ 
+        'nous faisons de notre mieux pour <a href="https://degooglisons-internet.org">résister aux 5 plus grosses entreprises du monde</a> (<i class="fa fa-fw fa-google" aria-hidden="true" title="Google"></i><i class="fa fa-fw fa-apple" aria-hidden="true" title="Apple"></i><i class="fa fa-fw fa-facebook" aria-hidden="true" title="Facebook"></i><i class="fa fa-fw fa-amazon" aria-hidden="true" title="Amazon"></i><i class="fa fa-fw fa-windows" aria-hidden="true" title="Microsoft"></i><span class="sr-only">Google, Apple, Facebook, Amazon et Microsoft</span>).<br>'+
+        'Améliorer les services que nous proposons et vous aider demande <b>du temps et de l’énergie bénévole</b>.<br>'+
+        'Merci d’en tenir compte lorsque vous rédigez votre message.</p>'
+    ).on('focusin', function(){ jQuery('.bienveillance').show() });
+
     // FAQ : Import et formatage
     if(jQuery('#faq_import').length < 1) {
       jQuery('#content').prepend('<div id="faq_export" class="hidden"></div>');
@@ -209,7 +217,7 @@ jQuery(document).ready(function(){
           '</a></li>');
       });
       // On injecte avant le formulaire
-      jQuery('#general .faq h3').after(jQuery('#faq_export #faq_contact-press'));
+      jQuery('#general .faq h3').after(jQuery('#faq_export #faq_asso'));
       jQuery('#aide .faq h3').after(jQuery('#faq_export #faq_framacloud_autre'));
       jQuery('#participer .faq h3').after(jQuery('#faq_export #faq_benevolat'));
       jQuery('#soutenir .faq h3').after(jQuery('#faq_export #faq_les_dons'));
