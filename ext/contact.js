@@ -32,7 +32,7 @@ jQuery(document).ready(function(){
                                           git:  "framasoft/framagenda",
                                           soft: "Nextcloud",
                                           site: "https://github.com/nextcloud/"},
-    {col: 1, f:"Frama",   s:"date",       c:"v", fa:"fa-calendar",              title:"Alternative à Doodle",
+    {col: 1, f:"Frama",   s:"date",       c:"v", fa:"fa-calendar-check-o",      title:"Alternative à Doodle",
                                           git:  "framasoft/framadate"},
     {col: 1, f:"Frama",   s:"board",      c:"v", fa:"fa-dashboard",             title:"Alternative à Trello",
                                           git:  "framasoft/framaboard",
