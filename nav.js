@@ -336,7 +336,7 @@ function f$_start_jquery() {
         f$('#framanav .dropdown-menu li')
           .has(
             'a[href$="framastart.org"], a[href*="zic.org"], a[href*="enventelibre.org"],'+
-            'a[href*="degooglisons"], a[href*="vectoriel.org"], a[href*="carte.org"], a[href*="minetest.org"], a[href*="news.org"],'+
+            'a[href*="degooglisons"], a[href*="maestro.org"], a[href*="carte.org"], a[href*="minetest.org"], a[href*="news.org"],'+
             ' a[href*="petitions.org"], a[href*="wikipedia.org"], a[href*="plus.google"], a[href*="status."]'
           )
           .after(h$.divider);
@@ -800,7 +800,7 @@ function f$_start_jquery() {
                 h$Modal(
                   'fsFAQ', d$.f.faq.s+' '+n$.name,
                   '',
-                  '<button class="btn" id="modal-close" data-dismiss="modal">'+d$.t.close+'</button>',
+                  '<span class="pull-left">'+d$.t["another-question"]+' <a href="'+d$.f.contact.l+'">'+d$.t["contact-us"]+'</a></span> <button class="btn" id="modal-close" data-dismiss="modal">'+d$.t.close+'</button>',
                   'lg'
                 )
               );

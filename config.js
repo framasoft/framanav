@@ -308,6 +308,10 @@ switch (n$.site) {
     }
   break;
 
+  case 'maestro':
+    l$.js = { b$: 'html' };
+  break;
+
   case 'mindmap':
     if(i$('framindmap.org/mindmaps')) { // Dans Mindmaps
       l$ = {
@@ -705,6 +709,8 @@ switch (n$.site) {
   case 'listes' :                l$.piwik.id = '54'; break;
   case 'my' :                    l$.piwik.id = '56'; break;
   case 'troll' :                 l$.piwik.id = '57'; break;
+  case 'slides' :                l$.piwik.id = '58'; break;
+  case 'maestro' :               l$.piwik.id = '59'; break;
 }
 
 if(l$.piwik.id != '') {
@@ -745,7 +751,7 @@ if (i$(/(phonie)/i,'h')) {
   l$.icons.fav = 'favicon-jaune.png';
 }
 
-if ( i$(/(agenda|android|bag|bee|bin|blog|board|bookin|book|calc|carte|cloud|code|colibri|date|drive|drop|dvd|forms|games|key|lab|lang|link|listes|memo|mindmap|minetest|news|pack|pad|phonie|pic|sphere|start|stats|status|talk|team|tube|vectoriel|vox|zic)/i,'h')
+if ( i$(/(agenda|android|bag|bee|bin|blog|board|bookin|book|calc|carte|cloud|code|colibri|date|drive|drop|dvd|forms|games|key|lab|lang|link|listes|maestro|memo|mindmap|minetest|news|pack|pad|phonie|pic|slides|sphere|start|stats|status|talk|team|tube|vectoriel|vox|zic)/i,'h')
    || i$(/(bot.|contact.|degooglisons-internet|forum.|participer.|soutenir.|wiki.)/i,'h') ){
   l$.icons.apple = n$.site+'.png';
   l$.icons.fav = 'fav_'+n$.site+'.png';

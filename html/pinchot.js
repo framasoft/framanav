@@ -165,7 +165,7 @@ jQuery(document).ready(function() {
   size = new Array('round', 'fav');
 
   // On importe la liste des sites depuis la nav…
-  jQuery.getJSON( 'https://framasoft.org/nav/html/data.fr.json' ).done(
+  jQuery.getJSON( './data.fr.json' ).done(
     function(data) {
       d$ = data;
 
