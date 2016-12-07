@@ -620,3 +620,6 @@ body.apropos #piwik-iframe {
 .fs_petitions {
     visibility:hidden;
 }
+.fs_slides, .fs_maestro {
+    display:none !important;
+}

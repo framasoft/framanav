@@ -91,7 +91,9 @@
     "your-email": "Votre courriel",
     "subscribe":"S'abonner",
     "to-the-newsletter": " à la lettre d’informations",
-    "source": "Source"
+    "source": "Source",
+    "contact-us": "Contactez-nous",
+    "another-question": "Votre question n’est pas listée ?"
   },
   "menu": {
     "soft": { "name": "Logiciel libre" },
@@ -440,10 +442,37 @@
       "git":  "https://framagit.org/framasoft/framavectoriel",
       "soft": "SVG-Edit",
       "src": "https://github.com/SVG-Edit/svgedit",
+      "cloud": "http://framacloud.org/cultiver-son-jardin/installation-de-svg-edit/",
 
       "d0": "Dessin",
       "t1": "Dessiner en vectoriel",
       "d1": "Pour créer et éditer simplement et rapidement de belles images en ligne au format ouvert SVG. Les enfants adorent !"
+    },
+    "slides": {
+      "p": "Frama",
+      "s": "slides",
+      "c": "v",
+      "i": "fa-pie-chart",
+      "l": "https://framaslides.org",
+      "git":  "https://framagit.org/framasoft/framaslides",
+      "soft": "Strut",
+      "src": "https://github.com/tantaman/Strut",
+
+      "d0": "Diaporamas",
+      "t1": "Créer et partager des diaporamas",
+      "d1": "Framaslides vous permet de créer directement en ligne un diaporama ou une présentation, d’y accéder avec une simple connexion internet, et de la partager."
+    },
+    "maestro": {
+      "p": "Fra",
+      "s": "maestro",
+      "c": "v",
+      "i": "fa-magic",
+      "l": "https://framaestro.org",
+      "git": "https://framagit.org/framasoft/framaestro",
+
+      "d0": "Tableau de bord",
+      "t1": "Ochestrez vos projets collaboratifs",
+      "d1": "Besoin en même temps d’un pad pour prendre des notes, d’un tableau d’organisation, et d’une vidéo-conférence ? Avec Framaestro, c'est vous qui organisez les outils qu’ils vous faut, sur une seule et unique page web."
     },
     "bee": {
       "p": "Frama",
