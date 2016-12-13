@@ -3889,7 +3889,3 @@ a.btn-blue:focus,
 a:focus {
     border:none;
 }
-
-div.ganttview-block-container {
-    height: 31px;
-}
