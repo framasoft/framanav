@@ -46,6 +46,12 @@ jQuery(document).ready(function(){
                                           git:  "framasoft/framavectoriel",
                                           soft: "SVG-Edit",
                                           site: "https://github.com/SVG-Edit/svgedit"},
+    {col: 1, f:"Frama",   s:"slides",     c:"v", fa:"fa-pie-chart",             title:"Diaporamas",
+                                          git:  "framasoft/framaslides",
+                                          soft: "Strut",
+                                          site: "https://github.com/tantaman/Strut"},
+    {col: 1, f:"Fra",   s:"maestro",      c:"v", fa:"fa-magic",                 title:"Tableau de bord",
+                                          git:  "framasoft/framaestro"},
     {col: 1, f:"Frama",   s:"bee",        c:"v", fa:"fa-search",                title:"Moteur de recherche",
                                           soft: "Searx",
                                           site: "https://github.com/asciimoo/searx"},
@@ -192,7 +198,7 @@ jQuery(document).ready(function(){
 
     jQuery('.wpcf7 form .your-message textarea').after(
         '<p class="alert alert-info bienveillance" style="display:none"><b>Votre message est-il bienveillant ?</b><br>Nous sommes '+
-        '<a href="https://soutenir.framasoft.org">une petite association vivant exclusivement des dons</a> et '+ 
+        '<a href="https://soutenir.framasoft.org">une petite association vivant exclusivement des dons</a> et '+
         'nous faisons de notre mieux pour <a href="https://degooglisons-internet.org">résister aux 5 plus grosses entreprises du monde</a> (<i class="fa fa-fw fa-google" aria-hidden="true" title="Google"></i><i class="fa fa-fw fa-apple" aria-hidden="true" title="Apple"></i><i class="fa fa-fw fa-facebook" aria-hidden="true" title="Facebook"></i><i class="fa fa-fw fa-amazon" aria-hidden="true" title="Amazon"></i><i class="fa fa-fw fa-windows" aria-hidden="true" title="Microsoft"></i><span class="sr-only">Google, Apple, Facebook, Amazon et Microsoft</span>).<br>'+
         'Améliorer les services que nous proposons et vous aider demande <b>du temps et de l’énergie bénévole</b>.<br>'+
         'Merci d’en tenir compte lorsque vous rédigez votre message.</p>'

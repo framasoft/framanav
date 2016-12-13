@@ -40,6 +40,7 @@ var n$ = {
   n$.name = n$.site[0].toUpperCase()+n$.site.slice(1).replace('.framasoft', '');         // Nom du service
   n$.site = n$.site.replace(/framand/i,'and')
                    .replace(/framage/i,'age')
+                   .replace(/framae/i, 'mae')
                    .replace(/(\.framasoft|frama\.)/i,'')
                    .replace(/framin/i,'min')
                    .replace(/frame/i, 'me')
