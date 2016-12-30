@@ -127,7 +127,7 @@ switch (n$.site) {
             jQuery('h1 .logo').removeClass('logo');
             jQuery(
               'a[href$="?controller=UserCreationController&action=show&remote=1"],'+
-              'a[href^="/?controller=UserViewController&action=external"]'+
+              'a[href^="/?controller=UserViewController&action=external"],'+
               'input[name="is_ldap_user"]')
               .parent().hide();
           }
