@@ -125,6 +125,11 @@ switch (n$.site) {
           ext: function() {
             jQuery('h1 .logo a').html('<b class="violet">Frama</b><b class="vert">board</b>');
             jQuery('h1 .logo').removeClass('logo');
+            jQuery(
+              'a[href$="?controller=UserCreationController&action=show&remote=1"],'+
+              'a[href^="/?controller=UserViewController&action=external"]'+
+              'input[name="is_ldap_user"]')
+              .parent().hide();
           }
         },
         css: { order: '015234', b$: false, ext: true },
