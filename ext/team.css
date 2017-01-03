@@ -265,6 +265,16 @@
   margin-top: 0 !important;
 }
 
+.inMM .sidebar--left {
+  height: calc(100% - 21px);
+}
+
+@media screen and (max-width: 768px) {
+  .inMM .sidebar--left .nav-pills__container {
+    height: calc(100% - 80px);
+  }
+}
+
 .inMM .sidebar--left .dropdown-menu {
   width: 250px !important;
   max-width: 250px;
