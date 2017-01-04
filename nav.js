@@ -470,6 +470,13 @@ function f$_start_jquery() {
             } else {
               f$('#framafooter').css('position','relative');
             }
+            setTimeout( function() { // au cas où une animation redimentionne le body
+              if(f$('body').height() < f$(window).height()) {
+                f$('#framafooter').css('position','absolute');
+              } else {
+                f$('#framafooter').css('position','relative');
+              }
+            }, 800);
           });
         }
 
