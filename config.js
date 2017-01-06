@@ -466,10 +466,13 @@ switch (n$.site) {
     if( i$(/(lite.framapad|lite[2-5].)/i, 'h')) {
       l$.modal = {
         info: [
-          'Création des pads désactivée',
+          'Création des pads désactivée et passage prochain en lecture seule',
           '<p>Nous vous informons que cette instance de Framapad ('+n$.host+') ne peut plus accueillir de nouveaux pads.<p>'+
           '<p>Il reste bien évidement possible de travailler sur les pads déjà existants (ils ne seront pas supprimés)'+
           ' mais pour en créer de nouveaux, veuillez passer par <a href="https://framapad.org">la page d’accueil du site</a></p>'+
+          '<p>De plus, nous passerons très prochainement les pads existants en lecture seule.<br>'+
+          'Vous pourrez consulter le dernier contenu des pads ainsi que le contenu des révisions enregistrées (bouton « étoile »).<br>'+
+          'Plus de détails sur <a href="https://status.framasoft.org/">https://status.framasoft.org/</a></p>'+
           '<p>Merci.<br />L’équipe technique</p>'
         ]
       };
