@@ -316,10 +316,6 @@ switch (n$.site) {
   case 'maestro':
     l$ = {
      js: { b$: 'html'},
-     alert: [
-        'warning',
-        'Attention ! <b class="violet">Fra</b><b class="vert">maestro</b> est en cours de développement, la peinture est fraîche !'
-      ],
       mute: i$('/p/')
     }
   break;
