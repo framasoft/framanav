@@ -22,3 +22,7 @@
 #reply-control .d-editor-button-bar {
     box-sizing: border-box !important;
 }
+
+.modal.hidden[style*="block"] {
+    display: block !important;
+}
