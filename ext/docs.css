@@ -1,0 +1,36 @@
+.book {
+    height: calc(100% - 42px);
+}
+
+.summary a,
+.book-body .navigation {
+    text-decoration:none !important;
+}
+.book-summary ul.summary li.active > a,
+.markdown-section a {
+   color: #0C5B7A;
+}
+.summary .divider {
+    visibility: hidden;
+}
+#book-search-input {
+    margin-bottom:0;
+}
+.chapter {
+    background-color:#eee;
+    border-bottom:1px solid #ddd;
+}
+.chapter ul {
+    padding-bottom:10px;
+
+}
+.chapter ul li{
+    background-color:#fff;
+    border:none
+}
+.chapter.active {
+    border-left: 4px solid #9876cc;
+}
+.chapter.active a {
+    margin-left:-4px;
+}
