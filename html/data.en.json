@@ -137,6 +137,8 @@
       "d1": "Selection of french speaking  news."
     },
     "dio": {
+      "p": "De-googl-ify ",
+      "l": "https://degooglisons-internet.org/?l=en",
       "t1": "<b class='violet'>De-googl-ize</b> <b class='orange'>Internet</b> : an ambitions campaign.",
       "d1": "Online services as provided by hegemonic giants such as Google, Amazon, Facebook, Apple or Microsoft (GAFAM) are putting our digital life and privacy at risk. Today, <span style='font-weight:bold;color:#6A5687'>Frama</span><span style='font-weight:bold;color:#D2703A'>soft</span> is indulging in a big challenge : offer, with your help, a Libre, Ethic, Decentralized and Solidary alternative for every popular service."
     },
@@ -296,7 +298,8 @@
       "s": "Participate"
     },
     "charte": {
-      "s": "Our chart"
+      "s": "Our chart",
+      "l": "https://framasoft.org/nav/html/charte.en.html"
     },
     "benevalo": {
       "s": "Volunteering"
@@ -311,6 +314,12 @@
     },
     "stats": {
       "s": "Metrics"
+    },
+    "status": {
+      "s": "Services review"
+    },
+    "aide": {
+      "s": "Help"
     },
     "legals": {
       "s": "Legals"

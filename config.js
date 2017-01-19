@@ -250,6 +250,14 @@ switch (n$.site) {
     l$ = { mute: true }
   break;
 
+  case 'docs':
+    l$ = {
+      css: { ext: true },
+      mute: true,
+      footer: false
+    }
+  break;
+
   case 'dvd':
     l$ = {
       js: { video : true },
@@ -722,6 +730,7 @@ switch (n$.site) {
   case 'troll' :                 l$.piwik.id = '57'; break;
   case 'slides' :                l$.piwik.id = '58'; break;
   case 'maestro' :               l$.piwik.id = '59'; break;
+  case 'docs' :                  l$.piwik.id = '60'; break;
 }
 
 if(l$.piwik.id != '') {
