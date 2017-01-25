@@ -10,6 +10,11 @@
 .markdown-section a {
    color: #0C5B7A;
 }
+
+.markdown-section .btn-block {
+    margin-bottom:30px;
+}
+
 .summary .divider {
     visibility: hidden;
 }
