@@ -292,6 +292,11 @@
   display:none;
 }
 
+.sidebar__search-icon {
+  top: 8px;
+  right: 8px;
+}
+
 /***************** *
  * Partout
  * *************** */
