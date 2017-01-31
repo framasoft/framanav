@@ -1,4 +1,6 @@
 jQuery(document).ready(function(){
+  // Referrer
+  jQuery('input[name="your-referrer"]').val(document.referrer);
   // Liste des projets
   var list = [
     {col: 0, f:"Frama",   s:"libre",      c:"b", fa:"fa-linux",                 title:"Annuaire de logiciels libres"},
