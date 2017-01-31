@@ -361,6 +361,27 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
     margin-top:0px;
 }
 
+#nav-alert a:not(.btn) {
+    text-decoration: underline !important;
+    -moz-text-decoration-style: dotted;
+    -webkit-text-decoration-style: dotted;
+    -ms-text-decoration-style: dotted;
+    text-decoration-style: dotted;
+}
+
+#nav-alert a:not(.btn):hover,
+#nav-alert a:not(.btn):focus{
+    text-decoration: underline !important;
+    -moz-text-decoration-style: solid;
+    -webkit-text-decoration-style: solid;
+    -ms-text-decoration-style: solid;
+    text-decoration-style: solid;
+}
+
+#nav-alert a:not(.btn) {
+    text-decoration: underline !important;
+}
+
 #nav-alert.alert a {
     font-weight:inherit !important;
 }
