@@ -16,7 +16,7 @@
  **/
 
 var n$ = {
-  version: '160930', // n° version de la nav
+  version: '170201', // n° version de la nav
   f$ : '1.12.4',     // n° version de notre jQuery
   b$ : '3.3.6',      // n° version de Bootsrap
   host: window.location.host,
@@ -1246,9 +1246,9 @@ if(f$_mm == 10 && f$_dd > 2 && f$_dd < 29 && n$.site != 'soutenir') {
 }
 
 // Bandeau maintenance
-if (/(bin|soft|forms|forum.|dvd|book|zic|date|cloud|participer.|memo|notes|talk|mindmap|wiki.|lab|soutenir.|contact.|android|start|10ans.|games|degooglisons-internet)/i.test(n$.site)) {
+/*if (/(bin|soft|forms|forum.|dvd|book|zic|date|cloud|participer.|memo|notes|talk|mindmap|wiki.|lab|soutenir.|contact.|android|start|10ans.|games|degooglisons-internet)/i.test(n$.site)) {
   c$.alert[0] = 'warning';
   c$.alert[1] =
     '<b>Message de service :</b> Mercredi 1er Février, dès 9h, nous procéderons à une migration importante sur nos serveurs. '+
     'En conséquence, <a href="https://status.framasoft.org/incident/195">de nombreux sites et services seront indisponibles</a>, et ce pendant plusieurs heures.';
-}
+}*/
