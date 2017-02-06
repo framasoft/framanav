@@ -199,7 +199,7 @@ switch (n$.site) {
 
     if(i$('/map/') && !n$.inframe) {
       l$.mute = true;
-      l$.footer = true;
+      l$.footer = false;
       l$.css = { ext: true };
     }
   break;
