@@ -423,15 +423,17 @@ switch (n$.site) {
       js: {
         ext: function () {
           jQuery('#loading').delay(2000).append('<p class="small">Si le pad refuse de s’afficher, essayez de télécharger<br/>l’export <a href="'+location.href+'/export/html">html</a> ou <a href="'+location.href+'/export/txt">txt</a> de votre document et <a href="https://contact.framasoft.org/#framapad">contactez-nous</a>.</p>');
-          var addMaestroBtn = setInterval(function() {
-            if(jQuery('#editbar .menu_right').length && !jQuery('#maestroBtn').length ) {
-              jQuery('#editbar .menu_right').prepend(
-                '<li id="maestroBtn"><a title="Ajouter une visio-conférence" href="'+n$.maestro+'">'+
-                  '<button class="buttonicon fa fa-video-camera"></button><span class="sr-only">Visio-conférence</span>'+
-                '</a></li>');
-              clearInterval(addMaestroBtn);
-            }
-          }, 1000)
+          if(!n$.inframe) {
+            var addMaestroBtn = setInterval(function() {
+              if(jQuery('#editbar .menu_right').length && !jQuery('#maestroBtn').length ) {
+                jQuery('#editbar .menu_right').prepend(
+                  '<li id="maestroBtn"><a title="Ajouter une visio-conférence" href="'+n$.maestro+'">'+
+                    '<button class="buttonicon fa fa-video-camera"></button><span class="sr-only">Visio-conférence</span>'+
+                  '</a></li>');
+                clearInterval(addMaestroBtn);
+              }
+            }, 1000)
+          }
         }
       },
       css: {
