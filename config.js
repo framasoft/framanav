@@ -428,7 +428,7 @@ switch (n$.site) {
               if(jQuery('#editbar .menu_right').length && !jQuery('#maestroBtn').length ) {
                 jQuery('#editbar .menu_right').prepend(
                   '<li id="maestroBtn"><a title="Ajouter une visio-conférence" href="'+n$.maestro+'">'+
-                    '<button class="buttonicon fa fa-video-camera"></button><span class="sr-only">Visio-conférence</span>'+
+                    '<button class="buttonicon fa fa-video-camera" style="top:0 !important;"></button><span class="sr-only">Visio-conférence</span>'+
                   '</a></li>');
                 clearInterval(addMaestroBtn);
               }
