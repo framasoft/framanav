@@ -586,6 +586,15 @@ switch (n$.site) {
 
   case 'status':
     l$ = {
+      js: {
+        ext: function() {
+          jQuery('.section-components:eq(0) li.sub-component').each(function() {
+            var framatruc = jQuery(this).children('a');
+            framatruc.after('<span class="col-xs-1 pull-right"><a href="https://contact.framasoft.org/#'+framatruc.text().split(' ', 1)[0].toLowerCase().replace(/è/g, 'e')+'" class="btn btn-success btn-outline btn-xs" title="Signaler une panne concernant '+framatruc.text()+'"><i class="fa fa-fw fa-lg fa-bug" aria-hidden="true"></i><span class="sr-only">Signaler</span></a></span>')
+          });
+          jQuery('.section-components:eq(0) li.sub-component a.btn[title]').tooltip();
+        }
+      },
       mute: true,
       footer: false,
       fixed: true

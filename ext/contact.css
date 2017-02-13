@@ -67,3 +67,7 @@
 #content .entry-content li {
   margin-bottom:7px;
 }
+
+form.invalid > .form-group[style*="display"] {
+  display:block !important;
+}
