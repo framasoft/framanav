@@ -527,6 +527,7 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
 }
 
 #framafooter .container {
+    background:#dfdfdf;
     min-height:0px;
     padding: 0;
 }
