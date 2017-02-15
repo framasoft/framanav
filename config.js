@@ -254,15 +254,7 @@ switch (n$.site) {
     l$ = {
       js: {
         j$: 'noConflict',
-        ext: function() {
-          icons = [
-            ['kanboard','umap','framadate','etherpad','mattermost','loomio'],
-            ['fa-dashboard','fa-map','fa-calendar-check-o','fa-align-left','fa-comments-o','fa-bullhorn']
-          ];
-          for(i=0; i<icons[0].length; i++) {
-            f$('.summary a[href$="'+icons[0][i]+'/"]').prepend('<i class="fa fa-fw fa-lg '+icons[1][i]+'" aria-hidden="true"></i>');
-          }
-        }
+        video : true
       },
       css: { ext: true },
       mute: true,
