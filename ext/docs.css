@@ -75,3 +75,12 @@
 .summary .chapter > a[href$="scrumblr/"]:before { content: "\f247"; }
 .summary .chapter > a[href$="shaarli/"]:before { content: "\f005"; }
 .summary .chapter > a[href$="framaestro/"]:before { content: "\f0d0"; }
+
+.page-toc::before {
+    content:none;
+}
+
+.page-toc {
+    max-width: 42%;
+    margin-left: 10px;
+}
