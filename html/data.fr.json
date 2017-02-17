@@ -68,7 +68,7 @@
     },
     "optin": {
       "t": "J’accepte que Framasoft m’envoie à cette adresse des informations importantes",
-      "d1": "(Promis, nous ne revendons pas nos fichiers, même à la NSA !",
+      "d1": "(Promis, nous ne revendons pas nos fichiers, même à la NSA !)",
       "d2": "Pourquoi m’inscrire ?",
       "e1": "Les adresses emails ne correspondent pas.",
       "e2": "L’adresse email %f$_email% n’est pas valide.",
