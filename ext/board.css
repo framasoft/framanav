@@ -3893,3 +3893,12 @@ a:focus {
 #ui-datepicker-div {
     z-index: 1002 !important; /* Above the nav */
 }
+
+#framanav a .fa {
+  color: #fff;
+}
+
+#modal-box {
+  max-height: calc(100% - 65px);
+  top: 60px;
+}
