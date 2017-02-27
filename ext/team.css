@@ -297,6 +297,10 @@
   right: 8px;
 }
 
+.post-right__scroll {
+  height: calc(100% - 42px);
+}
+
 /***************** *
  * Partout
  * *************** */
