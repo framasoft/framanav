@@ -5,7 +5,9 @@
 // de nav.js. La variable c$ contient toutes les valeurs par défaut ainsi
 // que les explications pour comprendre à quoi ça correspond.
 
-var l$ = {};
+if(l$ == undefined || l$.constructor != Object) {
+  var l$ = {};
+}
 
 // Alias
 // On remplace juste la variable n$.site.
