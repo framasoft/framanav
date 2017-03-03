@@ -252,18 +252,6 @@ switch (n$.site) {
     l$ = { mute: true }
   break;
 
-  case 'docs':
-    l$ = {
-      js: {
-        j$: 'noConflict',
-        video : true
-      },
-      css: { ext: true },
-      mute: true,
-      footer: false
-    }
-  break;
-
   case 'dvd':
     l$ = {
       js: { video : true },
