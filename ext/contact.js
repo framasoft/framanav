@@ -196,6 +196,9 @@ jQuery(document).ready(function(){
       '<p class="alert alert-warning framalistes">N’oubliez pas de <b>nous donner le nom de votre liste</b> dans votre message.</p>'+
       '<p class="alert alert-warning framateam">N’oubliez pas de <b>nous donner votre identifiant</b> ainsi que <b>les équipes où vous êtes inscrits</b> dans votre message.</p>'
     );
+    jQuery('.wpcf7 form .your-message').before(
+        '<p class="alert alert-danger">Ne nous donnez <b>jamais vos mots de passe</b>, nous n’en avons pas besoin. N’oubliez pas qu’<a href="https://framablog.org/2016/11/23/10-trucs-que-jignorais-sur-internet-et-mon-ordi-avant-de-my-interesser/">un email est une carte postale</a>.</p>'
+    );
     jQuery('.wpcf7 form .alert-warning,.faq .alert-warning').hide();
 
     jQuery('.wpcf7 form .your-message textarea').after(
