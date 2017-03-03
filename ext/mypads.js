@@ -42,3 +42,7 @@ setInterval(function() {
     compressIframe();
   }
 }, 1000)
+
+jQuery.getJSON( "/stats.json", function(data) {
+  jQuery('#statsMyPads').text(data.padsCount);
+});
