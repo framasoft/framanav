@@ -419,7 +419,13 @@ switch (n$.site) {
       icons: {
         fav: 'fav_pad.png',
         apple: 'pad.png'
-      }
+      },
+      alert: [
+        'warning',
+        '<p>Aujourd’hui <strong><span id="statsMyPads">plus de 50 000</span> pads privés</strong> sont hébergés sur Mypads. Nous atteignons les limites techniques.</p>'+
+        '<p>Afin de maintenir ce service ouvert et fonctionnel le plus longtemps possible, <strong>nous vous invitons à supprimer (et à sauvegarder) vos vieux pads inutiles</strong> en attendant que nous trouvions une solution plus durable.</p>'+
+        '<p>Merci pour votre coopération.</p>'
+      ]
     }
   break;
 
