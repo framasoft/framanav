@@ -4,11 +4,11 @@ if(jQuery('meta[property="og:locale"]').attr('content') && jQuery('meta[property
 
     // Traductions manquantes
     jQuery('.comment-form textarea').attr('placeholder','Dites quelque chose…');
-    jQuery('.email-settings-page__learn-more-link').attr('href','https://framavox.org/docs/').text('En savoir plus sur les réglages de courriel…');
+    jQuery('.email-settings-page__learn-more-link').attr('href','https://docs.framasoft.org/fr/loomio/').text('En savoir plus sur les réglages de courriel…');
     jQuery('.membership-requests-page__previous-request-response span').text(function(){return jQuery(this).text().replace('Approved', 'Approuvée') });
 
     // Aide
-    jQuery('a[href*="//loomio.gitbooks.io"]').attr('href','https://framavox.org/docs/');
+    jQuery('a[href*="//loomio.gitbooks.io"]').attr('href','https://docs.framasoft.org/fr/loomio/');
 
     setInterval(function() {
 
@@ -19,19 +19,21 @@ if(jQuery('meta[property="og:locale"]').attr('content') && jQuery('meta[property
         jQuery('.timeago span').each(function(){
             var timeago = jQuery(this).text();
 
-            if(timeago.indexOf('in a few') >-1) {
-                timeago = timeago.replace('in a few', 'dans quelques');
-            } else {
-                timeago = timeago.replace('a ', '1 ').replace('an ', '1 ');
-                if(timeago.indexOf(' ago') >-1) {
-                    timeago = 'depuis '+timeago.replace(' ago', '');
+            if( timeago.indexOf('few sec') < 0 ) {
+                if(timeago.indexOf('in a few') >-1) {
+                    timeago = timeago.replace('in a few', 'dans quelques');
+                } else {
+                    timeago = timeago.replace('a ', '1 ').replace('an ', '1 ');
+                    if(timeago.indexOf(' ago') >-1) {
+                        timeago = 'depuis '+timeago.replace(' ago', '');
+                    }
+                    timeago = timeago.replace('depuis Fermée', 'Fermée depuis').replace('in ', 'dans ');
                 }
-                timeago = timeago.replace('depuis Fermée', 'Fermée depuis').replace('in ', 'dans ');
-            }
 
-            timeago = timeago.replace('second', 'second').replace('hour', 'heure')
-                   .replace('day', 'jour').replace('months', 'mois').replace('month', 'mois')
-                   .replace('year', 'année')
+                timeago = timeago.replace('second', 'second').replace('hour', 'heure')
+                       .replace('day', 'jour').replace('months', 'mois').replace('month', 'mois')
+                       .replace('year', 'année')
+            }
             if(jQuery(this).text() != timeago ) { jQuery(this).text(timeago) };
         });
 
