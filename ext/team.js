@@ -56,7 +56,7 @@ switch (c$.js.j$) {
                     '<p><b class="violet">Frama</b><b class="vert">team</b> est un service de <b>tchat</b> libre qui permet de communiquer avec son équipe en notifiant ses collègues, de conserver ses conversations et d’y faire des recherches.</p>'+
                     '<ol><li>Créez votre équipe</li><li>Invitez vos membres</li><li>Créez vos canaux de communication (publics ou privés)</li></ol>'+
                     '<p>Pour apprendre à mettre en page vos messages, utiliser des émoticônes, partager des images et documents et maîtriser <b class="violet">Frama</b><b class="vert">team</b>, consultez nos pages d’aide :</p>'+
-                    '<p class="text-center"><a href="http://docs.framateam.org" class="btn btn-primary">Aide »</a></p>'+
+                    '<p class="text-center"><a href="https://docs.framasoft.org/fr/mattermost/index.html" class="btn btn-primary">Aide »</a></p>'+
                     '<p>(traduction de la documentation officielle par l’équipe <a href="https://participer.framasoft.org/traduction-rejoignez-framalang"><b class="violet">Frama</b><b class="rouge">lang</b></a>)</p>'+
                   '</div>'+
                   '<div class="col-md-4" id="le-logiciel">'+
@@ -140,10 +140,10 @@ f$('a[href*="/channels"]').on('click', function() {
   window.location.href = f$(this).attr('href'); return false;
 });
 
-// Lien docs.framateam.org
+// Lien https://docs.framasoft.org/fr/mattermost/index.html
 setInterval(function() {
   f$('a[href*="docs.mattermost.com/help"], a[href*="docs.mattermost.com/index"]').attr('href', function(){
-    return f$(this).attr('href').replace('docs.mattermost.com', 'docs.framateam.org')
+    return f$(this).attr('href').replace('docs.mattermost.com', 'https://docs.framasoft.org/fr/mattermost/')
   });
 }, 1000);
 
