@@ -403,11 +403,7 @@ switch (n$.site) {
       },
       mute: true,
       footer: false,
-      credits: 'pad',
-      icons: {
-        fav: 'fav_pad.png',
-        apple: 'pad.png'
-      }
+      credits: 'pad'
     }
   break;
 
@@ -436,31 +432,7 @@ switch (n$.site) {
       },
       mute: true,
       footer: false,
-      credits: 'pad',
-      icons: {
-        fav: 'fav_pad.png',
-        apple: 'pad.png'
-      }
-    }
-
-    if(i$(/(lite6.|mypads.|quotidien.|hebdo.|uel.|mestriel.)/i, 'h')) {
-      l$.modal = {
-        info: [
-          'Nouvelles fonctionnalités',
-          '<p>Nous avons apporté des modifications au fonctionnement de Framapad.</p>'+
-          '<ul style="margin-left:30px">'+
-              '<li>Réactivation des couleurs d’identification (auteurs identifiés par le surlignage en couleur).</li>'+
-              '<li>Possibilité d’afficher une table des matières, en fonction des titres utilisés dans votre pad.</li>'+
-              '<li>Possibilité d’afficher le pad en mode « page ».</li>'+
-              '<li>Affichage du nom des auteurs au survol du texte.</li>'+
-              '<li>Possibilité d’annoter le document dans la marge et proposer du texte de remplacement.</li>'+
-          '</ul>'+
-          '<p>Ces modifications peuvent être activées/désactivées au niveau des paramètres de Framapad (roue crantée en haut à droite).</p>'+
-          '<p>Pour plus d’informations, voir notre <a href="https://wiki.framasoft.org/projets/framapad">documentation</a>.</p>',
-          'newFeatures201605',
-          365*24*60*60*1000
-        ]
-      }
+      credits: 'pad'
     }
     if(i$(/(beta.framapad)/i, 'h')) {
       l$.modal = {
@@ -540,26 +512,6 @@ switch (n$.site) {
       icons: {
         fav: 'favicon-violet.png',
         apple: 'soft.png'
-      }
-    }
-    if(!i$('https://framasoft.org/', 'u') && !i$(/org\/accueil|org\/nav/i, 'u')) { // dans l'annuaire
-      l$ = {
-        js: {
-          ext: function() { // Mise en forme « Juste une image »
-            flickr_t = jQuery('img[src$="_t.jpg"]').attr('src');
-            if(flickr_t) {
-              flickr_m = flickr_t.replace('_t.jpg', '_m.jpg');
-              jQuery('img[src$="_t.jpg"]').attr('src', flickr_m).css('width', '90%');
-            }
-          }
-        },
-        optin: ['#email_auteur'],
-        credits: 'libre',
-        fixed: true,
-        icons: {
-          fav: 'fav_libre.png',
-          apple: 'libre.png'
-        }
       }
     }
   break;
@@ -745,6 +697,7 @@ switch (n$.site) {
   case 'slides' :                l$.piwik.id = '58'; break;
   case 'maestro' :               l$.piwik.id = '59'; break;
   case 'docs' :                  l$.piwik.id = '60'; break;
+  case 'libre' :                 l$.piwik.id = '61'; break;
 }
 
 if(l$.piwik.id != '') {
@@ -785,8 +738,13 @@ if (i$(/(phonie)/i,'h')) {
   l$.icons.fav = 'favicon-jaune.png';
 }
 
-if ( i$(/(agenda|android|bag|bee|bin|blog|board|bookin|book|calc|carte|cloud|code|colibri|date|drive|drop|dvd|forms|games|key|lab|lang|link|listes|maestro|memo|mindmap|minetest|news|pack|pad|phonie|pic|slides|sphere|start|stats|status|talk|team|tube|vectoriel|vox|zic)/i,'h')
+if ( i$(/(agenda|android|bag|bee|bin|blog|board|bookin|book|calc|carte|cloud|code|colibri|date|drive|drop|dvd|forms|games|key|lab|lang|libre|link|listes|maestro|memo|mindmap|minetest|news|pack|phonie|pic|slides|sphere|start|stats|status|talk|team|tube|vectoriel|vox|zic)/i,'h')
    || i$(/(bot.|contact.|degooglisons-internet|forum.|participer.|soutenir.|wiki.)/i,'h') ){
   l$.icons.apple = n$.site+'.png';
   l$.icons.fav = 'fav_'+n$.site+'.png';
+}
+
+if ( i$(/(pad)/i, 'h') ) {
+  l$.icons.fav = 'fav_pad.png';
+  l$.icons.apple = 'pad.png';
 }
