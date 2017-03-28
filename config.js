@@ -402,7 +402,12 @@ switch (n$.site) {
   case 'pad':
     l$ = {
       js: { video: true },
-      modal: { don: ['a[href*=".framapad.org/p/"]', 'd’utiliser','créer un pad'] }
+      modal: { don: ['a[href*=".framapad.org/p/"]', 'd’utiliser','créer un pad'] },
+      alert: [
+        'info',
+        'Suite à des problèmes de performance, nous allons redémarrer ce mardi à 12h la machine qui héberge les instances de pads quotidien, hebdo, bimestriel et annuel.<br>'+
+        'Désolé pour ce désagréement. Plus d’infos sur <a href="https://status.framasoft.org">status.framasoft.org</a>.'
+      ]
     }
   break;
 
