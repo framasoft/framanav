@@ -402,12 +402,7 @@ switch (n$.site) {
   case 'pad':
     l$ = {
       js: { video: true },
-      modal: { don: ['a[href*=".framapad.org/p/"]', 'd’utiliser','créer un pad'] },
-      alert: [
-        'info',
-        'Suite à des problèmes de performance, nous avons du couper mardi 28/03 à 12h plusieurs instances de pad. Les pads annuels restent encore coupés. '+
-        'Désolé pour ce désagrément. Plus d’infos sur <a href="https://status.framasoft.org/incident/237">status.framasoft.org</a>.'
-      ]
+      modal: { don: ['a[href*=".framapad.org/p/"]', 'd’utiliser','créer un pad'] }
     }
   break;
 
