@@ -295,6 +295,16 @@ switch (n$.site) {
 
   case 'libre':
     l$ = {
+      js: {
+        ext: function() {
+          if(n$.inframe) {
+            f$('.main-container').addClass('container-fluid').removeClass('container').css('margin','0');
+            f$('#page-header,.region-navigation-wrapper,.region-sidebar-first-wrapper,.region-content-wrapper .breadcrumb,.region-content-wrapper .tabs--primary,#region-content .view-title,#region-content .view-interets-voisins').hide();
+            f$('.region-content-wrapper').css({'width':'100%','float':'none'});
+            f$('a').attr('target','_blank');
+          }
+        }  
+      },
       alert: [
         'info',
         '<b class="violet">Frama</b><b class="bleu">libre</b>, l’annuaire des logiciels libres de l’association <b class="violet">Frama</b><b class="orange">soft</b>, '+
