@@ -298,7 +298,7 @@ switch (n$.site) {
       js: {
         ext: function() {
           if(n$.inframe) {
-            f$('.main-container').addClass('container-fluid').removeClass('container ombre').css({'margin':'0','padding-top':'0','padding-bottom':'0'});
+            f$('.main-container').addClass('container-fluid').removeClass('container ombre').css({'margin':'0','padding-top':'10px','padding-bottom':'10px'});
             f$('#page-header,.region-navigation-wrapper,.region-sidebar-first-wrapper,.region-content-wrapper .breadcrumb,.region-content-wrapper .tabs--primary,#region-content .view-title,#region-content .view-interets-voisins').hide();
             f$('.region-content-wrapper').css({'width':'100%','float':'none','margin':'0'});
             f$('a').attr('target','_blank');
