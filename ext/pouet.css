@@ -262,3 +262,27 @@ a.btn-success {
 .about-body #framafooter li {
     font: 14px/20px "DejaVu Sans", Verdana, Geneva, sans-serif;
 }
+/* auth sign_up/sign_in */
+.container.ombre .simple_form input[type="text"],
+.container.ombre .simple_form input[type="email"],
+.container.ombre .simple_form input[type="password"],
+.container.ombre .simple_form textarea {
+    color:#666;
+}
+.container.ombre .form-footer a {
+    color:#0C5B7A;
+}
+.container.ombre .simple_form button {
+  color: #fff;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
+  background-color: #6A5687;
+  border-color: #6A5687;
+    text-decoration: none !important;
+}
+.container.ombre .simple_form button:hover,
+.container.ombre .simple_form button:focus,
+.container.ombre .simple_form button:active {
+  color: #fff;
+  background-color: #635182;
+  border-color: #635182;
+}
