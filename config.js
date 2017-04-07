@@ -508,6 +508,14 @@ switch (n$.site) {
     }
   break;
 
+  case 'pouet':
+    l$ = {
+      js: { b$: 'html'},
+      footer: false,
+      mute: !i$('/about')
+    }
+  break;
+
   case 'pootle':
     l$ = {
       css: {
