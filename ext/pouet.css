@@ -1,9 +1,16 @@
+.ui .dropdown, .ui .dropup {
+    position:absolute;
+}
+
+body {
+    background: #eee;
+}
 .ui {
     background: #eee;
     padding-bottom:42px;
 }
 
-/* 1ère Colonne */
+/* 1ÃÂ¨re Colonne */
 
 .drawer__header {
     background: #eee;
@@ -15,11 +22,14 @@
 
 .drawer__header a:hover,
 .drawer__header a:focus,
-.drawer__header a.active {
+.drawer__header a.active,
+.load-more:hover {
   background: #767676;
   color: #fff;
 }
-
+a.load-more {
+  text-decoration:none;
+}
 /* Colonnes */
 
 @media (min-width: 1600px) {
@@ -43,7 +53,8 @@
 
 .collapsable-collapsed,
 .column-icon,
-.column-back-button {
+.column-back-button,
+.collapsable:hover {
     background: #6A5687;
     color:#fff;
 }
@@ -65,9 +76,16 @@
 .react-toggle--checked .react-toggle-thumb {
     border-color: #677835;
 }
-/* Status */
-.status__display-name strong, .account__display-name strong
 
+.column-link {
+    background-color:#EDE6F5;
+    color:#666;
+}
+.column-link:hover {
+    background-color: #6A5687;
+    color:#fff;    
+}
+/* Status */
 .status__display-name, .status__relative-time, .detailed-status__display-name, .detailed-status__datetime, .detailed-status__application, .account__display-name {
     text-decoration:none !important;
 }
@@ -88,7 +106,8 @@
     color: #ccc;
     
 }
-.status .status__display-name strong {
+
+.status__display-name strong, .account__display-name strong {
     color: #666 !important;
     font-weight:700 !important;
 }
@@ -120,6 +139,7 @@
   text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
   background-color: #6A5687;
   border-color: #6A5687;
+    text-decoration: none !important;
 }
 .button:hover,
 .button:focus,
@@ -147,4 +167,25 @@
 
 .getting-started p {
     color: #777;    
+}
+
+.card {
+    background-color : #B49CD9;
+}
+.card .counter {
+    width:115px;
+}
+
+.status__content .status__content__spoiler-link,
+.reply-indicator__content .status__content__spoiler-link {
+    background: #6A5687;
+    color:#fff;
+    font-weight:700;
+}
+
+.account__action-bar, .account__action-bar__tab  {
+    border-color: #ccc
+}
+a.account__action-bar__tab {
+    text-decoration:none !important;
 }
