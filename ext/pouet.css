@@ -262,6 +262,40 @@ a.btn-success {
 .about-body #framafooter li {
     font: 14px/20px "DejaVu Sans", Verdana, Geneva, sans-serif;
 }
+/* About more */
+.about-body h2,
+.about-body p {
+  color: #666
+}
+.about-body .wrapper {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  padding: 20px 30px;
+  background-color: #FFF;
+  color: #666;
+  -webkit-box-shadow: -4px 6px 9px rgba(50, 50, 50, 0.5);
+  -moz-box-shadow:  -4px 6px 9px rgba(50, 50, 50, 0.5);
+  box-shadow:     -4px 6px 9px rgba(50, 50, 50, 0.5);
+}
+.about-body .sidebar-layout .panel .panel-header {
+    background:#fff;
+    color:#616161;
+}
+.about-body .information-board {
+    border-color:#eee;
+}
+.about-body .information-board .section strong {
+    color:#666;
+}
+.information-board .section span:last-child {
+    color: #777;
+}
+.about-body em {
+    background:inherit;
+    color:inherit;
+    font-style: italic;
+}
+
 /* auth sign_up/sign_in */
 .container.ombre .simple_form input[type="text"],
 .container.ombre .simple_form input[type="email"],
