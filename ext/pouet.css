@@ -256,7 +256,8 @@ a.btn-success {
     margin-left:0;
     margin-bottom:10px;
 }
-#framafooter .container {
+#framafooter .container,
+#internav .container { 
     margin-top:0;
 }
 .about-body #framafooter li {
