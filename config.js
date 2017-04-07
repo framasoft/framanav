@@ -510,7 +510,15 @@ switch (n$.site) {
 
   case 'pouet':
     l$ = {
-      js: { b$: 'html'},
+      js: {
+        b$: 'html',
+        ext: function() {
+          if(i$('/auth')) {
+            jQuery('.container').addClass('ombre');
+          }
+          jQuery('img[src^="/assets/logo"]').attr("src","https://framasoft.org/nav/img/icons/pouet.png");
+        }
+      },
       css: {ext: true },
       footer: i$('/about'),
       mute: !i$('/about')
