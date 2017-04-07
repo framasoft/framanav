@@ -304,15 +304,15 @@ switch (n$.site) {
             f$('a').attr('target','_blank');
             f$('body').css('background','white');
           }
-        }  
+        }
       },
       alert: [
         'info',
         '<b class="violet">Frama</b><b class="bleu">libre</b>, l’annuaire des logiciels libres de l’association <b class="violet">Frama</b><b class="orange">soft</b>, '+
         '<a href="https://framablog.org/2017/03/21/framalibre-lannuaire-du-libre-renait-entre-vos-mains/" title="consulter l’annonce sur le Framablog">fait peau neuve</a>.<br>'+
         'Certains liens prééxistants ne sont plus valides. <a href="https://contact.framasoft.org/foire-aux-questions/#libre_v2">Vous avez du mal à vous y retrouver ?</a>'
-      ]      
-    }  
+      ]
+    }
   break;
 
   case 'link':
@@ -511,7 +511,8 @@ switch (n$.site) {
   case 'pouet':
     l$ = {
       js: { b$: 'html'},
-      footer: false,
+      css: {ext: true },
+      footer: i$('/about'),
       mute: !i$('/about')
     }
   break;
