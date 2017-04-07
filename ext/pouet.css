@@ -4,13 +4,14 @@
 
 body {
     background: #eee;
+    font-family: "DejaVu Sans", Verdana, Geneva, sans-serif;
 }
 .ui {
     background: #eee;
     padding-bottom:42px;
 }
 
-/* 1ÃÂ¨re Colonne */
+/* 1ere Colonne */
 
 .drawer__header {
     background: #eee;
@@ -188,4 +189,43 @@ a.load-more {
 }
 a.account__action-bar__tab {
     text-decoration:none !important;
+}
+
+/* About */
+
+@media (min-width: 768px) {
+  .about-body .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .about-body .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .about-body .container {
+    width: 1170px;
+  }
+}
+
+.about-body p a, .about-body li a {
+  color:#0C5B7A;
+  text-decoration:underline;
+  -moz-text-decoration-style: dotted;
+  -webkit-text-decoration-style: dotted;
+  -ms-text-decoration-style: dotted;
+  text-decoration-style: dotted;
+}
+
+a.btn-success {
+    color: #fff !important;
+}
+.about-body b {
+    font-weight:700;
+}
+.about-body .lead {
+    color:#333;
+    font-size:21px;
+    
 }
