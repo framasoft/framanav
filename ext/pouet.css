@@ -229,3 +229,36 @@ a.btn-success {
     font-size:21px;
     
 }
+
+.about-body li {
+    font-family: "DejaVu Sans", Verdana, Geneva, sans-serif;
+    margin-bottom:0;
+}
+.about-body #framanav li {
+    font-size: 12px !important;
+    font-family: "DejaVu Sans", Verdana, Geneva, sans-serif;
+}
+.about-body h3 {
+    color: #666
+}
+#fs_soft ul,#fs_culture ul,#fs_follow ul {
+    margin-left: 0px;
+}
+.about-body #framafooter h1,.about-body #framafooter h2 {
+    font: 14px/15.4px "DejaVu Sans", Verdana, Geneva, sans-serif;
+    margin-bottom:10px;
+    color:#616161;
+    font-weight:700;
+    padding:0;
+}
+.about-body #framafooter ul {
+    list-style:none;
+    margin-left:0;
+    margin-bottom:10px;
+}
+#framafooter .container {
+    margin-top:0;
+}
+.about-body #framafooter li {
+    font: 14px/20px "DejaVu Sans", Verdana, Geneva, sans-serif;
+}
