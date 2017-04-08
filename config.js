@@ -511,7 +511,6 @@ switch (n$.site) {
   case 'pouet':
     l$ = {
       js: {
-        b$: 'html',
         ext: function() {
           if(i$('/auth')) {
             jQuery('.container').addClass('ombre');
