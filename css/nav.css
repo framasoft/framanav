@@ -640,5 +640,8 @@ body.apropos #piwik-iframe {
 }
 
 .fs_petitions {
+    display:none !important;
+}
+.fs_piaf {
     visibility:hidden;
 }

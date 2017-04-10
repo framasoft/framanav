@@ -182,6 +182,10 @@
       "t1": "Cartographie personnalisée",
       "d1": "Framacarte lets you draw, mark, colorize, annotate… basemaps from OpenStreetMap, then you can show them on your website or print."
     },
+    "piaf": {
+      "t1": "Réseau social en 500 caractères",
+      "d1": "Framapiaf est un service libre de microblogging, basé sur le logiciel décentralisé Mastodon. Retrouvez vos amis sur Framapiaf - ou d’autres instances Mastodon, GNU Social, Friendica - et échangez avec eux sans être pisté."
+    },
     "sphere": {
       "t1": "The Free and Libre social media network",
       "d1": "Framasphère is a Free, Libre and open source social media network, built over Diaspora* software. join your friends on Framasphère*, or any other Diaspora* pod — and begin to share without being tracked."

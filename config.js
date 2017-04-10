@@ -501,6 +501,22 @@ switch (n$.site) {
     }
   break;
 
+  case 'piaf':
+    l$ = {
+      js: {
+        ext: function() {
+          if(i$('/auth')) {
+            jQuery('.container').addClass('ombre');
+          }
+          jQuery('img[src^="/assets/logo"]').attr("src","https://framasoft.org/nav/img/icons/piaf.png");
+        }
+      },
+      css: {ext: true },
+      footer: i$('/about'),
+      mute: !i$('/about')
+    }
+  break;
+
   case 'pic':
     l$ = {
       js: { video: true },
@@ -737,6 +753,7 @@ switch (n$.site) {
   case 'maestro' :               l$.piwik.id = '59'; break;
   case 'docs' :                  l$.piwik.id = '60'; break;
   case 'libre' :                 l$.piwik.id = '61'; break;
+  case 'piaf' :                  l$.piwik.id = '62'; break;
 }
 
 if(l$.piwik.id != '') {
@@ -777,7 +794,7 @@ if (i$(/(phonie)/i,'h')) {
   l$.icons.fav = 'favicon-jaune.png';
 }
 
-if ( i$(/(agenda|android|bag|bee|bin|blog|board|bookin|book|calc|carte|cloud|code|colibri|date|drive|drop|dvd|forms|games|key|lab|lang|libre|link|listes|maestro|memo|mindmap|minetest|news|pack|phonie|pic|slides|sphere|start|stats|status|talk|team|tube|vectoriel|vox|zic)/i,'h')
+if ( i$(/(agenda|android|bag|bee|bin|blog|board|bookin|book|calc|carte|cloud|code|colibri|date|drive|drop|dvd|forms|games|key|lab|lang|libre|link|listes|maestro|memo|mindmap|minetest|news|pack|phonie|piaf|pic|slides|sphere|start|stats|status|talk|team|tube|vectoriel|vox|zic)/i,'h')
    || i$(/(bot.|contact.|degooglisons-internet|forum.|participer.|soutenir.|wiki.)/i,'h') ){
   l$.icons.apple = n$.site+'.png';
   l$.icons.fav = 'fav_'+n$.site+'.png';

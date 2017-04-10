@@ -516,6 +516,20 @@
       "t1": "Le réseau social libre",
       "d1": "Framasphère est un réseau social libre, basé sur le logiciel décentralisé Diaspora*. Retrouvez vos amis sur Framasphère - ou d’autres pods Diaspora* - et échangez avec eux sans être pisté."
     },
+    "piaf": {
+      "p": "Frama",
+      "s": "piaf",
+      "c": "v",
+      "i": "fa-retweet",
+      "l": "https://framapiaf.org",
+      "git":  "https://framagit.org/framasoft/framapiaf",
+      "soft": "Mastodon",
+      "src": "https://github.com/tootsuite/mastodon",
+
+      "d0": "Microblogging",
+      "t1": "Réseau social en 500 caractères",
+      "d1": "Framapiaf est un service libre de microblogging, basé sur le logiciel décentralisé Mastodon. Retrouvez vos amis sur Framapiaf - ou d’autres instances Mastodon, GNU Social, Friendica - et échangez avec eux sans être pisté."
+    },
     "team": {
       "p": "Frama",
       "s": "team",
