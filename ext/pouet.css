@@ -66,7 +66,7 @@ a.mention {
     }
 }
 
-.column {
+.column{
     background: #fff;
 }
 
@@ -138,12 +138,14 @@ a.mention {
 
 }
 
-.status__display-name strong, .account__display-name strong {
+.status__display-name strong, .account__display-name strong,
+.detailed-status__display-name strong {
     color: #666 !important;
     font-weight:700 !important;
 }
 
-.status__display-name:hover strong, .reply-indicator__display-name:hover strong, .detailed-status__display-name:hover strong, .account__display-name:hover strong {
+.status__display-name:hover strong, .reply-indicator__display-name:hover strong, 
+.detailed-status__display-name:hover strong, .account__display-name:hover strong {
     color: #635182 !important;
     text-decoration:solid !important;
 }
@@ -190,6 +192,18 @@ a.mention {
     width:115px;
 }
 
+a.status-card {
+    text-decoration: none;
+    border-color: #ccc;
+}
+.status-card__description,
+.status-card__title {
+    color: #666;
+}
+a.status-card:hover {
+    background-color: #eee;
+}
+
 .status__content .status__content__spoiler-link,
 .reply-indicator__content .status__content__spoiler-link {
     background: #6A5687;
@@ -197,13 +211,22 @@ a.mention {
     font-weight:700;
 }
 
-.account__action-bar, .account__action-bar__tab  {
+.account__action-bar, .account__action-bar__tab,
+.detailed-status__action-bar,.detailed-status{
     border-color: #ccc
 }
 a.account__action-bar__tab {
     text-decoration:none !important;
 }
 
+.detailed-status__action-bar,
+.detailed-status {
+    background-color:#fff;
+    color:#666;
+}
+.detailed-status a {
+    color: #0C5B7A;
+}
 /* About */
 
 @media (min-width: 768px) {
