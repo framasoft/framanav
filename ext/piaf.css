@@ -11,6 +11,11 @@ body, body.app-body {
     padding-bottom:42px;
 }
 
+.ui > div > div[style*="rgb(43, 144, 217)"] { /* LoadingBar*/
+    background-color: #9876CC !important;
+    margin-top:42px !important;;
+}
+
 .logo-container h1 img {
     width: 120px;
     height: 120px;
@@ -157,7 +162,9 @@ a.mention {
 .icon-button.active {
     color: #677835;
 }
-
+.setting-text:focus, .setting-text:active {
+    color: #666;
+}
 .column-link {
     background-color:#EDE6F5;
     color:#666;
@@ -177,6 +184,11 @@ a.mention {
 }
 .account__action-bar__tab strong {
     color:#666;
+}
+
+.account__action-bar__tab abbr {
+    text-decoration:none;
+    border : none;
 }
 /* Status */
 
