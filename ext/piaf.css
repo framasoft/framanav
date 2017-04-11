@@ -133,6 +133,10 @@ a.mention {
     background: #6A5687;
     color:#fff;
 }
+.column-header.active .fa {
+    color:#B3CC66;
+    text-shadow: 0 0 10px #fff;
+}
 
 .collapsable-collapsed,
 .column-icon,
