@@ -2,7 +2,7 @@
     position:absolute;
 }
 
-body {
+body, body.app-body {
     background: #eee;
     font-family: "DejaVu Sans", Verdana, Geneva, sans-serif;
 }
@@ -175,7 +175,9 @@ a.mention {
 .account__header .account__header__username {
     color: #ccc;
 }
-
+.account__action-bar__tab strong {
+    color:#666;
+}
 /* Status */
 
 .status__display-name, .status__relative-time,
@@ -206,7 +208,7 @@ a.mention {
     font-weight:700 !important;
 }
 
-.status__display-name:hover strong, .reply-indicator__display-name:hover strong, 
+.status__display-name:hover strong, .reply-indicator__display-name:hover strong,
 .detailed-status__display-name:hover strong, .account__display-name:hover strong {
     color: #635182 !important;
     text-decoration:solid !important;
