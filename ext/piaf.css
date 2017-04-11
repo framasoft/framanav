@@ -144,7 +144,7 @@ a.mention {
     background: #fff;
 }
 
-.column-header {
+.column-header,.column-back-button {
     background: #6A5687;
     color:#fff;
     border-radius: 5px 5px 0 0;
@@ -155,9 +155,11 @@ a.mention {
 }
 
 .collapsable-collapsed,
-.column-icon,
-.column-back-button,
 .collapsable:hover {
+    background: #6A5687;
+    color:#fff;
+}
+.column-icon {
     background: transparent;
     color:#fff;
 }
@@ -211,7 +213,7 @@ a.mention {
     text-decoration:none;
     border : none;
 }
-.account__header .icon-button {    
+.account__header .icon-button {
    width: 42px !important;
    height: 42px !important;
    line-height: 42px !important;
