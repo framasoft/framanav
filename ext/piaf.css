@@ -245,7 +245,8 @@ a.mention {
 .account .account__display-name,
 .activity-stream .status.light .status__header .status__meta .status__relative-time,
 .activity-stream .status.light .display-name span,
-.activity-stream .pre-header {
+.activity-stream .pre-header,
+.account-card .detailed-status__display-name .display-name span {
     color: #949494;
 
 }
@@ -347,6 +348,21 @@ a.account__action-bar__tab {
 .detailed-status a {
     color: #0C5B7A;
 }
+
+.account-card {
+    background-color: #fff;
+    border: 1px solid #bdbdbd;
+    box-shadow:none;
+}
+.account-card:hover {
+    background-color: #e0e0e0;
+    border-color: #949494;
+}
+.account-card .account__header__content {
+    color: #666;
+    text-shadow:none;
+}
+
 /* About */
 
 @media (min-width: 768px) {
