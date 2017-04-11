@@ -232,7 +232,9 @@ a.mention {
 .status, .account {
     border-color : #eee;
 }
-
+.status:hover, .account:hover {
+    background-color:#f5f5f5;
+}
 .status .status__display-name {
     text-decoration:none;
     margin-bottom:8px;
