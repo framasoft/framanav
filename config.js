@@ -505,7 +505,7 @@ switch (n$.site) {
     l$ = {
       js: {
         ext: function() {
-          if(i$('/auth') || i$('remote_follow') {
+          if(i$('/auth') || i$('remote_follow')) {
             jQuery('.container').addClass('ombre');
           }
           jQuery('img[src^="/assets/logo"]').attr("src","https://framasoft.org/nav/img/icons/piaf.png");
