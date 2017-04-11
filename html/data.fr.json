@@ -788,6 +788,15 @@
       "t1": "Framasoft sur Diaspora*",
       "d1": "Notre compte sur le réseau social libre Diaspora*"
     },
+    "mastodon": {
+      "s": "Mastodon",
+      "c": "f",
+      "i": "fa-retweet",
+      "l": "https://framapiaf.org/@Framasoft",
+
+      "t1": "Framasoft sur Mastodon",
+      "d1": "Notre compte sur le réseau social libre Mastodon"
+    },
     "twitter": {
       "s": "Twitter",
       "c": "f",

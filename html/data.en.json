@@ -262,6 +262,10 @@
       "t1": "Framasoft on Diaspora*",
       "d1": "Our account on free social media network Diaspora*"
     },
+    "mastodon": {
+      "t1": "Framasoft on Mastodon",
+      "d1": "Our account on free social media network Mastodon"
+    },
     "twitter": {
       "t1": "Framasoft on Twitter",
       "d1": "Our microblogging account on Twitter (we know it is bad…)"
