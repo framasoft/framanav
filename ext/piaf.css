@@ -11,6 +11,37 @@ body {
     padding-bottom:42px;
 }
 
+.logo-container h1 img {
+    width: 120px;
+    height: 120px;
+}
+
+.notification__message .fa {
+    color: #606984;
+}
+
+.notification__message {
+    color: #666;
+}
+.notification__message a {
+    text-decoration:none;
+}
+.notification__message a:hover {
+    color: #666;
+}
+
+.dropdown--active .icon-button {
+    color: #6A5687;
+}
+
+.dropdown--active .dropdown__content > ul,
+.dropdown--active .dropdown__content > ul li a {
+    background-color: #fff;
+}
+.dropdown--active .dropdown__content > ul li a:hover {
+    background:  #6A5687;
+}
+
 /* Liens */
 .empty-column-indicator a,
 .status a {
@@ -24,20 +55,29 @@ a.mention {
 
 /* 1ere Colonne */
 
-.drawer__header {
+.drawer__header,.tabs-bar {
     background: #eee;
 }
 
-.drawer__tab {
+.drawer__tab,.tabs-bar a {
     color: #666;
+    text-decoration:none;
 }
 
+
+.tabs-bar a:hover,
+.tabs-bar a:focus,
+.tabs-bar a:active,
 .drawer__header a:hover,
 .drawer__header a:focus,
 .drawer__header a.active,
 .load-more:hover {
     background: #767676;
     color: #fff;
+}
+
+.tabs-bar__link,.tabs-bar__link.active {
+    border-color: transparent;
 }
 
 .search__input, .search__input:focus {
@@ -57,6 +97,16 @@ a.mention {
 
 .reply-indicator {
     background-color: #EDE6F5;
+}
+
+.drawer__inner.darker {
+    background:#fff;
+    color:#666;
+}
+
+.search-results__header {
+    background: #6A5687;
+    color:#fff;
 }
 
 /* Colonnes */
@@ -122,9 +172,15 @@ a.mention {
     background-color: #574778;
 }
 
+.account__header .account__header__username {
+    color: #ccc;
+}
+
 /* Status */
 
-.status__display-name, .status__relative-time, .detailed-status__display-name, .detailed-status__datetime, .detailed-status__application, .account__display-name {
+.status__display-name, .status__relative-time,
+.detailed-status__display-name, .detailed-status__datetime,
+.detailed-status__application, .account__display-name {
     text-decoration:none !important;
 }
 
@@ -137,7 +193,9 @@ a.mention {
     margin-bottom:8px;
 }
 
-.status .status__relative-time, .status .status__display-name {
+.status .status__relative-time,
+.status .status__display-name,
+.account .account__display-name {
     color: #ccc;
 
 }
@@ -171,6 +229,9 @@ a.mention {
 
 .navigation-bar {
     color: #0C5B7A;
+}
+.navigation-bar strong {
+    font-weight:700 !important;
 }
 
 .privacy-dropdown__option:hover, .privacy-dropdown__option.active {
@@ -368,6 +429,13 @@ a.btn-success {
     color: #fff;
     background-color: #635182;
     border-color: #635182;
+}
+
+.flash-message {
+    color: #0C5B7A;
+    background-color: #E1F8FC;
+    border: 1px solid #B2D5DB;
+    box-shadow:none
 }
 
 /* Admin/settings */
