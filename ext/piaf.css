@@ -221,6 +221,10 @@ a.mention {
    border-radius: 50%;
    box-shadow: 0 0 10px #fff;
 }
+
+.accounts-grid .account-grid-card {
+    width:320px;
+}
 /* Status */
 
 .status__display-name, .status__relative-time,
@@ -246,7 +250,8 @@ a.mention {
 .activity-stream .status.light .status__header .status__meta .status__relative-time,
 .activity-stream .status.light .display-name span,
 .activity-stream .pre-header,
-.account-card .detailed-status__display-name .display-name span {
+.account-card .detailed-status__display-name .display-name span,
+.accounts-grid .account-grid-card .username{
     color: #949494;
 
 }
@@ -318,7 +323,8 @@ a.status-card {
     border-color: #ccc;
 }
 .status-card__description,
-.status-card__title {
+.status-card__title,
+.accounts-grid .account-grid-card .note {
     color: #666;
 }
 a.status-card:hover {
@@ -363,6 +369,16 @@ a.account__action-bar__tab {
     text-shadow:none;
 }
 
+/* pagination */
+.pagination .previous_page, .pagination .next_page {
+    color: #666;
+}
+.pagination a, .pagination .current, .pagination .next_page, .pagination .previous_page, .pagination .gap {
+    color: #666;
+}
+.pagination .disabled {
+    color: #ccc;
+}
 /* About */
 
 @media (min-width: 768px) {
