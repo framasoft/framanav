@@ -523,13 +523,16 @@ a.btn-success {
     border-color: #635182;
 }
 
-.flash-message,.landing-strip {
+.flash-message,.landing-strip,.compose-form__warning {
     color: #0C5B7A;
     background-color: #E1F8FC;
     border: 1px solid #B2D5DB;
     box-shadow:none
 }
-
+.compose-form__warning strong {
+    color: #666;
+    font-weight:bold;
+}
 /* Admin/settings */
 
 body.admin {
