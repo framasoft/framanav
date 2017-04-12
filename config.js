@@ -524,22 +524,6 @@ switch (n$.site) {
     }
   break;
 
-  case 'pouet':
-    l$ = {
-      js: {
-        ext: function() {
-          if(i$('/auth')) {
-            jQuery('.container').addClass('ombre');
-          }
-          jQuery('img[src^="/assets/logo"]').attr("src","https://framasoft.org/nav/img/icons/pouet.png");
-        }
-      },
-      css: {ext: true },
-      footer: i$('/about'),
-      mute: !i$('/about')
-    }
-  break;
-
   case 'pootle':
     l$ = {
       css: {
