@@ -427,8 +427,11 @@ a.btn-success {
 .about-body #framanav ul {
     list-style:none;
 }
-.about-body li {
+
+.about-body li,.about-body p, .about-body h2, .about-body h3 {
     font-family: "DejaVu Sans", Verdana, Geneva, sans-serif;
+}
+.about-body li {
     margin-bottom:0;
 }
 .about-body #framanav li {
