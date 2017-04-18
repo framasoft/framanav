@@ -400,6 +400,10 @@ a.account__action-bar__tab {
   }
 }
 
+.about-body h1 {
+    font: 46px/52px "DejaVu Sans", Verdana, Geneva, sans-serif;
+}
+
 .about-body p a, .about-body li a {
     color:#0C5B7A;
     text-decoration:underline;
