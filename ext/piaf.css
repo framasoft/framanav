@@ -61,6 +61,7 @@ body:not(.about-body):not(.app-body):not(.admin) {
 .empty-column-indicator a,
 .status a,
 .activity-stream .status.light .status__content a,
+.status__content a, .reply-indicator__content a,
 .search-results__hashtag {
     color: #0C5B7A;
 }
@@ -384,6 +385,22 @@ a.account__action-bar__tab {
 .account-card .account__header__content {
     color: #666;
     text-shadow:none;
+}
+
+.muted .status__content p, .muted .status__content a {
+    color:#757575;
+}
+/* Signalement */
+.report__target {
+    color:#757575;
+    border-color: #eee;
+}
+.status-check-box {
+    border-color: #eee;
+}
+.status-check-box .status__content {
+    background-color:#fff;
+    
 }
 
 /* pagination */
