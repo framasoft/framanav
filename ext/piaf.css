@@ -144,10 +144,6 @@ a.mention {
     }
 }
 
-.column{
-    background: #fff;
-}
-
 .column-header,.column-back-button {
     background: #6A5687;
     color:#fff;
@@ -174,6 +170,19 @@ a.mention {
 }
 .column-settings--section,.setting-toggle {
     color: #666;
+}
+.react-toggle-track {
+    background-color: #999;
+}
+.react-toggle-thumb {
+    border-color: #999;
+}
+.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-thumb {
+    border-color: #666;
+}
+.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
+    background-color: #666;
+    opacity:0.9;
 }
 .react-toggle--checked .react-toggle-track {
     background-color: #677835;
@@ -630,6 +639,10 @@ body.admin .simple_form span.hint {
 }
 .admin-wrapper .sidebar ul ul li a {
     border-radius:0;
+}
+
+.user_setting_default_privacy ul {
+    margin-left:30px
 }
 
 .table > tbody > tr:nth-child(2n+1) > td,
