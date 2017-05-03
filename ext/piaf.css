@@ -140,8 +140,12 @@ a.mention {
         width: 22%;
     }
 
-    .column {
+    .columns-area > .column {
         width: 25%;
+    }
+
+    :not(.columns-area) > .column {
+      width: calc(100% - 2em);
     }
 }
 
@@ -153,6 +157,10 @@ a.mention {
 .column-header.active .fa {
     color:#B3CC66;
     text-shadow: 0 0 10px #fff;
+}
+
+.column-subheading {
+  background: #eee;
 }
 
 .collapsable-collapsed,
