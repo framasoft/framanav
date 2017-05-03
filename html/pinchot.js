@@ -5,7 +5,7 @@ function pinchot(color, type) {
     case 'v': border = bec = '#8E9C48'; break;
     case 'j': border = bec = '#C48A1B'; break;
     case 'f': border = '#6A5687' ; bec = '#EB7239'; break;
-    case 'o': border = '#6A5687' ; bec = '#EB7239'; break;
+    case 'o': border = '#EB7239' ; bec = '#EB7239'; break;
   }
 
   switch ( type ) {
@@ -140,7 +140,7 @@ function pinchot(color, type) {
 '       y="534" text-anchor="middle" alignment-baseline="middle"'+
 '       id="text5115"'+
 '       xml:space="preserve"'+
-'       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;display:inline;font-family:FontAwesome;-inkscape-font-specification:FontAwesome"></text>'+
+'       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;display:inline;font-family:FontAwesome;"></text>'+
 '  </g>'+
 '</svg>'; break;
 }
@@ -167,66 +167,49 @@ jQuery(document).ready(function() {
   // On importe la liste des sites depuis la nav…
   jQuery.getJSON( './data.fr.json' ).done(
     function(data) {
-      d$ = data;
+      dp$ = data;
 
       //… et on ajoute manuellement ceux qui manquent
-      for (var k in d$.meta) { // (myframa + soutenir)
-        d$.f[k] = d$.meta[k];
+      for (var k in dp$.meta) { // (myframa + soutenir)
+        dp$.f[k] = dp$.meta[k];
       }
 
-      d$.f['cloud'] = {
-        "p": "Frama",
-        "s": "cloud",
-        "c": "v",
-        "i": "fa-cloud",
-        "l": "http://framacloud.org"
-      }
+      dp$.f['cloud']       = { "c": "v", "i": "fa-cloud" }
+      dp$.f['android']     = { "c": "b", "i": "fa-android" }
+      dp$.f['lab']         = { "c": "j", "i": "fa-flask" }
+      dp$.f['code']        = { "c": "j", "i": "fa-terminal" }
+      dp$.f['doc'].c = 'j';
+      dp$.f['dio'].c = 'f';
+      dp$.f['contact'].c = 'f';
+      dp$.f['stats'].c = 'f';
+      dp$.f['status'].c = 'f';
+      dp$.f['rt-presse']   = { "c": "o", "i": "fa-newspaper-o" }
+      dp$.f['rt-qasso']    = { "c": "o", "i": "fa-envelope" }
+      dp$.f['rt-event']    = { "c": "o", "i": "fa-suitcase" }
+      dp$.f['rt-part']     = { "c": "o", "i": "fa-group" }
+      dp$.f['rt-annonce']  = { "c": "o", "i": "fa-retweet" }
 
-      d$.f['android'] = {
-        "p": "Fram",
-        "s": "android",
-        "c": "b",
-        "i": "fa-android",
-        "l": "http://framandroid.org"
-      }
-
-      d$.f['lab'] = {
-        "p": "Frama",
-        "s": "lab",
-        "c": "j",
-        "i": "fa-flask",
-        "l": "https://framalab.org"
-      }
-
-      d$.f['code'] = {
-        "p": "Frama",
-        "s": "code",
-        "c": "j",
-        "i": "fa-terminal",
-        "l": "http://framacode.org"
-      }
 
       // Pour chaque site on génère les images
-      for (var k in d$.f) {
+      for (var k in dp$.f) {
         // mais avant un peu de nettoyage
-        d$.f[k].c = (k == 'wiki' || k == 'agora' || k == 'participer' || k == 'soutenir' || /evl/g.test(k)) ? 'j' : d$.f[k].c;
-        d$.f[k].c = (k == 'myframa') ? 'v' : d$.f[k].c;
+        dp$.f[k].c = (k == 'wiki' || k == 'agora' || k == 'participer' || k == 'soutenir' || /evl/g.test(k)) ? 'j' : dp$.f[k].c;
+        dp$.f[k].c = (k == 'doc') ? 'j' : dp$.f[k].c;
 
         noIcon = new Array(
-          'vvl', 'clibre', 'evl2',
-          'ptilouk', 'noenaute', 'planet-libre',
-          'diaspora', 'twitter', 'facebook', 'gplus', 'newsletter', 'rss', 'wikipedia',
-          'asso', 'charte', 'benevalo', 'partenaires', 'aide', 'faq', 'legals', 'cgu', 'credits'
+          'vvl','clibre','evl2','ptilouk','noenaute','planet-libre',
+          'diaspora','mastodon','twitter','facebook','gplus','newsletter','rss','wikipedia',
+          'asso','charte','benevalo','partenaires','aide','faq','legals','cgu','credits','myframa'
         );
 
-        if( d$.f[k].i && !(noIcon.indexOf(k) > -1)) {
+        if( dp$.f[k].i && !(noIcon.indexOf(k) > -1)) {
           // icône Font Awesome à ajouter au SVG
-          jQuery('#pinchots').append('<i id="emblem_'+k+'" class="hidden fa '+d$.f[k].i+'"></i>');
+          jQuery('#pinchots').append('<i id="emblem_'+k+'" class="hidden fa '+dp$.f[k].i+'"></i>');
 
 
           for (var i in size) {
             // on va chercher le SVG
-            icon = pinchot( d$.f[k].c, size[i] );
+            icon = pinchot( dp$.f[k].c, size[i] );
             jQuery('#pinchots').append(
               '<div id="svg_'+size[i]+k+'" class="hidden">'+icon+'</div>'
             );
