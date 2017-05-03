@@ -41,7 +41,7 @@ jQuery(document).ready(function(){
                 fc = 'jaune';
             }
 
-            pid = d$.f[projet].p.toLowerCase()+d$.f[projet].s; // pid = "frama"+"libre"
+            pid = d$.f[projet].p.toLowerCase()+d$.f[projet].s.replace('è','e'); // pid = "frama"+"libre"
             projetId.push(pid);
 
             if(projet != 'dio') {
