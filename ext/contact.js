@@ -183,7 +183,7 @@ jQuery(document).ready(function(){
             jQuery('#aide .list-group-item .fa-check').remove();
             jQuery(this).addClass('fb_g2').prepend('<i class="fa fa-check pull-right"></i>');
             jQuery('#concerne option').prop('selected', false);
-            jQuery('#concerne option[value$="'+f$_projet.substr(2)+'"]').prop('selected', true);
+            jQuery('#concerne option[value$="'+f$_projet.substr(2).replace('è','e')+'"]').prop('selected', true);
 
             jQuery('html, body').animate({
                 scrollTop: jQuery('#aide .fa-question-circle').offset().top-50
