@@ -68,7 +68,7 @@ body:not(.about-body):not(.app-body):not(.admin) {
 a.search-results__hashtag,
 a.load-more,
 a.mention {
-  text-decoration:none;
+  text-decoration:none !important;
 }
 
 .search-results__hashtag:focus,
@@ -173,7 +173,7 @@ a.mention {
     color:#fff;
 }
 
-.column-settings--outer {
+.column-settings__outer {
     background: #EDE6F5;
 
 }
@@ -212,6 +212,7 @@ a.mention {
 .column-link {
     background-color:#EDE6F5;
     color:#666;
+    text-decoration: none !important;
 }
 .column-link:hover {
     background-color: #6A5687;
@@ -353,6 +354,11 @@ a.status-card {
 .accounts-grid .account-grid-card .note {
     color: #666;
 }
+
+.status__content > p > a {
+    text-decoration: none !important;
+}
+
 a.status-card:hover {
     background-color: #eee;
 }
@@ -399,7 +405,8 @@ a.account__action-bar__tab {
     color:#757575;
 }
 /* Signalement */
-.report__target {
+.report__target,
+.report__textarea {
     color:#757575;
     border-color: #eee;
 }
