@@ -172,7 +172,7 @@ jQuery(document).ready(function(){
         jQuery('#aide .list-group-item').click(function() {
             jQuery('.formContact').show();
             f$_projet = jQuery(this).text();
-            f$_projetId = f$_projet.substr(1).toLowerCase();
+            f$_projetId = f$_projet.substr(1).toLowerCase().replace('è','e');
             jQuery('.wpcf7 form .alert-warning').hide();
             jQuery('.faq[id]').hide();
             if (projetId.indexOf(f$_projetId)>-1) {
