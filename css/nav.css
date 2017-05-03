@@ -154,9 +154,6 @@
 }
 
 @media (min-width: 768px) {
-    #framanav {
-        overflow: hidden;
-    }
     #framanav .nav-container {
         width:1015px;        /* largeur fixe pour que la nav tienne sur une seule ligne */
         width: -moz-fit-content;
