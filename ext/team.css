@@ -278,7 +278,7 @@
 .inMM .sidebar--left .dropdown-menu {
   width: 250px !important;
   max-width: 250px;
-  left: 0px;
+  left: 180px;
 }
 
 .inMM .navbar-right .dropdown-menu { right: -100px }
