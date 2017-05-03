@@ -159,6 +159,7 @@
       "d1": "Framaforms vous permet de créer des agendas, de les publier en ligne et de les partager."
     },
     "date": {
+      "doc": "https://docs.framasoft.org/en/framadate/",
       "t1": "Organize appointments and surveys",
       "d1": "Framadate is a Doodle-like software, but it is free and open source. Create an appointment or a survey without registration and invite your friends or colleagues."
     },
@@ -187,10 +188,12 @@
       "d1": "Framapiaf est un service libre de microblogging, basé sur le logiciel décentralisé Mastodon. Retrouvez vos amis sur Framapiaf - ou d’autres instances Mastodon, GNU Social, Friendica - et échangez avec eux sans être pisté."
     },
     "sphere": {
+      "doc": "https://docs.framasoft.org/en/diaspora/",
       "t1": "The Free and Libre social media network",
       "d1": "Framasphère is a Free, Libre and open source social media network, built over Diaspora* software. join your friends on Framasphère*, or any other Diaspora* pod — and begin to share without being tracked."
     },
     "team": {
+      "doc": "https://docs.framasoft.org/en/mattermost/",
       "t1": "Communication collaborative",
       "d1": "Framateam est un service de tchat libre qui permet de communiquer avec son équipe en notifiant ses collègues, de conserver ses conversations et d’y faire des recherches."
     },
@@ -203,6 +206,7 @@
       "d1": "Framatalk vous permet de discuter avec vos amis sans installation complexe de logiciel ni inscription. Tout se passe entre vous et vos amis, directement depuis votre navigateur web. "
     },
     "vox": {
+      "doc": "https://docs.framasoft.org/en/loomio/",
       "t1": "Décider ensemble",
       "d1": "Framavox vous aide à prendre des décisions communautaires. Discutez, échangez, mettez-vous d’accord et passez à l’action, le tout dans les délais que vous vous êtes fixés au départ."
     },
@@ -267,16 +271,16 @@
       "d1": "Our account on free social media network Mastodon"
     },
     "twitter": {
-      "t1": "Framasoft on Twitter",
-      "d1": "Our microblogging account on Twitter (we know it is bad…)"
+      "t1": "Framasoft on Twitter (we know it is bad…)",
+      "d1": "Bien que Twitter ne soit pas libre, Framasoft y a un compte afin de sensibiliser le public qui ne connait pas le libre là où il se trouve.<br>Nous vous invitons évidemment à <b>nous suivre plutôt sur Mastodon</b>, mais on ne vous en voudra pas si vous le faites sur Twitter 😉"
     },
     "facebook": {
-      "t1": "Framasoft on Facebook",
-      "d1": "Framasoft is on Facebook <i>too</i> sur (we know it is very bad))"
+      "t1": "Framasoft on Facebook (we know it is very bad…)",
+      "d1": "Bien que Facebook ne soit pas libre, Framasoft y a un compte afin de sensibiliser le public qui ne connait pas le libre là où il se trouve.<br>Nous vous invitons évidemment à <b>nous suivre plutôt sur Diaspora*</b>, mais on ne vous en voudra pas si vous le faites sur Facebook 😉"
     },
     "gplus": {
-      "t1": "Framasoft on Google+",
-      "d1": "Framasoft is <i>also</i> on Google+ (shame on us)"
+      "t1": "Framasoft on Google+ (shame on us)",
+      "d1": "Bien que Google+ ne soit pas libre, Framasoft y a un compte afin de sensibiliser le public qui ne connait pas le libre là où il se trouve.<br>Nous vous invitons évidemment à <b>nous suivre plutôt sur Diaspora*</b>, mais on ne vous en voudra pas si vous le faites sur Google+ (ou alors juste un peu 😉)"
     },
     "newsletter": {
       "s": "Newsletter",
@@ -325,6 +329,9 @@
     },
     "status": {
       "s": "Services review"
+    },
+    "doc": {
+      "l": "https://docs.framasoft.org/en/"
     },
     "aide": {
       "s": "Help"
