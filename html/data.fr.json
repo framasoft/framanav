@@ -305,6 +305,7 @@
       "c": "o",
       "i": "fa-shield",
       "l": "https://degooglisons-internet.org",
+      "git": "https://framagit.org/framasoft/degooglisons",
 
       "d0": "Campagne de sensibilitation",
       "t1": "<b class='violet'>Dégooglisons</b> <b class='orange'>Internet</b> : une ambitieuse campagne.",
@@ -601,6 +602,21 @@
       "t1": "Des pétitions sans offrir les adresses de vos soutiens",
       "d1": "Framapetitions vous permet de lancer des pétitions sur les sujets qui vous tiennent à cœur. En quelques clics, votre pétition est publiée et les adresses de vos soutiens ne seront pas exploités par des régies publicitaires."
     },
+    "sites": {
+      "p": "Frama",
+      "s": "sites",
+      "c": "v",
+      "i": "fa-globe",
+      "l": "https://framasites.org",
+      "git":  "https://framagit.org/framasoft/framasites",
+      "soft": "Grav",
+      "src": "https://getgrav.org/",
+      "cloud": "http://framacloud.org/cultiver-son-jardin/installation-de-grav/",
+
+      "d0": "Hébergement de sites",
+      "t1": "Créez un site web qui respectera vos visiteurs",
+      "d1": "Framasites vous permet de créer un site web facilement, avec des outils libres et de l’héberger sur nos serveurs. Aucune publicité ni traquage ne portera atteinte aux données de vos visiteurs et visiteuses."
+    },
     "memo": {
       "p": "Fra",
       "s": "memo",
@@ -778,6 +794,21 @@
       "d0": "Alternative à Github",
       "t1": "Héberger du code libre",
       "d1": "Framagit est un outil qui s’adresse avant tout aux développeurs. Il permet d’héberger vos projets de logiciels libres et de travailler collaborativement dessus."
+    },
+    "my": {
+      "p": "My",
+      "s": "Frama",
+      "c": "v",
+      "i": "fa-star",
+      "l": "https://my.framasoft.org",
+      "git":  "https://framagit.org/framasoft/myframa",
+      "soft": "Shaarli",
+      "src": "https://github.com/shaarli/Shaarli/",
+      "cloud": "http://framacloud.org/cultiver-son-jardin/installation-de-shaarli/",
+
+      "d0": "Marque-pages",
+      "t1": "Marquez et partagez vos liens",
+      "d1": "MyFrama est un petit fourre-tout numérique, qui vous permet de conserver et retrouver les liens que vous aimez à la manière de del.ico.us ! Avec un système d´étiquettes et de tri automatique, vous pouvez ranger aisément vos onglets et marque-pages, et utiliser le bouton MyFrama pour retrouver les services Framasoft que vous utilisez !"
     },
     "diaspora": {
       "s": "Diaspora*",
