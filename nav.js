@@ -203,20 +203,19 @@ function f$_start_jquery() {
 
     // On charge ensuite les données
     f$_i18n = {};
-    if (i$Lang('en')) {
-      f$.getJSON( n$.nav.url+'html/data.en.json' )
+    var dataI18n = function(){};
+    if(i$Lang('en')) {
+    dataI18n = f$.getJSON( n$.nav.url+'html/data.en.json' )
         .fail(function() { console.error('✘ data.en.json') })
         .done( function(data) { f$_i18n = data; });
     }
+    var dataFr = f$.getJSON( n$.nav.url+'html/data.fr.json' )
+        .fail(function() { console.error('✘ data.fr.json') })
+        .done( function(data) { f$_fr = data; });
 
-    f$.getJSON( n$.nav.url+'html/data.fr.json' )
-      .fail(function() { console.error('✘ data.fr.json') })
-      .done(function(data) {
-
-        // Formatage et traitement des données
-        d$ = data; /** passage en global pour lecture dans la console **/
-
+    $.when(dataI18n, dataFr).then(function() {
         // Import i18n dans d$
+        f$Merge(d$, f$_fr);
         f$Merge(d$, f$_i18n);
 
         var f$_color = ''; var f$_menu = '';
