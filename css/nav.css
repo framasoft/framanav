@@ -154,8 +154,11 @@
 }
 
 @media (min-width: 768px) {
+    #framanav {
+        overflow: hidden;
+    }
     #framanav .nav-container {
-        width:1025px;        /* largeur fixe pour que la nav tienne sur une seule ligne */
+        width:1015px;        /* largeur fixe pour que la nav tienne sur une seule ligne */
         width: -moz-fit-content;
         width: -webkit-fit-content;
         width: fit-content;
@@ -286,6 +289,13 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
     width: 135px;
     text-align:center;
 }
+@media (max-width: 768px) {
+    #btn-myframa, #btn-benevalo {
+        width:auto;
+        text-align:left;
+    }
+}
+
 .navbar-default .navbar-nav > li > a.btn-primary {
     color: #fff;
     background-color: #6A5687;

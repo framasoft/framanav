@@ -408,8 +408,40 @@ function f$_start_jquery() {
 
         f$('#framanav_container').css('opacity','1');
 
-        f$Benevalo(f$);
-        if (!n$.inframe) { f$MyFrama(f$); }
+        // Bénévalo
+        // Le bouton soutenir remplacé par un bouton bénévalo
+        // pendant 3 jours autour de la pleine lune
+        var today = Math.floor(new Date().getTime() / 1000);
+        var fullMoon = 1453603580; // 24/01/2016 02:46:20
+        var moonRev = 2551443;     // 29j 12h 44m 3s
+
+        if((today - fullMoon)%moonRev < 129600 || (today - fullMoon)%moonRev > moonRev-129600) {
+          f$('#btn-benevalo').show();
+          f$('#btn-benevalo').prev().hide();
+        }
+        // MyFrama
+        if (!n$.inframe) {
+          var bm_url = location.href;
+          var bm_title = document.title || bm_url;
+          var myframa = 'https://my.framasoft.org/?post=' + encodeURIComponent(bm_url)+
+            '&title=' + encodeURIComponent(bm_title)+
+            '&description=' + encodeURIComponent(document.getSelection())+
+            '&source=bookmarklet';
+
+          function f$popup(url) {
+            window.open(
+              url,'_blank','menubar=no,height=500,width=600,toolbar=no,scrollbars=yes,status=no,dialog=1'
+            );
+          }
+          f$('#btn-myframa').on('click', function() {
+            window.open(
+              myframa,'myframa',
+              'menubar=no,height=500,width=600,toolbar=no,scrollbars=yes,status=no,dialog=1'
+            );
+            return false;
+          });
+          f$('#btn-myframa a').attr('href', myframa)
+        }
 
         // Footer
         if(c$.footer && !n$.inframe) {
@@ -1009,44 +1041,6 @@ function f$LoadCSS(css) {
   for(var i = css.order.indexOf('1'); i < css.order.length; i++) {
     AddLink(css.order[i]);
   }
-}
-
-// Bénévalo
-function f$Benevalo(f$) {
-  // Le bouton soutenir remplacé par un bouton bénévalo
-  // pendant 3 jours autour de la pleine lune
-  var today = Math.floor(new Date().getTime() / 1000);
-  var fullMoon = 1453603580; // 24/01/2016 02:46:20
-  var moonRev = 2551443;     // 29j 12h 44m 3s
-
-  if((today - fullMoon)%moonRev < 129600 || (today - fullMoon)%moonRev > moonRev-129600) {
-    f$('#btn-benevalo').show();
-    f$('#btn-benevalo').prev().hide();
-  }
-}
-
-// MyFrama
-function f$MyFrama(f$) {
-  var bm_url = location.href;
-  var bm_title = document.title || bm_url;
-  var myframa = 'https://my.framasoft.org/?post=' + encodeURIComponent(bm_url)+
-    '&title=' + encodeURIComponent(bm_title)+
-    '&description=' + encodeURIComponent(document.getSelection())+
-    '&source=bookmarklet';
-
-  function f$popup(url) {
-    window.open(
-      url,'_blank','menubar=no,height=500,width=600,toolbar=no,scrollbars=yes,status=no,dialog=1'
-    );
-  }
-  f$('#btn-myframa').on('click', function() {
-    window.open(
-      myframa,'myframa',
-      'menubar=no,height=500,width=600,toolbar=no,scrollbars=yes,status=no,dialog=1'
-    );
-    return false;
-  });
-  f$('#btn-myframa a').attr('href', myframa)
 }
 
 //----------------------Fonctions HTML ---------------------------------
