@@ -213,7 +213,7 @@ function f$_start_jquery() {
         .fail(function() { console.error('✘ data.fr.json') })
         .done( function(data) { f$_fr = data; });
 
-    $.when(dataI18n, dataFr).then(function() {
+    f$.when(dataI18n, dataFr).then(function() {
         // Import i18n dans d$
         f$Merge(d$, f$_fr);
         f$Merge(d$, f$_i18n);
