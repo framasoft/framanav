@@ -639,6 +639,6 @@ body.apropos #piwik-iframe {
     display:block !important;
 }
 
-.fs_petitions {
+.fs_petitions, .fs_sites {
     display:none !important;
 }

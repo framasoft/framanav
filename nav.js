@@ -660,8 +660,10 @@ function f$_start_jquery() {
         // Ext.js
         if (typeof c$.js.ext === "function") {
           c$.js.ext();
-        } else if(c$.js.ext) {
+        } else if(c$.js.ext === true) {
           f$.getScript(n$.nav.url+'ext/'+n$.site+'.js');
+        } else if(typeof c$.js.ext === "string") {
+          f$.getScript(n$.nav.url+'ext/'+c$.js.ext+'.js');
         }
         /** On peut ajouter des scripts jQuery "génériques" ici mais... **/
 
@@ -976,7 +978,11 @@ function f$LoadCSS(css) {
       break;
       case '5': // Ext
         link.media = (css.ext) ? 'all' : 'none';
-        link.href   = n$.nav.url+'ext/'+n$.site+'.css?'+n$.version;
+        if(typeof css.ext === 'boolean') {
+          link.href   = n$.nav.url+'ext/'+n$.site+'.css?'+n$.version;
+        } else {
+          link.href   = n$.nav.url+'ext/'+css.ext+'.css?'+n$.version;
+        }
       break;
     }
     if(link.media != 'none' && stylesheet != '1') {
