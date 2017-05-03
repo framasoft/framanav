@@ -111,6 +111,8 @@
       "c": "b",
       "i": "fa-linux",
       "l": "http://framalibre.org",
+      "git": "https://framagit.org/framasoft/framalibre",
+      "doc": "https://docs.framasoft.org/fr/framalibre/",
 
       "d0": "Annuaire de logiciels libres",
       "t1": "L’annuaire de logiciels libres",
@@ -147,6 +149,8 @@
       "c": "b",
       "i": "fa-download",
       "l": "https://framapack.org",
+      "git": "https://framagit.org/framasoft/framapack",
+      "doc": "https://docs.framasoft.org/fr/framapack/",
 
       "d0": "Installateur de logiciels",
       "t1": "Distribution massive",
@@ -158,6 +162,7 @@
       "c": "b",
       "i": "fa-rocket",
       "l": "http://framastart.org",
+      "git": "https://framagit.org/framasoft/framastart",
 
       "t1": "Framastart",
       "d1": "Le meilleur des logiciels libres sur une seule page."
@@ -320,6 +325,7 @@
       "git": "https://framagit.org/framasoft/framapad",
       "soft": "Etherpad",
       "src": "https://github.com/ether/etherpad-lite",
+      "doc": "https://docs.framasoft.org/fr/etherpad/",
 
       "d0": "Traitement de texte",
       "t1": "Éditer collaborativement",
@@ -372,6 +378,7 @@
       "git":  "https://framagit.org/framasoft/framaforms",
       "soft": "Webform",
       "src": "https://www.drupal.org/project/webform",
+      "doc": "https://docs.framasoft.org/fr/framaforms/",
 
       "d0": "Questionnaires",
       "t1": "Création de questionnaires",
@@ -386,6 +393,7 @@
       "git":  "https://framagit.org/framasoft/framagenda",
       "soft": "Nextcloud",
       "src": "https://github.com/nextcloud/",
+      "doc": "https://docs.framasoft.org/fr/nextcloud/",
 
       "d0": "Agenda",
       "t1": "Agenda partagé",
@@ -399,6 +407,7 @@
       "i": "fa-calendar-check-o",
       "l": "https://framadate.org",
       "git": "https://framagit.org/framasoft/framadate",
+      "doc": "https://docs.framasoft.org/fr/framadate/",
 
       "d0": "Alternative à Doodle",
       "t1": "Organiser des rendez-vous et des sondages",
@@ -414,6 +423,7 @@
       "git":  "https://framagit.org/framasoft/framaboard",
       "soft": "Kanboard",
       "src": "https://github.com/fguillot/kanboard",
+      "doc": "https://docs.framasoft.org/fr/kanboard/",
 
       "d0": "Alternative à Trello",
       "t1": "Gérer des projets",
@@ -458,6 +468,7 @@
       "git":  "https://framagit.org/framasoft/framaslides",
       "soft": "Strut",
       "src": "https://github.com/tantaman/Strut",
+      "doc": "https://docs.framasoft.org/fr/strut/",
 
       "d0": "Diaporamas",
       "t1": "Créer et partager des diaporamas",
@@ -470,6 +481,7 @@
       "i": "fa-magic",
       "l": "https://framaestro.org",
       "git": "https://framagit.org/framasoft/framaestro",
+      "doc": "https://docs.framasoft.org/fr/framaestro/",
 
       "d0": "Tableau de bord",
       "t1": "Ochestrez vos projets collaboratifs",
@@ -498,6 +510,7 @@
       "git":  "https://framagit.org/framasoft/framacarte",
       "soft": "uMap",
       "src": "https://github.com/umap-project",
+      "doc": "https://docs.framasoft.org/fr/umap/",
 
       "d0": "Cartes géographiques personnalisées",
       "t1": "Cartographie personnalisée",
@@ -512,6 +525,7 @@
       "git":  "https://framagit.org/framasoft/framasphere",
       "soft": "Disapora*",
       "src": "https://github.com/diaspora",
+      "doc": "https://docs.framasoft.org/fr/diaspora/",
 
       "d0": "Réseau social Diaspora*",
       "t1": "Le réseau social libre",
@@ -526,6 +540,7 @@
       "git":  "https://framagit.org/framasoft/framapiaf",
       "soft": "Mastodon",
       "src": "https://github.com/tootsuite/mastodon",
+      "doc": "https://docs.framasoft.org/fr/mastodon/",
 
       "d0": "Microblogging",
       "t1": "Réseau social en 500 caractères",
@@ -540,6 +555,7 @@
       "l": "https://framateam.org",
       "soft": "Mattermost",
       "src": "https://github.com/mattermost",
+      "doc": "https://docs.framasoft.org/fr/mattermost/",
 
       "d0": "Communication collaborative",
       "t1": "Communication collaborative",
@@ -553,6 +569,7 @@
       "l": "https://framalistes.org",
       "soft": "Sympa",
       "src": "https://www.sympa.org/",
+      "doc": "https://docs.framasoft.org/fr/sympa/",
 
       "d0": "Liste de diffusion",
       "t1": "Liste de diffusion",
@@ -567,6 +584,7 @@
       "git":  "https://framagit.org/framasoft/framatalk",
       "soft": "Jitsi Meet",
       "src": "https://github.com/jitsi/jitsi-meet/",
+      "doc": "https://docs.framasoft.org/fr/jitsimeet/",
 
       "d0": "Visioconférence",
       "t1": "Visioconférence",
@@ -582,6 +600,7 @@
       "soft": "Loomio",
       "src": "https://github.com/loomio",
       "cloud": "http://framacloud.org/cultiver-son-jardin/installation-de-loomio/",
+      "doc": "https://docs.framasoft.org/fr/loomio/",
 
       "d0": "Prise de décision",
       "t1": "Décider ensemble",
@@ -640,6 +659,7 @@
       "git":  "https://framagit.org/framasoft/framanotes",
       "soft": "Turtl",
       "src": "https://github.com/turtl",
+      "doc": "https://docs.framasoft.org/fr/turtl/",
 
       "d0": "Notes",
       "t1": "Prise de notes",
@@ -655,6 +675,7 @@
       "soft": "Wallabag",
       "src": "https://github.com/wallabag",
       "cloud": "http://framacloud.org/cultiver-son-jardin/installation-de-wallabag/",
+      "doc": "https://docs.framasoft.org/fr/wallabag/",
 
       "d0": "Alternative à Pocket",
       "t1": "Ne ratez plus aucun article !",
@@ -714,6 +735,7 @@
       "soft": "Owncloud",
       "src": "https://github.com/owncloud/",
       "cloud": "http://framacloud.org/cultiver-son-jardin/installation-de-owncloud/",
+      "doc": "https://docs.framasoft.org/fr/nextcloud/",
 
       "d0": "Alternative à Dropbox",
       "t1": "Héberger ses documents en ligne",
@@ -729,6 +751,7 @@
       "soft": "Lufi",
       "src": "https://framagit.org/luc/lufi",
       "cloud": "http://framacloud.org/cultiver-son-jardin/installation-de-lufi/",
+      "doc": "https://docs.framasoft.org/fr/lufi/",
 
       "d0": "Alternative à WeTransfer",
       "t1": "Partager des fichiers anonymement",
@@ -745,6 +768,7 @@
       "soft": "Zerobin",
       "src": "https://github.com/sebsauvage/ZeroBin",
       "cloud": "http://framacloud.org/cultiver-son-jardin/installation-de-zerobin/",
+      "doc": "https://docs.framasoft.org/fr/zerobin/",
 
       "d0": "Alternative à Pastebin",
       "t1": "Transmettre des données chiffrées",
@@ -760,6 +784,7 @@
       "soft": "Lutim",
       "src": "https://framagit.org/luc/lutim",
       "cloud": "http://framacloud.org/cultiver-son-jardin/installation-de-lutim/",
+      "doc": "https://docs.framasoft.org/fr/lutim/",
 
       "d0": "Partage d’images",
       "t1": "Partager des images anonymement",
@@ -776,6 +801,7 @@
       "soft": "LSTU",
       "src": "https://framagit.org/luc/lstu",
       "cloud": "http://framacloud.org/cultiver-son-jardin/installation-de-lstu/",
+      "doc": "https://docs.framasoft.org/fr/lstu/",
 
       "d0": "Raccourcisseur d’URL",
       "t1": "Réduire des liens",
@@ -790,6 +816,7 @@
       "l": "https://framagit.org",
       "soft": "Gitlab",
       "src": "https://about.gitlab.com/contributing/",
+      "doc": "https://docs.framasoft.org/fr/gitlab/",
 
       "d0": "Alternative à Github",
       "t1": "Héberger du code libre",
@@ -805,6 +832,7 @@
       "soft": "Shaarli",
       "src": "https://github.com/shaarli/Shaarli/",
       "cloud": "http://framacloud.org/cultiver-son-jardin/installation-de-shaarli/",
+      "doc": "https://docs.framasoft.org/fr/shaarli/",
 
       "d0": "Marque-pages",
       "t1": "Marquez et partagez vos liens",
@@ -826,7 +854,7 @@
       "l": "https://framapiaf.org/@Framasoft",
 
       "t1": "Framasoft sur Mastodon",
-      "d1": "Notre compte sur le réseau social libre Mastodon"
+      "d1": "Notre compte de microblogging sur le réseau social libre Mastodon"
     },
     "twitter": {
       "s": "Twitter",
@@ -834,8 +862,8 @@
       "i": "fa-twitter",
       "l": "https://twitter.com/framasoft",
 
-      "t1": "Framasoft sur Twitter",
-      "d1": "Notre compte de microblogging sur Twitter (oui, on sait…)"
+      "t1": "Framasoft sur Twitter (on sait c’est mal…)",
+      "d1": "Bien que Twitter ne soit pas libre, Framasoft y a un compte afin de sensibiliser le public qui ne connait pas le libre là où il se trouve.<br>Nous vous invitons évidemment à <b>nous suivre plutôt sur Mastodon</b>, mais on ne vous en voudra pas si vous le faites sur Twitter 😉"
     },
     "facebook": {
       "s": "Facebook",
@@ -843,8 +871,8 @@
       "i": "fa-facebook",
       "l": "https://www.facebook.com/framasoft",
 
-      "t1": "Framasoft sur Facebook",
-      "d1": "Framasoft est <i>aussi</i> sur Facebook (oui, on sait aussi…)"
+      "t1": "Framasoft sur Facebook (on sait c’est très mal…)",
+      "d1": "Bien que Facebook ne soit pas libre, Framasoft y a un compte afin de sensibiliser le public qui ne connait pas le libre là où il se trouve.<br>Nous vous invitons évidemment à <b>nous suivre plutôt sur Diaspora*</b>, mais on ne vous en voudra pas si vous le faites sur Facebook 😉"
     },
     "gplus": {
       "s": "Google+",
@@ -852,8 +880,8 @@
       "i": "fa-google-plus",
       "l": "https://plus.google.com/113481533567002271362",
 
-      "t1": "Framasoft sur Google+",
-      "d1": "Framasoft est malheureusement <i>aussi</i> sur Google+ (rhalala…)"
+      "t1": "Framasoft sur Google+ (honte à nous)",
+      "d1": "Bien que Google+ ne soit pas libre, Framasoft y a un compte afin de sensibiliser le public qui ne connait pas le libre là où il se trouve.<br>Nous vous invitons évidemment à <b>nous suivre plutôt sur Diaspora*</b>, mais on ne vous en voudra pas si vous le faites sur Google+ (ou alors juste un peu 😉)"
     },
     "newsletter": {
       "s": "Newsletter",
@@ -957,11 +985,11 @@
       "i": "fa-heartbeat",
       "l": "https://status.framasoft.org"
     },
-    "aide": {
-      "s": "Aide",
+    "doc": {
+      "s": "Documentation",
       "c": "o",
-      "i": "fa-life-ring",
-      "l": "https://contact.framasoft.org/#aide"
+      "i": "fa-graduation-cap",
+      "l": "https://docs.framasoft.org/fr/"
     },
     "faq": {
       "s": "FAQ",
@@ -969,6 +997,12 @@
       "c": "o",
       "i": "fa-question-circle",
       "l": "https://contact.framasoft.org/foire-aux-questions/"
+    },
+    "aide": {
+      "s": "Aide",
+      "c": "o",
+      "i": "fa-life-ring",
+      "l": "https://contact.framasoft.org/#aide"
     },
     "legals": {
       "s": "Mentions légales",

@@ -267,20 +267,23 @@ function f$_start_jquery() {
 
           // "Nous suivre" dans le footer
           if ((f$_menu == 'follow') && !(/(wiki|agora|newsletter|contact|wikipedia)/i).test(k)) {
-            h$.menu['follow'].footer += '<li class="fs_'+k+'"><a href="'+d$.f[k].l+'" title="'+d$.f[k].t1+'"><i class="fa fa-fw fa-2x '+d$.f[k].i+'" aria-hidden="true"></i>'+h$SR(d$.f[k].name)+'</a></li>';
+            h$.menu['follow'].footer += '<li class="fs_'+k+'"><a href="'+d$.f[k].l+'" title="'+d$.f[k].t1+'" '+h$Popover(d$.f[k].t1, d$.f[k].d1, 'top')+'><i class="fa fa-fw fa-2x '+d$.f[k].i+'" aria-hidden="true"></i>'+h$SR(d$.f[k].name)+'</a></li>';
           }
           // "À propos" du site
           if(n$.name == h$.f[k].name) {
             f$_soft = (d$.f[k].soft != undefined) ? ' ('+d$.f[k].soft+')' : '';
             h$.menu['about'].site += '<li class="dropdown-header">'+h$.f[k].html+f$_soft+'</li>'+h$.divider;
+            if(d$.f[k].doc != undefined) {
+              d$.f.doc.l = d$.f[k].doc;
+            }
             if(d$.f[k].git != undefined) {
               h$.menu['about'].site += '<li class="fs_about fs_git"><a href="'+d$.f[k].git+'">'+h$icon(d$.f.git.i)+'&nbsp;'+d$.f.git.p+d$.f.git.s+'</a></li>';
             }
             if(d$.f[k].src != undefined) {
               h$.menu['about'].site += '<li class="fs_about fs_src"><a href="'+d$.f[k].src+'">'+h$icon('fa-code-fork')+'&nbsp;'+d$.t.source+f$_soft+'</a></li>';
             }
-            d$.f.aide.l = d$.f.aide.l.replace('#aide','#'+n$.name.toLowerCase());
             d$.f.faq.l = d$.f.faq.l+'#'+n$.name.toLowerCase();
+            d$.f.aide.l = d$.f.aide.l.replace('#aide','#'+n$.name.toLowerCase());
           }
         }
         // Switch mobile/desktop
@@ -340,7 +343,7 @@ function f$_start_jquery() {
         f$('#fs_services li:odd a, #fs_about li:even a').attr('data-placement','left');
         // Réagencement À propos
         f$('#fs_about li').has('a[href*="status."]').after(d$.menu['about'].site);
-        f$('#fs_about .fs_git').before(f$('#fs_about .fs_aide,#fs_about .fs_faq'));
+        f$('#fs_about .fs_git').before(f$('#fs_about .fs_aide,#fs_about .fs_faq,#fs_about .fs_doc'));
 
         f$('#fs_about ul').prepend('<li class="dropdown-header">'+h$.framasoft+'</li>'+h$.divider);
         f$('#fs_services li:eq(0)').addClass('dropdown-header');

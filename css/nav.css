@@ -578,6 +578,9 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
     margin-top:0;
 }
 
+#framafooter .popover {
+    margin-top: -30px;
+}
 
 /* Modal header title */
 .modal-header h1,.modal-header h2,.modal-header h3,
