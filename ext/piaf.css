@@ -145,7 +145,7 @@ a.mention {
     }
 
     :not(.columns-area) > .column {
-      width: calc(100% - 2em);
+      width: 500px;
     }
 }
 
