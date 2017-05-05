@@ -47,7 +47,7 @@ setInterval(function() {
             piafFilters = $('#piaf-filters-form textarea').val().replace(/\r\n/g,"\n").split('\n');
             localStorage.setItem('piafFilters', piafFilters);
             $('#piaf-filters-save').attr('disable','true').html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i>Rechargement…');
-            $('#piaf-filters-cancel').attr('disable');
+            $('#piaf-filters-cancel').attr('disable','true');
             window.location.reload(true);
         });
     }
