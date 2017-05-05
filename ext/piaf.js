@@ -46,8 +46,8 @@ setInterval(function() {
         $('#piaf-filters-save').click(function(){
             piafFilters = $('#piaf-filters-form textarea').val().replace(/\r\n/g,"\n").split('\n');
             localStorage.setItem('piafFilters', piafFilters);
-            $('#piaf-filters-save').attr('disable','true').html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i>Rechargement…');
-            $('#piaf-filters-cancel').attr('disable','true');
+            $('#piaf-filters-save').attr('disabled','true').html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i>Rechargement…');
+            $('#piaf-filters-cancel').attr('disabled','true');
             window.location.reload(true);
         });
     }
