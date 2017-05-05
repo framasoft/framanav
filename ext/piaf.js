@@ -25,8 +25,8 @@ setInterval(function() {
         $('.getting-started__wrapper').after(
             '<div id="piaf-filters-form" style="display:none;background:#EDE6F5; padding:10px">'+
                 '<p class="alert alert-info"><span class="text-warning"><i class="fa fa-fw fa-warning" aria-hidden="true"></i> Cette fonctionalité est expérimentale et ne s’applique que sur le navigateur web que vous utilisez en ce moment.</span>'+
-                '<br>Vous pouvez ajouter ci-dessous (1 par ligne) les @instances, les #hashtags et les [mots] des pouets que vous voulez faire disparaître de toutes vos colonnes. '+
-                'Exemple :<br><code>@pawoo.net<br>#starwars<br>[BOT]</code></p>'+
+                '<br>Vous pouvez ajouter ci-dessous <span class="small">(1 par ligne)</span> les @instances, les #hashtags et les [mots] <span class="small">(du nom public de l’auteur)</span> des pouets que vous voulez faire disparaître de toutes vos colonnes. '+
+                'Exemple :<br><code>@pawoo.net<br>#nsfw<br>[BOT]</code></p>'+
                 '<textarea class="autosuggest-textarea__textarea" style="height:200px">'+piafFilters.toString().replace(/,/g,'\r\n')+'</textarea>'+
                 '<p class="alert"><button class="btn btn-default" id="piaf-filters-cancel">Annuler</button><button class="btn btn-primary pull-right" id="piaf-filters-save">Enregistrer</button></p>'+
             '</div>'
@@ -46,6 +46,8 @@ setInterval(function() {
         $('#piaf-filters-save').click(function(){
             piafFilters = $('#piaf-filters-form textarea').val().replace(/\r\n/g,"\n").split('\n');
             localStorage.setItem('piafFilters', piafFilters);
+            $('#piaf-filters-save').attr('disable','true').html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i>Rechargement…');
+            $('#piaf-filters-cancel').attr('disable');
             window.location.reload(true);
         });
     }
@@ -53,14 +55,14 @@ setInterval(function() {
     $.each(piafFilters, function(index, value) {
         switch (value.substring(0,1)) {
             case "@" :
-                $('a .display-name__account:contains("' + value + '")').parents('.status,.status__wrapper').hide(); // @pawoo.net or @trolluser@
+                $('a .display-name__account:contains("' + value + '")').parents('.status,.status__wrapper').css('background','#fde0dc').hide(); // @pawoo.net or @trolluser@
                 break;
             case "[" :
-                $('a .display-name__html:contains("' + value + '")').parents('.status,.status__wrapper').hide(); // [BOT]
-                $('a .display-name__html:contains("' + value.replace(/\[\]/g,' ') + '")').parents('.status,.status__wrapper').hide(); // BOT
+                $('a .display-name__html:contains("' + value + '")').parents('.status,.status__wrapper').css('background','#fde0dc').hide(); // [BOT]
+                $('a .display-name__html:contains("' + value.replace(/\[\]/g,' ') + '")').parents('.status,.status__wrapper').css('background','#fde0dc').hide(); // BOT
                 break;
             case "#" :
-                $('a.hashtag[href$=' + value.replace(/#/g,'').toLowerCase() + ']').parents('.status,.status__wrapper').hide(); // #starwars
+                $('a.hashtag[href$=' + value.replace(/#/g,'').toLowerCase() + ']').parents('.status,.status__wrapper').css('background','#fde0dc').hide(); // #starwars
                 break;
         }
     });
