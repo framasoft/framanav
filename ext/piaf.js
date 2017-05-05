@@ -26,8 +26,8 @@ setInterval(function() {
             '<div id="piaf-filters-form" style="display:none;background:#EDE6F5; padding:10px">'+
                 '<div class="alert alert-info"><p class="text-warning"><i class="fa fa-fw fa-warning" aria-hidden="true"></i> Cette fonctionalité est expérimentale et ne s’applique que sur le navigateur web que vous utilisez en ce moment.</p>'+
                 '<p>Vous pouvez ajouter ci-dessous <span class="small">(1 par ligne)</span> les @instances, les #hashtags et les [mots] <span class="small">(du nom public de l’auteur)</span> des pouets que vous voulez faire disparaître de toutes vos colonnes.'+
-                '<br>Exemple :</p><pre class="well">@pawoo.net<br>#nsfw<br>[BOT]</pre>'+
-                '<p>Pour afficher/masquer les pouets filtrés vous pouvez utiliser le raccourci clavier <kbd>G + F</kbd>.</p>'+
+                '<br>Exemple :</p><pre class="well" style="padding:10px;margin:0">@pawoo.net<br>#nsfw<br>[BOT]</pre>'+
+                '<p>Pour afficher/masquer les pouets filtrés vous pouvez utiliser le raccourci clavier <kbd>G + F </kbd>.</p></div>'+
                 '<textarea class="autosuggest-textarea__textarea" style="height:200px">'+piafFilters.toString().replace(/,/g,'\r\n')+'</textarea>'+
                 '<p class="alert"><button class="btn btn-default" id="piaf-filters-cancel">Annuler</button><button class="btn btn-primary pull-right" id="piaf-filters-save">Enregistrer</button></p>'+
             '</div>'
