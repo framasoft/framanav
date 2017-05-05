@@ -24,9 +24,10 @@ setInterval(function() {
 
         $('.getting-started__wrapper').after(
             '<div id="piaf-filters-form" style="display:none;background:#EDE6F5; padding:10px">'+
-                '<p class="alert alert-info"><span class="text-warning"><i class="fa fa-fw fa-warning" aria-hidden="true"></i> Cette fonctionalité est expérimentale et ne s’applique que sur le navigateur web que vous utilisez en ce moment.</span>'+
-                '<br>Vous pouvez ajouter ci-dessous <span class="small">(1 par ligne)</span> les @instances, les #hashtags et les [mots] <span class="small">(du nom public de l’auteur)</span> des pouets que vous voulez faire disparaître de toutes vos colonnes. '+
-                'Exemple :<br><code>@pawoo.net<br>#nsfw<br>[BOT]</code></p>'+
+                '<div class="alert alert-info"><p class="text-warning"><i class="fa fa-fw fa-warning" aria-hidden="true"></i> Cette fonctionalité est expérimentale et ne s’applique que sur le navigateur web que vous utilisez en ce moment.</p>'+
+                '<p>Vous pouvez ajouter ci-dessous <span class="small">(1 par ligne)</span> les @instances, les #hashtags et les [mots] <span class="small">(du nom public de l’auteur)</span> des pouets que vous voulez faire disparaître de toutes vos colonnes.'+
+                '<br>Exemple :</p><pre class="well">@pawoo.net<br>#nsfw<br>[BOT]</pre>'+
+                '<p>Pour afficher/masquer les pouets filtrés vous pouvez utiliser le raccourci clavier <kbd>G + F</kbd>.</p>'+
                 '<textarea class="autosuggest-textarea__textarea" style="height:200px">'+piafFilters.toString().replace(/,/g,'\r\n')+'</textarea>'+
                 '<p class="alert"><button class="btn btn-default" id="piaf-filters-cancel">Annuler</button><button class="btn btn-primary pull-right" id="piaf-filters-save">Enregistrer</button></p>'+
             '</div>'
@@ -68,3 +69,28 @@ setInterval(function() {
     });
 
 }, 1000);
+
+// Filtered pouets show/hide on G+F keyboard shortcut
+var isG = false;
+$(document).keydown(function(e) {
+	if (e.which == 71 || e.keyCode == 71) { // G pressed
+		isG = true;
+	}
+}).keyup(function(e) {
+	if ($('input:focus').length > 0 || $('textarea:focus').length > 0 || isG !== true) { 
+		isG = false;
+		return false;
+	}
+	var key = (e.keyCode === true) ? e.keyCode : e.which;
+	
+	if (key==70) { // F pressed
+        if( $('#piafToggle').length ) {
+            // Pouets hidden
+            $('#piafToggle').remove();
+        } else {
+            // Pouets visible
+            $('head').append('<style id="piafToggle">.status[style],.status__wrapper[style] {display:block !important}</style>');
+        }
+    }	
+	isG = false;
+});
