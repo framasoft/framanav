@@ -25,7 +25,7 @@ setInterval(function() {
         $('.getting-started__wrapper').after(
             '<div id="piaf-filters-form" style="display:none;background:#EDE6F5; padding:10px">'+
                 '<p class="alert alert-info"><span class="text-warning"><i class="fa fa-fw fa-warning" aria-hidden="true"></i> Cette fonctionalité est expérimentale et ne s’applique que sur le navigateur web que vous utilisez en ce moment.</span>'+
-                '<br>Vous pouvez ajouter ci-dessous les @instances, les #hashtags et les [mots] des pouets que vous voulez faire disparaître de vos <i lang="en">timelines</i>. '+
+                '<br>Vous pouvez ajouter ci-dessous (1 par ligne) les @instances, les #hashtags et les [mots] des pouets que vous voulez faire disparaître de toutes vos colonnes. '+
                 'Exemple :<br><code>@pawoo.net<br>#starwars<br>[BOT]</code></p>'+
                 '<textarea class="autosuggest-textarea__textarea" style="height:200px">'+piafFilters.toString().replace(/,/g,'\r\n')+'</textarea>'+
                 '<p class="alert"><button class="btn btn-default" id="piaf-filters-cancel">Annuler</button><button class="btn btn-primary pull-right" id="piaf-filters-save">Enregistrer</button></p>'+
