@@ -155,8 +155,11 @@ a.mention {
     border-radius: 5px 5px 0 0;
 }
 .column-header.active .fa {
-    color:#B3CC66;
-    text-shadow: 0 0 10px #fff;
+    color: #fff;
+    box-shadow: 0 0 10px #ffc529;
+    border-radius: 50% 50% 40% 40%;
+    border-bottom: 2px solid #ffc529;
+    background: rgba(255, 197, 41, 0.3);
 }
 
 .column-subheading {
@@ -415,7 +418,7 @@ a.account__action-bar__tab {
 }
 .status-check-box .status__content {
     background-color:#fff;
-    
+
 }
 
 /* pagination */
