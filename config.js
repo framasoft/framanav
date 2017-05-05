@@ -503,15 +503,8 @@ switch (n$.site) {
 
   case 'piaf':
     l$ = {
-      js: {
-        ext: function() {
-          if(i$('/auth') || i$('remote_follow')) {
-            jQuery('.container').addClass('ombre');
-          }
-          jQuery('img[src^="/assets/logo"]').attr("src","https://framasoft.org/nav/img/icons/piaf.png");
-        }
-      },
-      css: {ext: true },
+      js: { ext: true },
+      css: { ext: true },
       footer: i$('/about'),
       mute: !i$('/about')
     }
