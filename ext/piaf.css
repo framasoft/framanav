@@ -425,8 +425,9 @@ a.account__action-bar__tab {
 .pagination {
     display: block;
 }
-.pagination .previous_page, .pagination .next_page {
-    color: #666;
+.pagination .previous_page, .pagination .next_page,
+.pagination .prev, .pagination .next {
+    color: #666 !important;
 }
 .pagination a, .pagination .current, .pagination .next_page, .pagination .previous_page, .pagination .gap {
     color: #666;
