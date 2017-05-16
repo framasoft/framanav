@@ -191,9 +191,9 @@ md-toolbar.md-default-theme:not(.md-menu-toolbar) h1, md-toolbar:not(.md-menu-to
   color: #fff !important;
 }
 
-
 .md-button.md-default-theme.md-primary.md-fab, .md-button.md-primary.md-fab,
-.md-button.md-default-theme.md-primary.md-raised, .md-button.md-primary.md-raised,.lmo-btn--submit {
+.md-button.md-default-theme.md-primary.md-raised, .md-button.md-primary.md-raised,.lmo-btn--submit,
+.comment-form__sign-in-btn,.lmo-navbar .navbar__sign-in{
   color: #fff;
   text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
   background-color: #6A5687;
@@ -207,7 +207,8 @@ md-toolbar.md-default-theme:not(.md-menu-toolbar) h1, md-toolbar:not(.md-menu-to
 .md-button.md-primary.md-raised.md-focused:not([disabled]),
 .md-button.md-default-theme.md-primary.md-raised:hover:not([disabled]),
 .md-button.md-primary.md-raised:hover:not([disabled]),
-.lmo-btn--submit.active, .lmo-btn--submit:active, .lmo-btn--submit:hover, .open > .lmo-btn--submit.dropdown-toggle {
+.lmo-btn--submit.active, .lmo-btn--submit:active, .lmo-btn--submit:hover, .open > .lmo-btn--submit.dropdown-toggle,
+.comment-form__sign-in-btn.active, .comment-form__sign-in-btn:active, .comment-form__sign-in-btn:hover, .open > .comment-form__sign-in-btn.dropdown-toggle {
   color: #fff;
   background-color: #635182;
   border-color: #635182;
