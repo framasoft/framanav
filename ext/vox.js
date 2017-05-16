@@ -9,7 +9,7 @@ if(jQuery('meta[property="og:locale"]').attr('content') && jQuery('meta[property
         jQuery('.membership-requests-page__previous-request-response span').text(function(){return jQuery(this).text().replace('Approved', 'Approuvée') });
 
         // Aide
-        jQuery('a[href*="//loomio.gitbooks.io"]').attr('href','https://docs.framasoft.org/fr/loomio/');
+        jQuery('a[lmo-href*="//loomio.gitbooks.io"]').attr('lmo-href','https://docs.framasoft.org/fr/loomio/');
 
         // Traductions manquantes
         jQuery('title:contains("Loomio")').text(function(){return jQuery(this).text().replace('Loomio', 'Framavox') });
