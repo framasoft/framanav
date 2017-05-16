@@ -130,15 +130,17 @@ body.pages {
   margin-bottom:0;
 }
 
-.lmo-navbar__logo {
+.navbar__logo-container {
   top:10px;
   left:45%;
   font-family: "DejaVu Sans",Verdana,Geneva,sans-serif !important;
   font-size: 30px;
 }
-
+.navbar__middle a {
+  text-decoration: none !important;
+}
 @media (max-width: 991px) {
-  .lmo-navbar__logo {
+  .navbar__logo-container {
     display: none !important;
   }
 }
@@ -146,7 +148,8 @@ body.pages {
 .sessions.new .terms,
 .registrations.create .terms,
 .registrations.new .terms,
-.angular-feedback-card {
+.angular-feedback-card,
+#dialogContent_3 .lmo-h3 {
   display:none;
 }
 
@@ -180,7 +183,37 @@ body.pages {
     background: #6A5687;
 }
 
-.group-theme__upload-photo {
-  top:42px;
-  width:150px;
+
+md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar),
+md-toolbar.md-default-theme:not(.md-menu-toolbar) h1, md-toolbar:not(.md-menu-toolbar) h1,
+.modal-header-cancel-button {
+  background: #6A5687 !important;
+  color: #fff !important;
+}
+
+.md-button.md-default-theme.md-primary.md-fab, .md-button.md-primary.md-fab,
+.md-button.md-default-theme.md-primary.md-raised, .md-button.md-primary.md-raised,.lmo-btn--submit,
+.comment-form__sign-in-btn,.lmo-navbar .navbar__sign-in{
+  color: #fff;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
+  background-color: #6A5687;
+  border-color: #6A5687;
+}
+.md-button.md-default-theme.md-primary.md-fab.md-focused:not([disabled]),
+.md-button.md-primary.md-fab.md-focused:not([disabled]),
+.md-button.md-default-theme.md-primary.md-fab:hover:not([disabled]),
+.md-button.md-primary.md-fab:hover:not([disabled]),
+.md-button.md-default-theme.md-primary.md-raised.md-focused:not([disabled]),
+.md-button.md-primary.md-raised.md-focused:not([disabled]),
+.md-button.md-default-theme.md-primary.md-raised:hover:not([disabled]),
+.md-button.md-primary.md-raised:hover:not([disabled]),
+.lmo-btn--submit.active, .lmo-btn--submit:active, .lmo-btn--submit:hover, .open > .lmo-btn--submit.dropdown-toggle,
+.comment-form__sign-in-btn.active, .comment-form__sign-in-btn:active, .comment-form__sign-in-btn:hover, .open > .comment-form__sign-in-btn.dropdown-toggle {
+  color: #fff;
+  background-color: #635182;
+  border-color: #635182;
+}
+
+.md-button.md-default-theme.md-accent, .md-button.md-accent {
+  color: #0C5B7A;
 }
