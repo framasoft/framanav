@@ -1,16 +1,15 @@
-jQuery('.lmo-navbar__logo').html('<b class="violet">Frama</b><b class="vert">vox</b>');
+jQuery('.navbar__logo-container').html('<b class="violet">Frama</b><b class="vert">vox</b>');
 
 if(jQuery('meta[property="og:locale"]').attr('content') && jQuery('meta[property="og:locale"]').attr('content').indexOf('fr')>-1) {
 
-    // Traductions manquantes
-    jQuery('.comment-form textarea').attr('placeholder','Dites quelque chose…');
-    jQuery('.email-settings-page__learn-more-link').attr('href','https://docs.framasoft.org/fr/loomio/').text('En savoir plus sur les réglages de courriel…');
-    jQuery('.membership-requests-page__previous-request-response span').text(function(){return jQuery(this).text().replace('Approved', 'Approuvée') });
-
-    // Aide
-    jQuery('a[href*="//loomio.gitbooks.io"]').attr('href','https://docs.framasoft.org/fr/loomio/');
-
     setInterval(function() {
+        // Traductions manquantes
+        jQuery('.comment-form textarea').attr('placeholder','Dites quelque chose…');
+        jQuery('.email-settings-page__learn-more-link').attr('href','https://docs.framasoft.org/fr/loomio/').text('En savoir plus sur les réglages de courriel…');
+        jQuery('.membership-requests-page__previous-request-response span').text(function(){return jQuery(this).text().replace('Approved', 'Approuvée') });
+
+        // Aide
+        jQuery('a[href*="//loomio.gitbooks.io"]').attr('href','https://docs.framasoft.org/fr/loomio/');
 
         // Traductions manquantes
         jQuery('title:contains("Loomio")').text(function(){return jQuery(this).text().replace('Loomio', 'Framavox') });

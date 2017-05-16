@@ -184,3 +184,33 @@ body.pages {
   top:42px;
   width:150px;
 }
+
+md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar),
+md-toolbar.md-default-theme:not(.md-menu-toolbar) h1, md-toolbar:not(.md-menu-toolbar) h1 {
+  background: #6A5687 !important;
+  color: #fff !important;
+}
+
+.md-button.md-default-theme.md-primary.md-fab, .md-button.md-primary.md-fab,
+.md-button.md-default-theme.md-primary.md-raised, .md-button.md-primary.md-raised {
+  color: #fff;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
+  background-color: #6A5687;
+  border-color: #6A5687;
+}
+.md-button.md-default-theme.md-primary.md-fab.md-focused:not([disabled]),
+.md-button.md-primary.md-fab.md-focused:not([disabled]),
+.md-button.md-default-theme.md-primary.md-fab:hover:not([disabled]),
+.md-button.md-primary.md-fab:hover:not([disabled]),
+.md-button.md-default-theme.md-primary.md-raised.md-focused:not([disabled]),
+.md-button.md-primary.md-raised.md-focused:not([disabled]),
+.md-button.md-default-theme.md-primary.md-raised:hover:not([disabled]),
+.md-button.md-primary.md-raised:hover:not([disabled]) {
+  color: #fff;
+  background-color: #635182;
+  border-color: #635182;
+}
+
+.md-button.md-default-theme.md-accent, .md-button.md-accent {
+  color: #0C5B7A;
+}
