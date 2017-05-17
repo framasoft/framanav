@@ -638,7 +638,7 @@ switch (n$.site) {
       fixed: !i$('https://framavox.org/', 'u')
     }
 
-    if( !i$(/(\/users\/sign|\/start_group|users\/password\/new)/i, 'u') || !i$('https://framavox.org/', 'u') ) {
+    if( !i$(/(\/users\/sign|\/start_group|users\/password\/new)/i, 'u') && !i$('https://framavox.org/', 'u') ) {
       l$.footer = false;
       l$.mute = true;
       l$.js.ext = true;

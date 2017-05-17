@@ -149,7 +149,8 @@ body.pages {
 .registrations.create .terms,
 .registrations.new .terms,
 .angular-feedback-card,
-#dialogContent_3 .lmo-h3 {
+#dialogContent_3 .lmo-h3,
+.signin_container .sign_up {
   display:none;
 }
 
