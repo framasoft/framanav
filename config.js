@@ -633,12 +633,12 @@ switch (n$.site) {
 
   case 'vox':
     l$ = {
-      js: { video: i$('/marketing') },
+      js: { video: i$('https://framavox.org/', 'u') },
       css: { ext: true },
-      fixed: !i$('/marketing')
+      fixed: !i$('https://framavox.org/', 'u')
     }
 
-    if( !i$(/(\/marketing|users\/sign|\/start_group|users\/password\/new)/i, 'u') ) {
+    if( !i$(/(\/users\/sign|\/start_group|users\/password\/new)/i, 'u') || !i$('https://framavox.org/', 'u') ) {
       l$.footer = false;
       l$.mute = true;
       l$.js.ext = true;
