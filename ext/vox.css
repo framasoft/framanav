@@ -150,7 +150,8 @@ body.pages {
 .registrations.new .terms,
 .angular-feedback-card,
 #dialogContent_3 .lmo-h3,
-.signin_container .sign_up {
+.signin_container .sign_up,
+#sign-in .col-md-6:nth-child(1) > p:nth-child(3){
   display:none;
 }
 
