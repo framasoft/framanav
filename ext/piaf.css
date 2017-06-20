@@ -134,26 +134,24 @@ a.mention {
     color:#fff;
 }
 
-/* Colonnes */
-@media (min-width: 1350px) {
-    .drawer {
-        width: 22%;
-    }
-
-    .columns-area > .column {
-        width: 25%;
-    }
-
-    :not(.columns-area) > .column {
-      width: 25vw;
-    }
-}
-
 .column-header,.column-back-button {
     background: #6A5687;
     color:#fff;
     border-radius: 5px 5px 0 0;
 }
+
+.column-header__button,
+.column-header__back-button,
+.column-header__buttons,
+.column-header__button.active:hover {
+    background: #6A5687;
+    color: #fff;
+}
+
+.column-header__back-button {
+    color: #fff;
+}
+
 .column-header.active .fa {
     color: #fff;
     box-shadow: 0 -2px 10px #ffc529;
@@ -164,6 +162,10 @@ a.mention {
 
 .column-subheading {
   background: #eee;
+}
+
+.column-header__collapsible > div {
+  background: #EDE6F5;
 }
 
 .collapsable-collapsed,
@@ -182,6 +184,10 @@ a.mention {
 }
 .column-settings--section,.setting-toggle {
     color: #666;
+}
+
+.setting-toggle__label {
+    color: rgb(102, 102, 102);
 }
 .react-toggle-track {
     background-color: #999;
@@ -251,6 +257,16 @@ a.mention {
 .accounts-grid .account-grid-card {
     width:320px;
 }
+
+.account-section-headline {
+    color: #fff;
+    background: #6A5687;
+}
+
+.account-section-headline::after {
+  border-color: transparent transparent #fff;
+}
+
 /* Status */
 
 .status__display-name, .status__relative-time,
@@ -612,7 +628,8 @@ body.admin {
 body.admin .simple_form .input.file label,
 body.admin .simple_form .input.select label,
 body.admin .simple_form .input.boolean label,
-body.admin .simple_form .input.radio_buttons label {
+body.admin .simple_form .input.radio_buttons label,
+body.admin .simple_form .user_filtered_languages > label {
     color: #666;
 }
 
