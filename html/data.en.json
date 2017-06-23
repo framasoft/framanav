@@ -177,7 +177,7 @@
     },
     "bee": {
       "t1": "This metasearch engine is foraging the Web for you",
-      "d1": "Framabee is a free and anonymous metasearch engine. You search request is porcessed via this engine and sent to various search engines, then the results are displayed on your browser. The intersting point is Framabee is running between you and Google (and other popular search engines), so your personal data such as IP address, search history, geolocation, profile are not collected by search engines."
+      "d1": "Framabee is a free and anonymous metasearch engine. You search request is processed via this engine and sent to various search engines, then the results are displayed in your browser. The intersting point is Framabee is running between you and Google (and other popular search engines), so your personal data such as IP address, search history, geolocation, and profile are not collected by search engines."
     },
     "carte": {
       "t1": "Cartographie personnalisée",
@@ -190,7 +190,7 @@
     "sphere": {
       "doc": "https://docs.framasoft.org/en/diaspora/",
       "t1": "The Free and Libre social media network",
-      "d1": "Framasphère is a Free, Libre and open source social media network, built over Diaspora* software. join your friends on Framasphère*, or any other Diaspora* pod — and begin to share without being tracked."
+      "d1": "Framasphère is a Free, Libre and open source social media network, built over Diaspora* software. Join your friends on Framasphère*, or any other Diaspora* pod — and begin to share without being tracked."
     },
     "team": {
       "doc": "https://docs.framasoft.org/en/mattermost/",
@@ -347,4 +347,3 @@
     }
   }
 }
-
