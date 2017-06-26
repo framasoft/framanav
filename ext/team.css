@@ -301,6 +301,10 @@
   height: calc(100% - 42px);
 }
 
+.sidebar--left .sidebar__switcher {
+  bottom: 21px;
+}
+
 /***************** *
  * Partout
  * *************** */
