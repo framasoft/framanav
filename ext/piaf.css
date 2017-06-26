@@ -152,7 +152,7 @@ a.mention {
     color: #fff;
 }
 
-.column-header.active .fa {
+.column-header.active > .fa {
     color: #fff;
     box-shadow: 0 -2px 10px #ffc529;
     border-radius: 50% 50% 40% 40%;
