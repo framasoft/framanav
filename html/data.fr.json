@@ -35,7 +35,7 @@
       "l": "https://soutenir.framasoft.org",
 
       "t1": "Parce que libre ne signifie pas gratuit",
-      "d1": "Framasoft ne serait rien sans sa communauté de bénévoles mais ne pourrait pas fonctionner non plus sans le service de l’association qui a des frais et emploie cinq indispensables permanents. Notre financement dépend de vous, c’est-à-dire des dons individuels collectés sur Internet. Si vous pensez que nous le méritons…"
+      "d1": "Framasoft ne serait rien sans sa communauté de bénévoles mais ne pourrait pas fonctionner non plus sans le service de l’association qui a des frais et emploie sept indispensables permanents. Notre financement dépend de vous, c’est-à-dire des dons individuels collectés sur Internet. Si vous pensez que nous le méritons…"
     },
     "myframa": {
       "s": "MyFrama",
@@ -754,7 +754,7 @@
       "doc": "https://docs.framasoft.org/fr/lufi/",
 
       "d0": "Alternative à WeTransfer",
-      "t1": "Partager des fichiers anonymement",
+      "t1": "Partager des fichiers de façon confidentielle",
       "d1": "Avec Framadrop, fini les pièces jointes trop lourdes qui empêchent l’envoi d’un email. Ce service libre vous permet de partager facilement des fichiers de manière sécurisé."
     },
     "bin": {
@@ -787,7 +787,7 @@
       "doc": "https://docs.framasoft.org/fr/lutim/",
 
       "d0": "Partage d’images",
-      "t1": "Partager des images anonymement",
+      "t1": "Partager des images de façon confidentielle",
       "d1": "Framapic vous permet de partager facilement des images, par exemple pour les publier sur Twitter, Facebook, ou… Framasphère !"
     },
     "link": {

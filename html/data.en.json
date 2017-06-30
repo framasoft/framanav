@@ -4,7 +4,7 @@
     "soutenir": {
       "s": "Make a donation ?",
       "t1": "Parce que libre ne signifie pas gratuit",
-      "d1": "Framasoft would not exist without our strong volunteer community but could not work anyway without the association which pays 3 permanent employees. Our funding relies on you, which means every individual donation. If you think we deserve it…"
+      "d1": "Framasoft would not exist without our strong volunteer community but could not work anyway without the association which pays seven permanent employees. Our funding relies on you, which means every individual donation. If you think we deserve it…"
     },
     "myframa": {
       "t1": "Marquez et partagez vos liens",
@@ -243,7 +243,7 @@
       "d1": "Framadrive lets you upload your documents online, synchronize them on your other devices… and share them with the contacts you select."
     },
     "drop": {
-      "t1": "Sharing files anonymously",
+      "t1": "Sharing files in a confidential way",
       "d1": "With Framadrop, say goodbye to big attachment files that cannot be sent over your mail client. This Free and libre service lets you share your documents easily and securely."
     },
     "bin": {
@@ -251,7 +251,7 @@
       "d1": "Framabin lets you share information that only you and the sendee can decrypt, in a simple easy way."
     },
     "pic": {
-      "t1": "Sharing pictures anonymously",
+      "t1": "Sharing pictures in a confidential way",
       "d1": "Framapic is your online resource to share pics, e.g to show them on Twitter, Facebook, or… Framasphère !"
     },
     "link": {
