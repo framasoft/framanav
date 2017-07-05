@@ -63,7 +63,7 @@ setInterval(function() {
                 $('a .display-name__html:contains("' + value.replace(/\[\]/g,' ') + '")').parents('.status,.status__wrapper').css('background','#fde0dc').hide(); // BOT
                 break;
             case "#" :
-                $('a.hashtag[href$=' + value.replace(/#/g,'').toLowerCase() + ']').parents('.status,.status__wrapper').css('background','#fde0dc').hide(); // #starwars
+                $('a.hashtag[href$=' + value.replace(/#/g,'') + ']').parents('.status,.status__wrapper').css('background','#fde0dc').hide(); // #starwars
                 break;
         }
     });
