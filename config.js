@@ -332,6 +332,12 @@ switch (n$.site) {
     }
   break;
 
+  case 'memo':
+    l$ = {
+      js: { ext: true }
+    }
+  break;
+
   case 'mindmap':
     if(i$('framindmap.org/mindmaps')) { // Dans Mindmaps
       l$ = {
