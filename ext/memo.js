@@ -63,7 +63,7 @@ if(window.location.href == 'https://framemo.org/demo42') {
         )
         .css('margin','auto');
 
-    jQuery('.names').css({'margin':'auto','width':'auto');
+    jQuery('.names').css({'margin':'auto','width':'auto'});
 
     jQuery('#scrumblr')
         .append(jQuery('.names, .stickers, .buttons'))
