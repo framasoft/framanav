@@ -175,7 +175,6 @@ jQuery(document).ready(function() {
       }
 
       dp$.f['cloud']       = { "c": "v", "i": "fa-cloud" }
-      dp$.f['android']     = { "c": "b", "i": "fa-android" }
       dp$.f['lab']         = { "c": "j", "i": "fa-flask" }
       dp$.f['code']        = { "c": "j", "i": "fa-terminal" }
       dp$.f['doc'].c = 'j';

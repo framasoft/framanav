@@ -77,10 +77,6 @@ switch (n$.site) {
     }
   break;
 
-  case 'android':
-    l$ = { fixed: true }
-  break;
-
   case 'forum':
     n$.name = 'Framagora'
     l$ = {
@@ -684,7 +680,6 @@ switch (n$.site) {
   case 'contact' :               l$.piwik.id = '19'; break;
   case 'news' :                  l$.piwik.id = '20'; break;
   case 'bag' :                   l$.piwik.id = '21'; break;
-  case 'android' :               l$.piwik.id = '22'; break;
   case 'start' :                 l$.piwik.id = '23'; break;
   case 'pack' :                  l$.piwik.id = '24'; break;
   case '10ans' :                 l$.piwik.id = '25'; break;
@@ -763,7 +758,7 @@ if (i$(/(phonie)/i,'h')) {
   l$.icons.fav = 'favicon-jaune.png';
 }
 
-if ( i$(/(agenda|android|bag|bee|bin|blog|board|bookin|book|calc|carte|cloud|code|colibri|date|drive|drop|dvd|forms|games|key|lab|lang|libre|link|listes|maestro|memo|mindmap|minetest|news|pack|phonie|piaf|pic|slides|sphere|start|stats|status|talk|team|tube|vectoriel|vox|zic)/i,'h')
+if ( i$(/(agenda|bag|bee|bin|blog|board|bookin|book|calc|carte|cloud|code|colibri|date|drive|drop|dvd|forms|games|key|lab|lang|libre|link|listes|maestro|memo|mindmap|minetest|news|pack|phonie|piaf|pic|slides|sphere|start|stats|status|talk|team|tube|vectoriel|vox|zic)/i,'h')
    || i$(/(bot.|contact.|degooglisons-internet|forum.|participer.|soutenir.|wiki.)/i,'h') ){
   l$.icons.apple = n$.site+'.png';
   l$.icons.fav = 'fav_'+n$.site+'.png';
