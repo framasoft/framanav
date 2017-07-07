@@ -206,14 +206,6 @@ switch (n$.site) {
     }
   break;
 
-  case 'cloud':
-    l$ = {
-      js: { audio: true, video: true },
-      fixed: true,
-      optin: ['#commentform #email']
-    }
-  break;
-
   case 'colibri':
     l$ = {
       css: { ext: true },
