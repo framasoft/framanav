@@ -12,14 +12,14 @@ if(window.location.href == 'https://framemo.org/demo42') {
 
         jQuery(selector+' .stickertarget').addClass('doubletap') // Escape multi bound
 
-        jQuery(selector+' .doubletap').on('click', function() { 
+        jQuery(selector+' .doubletap').on('click', function() {
 
             clickTarget = selector.replace('#','');
 
-            if (clickTimer == null) { 
+            if (clickTimer == null) {
 
                 clickTimer = setTimeout(function () {
-                    clickTimer = null;    
+                    clickTimer = null;
                 }, 1000)
 
             } else {
@@ -46,7 +46,7 @@ if(window.location.href == 'https://framemo.org/demo42') {
 
     }, 500);
 
-    /* Layout Framemo */
+    /** Layout Framemo - Tabs **/
 
     jQuery('.board-outline')
         .before(
@@ -60,7 +60,10 @@ if(window.location.href == 'https://framemo.org/demo42') {
         )
         .wrap(
             '<div class="tab-content" style="margin:20px 0"><div role="tabpanel" class="tab-pane active" id="scrumblr"></div></div>'
-        );
+        )
+        .css('margin','auto');
+
+    jQuery('.names').css({'margin':'auto','width':'auto');
 
     jQuery('#scrumblr')
         .append(jQuery('.names, .stickers, .buttons'))
@@ -81,13 +84,13 @@ if(window.location.href == 'https://framemo.org/demo42') {
             jQuery(this).removeClass('fa-search-plus').addClass('fa-search-minus');
         } else {
             jQuery(this).removeClass('fa-search-minus').addClass('fa-search-plus');
-        }  
+        }
     })
 
     jQuery('#full-page').on('click', function(){
         if (jQuery('.container.ombre').length) {
             jQuery(this).children('i').removeClass('fa-expand').addClass('fa-compress');
-            jQuery('.container.ombre').removeClass('container').addClass('container-fluid');           
+            jQuery('.container.ombre').removeClass('container').addClass('container-fluid');
         } else {
             jQuery(this).children('i').removeClass('fa-compress').addClass('fa-expand');
             jQuery('.container-fluid.ombre').removeClass('container-fluid').addClass('container');
@@ -95,8 +98,8 @@ if(window.location.href == 'https://framemo.org/demo42') {
     })
 
      jQuery('main hr').hide();
-    
-    /* Mode iframe */
+
+    /** Mode iframe **/
     if(top.location!=self.document.location) {
 
         jQuery('#full-page').hide().trigger('click');
