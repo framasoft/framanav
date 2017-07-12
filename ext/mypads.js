@@ -33,20 +33,19 @@ setInterval(function() {
             ).css('border-radius','0 5px 0 0');
 
             if(frame_full_page) {
+                console.log('pleine page');
                 expandIframe();
             } else {
+                console.log('vue normale');
                 compressIframe();
             }
 
             $('.btn.expand-toggle').click(function(){
 
                 if($('.btn.expand-toggle i').hasClass('glyphicon-resize-full')) {
-
                     expandIframe();
                     f$Cookie('w','frame_full_page',true,365*24*60*60*1000);
-
                 } else {
-
                     compressIframe();
                     f$Cookie('w','frame_full_page',false,365*24*60*60*1000);
                 }
