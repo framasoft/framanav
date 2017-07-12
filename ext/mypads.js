@@ -33,7 +33,7 @@ setInterval(function() {
             ).css('border-radius','0 5px 0 0');
 
             var frame_full_page = f$Cookie('r', 'frame_full_page');
-            if(frame_full_page === true) {
+            if(frame_full_page) {
                 expandIframe();
             } else {
                 compressIframe();
