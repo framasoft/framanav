@@ -21,7 +21,7 @@ if( i$Lang('en') ) {
 }
 
 if( d$.f.date.modal.file != '' ) {
-  f$('a[href*="aqg259dth55iuhwm"]:contains("exemple")').before('<a href="'+d$.f.date.modal.file+'" data-toggle="modal" data-target="#modal-Tuto">'+d$.f.date.modal.link+'</a> '+d$.f.date.modal.or+' ');
+  f$('a[href*="aqg259dth55iuhwm"]:contains("exemple")').before('<a href="'+d$.f.date.modal.file+'">'+d$.f.date.modal.link+'</a> '+d$.f.date.modal.or+' ');
 }
 
 
