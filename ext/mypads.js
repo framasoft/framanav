@@ -34,7 +34,7 @@ setInterval(function() {
 
             var iframeFP = f$Cookie('r', 'iframeFP');
 
-            if(iframeFP == true) {
+            if(iframeFP == 'true') {
                 expandIframe();
             } else {
                 compressIframe();
@@ -44,10 +44,10 @@ setInterval(function() {
 
                 if($('.btn.expand-toggle i').hasClass('glyphicon-resize-full')) {
                     expandIframe();
-                    f$Cookie('w','iframeFP',true,365*24*60*60*1000);
+                    f$Cookie('w','iframeFP','true',365*24*60*60*1000);
                 } else {
                     compressIframe();
-                    f$Cookie('w','iframeFP',false,365*24*60*60*1000);
+                    f$Cookie('w','iframeFP','false',365*24*60*60*1000);
                 }
 
             });
