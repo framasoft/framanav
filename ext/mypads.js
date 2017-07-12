@@ -32,9 +32,9 @@ setInterval(function() {
                 '</button>'
             ).css('border-radius','0 5px 0 0');
 
-            var frame_full_page = f$Cookie('r', 'frame_full_page');
+            var frame_full_page = f$Cookie('r', 'iframefp');
 
-            if(frame_full_page = 'true') {
+            if(iframeFP == 'true') {
                 expandIframe();
             } else {
                 compressIframe();
@@ -44,10 +44,10 @@ setInterval(function() {
 
                 if($('.btn.expand-toggle i').hasClass('glyphicon-resize-full')) {
                     expandIframe();
-                    f$Cookie('w','frame_full_page','true',365*24*60*60*1000);
+                    f$Cookie('w','iframeFP','true',365*24*60*60*1000);
                 } else {
                     compressIframe();
-                    f$Cookie('w','frame_full_page','false',365*24*60*60*1000);
+                    f$Cookie('w','iframeFP','false',365*24*60*60*1000);
                 }
 
             });
