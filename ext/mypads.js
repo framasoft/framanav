@@ -32,7 +32,7 @@ setInterval(function() {
                 '</button>'
             ).css('border-radius','0 5px 0 0');
 
-            var frame_full_page = f$Cookie('r', 'iframefp');
+            var iframeFP = f$Cookie('r', 'iframefp');
 
             if(iframeFP == 'true') {
                 expandIframe();
