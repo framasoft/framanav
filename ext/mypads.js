@@ -16,8 +16,6 @@ var compressIframe = function() {
 }
 
 setInterval(function() {
-    var frame_full_page = f$Cookie('r', 'frame_full_page');
-
     // Sur la page du pad (avec iframe)
     if(jQuery('section.pad iframe').length > 0) {
 
@@ -34,11 +32,10 @@ setInterval(function() {
                 '</button>'
             ).css('border-radius','0 5px 0 0');
 
+            var frame_full_page = f$Cookie('r', 'frame_full_page');
             if(frame_full_page === true) {
-                console.log('pleine page');
                 expandIframe();
             } else {
-                console.log('vue normale');
                 compressIframe();
             }
 
