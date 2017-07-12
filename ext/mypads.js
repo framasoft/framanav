@@ -33,10 +33,9 @@ setInterval(function() {
             ).css('border-radius','0 5px 0 0');
 
             var frame_full_page = f$Cookie('r', 'frame_full_page');
+            compressIframe();
             if(frame_full_page) {
                 expandIframe();
-            } else {
-                compressIframe();
             }
 
             $('.btn.expand-toggle').click(function(){
