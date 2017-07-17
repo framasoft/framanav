@@ -1,5 +1,5 @@
 #framafooter {
-  display:none;
+    display:none;
 }
 
 /************************* *
@@ -8,94 +8,94 @@
 .outMM { background: #eee !important; }
 
 .outMM h1 {
-  font-family: "DejaVu Sans",Verdana,Geneva,sans-serif !important;
-  font-size: 48px;
-  font-weight: bold;
+    font-family: "DejaVu Sans",Verdana,Geneva,sans-serif !important;
+    font-size: 48px;
+    font-weight: bold;
 }
 
 .outMM .lead { font-style:italic; }
 
 .outMM .container-fluid {
-  /* = .container.ombre */
-  margin-top: 30px;
-  margin-bottom: 30px;
-  padding: 20px 30px;
-  /* = .ombre */
-  background-color: #FFF;
-  box-shadow: -4px 6px 9px rgba(50, 50, 50, 0.5);
-  /* = replace Mattermost style */
-  height:auto !important;
-  /* = .container de BS */
-  margin-right: auto;
-  margin-left: auto;
+    /* = .container.ombre */
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 20px 30px;
+    /* = .ombre */
+    background-color: #FFF;
+    box-shadow: -4px 6px 9px rgba(50, 50, 50, 0.5);
+    /* = replace Mattermost style */
+    height:auto !important;
+    /* = .container de BS */
+    margin-right: auto;
+    margin-left: auto;
 }
 .outMM .container-fluid[style] {
-  margin-top: 72px !important;
+    margin-top: 72px !important;
 }
 
 @media (min-width: 768px) {
-  .outMM .container-fluid {
-    width: 750px;
-  }
+    .outMM .container-fluid {
+        width: 750px;
+    }
 }
 @media (min-width: 992px) {
-  .outMM .container-fluid {
-    width: 970px;
-  }
+    .outMM .container-fluid {
+        width: 970px;
+    }
 }
 @media (min-width: 1200px) {
-  .outMM .container-fluid {
-    width: 1170px;
-  }
+    .outMM .container-fluid {
+        width: 1170px;
+    }
 }
 
 .outMM img.ombre {
-  box-shadow: 0px 2px 6px rgba(50, 50, 50, 0.4);
-  margin: 10px;
-  padding: 0px;
-  width: 80%;
+    box-shadow: 0px 2px 6px rgba(50, 50, 50, 0.4);
+    margin: 10px;
+    padding: 0px;
+    width: 80%;
 }
 
 #tuto-faq p[role="presentation"] .glyphicon,
 #le-logiciel p[role="presentation"] .glyphicon,
 #jardin p[role="presentation"] .glyphicon {
-  font-size:50px;
+    font-size:50px;
 }
 
 .carousel { margin:1em auto 4em; max-width:1060px; }
 
 .carousel-inner {
-  padding-bottom:75px;
-  box-shadow:0px 6px 9px rgba(50, 50, 50, 0.5);
+    padding-bottom:75px;
+    box-shadow:0px 6px 9px rgba(50, 50, 50, 0.5);
 }
 
 .carousel-control.right, .carousel-control.left {
-  background-image:none !important;
-  color:#eee !important;
+    background-image:none !important;
+    color:#eee !important;
 }
 
 #play-pause {
-  position: absolute;
-  margin-top: -100px;
-  margin-left: 30px;
-  left: 0%;
+    position: absolute;
+    margin-top: -100px;
+    margin-left: 30px;
+    left: 0%;
 }
 
 #play-pause a {
-  cursor: pointer;
-  font-size: 30px;
-  z-index: 1000 !important;
-  background: #f3f3f3 !important;
-  border-radius: 30px;
-  color: #767676 !important;
-  width: 40px;
-  height: 40px;
-  padding-left: 2px;
-  padding-top: 2px;
-  position:absolute !important;
-  opacity: 1;
-  text-shadow: none;
-  box-shadow: 0px 1px 1px rgba(50, 50, 50, 0.5);
+    cursor: pointer;
+    font-size: 30px;
+    z-index: 1000 !important;
+    background: #f3f3f3 !important;
+    border-radius: 30px;
+    color: #767676 !important;
+    width: 40px;
+    height: 40px;
+    padding-left: 2px;
+    padding-top: 2px;
+    position:absolute !important;
+    opacity: 1;
+    text-shadow: none;
+    box-shadow: 0px 1px 1px rgba(50, 50, 50, 0.5);
 }
 
 #play-pause a:hover { color: #555 !important; }
@@ -103,79 +103,79 @@
 .carousel a { border-bottom: none !important; }
 
 .carousel-caption {
-  background: #f3f3f3 !important;
-  bottom: -75px !important;
-  color: #333 !important;
-  left:0 !important;
-  right:0 !important;
-  position: absolute !important;
-  height: 78px !important;
-  text-shadow: none;
-  border-top: 1px solid #ddd;
+    background: #f3f3f3 !important;
+    bottom: -75px !important;
+    color: #333 !important;
+    left:0 !important;
+    right:0 !important;
+    position: absolute !important;
+    height: 78px !important;
+    text-shadow: none;
+    border-top: 1px solid #ddd;
 }
 
 .carousel-caption .h3 {
-  margin-top:10px;
+    margin-top:10px;
 }
 
 .carousel img {
-  width: 100%;
-  margin: 0;
+    width: 100%;
+    margin: 0;
 }
 
 /* Fix Mattermost */
 .outMM .btn {
-  border-radius: 4px;
-  -moz-transition: none;
-  -o-transition: none;
-  -webkit-transition: none;
-  transition: none;
+    border-radius: 4px;
+    -moz-transition: none;
+    -o-transition: none;
+    -webkit-transition: none;
+    transition: none;
 }
 
 .outMM .signup-team__container {
-  padding:0px;
-  max-width:auto;
+    padding:0px;
+    max-width:auto;
 }
 
 .outMM .signup-team__container .btn {
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  border-radius: 4px;
-  font-weight: normal;
-  margin-right: 0px;
-  margin-bottom:10px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    font-weight: normal;
+    margin-right: 0px;
+    margin-bottom:10px;
 }
 
 
 #ListModal .btn-default {
-  color: #333;
-  background-color: #fff;
-  border-color: #bdbdbd;
+    color: #333;
+    background-color: #fff;
+    border-color: #bdbdbd;
 }
 #ListModal .btn-default:hover,
 #ListModal .btn-default:focus,
 #ListModal .btn-default:active {
-  color: #333;
-  background-color: #e0e0e0;
-  border-color: #949494;
+    color: #333;
+    background-color: #e0e0e0;
+    border-color: #949494;
 }
 
 #ListModal .modal-header {
-  background-color: #fff;
+    background-color: #fff;
 }
 
 #ListModal button.close {
-  color:#333;
-  background:#fff !important;
+    color:#333;
+    background:#fff !important;
 }
 
 .outMM .signup-team__container .btn-custom-login.email,
 .outMM .btn-primary {
-  color: #fff !important;
-  text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
-  background-color: #6A5687 !important;
-  border-color: #6A5687 !important;
+    color: #fff !important;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
+    background-color: #6A5687 !important;
+    border-color: #6A5687 !important;
 }
 
 .outMM .signup-team__container .btn-custom-login.email:hover,
@@ -184,39 +184,39 @@
 .outMM .btn-primary:hover,
 .outMM .btn-primary:focus,
 .outMM .btn-primary:active {
-  color: #fff !important;
-  background-color: #635182 !important;
-  border-color: #635182 !important;
+    color: #fff !important;
+    background-color: #635182 !important;
+    border-color: #635182 !important;
 }
 
 .outMM .signup-team__container .btn-custom-login.gitlab {
-  color: #fff !important;
-  text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
-  background-color: #11809E !important;
-  border-color: #11809E !important;
+    color: #fff !important;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
+    background-color: #11809E !important;
+    border-color: #11809E !important;
 }
 
 .outMM .signup-team__container .btn-custom-login.gitlab:hover,
 .outMM .signup-team__container .btn-custom-login.gitlab:focus,
 .outMM .signup-team__container .btn-custom-login.gitlab:active {
-  color: #fff !important;
-  background-color: #0C5B7A !important;
-  border-color: #0C5B7A !important;
+    color: #fff !important;
+    background-color: #0C5B7A !important;
+    border-color: #0C5B7A !important;
 }
 
 .outMM#ct-login .signup__email-container,
 .outMM#ct-signup_user_complete .signup-team__container .inner__content { /* = .well */
-  min-height: 20px;
-  padding: 19px;
-  margin-bottom: 20px;
-  background-color: #f5f5f5;
-  border: 1px solid #e3e3e3;
-  border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
 }
 #ct-login.outMM .signup__email-container {
-  padding-bottom: 0;
+    padding-bottom: 0;
 }
 
 .signup-header,               /* Bandeau Déconnexion / Accueil / Page précédente */
@@ -225,84 +225,88 @@
 .signup-team__container h4:nth-child(2),
 .signup-team__container h4:nth-child(3), /* Sous-titre */
 .row.footer {                  /* Footer Mattermost */
-  display:none;
+    display:none;
 }
 
 /* /select_team */
-.outMM .margin--extra,               /* Créer équipe + Console admin */
+/*.outMM .margin--extra,               /* Créer équipe + Console admin */
 .outMM .signup-team__container .signup__content:nth-child(5) {
-  display:none;
+    display:none;
 }
 /* /signup_user_complete */
 .outMM .signup-team__container .or__container,
 .outMM .signup-team__container > span.color--light,
 .outMM .signup-team__container > p {
-  display:none;
+    display:none;
 }
 
 /* /login */
 .outMM#ct-login .signup__content > div > .form-group, /* Pas de compte ? */
-.outMM .signup__content .or__container,
-.outMM .signup__content h5 {
-  display:none;
+.outMM .signup__content .or__container/*,
+.outMM .signup__content h5*/ {
+    display:none;
+}
+
+.outMM .signup-team__container .btn.btn-custom-login > span {
+    top: 4px !important;
 }
 
 /* Trop de ménage ? */
 .outMM form .margin--extra,
 #ListModalLabel {
-  display:block;
+    display:block;
 }
 
 .outMM #framafooter[style] {
-  display:block;
-  position: relative !important;
+    display:block;
+    position: relative !important;
 }
 
 /*******************
  * Dans Mattermost *
  *******************/
 .inMM #root {
-  margin-top: 0 !important;
+    margin-top: 0 !important;
 }
 
 .inMM .sidebar--left {
-  height: calc(100% - 21px);
+    height: calc(100% - 21px);
 }
 
 @media screen and (max-width: 768px) {
-  .inMM .sidebar--left .nav-pills__container {
-    height: calc(100% - 80px);
-  }
+    .inMM .sidebar--left .nav-pills__container {
+        height: calc(100% - 80px);
+    }
 }
 
 .inMM .sidebar--left .dropdown-menu {
-  width: 250px !important;
-  max-width: 250px;
-  left: 180px;
+    width: 250px !important;
+    max-width: 250px;
+    left: 180px;
 }
 
 .inMM .navbar-right .dropdown-menu { right: -100px }
 
 .inMM .admin-sidebar {
-  top: 42px;
-  padding-bottom:42px;
+    top: 42px;
+    padding-bottom:42px;
 }
 
 .inMM #framafooter {
-  display:none;
+    display:none;
 }
 
 .sidebar__search-icon {
-  top: 8px;
-  right: 8px;
+    top: 8px;
+    right: 8px;
 }
 
 .post-right__scroll {
-  height: calc(100% - 42px);
+    height: calc(100% - 42px);
 }
 
 .sidebar--left .sidebar__switcher {
-  bottom: 21px;
+    bottom: 21px;
 }
 
 /***************** *
