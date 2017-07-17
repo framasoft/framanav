@@ -33,6 +33,10 @@
     padding-right:30px;
 }
 
+#main .row {
+    margin:inherit !important;
+}
+
 body {
     background-color: #eee;
 }
