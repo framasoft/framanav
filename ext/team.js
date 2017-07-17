@@ -236,6 +236,8 @@ var updateDisplay = function(currentId) {
         return false;
       });
       f$('#carousel-team').carousel('cycle');
+
+      f$('.signup-team__container h5').hide();
     break;
 
   }
