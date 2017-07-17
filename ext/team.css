@@ -146,7 +146,9 @@
     margin-right: 0px;
     margin-bottom:10px;
 }
-
+.outMM .signup-team__container .btn.btn--full {
+    max-width:350px
+}
 
 #ListModal .btn-default {
     color: #333;
