@@ -26,3 +26,24 @@
 .modal.hidden[style*="block"] {
     display: block !important;
 }
+
+main .container {
+    width: auto;
+    padding-left:30px;
+    padding-right:30px;
+}
+
+body {
+    background-color: #eee;
+}
+
+#main-outlet {
+    background-color: #FFF;
+    -webkit-box-shadow: -4px 6px 9px rgba(50, 50, 50, 0.5);
+    -moz-box-shadow:  -4px 6px 9px rgba(50, 50, 50, 0.5);
+    box-shadow:     -4px 6px 9px rgba(50, 50, 50, 0.5);
+}
+
+#reply-control {
+    background-color: #d7ccc8;
+}
