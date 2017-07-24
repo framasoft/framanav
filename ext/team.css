@@ -311,6 +311,10 @@
     bottom: 21px;
 }
 
+.post-right__container .post-create__container {
+    padding-bottom: 56px;
+}
+
 /***************** *
  * Partout
  * *************** */
