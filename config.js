@@ -454,7 +454,7 @@ switch (n$.site) {
         ]
       }
     }
-    if( i$(/(lite.framapad|lite[2-5].)/i, 'h')) {
+    /*if( i$(/(lite.framapad|lite[2-5].)/i, 'h')) {
       l$.modal = {
         info: [
           'Création des pads désactivée et passage prochain en lecture seule',
@@ -468,7 +468,7 @@ switch (n$.site) {
         ]
       };
       host = 'ovh';
-    }
+    }*/
   break;
 //-- </framapad> -------------------------------------------------------
 
