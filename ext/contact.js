@@ -10,7 +10,7 @@ jQuery(document).ready(function(){
         // Ordre alphabétique pour tout ce qui est en vert
         ["agenda","bag","bee","bin","board","calc","carte","date","drive",
          "drop","forms","games","git","link","listes","maestro"],
-        ["memo","mindmap","minetest","news","notes","pad","petitions",
+        ["memo","mindmap","minetest","my","news","notes","pad","petitions",
          "piaf","pic","slides","sphere","talk","team","vectoriel","vox"]
     ];
 
