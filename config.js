@@ -576,10 +576,10 @@ switch (n$.site) {
     }
 
     // Modale exceptionnel pour pb locales
-          l$.modal = {
+    l$.modal = {
       info: [
         'Framateam est en anglais !',
-        '<p>Suite à la mise à jour du 24/07/2017, Mattermost (le logiciel qui propulse Framateam) est passé en V4. Malheureusement, cette mise à jour majeure s’accompagne d’un bug au niveau des locales, qui permettent de choisir sa langue, empêchant d'utiliser l'interface web si la langue préférée n’est pas l’anglais. Ce'+
+        '<p>Suite à la mise à jour du 24/07/2017, Mattermost (le logiciel qui propulse Framateam) est passé en V4. Malheureusement, cette mise à jour majeure s’accompagne d’un bug au niveau des locales, qui permettent de choisir sa langue, empêchant d’utiliser l’interface web si la langue préférée n’est pas l’anglais. Ce '+
         '<a href="https://gitlab.com/gitlab-org/gitlab-ce/issues/35472">bug est déjà signalé</a> '+
         'aux équipes de Gitlab et espérons qu’un correctif sera appliqué lors des mises à jour des prochaines semaines..</p>'+
         '<p>En attendant, la seule langue disponible pour Framateam est l’anglais.</p>'+
