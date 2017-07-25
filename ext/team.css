@@ -319,3 +319,9 @@
  * Partout
  * *************** */
 .error-bar{ display:none }
+
+.app__body #modal-finfo .modal-header,
+.app__body #modal-finfo .modal-body,
+.app__body #modal-finfo .modal-footer {
+    background: #fff;
+}
