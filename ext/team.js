@@ -249,4 +249,37 @@ var updateDisplay = function(currentId) {
     f$('.container-fluid').prepend(f$_header);
   }
 
+/** Modale exceptionnelle bug locales **/
+f$_modalInfo_dejavu = f$Cookie('r','modal-info');
+if(!f$_modalInfo_dejavu) {
+
+  jQuery('body').append(
+                h$Modal( // id, title, body, footer
+                  'finfo', 'Framateam est en anglais !',
+                  '<p>Suite à la mise à jour du 24/07/2017, Mattermost (le logiciel qui propulse Framateam) est passé en V4. Malheureusement, cette mise à jour majeure s’accompagne d’un bug au niveau des locales, qui permettent de choisir sa langue, empêchant d’utiliser l’interface web si la langue préférée n’est pas l’anglais. Ce '+
+        '<a href="https://gitlab.com/gitlab-org/gitlab-ce/issues/35472">bug est déjà signalé</a> '+
+        'aux équipes de Gitlab et espérons qu’un correctif sera appliqué lors des mises à jour des prochaines semaines..</p>'+
+        '<p>En attendant, la seule langue disponible pour Framateam est l’anglais.</p>'+
+        '<p>Nous sommes désolés de ces désagréments.</p>'+
+        '<p>L’équipe Framasoft.</p>'+
+        '<div lang="en" style="font-style:italic"><h1 class="h3">Framateam is only in english!</h1>'+
+        '<p>During the update on 2017/07/24, Mattermost (the software behind Framateam) has been upgraded to its V4. Unfortunately, with this major update comes a bug with locales, the system allowing to change your langage setting, preventing to use the web interface if the preffered language is not English. This '+
+        '<a href="https://gitlab.com/gitlab-org/gitlab-ce/issues/35472">reported this bug</a>'+
+        ' to Gitlab’s teams and we hope that a bugfix will be applied in the future weeks updates.</p>'+
+        '<p>In the meantime, the only langage available on Framateam is English.</p>'+
+        '<p>We apologize for the inconvenience,</p>'+
+        '<p>Framasoft’s team.</p></div>',
+                  '<button class="btn" id="modal-close" data-dismiss="modal">'+d$.t.close+'</button>'+
+                  '<button class="btn btn-primary" id="modal-set-cookie" >'+d$.t.nevershow+'</button>'
+                )
+                );
+  jQuery('#modal-finfo').modal('show');
+
+  jQuery('#modal-set-cookie').click(function() {
+      f$Cookie('w','modal-info',true,'604800000');
+      jQuery('#modal-finfo').modal('hide');
+  });
+}
+/** Fin modale **/
+
 }
