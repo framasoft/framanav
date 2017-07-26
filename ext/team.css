@@ -320,8 +320,45 @@
  * *************** */
 .error-bar{ display:none }
 
+/* Modale exceptionnelle */
 .app__body #modal-finfo .modal-header,
 .app__body #modal-finfo .modal-body,
 .app__body #modal-finfo .modal-footer {
     background: #fff;
+}
+.app__body #modal-finfo .modal-body {
+    color: #333;
+}
+.app__body #modal-finfo .modal-body a {
+    color: #0C5B7A;
+}
+.app__body #modal-finfo .modal-body a:hover,
+.app__body #modal-finfo .modal-body a:focus,
+.app__body #modal-finfo .modal-body a:active {
+    color: #635182;
+}
+.app__body #modal-finfo .btn-default {
+  color: #333;
+  background-color: #fff;
+  border-color: #bdbdbd;
+}
+.app__body #modal-finfo .btn-default:hover,
+.app__body #modal-finfo .btn-default:focus,
+.app__body #modal-finfo .btn-default:active {
+  color: #333;
+  background-color: #e0e0e0;
+  border-color: #949494;
+}
+.app__body #modal-finfo .btn-primary {
+  color: #fff;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
+  background-color: #6A5687;
+  border-color: #6A5687;
+}
+.app__body #modal-finfo .btn-primary:hover,
+.app__body #modal-finfo .btn-primary:focus,
+.app__body #modal-finfo .btn-primary:active {
+  color: #fff;
+  background-color: #635182;
+  border-color: #635182;
 }
