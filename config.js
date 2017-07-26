@@ -59,7 +59,7 @@ switch (n$.site) {
           js : { ext: true },
           fixed: i$('fixed'),
           modal: {
-            don: ['a[href="index.html"]', 'd’utiliser','créer un pad'],
+            don: ['onstart', 'd’utiliser','créer un pad'],
             info: [
               'Veggie ipsum',
               '<p>Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip. Sea lettuce lettuce water chestnut eggplant winter purslane fennel azuki bean earthnut pea sierra leone bologi leek soko chicory celtuce parsley jÃ­cama salsify.</p>'+

@@ -808,10 +808,10 @@ function f$_start_jquery() {
                   d$.meta.modaldon.d[0].replace('%c$.modal.don[1]%', c$.modal.don[1])+
                   d$.meta.modaldon.d[1]+d$.meta.modaldon.d[2]+d$.meta.modaldon.d[3],
                   // footer
-                  '<p class="col-md-6 text-center"><a target="_blank" id="modal-don" href="'+d$.meta.soutenir.l+'/?f=modal&s='+n$.site+'" class="btn btn-soutenir btn-block">'+h$icon(d$.meta.soutenir.i)+' '+d$.meta.modaldon.b1+h$.newwindow+'</a></p>'+
-                  '<p class="col-md-6 text-center"><a target="_blank" id="modal-contact" href="'+d$.f.participer.l+'" class="btn btn-info btn-block">'+h$icon(d$.f.participer.i)+' '+d$.meta.modaldon.b2+h$.newwindow+'</a></p>'+
-                  '<p class="clearfix text-right"><a id="modal-dl" href="javascript:void(0);" class="text-primary" >'+d$.meta.modaldon.b3.replace('%c$.modal.don[2]%',c$.modal.don[2])+'</a></p>'+
-                  '<p class="clearfix text-right"><a id="modal-dl2" href="javascript:void(0);" class="text-primary" >'+d$.meta.modaldon.b4+'</a></p>'
+                  '<div class="clearfix"><p class="col-md-12 text-center"><a target="_blank" id="modal-don" href="'+d$.meta.soutenir.l+'/?f=modal&s='+n$.site+'" class="btn btn-soutenir btn-block">'+h$icon(d$.meta.soutenir.i)+' '+d$.meta.modaldon.b1+h$.newwindow+'</a></p>'+
+                  '<!--<p class="col-md-6 text-center"><a target="_blank" id="modal-contact" href="'+d$.f.participer.l+'" class="btn btn-info btn-block">'+h$icon(d$.f.participer.i)+' '+d$.meta.modaldon.b2+h$.newwindow+'</a></p>-->'+
+                  '<p class="col-md-6 text-center"><a id="modal-dl" href="javascript:void(0);" class="btn btn-xs btn-default btn-block" >'+d$.meta.modaldon.b3.replace('%c$.modal.don[2]%',c$.modal.don[2])+'</a></p>'+
+                  '<p class="col-md-6 text-center"><a id="modal-dl2" href="javascript:void(0);" class="btn btn-xs btn-default btn-block" style="line-height: 36px;">'+d$.meta.modaldon.b4+'<br></a></p></div>'
                 )
               );
 
