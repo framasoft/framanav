@@ -3,7 +3,7 @@ if(i$('/auth') || i$('remote_follow')) { $('.container').addClass('ombre'); }
 $('img[src^="/assets/logo"]').attr("src","https://framasoft.org/nav/img/icons/piaf.png");
 
 // Filters (could work on any Mastodon instance)
-var Storage = localStorage.getItem('piafFilters');
+/*var Storage = localStorage.getItem('piafFilters');
 if(Storage === null) {
     piafFilters = []
 } else {
@@ -77,12 +77,12 @@ $(document).keydown(function(e) {
 		isG = true;
 	}
 }).keyup(function(e) {
-	if ($('input:focus').length > 0 || $('textarea:focus').length > 0 || isG !== true) { 
+	if ($('input:focus').length > 0 || $('textarea:focus').length > 0 || isG !== true) {
 		isG = false;
 		return false;
 	}
 	var key = (e.keyCode === true) ? e.keyCode : e.which;
-	
+
 	if (key==70) { // F pressed
         if( $('#piafToggle').length ) {
             // Pouets hidden
@@ -91,6 +91,7 @@ $(document).keydown(function(e) {
             // Pouets visible
             $('head').append('<style id="piafToggle">.status[style],.status__wrapper[style] {display:block !important}</style>');
         }
-    }	
+    }
 	isG = false;
 });
+*/
