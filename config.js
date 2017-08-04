@@ -174,6 +174,7 @@ switch (n$.site) {
       l$.modal = {
         don: ['a[href*="framacalc.org/"]', 'd’utiliser', 'créer un calc']
       }
+      l$.js = {ext : function(){ jQuery('#drop label:eq(0)').hide(); }}
     } else { // dans Ethercalc
       l$ = {
         js: {
