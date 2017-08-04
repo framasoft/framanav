@@ -32,10 +32,17 @@
 .popup input[type="text"] {
     -webkit-box-sizing: border-box !important;
     -moz-box-sizing: border-box !important;
-    box-sizing: border-box !important;      
+    box-sizing: border-box !important;
 }
 
 .popup h1, .popup h2 {
     margin-top:0px;
     margin-bottom:0px;
+}
+
+/* Fix toolbar on mobile */
+@media only screen and (min-device-width:320px)and (max-device-width:720px) {
+    .toolbar ul.menu_left {
+        top:42px !important;
+    }
 }
