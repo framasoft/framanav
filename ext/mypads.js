@@ -1,5 +1,4 @@
 
-
 var expandIframe = function() {
     $('#mypads header, #mypads aside, #mypads footer').hide();
     $('#mypads main.container').removeClass('container').addClass('container-fluid');
@@ -62,6 +61,14 @@ setInterval(function() {
         compressIframe();
 
     }
+
+    // Bouton « Quitter le dossier »
+    if(jQuery('#mypads .col-md-9 h2 button.cancel').length > 0 ) {
+        jQuery('#mypads .col-md-9 h2 .btn-group').append(jQuery('#mypads .col-md-9 h2 button.cancel'));
+        jQuery('#mypads .col-md-9 h2 button.cancel').addClass('btn btn-warning').css('font-size','14px');
+        jQuery('#mypads .col-md-9 h2 button.cancel i').removeClass('glyphicon-remove').addClass('glyphicon-fire').css('margin-right','5px');
+    }
+
 }, 1000)
 
 /*jQuery.getJSON( "/stats.json", function(data) {
