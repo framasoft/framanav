@@ -538,7 +538,15 @@ switch (n$.site) {
   case 'sphere':
     l$ = {
       js: {
-        ext: function() { jQuery('link[href*=bootstrap-complete]').remove(); }
+        ext: function() {
+            jQuery('link[href*=bootstrap-complete]').remove();
+            jQuery("#inscription-email").text(function(){
+                return jQuery(this).text().replace('inscription-framasphere@framalistes.org', 'rt+framasphere@framasoft.org')
+            });
+            jQuery.getJSON( "https://framasphere.org/nodeinfo/2.0" ).done( function( data ) {
+                jQuery('#userFramasphere').text(data.usage.users.total);
+            });
+        }
       },
       css: { order: '102345' }
     }
