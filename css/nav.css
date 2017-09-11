@@ -127,6 +127,7 @@
     min-height:30px !important;                 /*50px sur BS */
     margin-bottom:0;
     height:42px;
+    width: auto;
 }
 
 #framanav.navbar {
