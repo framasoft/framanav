@@ -249,7 +249,7 @@ var updateDisplay = function(currentId) {
     f$('.container-fluid').prepend(f$_header);
   }
 
-/** Modale exceptionnelle bug locales **/
+/** Modale exceptionnelle bug locales *
 f$_modalInfo_dejavu = f$Cookie('r','modal-info');
 if(!f$_modalInfo_dejavu) {
 
