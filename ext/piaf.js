@@ -1,6 +1,6 @@
 // Framapiaf (only for framapiaf.org)
 if(i$('/auth') || i$('remote_follow')) { $('.container').addClass('ombre'); }
-$('img[src^="/packs/logo"]').attr("src","https://framasoft.org/nav/img/icons/piaf.png");
+$('img[src*="/packs/logo"]').attr("src","https://framasoft.org/nav/img/icons/piaf.png");
 
 // Filters (could work on any Mastodon instance)
 /*var Storage = localStorage.getItem('piafFilters');
