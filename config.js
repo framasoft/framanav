@@ -259,12 +259,10 @@ switch (n$.site) {
       l$.js = { video: true };
     }
     if( i$('https://framadrive.org/login', 'u') && i$Before('2017/9/29') ) {
-      l$ = {
-        alert: [
-          'info',
-          'Rappel important : Framadrive sera coupé cette nuit. Plus d’infos sur <a href="https://status.framasoft.org/incident/296">status.framasoft.org</a>.'
-        ]
-      }
+      l$.alert = [
+        'info',
+        'Rappel important : Framadrive sera coupé cette nuit. Plus d’infos sur <a href="https://status.framasoft.org/incident/296">status.framasoft.org</a>.'
+      ]
     }
   break;
 
