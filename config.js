@@ -258,6 +258,14 @@ switch (n$.site) {
     } else {
       l$.js = { video: true };
     }
+    if( i$('https://framadrive.org/login', 'u') && i$Before('2017/9/29') ) {
+      l$ = {
+        alert: [
+          'info',
+          'Rappel important : Framadrive sera coupé cette nuit. Plus d’infos sur <a href="https://status.framasoft.org/incident/296">status.framasoft.org</a>.'
+        ]
+      }
+    }
   break;
 
   case 'drop':
@@ -652,7 +660,8 @@ switch (n$.site) {
  **********************************************************************/
 l$.piwik = {
   id: '',
-  url: 'https://stats.framasoft.org/'
+  url: 'https://stats.framasoft.org/',
+  mode: 'js'
 };
 
 switch (n$.site) {
@@ -690,7 +699,7 @@ switch (n$.site) {
   case 'link' :                  l$.piwik.id = '32'; break;
   case 'participer' :            l$.piwik.id = '33'; break;
   case 'colibri' :               l$.piwik.id = '33'; break;
-  case 'bin' :                   l$.piwik.id = '34'; break;
+  case 'bin' :                   l$.piwik.id = '34'; l$.piwik.mode = 'img'; break;
   case 'cloud' :                 l$.piwik.id = '35'; break;
   case 'status' :                l$.piwik.id = '37'; break;
   case 'bookin' :                l$.piwik.id = '38'; break;
@@ -718,33 +727,59 @@ switch (n$.site) {
   case 'piaf' :                  l$.piwik.id = '62'; break;
 }
 
-if(l$.piwik.id != '') {
-  var _paq = _paq || [];
 
-  _paq.push([function() {
-    var self = this;
-    function getOriginalVisitorCookieTimeout() {
-      var now = new Date(),
-      nowTs = Math.round(now.getTime() / 1000),
-      visitorInfo = self.getVisitorInfo();
-      var createTs = parseInt(visitorInfo[2]);
-      var cookieTimeout = 33696000; // 13 mois en secondes
-      var originalTimeout = createTs + cookieTimeout - nowTs;
-      return originalTimeout;
-    }
-    this.setVisitorCookieTimeout( getOriginalVisitorCookieTimeout() );
-  }]);
 
-  _paq.push(["trackPageView"]);
-  _paq.push(["enableLinkTracking"]);
+if(
+    l$.piwik.id != '' 
+  && 
+    // Pas de Piwik si DoNotTrack 
+    // DNT est respecté mais on évite les notifications des uBlock, Ghostery, etc
+    !( navigator.doNotTrack == "yes" 
+    || navigator.doNotTrack == "1" 
+    || navigator.msDoNotTrack == "1" 
+    || window.doNotTrack == "1")
+  ) {
+  
+  // Code Javascript
+  if(l$.piwik.mode == 'js') {
 
-  (function() {
-    var u=l$.piwik.url;
-    _paq.push(["setTrackerUrl", u+"p.php"]);
-    _paq.push(["setSiteId", l$.piwik.id]);
-    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
-    g.defer=true; g.async=true; g.src=u+"p.js"; s.parentNode.insertBefore(g,s);
-  })();
+    var _paq = _paq || [];
+
+    _paq.push([function() {
+      var self = this;
+      function getOriginalVisitorCookieTimeout() {
+        var now = new Date(),
+        nowTs = Math.round(now.getTime() / 1000),
+        visitorInfo = self.getVisitorInfo();
+        var createTs = parseInt(visitorInfo[2]);
+        var cookieTimeout = 33696000; // 13 mois en secondes
+        var originalTimeout = createTs + cookieTimeout - nowTs;
+        return originalTimeout;
+      }
+      this.setVisitorCookieTimeout( getOriginalVisitorCookieTimeout() );
+    }]);
+
+    _paq.push(["trackPageView"]);
+    _paq.push(["enableLinkTracking"]);
+
+    (function() {
+      var u=l$.piwik.url;
+      _paq.push(["setTrackerUrl", u+"p.php"]);
+      _paq.push(["setSiteId", l$.piwik.id]);
+      var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+      g.defer=true; g.async=true; g.src=u+"p.js"; s.parentNode.insertBefore(g,s);
+    })();
+  
+  // Code Image
+  } else {
+
+    (function() {
+      var u=l$.piwik.url;
+      var d=document, g=d.createElement("img"), s=d.getElementsByTagName("body")[0]; g.style="border:0";
+      g.alt=""; g.src=u+"p.php?idsite="+l$.piwik.id+'&rec=1'; s.appendChild(g);
+    })();
+
+  }
 }
 
 /***********************************************************************

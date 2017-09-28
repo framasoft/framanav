@@ -1176,6 +1176,14 @@ function i$Agent() {
   return (/Framatech/i.test(window.navigator.userAgent));
 }
 
+function i$Before(date) {
+  return new Date(new Date().toDateString()) < new Date(date);
+}
+
+function i$After(date) {
+  return new Date(new Date().toDateString()) > new Date(date);
+}
+
 /***********************************************************************
  *                           Config globale                            *
  ***********************************************************************/
@@ -1252,13 +1260,13 @@ if(f$_mm == 12 && (31-f$_dd) < 16 && n$.site != 'soutenir') {
 }
 
 // Bandeau dio3
-if(f$_mm == 10 && f$_dd > 2 && f$_dd < 29 && n$.site != 'soutenir') {
+/*if(f$_mm == 10 && f$_dd > 2 && f$_dd < 29 && n$.site != 'soutenir') {
   c$.alert[0] = 'info';
   c$.alert[1] =
     '<b class="violet">Frama</b><b class="orange">soft</b> entre en campagne et sort <strong><a href="https://framablog.org/2016/10/03/degooglisons-saison-3-30-services-alternatifs-aux-produits-de-google-co/">6 nouveaux services</a></strong>.'+
     '<br/> Nous vous rappelons que seuls vos dons rendent cela possible, merci pour <strong><a href="https://soutenir.framasoft.org">votre soutien</a></strong> '+
     '<a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir"><i class="fa fa-heart" aria-hidden="true"></i></a>';
-}
+}*/
 
 // Bandeau maintenance
 /*if (/(bin|soft|forms|forum.|dvd|book|zic|date|cloud|participer.|memo|notes|talk|mindmap|wiki.|lab|soutenir.|contact.|android|start|10ans.|games|degooglisons-internet)/i.test(n$.site)) {
