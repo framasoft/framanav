@@ -685,7 +685,7 @@ switch (n$.site) {
   case 'mindmap' :               l$.piwik.id = '12'; break;
   case 'vectoriel' :             l$.piwik.id = '13'; break;
   case 'phonie' :                l$.piwik.id = '14'; break;
-  case 'wiki' :                  l$.piwik.id = '15'; break;
+  //case 'wiki' :                  l$.piwik.id = '15'; break;
   case 'lab' :                   l$.piwik.id = '16'; break;
   case 'code' :                  l$.piwik.id = '17'; break;
   case 'soutenir' :              l$.piwik.id = '18'; break;
@@ -700,7 +700,7 @@ switch (n$.site) {
   case 'games' :                 l$.piwik.id = '28'; break;
   case 'git' :                   l$.piwik.id = '29'; break;
   case 'degooglisons-internet' : l$.piwik.id = '30'; break;
-  case 'pic' :                   l$.piwik.id = '31'; break;
+  case 'pic' :                   l$.piwik.id = '31'; l$.piwik.mode = 'img'; break;
   case 'link' :                  l$.piwik.id = '32'; break;
   case 'participer' :            l$.piwik.id = '33'; break;
   case 'colibri' :               l$.piwik.id = '33'; break;
@@ -711,7 +711,7 @@ switch (n$.site) {
   case 'stats' :                 l$.piwik.id = '39'; break;
   case 'drive' :                 l$.piwik.id = '40'; l$.piwik.url = 'https://framadrive.org/'; break;
   case 'board' :                 l$.piwik.id = '41'; break;
-  case 'drop' :                  l$.piwik.id = '42'; break;
+  case 'drop' :                  l$.piwik.id = '42'; l$.piwik.mode = 'img'; break;
   case 'carte' :                 l$.piwik.id = '43'; break;
   case 'forms' :                 l$.piwik.id = '44'; break;
   case 'petition' :              l$.piwik.id = '45'; break;
@@ -730,6 +730,9 @@ switch (n$.site) {
   case 'docs' :                  l$.piwik.id = '60'; break;
   case 'libre' :                 l$.piwik.id = '61'; break;
   case 'piaf' :                  l$.piwik.id = '62'; break;
+  case 'contributopia' :         l$.piwik.id = '63'; break;
+  case 'site' :                  l$.piwik.id = '64'; break;
+  case 'wiki' :                  l$.piwik.id = '64'; break;
 }
 
 
