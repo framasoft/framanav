@@ -267,7 +267,14 @@ switch (n$.site) {
   break;
 
   case 'drop':
-    l$.js = { video: true };
+    l$.js = { 
+        ext: function(){
+            if( !i$('https://framadrop.org/', 'u') ) {
+                $('main .row:last,main hr:last').hide();
+            }
+        },
+        video: true
+    };
   break;
 
   case 'games':
