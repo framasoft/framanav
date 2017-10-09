@@ -658,6 +658,7 @@ switch (n$.site) {
   case 'wiki':
     if(i$('frama.wiki','h')) {
       l$ = {
+        js: {j$: 'noConflict', b$: 'html'},  
         alert: [
             'info',
             '<b class="violet">Frama</b><b class="vert">wiki</b> est en phase de test. '+
