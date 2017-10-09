@@ -540,6 +540,7 @@ switch (n$.site) {
 
   case 'site':
     l$ = {
+      js: {j$: 'noConflict', b$: 'html'},  
       alert: [
         'info',
         '<b class="violet">Frama</b><b class="vert">site</b> est en phase de test. '+
