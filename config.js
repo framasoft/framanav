@@ -538,6 +538,17 @@ switch (n$.site) {
     }
   break;
 
+  case 'site':
+    l$ = {
+      alert: [
+        'info',
+        '<b class="violet">Frama</b><b class="vert">site</b> est en phase de test.'+
+        'Le service fonctionne, mais n’est pas encore facile à utiliser par quiconque. '+
+        'C’est à l’écoute de vos retours que nous allons l’améliorer et le documenter au cours des semaines à venir.'
+      ]
+    }
+  break;
+
   case 'soft':
     l$ = {
       fixed: true,
