@@ -9,9 +9,9 @@ jQuery(document).ready(function(){
          "zic","agora","evl","dio"],
         // Ordre alphabétique pour tout ce qui est en vert
         ["agenda","bag","bee","bin","board","calc","carte","date","drive",
-         "drop","forms","games","git","link","listes","maestro"],
-        ["memo","mindmap","minetest","my","news","notes","pad","petitions",
-         "piaf","pic","slides","sphere","talk","team","vectoriel","vox"]
+         "drop","forms","games","git","link","listes","maestro","memo"],
+        ["mindmap","minetest","my","news","notes","pad","petitions",
+         "piaf","pic","site","slides","sphere","talk","team","vectoriel","vox","wiki"]
     ];
 
     // Menu projets

@@ -822,6 +822,33 @@
       "t1": "Héberger du code libre",
       "d1": "Framagit est un outil qui s’adresse avant tout aux développeurs. Il permet d’héberger vos projets de logiciels libres et de travailler collaborativement dessus."
     },
+    "site": {
+      "p": "Frama",
+      "s": "site",
+      "c": "v",
+      "i": "fa-globe",
+      "l": "https://frama.site",
+      "soft": "Grav",
+      "src": "https://getgrav.org/",
+      "doc": "https://docs.framasoft.org/fr/grav/",
+
+      "d0": "Votre site web en quelques clics",
+      "t1": "Hébergement de sites",
+      "d1": "Framasite vous permet de créer un site web facilement et de l’héberger sur nos serveurs. Aucune publicité ni traquage ne portera atteinte aux données de vos visiteurs et visiteuses."
+    },
+    "wiki": {
+      "p": "Frama",
+      "s": "wiki",
+      "c": "v",
+      "i": "fa-puzzle-piece",
+      "l": "https://frama.wiki",
+      "soft": "Dokuwiki",
+      "src": "https://www.dokuwiki.org",
+
+      "d0": "Votre wiki en quelques clics",
+      "t1": "Hébergement de wikis",
+      "d1": "Framawiki vous permet de créer un wiki facilement et de l’héberger sur nos serveurs. Aucune publicité ni traquage ne portera atteinte aux données de vos visiteurs et visiteuses."
+    },
     "my": {
       "p": "My",
       "s": "Frama",
@@ -924,7 +951,7 @@
       "t1": "Le forum du réseau Framasoft",
       "d1": "Vous avez une question ? Nous avons (peut-être) une réponse ! « Si tu ne sais pas, demande. Si tu sais, partage. » Framagora est notre convivial espace d’échange d’informations autour du Libre."
     },
-    "wiki": {
+    "wiki2": {
       "p": "Frama",
       "s": "wiki",
       "c": "f",

@@ -656,11 +656,6 @@ switch (n$.site) {
   break;
 
   case 'wiki':
-    n$.inframe = i$('mediamanager.php');
-    l$ = {
-      css: { ext: true },
-      alert: ['', '']
-    }
     if(i$('frama.wiki','h')) {
       l$ = {
         alert: [
@@ -668,7 +663,21 @@ switch (n$.site) {
             '<b class="violet">Frama</b><b class="vert">wiki</b> est en phase de test. '+
             'Le service fonctionne, mais n’est pas encore facile à utiliser par quiconque. '+
             'C’est à l’écoute de vos retours que nous allons l’améliorer et le documenter au cours des semaines à venir.'
-          ]
+          ],
+        icons: {
+          fav: 'fav_wiki.png',
+          apple: 'wiki.png'
+        }
+      }
+    } else {
+      n$.inframe = i$('mediamanager.php');
+      l$ = {
+        css: { ext: true },
+        alert: ['', ''],
+        icons: {
+          fav: 'fav_wiki2.png',
+          apple: 'wiki2.png'
+        }
       }
     }
   break;
@@ -820,8 +829,8 @@ if (i$(/(phonie)/i,'h')) {
   l$.icons.fav = 'favicon-jaune.png';
 }
 
-if ( i$(/(agenda|bag|bee|bin|blog|board|bookin|book|calc|carte|cloud|code|colibri|date|drive|drop|dvd|forms|games|key|lab|lang|libre|link|listes|maestro|memo|mindmap|minetest|news|pack|phonie|piaf|pic|slides|sphere|start|stats|status|talk|team|tube|vectoriel|vox|zic)/i,'h')
-   || i$(/(bot.|contact.|degooglisons-internet|forum.|participer.|soutenir.|wiki.)/i,'h') ){
+if ( i$(/(agenda|bag|bee|bin|blog|board|bookin|book|calc|carte|cloud|code|colibri|date|drive|drop|dvd|forms|games|key|lab|lang|libre|link|listes|maestro|memo|mindmap|minetest|news|pack|phonie|piaf|pic|site|slides|sphere|start|stats|status|talk|team|tube|vectoriel|vox|zic)/i,'h')
+   || i$(/(bot.|contact.|degooglisons-internet|forum.|participer.|soutenir.)/i,'h') ){
   l$.icons.apple = n$.site+'.png';
   l$.icons.fav = 'fav_'+n$.site+'.png';
 }

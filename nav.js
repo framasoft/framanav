@@ -353,6 +353,7 @@ function f$_start_jquery() {
           .has(
             'a[href$="framastart.org"], a[href*="zic.org"], a[href*="enventelibre.org"],'+
             'a[href*="degooglisons"], a[href*="maestro.org"], a[href*="carte.org"], a[href*="minetest.org"], a[href*="news.org"],'+
+            ' a[href*="framagit.org"], a[href*="frama.wiki"],'+
             ' a[href*="petitions.org"], a[href*="wikipedia.org"], a[href*="plus.google"], a[href*="status."]'
           )
           .after(h$.divider);
