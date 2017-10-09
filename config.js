@@ -258,12 +258,6 @@ switch (n$.site) {
     } else {
       l$.js = { video: true };
     }
-    if( i$('https://framadrive.org/login', 'u') && i$Before('2017/9/29') ) {
-      l$.alert = [
-        'info',
-        'Rappel important : Framadrive sera coupé cette nuit. Plus d’infos sur <a href="https://status.framasoft.org/incident/296">status.framasoft.org</a>.'
-      ]
-    }
   break;
 
   case 'drop':
@@ -427,6 +421,12 @@ switch (n$.site) {
       mute: true,
       footer: false,
       credits: 'pad'
+    }
+    if( i$Before('2017/10/17') ) {
+      l$.alert = [
+        'info',
+        'Rappel important : Les pads privés seront coupés mercredi 11/10 et lundi 16/10. Plus d’infos sur <a href="https://status.framasoft.org/">status.framasoft.org</a>.'
+      ]
     }
   break;
 
