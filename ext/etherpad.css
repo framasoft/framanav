@@ -46,3 +46,8 @@
         top:42px !important;
     }
 }
+
+/* Hide .doc export (bug avec libreoffice de Stretch) */
+#exportworda {
+    display: none;
+}
