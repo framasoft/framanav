@@ -328,7 +328,14 @@ switch (n$.site) {
           f$('header h1').css('margin-top','30px');
           f$('main').css('margin-bottom','30px');
         }
-      }
+      },
+      alert: [
+        'danger',
+        'À partir du 6 novembre 2017, les membres dont l’email est en xxxx@voila.fr seront effacés de vos listes.<br>'+
+        'En effet, le service mail voila.fr a <a href="https://www.nextinpact.com/news/97702-emails-voila-fr-cest-fini.htm">cessé de fonctionner depuis le 12 janvier 2016</a>. '+
+        'Ces emails ne sont plus transmis aux personnes concernées et génèrent un trafic inutile sur nos serveurs.<br>'+
+        'Merci de prendre vos dispositions pour que les membres concernés de vos listes s’y inscrivent sous une nouvelle adresse email, le grand nettoyage commencera le 6 novembre 2017 à partir de 8h.'
+      ]
     }
   break;
 
