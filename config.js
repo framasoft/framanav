@@ -387,6 +387,18 @@ switch (n$.site) {
         mute: true,
         footer: false
       }
+    } else {
+      l$ = {
+        js: {
+          ext: function() {
+            if(n$.inframe) {
+              f$('#linklist').addClass('container-fluid').removeClass('container');
+              f$('#pageheader').hide();
+              f$('a').attr('target','_blank');
+            }
+          }
+        }
+      }
     }
   break;
 
