@@ -1260,8 +1260,8 @@ if(f$_mm == 12 && (31-f$_dd) < 16 && n$.site != 'soutenir') {
     '<br/>Merci pour votre soutien <a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir"><i class="fa fa-heart" aria-hidden="true"></i><span class="sr-only">Faire un don ?</a>';
 }
 
-// Bandeau dio3
-if( i$Before('2017/11/15') ) {
+// Bandeau CUo
+if( i$Before('2017/11/15') && n$.site != 'soutenir' ) {
   c$.alert = [
     'warning',
     '<p class="text-left">Pour poursuivre le travail de la campagne « Dégooglisons Internet », <b class="violet">Frama</b><b class="orange">soft</b> annonce sa nouvelle feuille de route : <a href="https://contributopia.org" style="color:#558180;"><b>Contributopia</b></a>. '+
