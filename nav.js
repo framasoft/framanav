@@ -1261,7 +1261,7 @@ if(f$_mm == 12 && (31-f$_dd) < 16 && n$.site != 'soutenir') {
 }
 
 // Bandeau CUo
-if( i$Before('2017/11/15') && n$.site != 'soutenir' ) {
+if( i$Before('2017/11/15') && n$.site != 'soutenir' && n$.site != 'contributopia' ) {
   c$.alert = [
     'warning',
     '<p class="text-left">Pour poursuivre le travail de la campagne « Dégooglisons Internet », <b class="violet">Frama</b><b class="orange">soft</b> annonce sa nouvelle feuille de route : <a href="https://contributopia.org" style="color:#558180;"><b>Contributopia</b></a>. '+
