@@ -1262,12 +1262,11 @@ if(f$_mm == 12 && (31-f$_dd) < 16 && n$.site != 'soutenir') {
 
 // Bandeau CUo
 if( i$Before('2017/11/15') && n$.site != 'soutenir' && n$.site != 'contributopia' ) {
-  c$.alert = [
-    'warning',
+  c$.alert[0] = 'warning';
+  c$.alert[1] = 
     '<p class="text-left">Pour poursuivre le travail de la campagne « Dégooglisons Internet », <b class="violet">Frama</b><b class="orange">soft</b> annonce sa nouvelle feuille de route : <a href="https://contributopia.org" style="color:#558180;"><b>Contributopia</b></a>. '+
     'Services, essaimage, éducation populaire et contribution seront au cœur des <a href="https://framablog.org/2017/10/09/contributopia-degoogliser-ne-suffit-pas/">actions prévues sur les trois prochaines années</a>.<br>'+
-    'Le financement de notre association ne repose que sur vos dons, merci de <strong><a href="https://soutenir.framasoft.org">nous soutenir</a></strong> <a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir"><i class="fa fa-heart" aria-hidden="true"></i></a></p>'
-  ]
+    'Le financement de notre association ne repose que sur vos dons, merci de <strong><a href="https://soutenir.framasoft.org">nous soutenir</a></strong> <a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir"><i class="fa fa-heart" aria-hidden="true"></i></a></p>';
 }
 
 // Bandeau maintenance
