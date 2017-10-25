@@ -528,7 +528,6 @@ switch (n$.site) {
   case 'piaf':
     l$ = {
       js: { ext: true },
-      css: { ext: true },
       footer: i$('/about'),
       mute: !i$('/about')
     }
