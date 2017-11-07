@@ -627,8 +627,9 @@ switch (n$.site) {
       js: { j$: 'noConflict', b$: 'html', ext: true },
       css: { ext: true },
       fixed: true,
-      mute: ( i$('/channel') || i$('/tutorial') || i$('/admin_console') || i$('/pl/') ),
-      donate: false
+      mute: true,
+      donate: false,
+      footer:false
     }
   break;
 
