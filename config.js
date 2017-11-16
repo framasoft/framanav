@@ -384,6 +384,16 @@ switch (n$.site) {
     if(i$('source=bookmarklet')) {
       n$.inframe = true;
       l$ = {
+        js: {
+          ext: function() {
+            jQuery('#loginform').append(
+              '<p class="alert alert-warning"><b>Rappel :</b> MyFrama sert à '+
+              'regrouper en un même endroit vos liens (notament vos pads, calcs, sondages, etc). '+
+              'Il ne permet <strong>pas de créer un compte unique</strong> pour '+
+              'accéder à l’ensemble des services de Framasoft.</p>'
+            );
+          }
+        },
         mute: true,
         footer: false
       }
@@ -518,7 +528,6 @@ switch (n$.site) {
   case 'piaf':
     l$ = {
       js: { ext: true },
-      css: { ext: true },
       footer: i$('/about'),
       mute: !i$('/about')
     }
@@ -618,8 +627,9 @@ switch (n$.site) {
       js: { j$: 'noConflict', b$: 'html', ext: true },
       css: { ext: true },
       fixed: true,
-      mute: ( i$('/channel') || i$('/tutorial') || i$('/admin_console') || i$('/pl/') ),
-      donate: false
+      mute: true,
+      donate: false,
+      footer:false
     }
   break;
 
