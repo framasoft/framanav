@@ -1260,13 +1260,32 @@ if(f$_mm == 12 && (31-f$_dd) < 16 && n$.site != 'soutenir') {
     '<br/>Merci pour votre soutien <a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir"><i class="fa fa-heart" aria-hidden="true"></i><span class="sr-only">Faire un don ?</a>';
 }
 
-// Bandeau CUo
-if( i$Before('2017/11/15') && n$.site != 'soutenir' && n$.site != 'contributopia' ) {
-  c$.alert[0] = 'warning';
-  c$.alert[1] = 
-    '<p class="text-left">Pour poursuivre le travail de la campagne « Dégooglisons Internet », <b class="violet">Frama</b><b class="orange">soft</b> annonce sa nouvelle feuille de route : <a href="https://contributopia.org" style="color:#558180;"><b>Contributopia</b></a>. '+
-    'Services, essaimage, éducation populaire et contribution seront au cœur des <a href="https://framablog.org/2017/10/09/contributopia-degoogliser-ne-suffit-pas/">actions prévues sur les trois prochaines années</a>.<br>'+
-    'Le financement de notre association ne repose que sur vos dons, merci de <strong><a href="https://soutenir.framasoft.org">nous soutenir</a></strong> <a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir"><i class="fa fa-heart" aria-hidden="true"></i></a></p>';
+// Bandeau dio3
+if( i$After('2017/11/20') && i$Before('2017/12/14') ) {
+  c$.alert = [
+    'danger',
+    '<p class="text-center"><b class="violet">Dégooglisons</b> <b class="rouge">Youtube</b> :'+
+    ' aider nous à financer le développement <a href="https://framatube.org">d’une alternative libre</a></p>'+
+    '<div class="clearfix fsbarre hidden" style="max-width:500px;margin:10px auto"><div class="col-xs-10"><div class="progress" style="margin-bottom:0;"><div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="30000" style="width: 0%"><span class="dons"></span></div></div></div><div class="col-xs-2">30 000 €</div></div>'
+  ]
+
+  var startDons = 50000;
+  setInterval(function(){
+    if (window.jQuery !== undefined) {
+      if(jQuery('.fsbarre').length && jQuery('.fsbarre').hasClass('hidden') ) {
+        jQuery.getJSON( 'https://soutenir.framasoft.org/sites/all/dons/total.txt' )
+          .fail(function() { console.error('✘ don') })
+          .done( function(data) {
+            jQuery('.fsbarre').removeClass('hidden');
+            jQuery('.fsbarre .dons').text((data-startDons)+'€')
+            jQuery('.fsbarre .progress-bar').attr({
+              'aria-valuenow':(data-startDons),
+              'style':'width:'+(data-startDons)/300+'%'
+            });
+          });
+      }
+    }
+  }, 500)
 }
 
 // Bandeau maintenance
