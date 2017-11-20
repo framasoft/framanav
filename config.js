@@ -638,12 +638,14 @@ switch (n$.site) {
     l$ = {
       js: { video: true },
       host: 'ovh',
-      alert: [
+      mute: i$('/embed_player')
+    }
+    if( !i$('https://framatube.org/', 'u') ) {
+      l$.alert = [
         'info',
         '<b class="violet">Frama</b><b class="rouge">tube</b> est réservé à l’usage exclusif de <b class="violet">Frama</b><b class="orange">soft</b> pour le moment.'+
-        '<br/>L’hebergement de vidéos sera <a href="https://degooglisons-internet.org/liste/#2017">ouvert au public en 2017</a> si nous en avons les moyens.'
-      ],
-      mute: i$('/embed_player')
+        '<br/>L’hebergement de vidéos sera ouvert au public en 2018 si nous en avons les moyens.'
+      ]
     }
   break;
 
