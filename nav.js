@@ -1261,7 +1261,7 @@ if(f$_mm == 12 && (31-f$_dd) < 16 && n$.site != 'soutenir') {
 }
 
 // Bandeau PeerTube
-if( i$After('2017/11/21') && i$Before('2017/12/14') && n$.site != 'soutenir') {
+if( i$Before('2017/12/14') && n$.site != 'soutenir') {
   c$.alert = [
     'danger',
     '<p>Framasoft finance le développement de PeerTube, '+
@@ -1279,12 +1279,31 @@ if( i$After('2017/11/21') && i$Before('2017/12/14') && n$.site != 'soutenir') {
         jQuery.getJSON( 'https://soutenir.framasoft.org/sites/all/dons/total.txt' )
           .fail(function() { console.error('✘ don') })
           .done( function(data) {
+            if( (data-startDons)/900 > 66 ) {
+              jQuery('.fsbarre .progress-bar').removeClass('progress-bar-danger').addClass('progress-bar-success');
+              jQuery('.fsbarre .progress-bar').attr({
+                'aria-valuenow':(data-startDons),
+                'aria-valuenow':'90000',
+                'style':'width:'+(data-startDons)/900+'%'
+              });
+              jQuery('.fsbarre .col-xs-2').text('90 000 €');
+            } else if ( (data-startDons)/900 > 33 ) {
+              jQuery('.progress-bar.active').removeClass('progress-bar-danger').addClass('progress-bar-warning');
+              jQuery('.fsbarre .progress-bar').attr({
+                'aria-valuenow':(data-startDons),
+                'aria-valuenow':'60000',
+                'style':'width:'+(data-startDons)/600+'%'
+              });
+              jQuery('.fsbarre .col-xs-2').text('60 000 €');
+            } else {
+              jQuery('.fsbarre .progress-bar').attr({
+                'aria-valuenow':(data-startDons),
+                'aria-valuenow':'30000',
+                'style':'width:'+(data-startDons)/300+'%'
+              });
+            }
             jQuery('.fsbarre').removeClass('hidden');
             jQuery('.fsbarre .dons').text((data-startDons)+'€')
-            jQuery('.fsbarre .progress-bar').attr({
-              'aria-valuenow':(data-startDons),
-              'style':'width:'+(data-startDons)/300+'%'
-            });
           });
       }
     }
