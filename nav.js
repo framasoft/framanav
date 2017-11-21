@@ -1272,7 +1272,7 @@ if( i$After('2017/11/20') && i$Before('2017/12/14') && n$.site != 'soutenir') {
     '<div class="clearfix fsbarre hidden" style="max-width:500px;margin:10px auto"><div class="col-xs-10"><div class="progress" style="margin-bottom:0;"><div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="30000" style="width: 0%"><span class="dons"></span></div></div></div><div class="col-xs-2">30 000 €</div></div>'
   ]
 
-  var startDons = 50000;
+  var startDons = 53000;
   setInterval(function(){
     if (window.jQuery !== undefined) {
       if(jQuery('.fsbarre').length && jQuery('.fsbarre').hasClass('hidden') ) {
