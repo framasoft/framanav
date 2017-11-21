@@ -1261,10 +1261,10 @@ if(f$_mm == 12 && (31-f$_dd) < 16 && n$.site != 'soutenir') {
 }
 
 // Bandeau PeerTube
-if( i$After('2017/11/20') && i$Before('2017/12/14') && n$.site != 'soutenir') {
+if( i$After('2017/11/21') && i$Before('2017/12/14') && n$.site != 'soutenir') {
   c$.alert = [
     'danger',
-    '<p class="text-center">Framasoft finance le développement de PeerTube, '+
+    '<p>Framasoft finance le développement de PeerTube, '+
     'un logiciel libre innovant qui pourra, dès 2018, révolutionner la manière dont '+
     'on voit, diffuse et héberge des vidéos en ligne.</p>'+
     '<p>Si, comme nous, vous croyez que <a href="https://framatube.org">Peertube peut briser l’hégémonie de YouTube</a> (et des autres), '+
