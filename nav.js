@@ -1262,15 +1262,14 @@ if(f$_mm == 12 && (31-f$_dd) < 16 && n$.site != 'soutenir') {
 
 // Bandeau PeerTube
 if( i$Before('2017/12/14') && n$.site != 'soutenir') {
-  c$.alert = [
-    'danger',
+  c$.alert[0] = 'danger';
+  c$.alert[1] =
     '<p>Framasoft finance le développement de PeerTube, '+
     'un logiciel libre innovant qui pourra, dès 2018, révolutionner la manière dont '+
     'on voit, diffuse et héberge des vidéos en ligne.</p>'+
     '<p>Si, comme nous, vous croyez que <a href="https://framatube.org">Peertube peut briser l’hégémonie de YouTube</a> (et des autres), '+
     'contribuez à cet effort en soutenant Framasoft <a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir"><i class="fa fa-heart" aria-hidden="true"></i><span class="sr-only">Faire un don ?</a></p>'+
-    '<div class="clearfix fsbarre hidden" style="max-width:500px;margin:10px auto"><div class="col-xs-10"><div class="progress" style="margin-bottom:0;"><div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="30000" style="width: 0%"><span class="dons"></span></div></div></div><div class="col-xs-2">30 000 €</div></div>'
-  ]
+    '<div class="clearfix fsbarre hidden" style="max-width:500px;margin:10px auto"><div class="col-xs-10"><div class="progress" style="margin-bottom:0;"><div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="30000" style="width: 0%"><span class="dons"></span></div></div></div><div class="col-xs-2">30 000 €</div></div>';
 
   var startDons = 53000;
   setInterval(function(){
