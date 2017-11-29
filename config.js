@@ -22,6 +22,7 @@ switch (n$.site) {
 // Config pour domaine et sous-domaine
 if (i$(/framaboard/i, 'h'))        { n$.site = 'board' }
 if (i$(/framadate/i, 'h'))         { n$.site = 'date' }
+if (i$(/framacalc/i, 'h'))         { n$.site = 'calc'; }
 
 if (i$('mypads.framapad.org', 'h')) { n$.site = 'mypads' }
 if ( (i$(/.framapad/i, 'h') && !i$(/mypads./i, 'h'))
@@ -173,6 +174,12 @@ switch (n$.site) {
       // Si on est sur la page d'accueil
       l$.modal = {
         don: ['a[href*="framacalc.org/"]', 'd’utiliser', 'créer un calc']
+      }
+      l$.js = {ext : function(){ jQuery('#drop label:eq(0)').hide(); }}
+    } else if (i$('lite.framacalc.org/_start') || i$('https://lite.framacalc.org/', 'u')) {
+      // Si on est sur la page d'accueil
+      l$.modal = {
+        don: ['a[href*="lite.framacalc.org/"]', 'd’utiliser', 'créer un calc']
       }
       l$.js = {ext : function(){ jQuery('#drop label:eq(0)').hide(); }}
     } else { // dans Ethercalc
@@ -329,13 +336,13 @@ switch (n$.site) {
           f$('main').css('margin-bottom','30px');
         }
       },
-      alert: [
+      /*alert: [
         'danger',
         'À partir du 6 novembre 2017, les membres dont l’email est en xxxx@voila.fr seront effacés de vos listes.<br>'+
         'En effet, le service mail voila.fr a <a href="https://www.nextinpact.com/news/97702-emails-voila-fr-cest-fini.htm">cessé de fonctionner depuis le 12 janvier 2016</a>. '+
         'Ces emails ne sont plus transmis aux personnes concernées et génèrent un trafic inutile sur nos serveurs.<br>'+
         'Merci de prendre vos dispositions pour que les membres concernés de vos listes s’y inscrivent sous une nouvelle adresse email, le grand nettoyage commencera le 6 novembre 2017 à partir de 8h.'
-      ]
+      ]*/
     }
   break;
 
