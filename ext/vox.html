@@ -1,0 +1,271 @@
+<html>
+<head>
+  <meta charset="UTF-8" />
+<head>
+<body>
+  <style>
+    h1 {
+      font-family: "DejaVu Sans",Verdana,Geneva,sans-serif !important;
+      font-size: 48px;
+      font-weight: bold;
+    }
+
+    .lead { font-style:italic; font-size: 21px !important;}
+
+    .container.ombre {
+      margin-top: 30px;
+      margin-bottom: 30px;
+      padding: 20px 30px;
+    }
+
+    img.ombre {
+      box-shadow: 0px 2px 6px rgba(50, 50, 50, 0.4);
+      margin: 10px;
+      padding: 0px;
+      width: 80%;
+    }
+
+    body.pages {padding-top:42px;}
+
+    #tuto-faq p[role="presentation"] .glyphicon,
+    #le-logiciel p[role="presentation"] .glyphicon,
+    #jardin p[role="presentation"] .glyphicon {
+      font-size:50px;
+    }
+
+    .carousel { margin:1em auto 4em; max-width:1060px; }
+
+    .carousel-inner {
+      padding-bottom:75px;
+      box-shadow:0px 2px 6px rgba(50, 50, 50, 0.5);
+    }
+
+    .carousel-control.right, .carousel-control.left {
+      background-image:none !important;
+      color:#eee !important;
+    }
+
+    #play-pause {
+      position: absolute;
+      margin-top: -100px;
+      margin-left: 30px;
+      left: 0%;
+    }
+
+    #play-pause a {
+      cursor: pointer;
+      font-size: 30px;
+      z-index: 1000 !important;
+      background: #f3f3f3 !important;
+      border-radius: 30px;
+      color: #767676 !important;
+      width: 40px;
+      height: 40px;
+      padding-left: 2px;
+      padding-top: 2px;
+      position:absolute !important;
+      opacity: 1;
+      text-shadow: none;
+      box-shadow: 0px 1px 1px rgba(50, 50, 50, 0.5);
+    }
+
+    #play-pause a:hover { color: #555 !important; }
+
+    .carousel a { border-bottom: none !important; }
+
+    .carousel-caption {
+      background: #f3f3f3 !important;
+      bottom: -75px !important;
+      color: #333 !important;
+      left:0 !important;
+      right:0 !important;
+      position: absolute !important;
+      height: 78px !important;
+      text-shadow: none;
+      border-top: 1px solid #ddd;
+    }
+
+    .carousel-caption .h3 {
+      margin-top:10px;
+    }
+
+    .carousel img {
+      width: 100%;
+      margin: 0;
+    }
+  </style>
+  <script>
+    jQuery(document).ready(function() {
+      jQuery("#play-pause a").on('click', function() {
+        if(jQuery(this).children('.glyphicon').hasClass('glyphicon-pause')) {
+          jQuery(this).children('.glyphicon').addClass('glyphicon-play').removeClass('glyphicon-pause');
+          jQuery(this).attr('title','Lecture');
+          jQuery(this).children('.sr-only').text('Lecture');
+          jQuery('#carousel-vox').carousel('pause');
+        } else {
+          jQuery(this).children('.glyphicon').addClass('glyphicon-pause').removeClass('glyphicon-play');
+          jQuery(this).attr('title','Pause');
+          jQuery(this).children('.sr-only').text('Pause');
+          jQuery('#carousel-vox').carousel('cycle');
+        };
+        return false;
+      });
+      jQuery('#carousel-vox').carousel({'cycle' :true, 'interval': 7000});
+      jQuery('#tuto-faq').append(
+        '<div class="modal fade" id="TutoVideo" tabindex="-1" role="dialog" aria-labelledby="TutoVideoLabel" aria-hidden="true">'+
+        '  <div class="modal-dialog">'+
+        '    <div class="modal-content">'+
+        '      <div class="modal-header">'+
+        '        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">x</span><span class="sr-only">Fermer</span></button>'+
+        '        <h1 id="TutoVideoLabel">Tutoriel vidéo</h1>'+
+        '      </div>'+
+        '      <div class="modal-body">'+
+        '        <p><video width="420" height="340" controls="controls" preload="none" poster="https://framatube.org/images/media/993l.jpg">'+
+        '          <source src="https://framatube.org/blip/Framavox.mp4" type="video/mp4" />'+
+        '          <source src="https://framatube.org/blip/Framavox.webm" type="video/webm" />'+
+        '        </video></p>'+
+        '        <p>-> La <a href="https://framatube.org/blip/Framavox.webm">vidéo au format webm</a></p>'+
+        '      </div>'+
+        '      <div class="modal-footer"><a href="#" class="btn btn-default" data-dismiss="modal">Fermer</a></div>'+
+        '    </div>'+
+        '  </div>'+
+        '</div>'
+      );
+      jQuery('#tuto-faq a[href*="framatube"]').click(function(){jQuery('#TutoVideo').modal('show');return false;})
+    });
+  </script>
+  
+  <div id="framahome" class='container ombre'>
+    <header role='banner'>
+      <h1><a href="/"><b class="violet">Frama</b><b class="vert">vox</b></a></h1>
+      <p class='lead'>Décider ensemble</p>
+      <hr class='trait' role='presentation'>
+    </header>
+    <main>
+      <div class='col-md-12 text-center'>
+        
+        <div class='carousel slide' id='carousel-vox' role='presentation'>
+          <div class='carousel-inner'>
+            <div class='item active'>
+              <img alt='' src='https://framasoft.org/nav/ext/vox-01-creer-groupe.png'>
+              <div class='carousel-caption'>
+                <p class='h3'>Créez votre groupe</p>
+              </div>
+            </div>
+            <div class='item'>
+              <img alt='' src='https://framasoft.org/nav/ext/vox-02-inviter.png'>
+              <div class='carousel-caption'>
+                <p class='h3'>Invitez vos collègues</p>
+              </div>
+            </div>
+            <div class='item'>
+              <img alt='' src='https://framasoft.org/nav/ext/vox-03-discuter.png'>
+              <div class='carousel-caption'>
+                <p class='h3'>Prenez part aux échanges</p>
+              </div>
+            </div>
+            <div class='item'>
+              <img alt='' src='https://framasoft.org/nav/ext/vox-04-voter.png'>
+              <div class='carousel-caption'>
+                <p class='h3'>Votez pour les propositions</p>
+              </div>
+            </div>
+          </div>
+          <p class='text-center' id='play-pause'>
+            <a class='carousel-control' href='#play-pause' title='Pause'>
+              <i class='glyphicon glyphicon-pause'></i>
+              <span class='sr-only'>Pause</span>
+            </a>
+          </p>
+          <a class="left carousel-control" href="#carousel-vox" role="button" title="Diapo précédente" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i><span class="sr-only">Diapo précédente</span></a>
+          <a class="right carousel-control" href="#carousel-vox" role="button" title="Diapo suivante" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i><span class="sr-only">Diapo suivante</span></a>
+        </div>
+    
+        <div class='col-md-6 text-center'>
+          <a class='btn btn-primary btn-lg' href='/users/sign_in'>
+            <i class='glyphicon glyphicon-lock'></i> Se connecter »
+          </a>
+        </div>
+        <div class='col-md-6 text-center'>
+          <a class='btn btn-success btn-lg' href='/users/sign_up'>
+            <i class='glyphicon glyphicon-user'></i> Créer un compte »
+          </a>
+        </div>
+        
+      </div>
+
+      <hr role='presentation'>
+
+      <div class='col-md-4' id='tuto-faq'>
+        <h2>Prise en main</h2>
+        <p class='text-center' role='presentation'>
+          <i class='glyphicon glyphicon-question-sign'></i>
+        </p>
+        <p>
+          <b class="violet">Frama</b><b class="vert">vox</b> est un service de libre de prise de décisions collaborative.
+          Il permet de discuter des sujets précis avec son équipe (en notifiant ses collègues), et de voter sur des propositions.
+        </p>
+        <ol>
+          <li>Créez votre groupe</li>
+          <li>Invitez vos membres</li>
+          <li>Créez des discussions et échangez</li>
+          <li>Votez des propositions</li>
+        </ol>
+        <p>
+          Pour apprendre à maîtriser <b class="violet">Frama</b><b class="vert">vox</b>, 
+          consultez <a href="https://docs.framasoft.org/fr/loomio/">nos pages d’aide</a>
+          <small>(traduction de la documentation officielle de Loomio 
+          par l’équipe <a href="https://participer.framasoft.org/traduction-rejoignez-framalang">
+          <b class="violet">Frama</b><b class="rouge">lang</b></a>)</small>.
+        </p>
+        <p>
+          Voici également un tutoriel vidéo réalisé par Frédéric Véron, professeur de SVT dans l’Académie de Créteil.
+        </p>
+        <p class='text-center'>
+          <a class='btn btn-primary' href='https://framatube.org/media/tutoriel-framavox'>
+            <i class="glyphicon glyphicon-film"></i> Lire la vidéo »
+          </a>
+        </p>
+      </div>
+      <div class='col-md-4' id='le-logiciel'>
+        <h2>Le logiciel</h2>
+        <p class='text-center' role='presentation'>
+          <i class='glyphicon glyphicon-cloud'></i>
+        </p>
+        <p>
+          <b class="violet">Frama</b><b class="vert">vox</b> repose sur le logiciel libre
+          <a href='https://www.loomio.org'>Loomio</a>.
+        </p>
+        <p>
+          Il s’agit d’une instance parmi d'autres, les développeurs de Loomio propose également la leur.
+        </p>
+        <p>
+          Loomio est sous
+          <a href='https://github.com/loomio/loomio/blob/master/LICENSE.txt'>
+          licence <abbr title='GNU Affero General Public License'>AGPL</abbr></a>
+        </p>
+      </div>
+      <div class='col-md-4' id='jardin'>
+        <h2>Cultivez votre jardin</h2>
+        <p class='text-center' role='presentation'>
+          <i class='glyphicon glyphicon-tree-deciduous'></i>
+        </p>
+        <p>
+          Pour participer au développement du logiciel, proposer des améliorations
+          ou simplement le télécharger, rendez-vous sur
+          <a href='https://github.com/loomio/'>le site de développement</a>.
+        </p>
+        <p>
+          Si vous souhaitez installer ce logiciel pour votre propre usage et ainsi gagner en autonomie, nous vous aidons sur :
+        </p>
+        <p class='text-center'>
+          <a class='btn btn-success' href='http://framacloud.org/cultiver-son-jardin/installation-de-loomio/'>
+            <i class='glyphicon glyphicon-tree-deciduous'></i> framacloud.org
+          </a>
+        </p>
+      </div>
+    
+    </main>
+  </div>
+</body>
+</html>
