@@ -1252,7 +1252,7 @@ var f$_yyyy = f$_today.getFullYear();
 
 
 
-if(f$_mm == 12 && (31-f$_dd) < 16 && n$.site != 'soutenir') {
+if(f$_mm == 12 && (31-f$_dd) < 16 && n$.site != 'soutenir' && i$Lang('fr')) {
   f$_rebours = ((31-f$_dd) == 0) ? '24 heures' : 31-f$_dd+' jours';
   c$.alert[0] = 'info';
   c$.alert[1] =
