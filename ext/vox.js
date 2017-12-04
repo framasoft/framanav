@@ -1,5 +1,32 @@
-jQuery('.navbar__logo-container').html('<b class="violet">Frama</b><b class="vert">vox</b>');
+if( i$('https://framavox.org/dashboard') && jQuery('.lmo-navbar .navbar__sign-in:visible' ).length) {
+    jQuery('body').append('<div id="framahome_container"></div>');
+    jQuery('#framahome_container').load('https://framasoft.org/nav/ext/vox.html #framahome', function(){
+        jQuery('.md-dialog-container, .md-scroll-mask,.md-dialog-backdrop,.lmo-navbar').hide();
+        jQuery("#play-pause a").on('click', function() {
+            if(jQuery(this).children('.glyphicon').hasClass('glyphicon-pause')) {
+                jQuery(this).children('.glyphicon').addClass('glyphicon-play').removeClass('glyphicon-pause');
+                jQuery(this).attr('title','Lecture');
+                jQuery(this).children('.sr-only').text('Lecture');
+                jQuery('#carousel-vox').carousel('pause');
+            } else {
+                jQuery(this).children('.glyphicon').addClass('glyphicon-pause').removeClass('glyphicon-play');
+                jQuery(this).attr('title','Pause');
+                jQuery(this).children('.sr-only').text('Pause');
+                jQuery('#carousel-vox').carousel('cycle');
+            }
+            return false;
+        });
+        jQuery('#carousel-vox').carousel({'cycle' :true, 'interval': 7000});
 
+        jQuery('#framahome a[href="/dashboard"]').on('click', function(){
+            jQuery('.md-dialog-container, .md-scroll-mask,.md-dialog-backdrop,.lmo-navbar').show();
+            jQuery('#framahome_container').remove();
+            return false;
+        });
+    }); 
+}
+
+/*
 if(jQuery('meta[property="og:locale"]').attr('content') && jQuery('meta[property="og:locale"]').attr('content').indexOf('fr')>-1) {
 
     setInterval(function() {
@@ -104,3 +131,4 @@ if(jQuery('meta[property="og:locale"]').attr('content') && jQuery('meta[property
     }, 1000);
 
 };
+*/
