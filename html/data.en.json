@@ -3,7 +3,8 @@
     "lg": "en",
     "soutenir": {
       "s": "Make a donation ?",
-      "t1": "Parce que libre ne signifie pas gratuit",
+      "l": "https://soutenir.framasoft.org/en/",
+      "t1": "Because free as in “free speech” doesn't mean free as in “free beer”",
       "d1": "Framasoft would not exist without our strong volunteer community but could not work anyway without the association which pays seven permanent employees. Our funding relies on you, which means every individual donation. If you think we deserve it…"
     },
     "myframa": {
@@ -15,44 +16,45 @@
       "d1": "Amis bénévoles, vous avez contribué récemment à l’activité de Framasoft ? C’est le moment de remplir votre bénévolat valorisé. Le « bénévalo » permet de rendre compte de l’activité des bénévoles et de confirmer que Framasoft reste bien une association majoritairement non lucrative. C’est important pour nous."
     },
     "modaldon": {
-      "t": "Soutenez Framasoft",
+      "t": "Support Framasoft",
       "d": [
-        "<p>Vous êtes sur le point %c$.modal.don[1]% une ressource <b>libre</b> issue de la quarantaine de projets du réseau Framasoft.</p>",
-        "<p>Cette ressource est <b>gratuite</b> (et le sera tant que nous existerons) parce que <b>Framasoft est une association d’intérêt général à but non lucratif</b> dont l’objectif est justement la diffusion du logiciel libre et sa culture au plus large public.",
-        "<p>Mais tout ceci est rendu possible parce que Framasoft est <b>soutenue par les dons (défiscalisables) de ses utilisateurs</b>.</p>",
-        "<p>Merci de prendre quelques minutes en nous aidant à pérenniser et développer notre action.</p>"
+        "<p>You are on the point %c$.modal.don[1]% a resource <b>free</b> from the forty or so Framasoft network projects.</p>",
+        "<p>This resource is <b>free</b> (and will be for as long as we exist) because <b>Framasoft is a non-profit organisation</b> whose objective is precisely the diffusion of free software and its culture to the widest possible audience.",
+        "<p>But all this is made possible because Framasoft is <b>supported by the donations of its users</b>.</p>",
+        "<p>Thank you for taking a few minutes by helping us to perpetuate and develop our action.</p>"
       ],
-      "b1": "Je veux faire un don<br /> à l’association Framasoft",
-      "b2": "Je veux participer.<br />Par où on commence ?",
-      "b3": "Non merci, je souhaite<br> seulement <b>%c$.modal.don[2]%</b>",
-      "b4": "Je soutiens déjà Framasoft"
+      "b1": "I want to make a donation<br>to Framasoft association",
+      "b2": "I want to participate. <br>Where do we start?",
+      "b3": "No, thank you, I only<br>wish <b>%c$.modal.don[2]%</b>",
+      "b4": "I already support Framasoft"
     },
     "optin": {
-      "t": "J’accepte que Framasoft m’envoie à cette adresse des informations importantes",
-      "d1": "(Promis, nous ne revendons pas nos fichiers, même à la NSA !",
-      "d2": "Pourquoi m’inscrire ?",
-      "e1": "Les adresses emails ne correspondent pas.",
-      "e2": "L’adresse email %f$_email% n’est pas valide.",
-      "s1": "Votre adresse email <strong>%f$_email%</strong> a été ajoutée à notre liste. Vous devriez avoir reçu un email de confirmation."
+      "t": "I agree to Framasoft sending important information to this address",
+      "d1": "(We swear, we won't resell our files, even to the NSA!",
+      "d2": "Why suscribe ?",
+      "e1": "Email addresses don't match.",
+      "e2": "The email address %f$_email% is not valid.",
+      "s1": "Your email address <strong>%f$_email%</strong> has been added to our list. You should have received a confirmation email."
     }
   },
   "t": {
     "newwindow": "new window",
     "close": "Close",
-    "nevershow": "Ne plus afficher",
+    "nevershow": "Do not display anymore",
     "toggle": "Toggle menu",
     "skip": "Skip menu",
     "pause": "Pause",
     "play": "Play",
-    "slide-prev": "Diapo précédente",
-    "slide-next": "Diapo suivante",
+    "slide-prev": "Previous slide",
+    "slide-next": "Next slide",
     "mobile": "Activate mobile mode",
     "desktop": "Deactivate mobile mode",
     "type-your-email": "Enter your email address",
     "your-email": "Your email here",
     "subscribe":"Suscribe",
     "to-the-newsletter": " to the newsletter",
-    "source": "Source"
+    "source": "Source",
+    "campaign": "Campaigns"
   },
   "menu": {
     "soft": { "name": "Free Software" },
@@ -137,10 +139,11 @@
       "d1": "Selection of french speaking  news."
     },
     "dio": {
-      "p": "De-googl-ify ",
-      "l": "https://degooglisons-internet.org/?l=en",
-      "t1": "<b class='violet'>De-googl-ize</b> <b class='orange'>Internet</b> : an ambitions campaign.",
-      "d1": "Online services as provided by hegemonic giants such as Google, Amazon, Facebook, Apple or Microsoft (GAFAM) are putting our digital life and privacy at risk. Today, <span style='font-weight:bold;color:#6A5687'>Frama</span><span style='font-weight:bold;color:#D2703A'>soft</span> is indulging in a big challenge : offer, with your help, a Libre, Ethic, Decentralized and Solidary alternative for every popular service."
+      "p": "All services",
+      "l": "https://degooglisons-internet.org/list/?l=en",
+      "d0": "List of services",
+      "t1": "List of services",
+      "d1": "List of all the services we offer classified by usage, with a search bar to help you find the one that meets your needs."
     },
     "pad": {
       "t1": "Collaborative editing",
@@ -344,6 +347,18 @@
     },
     "credits": {
       "s": "Credits"
+    },
+    "dio2": {
+      "p": "<b>2014-2017</b> : De-googl-ify ",
+      "s": "Internet",
+      "l": "https://degooglisons-internet.org/?l=en",
+      "t1": "<b class='violet'>De-googl-ize</b> <b class='orange'>Internet</b> : an ambitions campaign.",
+      "d1": "Online services as provided by hegemonic giants such as Google, Amazon, Facebook, Apple or Microsoft (GAFAM) are putting our digital life and privacy at risk. <b class='violet'>Frama</b><b class='orange'>soft</b> was indulging in a big challenge : offer, with your help, a Libre, Ethic, Decentralized and Solidary alternative for every popular service."
+    },
+    "cuo": {
+      "l": "https://contributopia.org/en/home",
+      "t1": "<b class='violet'>Contrib</b><b class='orange'>utopia</b> : de-googl-ify is not enough",
+      "d1": "<b class='violet'>Frama</b><b class='orange'>soft</b> invites you on an exciting journey: let's explore digital worlds together. worlds where computer tools are conceived in collaboration, where respectful practices swarm and pollinate, where the doors of contribution open."
     }
   }
 }
