@@ -204,7 +204,7 @@ function f$_start_jquery() {
     // On charge ensuite les données
     f$_i18n = {};
     var dataI18n = function(){};
-    if(i$Lang('en')) {
+    if(i$Lang('en') || !u$Lang('fr')) {
     dataI18n = f$.getJSON( n$.nav.url+'html/data.en.json' )
         .fail(function() { console.error('✘ data.en.json') })
         .done( function(data) { f$_i18n = data; });
@@ -1151,6 +1151,15 @@ function i$Lang(lg) {
   return (lang.substr(0,2).toLowerCase() == lg)
 }
 
+function u$Lang(lg) {
+  var userLang = navigator.languages || [root.navigator.language || root.navigator.userLanguage];
+  for (var i = 0; i < userLang.length; i++) {
+    if(userLang[i].substring(0,2).toLowerCase() == lg) {
+      return true;
+    }
+  }
+}
+
 // Version de jQuery à utiliser
 /**
   si undefined              → AJAX
@@ -1267,7 +1276,7 @@ if( i$Before('2017/12/14') && n$.site != 'soutenir') {
     '<p>Sur les 90 000 € nécessaires à Framasoft pour boucler notre budget 2018, un tiers financera le développement <a href="https://framatube.org">PeerTube/Framatube</a>. Ce premier palier est atteint : merci !</p>'+
     '<p>Le deuxième palier nous permettra de maintenir et d’améliorer la trentaine de services alternatifs de <a href="https://degooglisons-internet.org/liste">Dégooglisons Internet</a>. Vous pouvez y contribuer en soutenant Framasoft <a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir"><i class="fa fa-heart" aria-hidden="true"></i><span class="sr-only">Faire un don ?</a></p>'+
     '<div class="clearfix fsbarre hidden" style="max-width:500px;margin:10px auto"><div class="col-xs-10"><div class="progress" style="margin-bottom:0;"><div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="30000" style="width: 0%"><span class="dons"></span></div></div></div><div class="col-xs-2">30 000 €</div></div>';
-  if(i$Lang('en')) {
+  if(i$Lang('en') || !u$Lang('fr')) {
     c$.alert[1] =
     '<p>Of the €90,000 Framasoft needs to meet our 2018 budget, one third will finance the development of <a href="https://framatube.org/#en">PeerTube/Framatube</a>. Thank you for helping us reaching this first goal!</p>'+
     '<p>The second goal will enable us to maintain and improve the more than thirty alternative services of our <a href="https://degooglisons-internet.org/liste/?l=en">De-googl-ify Internet</a> campaign. You can contribute to this by supporting Framasoft <a href="https://soutenir.framasoft.org/en/" class="btn btn-xs btn-soutenir"><i class="fa fa-heart" aria-hidden="true"></i><span class="sr-only">Make a donation?</a></p>'+
