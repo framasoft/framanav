@@ -1285,7 +1285,7 @@ if( i$Before('2017/12/14') && n$.site != 'soutenir') {
 
   var startDons = 53000;
   setInterval(function(){
-    if (window.jQuery !== undefined) {
+    if (window.jQuery !== undefined && n$.site != 'contributopia') {
       if(jQuery('.fsbarre').length && jQuery('.fsbarre').hasClass('hidden') ) {
         jQuery.getJSON( 'https://soutenir.framasoft.org/sites/all/dons/total.txt' )
           .fail(function() { console.error('✘ don') })
