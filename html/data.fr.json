@@ -93,7 +93,8 @@
     "to-the-newsletter": " à la lettre d’informations",
     "source": "Source",
     "contact-us": "Contactez-nous",
-    "another-question": "Votre question n’est pas listée ?"
+    "another-question": "Votre question n’est pas listée ?",
+    "campaign": "Campagnes"
   },
   "menu": {
     "soft": { "name": "Logiciel libre" },
@@ -305,16 +306,16 @@
       "d1": "Sélection de nouvelles du libre francophone."
     },
     "dio": {
-      "p": "Dégooglisons ",
-      "s": "Internet",
+      "p": "Tous les services",
+      "s": "",
       "c": "o",
-      "i": "fa-shield",
-      "l": "https://degooglisons-internet.org",
+      "i": "",
+      "l": "https://degooglisons-internet.org/liste",
       "git": "https://framagit.org/framasoft/degooglisons",
 
-      "d0": "Campagne de sensibilitation",
-      "t1": "<b class='violet'>Dégooglisons</b> <b class='orange'>Internet</b> : une ambitieuse campagne.",
-      "d1": "Les services en ligne de géants tentaculaires comme Google, Amazon, Facebook, Apple ou Microsoft (GAFAM) mettent en danger nos vies numériques. Aujourd’hui, <b class='violet'>Frama</b><b class='orange'>soft</b> se lance un défi audacieux : vous proposer, avec votre aide, une alternative Libre, Éthique, Décentralisé et Solidaire pour chacun de ces services."
+      "d0": "Liste des services",
+      "t1": "Liste des services",
+      "d1": "Liste de tous les services que nous proposons classés selon les usages, avec une barre de recherche pour mieux vous aider à trouver celui qui correspond à vos attentes."
     },
     "pad": {
       "p": "Frama",
@@ -1049,6 +1050,30 @@
       "c": "o",
       "i": "fa-creative-commons",
       "l": "https://framasoft.org/nav/html/credits.html"
+    },
+    "dio2": {
+      "p": "<b>2014-2017</b> : Dégooglisons ",
+      "s": "Internet",
+      "c": "o",
+      "i": "",
+      "l": "https://degooglisons-internet.org",
+      "git": "https://framagit.org/framasoft/degooglisons",
+
+      "d0": "Campagne de sensibilitation",
+      "t1": "<b class='violet'>Dégooglisons</b> <b class='orange'>Internet</b> : une ambitieuse campagne.",
+      "d1": "Les services en ligne de géants tentaculaires comme Google, Amazon, Facebook, Apple ou Microsoft (GAFAM) mettent en danger nos vies numériques. <b class='violet'>Frama</b><b class='orange'>soft</b> s’est lancé comme défi audacieux de vous proposer, avec votre aide, une alternative Libre, Éthique, Décentralisé et Solidaire pour chacun de ces services."
+    },
+    "cuo": {
+      "p": "<b>2017-2020</b> : Contrib",
+      "s": "utopia",
+      "c": "o",
+      "i": "",
+      "l": "https://contributopia.org/fr/home",
+      "git": "https://framagit.org/framasoft/contributopia",
+
+      "d0": "Campagne de sensiblisation",
+      "t1": "<b class='violet'>Contrib</b><b class='orange'>utopia</b> : dégoogliser ne suffit pas",
+      "d1": "<b class='violet'>Frama</b><b class='orange'>soft</b> vous invite à un voyage exaltant : explorons ensemble des mondes numériques. Des mondes où les outils informatiques se conçoivent en collaboration, où les pratiques respectueuses essaiment et pollinisent, où s’ouvrent les portes de la contribution."
     }
   }
 }

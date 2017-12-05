@@ -346,17 +346,18 @@ function f$_start_jquery() {
         f$('#fs_about .fs_git').before(f$('#fs_about .fs_aide,#fs_about .fs_faq,#fs_about .fs_doc'));
 
         f$('#fs_about ul').prepend('<li class="dropdown-header">'+h$.framasoft+'</li>'+h$.divider);
-        f$('#fs_services li:eq(0)').addClass('dropdown-header');
-        f$('#fs_services li:eq(0) a').wrapInner('<b>');
+        f$('#fs_about .fs_dio2').before('<li class="dropdown-header"><b>'+d$.t.campaign+'<b></li>'+h$.divider);
+
+        f$('#fs_services .fs_dio,#fs_about .fs_dio2,#fs_about .fs_cuo').addClass('dropdown-header');
+        f$('#fs_services .fs_dio a').wrapInner('<b>');
+        f$('#fs_about .fs_dio2 a,#fs_about .fs_cuo a').addClass('text-left');
+
         // Ajout des dividers
-        f$('#framanav .dropdown-menu li')
-          .has(
-            'a[href$="framastart.org"], a[href*="zic.org"], a[href*="enventelibre.org"],'+
-            'a[href*="degooglisons"], a[href*="maestro.org"], a[href*="carte.org"], a[href*="minetest.org"], a[href*="news.org"],'+
-            ' a[href*="framagit.org"], a[href*="frama.wiki"],'+
-            ' a[href*="petitions.org"], a[href*="wikipedia.org"], a[href*="plus.google"], a[href*="status."]'
-          )
-          .after(h$.divider);
+        f$(
+          '.fs_start, .fs_zic, .fs_evl, .fs_evl2, .fs_dio,'+
+          '.fs_maestro, .fs_carte, .fs_minetest, .fs_news, .fs_git,'+
+          '.fs_wiki, .fs_petitions, .fs_gplus, .fs_wikipedia, .fs_status, .fs_credits'
+        ).after(h$.divider);
 
         /**
          * Mobile/Desktop
