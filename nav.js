@@ -1272,15 +1272,15 @@ if(f$_mm == 12 && (31-f$_dd) < 16 && n$.site != 'soutenir' && i$Lang('fr')) {
 
 // Bandeau PeerTube
 if( i$Before('2017/12/14') && n$.site != 'soutenir') {
-  c$.alert[0] = 'warning';
+  c$.alert[0] = 'success';
   c$.alert[1] =
-    '<p>Sur les 90 000 € nécessaires à Framasoft pour boucler notre budget 2018, un tiers financera le développement <a href="https://framatube.org">PeerTube/Framatube</a>. Ce premier palier est atteint : merci !</p>'+
-    '<p>Le deuxième palier nous permettra de maintenir et d’améliorer la trentaine de services alternatifs de <a href="https://degooglisons-internet.org/liste">Dégooglisons Internet</a>. Vous pouvez y contribuer en soutenant Framasoft <a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir"><i class="fa fa-heart" aria-hidden="true"></i><span class="sr-only">Faire un don ?</a></p>'+
+    '<p>Sur les 90 000 € nécessaires à Framasoft pour boucler notre budget 2018, un tiers financera le développement <a href="https://framatube.org">PeerTube/Framatube</a>, un autre les services <a href="https://degooglisons-internet.org/liste">Dégooglisons Internet</a>. Ces paliers sont atteints : merci !</p>'+
+    '<p>Le 3e et dernier palier nous permettra de concrétiser <a href="https://contributopia.org/fr/services/">le monde des services de Contributopia</a>. Vous pouvez y contribuer en soutenant Framasoft <a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir"><i class="fa fa-heart" aria-hidden="true"></i><span class="sr-only">Faire un don ?</a></p>'+
     '<div class="clearfix fsbarre hidden" style="max-width:500px;margin:10px auto"><div class="col-xs-10"><div class="progress" style="margin-bottom:0;"><div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="30000" style="width: 0%"><span class="dons"></span></div></div></div><div class="col-xs-2">30 000 €</div></div>';
   if(i$Lang('en') || !u$Lang('fr')) {
     c$.alert[1] =
-    '<p>Of the €90,000 Framasoft needs to meet our 2018 budget, one third will finance the development of <a href="https://framatube.org/#en">PeerTube/Framatube</a>. Thank you for helping us reaching this first goal!</p>'+
-    '<p>The second goal will enable us to maintain and improve the more than thirty alternative services of our <a href="https://degooglisons-internet.org/liste/?l=en">De-googl-ify Internet</a> campaign. You can contribute to this by supporting Framasoft <a href="https://soutenir.framasoft.org/en/" class="btn btn-xs btn-soutenir"><i class="fa fa-heart" aria-hidden="true"></i><span class="sr-only">Make a donation?</a></p>'+
+    '<p>Of the €90,000 Framasoft needs to meet our 2018 budget, one third will finance the development of <a href="https://framatube.org/#en">PeerTube/Framatube</a>, another will help maintain the services of our <a href="https://degooglisons-internet.org/liste/?l=en">De-googl-ify Internet</a> campaign. Thank you for helping us reaching those goals!</p>'+
+    '<p>The third and final goal will enable us to create the services of our <a href="https://contributopia.org/en/services/">Contributopia</a> campaign. You can contribute to this by supporting Framasoft <a href="https://soutenir.framasoft.org/en/" class="btn btn-xs btn-soutenir"><i class="fa fa-heart" aria-hidden="true"></i><span class="sr-only">Make a donation?</a></p>'+
     '<div class="clearfix fsbarre hidden" style="max-width:500px;margin:10px auto"><div class="col-xs-10"><div class="progress" style="margin-bottom:0;"><div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="30000" style="width: 0%"><span class="dons"></span></div></div></div><div class="col-xs-2">30 000 €</div></div>';
   }
 
