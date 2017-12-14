@@ -1271,7 +1271,7 @@ if(f$_mm == 12 && (31-f$_dd) < 16 && n$.site != 'soutenir' && i$Lang('fr')) {
 }
 
 // Bandeau PeerTube
-if( i$Before('2017/12/14') && n$.site != 'soutenir') {
+if( i$Before('2017/12/15') && n$.site != 'soutenir') {
   c$.alert[0] = 'success';
   c$.alert[1] =
     '<p>Sur les 90 000 € nécessaires à Framasoft pour boucler notre budget 2018, un tiers financera le développement <a href="https://framatube.org">PeerTube/Framatube</a>, un autre les services <a href="https://degooglisons-internet.org/liste">Dégooglisons Internet</a>. Ces paliers sont atteints : merci !</p>'+
