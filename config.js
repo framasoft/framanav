@@ -711,7 +711,16 @@ switch (n$.site) {
 
   case 'zic':
     l$ = {
-      js: { video : true },
+      js: { 
+        video : true,
+        ext: function() {
+          jQuery('button[name^="sp_"]').each(function(){
+            jQuery(this).on('click', function() {
+              jQuery('.'+jQuery(this).attr('name')).toggle();
+            });
+          });
+        }
+      },
       fixed: true
     }
   break;
