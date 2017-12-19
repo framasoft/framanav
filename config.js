@@ -82,6 +82,21 @@ switch (n$.site) {
     l$ = {
       css: { order: '102345' },
       optin: ['#email_confirm', '#email'],
+      modal: {
+        info: [
+          'Fermeture de Framagora',
+          '<p>Après 15 années d’existence, le forum historique de Framasoft, ferme ses portes. Pour les nostalgiques et les curieux, il reste toujours possible de consulter les discussions mais c’est maintenant le forum <a href="https://framacolibri.org" style="text-decoration:none"><b class="violet">Frama</b><b class="jaune">colibri</b></a> qui prend la relève.</p>'+
+          '<p>Nous avions mis en place <a href="https://framacolibri.org" style="text-decoration:none"><b class="violet">Frama</b><b class="jaune">colibri</b></a> en 2015 pour permettre aux bénévoles souhaitant participer aux projets de Framasoft de s’organiser sur un forum vierge et moderne. Aujourd’hui, la dynamique est bien là.</p>'+
+          '<p>Nous y avons donc reporté les quelques catégories de Framagora qui étaient encore un peu actives :<p><ul>'+
+            '<li><a href="https://framacolibri.org/c/framasoft-vous/cherche-logiciel-libre-pour">Cherche logiciel libre pour…</a></li>'+
+            '<li><a href="https://framacolibri.org/c/framasoft-vous/ask-frama">Questions / réponses</a></li>'+
+            '<li><a href="https://framacolibri.org/c/qualite/framakey">Framakey</a></li>'+
+            '<li><a href="https://framacolibri.org/c/qualite">Améliorons ensemble les outils Framasoft</a></li>'+
+            '<li><a href="https://framacolibri.org/c/framasoft-vous/presentations">Présentation des membres</a></li>'+
+          '</ul>'+
+          '<p>Si vous avez des questions, on se retrouve là-bas… <img src="https://framacolibri.org/images/emoji/emoji_one/wink.png?v=0" alt=";)" style="width:20px"/></p><p class="text-center"><a href="https://framacolibri.org" class="btn btn-default"><b>https://</b><b class="violet">frama</b><b class="jaune">colibri</b><b>.org</b></a></p>'
+        ]
+      },
       footer: false
     }
   break;
