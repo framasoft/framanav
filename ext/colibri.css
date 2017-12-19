@@ -58,7 +58,8 @@ body {
 .category-navigation a,
 .num a,
 .menu-panel a,
-.topic-meta-data a {
+.topic-meta-data a,
+.category-breadcrumb a{
     text-decoration:none;
 }
 
