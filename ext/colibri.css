@@ -57,7 +57,8 @@ body {
 .topic-stats a,
 .category-navigation a,
 .num a,
-.menu-panel a{
+.menu-panel a,
+.topic-meta-data a {
     text-decoration:none;
 }
 
