@@ -192,7 +192,7 @@ jQuery(document).ready(function() {
       // Pour chaque site on génère les images
       for (var k in dp$.f) {
         // mais avant un peu de nettoyage
-        dp$.f[k].c = (k == 'wiki2' || k == 'agora' || k == 'participer' || k == 'soutenir' || /evl/g.test(k)) ? 'j' : dp$.f[k].c;
+        dp$.f[k].c = (k == 'wiki2' || k == 'colibri' || k == 'participer' || k == 'soutenir' || /evl/g.test(k)) ? 'j' : dp$.f[k].c;
         dp$.f[k].c = (k == 'doc') ? 'j' : dp$.f[k].c;
 
         noIcon = new Array(

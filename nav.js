@@ -468,9 +468,10 @@ function f$_start_jquery() {
         '<h1>'+d$.menu.community.name+'</h1>'+
         '<ul class="list-unstyled">'+
           '<li><a href="'+d$.f.participer.l+'">'+h$.f.participer.name+'</a></li>'+
+          '<li><a href="'+d$.f.colibri.l+'">'+d$.f.colibri.d0+'</a></li>'+
           '<li><a href="'+d$.f.benevalo.l+'">'+h$.f.benevalo.name+'</a></li>'+
           '<li><a href="'+d$.f.partenaires.l+'">'+h$.f.partenaires.name+'</a></li>'+
-          '<li><a href="'+d$.f.colibri.l+'">'+h$.f.colibri.name+'</a></li>'+
+
         '</ul>'+
       '</nav>'+
       '<nav class="col-xs-4">'+

@@ -6,7 +6,7 @@ jQuery(document).ready(function(){
     // Liste des projets
     var cols = [
         ["libre","key","dvd","pack","blog","book","bookin","tube",
-         "zic","agora","evl","dio"],
+         "zic","colibri","evl","dio"],
         // Ordre alphabétique pour tout ce qui est en vert
         ["agenda","bag","bee","bin","board","calc","carte","date","drive",
          "drop","forms","games","git","link","listes","maestro","memo"],
@@ -37,7 +37,7 @@ jQuery(document).ready(function(){
                 case 'j': fc = 'jaune';  break;
                 case 'o': fc = 'orange'; break;
             }
-            if(projet == "evl" || projet == "agora") {
+            if(projet == "evl" || projet == "colibri") {
                 fc = 'jaune';
             }
 
@@ -77,7 +77,7 @@ jQuery(document).ready(function(){
 
         // Alertes
         jQuery('.wpcf7 form .your-message').before(
-            '<p class="alert alert-warning framalibre"><b class="label label-warning">Attention</b> Il ne sera donné <b>aucune réponse aux questions concernant le fonctionnement de logiciels libres</b>. Nous ne connaissons pas tous les logiciels qui figurent dans notre annuaire. Pour cela, merci d’utiliser <a href="https://forum.framasoft.org">nos forums</a> ou les réseaux sociaux.</p>'+
+            '<p class="alert alert-warning framalibre"><b class="label label-warning">Attention</b> Il ne sera donné <b>aucune réponse aux questions concernant le fonctionnement de logiciels libres</b>. Nous ne connaissons pas tous les logiciels qui figurent dans notre annuaire. Pour cela, merci d’utiliser <a href="https://framacolibri.org">nos forums</a> ou les réseaux sociaux.</p>'+
             '<p class="alert alert-warning framapad">N’oubliez pas de <b>nous donner l’adresse complète du pad</b> qui vous pose problème dans votre message.</p>'+
             '<p class="alert alert-warning framacalc">N’oubliez pas de <b>nous donner l’adresse du calc</b> qui vous pose problème dans votre message.</p>'+
             '<p class="alert alert-warning framadate">N’oubliez pas de <b>nous donner l’adresse du sondage</b> qui vous pose problème dans votre message.</p>'+
@@ -87,6 +87,7 @@ jQuery(document).ready(function(){
             '<p class="alert alert-warning framadrive">N’oubliez pas de <b>nous donner l’identifiant de votre compte</b> dans votre message.</p>'+
             '<p class="alert alert-warning framagenda">N’oubliez pas de <b>nous donner l’identifiant de votre compte</b> dans votre message.</p>'+
             '<p class="alert alert-warning framalistes">N’oubliez pas de <b>nous donner le nom de votre liste</b> dans votre message.</p>'+
+            '<p class="alert alert-warning framasite framawiki">N’oubliez pas de <b>nous donner l’adresse de votre site</b> dans votre message.</p>'+
             '<p class="alert alert-warning framateam">N’oubliez pas de <b>nous donner votre identifiant</b> ainsi que <b>les équipes où vous êtes inscrits</b> dans votre message.</p>'
         );
         jQuery('.wpcf7 form .your-message').before(
