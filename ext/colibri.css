@@ -56,7 +56,8 @@ body {
 .main-link a,
 .topic-stats a,
 .category-navigation a,
-.num a{
+.num a,
+.menu-panel a{
     text-decoration:none;
 }
 
