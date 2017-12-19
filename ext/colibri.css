@@ -51,3 +51,9 @@ body {
 #reply-control {
     background-color: #d7ccc8;
 }
+
+.category .bullet,
+.main-link a,
+.topic-stats a{
+    text-decoration:none;
+}
