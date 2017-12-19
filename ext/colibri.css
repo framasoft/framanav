@@ -54,6 +54,8 @@ body {
 
 .category .bullet,
 .main-link a,
-.topic-stats a{
+.topic-stats a,
+.category-navigation a,
+.num a{
     text-decoration:none;
 }
