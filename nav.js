@@ -266,7 +266,7 @@ function f$_start_jquery() {
           h$.menu[f$_menu].nav += '<li class="fs_'+f$_menu+' fs_'+k+'"><a href="'+d$.f[k].l+'" '+h$Popover(d$.f[k].t1, d$.f[k].d1)+'>'+h$icon(d$.f[k].i)+'&nbsp;'+h$.f[k].name+'</a></li>';
 
           // "Nous suivre" dans le footer
-          if ((f$_menu == 'follow') && !(/(wiki|agora|newsletter|contact|wikipedia)/i).test(k)) {
+          if ((f$_menu == 'follow') && !(/(wiki|colibri|newsletter|contact|wikipedia)/i).test(k)) {
             h$.menu['follow'].footer += '<li class="fs_'+k+'"><a href="'+d$.f[k].l+'" title="'+d$.f[k].t1+'" '+h$Popover(d$.f[k].t1, d$.f[k].d1, 'top')+'><i class="fa fa-fw fa-2x '+d$.f[k].i+'" aria-hidden="true"></i>'+h$SR(d$.f[k].name)+'</a></li>';
           }
           // "À propos" du site
@@ -470,7 +470,7 @@ function f$_start_jquery() {
           '<li><a href="'+d$.f.participer.l+'">'+h$.f.participer.name+'</a></li>'+
           '<li><a href="'+d$.f.benevalo.l+'">'+h$.f.benevalo.name+'</a></li>'+
           '<li><a href="'+d$.f.partenaires.l+'">'+h$.f.partenaires.name+'</a></li>'+
-          '<li><a href="'+d$.f.agora.l+'">'+h$.f.agora.name+'</a></li>'+
+          '<li><a href="'+d$.f.colibri.l+'">'+h$.f.colibri.name+'</a></li>'+
         '</ul>'+
       '</nav>'+
       '<nav class="col-xs-4">'+

@@ -941,16 +941,16 @@
       "t1": "Article Framasoft sur Wikipédia",
       "d1": "Parcourez le (long) article Framasoft sur l’(incontournable) encyclopédie libre Wikipédia."
     },
-    "agora": {
-      "p": "Fram",
-      "s": "agora",
+    "colibri": {
+      "p": "Frama",
+      "s": "colibri",
       "c": "f",
       "i": "fa-comment",
-      "l": "https://forum.framasoft.org",
+      "l": "https://framacolibri.org",
 
       "d0": "Forum",
       "t1": "Le forum du réseau Framasoft",
-      "d1": "Vous avez une question ? Nous avons (peut-être) une réponse ! « Si tu ne sais pas, demande. Si tu sais, partage. » Framagora est notre convivial espace d’échange d’informations autour du Libre."
+      "d1": "Vous avez une question ? Nous avons (peut-être) une réponse ! « Si tu ne sais pas, demande. Si tu sais, partage. » Framacolibri est notre convivial espace d’échange d’informations autour du Libre."
     },
     "wiki2": {
       "p": "Frama",
