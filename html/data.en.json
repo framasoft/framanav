@@ -310,7 +310,8 @@
       "s": "Our association"
     },
     "participer": {
-      "s": "Participate"
+      "s": "Participate",
+      "l": "https://participer.framasoft.org/en/"
     },
     "charte": {
       "s": "Our chart",

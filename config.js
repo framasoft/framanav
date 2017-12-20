@@ -530,13 +530,6 @@ switch (n$.site) {
   break;
 //-- </framapad> -------------------------------------------------------
 
-  case 'participer':
-    l$ = {
-      js: { video: true },
-      fixed: true
-    }
-  break;
-
   case 'phonie':
     l$ = {
       css: {

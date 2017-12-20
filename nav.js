@@ -355,7 +355,7 @@ function f$_start_jquery() {
         // Ajout des dividers
         f$(
           '.fs_start, .fs_zic, .fs_evl, .fs_evl2, .fs_dio,'+
-          '.fs_maestro, .fs_carte, .fs_minetest, .fs_news, .fs_git,'+
+          '.fs_maestro, .fs_carte, .fs_minetest, .fs_news, .fs_services.fs_git,'+
           '.fs_wiki, .fs_petitions, .fs_gplus, .fs_wikipedia, .fs_status, .fs_credits'
         ).after(h$.divider);
 
