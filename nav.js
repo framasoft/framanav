@@ -1129,7 +1129,13 @@ function i$Lang(lg) {
   var html = document.getElementsByTagName("html");
   var meta = document.getElementsByTagName('script');
 
-  if(html[0].getAttribute("lang")) {
+  if(window.location.host.indexOf('framindmap.org') // Contournement de Wisemapping
+    && document.getElementById("userSettingsBtn") 
+    && document.getElementById("userSettingsBtn").innerHTML == 'Compte'){
+
+    lang = 'fr';
+    
+  } else if(html[0].getAttribute("lang")) {
 
     lang = html[0].getAttribute("lang");
 
