@@ -1267,14 +1267,25 @@ var f$_dd = f$_today.getDate();
 var f$_mm = f$_today.getMonth()+1;
 var f$_yyyy = f$_today.getFullYear();
 
-
-
 if(f$_mm == 12 && (31-f$_dd) < 16 && n$.site != 'soutenir' && i$Lang('fr')) {
   f$_rebours = ((31-f$_dd) == 0) ? '24 heures' : 31-f$_dd+' jours';
   c$.alert[0] = 'info';
   c$.alert[1] =
     'Rappel : il vous reste <b>'+f$_rebours+'</b> pour faire un <b>don défiscalisé en '+f$_yyyy+'</b> à Framasoft.'+
     '<br/>Merci pour votre soutien <a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir"><i class="fa fa-heart" aria-hidden="true"></i><span class="sr-only">Faire un don ?</a>';
+}
+
+// Bandeau Enquête
+if( i$Before('2018/02/05') && i$Lang('fr')) {
+  var f$_endDay = new Date(2018,1,5); // Janvier = 0 ; Février = 1 en JS :-/
+  var f$_diffDays = Math.round((f$_endDay.getTime() - f$_today.getTime())/(24*60*60*1000))+1;
+
+  f$_rebours = (f$_diffDays <= 1) ? '24 heures' : f$_diffDays+' jours';
+  c$.alert[0] = 'info';
+  c$.alert[1] =
+    '#Framavous : à vous de nous dire ce que vous pensez de ce qu’on fait !'+
+    ' Plus que <b>'+f$_rebours+'</b> pour répondre à <a href="https://frama.link/framavous">notre enquête</a> sur vous, '+
+    'vos attentes, et vos usages des outils qu’on propose. <a href="https://frama.link/framavous">https://frama.link/framavous</a>'
 }
 
 // Bandeau PeerTube
