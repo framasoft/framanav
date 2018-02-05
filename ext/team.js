@@ -143,7 +143,7 @@ f$('a[href*="/channels"]').on('click', function() {
 // Lien https://docs.framasoft.org/fr/mattermost/index.html
 setInterval(function() {
   f$('a[href*="docs.mattermost.com/help"], a[href*="docs.mattermost.com/index"]').attr('href', function(){
-    return f$(this).attr('href').replace('docs.mattermost.com', 'docs.framasoft.org/fr/mattermost/')
+    return f$(this).attr('href').replace('docs.mattermost.com', 'docs.framasoft.org/fr/mattermost')
   });
 }, 1000);
 
