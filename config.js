@@ -229,7 +229,7 @@ switch (n$.site) {
       js: { 
         b$: 'html',
         ext: function() {
-          jQuery('.navbar-default').css('background-color', '#fff');
+          jQuery('body > .navbar-default').css('background-color', '#fff');
           jQuery('body').css('background-color', '#eee');
         }
       }
