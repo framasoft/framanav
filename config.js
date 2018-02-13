@@ -224,6 +224,18 @@ switch (n$.site) {
     }
   break;
 
+  case 'clic':
+    l$ = {
+      js: { 
+        b$: 'html',
+        ext: function() {
+          jQuery('.navbar-default').css('background-color', '#fff');
+          jQuery('body').css('background-color', '#eee');
+        }
+      }
+    }
+  break;
+
   case 'colibri':
     l$ = {
       css: { ext: true },
@@ -807,6 +819,8 @@ switch (n$.site) {
   case 'contributopia' :         l$.piwik.id = '63'; break;
   case 'site' :                  l$.piwik.id = '64'; break;
   case 'wiki' :                  l$.piwik.id = '64'; break;
+  case 'trad' :                  l$.piwik.id = '65'; break;
+  case 'clic' :                  l$.piwik.id = '66'; break;
 }
 
 
