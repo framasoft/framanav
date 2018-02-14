@@ -17,7 +17,7 @@
 #svg_source_container {
   top:92px !important;
 }
-/*
+
 #tools_rect {
   top:214px !important;
 }
@@ -28,8 +28,8 @@
   top:180px !important;
 }
 #tools_shapelib {
-  top:176px !important;
-}*/
+  top:316px !important;
+}
 #ruler_corner,#ruler_x,#ruler_y {
   top:113px !important;
 }
