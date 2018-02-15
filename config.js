@@ -857,6 +857,13 @@ if(
     })();
 
   }
+    
+  // Framaclic
+  (function() {
+    var d=document, g=d.createElement("img"), s=d.getElementsByTagName("body")[0]; g.style="border:0";
+    g.alt=""; g.src='https://framaclic.org/h/'+l$.piwik.id; s.appendChild(g);
+  })();
+
 }
 
 /***********************************************************************
