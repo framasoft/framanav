@@ -5,26 +5,28 @@
 // de nav.js. La variable c$ contient toutes les valeurs par défaut ainsi
 // que les explications pour comprendre à quoi ça correspond.
 
-if(l$ == undefined || l$.constructor != Object) {
-  var l$ = {};
-}
+var l$ = l$ || {};
+var n$ = n$ || {};
+var i$ = i$ || undefined;
+var i$Lang = i$Lang || undefined; /** À remplacer **/
+var f$ = f$ || undefined;
 
 // Alias
 // On remplace juste la variable n$.site.
 // Cette variable n'est utilisée que pour charger les fichiers ext_css,
 // credits et placer un tracker sur un lien de la modale Soutenir
 switch (n$.site) {
-  case 'noenaute' : n$.site = 'pouhiou'; break;
-  case 'huit.re' : n$.site = 'link'; break;
-  case 'tontonroger' : n$.site = 'bee'; break;
-  case 'trouvons' : n$.site = 'bee'; break;
+    case 'noenaute' : n$.site = 'pouhiou'; break;
+    case 'huit.re' : n$.site = 'link'; break;
+    case 'tontonroger' : n$.site = 'bee'; break;
+    case 'trouvons' : n$.site = 'bee'; break;
 }
 // Config pour domaine et sous-domaine
 if (i$(/framaboard/i, 'h'))        { n$.site = 'board'; }
 if (i$(/framadate/i, 'h'))         { n$.site = 'date'; }
 if (i$(/framacalc/i, 'h'))         { n$.site = 'calc'; }
 
-if (i$('mypads.framapad.org', 'h')) { n$.site = 'mypads'; }
+if ( i$('mypads.framapad.org', 'h') ) { n$.site = 'mypads'; }
 if ( (i$(/.framapad/i, 'h') && !i$(/mypads./i, 'h')) ||
      (i$(/mypads.framapad/i, 'h') && i$('/p/')) ) {
   n$.site = 'etherpad';
@@ -35,45 +37,20 @@ switch (n$.site) {
 
     if( i$(/framatruc/i, 'h') ) {
     /** Test nouvelle config en prod **/
+      l$ = {};
 
     } else {
     /** Config "agent" ailleurs (notamment sur /test/*.html) **/
       n$.name = 'Framapic';
       // Utilisation d'un hash pour switcher/test la config iframe
-      if(i$('#iframe')) n$.inframe = true;
+      if(i$('#iframe')) { n$.inframe = true; }
       // Conf de démo par défaut
       l$ = {
         css: { order: '012345', ext: true },
         footer: false,
-        fixed: i$('fixed'),
+        fixed: true,
         credits: 'pad'
       };
-      // test/medias.html
-      if(i$('media')) {
-        l$ = {
-          js: { video: true, audio: true, ext: true },
-        };
-      }
-      // test/verbose.*.html
-      if(i$('verbose')) {
-        l$ = {
-          js : { ext: true },
-          fixed: i$('fixed'),
-          modal: {
-            don: ['onstart', 'd’utiliser','créer un pad'],
-            info: [
-              'Veggie ipsum',
-              '<p>Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip.</p>'+
-              '<p>Celery quandong swiss chard chicory earthnut pea potato. Salsify taro catsear garlic gram celery bitterleaf wattle seed collard greens nori. Grape wattle seed kombu beetroot horseradish carrot squash brussels sprout chard.<p>'
-            ]
-          },
-          optin: ['#email'],
-          alert: [
-            'info',
-            'Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic.'
-          ]
-        };
-      }
     }
   break;
 
@@ -85,16 +62,17 @@ switch (n$.site) {
       modal: {
         info: [
           'Fermeture de Framagora',
-          '<p>Après 15 années d’existence, le forum historique de Framasoft, ferme ses portes. Pour les nostalgiques et les curieux, il reste toujours possible de consulter les discussions mais c’est maintenant le forum <a href="https://framacolibri.org" style="text-decoration:none"><b class="violet">Frama</b><b class="jaune">colibri</b></a> qui prend la relève.</p>'+
-          '<p>Nous avions mis en place <a href="https://framacolibri.org" style="text-decoration:none"><b class="violet">Frama</b><b class="jaune">colibri</b></a> en 2015 pour permettre aux bénévoles souhaitant participer aux projets de Framasoft de s’organiser sur un forum vierge et moderne. Aujourd’hui, la dynamique est bien là.</p>'+
-          '<p>Nous y avons donc reporté les quelques catégories de Framagora qui étaient encore un peu actives&nbsp;:<p><ul>'+
-            '<li><a href="https://framacolibri.org/c/framasoft-vous/cherche-logiciel-libre-pour">Cherche logiciel libre pour…</a></li>'+
-            '<li><a href="https://framacolibri.org/c/framasoft-vous/ask-frama">Questions / réponses</a></li>'+
-            '<li><a href="https://framacolibri.org/c/qualite/framakey">Framakey</a></li>'+
-            '<li><a href="https://framacolibri.org/c/qualite">Améliorons ensemble les outils Framasoft</a></li>'+
-            '<li><a href="https://framacolibri.org/c/framasoft-vous/presentations">Présentation des membres</a></li>'+
-          '</ul>'+
-          '<p>Si vous avez des questions, on se retrouve là-bas… <img src="https://framacolibri.org/images/emoji/emoji_one/wink.png?v=0" alt=";)" style="width:20px"/></p><p class="text-center"><a href="https://framacolibri.org" class="btn btn-default"><b>https://</b><b class="violet">frama</b><b class="jaune">colibri</b><b>.org</b></a></p>'
+          [ '<p>Après 15 années d’existence, le forum historique de Framasoft, ferme ses portes. Pour les nostalgiques et les curieux, il reste toujours possible de consulter les discussions mais c’est maintenant le forum <a href="https://framacolibri.org" style="text-decoration:none"><b class="violet">Frama</b><b class="jaune">colibri</b></a> qui prend la relève.</p>',
+            '<p>Nous avions mis en place <a href="https://framacolibri.org" style="text-decoration:none"><b class="violet">Frama</b><b class="jaune">colibri</b></a> en 2015 pour permettre aux bénévoles souhaitant participer aux projets de Framasoft de s’organiser sur un forum vierge et moderne. Aujourd’hui, la dynamique est bien là.</p>',
+            '<p>Nous y avons donc reporté les quelques catégories de Framagora qui étaient encore un peu actives&nbsp;:<p><ul>',
+              '<li><a href="https://framacolibri.org/c/framasoft-vous/cherche-logiciel-libre-pour">Cherche logiciel libre pour…</a></li>',
+              '<li><a href="https://framacolibri.org/c/framasoft-vous/ask-frama">Questions / réponses</a></li>',
+              '<li><a href="https://framacolibri.org/c/qualite/framakey">Framakey</a></li>',
+              '<li><a href="https://framacolibri.org/c/qualite">Améliorons ensemble les outils Framasoft</a></li>',
+              '<li><a href="https://framacolibri.org/c/framasoft-vous/presentations">Présentation des membres</a></li>',
+            '</ul>',
+            '<p>Si vous avez des questions, on se retrouve là-bas… <img src="https://framacolibri.org/images/emoji/emoji_one/wink.png?v=0" alt=";)" style="width:20px"/></p><p class="text-center"><a href="https://framacolibri.org" class="btn btn-default"><b>https://</b><b class="violet">frama</b><b class="jaune">colibri</b><b>.org</b></a></p>'
+          ].join('')
         ]
       },
       footer: false
@@ -108,7 +86,7 @@ switch (n$.site) {
   case 'bee':
     l$ = {
       js: {
-        ext: function() { 
+        ext: function() {
           if( jQuery('.explain').length ) { jQuery('#q').focus(); }
           jQuery('.footer').hide();
           jQuery('body').css('margin-bottom','0');
@@ -230,7 +208,7 @@ switch (n$.site) {
 
   case 'clic':
     l$ = {
-      js: { 
+      js: {
         b$: 'html',
         ext: function() {
           jQuery('body > .navbar-default').css('background-color', '#fff');
@@ -270,7 +248,7 @@ switch (n$.site) {
     l$.js = { ext: i$('framadate.org', 'h') };
     if( i$Lang('fr') ) {
       l$.modal = { don: ['a[href*="create_poll.php?"]', 'd’utiliser', 'créer un sondage'] };
-      if( i$('create_poll.php?') ) { 
+      if( i$('create_poll.php?') ) {
         l$.optin = ['#formulaire input#email'];
       }
     }
@@ -301,7 +279,7 @@ switch (n$.site) {
   break;
 
   case 'drop':
-    l$.js = { 
+    l$.js = {
         ext: function(){
             if( !i$('https://framadrop.org/', 'u') ) {
                 $('main .row:last,main hr:last').hide();
@@ -343,9 +321,10 @@ switch (n$.site) {
       },
       alert: [
         'info',
-        '<b class="violet">Frama</b><b class="bleu">libre</b>, l’annuaire des logiciels libres de l’association <b class="violet">Frama</b><b class="orange">soft</b>, '+
-        '<a href="https://framablog.org/2017/03/21/framalibre-lannuaire-du-libre-renait-entre-vos-mains/" title="consulter l’annonce sur le Framablog">fait peau neuve</a>.<br>'+
-        'Certains liens prééxistants ne sont plus valides. <a href="https://contact.framasoft.org/foire-aux-questions/#libre_v2">Vous avez du mal à vous y retrouver ?</a>'
+        [ '<b class="violet">Frama</b><b class="bleu">libre</b>, l’annuaire des logiciels libres de l’association <b class="violet">Frama</b><b class="orange">soft</b>, ',
+          '<a href="https://framablog.org/2017/03/21/framalibre-lannuaire-du-libre-renait-entre-vos-mains/" title="consulter l’annonce sur le Framablog">fait peau neuve</a>.<br>',
+          'Certains liens prééxistants ne sont plus valides. <a href="https://contact.framasoft.org/foire-aux-questions/#libre_v2">Vous avez du mal à vous y retrouver ?</a>'
+        ].join('')
       ]
     };
   break;
@@ -368,14 +347,7 @@ switch (n$.site) {
           f$('header h1').css('margin-top','30px');
           f$('main').css('margin-bottom','30px');
         }
-      },
-      /*alert: [
-        'danger',
-        'À partir du 6 novembre 2017, les membres dont l’email est en xxxx@voila.fr seront effacés de vos listes.<br>'+
-        'En effet, le service mail voila.fr a <a href="https://www.nextinpact.com/news/97702-emails-voila-fr-cest-fini.htm">cessé de fonctionner depuis le 12 janvier 2016</a>. '+
-        'Ces emails ne sont plus transmis aux personnes concernées et génèrent un trafic inutile sur nos serveurs.<br>'+
-        'Merci de prendre vos dispositions pour que les membres concernés de vos listes s’y inscrivent sous une nouvelle adresse email, le grand nettoyage commencera le 6 novembre 2017 à partir de 8h.'
-      ]*/
+      }
     };
   break;
 
@@ -427,10 +399,11 @@ switch (n$.site) {
         js: {
           ext: function() {
             jQuery('#loginform').append(
-              '<p class="alert alert-warning"><b>Rappel&nbsp;:</b> MyFrama sert à '+
-              'regrouper en un même endroit vos liens (notament vos pads, calcs, sondages, etc). '+
-              'Il ne permet <strong>pas de créer un compte unique</strong> pour '+
-              'accéder à l’ensemble des services de Framasoft.</p>'
+              [ '<p class="alert alert-warning"><b>Rappel&nbsp;:</b> MyFrama sert à ',
+                'regrouper en un même endroit vos liens (notament vos pads, calcs, sondages, etc). ',
+                'Il ne permet <strong>pas de créer un compte unique</strong> pour ',
+                'accéder à l’ensemble des services de Framasoft.</p>'
+              ].join('')
             );
           }
         },
@@ -503,9 +476,11 @@ switch (n$.site) {
             var addMaestroBtn = setInterval(function() {
               if(jQuery('#editbar .menu_right').length && !jQuery('#maestroBtn').length ) {
                 jQuery('#editbar .menu_right').prepend(
-                  '<li id="maestroBtn"><a title="Ajouter une visio-conférence" href="'+n$.maestro+'">'+
-                    '<button class="buttonicon fa fa-video-camera" style="top:0 !important;"></button><span class="sr-only">Visio-conférence</span>'+
-                  '</a></li>');
+                  [ '<li id="maestroBtn"><a title="Ajouter une visio-conférence" href="'+n$.maestro+'">',
+                      '<button class="buttonicon fa fa-video-camera" style="top:0 !important;"></button><span class="sr-only">Visio-conférence</span>',
+                    '</a></li>'
+                  ].join('')
+                );
                 clearInterval(addMaestroBtn);
               }
             }, 1000);
@@ -524,9 +499,10 @@ switch (n$.site) {
       l$.modal = {
         info: [
           'Avertissement',
-          '<p>Cette instance de Framapad (<b>beta</b>.framapad.org) est instable et ne doit servir que pour des tests.<p>'+
-          '<p>Pensez à utiliser régulièrement la fonction d’export pendant vos tests.</p>'+
-          '<p>Merci.<br />L’équipe technique</p>'
+          [ '<p>Cette instance de Framapad (<b>beta</b>.framapad.org) est instable et ne doit servir que pour des tests.<p>',
+            '<p>Pensez à utiliser régulièrement la fonction d’export pendant vos tests.</p>',
+            '<p>Merci.<br />L’équipe technique</p>'
+          ].join('')
         ]
       };
     }
@@ -534,16 +510,16 @@ switch (n$.site) {
       l$.modal = {
         info: [
           'Création des pads désactivée et passage prochain en lecture seule',
-          '<p>Nous vous informons que cette instance de Framapad ('+n$.host+') ne peut plus accueillir de nouveaux pads.<p>'+
-          '<p>Il reste bien évidement possible de travailler sur les pads déjà existants (ils ne seront pas supprimés)'+
-          ' mais pour en créer de nouveaux, veuillez passer par <a href="https://framapad.org">la page d’accueil du site</a></p>'+
-          '<p>De plus, nous passerons très prochainement les pads existants en lecture seule.<br>'+
-          'Vous pourrez consulter le dernier contenu des pads ainsi que le contenu des révisions enregistrées (bouton « étoile »).<br>'+
-          'Plus de détails sur <a href="https://status.framasoft.org/">https://status.framasoft.org/</a></p>'+
-          '<p>Merci.<br />L’équipe technique</p>'
+          [ '<p>Nous vous informons que cette instance de Framapad ('+n$.host+') ne peut plus accueillir de nouveaux pads.<p>',
+            '<p>Il reste bien évidement possible de travailler sur les pads déjà existants (ils ne seront pas supprimés)',
+            ' mais pour en créer de nouveaux, veuillez passer par <a href="https://framapad.org">la page d’accueil du site</a></p>',
+            '<p>De plus, nous passerons très prochainement les pads existants en lecture seule.<br>',
+            'Vous pourrez consulter le dernier contenu des pads ainsi que le contenu des révisions enregistrées (bouton « étoile »).<br>',
+            'Plus de détails sur <a href="https://status.framasoft.org/">https://status.framasoft.org/</a></p>',
+            '<p>Merci.<br />L’équipe technique</p>'
+          ].join('')
         ]
       };
-      host = 'ovh';
     }*/
   break;
 //-- </framapad> -------------------------------------------------------
@@ -595,12 +571,13 @@ switch (n$.site) {
 
   case 'site':
     l$ = {
-      js: {j$: 'noConflict', b$: 'html'},  
+      js: {j$: 'noConflict', b$: 'html'},
       alert: [
         'info',
-        '<b class="violet">Frama</b><b class="vert">site</b> est en phase de test. '+
-        'Le service fonctionne, mais n’est pas encore facile à utiliser par quiconque. '+
-        'C’est à l’écoute de vos retours que nous allons l’améliorer et le documenter au cours des semaines à venir.'
+        [ '<b class="violet">Frama</b><b class="vert">site</b> est en phase de test. ',
+          'Le service fonctionne, mais n’est pas encore facile à utiliser par quiconque. ',
+          'C’est à l’écoute de vos retours que nous allons l’améliorer et le documenter au cours des semaines à venir.'
+        ].join('')
       ]
     };
   break;
@@ -710,12 +687,13 @@ switch (n$.site) {
   case 'wiki':
     if(i$('frama.wiki','h')) {
       l$ = {
-        js: {j$: 'noConflict', b$: 'html'},  
+        js: {j$: 'noConflict', b$: 'html'},
         alert: [
             'info',
-            '<b class="violet">Frama</b><b class="vert">wiki</b> est en phase de test. '+
-            'Le service fonctionne, mais n’est pas encore facile à utiliser par quiconque. '+
-            'C’est à l’écoute de vos retours que nous allons l’améliorer et le documenter au cours des semaines à venir.'
+            [ '<b class="violet">Frama</b><b class="vert">wiki</b> est en phase de test. ',
+              'Le service fonctionne, mais n’est pas encore facile à utiliser par quiconque. ',
+              'C’est à l’écoute de vos retours que nous allons l’améliorer et le documenter au cours des semaines à venir.'
+            ].join('')
           ],
         icons: {
           fav: 'fav_wiki.png',
@@ -737,7 +715,7 @@ switch (n$.site) {
 
   case 'zic':
     l$ = {
-      js: { 
+      js: {
         video : true,
         ext: function() {
           jQuery('button[name^="sp_"]').each(function(){
@@ -829,20 +807,18 @@ switch (n$.site) {
   case 'clic' :                  l$.piwik.id = '66'; break;
 }
 
-
-
 if(
-    l$.piwik.id != '' && 
-    // Pas de Piwik si DoNotTrack 
+    l$.piwik.id !== '' &&
+    // Pas de Piwik si DoNotTrack
     // DNT est respecté mais on évite les notifications des uBlock, Ghostery, etc
-    !( navigator.doNotTrack == "yes" ||
-    navigator.doNotTrack == "1" ||
-    navigator.msDoNotTrack == "1" ||
-    window.doNotTrack == "1" )
+    !( navigator.doNotTrack === 'yes' ||
+    navigator.doNotTrack === '1' ||
+    navigator.msDoNotTrack === '1' ||
+    window.doNotTrack === '1' )
   ) {
-  
+
   // Code Javascript
-  if(l$.piwik.mode == 'js') {
+  if(l$.piwik.mode === 'js') {
 
     var _paq = _paq || [];
 
@@ -870,7 +846,7 @@ if(
       var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
       g.defer=true; g.async=true; g.src=u+"p.js"; s.parentNode.insertBefore(g,s);
     })();
-  
+
   // Code Image
   } else {
 
@@ -886,7 +862,7 @@ if(
 /***********************************************************************
  *                             Favicons                                *
  **********************************************************************/
-l$.icons = (l$.icons == undefined) ? {} : l$.icons ;
+l$.icons = (l$.icons === undefined) ? {} : l$.icons ;
 
 if (i$(/(phonie)/i,'h')) {
   l$.icons.fav = 'favicon-jaune.png';
