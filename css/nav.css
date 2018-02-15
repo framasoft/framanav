@@ -1,10 +1,13 @@
+#framanav_container {
+  width: 100%;  
+}
+
 .fnav-fixed {
     padding-top:42px;
 }
 
 .fnav-fixed #framanav_container {
   position: fixed;
-  width: 100%;
   top: 0;
   z-index: 1000
 }
@@ -652,4 +655,9 @@ body.apropos #piwik-iframe {
 
 .fs_petitions, .fs_sites {
     display:none !important;
+}
+
+/* Fix Framagenda (à mettre ailleurs après refonte) */
+#body-login #alternative-logins li a {
+    background-color: #677835;
 }
