@@ -5,11 +5,9 @@
 // de nav.js. La variable c$ contient toutes les valeurs par défaut ainsi
 // que les explications pour comprendre à quoi ça correspond.
 
-var l$ = l$ || {};
-var n$ = n$ || {};
-var i$ = i$ || undefined;
-var i$Lang = i$Lang || undefined; /** À remplacer */
-var f$ = f$ || undefined;
+/* global n$:{} f$ i$Lang i$ */
+
+var l$; l$ = l$ || {};
 
 // Alias
 // On remplace juste la variable n$.site.
@@ -399,7 +397,7 @@ switch (n$.site) {
       }
       if (i$('framindmap.org/c/maps') && i$('/edit')) {
         // [Fix] Suppression de la nav dans l'éditeur
-        var f$NavContainer = document.getElementById('framanav_container');
+        const f$NavContainer = document.getElementById('framanav_container');
         f$NavContainer.parentNode.removeChild(f$NavContainer);
       }
     }
@@ -498,7 +496,7 @@ switch (n$.site) {
             'de votre document et <a href="https://contact.framasoft.org/#framapad">contactez-nous</a>.</p>',
           ].join(''));
           if (!n$.inframe) {
-            var addMaestroBtn = setInterval(function () {
+            const addMaestroBtn = setInterval(function () {
               if (jQuery('#editbar .menu_right').length && !jQuery('#maestroBtn').length) {
                 jQuery('#editbar .menu_right').prepend([
                   '<li id="maestroBtn"><a title="Ajouter une visio-conférence" href="', n$.maestro, '">',
@@ -632,7 +630,7 @@ switch (n$.site) {
       js: {
         ext() {
           jQuery('.section-components:eq(0) li.sub-component').each(function () {
-            var framatruc = jQuery(this).children('a');
+            const framatruc = jQuery(this).children('a');
             framatruc.after([
               '<span class="col-xs-1 pull-right">',
               '  <a href="https://contact.framasoft.org/#',
@@ -851,18 +849,18 @@ if (l$.piwik.id !== '' &&
     window.doNotTrack === '1')) {
   // Code Javascript
   if (l$.piwik.mode === 'js') {
-    var _paq = _paq || [];
+    let _paq = _paq || [];
 
     // Conformité CNIL
     _paq.push([function () {
-      var self = this;
+      let self = this;
       function getOriginalVisitorCookieTimeout() {
-        var now = new Date(),
-          nowTs = Math.round(now.getTime() / 1000),
-          visitorInfo = self.getVisitorInfo();
-        var createTs = parseInt(visitorInfo[2], 10);
-        var cookieTimeout = 33696000; // 13 mois en secondes
-        var originalTimeout = (createTs + cookieTimeout) - nowTs;
+        const now = new Date();
+        const nowTs = Math.round(now.getTime() / 1000);
+        const visitorInfo = self.getVisitorInfo();
+        const createTs = parseInt(visitorInfo[2], 10);
+        const cookieTimeout = 33696000; // 13 mois en secondes
+        const originalTimeout = (createTs + cookieTimeout) - nowTs;
         return originalTimeout;
       }
       this.setVisitorCookieTimeout(getOriginalVisitorCookieTimeout());
@@ -872,21 +870,21 @@ if (l$.piwik.id !== '' &&
     _paq.push(['enableLinkTracking']);
     // Code Piwik JS
     (function () {
-      var u = l$.piwik.url;
+      const u = l$.piwik.url;
       _paq.push(['setTrackerUrl', [u, 'p.php'].join('')]);
       _paq.push(['setSiteId', l$.piwik.id]);
-      var d = document,
-        g = d.createElement('script'),
-        s = d.getElementsByTagName('script')[0];
+      const d = document;
+      const g = d.createElement('script');
+      const s = d.getElementsByTagName('script')[0];
       g.type = 'text/javascript'; g.defer = true; g.async = true;
       g.src = [u, 'p.js'].join(''); s.parentNode.insertBefore(g, s);
     }());
   // Code Piwik Image
   } else {
     (function () {
-      var d = document,
-        g = d.createElement('img'),
-        s = d.getElementsByTagName('body')[0];
+      const d = document;
+      const g = d.createElement('img');
+      const s = d.getElementsByTagName('body')[0];
       g.style = 'border:0'; g.alt = '';
       g.src = [l$.piwik.url, 'p.php?idsite=', l$.piwik.id, '&rec=1'].join(''); s.appendChild(g);
     }());
@@ -894,9 +892,9 @@ if (l$.piwik.id !== '' &&
 
   // Framaclic
   (function () {
-    var d = document,
-      g = d.createElement('img'),
-      s = d.getElementsByTagName('body')[0];
+    const d = document;
+    const g = d.createElement('img');
+    const s = d.getElementsByTagName('body')[0];
     g.style = 'border:0'; g.alt = '';
     g.src = ['https://framaclic.org/h/', l$.piwik.id].join(''); s.appendChild(g);
   }());
