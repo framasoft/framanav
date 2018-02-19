@@ -306,9 +306,28 @@ switch (n$.site) {
       js: {
         ext: function () {
           if (n$.inframe) {
-            f$('.main-container').addClass('container-fluid').removeClass('container ombre').css({ 'margin': '0', 'padding-top': '10px', 'padding-bottom': '10px' });
-            f$('#page-header,.region-navigation-wrapper,.region-sidebar-first-wrapper,.region-content-wrapper .breadcrumb,.region-content-wrapper .tabs--primary,#region-content .view-title,#region-content .view-interets-voisins').hide();
-            f$('.region-content-wrapper').css({ 'width': '100%', 'float': 'none', 'margin': '0' });
+            f$('.main-container')
+              .addClass('container-fluid')
+              .removeClass('container ombre')
+              .css({
+                margin: '0',
+                'padding-top': '10px',
+                'padding-bottom': '10px',
+              });
+            f$([
+              '#page-header',
+              '.region-navigation-wrapper',
+              '.region-sidebar-first-wrapper',
+              '.region-content-wrapper .breadcrumb',
+              '.region-content-wrapper .tabs--primary',
+              '#region-content .view-title',
+              '#region-content .view-interets-voisins',
+            ].join()).hide();
+            f$('.region-content-wrapper').css({
+              width: '100%',
+              float: 'none',
+              margin: '0',
+            });
             f$('a').attr('target', '_blank');
             f$('body').css('background', 'white');
           }
@@ -374,8 +393,8 @@ switch (n$.site) {
       }
       if (i$('framindmap.org/c/maps') && i$('/edit')) {
         // [Fix] Suppression de la nav dans l'éditeur
-        var f$_navcontainer = document.getElementById('framanav_container');
-        f$_navcontainer.parentNode.removeChild(f$_navcontainer);
+        var f$NavContainer = document.getElementById('framanav_container');
+        f$NavContainer.parentNode.removeChild(f$NavContainer);
       }
     }
     break;
@@ -466,7 +485,7 @@ switch (n$.site) {
     l$ = {
       js: {
         ext: function () {
-          jQuery('#loading').delay(2000).append('<p class="small">Si le pad refuse de s’afficher, essayez de télécharger<br/>l’export <a href="' + location.href + '/export/html">html</a> ou <a href="' + location.href + '/export/txt">txt</a> de votre document et <a href="https://contact.framasoft.org/#framapad">contactez-nous</a>.</p>');
+          jQuery('#loading').delay(2000).append('<p class="small">Si le pad refuse de s’afficher, essayez de télécharger<br/>l’export <a href="' + window.location.href + '/export/html">html</a> ou <a href="' + window.location.href + '/export/txt">txt</a> de votre document et <a href="https://contact.framasoft.org/#framapad">contactez-nous</a>.</p>');
           if (!n$.inframe) {
             var addMaestroBtn = setInterval(function () {
               if (jQuery('#editbar .menu_right').length && !jQuery('#maestroBtn').length) {
@@ -761,7 +780,7 @@ switch (n$.site) {
   case 'status': /**         */ l$.piwik.id = '37'; break;
   case 'bookin': /**         */ l$.piwik.id = '38'; break;
   case 'stats': /**          */ l$.piwik.id = '39'; break;
-  case 'drive': /**          */ l$.piwik.id = '40'; l$.piwik.url = 'https://framadrive.org/'; break;
+  case 'drive': /**          */ l$.piwik.id = '40'; break;
   case 'board': /**          */ l$.piwik.id = '41'; break;
   case 'drop': /**           */ l$.piwik.id = '42'; l$.piwik.mode = 'img'; break;
   case 'carte': /**          */ l$.piwik.id = '43'; break;
@@ -802,13 +821,14 @@ if (l$.piwik.id !== '' &&
   if (l$.piwik.mode === 'js') {
     var _paq = _paq || [];
 
+    // Conformité CNIL
     _paq.push([function () {
       var self = this;
       function getOriginalVisitorCookieTimeout() {
         var now = new Date(),
           nowTs = Math.round(now.getTime() / 1000),
           visitorInfo = self.getVisitorInfo();
-        var createTs = parseInt(visitorInfo[2]);
+        var createTs = parseInt(visitorInfo[2], 10);
         var cookieTimeout = 33696000; // 13 mois en secondes
         var originalTimeout = (createTs + cookieTimeout) - nowTs;
         return originalTimeout;
@@ -818,27 +838,35 @@ if (l$.piwik.id !== '' &&
 
     _paq.push(['trackPageView']);
     _paq.push(['enableLinkTracking']);
-
+    // Code Piwik JS
     (function () {
       var u = l$.piwik.url;
       _paq.push(['setTrackerUrl', u + 'p.php']);
       _paq.push(['setSiteId', l$.piwik.id]);
-      var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0]; g.type = 'text/javascript';
-      g.defer = true; g.async = true; g.src = u + 'p.js'; s.parentNode.insertBefore(g, s);
+      var d = document,
+        g = d.createElement('script'),
+        s = d.getElementsByTagName('script')[0];
+      g.type = 'text/javascript'; g.defer = true; g.async = true;
+      g.src = u + 'p.js'; s.parentNode.insertBefore(g, s);
     })();
-  // Code Image
+  // Code Piwik Image
   } else {
     (function () {
-      var u = l$.piwik.url;
-      var d = document, g = d.createElement('img'), s = d.getElementsByTagName('body')[0]; g.style = 'border:0';
-      g.alt = ''; g.src = u + 'p.php?idsite=' + l$.piwik.id + '&rec=1'; s.appendChild(g);
+      var d = document,
+        g = d.createElement('img'),
+        s = d.getElementsByTagName('body')[0];
+      g.style = 'border:0'; g.alt = '';
+      g.src = l$.piwik.url + 'p.php?idsite=' + l$.piwik.id + '&rec=1'; s.appendChild(g);
     })();
   }
 
   // Framaclic
   (function () {
-    var d = document, g = d.createElement('img'), s = d.getElementsByTagName('body')[0]; g.style = 'border:0';
-    g.alt = ''; g.src = 'https://framaclic.org/h/' + l$.piwik.id; s.appendChild(g);
+    var d = document,
+      g = d.createElement('img'),
+      s = d.getElementsByTagName('body')[0];
+    g.style = 'border:0'; g.alt = '';
+    g.src = 'https://framaclic.org/h/' + l$.piwik.id; s.appendChild(g);
   })();
 }
 
