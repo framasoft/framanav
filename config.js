@@ -880,7 +880,7 @@ if (l$.piwik.id !== '' &&
         s = d.getElementsByTagName('script')[0];
       g.type = 'text/javascript'; g.defer = true; g.async = true;
       g.src = u + 'p.js'; s.parentNode.insertBefore(g, s);
-    })();
+    }());
   // Code Piwik Image
   } else {
     (function () {
@@ -889,7 +889,7 @@ if (l$.piwik.id !== '' &&
         s = d.getElementsByTagName('body')[0];
       g.style = 'border:0'; g.alt = '';
       g.src = l$.piwik.url + 'p.php?idsite=' + l$.piwik.id + '&rec=1'; s.appendChild(g);
-    })();
+    }());
   }
 
   // Framaclic
@@ -899,7 +899,7 @@ if (l$.piwik.id !== '' &&
       s = d.getElementsByTagName('body')[0];
     g.style = 'border:0'; g.alt = '';
     g.src = 'https://framaclic.org/h/' + l$.piwik.id; s.appendChild(g);
-  })();
+  }());
 }
 
 /** ****************************************************************** *
