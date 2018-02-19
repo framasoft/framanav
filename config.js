@@ -609,7 +609,7 @@ switch (n$.site) {
       js: {
         ext() {
           jQuery('link[href*=bootstrap-complete]').remove();
-          jQuery('#inscription-email').text(function () {
+          jQuery('#inscription-email').text(function emailReplace() {
             return jQuery(this).text().replace('inscription-framasphere@framalistes.org', 'rt+framasphere@framasoft.org');
           });
           jQuery.getJSON('https://framasphere.org/nodeinfo/2.0').done((data) => {
@@ -629,7 +629,7 @@ switch (n$.site) {
     l$ = {
       js: {
         ext() {
-          jQuery('.section-components:eq(0) li.sub-component').each(function () {
+          jQuery('.section-components:eq(0) li.sub-component').each(function addContactLink() {
             const framatruc = jQuery(this).children('a');
             framatruc.after([
               '<span class="col-xs-1 pull-right">',
@@ -748,8 +748,8 @@ switch (n$.site) {
       js: {
         video: true,
         ext() {
-          jQuery('button[name^="sp_"]').each(function () {
-            jQuery(this).on('click', function () {
+          jQuery('button[name^="sp_"]').each(function clickableMoreBtn() {
+            jQuery(this).on('click', function toggleMoreSection() {
               jQuery(['.', jQuery(this).attr('name')].join('')).toggle();
             });
           });
@@ -852,8 +852,8 @@ if (l$.piwik.id !== '' &&
     let _paq = _paq || [];
 
     // Conformité CNIL
-    _paq.push([function () {
-      let self = this;
+    _paq.push([function piwikCNIL() {
+      const self = this;
       function getOriginalVisitorCookieTimeout() {
         const now = new Date();
         const nowTs = Math.round(now.getTime() / 1000);
@@ -869,7 +869,7 @@ if (l$.piwik.id !== '' &&
     _paq.push(['trackPageView']);
     _paq.push(['enableLinkTracking']);
     // Code Piwik JS
-    (function () {
+    (function piwikJS() {
       const u = l$.piwik.url;
       _paq.push(['setTrackerUrl', [u, 'p.php'].join('')]);
       _paq.push(['setSiteId', l$.piwik.id]);
@@ -881,7 +881,7 @@ if (l$.piwik.id !== '' &&
     }());
   // Code Piwik Image
   } else {
-    (function () {
+    (function piwikImg() {
       const d = document;
       const g = d.createElement('img');
       const s = d.getElementsByTagName('body')[0];
@@ -891,7 +891,7 @@ if (l$.piwik.id !== '' &&
   }
 
   // Framaclic
-  (function () {
+  (function framaclic() {
     const d = document;
     const g = d.createElement('img');
     const s = d.getElementsByTagName('body')[0];
