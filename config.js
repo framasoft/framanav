@@ -15,6 +15,7 @@ var f$ = f$ || undefined;
 // On remplace juste la variable n$.site.
 // Cette variable n'est utilisée que pour charger les fichiers ext_css,
 // credits et placer un tracker sur un lien de la modale Soutenir
+
 switch (n$.site) {
   case 'noenaute': n$.site = 'pouhiou'; break;
   case 'huit.re': n$.site = 'link'; break;
@@ -23,6 +24,7 @@ switch (n$.site) {
 
   // no default
 }
+
 // Config pour domaine et sous-domaine
 if (i$(/framaboard/i, 'h')) { n$.site = 'board'; }
 if (i$(/framadate/i, 'h')) { n$.site = 'date'; }
@@ -36,7 +38,6 @@ if ((i$(/.framapad/i, 'h') && !i$(/mypads./i, 'h')) ||
 
 switch (n$.site) {
   case 'agent':
-
     if (i$(/framatruc/i, 'h')) {
     /** Test nouvelle config en prod */
       l$ = {};
@@ -88,7 +89,7 @@ switch (n$.site) {
   case 'bee':
     l$ = {
       js: {
-        ext: function () {
+        ext() {
           if (jQuery('.explain').length) { jQuery('#q').focus(); }
           jQuery('.footer').hide();
           jQuery('body').css('margin-bottom', '0');
@@ -119,7 +120,7 @@ switch (n$.site) {
       l$ = {
         js: {
           b$: 'html',
-          ext: function () {
+          ext() {
             jQuery('h1 .logo a').html('<b class="violet">Frama</b><b class="vert">board</b>');
             jQuery('h1 .logo').removeClass('logo');
             jQuery([
@@ -148,7 +149,7 @@ switch (n$.site) {
   case 'bookin':
     l$ = {
       js: {
-        ext: function () { jQuery('.ui-page').css('margin-top', '-42px'); },
+        ext() { jQuery('.ui-page').css('margin-top', '-42px'); },
       },
       css: { ext: i$('framabookin.org/b') },
       mute: i$('framabookin.org/b'),
@@ -176,17 +177,17 @@ switch (n$.site) {
       l$.modal = {
         don: ['a[href*="framacalc.org/"]', 'd’utiliser', 'créer un calc'],
       };
-      l$.js = { ext: function () { jQuery('#drop label:eq(0)').hide(); } };
+      l$.js = { ext() { jQuery('#drop label:eq(0)').hide(); } };
     } else if (i$('lite.framacalc.org/_start') || i$('https://lite.framacalc.org/', 'u')) {
       // Si on est sur la page d'accueil
       l$.modal = {
         don: ['a[href*="lite.framacalc.org/"]', 'd’utiliser', 'créer un calc'],
       };
-      l$.js = { ext: function () { jQuery('#drop label:eq(0)').hide(); } };
+      l$.js = { ext() { jQuery('#drop label:eq(0)').hide(); } };
     } else { // dans Ethercalc
       l$ = {
         js: {
-          ext: function () { jQuery(window).trigger('resize'); },
+          ext() { jQuery(window).trigger('resize'); },
         },
         css: {
           b$: !n$.inframe,
@@ -214,7 +215,7 @@ switch (n$.site) {
     l$ = {
       js: {
         b$: 'html',
-        ext: function () {
+        ext() {
           jQuery('body > .navbar-default').css('background-color', '#fff');
           jQuery('body').css('background-color', '#eee');
         },
@@ -284,7 +285,7 @@ switch (n$.site) {
 
   case 'drop':
     l$.js = {
-      ext: function () {
+      ext() {
         if (!i$('https://framadrop.org/', 'u')) {
           $('main .row:last,main hr:last').hide();
         }
@@ -304,7 +305,7 @@ switch (n$.site) {
   case 'libre':
     l$ = {
       js: {
-        ext: function () {
+        ext() {
           if (n$.inframe) {
             f$('.main-container')
               .addClass('container-fluid')
@@ -361,7 +362,7 @@ switch (n$.site) {
   case 'listes':
     l$ = {
       js: {
-        ext: function () {
+        ext() {
           f$('footer:not([id])').remove();
           f$('header .row, main.row').addClass('ombre');
           f$('header h1').css('margin-top', '30px');
@@ -417,7 +418,7 @@ switch (n$.site) {
       n$.inframe = true;
       l$ = {
         js: {
-          ext: function () {
+          ext() {
             jQuery('#loginform').append([
               '<p class="alert alert-warning"><b>Rappel&nbsp;:</b> MyFrama sert à ',
               'regrouper en un même endroit vos liens (notament vos pads, calcs, sondages, etc). ',
@@ -432,7 +433,7 @@ switch (n$.site) {
     } else {
       l$ = {
         js: {
-          ext: function () {
+          ext() {
             if (n$.inframe) {
               f$('#linklist').addClass('container-fluid').removeClass('container');
               f$('#pageheader').hide();
@@ -448,7 +449,7 @@ switch (n$.site) {
     if (i$('framanews.org/ttrss')) {
       l$ = {
         js: {
-          ext: function () { jQuery(window).trigger('resize'); },
+          ext() { jQuery(window).trigger('resize'); },
         },
         css: { ext: true },
         mute: true,
@@ -489,7 +490,7 @@ switch (n$.site) {
     n$.name = 'Framapad';
     l$ = {
       js: {
-        ext: function () {
+        ext() {
           jQuery('#loading').delay(2000).append([
             '<p class="small">Si le pad refuse de s’afficher, essayez de télécharger<br>',
             'l’export <a href="', window.location.href, '/export/html">html</a> ',
@@ -608,7 +609,7 @@ switch (n$.site) {
   case 'sphere':
     l$ = {
       js: {
-        ext: function () {
+        ext() {
           jQuery('link[href*=bootstrap-complete]').remove();
           jQuery('#inscription-email').text(function () {
             return jQuery(this).text().replace('inscription-framasphere@framalistes.org', 'rt+framasphere@framasoft.org');
@@ -629,7 +630,7 @@ switch (n$.site) {
   case 'status':
     l$ = {
       js: {
-        ext: function () {
+        ext() {
           jQuery('.section-components:eq(0) li.sub-component').each(function () {
             var framatruc = jQuery(this).children('a');
             framatruc.after([
@@ -748,7 +749,7 @@ switch (n$.site) {
     l$ = {
       js: {
         video: true,
-        ext: function () {
+        ext() {
           jQuery('button[name^="sp_"]').each(function () {
             jQuery(this).on('click', function () {
               jQuery('.' + jQuery(this).attr('name')).toggle();
