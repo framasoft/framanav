@@ -102,7 +102,7 @@ switch (n$.site) {
     l$ = {
       js: { video: true },
       modal: {
-        don: ['onstart', 'd’utiliser', 'utiliser ' + n$.name],
+        don: ['onstart', 'd’utiliser', ['utiliser ', n$.name].join('')],
       },
     };
     break;
@@ -354,7 +354,7 @@ switch (n$.site) {
     l$ = {
       js: { video: true },
       modal: {
-        don: ['onstart', 'd’utiliser', 'utiliser ' + n$.name],
+        don: ['onstart', 'd’utiliser', ['utiliser ', n$.name].join('')],
       },
     };
     break;
@@ -395,7 +395,7 @@ switch (n$.site) {
         mute: (!i$('framindmap.org/c/login') && !i$('framindmap.org/c/user/registration')),
       };
       if (i$('framindmap.org/c/maps/') && !i$('/edit')) {
-        l$.modal = { don: ['onstart', 'd’utiliser', 'utiliser ' + n$.name] };
+        l$.modal = { don: ['onstart', 'd’utiliser', ['utiliser ', n$.name].join('')] };
       }
       if (i$('framindmap.org/c/maps') && i$('/edit')) {
         // [Fix] Suppression de la nav dans l'éditeur
@@ -460,7 +460,7 @@ switch (n$.site) {
 
   case 'pack':
     l$ = {
-      modal: { don: ['onstart', 'd’utiliser', 'utiliser ' + n$.name] },
+      modal: { don: ['onstart', 'd’utiliser', ['utiliser ', n$.name].join('')] },
       mute: i$('/admin'),
       footer: !i$('/admin'),
     };
@@ -557,7 +557,7 @@ switch (n$.site) {
   case 'pic':
     l$ = {
       js: { video: true },
-      modal: { don: ['onstart', 'd’utiliser', 'utiliser ' + n$.name] },
+      modal: { don: ['onstart', 'd’utiliser', ['utiliser ', n$.name].join('')] },
     };
     break;
 
@@ -752,7 +752,7 @@ switch (n$.site) {
         ext() {
           jQuery('button[name^="sp_"]').each(function () {
             jQuery(this).on('click', function () {
-              jQuery('.' + jQuery(this).attr('name')).toggle();
+              jQuery(['.', jQuery(this).attr('name')].join('')).toggle();
             });
           });
         },
@@ -873,13 +873,13 @@ if (l$.piwik.id !== '' &&
     // Code Piwik JS
     (function () {
       var u = l$.piwik.url;
-      _paq.push(['setTrackerUrl', u + 'p.php']);
+      _paq.push(['setTrackerUrl', [u, 'p.php'].join('')]);
       _paq.push(['setSiteId', l$.piwik.id]);
       var d = document,
         g = d.createElement('script'),
         s = d.getElementsByTagName('script')[0];
       g.type = 'text/javascript'; g.defer = true; g.async = true;
-      g.src = u + 'p.js'; s.parentNode.insertBefore(g, s);
+      g.src = [u, 'p.js'].join(''); s.parentNode.insertBefore(g, s);
     }());
   // Code Piwik Image
   } else {
@@ -888,7 +888,7 @@ if (l$.piwik.id !== '' &&
         g = d.createElement('img'),
         s = d.getElementsByTagName('body')[0];
       g.style = 'border:0'; g.alt = '';
-      g.src = l$.piwik.url + 'p.php?idsite=' + l$.piwik.id + '&rec=1'; s.appendChild(g);
+      g.src = [l$.piwik.url, 'p.php?idsite=', l$.piwik.id, '&rec=1'].join(''); s.appendChild(g);
     }());
   }
 
@@ -898,7 +898,7 @@ if (l$.piwik.id !== '' &&
       g = d.createElement('img'),
       s = d.getElementsByTagName('body')[0];
     g.style = 'border:0'; g.alt = '';
-    g.src = 'https://framaclic.org/h/' + l$.piwik.id; s.appendChild(g);
+    g.src = ['https://framaclic.org/h/', l$.piwik.id].join(''); s.appendChild(g);
   }());
 }
 
@@ -913,8 +913,8 @@ if (i$(/(phonie)/i, 'h')) {
 
 if (i$(/(agenda|bag|bee|bin|blog|board|bookin|book|calc|carte|cloud|code|colibri|date|drive|drop|dvd|forms|games|key|lab|lang|libre|link|listes|maestro|memo|mindmap|minetest|news|pack|phonie|piaf|pic|site|slides|sphere|start|stats|status|talk|team|tube|vectoriel|vox|zic)/i, 'h') ||
     i$(/(bot.|contact.|degooglisons-internet|forum.|participer.|soutenir.)/i, 'h')) {
-  l$.icons.apple = n$.site + '.png';
-  l$.icons.fav = 'fav_' + n$.site + '.png';
+  l$.icons.apple = [n$.site, '.png'].join('');
+  l$.icons.fav = ['fav_', n$.site, '.png'].join('');
 }
 
 if (i$(/(pad)/i, 'h')) {
