@@ -496,7 +496,7 @@ switch (n$.site) {
             'de votre document et <a href="https://contact.framasoft.org/#framapad">contactez-nous</a>.</p>',
           ].join(''));
           if (!n$.inframe) {
-            const addMaestroBtn = setInterval(function () {
+            const addMaestroBtn = setInterval(() => {
               if (jQuery('#editbar .menu_right').length && !jQuery('#maestroBtn').length) {
                 jQuery('#editbar .menu_right').prepend([
                   '<li id="maestroBtn"><a title="Ajouter une visio-conférence" href="', n$.maestro, '">',
@@ -612,7 +612,7 @@ switch (n$.site) {
           jQuery('#inscription-email').text(function () {
             return jQuery(this).text().replace('inscription-framasphere@framalistes.org', 'rt+framasphere@framasoft.org');
           });
-          jQuery.getJSON('https://framasphere.org/nodeinfo/2.0').done(function (data) {
+          jQuery.getJSON('https://framasphere.org/nodeinfo/2.0').done((data) => {
             jQuery('#userFramasphere').text(data.usage.users.total);
           });
         },
