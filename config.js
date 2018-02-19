@@ -336,9 +336,14 @@ switch (n$.site) {
       alert: [
         'info',
         [
-          '<b class="violet">Frama</b><b class="bleu">libre</b>, l’annuaire des logiciels libres de l’association <b class="violet">Frama</b><b class="orange">soft</b>, ',
-          '<a href="https://framablog.org/2017/03/21/framalibre-lannuaire-du-libre-renait-entre-vos-mains/" title="consulter l’annonce sur le Framablog">fait peau neuve</a>.<br>',
-          'Certains liens prééxistants ne sont plus valides. <a href="https://contact.framasoft.org/foire-aux-questions/#libre_v2">Vous avez du mal à vous y retrouver ?</a>',
+          '<b class="violet">Frama</b><b class="bleu">libre</b>, ',
+          'l’annuaire des logiciels libres de l’association ',
+          '<b class="violet">Frama</b><b class="orange">soft</b>, ',
+          '<a href="https://framablog.org/2017/03/21/framalibre-lannuaire-du-libre-renait-entre-vos-mains/" ',
+          'title="consulter l’annonce sur le Framablog">fait peau neuve</a>.<br>',
+          'Certains liens prééxistants ne sont plus valides. ',
+          '<a href="https://contact.framasoft.org/foire-aux-questions/#libre_v2">',
+          'Vous avez du mal à vous y retrouver ?</a>',
         ].join(''),
       ],
     };
@@ -485,13 +490,19 @@ switch (n$.site) {
     l$ = {
       js: {
         ext: function () {
-          jQuery('#loading').delay(2000).append('<p class="small">Si le pad refuse de s’afficher, essayez de télécharger<br/>l’export <a href="' + window.location.href + '/export/html">html</a> ou <a href="' + window.location.href + '/export/txt">txt</a> de votre document et <a href="https://contact.framasoft.org/#framapad">contactez-nous</a>.</p>');
+          jQuery('#loading').delay(2000).append([
+            '<p class="small">Si le pad refuse de s’afficher, essayez de télécharger<br>',
+            'l’export <a href="', window.location.href, '/export/html">html</a> ',
+            'ou <a href="', window.location.href, '/export/txt">txt</a> ',
+            'de votre document et <a href="https://contact.framasoft.org/#framapad">contactez-nous</a>.</p>',
+          ].join(''));
           if (!n$.inframe) {
             var addMaestroBtn = setInterval(function () {
               if (jQuery('#editbar .menu_right').length && !jQuery('#maestroBtn').length) {
                 jQuery('#editbar .menu_right').prepend([
-                  '<li id="maestroBtn"><a title="Ajouter une visio-conférence" href="' + n$.maestro + '">',
-                  '  <button class="buttonicon fa fa-video-camera" style="top:0 !important;"></button><span class="sr-only">Visio-conférence</span>',
+                  '<li id="maestroBtn"><a title="Ajouter une visio-conférence" href="', n$.maestro, '">',
+                  '  <button class="buttonicon fa fa-video-camera" style="top:0 !important;"></button>',
+                  '  <span class="sr-only">Visio-conférence</span>',
                   '</a></li>',
                 ].join(''));
                 clearInterval(addMaestroBtn);
@@ -513,7 +524,8 @@ switch (n$.site) {
         info: [
           'Avertissement',
           [
-            '<p>Cette instance de Framapad (<b>beta</b>.framapad.org) est instable et ne doit servir que pour des tests.<p>',
+            '<p>Cette instance de Framapad (<b>beta</b>.framapad.org) est ',
+            'instable et ne doit servir que pour des tests.<p>',
             '<p>Pensez à utiliser régulièrement la fonction d’export pendant vos tests.</p>',
             '<p>Merci.<br />L’équipe technique</p>',
           ].join(''),
@@ -576,7 +588,8 @@ switch (n$.site) {
         [
           '<b class="violet">Frama</b><b class="vert">site</b> est en phase de test. ',
           'Le service fonctionne, mais n’est pas encore facile à utiliser par quiconque. ',
-          'C’est à l’écoute de vos retours que nous allons l’améliorer et le documenter au cours des semaines à venir.',
+          'C’est à l’écoute de vos retours que nous allons l’améliorer ',
+          'et le documenter au cours des semaines à venir.',
         ].join(''),
       ],
     };
@@ -619,10 +632,28 @@ switch (n$.site) {
         ext: function () {
           jQuery('.section-components:eq(0) li.sub-component').each(function () {
             var framatruc = jQuery(this).children('a');
-            framatruc.after('<span class="col-xs-1 pull-right"><a href="https://contact.framasoft.org/#' + framatruc.text().split(' ', 1)[0].toLowerCase().replace(/è/g, 'e') + '" class="btn btn-success btn-outline btn-xs" title="Signaler une panne concernant ' + framatruc.text() + '"><i class="fa fa-fw fa-lg fa-bug" aria-hidden="true"></i><span class="sr-only">Signaler</span></a></span>');
+            framatruc.after([
+              '<span class="col-xs-1 pull-right">',
+              '  <a href="https://contact.framasoft.org/#',
+              framatruc.text().split(' ', 1)[0].toLowerCase().replace(/è/g, 'e'),
+              '" class="btn btn-success btn-outline btn-xs" title="Signaler une panne concernant ',
+              framatruc.text(), '">',
+              '    <i class="fa fa-fw fa-lg fa-bug" aria-hidden="true"></i>',
+              '    <span class="sr-only">Signaler</span>',
+              '</a></span>',
+            ].join(''));
           });
           jQuery('.section-components:eq(0) li.sub-component a.btn[title]').tooltip();
-          jQuery('.section-status').append('<p class="well"><i class="fa fa-warning" aria-hidden="true"></i> Le statut des services n’est pas détecté automatiquement. Cette page est actualisée manuellement par l’équipe technique lorsqu’un incident est constaté ou qu’une opération de maintenance est programmée afin d’en informer le public. Si un service vous semble en panne mais n’est pas indiqué comme tel ici, merci de <a href="https://contact.framasoft.org/#aide">nous le signaler</a>.</p>');
+          jQuery('.section-status').append([
+            '<p class="well"><i class="fa fa-warning" aria-hidden="true"></i> ',
+            'Le statut des services n’est pas détecté automatiquement. ',
+            'Cette page est actualisée manuellement par l’équipe technique ',
+            'lorsqu’un incident est constaté ou qu’une opération de maintenance ',
+            'est programmée afin d’en informer le public. ',
+            'Si un service vous semble en panne mais n’est pas indiqué ',
+            'comme tel ici, merci de <a href="https://contact.framasoft.org/#aide">',
+            'nous le signaler</a>.</p>',
+          ].join(''));
         },
       },
       mute: true,
