@@ -1003,7 +1003,7 @@ function f$LoadCSS(css) {
       break;
       case '2': // Font-Awesome
         link.media = 'all';
-        link.href   = n$.nav.url+'lib/font-awesome/css/font-awesome.min.css';
+        link.href   = n$.nav.url+'lib/fork-awesome/css/fork-awesome.min.css';
       break;
       case '3': // Nav
         link.media = 'screen';
@@ -1130,11 +1130,11 @@ function i$Lang(lg) {
   var meta = document.getElementsByTagName('script');
 
   if(window.location.host.indexOf('framindmap.org')  > -1 // Contournement de Wisemapping
-    && document.getElementById("userSettingsBtn") 
+    && document.getElementById("userSettingsBtn")
     && document.getElementById("userSettingsBtn").innerHTML == 'Compte'){
 
     lang = 'fr';
-    
+
   } else if(html[0].getAttribute("lang")) {
 
     lang = html[0].getAttribute("lang");

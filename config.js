@@ -570,15 +570,6 @@ switch (n$.site) {
     };
     break;
 
-  case 'pouhiou': // pouhiou.com + noenaute.fr
-    l$ = {
-      css: { frama: false },
-      mute: true,
-      footer: false,
-      icons: { keep: true },
-    };
-    break;
-
   case 'site':
     l$ = {
       js: { j$: 'noConflict', b$: 'html' },

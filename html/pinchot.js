@@ -89,7 +89,7 @@ function pinchot(color, type) {
 '       y="622" text-anchor="middle" alignment-baseline="middle"'+
 '       id="text5115"'+
 '       xml:space="preserve"'+
-'       style="font-size:36px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;display:inline;font-family:FontAwesome;-inkscape-font-specification:FontAwesome"></text>'+
+'       style="font-size:36px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;display:inline;font-family:ForkAwesome;-inkscape-font-specification:ForkAwesome"></text>'+
 '  </g>'+
 '</svg>'; break;
     // Favicon en 32x32
@@ -140,7 +140,7 @@ function pinchot(color, type) {
 '       y="534" text-anchor="middle" alignment-baseline="middle"'+
 '       id="text5115"'+
 '       xml:space="preserve"'+
-'       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;display:inline;font-family:FontAwesome;"></text>'+
+'       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;display:inline;font-family:ForkAwesome;"></text>'+
 '  </g>'+
 '</svg>'; break;
 }
@@ -202,7 +202,7 @@ jQuery(document).ready(function() {
         );
 
         if( dp$.f[k].i && !(noIcon.indexOf(k) > -1)) {
-          // icône Font Awesome à ajouter au SVG
+          // icône Fork Awesome à ajouter au SVG
           jQuery('#pinchots').append('<i id="emblem_'+k+'" class="hidden fa '+dp$.f[k].i+'"></i>');
 
 
