@@ -7,7 +7,7 @@
 
 /* global n$:{} f$ i$Lang i$ */
 
-var l$; l$ = l$ || {};
+var l$; l$ = l$ || {}; // eslint-disable-line
 
 // Alias
 // On remplace juste la variable n$.site.
@@ -100,7 +100,7 @@ switch (n$.site) {
     l$ = {
       js: { video: true },
       modal: {
-        don: ['onstart', 'd’utiliser', ['utiliser ', n$.name].join('')],
+        don: ['onstart', 'd’utiliser', `utiliser ${n$.name}`],
       },
     };
     break;
@@ -352,7 +352,7 @@ switch (n$.site) {
     l$ = {
       js: { video: true },
       modal: {
-        don: ['onstart', 'd’utiliser', ['utiliser ', n$.name].join('')],
+        don: ['onstart', 'd’utiliser', `utiliser ${n$.name}`],
       },
     };
     break;
@@ -393,7 +393,7 @@ switch (n$.site) {
         mute: (!i$('framindmap.org/c/login') && !i$('framindmap.org/c/user/registration')),
       };
       if (i$('framindmap.org/c/maps/') && !i$('/edit')) {
-        l$.modal = { don: ['onstart', 'd’utiliser', ['utiliser ', n$.name].join('')] };
+        l$.modal = { don: ['onstart', 'd’utiliser', `utiliser ${n$.name}`] };
       }
       if (i$('framindmap.org/c/maps') && i$('/edit')) {
         // [Fix] Suppression de la nav dans l'éditeur
@@ -458,7 +458,7 @@ switch (n$.site) {
 
   case 'pack':
     l$ = {
-      modal: { don: ['onstart', 'd’utiliser', ['utiliser ', n$.name].join('')] },
+      modal: { don: ['onstart', 'd’utiliser', `utiliser ${n$.name}`] },
       mute: i$('/admin'),
       footer: !i$('/admin'),
     };
@@ -555,7 +555,7 @@ switch (n$.site) {
   case 'pic':
     l$ = {
       js: { video: true },
-      modal: { don: ['onstart', 'd’utiliser', ['utiliser ', n$.name].join('')] },
+      modal: { don: ['onstart', 'd’utiliser', `utiliser ${n$.name}`] },
     };
     break;
 
@@ -750,7 +750,7 @@ switch (n$.site) {
         ext() {
           jQuery('button[name^="sp_"]').each(function clickableMoreBtn() {
             jQuery(this).on('click', function toggleMoreSection() {
-              jQuery(['.', jQuery(this).attr('name')].join('')).toggle();
+              jQuery(`.${jQuery(this).attr('name')}).toggle();
             });
           });
         },
@@ -789,6 +789,7 @@ switch (n$.site) {
   case 'phonie': /**         */ l$.piwik.id = '14'; break;
   case 'lab': /**            */ l$.piwik.id = '16'; break;
   case 'code': /**           */ l$.piwik.id = '17'; break;
+  case 'localhost': /**      */ l$.piwik.id = '17'; break;
   case 'soutenir': /**       */ l$.piwik.id = '18'; break;
   case 'contact': /**        */ l$.piwik.id = '19'; break;
   case 'news': /**           */ l$.piwik.id = '20'; break;
@@ -849,7 +850,7 @@ if (l$.piwik.id !== '' &&
     window.doNotTrack === '1')) {
   // Code Javascript
   if (l$.piwik.mode === 'js') {
-    let _paq = _paq || [];
+    var _paq = _paq || []; // eslint-disable-line
 
     // Conformité CNIL
     _paq.push([function piwikCNIL() {
@@ -871,13 +872,13 @@ if (l$.piwik.id !== '' &&
     // Code Piwik JS
     (function piwikJS() {
       const u = l$.piwik.url;
-      _paq.push(['setTrackerUrl', [u, 'p.php'].join('')]);
+      _paq.push(['setTrackerUrl', `${u}p.php`]);
       _paq.push(['setSiteId', l$.piwik.id]);
       const d = document;
       const g = d.createElement('script');
       const s = d.getElementsByTagName('script')[0];
       g.type = 'text/javascript'; g.defer = true; g.async = true;
-      g.src = [u, 'p.js'].join(''); s.parentNode.insertBefore(g, s);
+      g.src = `${u}p.js`; s.parentNode.insertBefore(g, s);
     }());
   // Code Piwik Image
   } else {
@@ -886,7 +887,7 @@ if (l$.piwik.id !== '' &&
       const g = d.createElement('img');
       const s = d.getElementsByTagName('body')[0];
       g.style = 'border:0'; g.alt = '';
-      g.src = [l$.piwik.url, 'p.php?idsite=', l$.piwik.id, '&rec=1'].join(''); s.appendChild(g);
+      g.src = `${l$.piwik.url}p.php?idsite=${l$.piwik.id}&rec=1`; s.appendChild(g);
     }());
   }
 
@@ -896,7 +897,7 @@ if (l$.piwik.id !== '' &&
     const g = d.createElement('img');
     const s = d.getElementsByTagName('body')[0];
     g.style = 'border:0'; g.alt = '';
-    g.src = ['https://framaclic.org/h/', l$.piwik.id].join(''); s.appendChild(g);
+    g.src = `https://framaclic.org/h/${l$.piwik.id}`; s.appendChild(g);
   }());
 }
 
@@ -911,8 +912,8 @@ if (i$(/(phonie)/i, 'h')) {
 
 if (i$(/(agenda|bag|bee|bin|blog|board|bookin|book|calc|carte|cloud|code|colibri|date|drive|drop|dvd|forms|games|key|lab|lang|libre|link|listes|maestro|memo|mindmap|minetest|news|pack|phonie|piaf|pic|site|slides|sphere|start|stats|status|talk|team|tube|vectoriel|vox|zic)/i, 'h') ||
     i$(/(bot.|contact.|degooglisons-internet|forum.|participer.|soutenir.)/i, 'h')) {
-  l$.icons.apple = [n$.site, '.png'].join('');
-  l$.icons.fav = ['fav_', n$.site, '.png'].join('');
+  l$.icons.apple = `${n$.site}.png`;
+  l$.icons.fav = `fav_${n$.site}.png`;
 }
 
 if (i$(/(pad)/i, 'h')) {
