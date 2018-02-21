@@ -1,0 +1,70 @@
+[data-url*="://framacolibri.org"] {
+    *, *:before, *:after {
+        -webkit-box-sizing: content-box !important;
+        -moz-box-sizing: content-box !important;
+        box-sizing: content-box !important;
+    }
+
+    #discourse-modal.in {
+        display: block !important;
+        visibility: visible !important;
+    }
+
+    #draft-status {
+        height: 25px;
+    }
+
+    #reply-control .wmd-controls .d-editor,
+    #reply-control .wmd-controls .d-editor-container,
+    #reply-control .wmd-controls .d-editor-textarea-wrapper,
+    #reply-control .wmd-controls .d-editor-preview-wrapper,
+    #reply-control .wmd-controls .d-editor-input,
+    #reply-control .wmd-controls .d-editor-preview,
+    #reply-control .d-editor-button-bar {
+        box-sizing: border-box !important;
+    }
+
+    .modal.hidden[style*="block"] {
+        display: block !important;
+    }
+
+    #main .container {
+        width: auto;
+        padding-left:30px;
+        padding-right:30px;
+    }
+
+    #main .row {
+        margin:inherit !important;
+    }
+
+    body {
+        background-color: #eee;
+    }
+
+    #main-outlet {
+        background-color: #FFF;
+        -webkit-box-shadow: -4px 6px 9px rgba(50, 50, 50, 0.5);
+        -moz-box-shadow:  -4px 6px 9px rgba(50, 50, 50, 0.5);
+        box-shadow:     -4px 6px 9px rgba(50, 50, 50, 0.5);
+    }
+
+    #reply-control {
+        background-color: #d7ccc8;
+    }
+
+    .category .bullet,
+    .main-link a,
+    .topic-stats a,
+    .category-navigation a,
+    .num a,
+    .menu-panel a,
+    .topic-meta-data a,
+    .category-breadcrumb a{
+        text-decoration:none;
+    }
+
+    .notification-options .dropdown-menu li span {
+        white-space: initial;
+    }
+}

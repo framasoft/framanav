@@ -202,7 +202,6 @@ switch (n$.site) {
 
   case 'colibri':
     l$ = {
-      css: { ext: true },
       mute: true,
       footer: false,
     };
@@ -658,7 +657,6 @@ switch (n$.site) {
   case 'vox':
     l$ = {
       js: { video: i$('https://framavox.org/', 'u') },
-      css: { ext: true },
       fixed: !i$('https://framavox.org/', 'u'),
     };
 
