@@ -536,10 +536,7 @@ switch (n$.site) {
 
   case 'phonie':
     l$ = {
-      css: {
-        order: '102345',
-        ext: true,
-      },
+      css: { order: '102345' },
       footer: false,
     };
     break;
