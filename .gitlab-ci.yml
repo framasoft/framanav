@@ -2,7 +2,7 @@ deploy:
   stage: deploy
   before_script:
   - apt-get update -yqq
-  - DEBIAN_FRONTEND=noninteractive apt-get install ssh sassc -yqq
+  - DEBIAN_FRONTEND=noninteractive apt-get install ssh sassc rsync -yqq
   script:
   - sassc css/scss/frama.scss css/frama.css
   -  mkdir .public
