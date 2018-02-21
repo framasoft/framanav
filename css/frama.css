@@ -1351,5 +1351,61 @@ a.bg-primary:focus {
 cite {
   font-style: italic; }
 
+[data-url*="framabookin.org/b"] .ui-header {
+  margin-top: 42px; }
+
+[data-url*="framabookin.org/b"] .ui-content header {
+  margin-bottom: 40px; }
+
 [data-url^="http://localhost"] body {
   background: #fee; }
+
+[data-url^="http://localhost"][data-inframe="true"] body {
+  background: #eef; }
+
+[data-url*="framaphonie.org"] #framanav ul li {
+  list-style: none !important; }
+
+[data-url*="framaphonie.org"] #nav-alert.alert {
+  margin-bottom: 0; }
+
+[data-url*="framaphonie.org"] #nav-alert.alert p {
+  margin: 0; }
+
+[data-url*="framaphonie.org"] .bigbutton {
+  line-height: 10px !important; }
+
+[data-url*="framavectoriel.org"][data-inframe="true"] {
+  /* +52px partout */ }
+  [data-url*="framavectoriel.org"][data-inframe="true"] *, [data-url*="framavectoriel.org"][data-inframe="true"] *:before, [data-url*="framavectoriel.org"][data-inframe="true"] *:after {
+    -webkit-box-sizing: content-box !important;
+    -moz-box-sizing: content-box !important;
+    box-sizing: content-box !important; }
+  [data-url*="framavectoriel.org"][data-inframe="true"] #workarea, [data-url*="framavectoriel.org"][data-inframe="true"] #sidepanels, [data-url*="framavectoriel.org"][data-inframe="true"] #tools_left {
+    top: 112px !important; }
+  [data-url*="framavectoriel.org"][data-inframe="true"] #main_button {
+    top: 46px !important; }
+  [data-url*="framavectoriel.org"][data-inframe="true"] #tools_top {
+    top: 44px !important; }
+  [data-url*="framavectoriel.org"][data-inframe="true"] #svg_source_container {
+    top: 92px !important; }
+  [data-url*="framavectoriel.org"][data-inframe="true"] #tools_rect {
+    top: 214px !important; }
+  [data-url*="framavectoriel.org"][data-inframe="true"] #tools_ellipse {
+    top: 248px !important; }
+  [data-url*="framavectoriel.org"][data-inframe="true"] #tools_line {
+    top: 180px !important; }
+  [data-url*="framavectoriel.org"][data-inframe="true"] #tools_shapelib {
+    top: 316px !important; }
+  [data-url*="framavectoriel.org"][data-inframe="true"] #ruler_corner, [data-url*="framavectoriel.org"][data-inframe="true"] #ruler_x, [data-url*="framavectoriel.org"][data-inframe="true"] #ruler_y {
+    top: 113px !important; }
+  [data-url*="framavectoriel.org"][data-inframe="true"] #imgbrowse {
+    top: 77px; }
+  [data-url*="framavectoriel.org"][data-inframe="true"] #color_picker {
+    bottom: 82px !important; }
+
+[data-url*="framavectoriel.org"] #tool_save {
+  display: none; }
+
+[data-url*="framavectoriel.org"] #sidepanel_handle {
+  text-transform: uppercase; }

@@ -3,3 +3,8 @@
         background:#fee;
     }
 }
+[data-url^="http://localhost"][data-inframe="true"] {
+    body {
+        background:#eef;
+    }
+}

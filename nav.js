@@ -153,6 +153,7 @@ var f$_start_config = function() {
  *     Nav init
  *******************/
 document.getElementsByTagName('html')[0].setAttribute('data-url', window.location.href);
+document.getElementsByTagName('html')[0].setAttribute('data-inframe', n$.inframe);
 
 var f$_scripts = document.getElementsByTagName('script');
 
