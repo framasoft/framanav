@@ -1,4 +1,4 @@
-[data-url*="framavectoriel.org"][data-inframe="false"] {
+[data-url*="://framavectoriel.org"][data-inframe="false"] {
     *, *:before, *:after {
         -webkit-box-sizing: content-box !important;
         -moz-box-sizing: content-box !important;
@@ -42,7 +42,7 @@
     }
 }
 
-[data-url*="framavectoriel.org"] {
+[data-url*="://framavectoriel.org"] {
     #tool_save {
         display:none;
     }
