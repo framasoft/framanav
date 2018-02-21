@@ -150,13 +150,8 @@ switch (n$.site) {
     } catch (e) {
       // continue regardless of error
     }
-    if (i$('framacalc.org/_start') || i$('https://framacalc.org/', 'u')) {
-      // Si on est sur la page d'accueil
-      l$.modal = {
-        don: ['a[href*="framacalc.org/"]', 'd’utiliser', 'créer un calc'],
-      };
-      l$.js = { ext() { jQuery('#drop label:eq(0)').hide(); } };
-    } else if (i$('lite.framacalc.org/_start') || i$('https://lite.framacalc.org/', 'u')) {
+    if (i$('framacalc.org/_start') || i$('https://framacalc.org/', 'u') ||
+        i$('lite.framacalc.org/_start') || i$('https://lite.framacalc.org/', 'u')) {
       // Si on est sur la page d'accueil
       l$.modal = {
         don: ['a[href*="lite.framacalc.org/"]', 'd’utiliser', 'créer un calc'],
@@ -167,10 +162,7 @@ switch (n$.site) {
         js: {
           ext() { jQuery(window).trigger('resize'); },
         },
-        css: {
-          b$: !n$.inframe,
-          ext: true,
-        },
+        css: { b$: !n$.inframe },
         mobile: false,
         mute: true,
         footer: false,
@@ -660,7 +652,8 @@ switch (n$.site) {
       fixed: !i$('https://framavox.org/', 'u'),
     };
 
-    if (!i$(/(\/users\/sign|\/start_group|users\/password\/new)/i, 'u') && !i$('https://framavox.org/', 'u')) {
+    if (!i$(/(\/users\/sign|\/start_group|users\/password\/new)/i, 'u') &&
+        !i$('https://framavox.org/', 'u')) {
       l$.footer = false;
       l$.mute = true;
       l$.js.ext = true;
@@ -687,7 +680,6 @@ switch (n$.site) {
     } else {
       n$.inframe = i$('mediamanager.php');
       l$ = {
-        css: { ext: true },
         alert: ['', ''],
         icons: {
           fav: 'fav_wiki2.png',

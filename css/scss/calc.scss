@@ -1,0 +1,11 @@
+[data-url*="://framacalc.org"] [onresize] { /* dans Ethercalc */
+    *, *:before, *:after {
+        -webkit-box-sizing: content-box !important;
+        -moz-box-sizing: content-box !important;
+        box-sizing: content-box !important;
+    }
+
+    #msg { top:48px; }
+
+    body { overflow: hidden; }
+}
