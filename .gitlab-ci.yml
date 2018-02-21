@@ -2,13 +2,17 @@ deploy:
   stage: deploy
   before_script:
   - apt-get update -yqq
-  - DEBIAN_FRONTEND=noninteractive apt-get install ssh -yqq
+  - DEBIAN_FRONTEND=noninteractive apt-get install ssh sassc -yqq
   script:
-    - mkdir "${HOME}/.ssh"
-    - chmod 700 "${HOME}/.ssh"
-    - if [ ! -z ${DEPLOYEMENT_KNOWN_HOSTS+x} ]; then echo -e "${DEPLOYEMENT_KNOWN_HOSTS}" > ${HOME}/.ssh/known_hosts; fi
-    - eval `ssh-agent -s`
-    - if [ ! -z ${DEPLOYEMENT_KEY+x} ]; then ssh-add <(echo "$DEPLOYEMENT_KEY" | base64 --decode); fi
-    - if [ ! -z ${DEPLOYEMENT_KEY+x} ]; then ssh ${DEPLOYEMENT_USER}@${DEPLOYEMENT_HOST} 'cd ../../web/nav && ./update.sh'; fi
+  - sassc css/scss/frama.scss css/frama.css
+  -  mkdir .public
+  - cp -r * .public
+  - mv .public public
+  - mkdir "${HOME}/.ssh"
+  - chmod 700 "${HOME}/.ssh"
+  - if [ ! -z ${DEPLOYEMENT_KNOWN_HOSTS+x} ]; then echo -e "${DEPLOYEMENT_KNOWN_HOSTS}" > ${HOME}/.ssh/known_hosts; fi
+  - eval `ssh-agent -s`
+  - if [ ! -z ${DEPLOYEMENT_KEY+x} ]; then ssh-add <(echo "${DEPLOYEMENT_KEY}" | base64 --decode -i); fi
+  - if [ ! -z ${DEPLOYEMENT_KEY+x} ]; then rsync -a --delete public/ ${DEPLOYEMENT_USER}@${DEPLOYEMENT_HOST}:../../web/nav; fi
   only:
     - master

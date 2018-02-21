@@ -152,6 +152,8 @@ var f$_start_config = function() {
 /*******************
  *     Nav init
  *******************/
+document.getElementsByTagName('html')[0].setAttribute('data-url', window.location.href);
+
 var f$_scripts = document.getElementsByTagName('script');
 
 var f$_nav_init = function() {
