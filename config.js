@@ -35,25 +35,6 @@ if ((i$(/.framapad/i, 'h') && !i$(/mypads./i, 'h')) ||
 }
 
 switch (n$.site) {
-  case 'agent':
-    if (i$(/framatruc/i, 'h')) {
-    /** Test nouvelle config en prod */
-      l$ = {};
-    } else {
-    /** Config "agent" ailleurs (notamment sur /test/*.html) */
-      n$.name = 'Framapic';
-      // Utilisation d'un hash pour switcher/test la config iframe
-      if (i$('#iframe')) { n$.inframe = true; }
-      // Conf de démo par défaut
-      l$ = {
-        css: { order: '012345', ext: true },
-        footer: false,
-        fixed: true,
-        credits: 'pad',
-      };
-    }
-    break;
-
   case 'forum':
     n$.name = 'Framagora';
     l$ = {
@@ -377,28 +358,19 @@ switch (n$.site) {
     break;
 
   case 'mindmap':
-    if (i$('framindmap.org/mindmaps')) { // Dans Mindmaps
-      l$ = {
-        js: { j$: 'noConflict' },
-        css: { ext: true },
-        mute: true,
-        footer: false,
-      };
-    } else { // Dans Wisemapping (et accueil)
-      l$ = {
-        js: { video: true },
-        css: { b$: false, ext: true },
-        optin: ['#user #email'],
-        mute: (!i$('framindmap.org/c/login') && !i$('framindmap.org/c/user/registration')),
-      };
-      if (i$('framindmap.org/c/maps/') && !i$('/edit')) {
-        l$.modal = { don: ['onstart', 'd’utiliser', ['utiliser ', n$.name].join('')] };
-      }
-      if (i$('framindmap.org/c/maps') && i$('/edit')) {
-        // [Fix] Suppression de la nav dans l'éditeur
-        const f$NavContainer = document.getElementById('framanav_container');
-        f$NavContainer.parentNode.removeChild(f$NavContainer);
-      }
+    l$ = {
+      js: { video: true },
+      css: { b$: false },
+      optin: ['#user #email'],
+      mute: (!i$('framindmap.org/c/login') && !i$('framindmap.org/c/user/registration')),
+    };
+    if (i$('framindmap.org/c/maps/') && !i$('/edit')) {
+      l$.modal = { don: ['onstart', 'd’utiliser', ['utiliser ', n$.name].join('')] };
+    }
+    if (i$('framindmap.org/c/maps') && i$('/edit')) {
+      // [Fix] Suppression de la nav dans l'éditeur
+      const f$NavContainer = document.getElementById('framanav_container');
+      f$NavContainer.parentNode.removeChild(f$NavContainer);
     }
     break;
 
