@@ -415,12 +415,11 @@ switch (n$.site) {
     break;
 
   case 'news':
-    if (i$('framanews.org/ttrss')) {
+    if (i$('framanews.org/ttrss')) { // N’est pas actif
       l$ = {
         js: {
           ext() { jQuery(window).trigger('resize'); },
         },
-        css: { ext: true },
         mute: true,
         footer: false,
       };
@@ -623,7 +622,6 @@ switch (n$.site) {
   case 'team':
     l$ = {
       js: { j$: 'noConflict', b$: 'html', ext: true },
-      css: { ext: true },
       fixed: true,
       mute: true,
       donate: false,
