@@ -149,7 +149,6 @@ switch (n$.site) {
       js: {
         ext() { jQuery('.ui-page').css('margin-top', '-42px'); },
       },
-      css: { ext: i$('framabookin.org/b') },
       mute: i$('framabookin.org/b'),
       fixed: true,
       footer: !i$('framabookin.org/b'),
@@ -674,7 +673,6 @@ switch (n$.site) {
       l$ = {
         css: {
           b$: !n$.inframe,
-          ext: !n$.inframe,
         },
         mute: true,
         footer: false,
