@@ -185,7 +185,6 @@ switch (n$.site) {
     if (i$('/map/') && !n$.inframe) {
       l$.mute = true;
       l$.footer = false;
-      l$.css = { ext: true };
     }
     break;
 
@@ -371,6 +370,7 @@ switch (n$.site) {
       // [Fix] Suppression de la nav dans l'éditeur
       const f$NavContainer = document.getElementById('framanav_container');
       f$NavContainer.parentNode.removeChild(f$NavContainer);
+      l$.footer = false;
     }
     break;
 
