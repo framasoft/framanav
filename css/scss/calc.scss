@@ -1,4 +1,5 @@
-[data-url*="://framacalc.org"] [onresize] { /* dans Ethercalc */
+[data-url*="://framacalc.org"] [onresize],
+[data-url*="://lite.framacalc.org"] [onresize] { /* dans Ethercalc */
     *, *:before, *:after {
         -webkit-box-sizing: content-box !important;
         -moz-box-sizing: content-box !important;
