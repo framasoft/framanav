@@ -1,0 +1,26 @@
+[data-url*="://framalistes.org"] {
+    header h1.medium-offset-3.medium-9,
+    main#content-inner.medium-9,
+    section.home-submenu ul.row,
+    header .row,
+    main.row {
+        background-color: #FFF;
+        -webkit-box-shadow: $ombre;
+        -moz-box-shadow: $ombre;
+        box-shadow: $ombre;
+    }
+
+    header h1 {
+        margin-top: 30px;
+    }
+
+    main {
+        margin-bottom: 30px;
+    }
+
+    footer:not(#framafooter) {
+        display: none;
+    }
+}
+
+

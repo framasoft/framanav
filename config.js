@@ -327,19 +327,6 @@ switch (n$.site) {
     };
     break;
 
-  case 'listes':
-    l$ = {
-      js: {
-        ext() {
-          f$('footer:not([id])').remove();
-          f$('header .row, main.row').addClass('ombre');
-          f$('header h1').css('margin-top', '30px');
-          f$('main').css('margin-bottom', '30px');
-        },
-      },
-    };
-    break;
-
   case 'maestro':
     l$ = {
       js: { b$: 'html' },
