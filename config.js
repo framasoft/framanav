@@ -504,7 +504,12 @@ switch (n$.site) {
 
   case 'piaf':
     l$ = {
-      js: { ext: true },
+      js: {
+        ext() {
+          if (i$('/auth') || i$('remote_follow')) { $('.container').addClass('ombre'); }
+          $('img[src*="/packs/logo"]').attr('src', 'https://framasoft.org/nav/img/icons/piaf.png');
+        },
+      },
       footer: i$('/about'),
       mute: !i$('/about'),
     };
