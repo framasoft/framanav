@@ -422,10 +422,7 @@ switch (n$.site) {
           }
         },
       },
-      css: {
-        b$: !n$.inframe,
-        // ext: !n$.inframe,
-      },
+      css: { b$: !n$.inframe },
       mute: true,
       footer: false,
       credits: 'pad',

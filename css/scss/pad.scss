@@ -47,7 +47,9 @@
             top:42px !important;
         }
     }
+}
 
+[data-url*=".framapad.org/p/"] {
     /* Hide .doc export (bug avec libreoffice de Stretch) */
     #exportworda {
         display: none;
