@@ -470,17 +470,6 @@ switch (n$.site) {
     };
     break;
 
-  case 'pootle':
-    l$ = {
-      css: {
-        order: '102345',
-        frama: false, // en attente
-        ext: true,
-      },
-      mute: true,
-    };
-    break;
-
   case 'site':
     l$ = {
       js: { j$: 'noConflict', b$: 'html' },
