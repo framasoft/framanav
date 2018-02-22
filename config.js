@@ -127,9 +127,6 @@ switch (n$.site) {
 
   case 'bookin':
     l$ = {
-      js: {
-        ext() { jQuery('.ui-page').css('margin-top', '-42px'); },
-      },
       mute: i$('framabookin.org/b'),
       fixed: true,
       footer: !i$('framabookin.org/b'),
