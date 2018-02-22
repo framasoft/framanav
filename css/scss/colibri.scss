@@ -44,9 +44,9 @@
 
     #main-outlet {
         background-color: #FFF;
-        -webkit-box-shadow: -4px 6px 9px rgba(50, 50, 50, 0.5);
-        -moz-box-shadow:  -4px 6px 9px rgba(50, 50, 50, 0.5);
-        box-shadow:     -4px 6px 9px rgba(50, 50, 50, 0.5);
+        -webkit-box-shadow: $ombre;
+        -moz-box-shadow: $ombre;
+        box-shadow: $ombre;
     }
 
     #reply-control {
