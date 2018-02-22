@@ -178,15 +178,7 @@ switch (n$.site) {
     break;
 
   case 'clic':
-    l$ = {
-      js: {
-        b$: 'html',
-        ext() {
-          jQuery('body > .navbar-default').css('background-color', '#fff');
-          jQuery('body').css('background-color', '#eee');
-        },
-      },
-    };
+    l$.js = { b$: 'html' };
     break;
 
   case 'colibri':
@@ -272,30 +264,7 @@ switch (n$.site) {
       js: {
         ext() {
           if (n$.inframe) {
-            f$('.main-container')
-              .addClass('container-fluid')
-              .removeClass('container ombre')
-              .css({
-                margin: '0',
-                'padding-top': '10px',
-                'padding-bottom': '10px',
-              });
-            f$([
-              '#page-header',
-              '.region-navigation-wrapper',
-              '.region-sidebar-first-wrapper',
-              '.region-content-wrapper .breadcrumb',
-              '.region-content-wrapper .tabs--primary',
-              '#region-content .view-title',
-              '#region-content .view-interets-voisins',
-            ].join()).hide();
-            f$('.region-content-wrapper').css({
-              width: '100%',
-              float: 'none',
-              margin: '0',
-            });
             f$('a').attr('target', '_blank');
-            f$('body').css('background', 'white');
           }
         },
       },

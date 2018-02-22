@@ -1,0 +1,25 @@
+[data-url*="://framalibre.org"][data-inframe="true"] {
+
+    .main-container {
+        margin: 0;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    #page-header,
+    .region-navigation-wrapper,
+    .region-sidebar-first-wrapper,
+    .region-content-wrapper .breadcrumb,
+    .region-content-wrapper .tabs--primary,
+    #region-content .view-title,
+    #region-content .view-interets-voisins {
+        display:none;
+    }
+
+    .region-content-wrapper {
+        width: 100%;
+        float: none;
+        margin: 0
+    };
+    body { background: #fff; }
+}
