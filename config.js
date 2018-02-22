@@ -389,9 +389,7 @@ switch (n$.site) {
   case 'mypads':
     n$.name = 'Framapad';
     l$ = {
-      js: {
-        ext: true,
-      },
+      js: { ext: true },
       mute: true,
       footer: false,
       credits: 'pad',
@@ -426,7 +424,7 @@ switch (n$.site) {
       },
       css: {
         b$: !n$.inframe,
-        ext: !n$.inframe,
+        // ext: !n$.inframe,
       },
       mute: true,
       footer: false,
