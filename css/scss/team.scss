@@ -200,6 +200,10 @@
     /*******************
      * Dans Mattermost *
      *******************/
+    .inMM {
+        overflow: hidden;
+    }
+
     .inMM #root {
         margin-top: 0 !important;
     }
