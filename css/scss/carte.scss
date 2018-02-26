@@ -1,18 +1,7 @@
+/* Cartes publiques */
 [data-url*="://framacarte.org/"][data-inframe="false"] .map_detail {
     .leaflet-top {
         top: 42px;
-    }
-
-    .storage-edit-enabled .storage-main-edit-toolbox {
-        top:42px;
-    }
-
-    .storage-edit-enabled .leaflet-top {
-        top: 90px;
-    }
-
-    .storage-edit-enabled #storage-ui-container {
-        top: 88px;
     }
 
     #storage-alert-container {
@@ -21,5 +10,20 @@
 
     #storage-tooltip-container {
         top: 102px;
+    }
+}
+
+/* Cartes mode édition */
+[data-url*="://framacarte.org/"][data-inframe="false"] .storage-edit-enabled {
+    .storage-main-edit-toolbox {
+        top:42px;
+    }
+
+    .leaflet-top {
+        top: 90px;
+    }
+
+    #storage-ui-container {
+        top: 88px;
     }
 }
