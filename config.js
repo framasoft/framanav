@@ -5,7 +5,7 @@
 // de nav.js. La variable c$ contient toutes les valeurs par défaut ainsi
 // que les explications pour comprendre à quoi ça correspond.
 
-/* global n$:{} f$ i$Lang i$ */
+/* global n$:{} f$ */
 
 var l$; l$ = l$ || {}; // eslint-disable-line
 
@@ -24,13 +24,13 @@ switch (n$.site) {
 }
 
 // Config pour domaine et sous-domaine
-if (i$(/framaboard/i, 'h')) { n$.site = 'board'; }
-if (i$(/framadate/i, 'h')) { n$.site = 'date'; }
-if (i$(/framacalc/i, 'h')) { n$.site = 'calc'; }
+if (n$.is.url(/framaboard/i, 'h')) { n$.site = 'board'; }
+if (n$.is.url(/framadate/i, 'h')) { n$.site = 'date'; }
+if (n$.is.url(/framacalc/i, 'h')) { n$.site = 'calc'; }
 
-if (i$('mypads.framapad.org', 'h')) { n$.site = 'mypads'; }
-if ((i$(/.framapad/i, 'h') && !i$(/mypads./i, 'h')) ||
-    (i$(/mypads.framapad/i, 'h') && i$('/p/'))) {
+if (n$.is.url('mypads.framapad.org', 'h')) { n$.site = 'mypads'; }
+if ((n$.is.url(/.framapad/i, 'h') && !n$.is.url(/mypads./i, 'h')) ||
+    (n$.is.url(/mypads.framapad/i, 'h') && n$.is.url('/p/'))) {
   n$.site = 'etherpad';
 }
 
@@ -62,7 +62,7 @@ switch (n$.site) {
     break;
 
   case 'bag':
-    l$ = { mute: i$('framabag.org/u') };
+    l$ = { mute: n$.is.url('framabag.org/u') };
     break;
 
   case 'bee':
@@ -95,7 +95,7 @@ switch (n$.site) {
     break;
 
   case 'board':
-    if (i$('.framaboard')) { // dans Kanboard
+    if (n$.is.url('.framaboard')) { // dans Kanboard
       l$ = {
         js: {
           b$: 'html',
@@ -127,9 +127,9 @@ switch (n$.site) {
 
   case 'bookin':
     l$ = {
-      mute: i$('framabookin.org/b'),
+      mute: n$.is.url('framabookin.org/b'),
       fixed: true,
-      footer: !i$('framabookin.org/b'),
+      footer: !n$.is.url('framabookin.org/b'),
     };
     break;
 
@@ -147,8 +147,8 @@ switch (n$.site) {
     } catch (e) {
       // continue regardless of error
     }
-    if (i$('framacalc.org/_start') || i$('https://framacalc.org/', 'u') ||
-        i$('lite.framacalc.org/_start') || i$('https://lite.framacalc.org/', 'u')) {
+    if (n$.is.url('framacalc.org/_start') || n$.is.url('https://framacalc.org/', 'u') ||
+        n$.is.url('lite.framacalc.org/_start') || n$.is.url('https://lite.framacalc.org/', 'u')) {
       // Si on est sur la page d'accueil
       l$.modal = {
         don: ['a[href*="lite.framacalc.org/"]', 'd’utiliser', 'créer un calc'],
@@ -171,7 +171,7 @@ switch (n$.site) {
   case 'carte':
     l$.modal = { don: ['a.btn-primary[href*="/map/new/"]', 'd’utiliser', 'créer une carte'] };
 
-    if (i$('/map/') && !n$.inframe) {
+    if (n$.is.url('/map/') && !n$.inframe) {
       l$.mute = true;
       l$.footer = false;
     }
@@ -207,10 +207,10 @@ switch (n$.site) {
     break;
 
   case 'date':
-    l$.js = { ext: i$('framadate.org', 'h') };
-    if (i$Lang('fr')) {
+    l$.js = { ext: n$.is.url('framadate.org', 'h') };
+    if (n$.is.lang('fr')) {
       l$.modal = { don: ['a[href*="create_poll.php?"]', 'd’utiliser', 'créer un sondage'] };
-      if (i$('create_poll.php?')) {
+      if (n$.is.url('create_poll.php?')) {
         l$.optin = ['#formulaire input#email'];
       }
     }
@@ -232,7 +232,7 @@ switch (n$.site) {
     l$ = {
       fixed: true,
     };
-    if ((i$('index.php/app') && !i$('registration')) || i$('index.php/setting')) {
+    if ((n$.is.url('index.php/app') && !n$.is.url('registration')) || n$.is.url('index.php/setting')) {
       l$.footer = false;
       l$.mute = true;
     } else {
@@ -243,7 +243,7 @@ switch (n$.site) {
   case 'drop':
     l$.js = {
       ext() {
-        if (!i$('https://framadrop.org/', 'u')) {
+        if (!n$.is.url('https://framadrop.org/', 'u')) {
           $('main .row:last,main hr:last').hide();
         }
       },
@@ -296,7 +296,7 @@ switch (n$.site) {
   case 'maestro':
     l$ = {
       js: { b$: 'html' },
-      mute: i$('/p/'),
+      mute: n$.is.url('/p/'),
     };
     break;
 
@@ -305,12 +305,12 @@ switch (n$.site) {
       js: { video: true },
       css: { b$: false },
       optin: ['#user #email'],
-      mute: (!i$('framindmap.org/c/login') && !i$('framindmap.org/c/user/registration')),
+      mute: (!n$.is.url('framindmap.org/c/login') && !n$.is.url('framindmap.org/c/user/registration')),
     };
-    if (i$('framindmap.org/c/maps/') && !i$('/edit')) {
+    if (n$.is.url('framindmap.org/c/maps/') && !n$.is.url('/edit')) {
       l$.modal = { don: ['onstart', 'd’utiliser', ['utiliser ', n$.name].join('')] };
     }
-    if (i$('framindmap.org/c/maps') && i$('/edit')) {
+    if (n$.is.url('framindmap.org/c/maps') && n$.is.url('/edit')) {
       // [Fix] Suppression de la nav dans l'éditeur
       const f$NavContainer = document.getElementById('framanav_container');
       f$NavContainer.parentNode.removeChild(f$NavContainer);
@@ -320,14 +320,14 @@ switch (n$.site) {
 
   case 'minetest':
     l$.js = { video: true };
-    if (i$('/carte/')) {
+    if (n$.is.url('/carte/')) {
       l$.mute = true;
       l$.footer = false;
     }
     break;
 
   case 'my':
-    if (i$('source=bookmarklet')) {
+    if (n$.is.url('source=bookmarklet')) {
       n$.inframe = true;
       l$ = {
         js: {
@@ -359,7 +359,7 @@ switch (n$.site) {
     break;
 
   case 'news':
-    if (i$('framanews.org/ttrss')) { // N’est pas actif
+    if (n$.is.url('framanews.org/ttrss')) { // N’est pas actif
       l$ = {
         js: {
           ext() { jQuery(window).trigger('resize'); },
@@ -373,8 +373,8 @@ switch (n$.site) {
   case 'pack':
     l$ = {
       modal: { don: ['onstart', 'd’utiliser', ['utiliser ', n$.name].join('')] },
-      mute: i$('/admin'),
-      footer: !i$('/admin'),
+      mute: n$.is.url('/admin'),
+      footer: !n$.is.url('/admin'),
     };
     break;
 
@@ -427,7 +427,7 @@ switch (n$.site) {
       footer: false,
       credits: 'pad',
     };
-    if (i$(/(beta.framapad)/i, 'h')) {
+    if (n$.is.url(/(beta.framapad)/i, 'h')) {
       l$.modal = {
         info: [
           'Avertissement',
@@ -454,12 +454,12 @@ switch (n$.site) {
     l$ = {
       js: {
         ext() {
-          if (i$('/auth') || i$('remote_follow')) { $('.container').addClass('ombre'); }
+          if (n$.is.url('/auth') || n$.is.url('remote_follow')) { $('.container').addClass('ombre'); }
           $('img[src*="/packs/logo"]').attr('src', 'https://framasoft.org/nav/img/icons/piaf.png');
         },
       },
-      footer: i$('/about'),
-      mute: !i$('/about'),
+      footer: n$.is.url('/about'),
+      mute: !n$.is.url('/about'),
     };
     break;
 
@@ -563,16 +563,16 @@ switch (n$.site) {
     break;
 
   case 'tube':
-    n$.inframe = i$('/embed_player');
+    n$.inframe = n$.is.url('/embed_player');
     l$ = {
       js: { video: true },
       host: 'ovh',
-      mute: i$('/embed_player'),
+      mute: n$.is.url('/embed_player'),
     };
     break;
 
   case 'vectoriel':
-    if (i$('svg-editor')) { // Dans SVG-Editor
+    if (n$.is.url('svg-editor')) { // Dans SVG-Editor
       l$ = {
         css: {
           b$: !n$.inframe,
@@ -590,12 +590,12 @@ switch (n$.site) {
 
   case 'vox':
     l$ = {
-      js: { video: i$('https://framavox.org/', 'u') },
-      fixed: !i$('https://framavox.org/', 'u'),
+      js: { video: n$.is.url('https://framavox.org/', 'u') },
+      fixed: !n$.is.url('https://framavox.org/', 'u'),
     };
 
-    if (!i$(/(\/users\/sign|\/start_group|users\/password\/new)/i, 'u') &&
-        !i$('https://framavox.org/', 'u')) {
+    if (!n$.is.url(/(\/users\/sign|\/start_group|users\/password\/new)/i, 'u') &&
+        !n$.is.url('https://framavox.org/', 'u')) {
       l$.footer = false;
       l$.mute = true;
       l$.js.ext = true;
@@ -603,7 +603,7 @@ switch (n$.site) {
     break;
 
   case 'wiki':
-    if (i$('frama.wiki', 'h')) {
+    if (n$.is.url('frama.wiki', 'h')) {
       l$ = {
         js: { j$: 'noConflict', b$: 'html' },
         alert: [
@@ -620,7 +620,7 @@ switch (n$.site) {
         },
       };
     } else {
-      n$.inframe = i$('mediamanager.php');
+      n$.inframe = n$.is.url('mediamanager.php');
       l$ = {
         alert: ['', ''],
         icons: {
@@ -677,7 +677,7 @@ switch (n$.site) {
   case 'phonie': /**         */ l$.piwik.id = '14'; break;
   case 'lab': /**            */ l$.piwik.id = '16'; break;
   case 'code': /**           */ l$.piwik.id = '17'; break;
-  case 'localhost': /**      */ l$.piwik.id = '17'; break;
+  // case 'localhost': /**      */ l$.piwik.id = '17'; break;
   case 'soutenir': /**       */ l$.piwik.id = '18'; break;
   case 'contact': /**        */ l$.piwik.id = '19'; break;
   case 'news': /**           */ l$.piwik.id = '20'; break;
@@ -780,13 +780,13 @@ if (l$.piwik.id !== '' &&
   }
 
   // Framaclic
-  (function framaclic() {
+  /* (function framaclic() {
     const d = document;
     const g = d.createElement('img');
     const s = d.getElementsByTagName('body')[0];
     g.style = 'border:0'; g.alt = '';
     g.src = ['https://framaclic.org/h/', l$.piwik.id].join(''); s.appendChild(g);
-  }());
+  }()); */
 }
 
 /** ****************************************************************** *
@@ -794,17 +794,17 @@ if (l$.piwik.id !== '' &&
  * ******************************************************************* */
 l$.icons = l$.icons || {};
 
-if (i$(/(phonie)/i, 'h')) {
+if (n$.is.url(/(phonie)/i, 'h')) {
   l$.icons.fav = 'favicon-jaune.png';
 }
 
-if (i$(/(agenda|bag|bee|bin|blog|board|bookin|book|calc|carte|cloud|code|colibri|date|drive|drop|dvd|forms|games|key|lab|lang|libre|link|listes|maestro|memo|mindmap|minetest|news|pack|phonie|piaf|pic|site|slides|sphere|start|stats|status|talk|team|tube|vectoriel|vox|zic)/i, 'h') ||
-    i$(/(bot.|contact.|degooglisons-internet|forum.|participer.|soutenir.)/i, 'h')) {
+if (n$.is.url(/(agenda|bag|bee|bin|blog|board|bookin|book|calc|carte|cloud|code|colibri|date|drive|drop|dvd|forms|games|key|lab|lang|libre|link|listes|maestro|memo|mindmap|minetest|news|pack|phonie|piaf|pic|site|slides|sphere|start|stats|status|talk|team|tube|vectoriel|vox|zic)/i, 'h') ||
+    n$.is.url(/(bot.|contact.|degooglisons-internet|forum.|participer.|soutenir.)/i, 'h')) {
   l$.icons.apple = [n$.site, '.png'].join('');
   l$.icons.fav = ['fav_', n$.site, '.png'].join('');
 }
 
-if (i$(/(pad)/i, 'h')) {
+if (n$.is.url(/(pad)/i, 'h')) {
   l$.icons.fav = 'fav_pad.png';
   l$.icons.apple = 'pad.png';
 }

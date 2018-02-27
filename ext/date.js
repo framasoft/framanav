@@ -6,21 +6,21 @@ d$.f.date.modal = {
   or: ''
 }
 
-if( i$Lang('fr') ) {
+if (n$.is.lang('fr')) {
   d$.f.date.modal.title = 'Planifier un rendez-vous rapidement avec Framadate';
   d$.f.date.modal.file = 'https://docs.framasoft.org/fr/framadate/prise-en-main.html';
   d$.f.date.modal.link = 'lire le tutoriel détaillé ?';
   d$.f.date.modal.or = 'ou';
 }
 
-if( i$Lang('en') ) {
+if (n$.is.lang('en')) {
   d$.f.date.modal.title = 'How to quickly schedule a meeting with Framadate';
   d$.f.date.modal.file = 'https://docs.framasoft.org/en/framadate/prise-en-main.html';
   d$.f.date.modal.link = 'read the how-to?';
   d$.f.date.modal.or = 'or';
 }
 
-if( d$.f.date.modal.file != '' ) {
+if (d$.f.date.modal.file != '' ) {
   f$('a[href*="aqg259dth55iuhwm"]:contains("exemple")').before('<a href="'+d$.f.date.modal.file+'">'+d$.f.date.modal.link+'</a> '+d$.f.date.modal.or+' ');
 }
 

@@ -1,5 +1,5 @@
 #framanav_container {
-  width: 100%;  
+  width: 100%;
 }
 
 .fnav-fixed {
@@ -480,6 +480,23 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
 
 .audio .vjs-progress-control {
     font-size:0.9em;
+}
+
+.btn-youtube {
+    line-height: 2.5em;
+    text-align: center;
+    left: 50%;
+    top: 50%;
+    margin-left: -78px;
+    margin-top: -48px;
+    position: absolute;
+    width: 4em;
+    height: 2.6em;
+    font-size: 3em;
+    display: block;
+    z-index: 2;
+    background-color: rgba(206, 32, 33, 0.9);
+    border-radius: 0.5em;
 }
 
 /* Opt-in */
