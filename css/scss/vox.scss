@@ -1,10 +1,13 @@
 [data-url*="://framavox.org"] {
     h1 {
         font-family: "DejaVu Sans",Verdana,Geneva,sans-serif !important;
-        font-size: 48px;
         font-weight: bold;
     }
-
+    
+    #framahome h1 {
+        font-size: 48px;
+    }
+    
     .lead { font-style:italic; font-size: 21px !important;}
 
     .container.ombre {
@@ -63,8 +66,6 @@
     body.pages {
         margin-bottom:0;
     }
-
-    .lmo-h1, .lmo-h1-medium { font-size: 24px; }
 
     .navbar__logo-container {
         top:10px;
