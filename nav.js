@@ -22,9 +22,9 @@ let h$ = {};
 let c$ = {};
 
 const n$ = {
-  version: '180222', // n° version de la nav
+  version: '180301', // n° version de la nav
   f$: '1.12.4', // n° version de notre jQuery
-  b$: '3.3.6', // n° version de Bootsrap
+  b$: '3.3.7', // n° version de Bootsrap
   host: window.location.host,
   url: window.location.href,
   inframe: window.top.location !== window.self.document.location,
@@ -49,7 +49,7 @@ const n$ = {
 };
 
 (function framanav() {
-  const navJS = {
+  const nav = {
 
     /** Nav init **************************************************** */
     init() {
@@ -74,7 +74,7 @@ const n$ = {
       }
 
       // Création du lien Framaestro avec page courante + visio Framatalk
-      navJS.maestro();
+      nav.maestro();
 
       // Ajout <html data-url="" data-inframe=""> pour site.scss
       document.getElementsByTagName('html')[0].setAttribute('data-url', window.location.href);
@@ -95,19 +95,19 @@ const n$ = {
         }
       }
 
-      navJS.loadJS(navJS.l('config.js', 'n', 'v'), navJS.config);
+      nav.loadJS(nav.l('config.js', 'n', 'v'), nav.config);
     },
 
     /** Config globale ********************************************** */
     config() {
       /* global l$ */
-      navJS.mergeObj(c$, l$); // import de la config l$ dans c$
+      nav.mergeObj(c$, l$); // import de la config l$ dans c$
 
       n$.nav.speed = (n$.nav.set) ? '☀' : '☁';
       if (l$) {
-        n$.log.push(`✔ ${n$.nav.speed} config.js ${n$.version} | ${n$.f$} | ${n$.j$} → ${navJS.jquery()} ?`);
+        n$.log.push(`✔ ${n$.nav.speed} config.js ${n$.version} | ${n$.f$} | ${n$.j$} → ${nav.jquery()} ?`);
 
-        if (navJS.is.url('/nav/html/')) { // si pages « À propos » on réinit la config
+        if (nav.is.url('/nav/html/')) { // si pages « À propos » on réinit la config
           c$.js.b$ = true;
           c$.css.b$ = false;
           c$.css.ext = false;
@@ -126,30 +126,30 @@ const n$ = {
           c$.donate = false; // pas de macaron
         }
 
-        navJS.loadCSS(c$.css);
+        nav.loadCSS(c$.css);
 
-        /** c$.js.j$ = navJS.jquery() mais on garde l$.js.j$
+        /** c$.js.j$ = nav.jquery() mais on garde l$.js.j$
          * en fallback pour les cas très particuliers */
         switch (c$.js.j$) {
           case 'AJAX':
-            if (navJS.jquery() === 'AJAX') {
-              navJS.loadJS(navJS.l('lib/jquery/jquery.min.js', 'n'), navJS.fQuery);
+            if (nav.jquery() === 'AJAX') {
+              nav.loadJS(nav.l('lib/jquery/jquery.min.js', 'n'), nav.fQuery);
               n$.log.push(`✔ jQuery ${n$.j$} AJAX`);
             } else {
-              navJS.fQuery();
+              nav.fQuery();
               n$.log.push(`✔ jQuery ${n$.j$} HTML`);
             }
             break;
           case 'noConflict':
             n$.log.push(`✔ jQuery.noConflict ${n$.j$} AJAX`);
-            navJS.loadJS(navJS.l('lib/jquery/jquery.min.js', 'n'), navJS.fQuery);
+            nav.loadJS(nav.l('lib/jquery/jquery.min.js', 'n'), nav.fQuery);
             break;
           default:
             if (window.jQuery === undefined) {
               n$.log.push('✘ jQuery');
             } else {
               n$.log.push(`✔ jQuery ${n$.j$} HTML`);
-              navJS.fQuery();
+              nav.fQuery();
             }
             break;
         }
@@ -175,19 +175,19 @@ const n$ = {
         let f$Fr = {};
         let dataI18n = function dataI18n() {};
         let dataFr = function dataFr() {};
-        if (navJS.is.lang('en') || !navJS.is.lang('fr', 'b')) {
-          dataI18n = f$.getJSON(navJS.l('html/data.en.json', 'n'))
+        if (nav.is.lang('en') || !nav.is.lang('fr', 'b')) {
+          dataI18n = f$.getJSON(nav.l('html/data.en.json', 'n'))
             .fail(() => { n$.log.push('✘ data.en.json'); })
             .done((data) => { f$I18n = data; });
         }
-        dataFr = f$.getJSON(navJS.l('html/data.fr.json', 'n'))
+        dataFr = f$.getJSON(nav.l('html/data.fr.json', 'n'))
           .fail(() => { n$.log.push('✘ data.fr.json'); })
           .done((data) => { f$Fr = data; });
 
         f$.when(dataI18n, dataFr) // eslint-disable-line promise/catch-or-return
           .then(function dataProcess() {
-            navJS.mergeObj(d$, f$Fr); // import default locale 'fr' dans d$
-            navJS.mergeObj(d$, f$I18n); // import locale dans d$
+            nav.mergeObj(d$, f$Fr); // import default locale 'fr' dans d$
+            nav.mergeObj(d$, f$I18n); // import locale dans d$
 
             let f$Color = ''; let f$Menu = '';
             Object.keys(d$.menu).forEach((k) => {
@@ -200,7 +200,7 @@ const n$ = {
             h$ = {
               framasoft: `<b class="violet">${d$.meta.home.p}</b><b class="orange">${d$.meta.home.s}</b>`,
               rssLink: `<link rel="alternate" type="application/rss+xml" title="${d$.f.rss.d1}" href="${d$.f.rss.l}" />`,
-              newwindow: `&nbsp;<i class="fa fa-external-link new-window" aria-hidden="true"></i>${navJS.html.sr(['(', d$.t.newwindow, ')'].join(''))}</span>`,
+              newwindow: `&nbsp;<i class="fa fa-external-link new-window" aria-hidden="true"></i>${nav.html.sr(['(', d$.t.newwindow, ')'].join(''))}</span>`,
               divider: '<li role="presentation" class="divider"></li>',
               menu: d$.menu,
               f: {},
@@ -239,11 +239,11 @@ const n$ = {
               h$.f[k].name = d$.f[k].p + d$.f[k].s;
 
               // Attribution des entrées dans chaque menu
-              h$.menu[f$Menu].nav = [h$.menu[f$Menu].nav, '<li class="fs_', f$Menu, ' fs_', k, '"><a href="', d$.f[k].l, '" ', navJS.html.popover(d$.f[k].t1, d$.f[k].d1), '>', navJS.html.i(d$.f[k].i), '&nbsp;', h$.f[k].name, '</a></li>'].join('');
+              h$.menu[f$Menu].nav = [h$.menu[f$Menu].nav, '<li class="fs_', f$Menu, ' fs_', k, '"><a href="', d$.f[k].l, '" ', nav.html.popover(d$.f[k].t1, d$.f[k].d1), '>', nav.html.i(d$.f[k].i), '&nbsp;', h$.f[k].name, '</a></li>'].join('');
 
               // "Nous suivre" dans le footer
               if ((f$Menu === 'follow') && !(/(wiki|colibri|newsletter|contact|wikipedia)/i).test(k)) {
-                h$.menu.follow.footer = [h$.menu.follow.footer, '<li class="fs_', k, '"><a href="', d$.f[k].l, '" title="', d$.f[k].t1, '" ', navJS.html.popover(d$.f[k].t1, d$.f[k].d1, 'top'), '><i class="fa fa-fw fa-2x ', d$.f[k].i, '" aria-hidden="true"></i>', navJS.html.sr(d$.f[k].name), '</a></li>'].join('');
+                h$.menu.follow.footer = [h$.menu.follow.footer, '<li class="fs_', k, '"><a href="', d$.f[k].l, '" title="', d$.f[k].t1, '" ', nav.html.popover(d$.f[k].t1, d$.f[k].d1, 'top'), '><i class="fa fa-fw fa-2x ', d$.f[k].i, '" aria-hidden="true"></i>', nav.html.sr(d$.f[k].name), '</a></li>'].join('');
               }
               // "À propos" du site
               if (n$.name === h$.f[k].name) {
@@ -253,10 +253,10 @@ const n$ = {
                   d$.f.doc.l = d$.f[k].doc;
                 }
                 if (d$.f[k].git !== undefined) {
-                  h$.menu.about.site = [h$.menu.about.site, '<li class="fs_about fs_git"><a href="', d$.f[k].git, '">', navJS.html.i(d$.f.git.i), '&nbsp;', d$.f.git.p, d$.f.git.s, '</a></li>'].join('');
+                  h$.menu.about.site = [h$.menu.about.site, '<li class="fs_about fs_git"><a href="', d$.f[k].git, '">', nav.html.i(d$.f.git.i), '&nbsp;', d$.f.git.p, d$.f.git.s, '</a></li>'].join('');
                 }
                 if (d$.f[k].src !== undefined) {
-                  h$.menu.about.site = [h$.menu.about.site, '<li class="fs_about fs_src"><a href="', d$.f[k].src, '">', navJS.html.i('fa-code-fork'), '&nbsp;', d$.t.source, f$Soft, '</a></li>'].join('');
+                  h$.menu.about.site = [h$.menu.about.site, '<li class="fs_about fs_src"><a href="', d$.f[k].src, '">', nav.html.i('fa-code-fork'), '&nbsp;', d$.t.source, f$Soft, '</a></li>'].join('');
                 }
                 d$.f.faq.l = `${d$.f.faq.l}#${n$.name.toLowerCase()}`;
                 d$.f.aide.l = d$.f.aide.l.replace('#aide', n$.name.toLowerCase().relace(/^/, '#'));
@@ -265,16 +265,16 @@ const n$ = {
             // Switch mobile/desktop
             h$.menu.about.nav = [h$.menu.about.nav, h$.divider,
               '<li class="framanav-mobile"><a href="javascript:void(0);">',
-              navJS.html.i('fa-mobile'), '&nbsp;', d$.t.mobile,
+              nav.html.i('fa-mobile'), '&nbsp;', d$.t.mobile,
               '</a></li>',
               '<li class="framanav-desktop"><a href="javascript:void(0);">',
-              navJS.html.i('fa-desktop'), '&nbsp;', d$.t.desktop,
+              nav.html.i('fa-desktop'), '&nbsp;', d$.t.desktop,
               '</a></li>'].join('');
 
             h$.nav = [
               '<nav class="navbar navbar-default" id="framanav" role="menubar" style="display:none">',
               '  <button type="button" class="navbar-toggle text-muted" data-toggle="collapse" data-target=".navbar-ex1-collapse">',
-              navJS.html.sr(d$.t.toggle), navJS.html.i('fa-bars'),
+              nav.html.sr(d$.t.toggle), nav.html.i('fa-bars'),
               '  </button>',
               '  <div class="nav-container">',
               '    <div class="navbar-header">',
@@ -297,21 +297,21 @@ const n$ = {
               }
             });
             h$.nav.push(
-              '<li><a href="', d$.meta.soutenir.l, '/?f=nav" class="btn-soutenir" ', navJS.html.popover(d$.meta.soutenir.t1, d$.meta.soutenir.d1, 'bottom'), '>',
-              navJS.html.i(d$.meta.soutenir.i), '&nbsp;', d$.meta.soutenir.s,
+              '<li><a href="', d$.meta.soutenir.l, '/?f=nav" class="btn-soutenir" ', nav.html.popover(d$.meta.soutenir.t1, d$.meta.soutenir.d1, 'bottom'), '>',
+              nav.html.i(d$.meta.soutenir.i), '&nbsp;', d$.meta.soutenir.s,
               '</a></li>',
-              '<li id="btn-benevalo"><a href="', d$.meta.benevalo.l, '" class="btn-info" ', navJS.html.popover(d$.meta.benevalo.t1, d$.meta.benevalo.d1, 'bottom'), '>',
-              navJS.html.i(d$.meta.benevalo.i), '&nbsp;', d$.meta.benevalo.s,
+              '<li id="btn-benevalo"><a href="', d$.meta.benevalo.l, '" class="btn-info" ', nav.html.popover(d$.meta.benevalo.t1, d$.meta.benevalo.d1, 'bottom'), '>',
+              nav.html.i(d$.meta.benevalo.i), '&nbsp;', d$.meta.benevalo.s,
               '</a></li>',
-              '<li id="btn-myframa"><a href="', d$.meta.myframa.l, '" class="btn-primary" ', navJS.html.popover(d$.meta.myframa.t1, d$.meta.myframa.d1, 'bottom'), '>',
-              navJS.html.i(d$.meta.myframa.i), '&nbsp;', d$.meta.myframa.s,
+              '<li id="btn-myframa"><a href="', d$.meta.myframa.l, '" class="btn-primary" ', nav.html.popover(d$.meta.myframa.t1, d$.meta.myframa.d1, 'bottom'), '>',
+              nav.html.i(d$.meta.myframa.i), '&nbsp;', d$.meta.myframa.s,
               '</a></li>',
               '      </ul>',
               '    </div>',
               '  </div>',
               '  <a id="nav-end" class="sr-only"></a>',
               '</nav>',
-              '<a href="', d$.meta.soutenir.l, '/?f=macaron" id="framanav_donation" rel="donBadge" style="display:none" class="hidden-xs">', navJS.html.sr(d$.meta.soutenir.s), '</a>',
+              '<a href="', d$.meta.soutenir.l, '/?f=macaron" id="framanav_donation" rel="donBadge" style="display:none" class="hidden-xs">', nav.html.sr(d$.meta.soutenir.s), '</a>',
             );
 
             /** On balance le code html */
@@ -373,7 +373,7 @@ const n$ = {
               f$Desktop();
             }
             // Si (Dés)Activation mannuel, le cookie prend la main le temps de la session
-            switch (navJS.cookie('r', 'nav_viewport')) {
+            switch (nav.cookie('r', 'nav_viewport')) {
               case 'mobile': f$Mobile(); break;
               case 'desktop': f$Desktop(); break;
               default:
@@ -471,7 +471,7 @@ const n$ = {
                 '          <div class="input-group input-group-sm">',
                 '            <input class="form-control" title="', d$.t['type-your-email'], '" name="email" size="40" type="text" placeholder="', d$.t['your-email'], '" />',
                 '              <span class="input-group-btn">',
-                '                <button class="btn btn-default" name="subscribe" type="submit" value="subscribe">', d$.t.subscribe, navJS.html.sr(d$.t['to-the-newsletter']), '</button>',
+                '                <button class="btn btn-default" name="subscribe" type="submit" value="subscribe">', d$.t.subscribe, nav.html.sr(d$.t['to-the-newsletter']), '</button>',
                 '              </span>',
                 '            </div>',
                 '            <input name="htmlemail" type="hidden" value="1" /> <input name="list[5]" type="hidden" value="signup" /> <input name="listname[5]" type="hidden" value="Newsletter" />',
@@ -511,11 +511,11 @@ const n$ = {
             if (c$.js.b$) {
               if (typeof f$().modal === 'function' || c$.js.b$ === 'html') {
                 n$.log.push('✔ Bootstrap HTML');
-                navJS.bootstrap();
+                nav.bootstrap();
               } else {
-                f$.getScript(navJS.l('lib/bootstrap/js/bootstrap.min.js', 'n'), () => {
+                f$.getScript(nav.l('lib/bootstrap/js/bootstrap.min.js', 'n'), () => {
                   n$.log.push('✔ Bootstrap AJAX');
-                  navJS.bootstrap();
+                  nav.bootstrap();
                 });
               }
             } else {
@@ -553,10 +553,10 @@ const n$ = {
                 });
               });
 
-              f$.getScript(navJS.l('lib/video-js/video.js', 'n'), () => {
+              f$.getScript(nav.l('lib/video-js/video.js', 'n'), () => {
                 n$.log.push('✔ video.js');
                 /* global videojs */
-                videojs.options.flash.swf = navJS.l('lib/video-js/video-js.swf', 'n');
+                videojs.options.flash.swf = nav.l('lib/video-js/video-js.swf', 'n');
                 // On "clique" sur les sous-titres Français
                 // pour chaque vidéo dès que VideoJS est prêt
                 f$('video').each((index) => {
@@ -569,7 +569,7 @@ const n$ = {
             /* Vidéos Youtube */
             let f$YTi = 0;
             f$('a[href*="youtube.com/watch"], a[href*="youtu.be/"]').has('img')
-              .append(`<span class="btn-youtube">${navJS.html.i('fa-play fc_light')}</span>`)
+              .append(`<span class="btn-youtube">${nav.html.i('fa-play fc_light')}</span>`)
               .wrapInner('<span style="position:relative" />')
               .click(() => {
                 // Si lien youtube <a> on l'ajoute le code au clic + ajout d'un Id à l'iframe
@@ -602,10 +602,10 @@ const n$ = {
             }
 
             // Opt-in
-            const f$OptInDejavu = navJS.cookie('r', 'opt-in');
+            const f$OptInDejavu = nav.cookie('r', 'opt-in');
             if (c$.optin[0] !== '' && !f$OptInDejavu) {
               f$(c$.optin[0])
-                .after(navJS.html.alert(
+                .after(nav.html.alert(
                   'info',
                   'fs_opt-in',
                   [
@@ -620,7 +620,7 @@ const n$ = {
               f$(c$.optin[0]).focusin(() => {
                 f$('#fs_opt-in_error').remove();
                 // Ajout du cookie (expire au bout d'un an)
-                navJS.cookie('w', c$.optin[2], true, c$.optin[3]);
+                nav.cookie('w', c$.optin[2], true, c$.optin[3]);
               });
 
               // Requête ajax crossdomain lorsque la case est cochée
@@ -628,14 +628,14 @@ const n$ = {
                 f$('#fs_opt-in_error').remove();
                 const f$Email = f$(c$.optin[0]).val();
                 if (c$.optin[1] !== '' && f$(c$.optin[0]).val() !== f$(c$.optin[1]).val()) { // Cas où il y a un champs pour confirmer email
-                  f$(c$.optin[0]).after(navJS.html.alert(
+                  f$(c$.optin[0]).after(nav.html.alert(
                     'danger',
                     'fs_opt-in_error',
                     d$.meta.optin.e2,
                   ));
                   return false;
-                } else if (!navJS.is.email(f$(c$.optin[0]).val())) {
-                  f$(c$.optin[0]).after(navJS.html.alert(
+                } else if (!nav.is.email(f$(c$.optin[0]).val())) {
+                  f$(c$.optin[0]).after(nav.html.alert(
                     'danger',
                     'fs_opt-in_error',
                     d$.meta.optin.e2.replace('%f$Email%', f$Email),
@@ -654,7 +654,7 @@ const n$ = {
                 // l'annulation se fait depuis le mail reçu)
                 f$('#fs_opt-in').remove();
                 // Message d'alert pour confirmer l'inscription
-                f$(c$.optin[0]).after(navJS.html.alert(
+                f$(c$.optin[0]).after(nav.html.alert(
                   'success', 'fs_opt-in_confirm',
                   d$.meta.optin.s1.replace('%f$Email%', f$Email),
                   true,
@@ -680,14 +680,14 @@ const n$ = {
             });
 
             // Crédits
-            if (navJS.is.url('/html/credits.html') && window.location.hash) {
-              f$('#site-credits').load(navJS.l(window.location.hash.replace('#', 'html/credits/').replace(/$/, '.html'), 'n'));
+            if (nav.is.url('/html/credits.html') && window.location.hash) {
+              f$('#site-credits').load(nav.l(window.location.hash.replace('#', 'html/credits/').replace(/$/, '.html'), 'n'));
             }
 
             // Hébergeur et Iframe Piwik sur Mentions légales
-            if (navJS.is.url('/html/legals.html')) {
+            if (nav.is.url('/html/legals.html')) {
               if (window.location.hash) {
-                f$('#modal-legals-host').load(navJS.l(window.location.hash.replace('#', 'html/host/').replace(/$/, '.html'), 'n'));
+                f$('#modal-legals-host').load(nav.l(window.location.hash.replace('#', 'html/host/').replace(/$/, '.html'), 'n'));
               }
               f$('#piwik-iframe').html(`<iframe style="border: 0; height: 200px; width: 600px;" src="${c$.piwik.url}index.php?module=CoreAdminHome&action=optOut&language=fr"></iframe>`);
             }
@@ -696,9 +696,9 @@ const n$ = {
             if (typeof c$.js.ext === 'function') {
               c$.js.ext();
             } else if (c$.js.ext === true) {
-              f$.getScript(navJS.l(`ext/${n$.site}.js`, 'n'));
+              f$.getScript(nav.l(`ext/${n$.site}.js`, 'n'));
             } else if (typeof c$.js.ext === 'string') {
-              f$.getScript(navJS.l(`ext/${c$.js.ext}.js`, 'n'));
+              f$.getScript(nav.l(`ext/${c$.js.ext}.js`, 'n'));
             }
           })
           .fail((err) => { n$.log.push('✘ data.*.json', err); });
@@ -730,12 +730,12 @@ const n$ = {
       /** Fin accessibilité */
 
       if (!n$.inframe) { // Pas de bandeau, nav, modale et macaron en mode iframe
-        if (c$.fixed || navJS.is.url('/nav/html/')) {
+        if (c$.fixed || nav.is.url('/nav/html/')) {
           f$('body').addClass('fnav-fixed');
         }
 
         // Liens de la nav à ouvrir dans un onglet
-        if (!navJS.is.url('/nav/html/')) {
+        if (!nav.is.url('/nav/html/')) {
           f$('#framanav .dropdown-menu a').attr('target', '_blank').append(h$.newwindow);
         }
 
@@ -753,12 +753,12 @@ const n$ = {
         }
 
         // Modal et Alert d'info
-        const f$AlertDejavu = navJS.cookie('r', 'nav-alert');
-        const f$ModalInfoDejavu = navJS.cookie('r', c$.modal.info[2]);
+        const f$AlertDejavu = nav.cookie('r', 'nav-alert');
+        const f$ModalInfoDejavu = nav.cookie('r', c$.modal.info[2]);
 
         // Modal
         if (c$.modal.info[0] !== '') {
-          f$('body').append(navJS.html.modal( // id, title, body, footer
+          f$('body').append(nav.html.modal( // id, title, body, footer
             'finfo', c$.modal.info[0],
             c$.modal.info[1],
             [
@@ -774,11 +774,11 @@ const n$ = {
           if (!f$ModalInfoDejavu) {
             f$('#modal-finfo').modal('show');
             f$('#modal-set-cookie').click(() => {
-              navJS.cookie('w', c$.modal.info[2], true, c$.modal.info[3]); // cookie pour 7 jours par défaut (cf config ci-dessous)
+              nav.cookie('w', c$.modal.info[2], true, c$.modal.info[3]); // cookie pour 7 jours par défaut (cf config ci-dessous)
               f$('#modal-finfo').modal('hide');
             });
             f$('#modal-finfo .close, #modal-close').click(() => {
-              navJS.cookie('w', c$.modal.info[2], true); // cookie pour la session
+              nav.cookie('w', c$.modal.info[2], true); // cookie pour la session
               f$('#modal-finfo').modal('hide');
             });
           }
@@ -786,11 +786,11 @@ const n$ = {
 
         // Alert
         if (c$.alert[1] !== '' && !f$AlertDejavu) {
-          if (c$.fixed || navJS.is.url('/nav/html/')) {
+          if (c$.fixed || nav.is.url('/nav/html/')) {
             f$('#framanav_container ~ *:not(script):first').css('margin-top', '-=42');
           }
 
-          f$('#framanav_container').after(navJS.html.alert(
+          f$('#framanav_container').after(nav.html.alert(
             c$.alert[0], 'nav-alert',
             `<div style="margin:0 auto; max-width:800px;"><p class="text-center">${c$.alert[1]}</p></div>`,
             true,
@@ -798,13 +798,13 @@ const n$ = {
 
           // Cookie enregistré en fermant (7 jours par défaut cf config.js)
           f$('#nav-alert').bind('closed.bs.alert', () => {
-            navJS.cookie('w', c$.alert[2], true, c$.alert[3]);
+            nav.cookie('w', c$.alert[2], true, c$.alert[3]);
           });
         }
 
         // Fenêtre modal pour dons sur téléchargements
         if (c$.modal.don[0] !== '') {
-          f$('body').append(navJS.html.modal(
+          f$('body').append(nav.html.modal(
             'soutenir', d$.meta.modaldon.t,
             [ // body
               d$.meta.modaldon.d[0].replace('%c$.modal.don[1]%', c$.modal.don[1]),
@@ -815,7 +815,7 @@ const n$ = {
             [ // footer
               '<div class="clearfix"><p class="col-md-12 text-center">',
               '  <a target="_blank" id="modal-don" href="', d$.meta.soutenir.l, '/?f=modal&s=', n$.site, '" class="btn btn-soutenir btn-block">',
-              navJS.html.i(d$.meta.soutenir.i), ' ', d$.meta.modaldon.b1, h$.newwindow,
+              nav.html.i(d$.meta.soutenir.i), ' ', d$.meta.modaldon.b1, h$.newwindow,
               '  </a></p>',
               '<p class="col-md-6 text-center">',
               '  <a id="modal-dl" href="javascript:void(0);" class="btn btn-xs btn-default btn-block" >',
@@ -831,32 +831,32 @@ const n$ = {
           ));
 
           if (c$.modal.don[0] === 'onstart') {
-            const dejavu = navJS.cookie('r', 'dondl');
+            const dejavu = nav.cookie('r', 'dondl');
             if (!dejavu) {
               f$('#modal-soutenir').modal('show');
               f$('#modal-soutenir').css('display', 'block'); // bugfix
               f$('#modal-contact, #modal-don, #modal-dl, #modal-soutenir .close').click(() => {
-                navJS.cookie('w', 'dondl', true, c$.modal.don[3]);
+                nav.cookie('w', 'dondl', true, c$.modal.don[3]);
                 f$('#modal-soutenir').modal('hide');
               });
               f$('#modal-dl2').click(() => {
-                navJS.cookie('w', 'dondl', true, 31536000000); // 365 * 24 * 60 * 60 * 1000
+                nav.cookie('w', 'dondl', true, 31536000000); // 365 * 24 * 60 * 60 * 1000
                 f$('#modal-soutenir').modal('hide');
               });
             }
           } else {
             f$(c$.modal.don[0]).click(() => {
-              const dejavu = navJS.cookie('r', 'dondl');
+              const dejavu = nav.cookie('r', 'dondl');
               if (!dejavu) {
-                const link = navJS.l(f$(this).attr('href'));
+                const link = nav.l(f$(this).attr('href'));
                 f$('#modal-soutenir').modal('show');
                 f$('#modal-contact, #modal-don, #modal-dl').click(() => {
-                  navJS.cookie('w', 'dondl', true, c$.modal.don[3]);
+                  nav.cookie('w', 'dondl', true, c$.modal.don[3]);
                   f$('#modal-soutenir').modal('hide');
                   window.location.href = link;
                 });
                 f$('#modal-dl2').click(() => {
-                  navJS.cookie('w', 'dondl', true, 31536000000); // 365 * 24 * 60 * 60 * 1000
+                  nav.cookie('w', 'dondl', true, 31536000000); // 365 * 24 * 60 * 60 * 1000
                   f$('#modal-soutenir').modal('hide');
                   window.location.href = link;
                 });
@@ -869,7 +869,7 @@ const n$ = {
 
         // Modal FAQ
         if (d$.f.faq.l.indexOf(n$.name.toLowerCase()) > -1) {
-          f$('body').append(navJS.html.modal(
+          f$('body').append(nav.html.modal(
             'fsFAQ',
             [d$.f.faq.s, n$.name].join(' '), // ! space
             '',
@@ -903,10 +903,10 @@ const n$ = {
     },
 
     /** Fonctions génériques **************************************** */
-    l(href, nav, version) {
+    l(href, n, v) {
       // Lien absolu depuis l’emplacement de la nav
-      if (nav === 'n' && n$.nav.url !== '') {
-        if (version === 'v') {
+      if (n === 'n' && n$.nav.url !== '') {
+        if (v === 'v') {
           return `${n$.nav.url}${href}?${n$.version}`;
         }
         return `${n$.nav.url}${href}`;
@@ -953,23 +953,23 @@ const n$ = {
         switch (stylesheet) {
           case '0': // Bootstrap
             link.media = (css.b$) ? 'all' : 'none';
-            link.href = navJS.l('lib/bootstrap/css/bootstrap.min.css', 'n');
+            link.href = nav.l('lib/bootstrap/css/bootstrap.min.css', 'n');
             break;
           case '2': // Font-Awesome
             link.media = 'all';
-            link.href = navJS.l('lib/fork-awesome/css/fork-awesome.min.css', 'n');
+            link.href = nav.l('lib/fork-awesome/css/fork-awesome.min.css', 'n');
             break;
           case '3': // Nav
             link.media = 'screen';
-            link.href = navJS.l('css/nav.css', 'n', 'v');
+            link.href = nav.l('css/nav.css', 'n', 'v');
             break;
           case '4': // Frama
             link.media = (css.frama) ? 'all' : 'none';
-            link.href = navJS.l('css/frama.css', 'n', 'v');
+            link.href = nav.l('css/frama.css', 'n', 'v');
             break;
           case '5': // Ext *obsolete*
             link.media = (css.ext) ? 'all' : 'none';
-            link.href = navJS.l(`ext/${n$.site}.css`, 'n', 'v');
+            link.href = nav.l(`ext/${n$.site}.css`, 'n', 'v');
             break;
           default:
             // no default
@@ -1168,7 +1168,7 @@ const n$ = {
           '  <div class="modal-dialog', size, '">',
           '    <div class="modal-content">',
           '      <div class="modal-header">',
-          '        <button type="button" class="close" data-dismiss="modal" title="', d$.t.close, '"><i aria-hidden="true">&times;</i>', navJS.html.sr(d$.t.close), '</button>',
+          '        <button type="button" class="close" data-dismiss="modal" title="', d$.t.close, '"><i aria-hidden="true">&times;</i>', nav.html.sr(d$.t.close), '</button>',
           '        <h1 id="modal-', id, 'Label">', title, '</h1>',
           '      </div>',
           '      <div class="modal-body">', body, '</div>',
@@ -1199,7 +1199,7 @@ const n$ = {
             '<button type="button" class="close" data-dismiss="alert" title="',
             d$.t.close,
             '"><i aria-hidden="true">&times;</i>',
-            navJS.html.sr(d$.t.close),
+            nav.html.sr(d$.t.close),
             '</button>',
           );
         }
@@ -1211,16 +1211,16 @@ const n$ = {
 
   };
 
-  navJS.mergeObj(n$, navJS); // export des fonctions pour config.js
+  nav.mergeObj(n$, nav); // export des fonctions pour config.js
 
-  navJS.init();
+  nav.init();
 
   /** **************************************************************** *
    *                           Config globale                          *
    ** **************************************************************** */
   c$ = {
     js: {
-      j$: navJS.jquery(),
+      j$: nav.jquery(),
       /**
        * 'AJAX'       = jQuery de la nav ;
        * 'HTML'       = jQuery (1.9.1 ou +) présent dans la page ;
@@ -1294,7 +1294,7 @@ const n$ = {
   const f$MM = f$Today.getMonth() + 1;
   const f$YYYY = f$Today.getFullYear();
 
-  if (f$MM === 12 && (31 - f$MM) < 16 && n$.site !== 'soutenir' && navJS.is.lang('fr')) {
+  if (f$MM === 12 && (31 - f$MM) < 16 && n$.site !== 'soutenir' && nav.is.lang('fr')) {
     const f$Rebours = ((31 - f$DD) === 0) ? '24 heures' : [(31 - f$DD), ' jours'].join('');
     c$.alert[0] = 'info';
     c$.alert[1] = [
