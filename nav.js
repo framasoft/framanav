@@ -7,6 +7,7 @@
  b$ = Bootstrap
 
  n${} = variables et fonctions globales de la nav
+ n{}  = fonctions de la nav (exportées également dans n$)
  d${} = données (texte, liens, icônes, couleurs, etc)
  h${} = html
  c${} = config du site
@@ -18,7 +19,6 @@ let f$ = function f$() {
 };
 
 const d$ = {};
-let h$ = {};
 let c$ = {};
 
 const n$ = {
@@ -27,16 +27,13 @@ const n$ = {
   b$: '3.3.7', // n° version de Bootsrap
   host: window.location.host,
   url: window.location.href,
+  baseurl: '',
   inframe: window.top.location !== window.self.document.location,
-  nav: {
-    url: '',
-    set: false,
-    html: [
-      '<div id="framanav_container" class="hidden-print" style="height:42px; opacity : 0"></div>',
-      '<iframe id="framanav_cortex" src="https://framasoft.org/nav/html/cortex.html" ',
-      'style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;"></iframe>',
-    ].join(''),
-  },
+  container: [
+    '<div id="framanav_container" class="hidden-print" style="height:42px; opacity : 0"></div>',
+    '<iframe id="framanav_cortex" src="https://framasoft.org/nav/html/cortex.html" ',
+    'style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;"></iframe>',
+  ].join(''),
   browser: {
     agent: navigator.userAgent,
     opera: !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0,
@@ -49,12 +46,14 @@ const n$ = {
 };
 
 (function framanav() {
-  const nav = {
+  const n = {
 
     /** Nav init **************************************************** */
     init() {
+      if (n.is.url('localhost', 'h')) { n$.host = 'framapic.org'; }
       n$.site = n$.host.replace(/^(www|test)\./i, '').replace(/\.(com|net|org|fr|pro)$/i, ''); // Domaine et sous-domaine
       n$.name = n$.site[0].toUpperCase() + n$.site.slice(1).replace('.framasoft', ''); // Nom du service
+      n$.lname = n$.name.toLowerCase();
       n$.site = n$.site.replace(/framand/i, 'and')
         .replace(/framage/i, 'age')
         .replace(/framae/i, 'mae')
@@ -63,7 +62,7 @@ const n$ = {
         .replace(/frame/i, 'me')
         .replace(/frama/i, '');
 
-      if (n$.inframe) { n$.nav.html = '<div id="framanav_container" style="display:none"></div>'; }
+      if (n$.inframe) { n$.container = '<div id="framanav_container" style="display:none"></div>'; }
 
       // Détection de la version de jQuery
       if (window.jQuery === undefined) {
@@ -74,7 +73,7 @@ const n$ = {
       }
 
       // Création du lien Framaestro avec page courante + visio Framatalk
-      nav.maestro();
+      n.maestro();
 
       // Ajout <html data-url="" data-inframe=""> pour site.scss
       document.getElementsByTagName('html')[0].setAttribute('data-url', window.location.href);
@@ -84,30 +83,29 @@ const n$ = {
       const scripts = document.getElementsByTagName('script');
       for (let i = 0; i < scripts.length; i += 1) {
         if (scripts[i].getAttribute('src') && scripts[i].getAttribute('src').indexOf('/nav.js') > -1) {
-          n$.nav.url = this.l(scripts[i].getAttribute('src').replace('nav.js', ''));
+          n$.baseurl = this.l(scripts[i].getAttribute('src').replace('nav.js', ''));
           // On ajout une div vide de 42px qui contiendra la nav
           // (évite les sauts de mise en page avant le chargement des fichiers)
           if (scripts[i].parentNode.tagName.toLowerCase() === 'body') {
             // si nav.js est appelé en haut du body, c'est super rapide
-            document.write(n$.nav.html);
-            n$.nav.set = true;
+            document.write(n$.container);
+            n$.container = '';
           } // sinon c'est dans le head, il faut attendre document.ready (voir plus bas)
         }
       }
 
-      nav.loadJS(nav.l('config.js', 'n', 'v'), nav.config);
+      n.loadJS(n.l('config.js', 'n', 'v'), n.config);
     },
 
     /** Config globale ********************************************** */
     config() {
       /* global l$ */
-      nav.mergeObj(c$, l$); // import de la config l$ dans c$
+      n.mergeObj(c$, l$); // import de la config l$ dans c$
 
-      n$.nav.speed = (n$.nav.set) ? '☀' : '☁';
       if (l$) {
-        n$.log.push(`✔ ${n$.nav.speed} config.js ${n$.version} | ${n$.f$} | ${n$.j$} → ${nav.jquery()} ?`);
+        n$.log.push(`✔ ${((n$.container === '') ? '☀' : '☁')} config.js ${n$.version} | ${n$.f$} | ${n$.j$} → ${n.jquery()} ?`);
 
-        if (nav.is.url('/nav/html/')) { // si pages « À propos » on réinit la config
+        if (n.is.url('/nav/html/')) { // si pages « À propos » on réinit la config
           c$.js.b$ = true;
           c$.css.b$ = false;
           c$.css.ext = false;
@@ -126,35 +124,35 @@ const n$ = {
           c$.donate = false; // pas de macaron
         }
 
-        nav.loadCSS(c$.css);
+        n.loadCSS(c$.css);
 
-        /** c$.js.j$ = nav.jquery() mais on garde l$.js.j$
+        /** c$.js.j$ = n.jquery() mais on garde l$.js.j$
          * en fallback pour les cas très particuliers */
         switch (c$.js.j$) {
           case 'AJAX':
-            if (nav.jquery() === 'AJAX') {
-              nav.loadJS(nav.l('lib/jquery/jquery.min.js', 'n'), nav.fQuery);
+            if (n.jquery() === 'AJAX') {
+              n.loadJS(n.l('lib/jquery/jquery.min.js', 'n'), n.fQuery);
               n$.log.push(`✔ jQuery ${n$.j$} AJAX`);
             } else {
-              nav.fQuery();
+              n.fQuery();
               n$.log.push(`✔ jQuery ${n$.j$} HTML`);
             }
             break;
           case 'noConflict':
             n$.log.push(`✔ jQuery.noConflict ${n$.j$} AJAX`);
-            nav.loadJS(nav.l('lib/jquery/jquery.min.js', 'n'), nav.fQuery);
+            n.loadJS(n.l('lib/jquery/jquery.min.js', 'n'), n.fQuery);
             break;
           default:
             if (window.jQuery === undefined) {
               n$.log.push('✘ jQuery');
             } else {
               n$.log.push(`✔ jQuery ${n$.j$} HTML`);
-              nav.fQuery();
+              n.fQuery();
             }
             break;
         }
       } else {
-        n$.log.push(`✘ ${n$.nav.speed} config.js ${n$.version}`);
+        n$.log.push(`✘ ${((n$.container === '') ? '☀' : '☁')} config.js ${n$.version}`);
       }
     },
 
@@ -168,162 +166,87 @@ const n$ = {
       f$(document).ready(() => {
         f$.ajaxSetup({ cache: true });
 
-        if (!n$.nav.set) { f$('body').prepend(n$.nav.html); }
+        if (n$.container !== '') { f$('body').prepend(n$.container); }
 
         // On charge ensuite les données
         let f$I18n = {};
         let f$Fr = {};
         let dataI18n = function dataI18n() {};
         let dataFr = function dataFr() {};
-        if (nav.is.lang('en') || !nav.is.lang('fr', 'b')) {
-          dataI18n = f$.getJSON(nav.l('html/data.en.json', 'n'))
+        if (n.is.lang('en') || !n.is.lang('fr', 'b')) {
+          dataI18n = f$.getJSON(n.l('html/data.en.json', 'n'))
             .fail(() => { n$.log.push('✘ data.en.json'); })
             .done((data) => { f$I18n = data; });
         }
-        dataFr = f$.getJSON(nav.l('html/data.fr.json', 'n'))
+        dataFr = f$.getJSON(n.l('html/data.fr.json', 'n'))
           .fail(() => { n$.log.push('✘ data.fr.json'); })
           .done((data) => { f$Fr = data; });
 
         f$.when(dataI18n, dataFr) // eslint-disable-line promise/catch-or-return
-          .then(function dataProcess() {
-            nav.mergeObj(d$, f$Fr); // import default locale 'fr' dans d$
-            nav.mergeObj(d$, f$I18n); // import locale dans d$
+          .then(() => {
+            n.mergeObj(d$, f$Fr); // import default locale 'fr' dans d$
+            n.mergeObj(d$, f$I18n); // import locale dans d$
 
-            let f$Color = ''; let f$Menu = '';
+            if (n$.inframe) { f$('#framanav_container').hide(); }
+
             Object.keys(d$.menu).forEach((k) => {
-              d$.menu[k].nav = '';
+              d$.menu[k].list = [];
             });
-            d$.menu.follow.footer = ''; d$.menu.about.site = '';
-
-            if (n$.inframe) f$('#framanav_container').hide();
-
-            h$ = {
-              framasoft: `<b class="violet">${d$.meta.home.p}</b><b class="orange">${d$.meta.home.s}</b>`,
-              rssLink: `<link rel="alternate" type="application/rss+xml" title="${d$.f.rss.d1}" href="${d$.f.rss.l}" />`,
-              newwindow: `&nbsp;<i class="fa fa-external-link new-window" aria-hidden="true"></i>${nav.html.sr(['(', d$.t.newwindow, ')'].join(''))}</span>`,
-              divider: '<li role="presentation" class="divider"></li>',
-              menu: d$.menu,
-              f: {},
-            };
+            d$.menu.about.site = '';
 
             // Class couleurs + Dropdown menu
             Object.keys(d$.f).forEach((k) => {
               switch (d$.f[k].c) {
-                case 'b': f$Color = 'bleu'; f$Menu = 'soft'; break;
-                case 'r': f$Color = 'rouge'; f$Menu = 'culture'; break;
-                case 'v': f$Color = 'vert'; f$Menu = 'services'; break;
-                case 'j': f$Color = 'jaune'; f$Menu = 'vrac'; break;
-                case 'f': f$Color = 'violet'; f$Menu = 'follow'; break;
+                case 'b': d$.menu.soft.list.push(k); break;
+                case 'r': d$.menu.culture.list.push(k); break;
+                case 'v': d$.menu.services.list.push(k); break;
+                case 'j': d$.menu.vrac.list.push(k); break;
+                case 'f': d$.menu.follow.list.push(k); break;
                 default: // case: 'o':
-                  f$Color = 'orange';
-                  f$Menu = (k !== 'dio') ? 'about' : 'services';
+                  if (k !== 'dio') {
+                    d$.menu.about.list.push(k);
+                  } else {
+                    d$.menu.services.list.push(k);
+                  }
                   break;
               }
-              // Nom du projet coloré (html)
-              // Préfix violet
-              h$.f[k] = {};
 
-              if (d$.f[k].p === undefined) {
-                h$.f[k].html = ''; d$.f[k].p = '';
-              } else {
-                h$.f[k].html = `<b class="violet">${d$.f[k].p}</b>`;
-              }
-              // Suffixe coloré (anglais, accronyme)
-              switch (d$.f[k].a) {
-                case 'en': h$.f[k].html += `<b class="${f$Color}" lang="en">${d$.f[k].s}</b>`; break;
-                case 'abbr': h$.f[k].html += `<b class="${f$Color}"><abbr>${d$.f[k].s}</abbr></b>`; break;
-                default: h$.f[k].html += `<b class="${f$Color}">${d$.f[k].s}</b>`; break;
-              }
-
-              // Nom du projet nu (name)
-              h$.f[k].name = d$.f[k].p + d$.f[k].s;
-
-              // Attribution des entrées dans chaque menu
-              h$.menu[f$Menu].nav = [h$.menu[f$Menu].nav, '<li class="fs_', f$Menu, ' fs_', k, '"><a href="', d$.f[k].l, '" ', nav.html.popover(d$.f[k].t1, d$.f[k].d1), '>', nav.html.i(d$.f[k].i), '&nbsp;', h$.f[k].name, '</a></li>'].join('');
-
-              // "Nous suivre" dans le footer
-              if ((f$Menu === 'follow') && !(/(wiki|colibri|newsletter|contact|wikipedia)/i).test(k)) {
-                h$.menu.follow.footer = [h$.menu.follow.footer, '<li class="fs_', k, '"><a href="', d$.f[k].l, '" title="', d$.f[k].t1, '" ', nav.html.popover(d$.f[k].t1, d$.f[k].d1, 'top'), '><i class="fa fa-fw fa-2x ', d$.f[k].i, '" aria-hidden="true"></i>', nav.html.sr(d$.f[k].name), '</a></li>'].join('');
-              }
               // "À propos" du site
-              if (n$.name === h$.f[k].name) {
-                const f$Soft = (d$.f[k].soft !== undefined) ? ` (${d$.f[k].soft})` : '';
-                h$.menu.about.site = [h$.menu.about.site, '<li class="dropdown-header">', h$.f[k].html, f$Soft, '</li>', h$.divider].join('');
+              if (n$.name === n.text(n.html.frama(k))) {
+                const f$Soft = n.wrap(d$.f[k].soft, ' (', ')') || '';
+                d$.menu.about.site = [d$.menu.about.site, '<li class="dropdown-header">', n.html.frama(k), f$Soft, '</li>', n.html.divider()].join('');
                 if (d$.f[k].doc !== undefined) {
                   d$.f.doc.l = d$.f[k].doc;
                 }
                 if (d$.f[k].git !== undefined) {
-                  h$.menu.about.site = [h$.menu.about.site, '<li class="fs_about fs_git"><a href="', d$.f[k].git, '">', nav.html.i(d$.f.git.i), '&nbsp;', d$.f.git.p, d$.f.git.s, '</a></li>'].join('');
+                  d$.menu.about.site = [d$.menu.about.site, '<li class="fs_about fs_git"><a href="', d$.f[k].git, '">', n.html.i(d$.f.git.i), '&nbsp;', d$.f.git.p, d$.f.git.s, '</a></li>'].join('');
                 }
                 if (d$.f[k].src !== undefined) {
-                  h$.menu.about.site = [h$.menu.about.site, '<li class="fs_about fs_src"><a href="', d$.f[k].src, '">', nav.html.i('fa-code-fork'), '&nbsp;', d$.t.source, f$Soft, '</a></li>'].join('');
+                  d$.menu.about.site = [d$.menu.about.site, '<li class="fs_about fs_src"><a href="', d$.f[k].src, '">', n.html.i('fa-code-fork'), '&nbsp;', d$.t.source, f$Soft, '</a></li>'].join('');
                 }
-                d$.f.faq.l = `${d$.f.faq.l}#${n$.name.toLowerCase()}`;
-                d$.f.aide.l = d$.f.aide.l.replace('#aide', n$.name.toLowerCase().relace(/^/, '#'));
+                d$.f.faq.l = `${d$.f.faq.l}#${n$.lname}`;
+                d$.f.aide.l = d$.f.aide.l.replace(/aide$/, n$.lname);
               }
             });
             // Switch mobile/desktop
-            h$.menu.about.nav = [h$.menu.about.nav, h$.divider,
+            d$.menu.about.nav = [d$.menu.about.nav, n.html.divider(),
               '<li class="framanav-mobile"><a href="javascript:void(0);">',
-              nav.html.i('fa-mobile'), '&nbsp;', d$.t.mobile,
+              n.html.i('fa-mobile'), '&nbsp;', d$.t.mobile,
               '</a></li>',
               '<li class="framanav-desktop"><a href="javascript:void(0);">',
-              nav.html.i('fa-desktop'), '&nbsp;', d$.t.desktop,
+              n.html.i('fa-desktop'), '&nbsp;', d$.t.desktop,
               '</a></li>'].join('');
 
-            h$.nav = [
-              '<nav class="navbar navbar-default" id="framanav" role="menubar" style="display:none">',
-              '  <button type="button" class="navbar-toggle text-muted" data-toggle="collapse" data-target=".navbar-ex1-collapse">',
-              nav.html.sr(d$.t.toggle), nav.html.i('fa-bars'),
-              '  </button>',
-              '  <div class="nav-container">',
-              '    <div class="navbar-header">',
-              '      <a class="navbar-brand" href="', d$.meta.home.l, '">',
-              '        <img src="', n$.nav.url, 'img/logo.png" />',
-              '        <span class="hidden-sm">', h$.framasoft, '</span>',
-              '      </a>',
-              '      <a href="#nav-end" id="nav-skip">', d$.t.skip, '</a>',
-              '    </div>',
-              '    <div class="collapse navbar-collapse navbar-ex1-collapse">',
-              '      <ul class="nav navbar-nav">'];
-            Object.keys(d$.menu).forEach((k) => {
-              if (k !== 'site' && k !== 'community') {
-                h$.nav.push(
-                  '<li class="dropdown" id="fs_', k, '">',
-                  '  <a href="#" class="dropdown-toggle" data-toggle="dropdown">', h$.menu[k].name, '<b class="caret"></b></a>',
-                  '  <ul class="dropdown-menu">', h$.menu[k].nav, '</ul>',
-                  '</li>',
-                );
-              }
-            });
-            h$.nav.push(
-              '<li><a href="', d$.meta.soutenir.l, '/?f=nav" class="btn-soutenir" ', nav.html.popover(d$.meta.soutenir.t1, d$.meta.soutenir.d1, 'bottom'), '>',
-              nav.html.i(d$.meta.soutenir.i), '&nbsp;', d$.meta.soutenir.s,
-              '</a></li>',
-              '<li id="btn-benevalo"><a href="', d$.meta.benevalo.l, '" class="btn-info" ', nav.html.popover(d$.meta.benevalo.t1, d$.meta.benevalo.d1, 'bottom'), '>',
-              nav.html.i(d$.meta.benevalo.i), '&nbsp;', d$.meta.benevalo.s,
-              '</a></li>',
-              '<li id="btn-myframa"><a href="', d$.meta.myframa.l, '" class="btn-primary" ', nav.html.popover(d$.meta.myframa.t1, d$.meta.myframa.d1, 'bottom'), '>',
-              nav.html.i(d$.meta.myframa.i), '&nbsp;', d$.meta.myframa.s,
-              '</a></li>',
-              '      </ul>',
-              '    </div>',
-              '  </div>',
-              '  <a id="nav-end" class="sr-only"></a>',
-              '</nav>',
-              '<a href="', d$.meta.soutenir.l, '/?f=macaron" id="framanav_donation" rel="donBadge" style="display:none" class="hidden-xs">', nav.html.sr(d$.meta.soutenir.s), '</a>',
-            );
-
             /** On balance le code html */
-            f$('#framanav_container').prepend(h$.nav.join(''));
+            f$('#framanav_container').prepend(n.html.navbar());
             // Placement des popovers à gauche
             f$('#fs_services li:odd a, #fs_about li:even a').attr('data-placement', 'left');
             // Réagencement À propos
             f$('#fs_about li').has('a[href*="status."]').after(d$.menu.about.site);
             f$('#fs_about .fs_git').before(f$('#fs_about .fs_aide, #fs_about .fs_faq, #fs_about .fs_doc'));
 
-            f$('#fs_about ul').prepend(`<li class="dropdown-header">${h$.framasoft}</li>${h$.divider}`);
-            f$('#fs_about .fs_dio2').before(`<li class="dropdown-header"><b>${d$.t.campaign}<b></li>${h$.divider}`);
+            f$('#fs_about ul').prepend(`<li class="dropdown-header">${n.html.frama('soft')}</li>${n.html.divider()}`);
+            f$('#fs_about .fs_dio2').before(`<li class="dropdown-header"><b>${d$.t.campaign}<b></li>${n.html.divider()}`);
 
             f$('#fs_services .fs_dio, #fs_about .fs_dio2, #fs_about .fs_cuo').addClass('dropdown-header');
             f$('#fs_services .fs_dio a').wrapInner('<b>');
@@ -335,7 +258,7 @@ const n$ = {
               '.fs_maestro', ' .fs_carte', ' .fs_minetest', ' .fs_news',
               ' .fs_services.fs_git', '.fs_wiki', ' .fs_petitions',
               ' .fs_gplus', ' .fs_wikipedia', ' .fs_status', ' .fs_credits',
-            ].join()).after(h$.divider);
+            ].join()).after(n.html.divider());
 
             /**
              * Mobile/Desktop
@@ -373,7 +296,7 @@ const n$ = {
               f$Desktop();
             }
             // Si (Dés)Activation mannuel, le cookie prend la main le temps de la session
-            switch (nav.cookie('r', 'nav_viewport')) {
+            switch (n.cookie('r', 'nav_viewport')) {
               case 'mobile': f$Mobile(); break;
               case 'desktop': f$Desktop(); break;
               default:
@@ -393,96 +316,12 @@ const n$ = {
 
             f$('#framanav_container').css('opacity', '1');
 
-            // Bénévalo
-            // Le bouton soutenir remplacé par un bouton bénévalo
-            // pendant 3 jours autour de la pleine lune
-            const today = Math.floor(new Date().getTime() / 1000);
-            const fullMoon = 1453603580; // 24/01/2016 02:46:20
-            const moonRev = 2551443; // 29j 12h 44m 3s
-
-            if ((today - fullMoon) % moonRev < 129600 ||
-              (today - fullMoon) % moonRev > moonRev - 129600) {
-              f$('#btn-benevalo').show();
-              f$('#btn-benevalo').prev().hide();
-            }
-            // MyFrama
-            if (!n$.inframe) {
-              const bookmarkURL = window.location.href;
-              const bookmarkTitle = document.title || bookmarkURL;
-              const myFrama = [
-                'https://my.framasoft.org/?post=', encodeURIComponent(bookmarkURL),
-                '&title=', encodeURIComponent(bookmarkTitle),
-                '&description=', encodeURIComponent(document.getSelection()),
-                '&source=bookmarklet',
-              ].join('');
-
-              f$('#btn-myframa').on('click', () => {
-                window.open(
-                  myFrama, 'myframa',
-                  'menubar=no,height=500,width=600,toolbar=no,scrollbars=yes,status=no,dialog=1',
-                );
-                return false;
-              });
-              f$('#btn-myframa a').attr('href', myFrama);
-            }
+            n.benevalo();
+            n.myframa();
 
             // Footer
             if (c$.footer && !n$.inframe) {
-              h$.footer = [
-                '<footer id="framafooter" class="row hidden-print" role="contentinfo">',
-                '  <div class="container">',
-                '    <div class="clearfix col-sm-8">',
-                '      <nav class="col-xs-4">',
-                '        <h1>', d$.meta.home.p, d$.meta.home.s, '</h1>',
-                '        <ul class="list-unstyled">',
-                '          <li><a href="', d$.f.asso.l, '">', h$.f.asso.name, '</a></li>',
-                '          <li><a href="', d$.f.charte.l, '">', h$.f.charte.name, '</a></li>',
-                '          <li><a href="', d$.f.contact.l, '">', h$.f.contact.name, '</a></li>',
-                '          <li><a href="', d$.f.stats.l, '">', h$.f.stats.name, '</a></li>',
-                '          <li><a href="', d$.f.status.l, '">', h$.f.status.name, '</a></li>',
-                '        </ul>',
-                '      </nav>',
-                '      <nav class="col-xs-4">',
-                '        <h1>', d$.menu.community.name, '</h1>',
-                '        <ul class="list-unstyled">',
-                '          <li><a href="', d$.f.participer.l, '">', h$.f.participer.name, '</a></li>',
-                '          <li><a href="', d$.f.colibri.l, '">', d$.f.colibri.d0, '</a></li>',
-                '          <li><a href="', d$.f.benevalo.l, '">', h$.f.benevalo.name, '</a></li>',
-                '          <li><a href="', d$.f.partenaires.l, '">', h$.f.partenaires.name, '</a></li>',
-                '        </ul>',
-                '      </nav>',
-                '      <nav class="col-xs-4">',
-                '        <h1>', d$.menu.site.name, '</h1>',
-                '        <ul class="list-unstyled">',
-                '          <li><a href="', d$.f.aide.l, '">', h$.f.aide.name, '</a></li>',
-                '          <li class="fs_faq"><a href="', d$.f.faq.l, '">', h$.f.faq.name, '</a></li>',
-                '          <li><a href="', d$.f.legals.l, '">', h$.f.legals.name, '</a></li>',
-                '          <li><a href="', d$.f.cgu.l, '"><abbr>', h$.f.cgu.name, '</abbr></a></li>',
-                '          <li><a href="', d$.f.credits.l, '">', h$.f.credits.name, '</a></li>',
-                '        </ul>',
-                '      </nav>',
-                '    </div>',
-                '    <div class="col-sm-4">',
-                '      <div class="col-xs-12">',
-                '        <h1>', d$.menu.follow.name, '</h1>',
-                '        <ul class="list-inline">', h$.menu.follow.footer, '</ul>',
-                '        <h2>', h$.f.newsletter.name, '</h2>',
-                '        <form action="https://contact.framasoft.org/php_list/lists/?p=subscribe&amp;id=2" method="post" name="subscribeform">',
-                '          <div class="input-group input-group-sm">',
-                '            <input class="form-control" title="', d$.t['type-your-email'], '" name="email" size="40" type="text" placeholder="', d$.t['your-email'], '" />',
-                '              <span class="input-group-btn">',
-                '                <button class="btn btn-default" name="subscribe" type="submit" value="subscribe">', d$.t.subscribe, nav.html.sr(d$.t['to-the-newsletter']), '</button>',
-                '              </span>',
-                '            </div>',
-                '            <input name="htmlemail" type="hidden" value="1" /> <input name="list[5]" type="hidden" value="signup" /> <input name="listname[5]" type="hidden" value="Newsletter" />',
-                '            <div style="display: none;"><input name="VerificationCodeX" size="20" type="text" value="" /></div>',
-                '        </form>',
-                '      </div>',
-                '    </div>',
-                '  </div>',
-                '</footer>'].join('');
-
-              f$('body').append(h$.footer);
+              f$('body').append(n.html.footer());
 
               if (f$('body').height() < f$(window).height()) {
                 f$('#framafooter').css('position', 'absolute');
@@ -511,166 +350,35 @@ const n$ = {
             if (c$.js.b$) {
               if (typeof f$().modal === 'function' || c$.js.b$ === 'html') {
                 n$.log.push('✔ Bootstrap HTML');
-                nav.bootstrap();
+                n.bootstrap();
               } else {
-                f$.getScript(nav.l('lib/bootstrap/js/bootstrap.min.js', 'n'), () => {
+                f$.getScript(n.l('lib/bootstrap/js/bootstrap.min.js', 'n'), () => {
                   n$.log.push('✔ Bootstrap AJAX');
-                  nav.bootstrap();
+                  n.bootstrap();
                 });
               }
             } else {
               n$.log.push('✘ Bootstrap');
             }
 
-            // Audio JS
-            if (c$.js.audio) {
-              f$('audio').each(function replaceByVideo() {
-                f$(this).wrap('<div class="audio" />');
-                const outer = this.outerHTML;
-                let regex = new RegExp(this.tagName.replace(/^/, '<'), 'i');
-                let newTag = outer.replace(regex, '<video');
-                regex = new RegExp(this.tagName.replace(/^/, '</'), 'i');
-                newTag = newTag.replace(regex, '</video');
-                f$(this).replaceWith(newTag);
-              });
-            }
-
-            // Video JS
-            if (c$.js.video) {
-              f$('link[href*="/nav/css/nav.css"]').before(`<link href="${n$.nav.url}lib/video-js/video-js.css" media="all" rel="stylesheet"/>`);
-
-              f$('video').each(function initVideoJS(index) {
-                // Format webm d’abord
-                if (f$(this).has('source[type*="webm"]').length && (n$.browser.firefox || n$.browser.opera || n$.browser.chrome)) {
-                  f$(this).children('source[type*="mp4"]').remove();
-                }
-                // Paramètres à ajouter à la vidéo pour appliquer VideoJS en surcouche
-                // + numérotation des vidéos (pour pouvoir utiliser l'API : videojs('id').ready() )
-                f$(this).attr({
-                  class: 'video-js vjs-default-skin',
-                  'data-setup': '{}',
-                  id: `f_video_${index}`,
-                });
-              });
-
-              f$.getScript(nav.l('lib/video-js/video.js', 'n'), () => {
-                n$.log.push('✔ video.js');
-                /* global videojs */
-                videojs.options.flash.swf = nav.l('lib/video-js/video-js.swf', 'n');
-                // On "clique" sur les sous-titres Français
-                // pour chaque vidéo dès que VideoJS est prêt
-                f$('video').each((index) => {
-                  videojs(`f_video_${index}`).ready(() => { f$('li.vjs-menu-item:contains("Français")').trigger('click'); });
-                });
-              });
-            }
-
-            // Bloqueur d'iframe style Flashblock
-            /* Vidéos Youtube */
-            let f$YTi = 0;
-            f$('a[href*="youtube.com/watch"], a[href*="youtu.be/"]').has('img')
-              .append(`<span class="btn-youtube">${nav.html.i('fa-play fc_light')}</span>`)
-              .wrapInner('<span style="position:relative" />')
-              .click(() => {
-                // Si lien youtube <a> on l'ajoute le code au clic + ajout d'un Id à l'iframe
-                const f$YTiframe = [
-                  '<iframe id="youtube', f$YTi, '" src="https://www.youtube.com/embed/',
-                  f$(this).attr('href').replace(
-                    /(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com(?:\/embed\/|\/v\/|\/watch\?v=))([-\w]{10,12})\b[?=&\w]*(?!['"][^<>]*>|<\/a>)/ig,
-                    '$1',
-                  ),
-                  '?autoplay=1" width="560" height="315" frameborder="0" allowfullscreen ></iframe>',
-                ].join('');
-                f$(this).after(f$YTiframe);
-                // On supprime <a><img/></a>
-                f$(this).remove();
-                f$YTi += 1;
-                return false;
-              });
-            /** Même chose à faire pour Soundcloud, Dailymotion, Vimeo */
+            n.audioJS();
+            n.videoJS();
+            n.ytBlock();
 
             // Flux RSS Global
-            f$('head').append(h$.rssLink);
+            f$('head').append(n.html.link('rss', d$.f.rss.l, d$.f.rss.d1));
 
             // Favicon et Apple touch icon
             if (!c$.icons.keep) {
               f$('link[rel*=icon]').remove();
-              c$.icons.fav = (!c$.icons.fav) ? 'favicon-violet.png' : c$.icons.fav;
-              c$.icons.apple = (!c$.icons.apple) ? 'apple-violet.png' : c$.icons.apple;
-              f$('head').append(`<link rel="icon" type="image/png" href="${n$.nav.url}img/icons/${c$.icons.fav}" />`);
-              f$('head').append(`<link rel="apple-touch-icon" href="${n$.nav.url}img/icons/${c$.icons.apple}" />`);
+              c$.icons.fav = c$.icons.fav || 'favicon-violet.png';
+              c$.icons.apple = c$.icons.apple || 'apple-violet.png';
+              f$('head').append(n.html.link('fav', n.l(`img/icons/${c$.icons.fav}`, 'n')));
+              f$('head').append(n.html.link('apple', n.l(`img/icons/${c$.icons.apple}`, 'n')));
             }
 
-            // Opt-in
-            const f$OptInDejavu = nav.cookie('r', 'opt-in');
-            if (c$.optin[0] !== '' && !f$OptInDejavu) {
-              f$(c$.optin[0])
-                .after(nav.html.alert(
-                  'info',
-                  'fs_opt-in',
-                  [
-                    '<input type="checkbox" id="fs_opt-in_checkbox" value="false" />',
-                    '<label for="fs_opt-in_checkbox">', d$.meta.optin.t, '</label><br>',
-                    '<small>', d$.meta.optin.d1,
-                    '&nbsp;<a href="', d$.f.newsletter.l, '" id="link-opt-in" target="_blank" >', d$.meta.optin.d2, h$.newwindow, '</a>',
-                    '</small>',
-                  ].join(''),
-                ));
-
-              f$(c$.optin[0]).focusin(() => {
-                f$('#fs_opt-in_error').remove();
-                // Ajout du cookie (expire au bout d'un an)
-                nav.cookie('w', c$.optin[2], true, c$.optin[3]);
-              });
-
-              // Requête ajax crossdomain lorsque la case est cochée
-              f$('#fs_opt-in input, #fs_opt-in label').on('click', () => {
-                f$('#fs_opt-in_error').remove();
-                const f$Email = f$(c$.optin[0]).val();
-                if (c$.optin[1] !== '' && f$(c$.optin[0]).val() !== f$(c$.optin[1]).val()) { // Cas où il y a un champs pour confirmer email
-                  f$(c$.optin[0]).after(nav.html.alert(
-                    'danger',
-                    'fs_opt-in_error',
-                    d$.meta.optin.e2,
-                  ));
-                  return false;
-                } else if (!nav.is.email(f$(c$.optin[0]).val())) {
-                  f$(c$.optin[0]).after(nav.html.alert(
-                    'danger',
-                    'fs_opt-in_error',
-                    d$.meta.optin.e2.replace('%f$Email%', f$Email),
-                  ));
-                  return false;
-                }
-
-                f$('#fs_opt-in input').attr('checked', true);
-                f$.ajax({
-                  type: 'POST',
-                  url: 'https://contact.framasoft.org/php_list/lists/?p=subscribe&id=2', // URL d'abonnement à la liste
-                  crossDomain: true,
-                  data: ['makeconfirmed=1&htmlemail=1&list%5B5%5D=signup&listname%5B5%5D=Newsletter&email=', f$Email.replace('@', '%40'), '&VerificationCodeX=&subscribe=Abonnement'].join(''), // Paramètres habituellement passés dans le formulaire
-                });
-                // On supprime la case à cocher (pas possible de décocher ;
-                // l'annulation se fait depuis le mail reçu)
-                f$('#fs_opt-in').remove();
-                // Message d'alert pour confirmer l'inscription
-                f$(c$.optin[0]).after(nav.html.alert(
-                  'success', 'fs_opt-in_confirm',
-                  d$.meta.optin.s1.replace('%f$Email%', f$Email),
-                  true,
-                ));
-                return true;
-              });
-            }
-
-            // Macaron
-            if (c$.donate && !n$.inframe) {
-              f$('#framanav_donation')
-                .show()
-                .delay((Math.random() * 28000) + 1000)
-                .fadeOut(600)
-                .fadeIn(600);
-            }
+            n.optin();
+            n.macaron();
 
             // Liens À propos
             f$('#framafooter a[href*="/nav/html/"], #fs_about a').attr('href', function addHash() {
@@ -680,14 +388,14 @@ const n$ = {
             });
 
             // Crédits
-            if (nav.is.url('/html/credits.html') && window.location.hash) {
-              f$('#site-credits').load(nav.l(window.location.hash.replace('#', 'html/credits/').replace(/$/, '.html'), 'n'));
+            if (n.is.url('/html/credits.html') && window.location.hash) {
+              f$('#site-credits').load(n.l(window.location.hash.replace('#', 'html/credits/').replace(/$/, '.html'), 'n'));
             }
 
             // Hébergeur et Iframe Piwik sur Mentions légales
-            if (nav.is.url('/html/legals.html')) {
+            if (n.is.url('/html/legals.html')) {
               if (window.location.hash) {
-                f$('#modal-legals-host').load(nav.l(window.location.hash.replace('#', 'html/host/').replace(/$/, '.html'), 'n'));
+                f$('#modal-legals-host').load(n.l(window.location.hash.replace('#', 'html/host/').replace(/$/, '.html'), 'n'));
               }
               f$('#piwik-iframe').html(`<iframe style="border: 0; height: 200px; width: 600px;" src="${c$.piwik.url}index.php?module=CoreAdminHome&action=optOut&language=fr"></iframe>`);
             }
@@ -696,13 +404,12 @@ const n$ = {
             if (typeof c$.js.ext === 'function') {
               c$.js.ext();
             } else if (c$.js.ext === true) {
-              f$.getScript(nav.l(`ext/${n$.site}.js`, 'n'));
+              f$.getScript(n.l(`ext/${n$.site}.js`, 'n'));
             } else if (typeof c$.js.ext === 'string') {
-              f$.getScript(nav.l(`ext/${c$.js.ext}.js`, 'n'));
+              f$.getScript(n.l(`ext/${c$.js.ext}.js`, 'n'));
             }
           })
           .fail((err) => { n$.log.push('✘ data.*.json', err); });
-        // </dataProcess>
       }); // </document.ready>
     },
 
@@ -730,13 +437,13 @@ const n$ = {
       /** Fin accessibilité */
 
       if (!n$.inframe) { // Pas de bandeau, nav, modale et macaron en mode iframe
-        if (c$.fixed || nav.is.url('/nav/html/')) {
+        if (c$.fixed || n.is.url('/nav/html/')) {
           f$('body').addClass('fnav-fixed');
         }
 
         // Liens de la nav à ouvrir dans un onglet
-        if (!nav.is.url('/nav/html/')) {
-          f$('#framanav .dropdown-menu a').attr('target', '_blank').append(h$.newwindow);
+        if (!n.is.url('/nav/html/')) {
+          f$('#framanav .dropdown-menu a').attr('target', '_blank').append(n.html.newWindow());
         }
 
         /** ... on ajoute surtout les scripts qui font appel à BootStrap et jQuery ici */
@@ -753,12 +460,12 @@ const n$ = {
         }
 
         // Modal et Alert d'info
-        const f$AlertDejavu = nav.cookie('r', 'nav-alert');
-        const f$ModalInfoDejavu = nav.cookie('r', c$.modal.info[2]);
+        const f$AlertDejavu = n.cookie('r', 'nav-alert');
+        const f$ModalInfoDejavu = n.cookie('r', c$.modal.info[2]);
 
         // Modal
         if (c$.modal.info[0] !== '') {
-          f$('body').append(nav.html.modal( // id, title, body, footer
+          f$('body').append(n.html.modal( // id, title, body, footer
             'finfo', c$.modal.info[0],
             c$.modal.info[1],
             [
@@ -774,11 +481,11 @@ const n$ = {
           if (!f$ModalInfoDejavu) {
             f$('#modal-finfo').modal('show');
             f$('#modal-set-cookie').click(() => {
-              nav.cookie('w', c$.modal.info[2], true, c$.modal.info[3]); // cookie pour 7 jours par défaut (cf config ci-dessous)
+              n.cookie('w', c$.modal.info[2], true, c$.modal.info[3]); // cookie pour 7 jours par défaut (cf config ci-dessous)
               f$('#modal-finfo').modal('hide');
             });
             f$('#modal-finfo .close, #modal-close').click(() => {
-              nav.cookie('w', c$.modal.info[2], true); // cookie pour la session
+              n.cookie('w', c$.modal.info[2], true); // cookie pour la session
               f$('#modal-finfo').modal('hide');
             });
           }
@@ -786,11 +493,11 @@ const n$ = {
 
         // Alert
         if (c$.alert[1] !== '' && !f$AlertDejavu) {
-          if (c$.fixed || nav.is.url('/nav/html/')) {
+          if (c$.fixed || n.is.url('/nav/html/')) {
             f$('#framanav_container ~ *:not(script):first').css('margin-top', '-=42');
           }
 
-          f$('#framanav_container').after(nav.html.alert(
+          f$('#framanav_container').after(n.html.alert(
             c$.alert[0], 'nav-alert',
             `<div style="margin:0 auto; max-width:800px;"><p class="text-center">${c$.alert[1]}</p></div>`,
             true,
@@ -798,24 +505,19 @@ const n$ = {
 
           // Cookie enregistré en fermant (7 jours par défaut cf config.js)
           f$('#nav-alert').bind('closed.bs.alert', () => {
-            nav.cookie('w', c$.alert[2], true, c$.alert[3]);
+            n.cookie('w', c$.alert[2], true, c$.alert[3]);
           });
         }
 
         // Fenêtre modal pour dons sur téléchargements
         if (c$.modal.don[0] !== '') {
-          f$('body').append(nav.html.modal(
+          f$('body').append(n.html.modal(
             'soutenir', d$.meta.modaldon.t,
-            [ // body
-              d$.meta.modaldon.d[0].replace('%c$.modal.don[1]%', c$.modal.don[1]),
-              d$.meta.modaldon.d[1],
-              d$.meta.modaldon.d[2],
-              d$.meta.modaldon.d[3],
-            ].join(''),
+            d$.meta.modaldon.d.join('').replace('%c$.modal.don[1]%', c$.modal.don[1]),
             [ // footer
               '<div class="clearfix"><p class="col-md-12 text-center">',
               '  <a target="_blank" id="modal-don" href="', d$.meta.soutenir.l, '/?f=modal&s=', n$.site, '" class="btn btn-soutenir btn-block">',
-              nav.html.i(d$.meta.soutenir.i), ' ', d$.meta.modaldon.b1, h$.newwindow,
+              n.html.i(d$.meta.soutenir.i), ' ', d$.meta.modaldon.b1, n.html.newWindow(),
               '  </a></p>',
               '<p class="col-md-6 text-center">',
               '  <a id="modal-dl" href="javascript:void(0);" class="btn btn-xs btn-default btn-block" >',
@@ -831,32 +533,32 @@ const n$ = {
           ));
 
           if (c$.modal.don[0] === 'onstart') {
-            const dejavu = nav.cookie('r', 'dondl');
+            const dejavu = n.cookie('r', 'dondl');
             if (!dejavu) {
               f$('#modal-soutenir').modal('show');
               f$('#modal-soutenir').css('display', 'block'); // bugfix
               f$('#modal-contact, #modal-don, #modal-dl, #modal-soutenir .close').click(() => {
-                nav.cookie('w', 'dondl', true, c$.modal.don[3]);
+                n.cookie('w', 'dondl', true, c$.modal.don[3]);
                 f$('#modal-soutenir').modal('hide');
               });
               f$('#modal-dl2').click(() => {
-                nav.cookie('w', 'dondl', true, 31536000000); // 365 * 24 * 60 * 60 * 1000
+                n.cookie('w', 'dondl', true, 31536000000); // 365 * 24 * 60 * 60 * 1000
                 f$('#modal-soutenir').modal('hide');
               });
             }
           } else {
             f$(c$.modal.don[0]).click(() => {
-              const dejavu = nav.cookie('r', 'dondl');
+              const dejavu = n.cookie('r', 'dondl');
               if (!dejavu) {
-                const link = nav.l(f$(this).attr('href'));
+                const link = n.l(f$(this).attr('href'));
                 f$('#modal-soutenir').modal('show');
                 f$('#modal-contact, #modal-don, #modal-dl').click(() => {
-                  nav.cookie('w', 'dondl', true, c$.modal.don[3]);
+                  n.cookie('w', 'dondl', true, c$.modal.don[3]);
                   f$('#modal-soutenir').modal('hide');
                   window.location.href = link;
                 });
                 f$('#modal-dl2').click(() => {
-                  nav.cookie('w', 'dondl', true, 31536000000); // 365 * 24 * 60 * 60 * 1000
+                  n.cookie('w', 'dondl', true, 31536000000); // 365 * 24 * 60 * 60 * 1000
                   f$('#modal-soutenir').modal('hide');
                   window.location.href = link;
                 });
@@ -868,8 +570,8 @@ const n$ = {
         }
 
         // Modal FAQ
-        if (d$.f.faq.l.indexOf(n$.name.toLowerCase()) > -1) {
-          f$('body').append(nav.html.modal(
+        if (d$.f.faq.l.indexOf(n$.lname) > -1) {
+          f$('body').append(n.html.modal(
             'fsFAQ',
             [d$.f.faq.s, n$.name].join(' '), // ! space
             '',
@@ -884,9 +586,9 @@ const n$ = {
           f$('.fs_faq a').on('click', () => {
             if (f$('#modal-fsFAQ .modal-body').html() === '') {
               f$('#modal-fsFAQ .modal-body').load(
-                ['https://contact.framasoft.org/foire-aux-questions/ #', n$.name.toLowerCase(), ' .list-group-item'].join(''),
+                ['https://contact.framasoft.org/foire-aux-questions/ #', n$.lname, ' .list-group-item'].join(''),
                 (data) => {
-                  if (f$(data).find(n$.name.toLowerCase().replace(/^/, '#')).length < 1) {
+                  if (f$(data).find(n$.lname.replace(/^/, '#')).length < 1) {
                     window.location.href = f$('.fs_faq a').attr('href');
                   } else {
                     f$('#modal-fsFAQ').modal('show');
@@ -903,13 +605,13 @@ const n$ = {
     },
 
     /** Fonctions génériques **************************************** */
-    l(href, n, v) {
+    l(href, nav, version) {
       // Lien absolu depuis l’emplacement de la nav
-      if (n === 'n' && n$.nav.url !== '') {
-        if (v === 'v') {
-          return `${n$.nav.url}${href}?${n$.version}`;
+      if (nav === 'n' && n$.baseurl !== '') {
+        if (version === 'v') {
+          return `${n$.baseurl}${href}?${n$.version}`;
         }
-        return `${n$.nav.url}${href}`;
+        return `${n$.baseurl}${href}`;
       }
       // Lien relatif converti en url absolue (le navigateur fait lui-même le boulot)
       const link = document.createElement('a');
@@ -953,23 +655,23 @@ const n$ = {
         switch (stylesheet) {
           case '0': // Bootstrap
             link.media = (css.b$) ? 'all' : 'none';
-            link.href = nav.l('lib/bootstrap/css/bootstrap.min.css', 'n');
+            link.href = n.l('lib/bootstrap/css/bootstrap.min.css', 'n');
             break;
           case '2': // Font-Awesome
             link.media = 'all';
-            link.href = nav.l('lib/fork-awesome/css/fork-awesome.min.css', 'n');
+            link.href = n.l('lib/fork-awesome/css/fork-awesome.min.css', 'n');
             break;
           case '3': // Nav
             link.media = 'screen';
-            link.href = nav.l('css/nav.css', 'n', 'v');
+            link.href = n.l('css/nav.css', 'n', 'v');
             break;
           case '4': // Frama
             link.media = (css.frama) ? 'all' : 'none';
-            link.href = nav.l('css/frama.css', 'n', 'v');
+            link.href = n.l('css/frama.css', 'n', 'v');
             break;
           case '5': // Ext *obsolete*
             link.media = (css.ext) ? 'all' : 'none';
-            link.href = nav.l(`ext/${n$.site}.css`, 'n', 'v');
+            link.href = n.l(`ext/${n$.site}.css`, 'n', 'v');
             break;
           default:
             // no default
@@ -1042,22 +744,16 @@ const n$ = {
       return null;
     },
 
-    maestro() {
-      if (!n$.inframe) {
-        md5 = function () {for(var m=[],l=0;64>l;)m[l]=0|4294967296*Math.abs(Math.sin(++l));return function(c){var e,g,f,a,h=[];c=unescape(encodeURI(c));for(var b=c.length,k=[e=1732584193,g=-271733879,~e,~g],d=0;d<=b;)h[d>>2]|=(c.charCodeAt(d)||128)<<8*(d++%4);h[c=16*(b+8>>6)+14]=8*b;for(d=0;d<c;d+=16){b=k;for(a=0;64>a;)b=[f=b[3],(e=b[1]|0)+((f=b[0]+[e&(g=b[2])|~e&f,f&e|~f&g,e^g^f,g^(e|~f)][b=a>>4]+(m[a]+(h[[a,5*a+1,3*a+5,7*a][b]%16+d]|0)))<<(b=[7,12,17,22,5,9,14,20,4,11,16,23,6,10,15,21][4*b+a++%4])|f>>>32-b),e,g];for(a=4;a;)k[--a]=k[a]+b[a]}for(c="";32>a;)c+=(k[a>>3]>>4*(1^a++&7)&15).toString(16);return c}}(); // eslint-disable-line
-        const tonality = md5(n$.url).substring(0, 8); // eslint-disable-line
-        const concerto = n$.url.split(/[?#]/)[0].substring(n$.url.lastIndexOf('/') + 1).replace(/[^a-zA-Z0-9=?]/g, '');
-        const currentW = parseInt((window.innerWidth - 60) * (2 / 3), 10);
-        const currentH = parseInt(window.innerHeight - 160, 10);
-        const talkW = parseInt(currentW / 2, 10);
-        const talkH = parseInt(talkW * (9 / 16), 10);
-        n$.maestro = [
-          'https://framaestro.org/p/#', tonality, '/', concerto, '/',
-          '0,20,', currentW, ',', currentH, ',', encodeURIComponent(n$.url), ';',
-          '0,', (currentW + 40), ',', talkW, ',', talkH, ',',
-          encodeURIComponent('https://framatalk.org/', tonality, concerto), ';',
-        ].join('');
-      }
+    wrap(text, prefix, sufix) {
+      const t = text || ''; const p = prefix || ''; const s = sufix || '';
+      return t.replace(/^/, p).replace(/$/, s);
+    },
+
+    text(html) {
+      const div = document.createElement('div');
+      div.innerHTML = html;
+      const text = div.textContent || div.innerText || '';
+      return text;
     },
 
     // Version de jQuery à utiliser
@@ -1078,6 +774,208 @@ const n$ = {
         return 'HTML';
       }
       return 'AJAX';
+    },
+
+    /** Framatrucs ************************************************** */
+    benevalo() {
+      // Bénévalo
+      // Le bouton soutenir remplacé par un bouton bénévalo
+      // pendant 3 jours autour de la pleine lune
+      const today = Math.floor(new Date().getTime() / 1000);
+      const fullMoon = 1453603580; // 24/01/2016 02:46:20
+      const moonRev = 2551443; // 29j 12h 44m 3s
+
+      if ((today - fullMoon) % moonRev < 129600 ||
+        (today - fullMoon) % moonRev > moonRev - 129600) {
+        f$('#btn-benevalo').show();
+        f$('#btn-benevalo').prev().hide();
+      }
+    },
+
+    macaron() {
+      // Macaron
+      if (c$.donate && !n$.inframe) {
+        f$('#framanav_donation')
+          .show()
+          .delay((Math.random() * 28000) + 1000)
+          .fadeOut(600)
+          .fadeIn(600);
+      }
+    },
+
+    maestro() {
+      if (!n$.inframe) {
+        md5 = function () {for(var m=[],l=0;64>l;)m[l]=0|4294967296*Math.abs(Math.sin(++l));return function(c){var e,g,f,a,h=[];c=unescape(encodeURI(c));for(var b=c.length,k=[e=1732584193,g=-271733879,~e,~g],d=0;d<=b;)h[d>>2]|=(c.charCodeAt(d)||128)<<8*(d++%4);h[c=16*(b+8>>6)+14]=8*b;for(d=0;d<c;d+=16){b=k;for(a=0;64>a;)b=[f=b[3],(e=b[1]|0)+((f=b[0]+[e&(g=b[2])|~e&f,f&e|~f&g,e^g^f,g^(e|~f)][b=a>>4]+(m[a]+(h[[a,5*a+1,3*a+5,7*a][b]%16+d]|0)))<<(b=[7,12,17,22,5,9,14,20,4,11,16,23,6,10,15,21][4*b+a++%4])|f>>>32-b),e,g];for(a=4;a;)k[--a]=k[a]+b[a]}for(c="";32>a;)c+=(k[a>>3]>>4*(1^a++&7)&15).toString(16);return c}}(); // eslint-disable-line
+        const tonality = md5(n$.url).substring(0, 8); // eslint-disable-line
+        const concerto = n$.url.split(/[?#]/)[0].substring(n$.url.lastIndexOf('/') + 1).replace(/[^a-zA-Z0-9=?]/g, '');
+        const currentW = parseInt((window.innerWidth - 60) * (2 / 3), 10);
+        const currentH = parseInt(window.innerHeight - 160, 10);
+        const talkW = parseInt(currentW / 2, 10);
+        const talkH = parseInt(talkW * (9 / 16), 10);
+        n$.maestro = [
+          'https://framaestro.org/p/#', tonality, '/', concerto, '/',
+          '0,20,', currentW, ',', currentH, ',', encodeURIComponent(n$.url), ';',
+          '0,', (currentW + 40), ',', talkW, ',', talkH, ',',
+          encodeURIComponent('https://framatalk.org/', tonality, concerto), ';',
+        ].join('');
+      }
+    },
+
+    myframa() {
+      if (!n$.inframe) {
+        const bookmarkURL = window.location.href;
+        const bookmarkTitle = document.title || bookmarkURL;
+        const myFrama = [
+          'https://my.framasoft.org/?post=', encodeURIComponent(bookmarkURL),
+          '&title=', encodeURIComponent(bookmarkTitle),
+          '&description=', encodeURIComponent(document.getSelection()),
+          '&source=bookmarklet',
+        ].join('');
+
+        f$('#btn-myframa').on('click', () => {
+          window.open(
+            myFrama, 'myframa',
+            'menubar=no,height=500,width=600,toolbar=no,scrollbars=yes,status=no,dialog=1',
+          );
+          return false;
+        });
+        f$('#btn-myframa a').attr('href', myFrama);
+      }
+    },
+
+    optin() {
+      const f$OptInDejavu = n.cookie('r', 'opt-in');
+      if (c$.optin[0] !== '' && !f$OptInDejavu) {
+        f$(c$.optin[0])
+          .after(n.html.alert(
+            'info',
+            'fs_opt-in',
+            [
+              '<input type="checkbox" id="fs_opt-in_checkbox" value="false" />',
+              '<label for="fs_opt-in_checkbox">', d$.meta.optin.t, '</label><br>',
+              '<small>', d$.meta.optin.d1,
+              '&nbsp;<a href="', d$.f.newsletter.l, '" id="link-opt-in" target="_blank" >', d$.meta.optin.d2, n.html.newWindow(), '</a>',
+              '</small>',
+            ].join(''),
+          ));
+
+        f$(c$.optin[0]).focusin(() => {
+          f$('#fs_opt-in_error').remove();
+          // Ajout du cookie (expire au bout d'un an)
+          n.cookie('w', c$.optin[2], true, c$.optin[3]);
+        });
+
+        // Requête ajax crossdomain lorsque la case est cochée
+        f$('#fs_opt-in input, #fs_opt-in label').on('click', () => {
+          f$('#fs_opt-in_error').remove();
+          const f$Email = f$(c$.optin[0]).val();
+          if (c$.optin[1] !== '' && f$(c$.optin[0]).val() !== f$(c$.optin[1]).val()) { // Cas où il y a un champs pour confirmer email
+            f$(c$.optin[0]).after(n.html.alert(
+              'danger',
+              'fs_opt-in_error',
+              d$.meta.optin.e2,
+            ));
+            return false;
+          } else if (!n.is.email(f$(c$.optin[0]).val())) {
+            f$(c$.optin[0]).after(n.html.alert(
+              'danger',
+              'fs_opt-in_error',
+              d$.meta.optin.e2.replace('%f$Email%', f$Email),
+            ));
+            return false;
+          }
+
+          f$('#fs_opt-in input').attr('checked', true);
+          f$.ajax({
+            type: 'POST',
+            url: 'https://contact.framasoft.org/php_list/lists/?p=subscribe&id=2', // URL d'abonnement à la liste
+            crossDomain: true,
+            data: ['makeconfirmed=1&htmlemail=1&list%5B5%5D=signup&listname%5B5%5D=Newsletter&email=', f$Email.replace('@', '%40'), '&VerificationCodeX=&subscribe=Abonnement'].join(''), // Paramètres habituellement passés dans le formulaire
+          });
+          // On supprime la case à cocher (pas possible de décocher ;
+          // l'annulation se fait depuis le mail reçu)
+          f$('#fs_opt-in').remove();
+          // Message d'alert pour confirmer l'inscription
+          f$(c$.optin[0]).after(n.html.alert(
+            'success', 'fs_opt-in_confirm',
+            d$.meta.optin.s1.replace('%f$Email%', f$Email),
+            true,
+          ));
+          return true;
+        });
+      }
+    },
+
+    /** Fonctions medias ******************************************** */
+    audioJS() {
+      if (c$.js.audio) {
+        f$('audio').each(function replaceByVideo() {
+          f$(this).wrap('<div class="audio" />');
+          const outer = this.outerHTML;
+          let regex = new RegExp(this.tagName.replace(/^/, '<'), 'i');
+          let newTag = outer.replace(regex, '<video');
+          regex = new RegExp(this.tagName.replace(/^/, '</'), 'i');
+          newTag = newTag.replace(regex, '</video');
+          f$(this).replaceWith(newTag);
+        });
+      }
+    },
+
+    videoJS() {
+      if (c$.js.video) {
+        f$('link[href*="/nav/css/nav.css"]')
+          .before(n.html.link('css', n.l('lib/video-js/video-js.css', 'n'), 'all'));
+
+        f$('video').each(function initVideoJS(index) {
+          // Format webm d’abord
+          if (f$(this).has('source[type*="webm"]').length && (n$.browser.firefox || n$.browser.opera || n$.browser.chrome)) {
+            f$(this).children('source[type*="mp4"]').remove();
+          }
+          // Paramètres à ajouter à la vidéo pour appliquer VideoJS en surcouche
+          // + numérotation des vidéos (pour pouvoir utiliser l'API : videojs('id').ready() )
+          f$(this).attr({
+            class: 'video-js vjs-default-skin',
+            'data-setup': '{}',
+            id: `f_video_${index}`,
+          });
+        });
+
+        f$.getScript(n.l('lib/video-js/video.js', 'n'), () => {
+          n$.log.push('✔ video.js');
+          /* global videojs */
+          videojs.options.flash.swf = n.l('lib/video-js/video-js.swf', 'n');
+          // On "clique" sur les sous-titres Français
+          // pour chaque vidéo dès que VideoJS est prêt
+          f$('video').each((index) => {
+            videojs(`f_video_${index}`).ready(() => { f$('li.vjs-menu-item:contains("Français")').trigger('click'); });
+          });
+        });
+      }
+    },
+
+    ytBlock() {
+      // Bloqueur d'iframe style Flashblock pour Youtube
+      // faire de même pour Soundcloud, Dailymotion, Vimeo
+      f$('a[href*="youtube.com/watch"], a[href*="youtu.be/"]')
+        .has('img')
+        .append(n.wrap(n.html.i('fa-play fc_light'), '<span class="btn-youtube">', '</span>'))
+        .wrapInner('<span style="position:relative" />')
+        .each(function addIframe(index) {
+          f$(this).click(() => {
+            // Si lien youtube <a> on l'ajoute le code au clic + ajout d'un Id à l'iframe
+            const ytIframe = [
+              '<iframe id="youtube', index, '" src="https://www.youtube.com/embed/',
+              f$(this).attr('href').replace(
+                /(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com(?:\/embed\/|\/v\/|\/watch\?v=))([-\w]{10,12})\b[?=&\w]*(?!['"][^<>]*>|<\/a>)/ig,
+                '$1',
+              ),
+              '?autoplay=1" width="560" height="315" frameborder="0" allowfullscreen ></iframe>',
+            ].join('');
+            f$(this).after(ytIframe);
+            f$(this).remove();
+            return false;
+          });
+        });
     },
 
     /** Fonctions booleénnes **************************************** */
@@ -1153,12 +1051,233 @@ const n$ = {
     html: {
       sr(text) { // Lecteur d’écran
         const t = text || '';
-        return t.replace(/^/, '<span class="sr-only">').replace(/$/, '</span>');
+        return n.wrap(t, '<span class="sr-only">', '</span>');
       },
 
-      i(classCSS) { // Icône Fork-Awesome
-        const c = classCSS || '';
-        return c.replace(/^/, '<i class="fa fa-fw fa-lg ').replace(/$/, '" aria-hidden="true"></i>');
+      i(class1, class2) { // Icône Fork-Awesome
+        const c1 = class1 || '';
+        const c2 = class2 || 'fa-fw fa-lg';
+        return ['<i class="fa ', c2, ' ', c1, '" aria-hidden="true"></i>'].join('');
+      },
+
+      newWindow() { // Icône + texte
+        return n.wrap(n.html.sr(n.wrap(d$.t.newwindow, '(', ')')), '&nbsp;', n.html.i('fa-external-link', 'new-window'));
+      },
+
+      divider() { // Séparateur de menu
+        return '<li role="presentation" class="divider"></li>';
+      },
+
+      frama(truc) { // Framatruc en couleur
+        const html = []; let color;
+
+        if (truc === 'soft') {
+          return '<b class="violet">Frama</b><b class="orange">soft</b>';
+        }
+
+        switch (d$.f[truc].c) {
+          case 'b': color = 'bleu'; break;
+          case 'r': color = 'rouge'; break;
+          case 'v': color = 'vert'; break;
+          case 'j': color = 'jaune'; break;
+          case 'f': color = 'violet'; break;
+          default: // case: 'o':
+            color = 'orange';
+            break;
+        }
+
+        // Prefix violet
+        if (d$.f[truc].p !== undefined && d$.f[truc].p !== '') {
+          html.push(n.wrap(d$.f[truc].p, '<b class="violet">', '</b>'));
+        }
+
+        // Suffixe en couleur et accessible
+        if (d$.f[truc].s !== undefined && d$.f[truc].s !== '') {
+          switch (d$.f[truc].a) {
+            case 'en':
+              html.push(n.wrap(d$.f[truc].s, `<b class="${color}" lang="en">`, '</b>'));
+              break;
+            case 'abbr':
+              html.push(n.wrap(d$.f[truc].s, `<b class="${color}"><abbr>`, '</abbr></b>'));
+              break;
+            default:
+              html.push(n.wrap(d$.f[truc].s, `<b class="${color}">`, '</b>'));
+              break;
+          }
+        }
+
+        return html.join('');
+      },
+
+      link(type, url, context) {
+        const html = [];
+
+        if (type !== undefined && url !== undefined) {
+          switch (type) {
+            case 'css':
+              html.push('<link rel="stylesheet" ');
+              if (context !== undefined) { html.push(' media="', context, '"'); }
+              html.push(' href="', url, '" />');
+              break;
+            case 'rss':
+              html.push('<link rel="alternate" type="application/rss+xml"');
+              if (context !== undefined) { html.push(' title="', context, '"'); }
+              html.push(' href="', url, '" />');
+              break;
+            case 'fav':
+              html.push('<link rel="icon" type="image/png" href="', url, '" />');
+              break;
+            case 'apple':
+              html.push('<link rel="apple-touch-icon" href="', url, '" />');
+              break;
+            default:
+              // no default
+              break;
+          }
+        }
+        return html.join('');
+      },
+
+      menu(type, title, list) {
+        const html = []; let dropdown;
+
+        // Menus footer
+        if (type === 'footer') {
+          html.push('<nav class="col-xs-4">', '<h1>', title, '</h1>', '<ul class="list-unstyled">');
+
+          for (let i = 0; i < list.length; i += 1) {
+            const k = list[i];
+            html.push('<li><a href="', d$.f[k].l, '">', n.text(n.html.frama(k)), '</a></li>');
+          }
+
+          html.push('</ul>', '</nav>');
+        }
+
+        // Menus "Nous suivre" du footer
+        if (type === 'follow') {
+          html.push('<h1>', title, '</h1>', '  <ul class="list-inline">');
+
+          for (let i = 0; i < list.length; i += 1) {
+            const k = list[i];
+            html.push(
+              '<li class="fs_', k, '">',
+              '<a href="', d$.f[k].l, '" title="', d$.f[k].t1, '" ', n.html.popover(d$.f[k].t1, d$.f[k].d1, 'top'), '>',
+              n.html.i(d$.f[k].i, 'fa-fw fa-2x'), n.html.sr(d$.f[k].name),
+              '</a></li>',
+            );
+          }
+
+          html.push('</ul>');
+        }
+
+        // Menus dropdown
+        if (type === 'dropdown') {
+          html.push(
+            '<a href="#" class="dropdown-toggle" data-toggle="dropdown">',
+            title,
+            '<b class="caret"></b></a>',
+            '<ul class="dropdown-menu">',
+          );
+
+          for (let i = 0; i < list.length; i += 1) {
+            const k = list[i];
+            dropdown = (k === 'dio') ? d$.f[k].c : 'v';
+            html.push(
+              '<li class="fs_dropdown_', dropdown, ' fs_', k, '">',
+              '<a href="', d$.f[k].l, '" ', n.html.popover(d$.f[k].t1, d$.f[k].d1), '>',
+              n.html.i(d$.f[k].i), '&nbsp;', n.text(n.html.frama(k)),
+              '</a></li>',
+            );
+          }
+
+          html.push('</ul>');
+        }
+
+        return html.join('');
+      },
+
+      navbar() {
+        const html = [
+          '<nav class="navbar navbar-default" id="framanav" role="menubar" style="display:none">',
+          '  <button type="button" class="navbar-toggle text-muted" data-toggle="collapse" data-target=".navbar-ex1-collapse">',
+          n.html.sr(d$.t.toggle), n.html.i('fa-bars'),
+          '  </button>',
+          '  <div class="nav-container">',
+          '    <div class="navbar-header">',
+          '      <a class="navbar-brand" href="', d$.meta.home.l, '">',
+          '        <img src="', n$.baseurl, 'img/logo.png" />',
+          '        <span class="hidden-sm">', n.html.frama('soft'), '</span>',
+          '      </a>',
+          '      <a href="#nav-end" id="nav-skip">', d$.t.skip, '</a>',
+          '    </div>',
+          '    <div class="collapse navbar-collapse navbar-ex1-collapse">',
+          '      <ul class="nav navbar-nav">',
+        ];
+        Object.keys(d$.menu).forEach((k) => {
+          if (k !== 'site' && k !== 'community') {
+            html.push(
+              '<li class="dropdown" id="fs_', k, '">',
+              n.html.menu('dropdown', d$.menu[k].name, d$.menu[k].list),
+              '</li>',
+            );
+          }
+        });
+        html.push(
+          '<li><a href="', d$.meta.soutenir.l, '/?f=nav" class="btn-soutenir" ', n.html.popover(d$.meta.soutenir.t1, d$.meta.soutenir.d1, 'bottom'), '>',
+          n.html.i(d$.meta.soutenir.i), '&nbsp;', d$.meta.soutenir.s,
+          '</a></li>',
+          '<li id="btn-benevalo"><a href="', d$.meta.benevalo.l, '" class="btn-info" ', n.html.popover(d$.meta.benevalo.t1, d$.meta.benevalo.d1, 'bottom'), '>',
+          n.html.i(d$.meta.benevalo.i), '&nbsp;', d$.meta.benevalo.s,
+          '</a></li>',
+          '<li id="btn-myframa"><a href="', d$.meta.myframa.l, '" class="btn-primary" ', n.html.popover(d$.meta.myframa.t1, d$.meta.myframa.d1, 'bottom'), '>',
+          n.html.i(d$.meta.myframa.i), '&nbsp;', d$.meta.myframa.s,
+          '</a></li>',
+          '      </ul>',
+          '    </div>',
+          '  </div>',
+          '  <a id="nav-end" class="sr-only"></a>',
+          '</nav>',
+          '<a href="', d$.meta.soutenir.l, '/?f=macaron" id="framanav_donation" rel="donBadge" style="display:none" class="hidden-xs">', n.html.sr(d$.meta.soutenir.s), '</a>',
+        );
+        return html.join('');
+      },
+
+      newsletter() {
+        return [
+          '<h2>', n.text(n.html.frama('newsletter')), '</h2>',
+          '<form action="https://contact.framasoft.org/php_list/lists/?p=subscribe&amp;id=2" method="post" name="subscribeform">',
+          '  <div class="input-group input-group-sm">',
+          '    <input class="form-control" title="', d$.t['type-your-email'], '" name="email" size="40" type="text" placeholder="', d$.t['your-email'], '" />',
+          '      <span class="input-group-btn">',
+          '        <button class="btn btn-default" name="subscribe" type="submit" value="subscribe">', d$.t.subscribe, n.html.sr(d$.t['to-the-newsletter']), '</button>',
+          '      </span>',
+          '    </div>',
+          '    <input name="htmlemail" type="hidden" value="1" />',
+          '    <input name="list[5]" type="hidden" value="signup" />',
+          '    <input name="listname[5]" type="hidden" value="Newsletter" />',
+          '    <div style="display: none;"><input name="VerificationCodeX" size="20" type="text" value="" /></div>',
+          '</form>',
+        ].join('');
+      },
+
+      footer() {
+        return [
+          '<footer id="framafooter" class="row hidden-print" role="contentinfo">',
+          '  <div class="container">',
+          '    <div class="clearfix col-sm-8">',
+          n.html.menu('footer', n.text(n.html.frama('soft')), ['asso', 'charte', 'contact', 'stats', 'status']),
+          n.html.menu('footer', d$.menu.community.name, ['participer', 'colibri', 'benevalo', 'partenaires']),
+          n.html.menu('footer', d$.menu.site.name, ['aide', 'faq', 'legals', 'cgu', 'credits']),
+          '    </div>',
+          '    <div class="col-sm-4">',
+          '      <div class="col-xs-12">',
+          n.html.menu('follow', d$.menu.follow.name, ['diaspora', 'mastodon', 'twitter', 'facebook', 'rss']),
+          n.html.newsletter(),
+          '      </div>',
+          '    </div>',
+          '  </div>',
+          '</footer>',
+        ].join('');
       },
 
       modal(id, title, body, footer, lg) { // Modales
@@ -1168,7 +1287,7 @@ const n$ = {
           '  <div class="modal-dialog', size, '">',
           '    <div class="modal-content">',
           '      <div class="modal-header">',
-          '        <button type="button" class="close" data-dismiss="modal" title="', d$.t.close, '"><i aria-hidden="true">&times;</i>', nav.html.sr(d$.t.close), '</button>',
+          '        <button type="button" class="close" data-dismiss="modal" title="', d$.t.close, '"><i aria-hidden="true">&times;</i>', n.html.sr(d$.t.close), '</button>',
           '        <h1 id="modal-', id, 'Label">', title, '</h1>',
           '      </div>',
           '      <div class="modal-body">', body, '</div>',
@@ -1199,7 +1318,7 @@ const n$ = {
             '<button type="button" class="close" data-dismiss="alert" title="',
             d$.t.close,
             '"><i aria-hidden="true">&times;</i>',
-            nav.html.sr(d$.t.close),
+            n.html.sr(d$.t.close),
             '</button>',
           );
         }
@@ -1211,16 +1330,16 @@ const n$ = {
 
   };
 
-  nav.mergeObj(n$, nav); // export des fonctions pour config.js
+  n.mergeObj(n$, n); // export des fonctions pour config.js
 
-  nav.init();
+  n.init();
 
   /** **************************************************************** *
    *                           Config globale                          *
    ** **************************************************************** */
   c$ = {
     js: {
-      j$: nav.jquery(),
+      j$: n.jquery(),
       /**
        * 'AJAX'       = jQuery de la nav ;
        * 'HTML'       = jQuery (1.9.1 ou +) présent dans la page ;
@@ -1294,12 +1413,12 @@ const n$ = {
   const f$MM = f$Today.getMonth() + 1;
   const f$YYYY = f$Today.getFullYear();
 
-  if (f$MM === 12 && (31 - f$MM) < 16 && n$.site !== 'soutenir' && nav.is.lang('fr')) {
+  if (f$MM === 12 && (31 - f$MM) < 16 && n$.site !== 'soutenir' && n.is.lang('fr')) {
     const f$Rebours = ((31 - f$DD) === 0) ? '24 heures' : [(31 - f$DD), ' jours'].join('');
     c$.alert[0] = 'info';
     c$.alert[1] = [
       'Rappel&nbsp;: il vous reste <b>', f$Rebours, '</b> pour faire un <b>don défiscalisé en ', f$YYYY, '</b> à Framasoft.',
-      '<br/>Merci pour votre soutien <a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir"><i class="fa fa-heart" aria-hidden="true"></i><span class="sr-only">Faire un don ?</a>',
+      '<br/>Merci pour votre soutien <a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir">', n.html.i('fa-heart', ''), n.html.sr('Faire un don ?'), '</a>',
     ].join('');
   }
 }());
