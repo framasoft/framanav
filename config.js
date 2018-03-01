@@ -780,21 +780,13 @@ if (l$.piwik.id !== '' &&
   }
 
   // Framaclic
-<<<<<<< HEAD
   /* (function framaclic() {
-=======
-  /*(function framaclic() {
->>>>>>> 7f2570c0cdf019d45cc6c853823d8ab25cecd76a
     const d = document;
     const g = d.createElement('img');
     const s = d.getElementsByTagName('body')[0];
     g.style = 'border:0'; g.alt = '';
     g.src = ['https://framaclic.org/h/', l$.piwik.id].join(''); s.appendChild(g);
-<<<<<<< HEAD
   }()); */
-=======
-  }());*/
->>>>>>> 7f2570c0cdf019d45cc6c853823d8ab25cecd76a
 }
 
 /** ****************************************************************** *
