@@ -708,12 +708,12 @@ const n$ = {
           ].join(''),
         ));
 
-        // Les modales « onstart » sont déclenchées par un clic sur un lien temporaire
+        // Les modales « onstart » sont déclenchées par un clic sur un lien temporaire
         c$.modal.don[0] = c$.modal.don[0].replace('onstart', 'a[href="#SoutenirFramasoft"]');
         f$('body').append('<a href="#SoutenirFramasoft" class="sr-only"></a>');
 
-        // Les autres des liens présents dans la page
-        f$(c$.modal.don[0]).each(function eventModal(i) {
+        // Les autres des liens présents dans la pageq
+        f$(c$.modal.don[0]).each(function eventModal() {
           f$(this).click(() => {
             const dejavu = n.cookie('r', 'dondl');
             if (!dejavu) {
