@@ -18,7 +18,7 @@ test:
   - DEBIAN_FRONTEND=noninteractive apt-get install jsonlint -yqq
   script:
     - jsonlint-php html/*.json
-    - eslint nav.js config.js
+    - eslint nav.js config.js ext/*.js
 
 deploy:
   stage: deploy
