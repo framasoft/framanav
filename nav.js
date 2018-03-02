@@ -260,7 +260,7 @@ const n$ = {
               '</a></li>',
               '<li class="framanav-desktop"><a href="javascript:void(0);">',
               n.html.i('fa-desktop'), '&nbsp;', d$.t.desktop,
-              '</a></li>'
+              '</a></li>',
             ].join(''));
             n.viewport();
 
@@ -765,9 +765,12 @@ const n$ = {
             n.viewport('desktop');
           }
           // Si (Dés)Activation mannuel, le cookie prend la main le temps de la session
-          switch (n.cookie('r','nav_viewport')) {
-            case 'mobile' : n.viewport('mobile'); break;
+          switch (n.cookie('r', 'nav_viewport')) {
+            case 'mobile': n.viewport('mobile'); break;
             case 'desktop': n.viewport('desktop'); break;
+            default:
+              // no default
+              break;
           }
           // Boutons (Dés)Activer le mode mobile
           btnMobile.on('click', () => {
