@@ -776,6 +776,15 @@ const n$ = {
       return 'AJAX';
     },
 
+    bsPlugins(jQuery) {
+      const plugins = ['modal', 'dropdown', 'alert', 'tooltip', 'popover', 'carousel', 'tab'];
+      const score = [];
+      for (let i = 0; i < plugins.length; i += 1) {
+        score.push(+(typeof jQuery()[plugins[i]] === 'function'));
+      }
+      return score.join('');
+    },
+
     /** Framatrucs ************************************************** */
     benevalo() {
       // Bénévalo
