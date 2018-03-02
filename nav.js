@@ -410,148 +410,10 @@ const n$ = {
           });
         }
 
-        // Modal et Alert d'info
-        const f$AlertDejavu = n.cookie('r', 'nav-alert');
-        const f$ModalInfoDejavu = n.cookie('r', c$.modal.info[2]);
-
-        // Modal
-        if (c$.modal.info[0] !== '') {
-          f$('body').append(n.html.modal( // id, title, body, footer
-            'finfo', c$.modal.info[0],
-            c$.modal.info[1],
-            [
-              '<button class="btn" id="modal-close" data-dismiss="modal">',
-              d$.t.close,
-              '</button>',
-              '<button class="btn btn-primary" id="modal-set-cookie" >',
-              d$.t.nevershow,
-              '</button>',
-            ].join(''),
-          ));
-
-          if (!f$ModalInfoDejavu) {
-            f$('#modal-finfo').modal('show');
-            f$('#modal-set-cookie').click(() => {
-              n.cookie('w', c$.modal.info[2], true, c$.modal.info[3]); // cookie pour 7 jours par défaut (cf config ci-dessous)
-              f$('#modal-finfo').modal('hide');
-            });
-            f$('#modal-finfo .close, #modal-close').click(() => {
-              n.cookie('w', c$.modal.info[2], true); // cookie pour la session
-              f$('#modal-finfo').modal('hide');
-            });
-          }
-        }
-
-        // Alert
-        if (c$.alert[1] !== '' && !f$AlertDejavu) {
-          if (c$.fixed || n.is.url('/nav/html/')) {
-            f$('#framanav_container ~ *:not(script):first').css('margin-top', '-=42');
-          }
-
-          f$('#framanav_container').after(n.html.alert(
-            c$.alert[0], 'nav-alert',
-            `<div style="margin:0 auto; max-width:800px;"><p class="text-center">${c$.alert[1]}</p></div>`,
-            true,
-          ));
-
-          // Cookie enregistré en fermant (7 jours par défaut cf config.js)
-          f$('#nav-alert').bind('closed.bs.alert', () => {
-            n.cookie('w', c$.alert[2], true, c$.alert[3]);
-          });
-        }
-
-        // Fenêtre modal pour dons sur téléchargements
-        if (c$.modal.don[0] !== '') {
-          f$('body').append(n.html.modal(
-            'soutenir', d$.meta.modaldon.t,
-            d$.meta.modaldon.d.join('').replace('%c$.modal.don[1]%', c$.modal.don[1]),
-            [ // footer
-              '<div class="clearfix"><p class="col-md-12 text-center">',
-              '  <a target="_blank" id="modal-don" href="', d$.meta.soutenir.l, '/?f=modal&s=', n$.site, '" class="btn btn-soutenir btn-block">',
-              n.html.i(d$.meta.soutenir.i), ' ', d$.meta.modaldon.b1, n.html.newWindow(),
-              '  </a></p>',
-              '<p class="col-md-6 text-center">',
-              '  <a id="modal-dl" href="javascript:void(0);" class="btn btn-xs btn-default btn-block" >',
-              d$.meta.modaldon.b3.replace('%c$.modal.don[2]%', c$.modal.don[2]),
-              '  </a>',
-              '</p>',
-              '<p class="col-md-6 text-center">',
-              '  <a id="modal-dl2" href="javascript:void(0);" class="btn btn-xs btn-default btn-block" style="line-height: 36px;">',
-              d$.meta.modaldon.b4,
-              '  </a>',
-              '</p></div>',
-            ].join(''),
-          ));
-
-          if (c$.modal.don[0] === 'onstart') {
-            const dejavu = n.cookie('r', 'dondl');
-            if (!dejavu) {
-              f$('#modal-soutenir').modal('show');
-              f$('#modal-soutenir').css('display', 'block'); // bugfix
-              f$('#modal-contact, #modal-don, #modal-dl, #modal-soutenir .close').click(() => {
-                n.cookie('w', 'dondl', true, c$.modal.don[3]);
-                f$('#modal-soutenir').modal('hide');
-              });
-              f$('#modal-dl2').click(() => {
-                n.cookie('w', 'dondl', true, 31536000000); // 365 * 24 * 60 * 60 * 1000
-                f$('#modal-soutenir').modal('hide');
-              });
-            }
-          } else {
-            f$(c$.modal.don[0]).click(() => {
-              const dejavu = n.cookie('r', 'dondl');
-              if (!dejavu) {
-                const link = n.l(f$(this).attr('href'));
-                f$('#modal-soutenir').modal('show');
-                f$('#modal-contact, #modal-don, #modal-dl').click(() => {
-                  n.cookie('w', 'dondl', true, c$.modal.don[3]);
-                  f$('#modal-soutenir').modal('hide');
-                  window.location.href = link;
-                });
-                f$('#modal-dl2').click(() => {
-                  n.cookie('w', 'dondl', true, 31536000000); // 365 * 24 * 60 * 60 * 1000
-                  f$('#modal-soutenir').modal('hide');
-                  window.location.href = link;
-                });
-                return false;
-              }
-              return true;
-            });
-          }
-        }
-
-        // Modal FAQ
-        if (d$.f.faq.l.indexOf(n$.lname) > -1) {
-          f$('body').append(n.html.modal(
-            'fsFAQ',
-            [d$.f.faq.s, n$.name].join(' '), // ! space
-            '',
-            [
-              '<span class="pull-left">', d$.t['another-question'],
-              ' <a href="', d$.f.contact.l, '">', d$.t['contact-us'], '</a>',
-              '</span> ',
-              '<button class="btn" id="modal-close" data-dismiss="modal">', d$.t.close, '</button>',
-            ].join(''),
-            'lg',
-          ));
-          f$('.fs_faq a').on('click', () => {
-            if (f$('#modal-fsFAQ .modal-body').html() === '') {
-              f$('#modal-fsFAQ .modal-body').load(
-                ['https://contact.framasoft.org/foire-aux-questions/ #', n$.lname, ' .list-group-item'].join(''),
-                (data) => {
-                  if (f$(data).find(n$.lname.replace(/^/, '#')).length < 1) {
-                    window.location.href = f$('.fs_faq a').attr('href');
-                  } else {
-                    f$('#modal-fsFAQ').modal('show');
-                  }
-                },
-              );
-            } else {
-              f$('#modal-fsFAQ').modal('show');
-            }
-            return false;
-          });
-        }
+        n.bsModalInfo();
+        n.bsAlert();
+        n.bsModalSoutenir();
+        n.bsModalFAQ();
       } // </!n$.inframe>
     },
 
@@ -734,6 +596,150 @@ const n$ = {
         score.push(+(typeof jQuery()[plugins[i]] === 'function'));
       }
       return score.join('');
+    },
+
+    bsAlert() {
+      const dejavu = n.cookie('r', 'nav-alert');
+      if (c$.alert[1] !== '' && !dejavu) {
+        if (c$.fixed || n.is.url('/nav/html/')) {
+          f$('#framanav_container ~ *:not(script):first').css('margin-top', '-=42');
+        }
+
+        f$('#framanav_container').after(n.html.alert(
+          c$.alert[0], 'nav-alert',
+          `<div><p class="text-center">${c$.alert[1]}</p></div>`,
+          true,
+        ));
+
+        // Cookie enregistré en fermant (7 jours par défaut cf config.js)
+        f$('#nav-alert').bind('closed.bs.alert', () => {
+          n.cookie('w', c$.alert[2], true, c$.alert[3]);
+        });
+      }
+    },
+
+    bsModalInfo() {
+      const dejavu = n.cookie('r', c$.modal.info[2]);
+      if (c$.modal.info[0] !== '') {
+        f$('body').append(n.html.modal(
+          'finfo', // id
+          c$.modal.info[0], // title
+          c$.modal.info[1], // body
+          [ // footer
+            '<button class="btn" id="modal-close" data-dismiss="modal">',
+            d$.t.close,
+            '</button>',
+            '<button class="btn btn-primary" id="modal-set-cookie" >',
+            d$.t.nevershow,
+            '</button>',
+          ].join(''),
+        ));
+
+        if (!dejavu) {
+          f$('#modal-finfo').modal('show');
+          f$('#modal-set-cookie').click(() => {
+            // cookie de 7 jours par défaut
+            n.cookie('w', c$.modal.info[2], true, c$.modal.info[3]);
+            f$('#modal-finfo').modal('hide');
+          });
+          f$('#modal-finfo .close, #modal-close').click(() => {
+            // cookie de session
+            n.cookie('w', c$.modal.info[2], true);
+            f$('#modal-finfo').modal('hide');
+          });
+        }
+      }
+    },
+
+    bsModalFAQ() {
+      if (d$.f.faq.l.indexOf(n$.lname) > -1) {
+        f$('body').append(n.html.modal(
+          'fsFAQ', // id
+          [d$.f.faq.s, n$.name].join(' '), // title (/!\ space)
+          '', // body (ajax load bellow)
+          [ // footer
+            '<span class="pull-left">', d$.t['another-question'],
+            ' <a href="', d$.f.contact.l, '">', d$.t['contact-us'], '</a>',
+            '</span> ',
+            '<button class="btn" id="modal-close" data-dismiss="modal">', d$.t.close, '</button>',
+          ].join(''),
+          'lg', // size
+        ));
+        f$('.fs_faq a').on('click', () => {
+          if (f$('#modal-fsFAQ .modal-body').html() === '') {
+            f$('#modal-fsFAQ .modal-body').load(
+              ['https://contact.framasoft.org/foire-aux-questions/ #', n$.lname, ' .list-group-item'].join(''),
+              (data) => {
+                if (f$(data).find(n$.lname.replace(/^/, '#')).length < 1) {
+                  window.location.href = f$('.fs_faq a').attr('href');
+                } else {
+                  f$('#modal-fsFAQ').modal('show');
+                }
+              },
+            );
+          } else {
+            f$('#modal-fsFAQ').modal('show');
+          }
+          return false;
+        });
+      }
+    },
+
+    bsModalSoutenir() {
+      if (c$.modal.don[0] !== '') {
+        f$('body').append(n.html.modal(
+          'soutenir', d$.meta.modaldon.t,
+          d$.meta.modaldon.d.join('').replace('%c$.modal.don[1]%', c$.modal.don[1]),
+          [ // footer
+            '<div class="clearfix"><p class="col-md-12 text-center">',
+            '  <a target="_blank" id="modal-don" href="', d$.meta.soutenir.l, '/?f=modal&s=', n$.site, '" class="btn btn-soutenir btn-block">',
+            n.html.i(d$.meta.soutenir.i), ' ', d$.meta.modaldon.b1, n.html.newWindow(),
+            '  </a></p>',
+            '<p class="col-md-6 text-center">',
+            '  <a id="modal-dl" href="javascript:void(0);" class="btn btn-xs btn-default btn-block" >',
+            d$.meta.modaldon.b3.replace('%c$.modal.don[2]%', c$.modal.don[2]),
+            '  </a>',
+            '</p>',
+            '<p class="col-md-6 text-center">',
+            '  <a id="modal-dl2" href="javascript:void(0);" class="btn btn-xs btn-default btn-block" style="line-height: 36px;">',
+            d$.meta.modaldon.b4,
+            '  </a>',
+            '</p></div>',
+          ].join(''),
+        ));
+
+        // Les modales « onstart » sont déclenchées par un clic sur un lien temporaire
+        c$.modal.don[0] = c$.modal.don[0].replace('onstart', 'a[href="#SoutenirFramasoft"]');
+        f$('body').append('<a href="#SoutenirFramasoft" class="sr-only"></a>');
+
+        // Les autres des liens présents dans la page
+        f$(c$.modal.don[0]).each(function eventModal(i) {
+          f$(this).click(() => {
+            const dejavu = n.cookie('r', 'dondl');
+            if (!dejavu) {
+              const link = n.l(f$(this).attr('href')).replace(/#SoutenirFramasoft$/, '#');
+              f$('a[href="#SoutenirFramasoft"]').remove();
+              f$('#modal-soutenir').modal('show');
+              f$('#modal-soutenir').css('display', 'block'); // bugfix
+              f$('#modal-contact, #modal-don, #modal-dl, #modal-soutenir .close').click(() => {
+                n.cookie('w', 'dondl', true, c$.modal.don[3]);
+                f$('#modal-soutenir').modal('hide');
+                window.location.href = link;
+              });
+              f$('#modal-dl2').click(() => {
+                n.cookie('w', 'dondl', true, 31536000000); // 365 * 24 * 60 * 60 * 1000
+                f$('#modal-soutenir').modal('hide');
+                window.location.href = link;
+              });
+              return false;
+            }
+            return true;
+          });
+        });
+        if (c$.modal.don[0] === 'a[href="#SoutenirFramasoft"]') {
+          f$(c$.modal.don[0]).trigger('click');
+        }
+      }
     },
 
     viewport(type) {

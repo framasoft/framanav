@@ -438,6 +438,11 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
     overflow:visible !important;
 }
 
+#nav-alert > div {
+    margin:0 auto;
+    max-width:800px;
+}
+
 /* Video JS */
 .vjs-default-skin .vjs-big-play-button {
     left:50%;
