@@ -50,7 +50,7 @@ const n$ = {
 
     /** Nav init **************************************************** */
     init() {
-      if (n.is.url('localhost', 'h')) { n$.host = 'framapic.org'; }
+      if (n.is.url(/test\/home\.html$/, 'u')) { n$.host = 'framapic.org'; }
       n$.site = n$.host.replace(/^(www|test)\./i, '').replace(/\.(com|net|org|fr|pro)$/i, ''); // Domaine et sous-domaine
       n$.name = n$.site[0].toUpperCase() + n$.site.slice(1).replace('.framasoft', ''); // Nom du service
       n$.lname = n$.name.toLowerCase();
@@ -228,14 +228,6 @@ const n$ = {
                 d$.f.aide.l = d$.f.aide.l.replace(/aide$/, n$.lname);
               }
             });
-            // Switch mobile/desktop
-            d$.menu.about.nav = [d$.menu.about.nav, n.html.divider(),
-              '<li class="framanav-mobile"><a href="javascript:void(0);">',
-              n.html.i('fa-mobile'), '&nbsp;', d$.t.mobile,
-              '</a></li>',
-              '<li class="framanav-desktop"><a href="javascript:void(0);">',
-              n.html.i('fa-desktop'), '&nbsp;', d$.t.desktop,
-              '</a></li>'].join('');
 
             /** On balance le code html */
             f$('#framanav_container').prepend(n.html.navbar());
@@ -260,59 +252,17 @@ const n$ = {
               ' .fs_gplus', ' .fs_wikipedia', ' .fs_status', ' .fs_credits',
             ].join()).after(n.html.divider());
 
-            /**
-             * Mobile/Desktop
-             */
-            // On ajoute du viewport et des boutons mobile/desktop
-            const f$BtnDesktop = f$('.framanav-desktop');
-            const f$BtnMobile = f$('.framanav-mobile');
-
-            function f$Mobile() {
-              const f$Viewport = f$('meta[name="viewport"]');
-              if (f$Viewport.length === 0) {
-                f$('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
-              } else {
-                f$Viewport.attr('content', 'width=device-width, initial-scale=1.0');
-              }
-              f$BtnDesktop.addClass('visible-xs-inline').show();
-              f$BtnMobile.hide();
-            }
-
-            function f$Desktop() {
-              const f$Viewport = f$('meta[name="viewport"]');
-              if (f$Viewport.length) {
-                f$Viewport.attr('content', 'width=1024');
-              }
-              f$BtnDesktop.removeClass('visible-xs-inline').hide();
-              f$BtnMobile.show();
-            }
-
-            if (c$.mobile) {
-            // Viewport mobile si Responsive dans la config
-            // Boutons « Désactiver mode mobile » par défaut
-              f$Mobile();
-            } else if (f$('meta[name="viewport"]').length === 0) {
-            // Bouton « Activer mode mobile » par défaut
-              f$Desktop();
-            }
-            // Si (Dés)Activation mannuel, le cookie prend la main le temps de la session
-            switch (n.cookie('r', 'nav_viewport')) {
-              case 'mobile': f$Mobile(); break;
-              case 'desktop': f$Desktop(); break;
-              default:
-                // no default
-                break;
-            }
-            // Boutons (Dés)Activer le mode mobile
-            f$BtnMobile.on('click', () => {
-              f$Mobile();
-              document.cookie = 'nav_viewport=mobile;expire=0';
-            });
-            f$BtnDesktop.on('click', () => {
-              f$Desktop();
-              document.cookie = 'nav_viewport=desktop;expire=0';
-            });
-            /** Fin Mobile/Desktop */
+            // Ajout des boutons mobile/desktop
+            f$('#fs_about .dropdown-menu').append([
+              n.html.divider(),
+              '<li class="framanav-mobile"><a href="javascript:void(0);">',
+              n.html.i('fa-mobile'), '&nbsp;', d$.t.mobile,
+              '</a></li>',
+              '<li class="framanav-desktop"><a href="javascript:void(0);">',
+              n.html.i('fa-desktop'), '&nbsp;', d$.t.desktop,
+              '</a></li>'
+            ].join(''));
+            n.viewport();
 
             f$('#framanav_container').css('opacity', '1');
 
@@ -346,7 +296,7 @@ const n$ = {
               });
             }
 
-            /** Import de bootstrap.js ******************************** */
+            /** Import de bootstrap.js ****************************** */
             if (c$.js.b$) {
               if (typeof f$().modal === 'function' || c$.js.b$ === 'html') {
                 n$.log.push('✔ Bootstrap HTML');
@@ -361,6 +311,7 @@ const n$ = {
               n$.log.push('✘ Bootstrap');
             }
 
+            /** À traiter en dernier ******************************** */
             n.audioJS();
             n.videoJS();
             n.ytBlock();
@@ -776,13 +727,61 @@ const n$ = {
       return 'AJAX';
     },
 
-    bsPlugins(jQuery) {
+    bsPlugins(jQuery) { // WIP Detecter la présence de Bootstrap
       const plugins = ['modal', 'dropdown', 'alert', 'tooltip', 'popover', 'carousel', 'tab'];
       const score = [];
       for (let i = 0; i < plugins.length; i += 1) {
         score.push(+(typeof jQuery()[plugins[i]] === 'function'));
       }
       return score.join('');
+    },
+
+    viewport(type) {
+      const vp = f$('meta[name="viewport"]');
+      const btnDesktop = f$('.framanav-desktop');
+      const btnMobile = f$('.framanav-mobile');
+
+      switch (type) {
+        case 'mobile': // switch sur le viewport mobile
+          if (vp.length === 0) {
+            f$('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
+          } else {
+            vp.attr('content', 'width=device-width, initial-scale=1.0');
+          }
+          btnDesktop.addClass('visible-xs-inline').show();
+          btnMobile.hide();
+          break;
+        case 'desktop': // switch sur le viewport desktop
+          if (vp.length) {
+            vp.attr('content', 'width=1024');
+          }
+          btnDesktop.removeClass('visible-xs-inline').hide();
+          btnMobile.show();
+          break;
+        default: // init du viewport
+          if (c$.mobile) { // viewport mobile par défaut dans la config
+            n.viewport('mobile');
+          } else if (f$('meta[name="viewport"]').length === 0) {
+            n.viewport('desktop');
+          }
+          // Si (Dés)Activation mannuel, le cookie prend la main le temps de la session
+          switch (n.cookie('r','nav_viewport')) {
+            case 'mobile' : n.viewport('mobile'); break;
+            case 'desktop': n.viewport('desktop'); break;
+          }
+          // Boutons (Dés)Activer le mode mobile
+          btnMobile.on('click', () => {
+            n.viewport('mobile');
+            document.cookie = 'nav_viewport=mobile;expire=0';
+            return false;
+          });
+          btnDesktop.on('click', () => {
+            n.viewport('desktop');
+            document.cookie = 'nav_viewport=desktop;expire=0';
+            return false;
+          });
+          break;
+      }
     },
 
     /** Framatrucs ************************************************** */
