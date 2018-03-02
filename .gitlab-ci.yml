@@ -1,4 +1,4 @@
-image: nodejs:8.9.4-stretch
+image: node:8.9.4-stretch
 stages:
   - test
   - deploy
