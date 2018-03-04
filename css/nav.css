@@ -137,7 +137,9 @@
     z-index:1002;
     background-color: #FAFAFA !important;
     border-radius:0;
-    border-top:0px solid #FAFAFA;
+    border-top: none;
+    border-left: none;
+    border-right: none;
     border-bottom:1px solid #bdbdbd;
 }
 
@@ -149,7 +151,7 @@
 }
 
 #framanav .dropdown-toggle {
-    padding:7px 4px 5px 10px !important;*/
+    padding:7px 4px 5px 10px !important;
 }
 
 #framanav .nav-container {

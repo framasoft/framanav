@@ -109,7 +109,7 @@ switch (n$.site) {
               .parent().hide();
           },
         },
-        css: { order: '015234', b$: false, ext: true },
+        css: { order: '015234', b$: false },
         footer: false,
         mute: true,
       };
