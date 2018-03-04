@@ -388,10 +388,6 @@ const n$ = {
       /** Fin accessibilité */
 
       if (!n$.inframe) { // Pas de bandeau, nav, modale et macaron en mode iframe
-        if (c$.fixed || n.is.url('/nav/html/')) {
-          f$('body').addClass('fnav-fixed');
-        }
-
         // Liens de la nav à ouvrir dans un onglet
         if (!n.is.url('/nav/html/')) {
           f$('#framanav .dropdown-menu a').attr('target', '_blank').append(n.html.newWindow());
@@ -601,10 +597,6 @@ const n$ = {
     bsAlert() {
       const dejavu = n.cookie('r', 'nav-alert');
       if (c$.alert[1] !== '' && !dejavu) {
-        if (c$.fixed || n.is.url('/nav/html/')) {
-          f$('#framanav_container ~ *:not(script):first').css('margin-top', '-=42');
-        }
-
         f$('#framanav_container').after(n.html.alert(
           c$.alert[0], 'nav-alert',
           `<div><p class="text-center">${c$.alert[1]}</p></div>`,
@@ -1390,7 +1382,6 @@ const n$ = {
       ext: false,
     },
     mobile: true, // activer le viewport
-    fixed: false, // position de la nav
 
     footer: true,
 

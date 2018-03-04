@@ -2,10 +2,11 @@ $ombre: 0px 3px 4px rgba(50, 50, 50, 0.2);
 $img-ombre: 0px 2px 6px rgba(50, 50, 50, 0.4);
 $carousel-ombre: 0px 3px 3px rgba(50, 50, 50, 0.5);
 
-@import "board"; /* Fix */
+@import "board"; /* Framaboard a un traitement de faveur */
 
 @import "global";
 
+/* Sites Frama */
 @import "bookin";
 @import "calc";
 @import "carte";
@@ -22,3 +23,7 @@ $carousel-ombre: 0px 3px 3px rgba(50, 50, 50, 0.5);
 @import "vectoriel";
 @import "vox";
 @import "wiki";
+
+/* Ajustements */
+@import "nav-fixed";
+@import "footer";

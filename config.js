@@ -90,7 +90,6 @@ switch (n$.site) {
     l$ = {
       js: { audio: true, video: true },
       optin: ['#commentform #email'],
-      fixed: true,
     };
     break;
 
@@ -120,7 +119,6 @@ switch (n$.site) {
 
   case 'book':
     l$ = {
-      fixed: true,
       modal: { don: ['a[href*="download-monitor/download.php?id="]'] },
     };
     break;
@@ -128,7 +126,6 @@ switch (n$.site) {
   case 'bookin':
     l$ = {
       mute: n$.is.url('framabookin.org/b'),
-      fixed: true,
       footer: !n$.is.url('framabookin.org/b'),
     };
     break;
@@ -201,7 +198,6 @@ switch (n$.site) {
     l$ = {
       js: { ext: true },
       css: { ext: true },
-      fixed: true,
       optin: ['#wpcf7-f24-p5-o1 .wpcf7-email'],
     };
     break;
@@ -224,17 +220,15 @@ switch (n$.site) {
     l$ = {
       js: { video: true },
       modal: { don: ['a[href*="iso.framadvd.org"]'] },
-      fixed: true,
     };
     break;
 
   case 'drive':
-    l$ = {
-      fixed: true,
-    };
     if ((n$.is.url('index.php/app') && !n$.is.url('registration')) || n$.is.url('index.php/setting')) {
-      l$.footer = false;
-      l$.mute = true;
+      l$ = {
+        footer: false,
+        mute: true,
+      };
     } else {
       l$.js = { video: true };
     }
@@ -487,7 +481,6 @@ switch (n$.site) {
 
   case 'soft':
     l$ = {
-      fixed: true,
       icons: {
         fav: 'favicon-violet.png',
         apple: 'soft.png',
@@ -510,10 +503,6 @@ switch (n$.site) {
       },
       css: { order: '102345' },
     };
-    break;
-
-  case 'stats':
-    l$ = { fixed: true };
     break;
 
   case 'status':
@@ -548,14 +537,12 @@ switch (n$.site) {
       },
       mute: true,
       footer: false,
-      fixed: true,
     };
     break;
 
   case 'team':
     l$ = {
       js: { j$: 'noConflict', b$: 'html', ext: true },
-      fixed: true,
       mute: true,
       donate: false,
       footer: false,
@@ -591,7 +578,6 @@ switch (n$.site) {
   case 'vox':
     l$ = {
       js: { video: n$.is.url('https://framavox.org/', 'u') },
-      fixed: !n$.is.url('https://framavox.org/', 'u'),
     };
 
     if (!n$.is.url(/(\/users\/sign|\/start_group|users\/password\/new)/i, 'u') &&
@@ -643,7 +629,6 @@ switch (n$.site) {
           });
         },
       },
-      fixed: true,
     };
     break;
 
