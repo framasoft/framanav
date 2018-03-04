@@ -9,7 +9,6 @@
  n${} = variables et fonctions globales de la nav
  n{}  = fonctions de la nav (exportées également dans n$)
  d${} = données (texte, liens, icônes, couleurs, etc)
- h${} = html
  c${} = config du site
  l${} = config locale des sites
  */
@@ -89,7 +88,7 @@ const n$ = {
           if (scripts[i].parentNode.tagName.toLowerCase() === 'body') {
             // si nav.js est appelé en haut du body, c'est super rapide
             document.write(n$.container);
-            n$.container = '';
+            n$.container = '☀';
           } // sinon c'est dans le head, il faut attendre document.ready (voir plus bas)
         }
       }
@@ -103,7 +102,7 @@ const n$ = {
       n.mergeObj(c$, l$); // import de la config l$ dans c$
 
       if (l$) {
-        n$.log.push(`✔ ${((n$.container === '') ? '☀' : '☁')} config.js ${n$.version} | ${n$.f$} | ${n$.j$} → ${n.jquery()} ?`);
+        n$.log.push(`✔ ${n$.container.replace(/<.*/, '☁')} config.js ${n$.version} | ${n$.f$} | ${n$.j$} → ${n.jquery()} ?`);
 
         if (n.is.url('/nav/html/')) { // si pages « À propos » on réinit la config
           c$.js.b$ = true;
@@ -139,7 +138,7 @@ const n$ = {
             break;
         }
       } else {
-        n$.log.push(`✘ ${((n$.container === '') ? '☀' : '☁')} config.js ${n$.version}`);
+        n$.log.push(`✘ ${n$.container.replace(/<.*/, '☁')} config.js ${n$.version}`);
       }
     },
 
@@ -153,7 +152,7 @@ const n$ = {
       f$(document).ready(() => {
         f$.ajaxSetup({ cache: true });
 
-        if (n$.container !== '') { f$('body').prepend(n$.container); }
+        if (n$.container !== '☀') { f$('body').prepend(n$.container); }
 
         // On charge ensuite les données
         let f$I18n = {};
