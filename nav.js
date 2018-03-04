@@ -108,20 +108,7 @@ const n$ = {
         if (n.is.url('/nav/html/')) { // si pages « À propos » on réinit la config
           c$.js.b$ = true;
           c$.css.b$ = false;
-          c$.css.ext = false;
-          c$.footer = true;
           c$.icons.apple = 'soft.png';
-        }
-
-        if (c$.mute) {
-          if (l$.alert === undefined) { c$.alert[1] = ''; } // pas de bandeau
-          if (l$.modal === undefined) {
-            c$.modal.info[0] = ''; c$.modal.don[0] = ''; // pas de modale
-          } else {
-            if (l$.modal.info === undefined) { c$.modal.info[0] = ''; }
-            if (l$.modal.don === undefined) { c$.modal.don[0] = ''; }
-          }
-          c$.donate = false; // pas de macaron
         }
 
         n.loadCSS(c$.css);
@@ -268,33 +255,7 @@ const n$ = {
 
             n.benevalo();
             n.myframa();
-
-            // Footer
-            if (c$.footer && !n$.inframe) {
-              f$('body').append(n.html.footer());
-
-              if (f$('body').height() < f$(window).height()) {
-                f$('#framafooter').css('position', 'absolute');
-              } else {
-                f$('#framafooter').css('position', 'relative');
-              }
-
-              f$(window).on('resize, scroll, click', () => {
-                f$('#framafooter').css('position', 'relative');
-                if (f$('body').height() < f$(window).height()) {
-                  f$('#framafooter').css('position', 'absolute');
-                } else {
-                  f$('#framafooter').css('position', 'relative');
-                }
-                setTimeout(() => { // au cas où une animation redimentionne le body
-                  if (f$('body').height() < f$(window).height()) {
-                    f$('#framafooter').css('position', 'absolute');
-                  } else {
-                    f$('#framafooter').css('position', 'relative');
-                  }
-                }, 800);
-              });
-            }
+            n.footer();
 
             /** Import de bootstrap.js ****************************** */
             if (c$.js.b$) {
@@ -787,7 +748,6 @@ const n$ = {
 
     /** Framatrucs ************************************************** */
     benevalo() {
-      // Bénévalo
       // Le bouton soutenir remplacé par un bouton bénévalo
       // pendant 3 jours autour de la pleine lune
       const today = Math.floor(new Date().getTime() / 1000);
@@ -801,15 +761,38 @@ const n$ = {
       }
     },
 
-    macaron() {
-      // Macaron
-      if (c$.donate && !n$.inframe) {
-        f$('#framanav_donation')
-          .show()
-          .delay((Math.random() * 28000) + 1000)
-          .fadeOut(600)
-          .fadeIn(600);
+    footer() {
+      f$('body').append(n.html.footer());
+
+      if (f$('body').height() < f$(window).height()) {
+        f$('#framafooter').css('position', 'absolute');
+      } else {
+        f$('#framafooter').css('position', 'relative');
       }
+
+      f$(window).on('resize, scroll, click', () => {
+        f$('#framafooter').css('position', 'relative');
+        if (f$('body').height() < f$(window).height()) {
+          f$('#framafooter').css('position', 'absolute');
+        } else {
+          f$('#framafooter').css('position', 'relative');
+        }
+        setTimeout(() => { // au cas où une animation redimentionne le body
+          if (f$('body').height() < f$(window).height()) {
+            f$('#framafooter').css('position', 'absolute');
+          } else {
+            f$('#framafooter').css('position', 'relative');
+          }
+        }, 800);
+      });
+    },
+
+    macaron() {
+      f$('#framanav_donation')
+        .show()
+        .delay((Math.random() * 28000) + 1000)
+        .fadeOut(600)
+        .fadeIn(600);
     },
 
     maestro() {
@@ -1383,9 +1366,6 @@ const n$ = {
     },
     mobile: true, // activer le viewport
 
-    footer: true,
-
-    donate: true, // macaron
     modal: {
       don: ['', 'de télécharger', 'télécharger', 604800000],
       /**
@@ -1397,7 +1377,6 @@ const n$ = {
     },
     alert: ['black', '', 'nav-alert', 604800000],
     /** [couleur (classes bootstrap), texte, nom du cookie, durée du cookie (7 jours)] */
-    mute: false, // désactive macaron, modal, alert
 
     optin: ['', '', 'opt-in', 604800000],
     /** [sélecteur email1, email2, nom du cookie, durée du cookie (7 jours)] */

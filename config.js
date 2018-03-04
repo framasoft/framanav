@@ -57,12 +57,7 @@ switch (n$.site) {
           ].join(''),
         ],
       },
-      footer: false,
     };
-    break;
-
-  case 'bag':
-    l$ = { mute: n$.is.url('framabag.org/u') };
     break;
 
   case 'bee':
@@ -109,8 +104,6 @@ switch (n$.site) {
           },
         },
         css: { order: '015234', b$: false },
-        footer: false,
-        mute: true,
       };
     } else {
       l$.optin = ['#registration #email'];
@@ -121,17 +114,6 @@ switch (n$.site) {
     l$ = {
       modal: { don: ['a[href*="download-monitor/download.php?id="]'] },
     };
-    break;
-
-  case 'bookin':
-    l$ = {
-      mute: n$.is.url('framabookin.org/b'),
-      footer: !n$.is.url('framabookin.org/b'),
-    };
-    break;
-
-  case 'bot':
-    l$ = { mute: true, footer: false };
     break;
 
   case 'calc':
@@ -145,7 +127,7 @@ switch (n$.site) {
       // continue regardless of error
     }
     if (n$.is.url('framacalc.org/_start') || n$.is.url('https://framacalc.org/', 'u') ||
-        n$.is.url('lite.framacalc.org/_start') || n$.is.url('https://lite.framacalc.org/', 'u')) {
+        n$.is.url('https://lite.framacalc.org/', 'u')) {
       // Si on est sur la page d'accueil
       l$.modal = {
         don: ['a[href*="lite.framacalc.org/"]', 'd’utiliser', 'créer un calc'],
@@ -158,8 +140,6 @@ switch (n$.site) {
         },
         css: { b$: !n$.inframe },
         mobile: false,
-        mute: true,
-        footer: false,
         host: 'ovh',
       };
     }
@@ -167,30 +147,16 @@ switch (n$.site) {
 
   case 'carte':
     l$.modal = { don: ['a.btn-primary[href*="/map/new/"]', 'd’utiliser', 'créer une carte'] };
-
-    if (n$.is.url('/map/') && !n$.inframe) {
-      l$.mute = true;
-      l$.footer = false;
-    }
     break;
 
   case 'clic':
     l$.js = { b$: 'html' };
     break;
 
-  case 'colibri':
-    l$ = {
-      mute: true,
-      footer: false,
-    };
-    break;
-
   case 'connard':
     l$ = {
       css: { frama: false },
-      mute: true,
       icons: { keep: true },
-      footer: false,
     };
     break;
 
@@ -212,10 +178,6 @@ switch (n$.site) {
     }
     break;
 
-  case 'degooglisons-internet':
-    l$ = { mute: true };
-    break;
-
   case 'dvd':
     l$ = {
       js: { video: true },
@@ -224,14 +186,7 @@ switch (n$.site) {
     break;
 
   case 'drive':
-    if ((n$.is.url('index.php/app') && !n$.is.url('registration')) || n$.is.url('index.php/setting')) {
-      l$ = {
-        footer: false,
-        mute: true,
-      };
-    } else {
-      l$.js = { video: true };
-    }
+    l$.js = { video: true };
     break;
 
   case 'drop':
@@ -290,7 +245,6 @@ switch (n$.site) {
   case 'maestro':
     l$ = {
       js: { b$: 'html' },
-      mute: n$.is.url('/p/'),
     };
     break;
 
@@ -299,7 +253,6 @@ switch (n$.site) {
       js: { video: true },
       css: { b$: false },
       optin: ['#user #email'],
-      mute: (!n$.is.url('framindmap.org/c/login') && !n$.is.url('framindmap.org/c/user/registration')),
     };
     if (n$.is.url('framindmap.org/c/maps/') && !n$.is.url('/edit')) {
       l$.modal = { don: ['onstart', 'd’utiliser', ['utiliser ', n$.name].join('')] };
@@ -308,16 +261,11 @@ switch (n$.site) {
       // [Fix] Suppression de la nav dans l'éditeur
       const f$NavContainer = document.getElementById('framanav_container');
       f$NavContainer.parentNode.removeChild(f$NavContainer);
-      l$.footer = false;
     }
     break;
 
   case 'minetest':
     l$.js = { video: true };
-    if (n$.is.url('/carte/')) {
-      l$.mute = true;
-      l$.footer = false;
-    }
     break;
 
   case 'my':
@@ -334,8 +282,6 @@ switch (n$.site) {
             ].join(''));
           },
         },
-        mute: true,
-        footer: false,
       };
     } else {
       l$ = {
@@ -358,8 +304,6 @@ switch (n$.site) {
         js: {
           ext() { jQuery(window).trigger('resize'); },
         },
-        mute: true,
-        footer: false,
       };
     }
     break;
@@ -367,8 +311,6 @@ switch (n$.site) {
   case 'pack':
     l$ = {
       modal: { don: ['onstart', 'd’utiliser', ['utiliser ', n$.name].join('')] },
-      mute: n$.is.url('/admin'),
-      footer: !n$.is.url('/admin'),
     };
     break;
 
@@ -384,8 +326,6 @@ switch (n$.site) {
     n$.name = 'Framapad';
     l$ = {
       js: { ext: true },
-      mute: true,
-      footer: false,
       credits: 'pad',
     };
     break;
@@ -417,8 +357,6 @@ switch (n$.site) {
         },
       },
       css: { b$: !n$.inframe },
-      mute: true,
-      footer: false,
       credits: 'pad',
     };
     if (n$.is.url(/(beta.framapad)/i, 'h')) {
@@ -440,7 +378,6 @@ switch (n$.site) {
   case 'phonie':
     l$ = {
       css: { order: '102345' },
-      footer: false,
     };
     break;
 
@@ -452,8 +389,6 @@ switch (n$.site) {
           $('img[src*="/packs/logo"]').attr('src', 'https://framasoft.org/nav/img/icons/piaf.png');
         },
       },
-      footer: n$.is.url('/about'),
-      mute: !n$.is.url('/about'),
     };
     break;
 
@@ -535,17 +470,12 @@ switch (n$.site) {
           ].join(''));
         },
       },
-      mute: true,
-      footer: false,
     };
     break;
 
   case 'team':
     l$ = {
       js: { j$: 'noConflict', b$: 'html', ext: true },
-      mute: true,
-      donate: false,
-      footer: false,
     };
     break;
 
@@ -554,7 +484,6 @@ switch (n$.site) {
     l$ = {
       js: { video: true },
       host: 'ovh',
-      mute: n$.is.url('/embed_player'),
     };
     break;
 
@@ -564,8 +493,6 @@ switch (n$.site) {
         css: {
           b$: !n$.inframe,
         },
-        mute: true,
-        footer: false,
       };
     } else {
       l$ = {
@@ -581,8 +508,6 @@ switch (n$.site) {
         ext: true,
         video: n$.is.url('https://framavox.org/', 'u'),
       },
-      footer: false,
-      mute: true,
     };
     break;
 
