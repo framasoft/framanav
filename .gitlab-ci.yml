@@ -26,7 +26,7 @@ deploy:
   - apt-get update -yqq
   - DEBIAN_FRONTEND=noninteractive apt-get install ssh sassc rsync -yqq
   script:
-  - sassc css/scss/frama.scss css/frama.css
+  - sassc -m -t compressed css/scss/frama.scss css/frama.css
   - mkdir .public
   - cp -r * .public
   - mv .public public
