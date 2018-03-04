@@ -577,15 +577,13 @@ switch (n$.site) {
 
   case 'vox':
     l$ = {
-      js: { video: n$.is.url('https://framavox.org/', 'u') },
+      js: {
+        ext: true,
+        video: n$.is.url('https://framavox.org/', 'u'),
+      },
+      footer: false,
+      mute: true,
     };
-
-    if (!n$.is.url(/(\/users\/sign|\/start_group|users\/password\/new)/i, 'u') &&
-        !n$.is.url('https://framavox.org/', 'u')) {
-      l$.footer = false;
-      l$.mute = true;
-      l$.js.ext = true;
-    }
     break;
 
   case 'wiki':
