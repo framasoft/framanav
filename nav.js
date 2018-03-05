@@ -1,1352 +1,1410 @@
-/****************
- *  Conventions *
- ****************
+/** ************* *
+ *  Conventions
+ ** ************* *
  f$() = alias jQuery
- f$Example() et i$Example() = fonctions globale
- f$_  = variables
 
  j$ = jQuery
  b$ = Bootstrap
 
- n${} = variables globales de la nav
+ n${} = variables et fonctions globales de la nav
+ n{}  = fonctions de la nav (exportées également dans n$)
  d${} = données (texte, liens, icônes, couleurs, etc)
- h${} = html
  c${} = config du site
  l${} = config locale des sites
- **/
+ */
 
-var n$ = {
-  version: '180222', // n° version de la nav
-  f$ : '1.12.4',     // n° version de notre jQuery
-  b$ : '3.3.6',      // n° version de Bootsrap
+let f$ = function f$() {
+  // alias jQuery défini plus bas
+};
+
+const d$ = {};
+let c$ = {};
+
+const n$ = {
+  version: '180301', // n° version de la nav
+  f$: '1.12.4', // n° version de notre jQuery
+  b$: '3.3.7', // n° version de Bootsrap
   host: window.location.host,
   url: window.location.href,
-  inframe: top.location!=self.document.location,
-  nav: {
-    url: '',
-    set: false,
-    html: '<div id="framanav_container" class="hidden-print" style="height:42px; opacity : 0"></div>'
-  },
+  baseurl: '',
+  inframe: window.top.location !== window.self.document.location,
+  container: [
+    '<div id="framanav_container" class="hidden-print" style="height:42px; opacity : 0"></div>',
+    '<iframe id="framanav_cortex" src="https://framasoft.org/nav/html/cortex.html" ',
+    'style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;"></iframe>',
+  ].join(''),
   browser: {
     agent: navigator.userAgent,
     opera: !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0,
     firefox: typeof InstallTrigger !== 'undefined',
     safari: Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0,
     chrome: !!window.chrome && !(!!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0),
-    ie: /*@cc_on!@*/false || !!document.documentMode
-  }
+    ie: /*@cc_on!@*/false || !!document.documentMode, // eslint-disable-line
+  },
+  log: [],
 };
-  n$.site = n$.host.replace(/^(www|test)\./i,'').replace(/\.(com|net|org|fr|pro)$/i,''); // Domaine et sous-domaine
-  n$.name = n$.site[0].toUpperCase()+n$.site.slice(1).replace('.framasoft', '');         // Nom du service
-  n$.site = n$.site.replace(/framand/i,'and')
-                   .replace(/framage/i,'age')
-                   .replace(/framae/i, 'mae')
-                   .replace(/(\.framasoft|frama\.)/i,'')
-                   .replace(/framin/i,'min')
-                   .replace(/frame/i, 'me')
-                   .replace(/frama/i,'');
-  n$.site = (/Framatech/i.test(window.navigator.userAgent)) ? 'agent' : n$.site;     // Config locale
 
-  if (n$.inframe) n$.nav.html = '<div id="framanav_container" style="display:none"></div>';
-  if (!n$.inframe) {
-    f$Md5=function(){for(var m=[],l=0;64>l;)m[l]=0|4294967296*Math.abs(Math.sin(++l));return function(c){var e,g,f,a,h=[];c=unescape(encodeURI(c));for(var b=c.length,k=[e=1732584193,g=-271733879,~e,~g],d=0;d<=b;)h[d>>2]|=(c.charCodeAt(d)||128)<<8*(d++%4);h[c=16*(b+8>>6)+14]=8*b;for(d=0;d<c;d+=16){b=k;for(a=0;64>a;)b=[f=b[3],(e=b[1]|0)+((f=b[0]+[e&(g=b[2])|~e&f,f&e|~f&g,e^g^f,g^(e|~f)][b=a>>4]+(m[a]+(h[[a,5*a+1,3*a+5,7*a][b]%16+d]|0)))<<(b=[7,12,17,22,5,9,14,20,4,11,16,23,6,10,15,21][4*b+a++%4])|f>>>32-b),e,g];for(a=4;a;)k[--a]=k[a]+b[a]}for(c="";32>a;)c+=(k[a>>3]>>4*(1^a++&7)&15).toString(16);return c}}();
-    f$tonality = f$Md5(n$.url).substring(0,8);
-    f$concerto = n$.url.split(/[?#]/)[0].substring(n$.url.lastIndexOf('/')+1).replace(/[^a-zA-Z0-9=\?]/g, '');
-    currentW = parseInt((window.innerWidth - 60) * 2/3);
-    currentH = parseInt(window.innerHeight - 160);
-    talkW = parseInt(currentW / 2);
-    talkH = parseInt(talkW * 9/16);
-    n$.maestro =
-      'https://framaestro.org/p/#'+f$tonality+'/'+f$concerto+'/'+
-      '0,20,'+currentW+','+currentH+','+encodeURIComponent(n$.url)+';'+
-      '0,'+(currentW + 40)+','+talkW+','+talkH+','+encodeURIComponent('https://framatalk.org/'+f$tonality+f$concerto)+';';
-  }
+(function framanav() {
+  const n = {
 
-  if (window.jQuery === undefined) {
-    n$.j$ = 'ø';    // n° version du jQuery local
-  } else {
-    n$.j$ = window.jQuery.fn.jquery;
-    f$ = jQuery;   // alias (on l'écrase plus bas mais ça permet de pouvoir l'utiliser plus tôt)
-  }
+    /** Nav init **************************************************** */
+    init() {
+      if (n.is.url(/test\/home\.html$/, 'u')) { n$.host = 'framapic.org'; }
+      n$.site = n$.host.replace(/^(www|test)\./i, '').replace(/\.(com|net|org|fr|pro)$/i, ''); // Domaine et sous-domaine
+      n$.name = n$.site[0].toUpperCase() + n$.site.slice(1).replace('.framasoft', ''); // Nom du service
+      n$.lname = n$.name.toLowerCase();
+      n$.site = n$.site.replace(/framand/i, 'and')
+        .replace(/framage/i, 'age')
+        .replace(/framae/i, 'mae')
+        .replace(/(\.framasoft|frama\.)/i, '')
+        .replace(/framin/i, 'min')
+        .replace(/frame/i, 'me')
+        .replace(/frama/i, '');
 
-var d$ = {};
-var h$ = {};
+      if (n$.inframe) { n$.container = '<div id="framanav_container" style="display:none"></div>'; }
 
-// console n'existe pas sur IE8
-(function() {
-  if (!window.console) {
-    window.console = {};
-  }
-  var m = [
-    "log", "info", "warn", "error", "debug", "trace", "dir", "group",
-    "groupCollapsed", "groupEnd", "time", "timeEnd", "profile", "profileEnd",
-    "dirxml", "assert", "count", "markTimeline", "timeStamp", "clear"
-  ];
-  for (var i = 0; i < m.length; i++) {
-    if (!window.console[m[i]]) {
-      window.console[m[i]] = function() {};
-    }
-  }
-})();
-
-/*******************
- *  Config globale
- *******************/
-var f$_start_config = function() {
-  f$Merge(c$, l$);
-
-  n$.nav.speed = (n$.nav.set) ? '☀' : '☁';
-  if (l$) {
-      console.log('✔ '+n$.nav.speed+' config.js '+n$.version+' | '+n$.f$+' | '+n$.j$+' → '+i$jQuery()+' ?');
-
-    if(i$('/nav/html/')) { // Si pages « À propos » on réinit la config
-      f$_bootstrap_css = false;
-      c$.js.b$ = true;
-      c$.css.b$ = false;
-      c$.css.ext = false;
-      c$.footer = true;
-      c$.icons.apple = 'soft.png';
-    }
-
-    if(c$.mute) {
-      if(l$.alert == undefined) c$.alert[1] = '';                                    // Pas de bandeau
-      if(l$.modal == undefined) {
-        c$.modal.info[0] = ''; c$.modal.don[0] = '';                                 // Pas de modale
+      // Détection de la version de jQuery
+      if (window.jQuery === undefined) {
+        n$.j$ = 'ø'; // n° version du jQuery local
       } else {
-        if(l$.modal.info == undefined) c$.modal.info[0] = '';
-        if(l$.modal.don == undefined) c$.modal.don[0] = '';
+        n$.j$ = window.jQuery.fn.jquery;
+        f$ = jQuery; // alias (peut-être écrasé plus bas)
       }
-      c$.donate = false;                                                             // Pas de macaron
-    }
 
-    /** c$.js.j$ = i$jQuery() mais on garde l$.js.j$ en fallback pour les cas très particuliers **/
-    switch (c$.js.j$) {
-      case 'AJAX' :
-        if (i$jQuery() == 'AJAX') {
-          f$LoadJS(n$.nav.url+'lib/jquery/jquery.min.js', f$_start_jquery);
-          console.log('✔ jQuery '+n$.f$+' AJAX');
-        } else {
-          f$_start_jquery();
-          console.log('✔ jQuery '+n$.j$+' HTML');
+      // Création du lien Framaestro avec page courante + visio Framatalk
+      n.maestro();
+
+      // Ajout <html data-url="" data-inframe=""> pour site.scss
+      document.getElementsByTagName('html')[0].setAttribute('data-url', window.location.href);
+      document.getElementsByTagName('html')[0].setAttribute('data-inframe', n$.inframe);
+
+      // Détection URL de la nav → 'http://'+n$.site+'/nav'
+      const scripts = document.getElementsByTagName('script');
+      for (let i = 0; i < scripts.length; i += 1) {
+        if (scripts[i].getAttribute('src') && scripts[i].getAttribute('src').indexOf('/nav.js') > -1) {
+          n$.baseurl = this.l(scripts[i].getAttribute('src').replace('nav.js', ''));
+          // On ajout une div vide de 42px qui contiendra la nav
+          // (évite les sauts de mise en page avant le chargement des fichiers)
+          if (scripts[i].parentNode.tagName.toLowerCase() === 'body') {
+            // si nav.js est appelé en haut du body, c'est super rapide
+            document.write(n$.container);
+            n$.container = '☀';
+          } // sinon c'est dans le head, il faut attendre document.ready (voir plus bas)
         }
-      break;
-      case 'noConflict' :
-        console.log('✔ jQuery.noConflict '+n$.f$+' AJAX');
-        f$LoadJS(n$.nav.url+'lib/jquery/jquery.min.js', f$_start_jquery);
-      break;
-      default:
-        if (window.jQuery === undefined) {
-          console.error('✘ jQuery');
-        } else {
-          console.log('✔ jQuery '+n$.j$+' HTML');
-          f$_start_jquery();
-        }
-      break;
-    }
+      }
 
-  } else {
-    console.error('✘ '+n$.nav.speed+' config.js '+n$.version);
-  }
-}; // ---> jQuery
+      n.loadJS(n.l('config.js', 'n', 'v'), n.config);
+    },
 
-/*******************
- *     Nav init
- *******************/
-document.getElementsByTagName('html')[0].setAttribute('data-url', window.location.href);
-document.getElementsByTagName('html')[0].setAttribute('data-inframe', n$.inframe);
+    /** Config globale ********************************************** */
+    config() {
+      /* global l$ */
+      n.mergeObj(c$, l$); // import de la config l$ dans c$
 
-var f$_scripts = document.getElementsByTagName('script');
+      if (l$) {
+        n$.log.push(`✔ ${n$.container.replace(/<.*/, '☁')} config.js ${n$.version} | ${n$.f$} | ${n$.j$} → ${n.jquery()} ?`);
 
-var f$_nav_init = function() {
-  for (var i = 0; i < f$_scripts.length; i++) {
-    if (f$_scripts[i].getAttribute("src") && f$_scripts[i].getAttribute("src").indexOf("/nav.js") > -1) {
-      // Emplacement de la nav ('/nav/', '/static/nav/, '../nav/' → 'http://'+n$.site+'/nav')
-      n$.nav.url = f$_scripts[i].getAttribute("src").replace('nav.js','');
-      n$.nav.url = f$Link(n$.nav.url);
-      // On ajout une div vide de 42px qui contiendra la nav (évite les sauts de mise en page avant le chargement des fichiers)
-      if (f$_scripts[i].parentNode.tagName.toLowerCase() == 'body' ) {
-        // si nav.js est appelé en haut du body, c'est super rapide
-        document.write(n$.nav.html);
-        n$.nav.set = true;
-      } // sinon c'est dans le head, il faut attendre document.ready (voir plus bas)
-    }
-  }
-
-  f$LoadJS(n$.nav.url+'config.js?'+n$.version, f$_start_config);
-}; // ---> config.js
-
-f$_nav_init();
-
-/*******************
- *     jQuery
- *******************/
-function f$_start_jquery() {
-  /*
-   * CSS
-   */
-  f$LoadCSS(c$.css);
-
-  /*
-   * Nav
-   */
-  switch (c$.js.j$) {
-    case 'noConflict': var f$ = jQuery.noConflict(); break;
-    default          : var f$ = jQuery; break;
-  }
-
-  f$(document).ready(function() {
-    if (i$('https://framacalc.org/_start', 'u') && f$('html').attr('manifest') !== 'manifest.appcache') {
-      console.log('Reloading https://framacalc.org/_start because of bad _start version');
-      window.location.href = 'https://framacalc.org/_start?reload=1';
-    }
-
-    f$.ajaxSetup({ cache: true });
-
-    if(!n$.nav.set) f$('body').prepend(n$.nav.html);
-
-    // On charge ensuite les données
-    f$_i18n = {};
-    var dataI18n = function(){};
-    if(i$Lang('en') || !u$Lang('fr')) {
-    dataI18n = f$.getJSON( n$.nav.url+'html/data.en.json' )
-        .fail(function() { console.error('✘ data.en.json') })
-        .done( function(data) { f$_i18n = data; });
-    }
-    var dataFr = f$.getJSON( n$.nav.url+'html/data.fr.json' )
-        .fail(function() { console.error('✘ data.fr.json') })
-        .done( function(data) { f$_fr = data; });
-
-    f$.when(dataI18n, dataFr).then(function() {
-        // Import i18n dans d$
-        f$Merge(d$, f$_fr);
-        f$Merge(d$, f$_i18n);
-
-        var f$_color = ''; var f$_menu = '';
-        for (var k in d$.menu) { d$.menu[k].nav ='' }
-        d$.menu.follow.footer = ''; d$.menu.about.site = '';
-
-        if (n$.inframe) f$('#framanav_container').hide();
-
-        h$ = {
-          framasoft: !i$Agent() ? '<b class="violet">'+d$.meta.home.p+'</b><b class="orange">'+d$.meta.home.s+'</b>' : '<b class="violet">Lara</b><b class="orange">Croft</b>',
-          rssLink : '<link rel="alternate" type="application/rss+xml" title="'+d$.f.rss.d1+'" href="'+d$.f.rss.l+'" />',
-          newwindow: '&nbsp;<i class="fa fa-external-link new-window" aria-hidden="true"></i>'+h$SR('('+d$.t.newwindow+')')+'</span>',
-          divider: '<li role="presentation" class="divider"></li>',
-          menu: d$.menu,
-          f: {}
+        if (n.is.url('/nav/html/')) { // si pages « À propos » on réinit la config
+          c$.js.b$ = true;
+          c$.css.b$ = false;
+          c$.icons.apple = 'soft.png';
         }
 
-        // Class couleurs + Dropdown menu
-        for (var k in d$.f) {
-          switch ( d$.f[k].c ) {
-            case 'b': f$_color = 'bleu';   f$_menu = 'soft';     break;
-            case 'r': f$_color = 'rouge';  f$_menu = 'culture';  break;
-            case 'v': f$_color = 'vert';   f$_menu = 'services'; break;
-            case 'j': f$_color = 'jaune';  f$_menu = 'vrac';     break;
-            case 'f': f$_color = 'violet'; f$_menu = 'follow';   break;
-            case 'o': f$_color = 'orange'; f$_menu = (k != 'dio') ? 'about' : 'services'; break;
-          }
-          // Nom du projet coloré (html)
-          // Préfix violet
-          h$.f[k] = {};
+        n.loadCSS(c$.css);
 
-          if ( d$.f[k].p == undefined ) {
-            h$.f[k].html = d$.f[k].p = '';
-          } else {
-            h$.f[k].html = '<b class="violet">'+d$.f[k].p+'</b>';
-          }
-          // Suffixe coloré (anglais, accronyme)
-          switch (d$.f[k].a) {
-            case 'en'  : h$.f[k].html += '<b class="'+f$_color+'" lang="en">'+d$.f[k].s+'</b>'; break;
-            case 'abbr': h$.f[k].html += '<b class="'+f$_color+'"><abbr>'+d$.f[k].s+'</abbr></b>'; break;
-            default    : h$.f[k].html += '<b class="'+f$_color+'">'+d$.f[k].s+'</b>'; break;
-          }
-
-          // Nom du projet nu (name)
-          h$.f[k].name = d$.f[k].p+d$.f[k].s;
-
-          // Attribution des entrées dans chaque menu
-          h$.menu[f$_menu].nav += '<li class="fs_'+f$_menu+' fs_'+k+'"><a href="'+d$.f[k].l+'" '+h$Popover(d$.f[k].t1, d$.f[k].d1)+'>'+h$icon(d$.f[k].i)+'&nbsp;'+h$.f[k].name+'</a></li>';
-
-          // "Nous suivre" dans le footer
-          if ((f$_menu == 'follow') && !(/(wiki|colibri|newsletter|contact|wikipedia)/i).test(k)) {
-            h$.menu['follow'].footer += '<li class="fs_'+k+'"><a href="'+d$.f[k].l+'" title="'+d$.f[k].t1+'" '+h$Popover(d$.f[k].t1, d$.f[k].d1, 'top')+'><i class="fa fa-fw fa-2x '+d$.f[k].i+'" aria-hidden="true"></i>'+h$SR(d$.f[k].name)+'</a></li>';
-          }
-          // "À propos" du site
-          if(n$.name == h$.f[k].name) {
-            f$_soft = (d$.f[k].soft != undefined) ? ' ('+d$.f[k].soft+')' : '';
-            h$.menu['about'].site += '<li class="dropdown-header">'+h$.f[k].html+f$_soft+'</li>'+h$.divider;
-            if(d$.f[k].doc != undefined) {
-              d$.f.doc.l = d$.f[k].doc;
-            }
-            if(d$.f[k].git != undefined) {
-              h$.menu['about'].site += '<li class="fs_about fs_git"><a href="'+d$.f[k].git+'">'+h$icon(d$.f.git.i)+'&nbsp;'+d$.f.git.p+d$.f.git.s+'</a></li>';
-            }
-            if(d$.f[k].src != undefined) {
-              h$.menu['about'].site += '<li class="fs_about fs_src"><a href="'+d$.f[k].src+'">'+h$icon('fa-code-fork')+'&nbsp;'+d$.t.source+f$_soft+'</a></li>';
-            }
-            d$.f.faq.l = d$.f.faq.l+'#'+n$.name.toLowerCase();
-            d$.f.aide.l = d$.f.aide.l.replace('#aide','#'+n$.name.toLowerCase());
-          }
-        }
-        // Switch mobile/desktop
-        h$.menu['about'].nav +=
-          h$.divider+
-          '<li class="framanav-mobile"><a href="javascript:void(0);">'+
-            h$icon('fa-mobile')+'&nbsp;'+d$.t.mobile+
-          '</a></li>'+
-          '<li class="framanav-desktop"><a href="javascript:void(0);">'+
-            h$icon('fa-desktop')+'&nbsp;'+d$.t.desktop+
-          '</a></li>';
-
-        h$.nav =
-'<nav class="navbar navbar-default" id="framanav" role="menubar" style="display:none">'+
-  '<button type="button" class="navbar-toggle text-muted" data-toggle="collapse" data-target=".navbar-ex1-collapse">'+
-    h$SR(d$.t.toggle)+h$icon('fa-bars')+
-  '</button>'+
-  '<div class="nav-container">'+
-    '<div class="navbar-header">'+
-      '<a class="navbar-brand" href="'+d$.meta.home.l+'">'+
-        '<img src="'+n$.nav.url+'img/logo.png"/>'+
-        '<span class="hidden-sm">'+h$.framasoft+'</span>'+
-      '</a>'+
-      '<a href="#nav-end" id="nav-skip">'+d$.t.skip+'</a>'+
-    '</div>'+
-    '<div class="collapse navbar-collapse navbar-ex1-collapse">'+
-      '<ul class="nav navbar-nav">';
-          for (var k in d$.menu) {
-            if(k != 'site' && k != 'community') {
-              h$.nav +=
-        '<li class="dropdown" id="fs_'+k+'">'+
-          '<a href="#" class="dropdown-toggle" data-toggle="dropdown">'+h$.menu[k].name+'<b class="caret"></b></a>'+
-          '<ul class="dropdown-menu">'+h$.menu[k].nav+'</ul>'+
-        '</li>';
-            }
-          }
-        h$.nav +=
-        '<li><a href="'+d$.meta.soutenir.l+'/?f=nav" class="btn-soutenir" '+h$Popover(d$.meta.soutenir.t1, d$.meta.soutenir.d1, 'bottom')+'>'+
-          h$icon(d$.meta.soutenir.i)+'&nbsp;'+d$.meta.soutenir.s+
-        '</a></li>'+
-        '<li id="btn-benevalo"><a href="'+d$.meta.benevalo.l+'" class="btn-info" '+h$Popover(d$.meta.benevalo.t1, d$.meta.benevalo.d1, 'bottom')+'>'+
-          h$icon(d$.meta.benevalo.i)+'&nbsp;'+d$.meta.benevalo.s+
-        '</a></li>'+
-        '<li id="btn-myframa"><a href="'+d$.meta.myframa.l+'" class="btn-primary" '+h$Popover(d$.meta.myframa.t1, d$.meta.myframa.d1, 'bottom')+'>'+
-          h$icon(d$.meta.myframa.i)+'&nbsp;'+d$.meta.myframa.s+
-        '</a></li>'+
-      '</ul>'+
-    '</div>'+
-  '</div>'+
-  '<a id="nav-end" class="sr-only"></a>'+
-'</nav>'+
-'<a href="'+d$.meta.soutenir.l+'/?f=macaron" id="framanav_donation" rel="donBadge" style="display:none" class="hidden-xs">'+h$SR(d$.meta.soutenir.s)+'</a>';
-
-        /** On balance le code html **/
-        f$('#framanav_container').prepend(h$.nav);
-        // Placement des popovers à gauche
-        f$('#fs_services li:odd a, #fs_about li:even a').attr('data-placement','left');
-        // Réagencement À propos
-        f$('#fs_about li').has('a[href*="status."]').after(d$.menu['about'].site);
-        f$('#fs_about .fs_git').before(f$('#fs_about .fs_aide,#fs_about .fs_faq,#fs_about .fs_doc'));
-
-        f$('#fs_about ul').prepend('<li class="dropdown-header">'+h$.framasoft+'</li>'+h$.divider);
-        f$('#fs_about .fs_dio2').before('<li class="dropdown-header"><b>'+d$.t.campaign+'<b></li>'+h$.divider);
-
-        f$('#fs_services .fs_dio,#fs_about .fs_dio2,#fs_about .fs_cuo').addClass('dropdown-header');
-        f$('#fs_services .fs_dio a').wrapInner('<b>');
-        f$('#fs_about .fs_dio2 a,#fs_about .fs_cuo a').addClass('text-left');
-
-        // Ajout des dividers
-        f$(
-          '.fs_start, .fs_zic, .fs_evl, .fs_evl2, .fs_dio,'+
-          '.fs_maestro, .fs_carte, .fs_minetest, .fs_news, .fs_services.fs_git,'+
-          '.fs_wiki, .fs_petitions, .fs_gplus, .fs_wikipedia, .fs_status, .fs_credits'
-        ).after(h$.divider);
-
-        /**
-         * Mobile/Desktop
-         **/
-        // On ajoute du viewport et des boutons mobile/desktop
-        var f$_btn_desktop = f$('.framanav-desktop');
-        var f$_btn_mobile = f$('.framanav-mobile');
-
-        function f$_mobile() {
-          var f$_viewport = f$('meta[name="viewport"]');
-          if (f$_viewport.length==0) {
-            f$('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
-          } else {
-            f$_viewport.attr('content','width=device-width, initial-scale=1.0');
-          }
-          f$_btn_desktop.addClass('visible-xs-inline').show();
-          f$_btn_mobile.hide();
-        };
-
-        function f$_desktop() {
-          var f$_viewport = f$('meta[name="viewport"]');
-          if (f$_viewport.length) {
-            f$_viewport.attr('content','width=1024');
-          }
-          f$_btn_desktop.removeClass('visible-xs-inline').hide();
-          f$_btn_mobile.show();
-        }
-
-        if (c$.mobile) {
-        // Viewport mobile si Responsive dans la config
-        // Boutons « Désactiver mode mobile » par défaut
-          f$_mobile();
-        } else if (f$('meta[name="viewport"]').length==0) {
-        // Bouton « Activer mode mobile » par défaut
-          f$_desktop();
-        }
-        // Si (Dés)Activation mannuel, le cookie prend la main le temps de la session
-        switch (f$Cookie('r','nav_viewport')) {
-          case 'mobile' : f$_mobile(); break;
-          case 'desktop': f$_desktop(); break;
-        }
-        // Boutons (Dés)Activer le mode mobile
-        f$_btn_mobile.on('click', function() {
-          f$_mobile();
-          document.cookie = 'nav_viewport=mobile;expire=0';
-        });
-        f$_btn_desktop.on('click', function() {
-          f$_desktop();
-          document.cookie = 'nav_viewport=desktop;expire=0';
-        });
-        /** Fin Mobile/Desktop **/
-
-        f$('#framanav_container').css('opacity','1');
-
-        // Bénévalo
-        // Le bouton soutenir remplacé par un bouton bénévalo
-        // pendant 3 jours autour de la pleine lune
-        var today = Math.floor(new Date().getTime() / 1000);
-        var fullMoon = 1453603580; // 24/01/2016 02:46:20
-        var moonRev = 2551443;     // 29j 12h 44m 3s
-
-        if((today - fullMoon)%moonRev < 129600 || (today - fullMoon)%moonRev > moonRev-129600) {
-          f$('#btn-benevalo').show();
-          f$('#btn-benevalo').prev().hide();
-        }
-        // MyFrama
-        if (!n$.inframe) {
-          var bm_url = location.href;
-          var bm_title = document.title || bm_url;
-          var myframa = 'https://my.framasoft.org/?post=' + encodeURIComponent(bm_url)+
-            '&title=' + encodeURIComponent(bm_title)+
-            '&description=' + encodeURIComponent(document.getSelection())+
-            '&source=bookmarklet';
-
-          function f$popup(url) {
-            window.open(
-              url,'_blank','menubar=no,height=500,width=600,toolbar=no,scrollbars=yes,status=no,dialog=1'
-            );
-          }
-          f$('#btn-myframa').on('click', function() {
-            window.open(
-              myframa,'myframa',
-              'menubar=no,height=500,width=600,toolbar=no,scrollbars=yes,status=no,dialog=1'
-            );
-            return false;
-          });
-          f$('#btn-myframa a').attr('href', myframa)
-        }
-
-        // Footer
-        if(c$.footer && !n$.inframe) {
-
-          h$.footer =
-'<footer id="framafooter" class="row hidden-print" role="contentinfo">'+
-  '<div class="container">'+
-    '<div class="clearfix col-sm-8">'+
-      '<nav class="col-xs-4">'+
-        '<h1>'+d$.meta.home.p+d$.meta.home.s+'</h1>'+
-        '<ul class="list-unstyled">'+
-          '<li><a href="'+d$.f.asso.l+'">'+h$.f.asso.name+'</a></li>'+
-          '<li><a href="'+d$.f.charte.l+'">'+h$.f.charte.name+'</a></li>'+
-          '<li><a href="'+d$.f.contact.l+'">'+h$.f.contact.name+'</a></li>'+
-          '<li><a href="'+d$.f.stats.l+'">'+h$.f.stats.name+'</a></li>'+
-          '<li><a href="'+d$.f.status.l+'">'+h$.f.status.name+'</a></li>'+
-        '</ul>'+
-      '</nav>'+
-      '<nav class="col-xs-4">'+
-        '<h1>'+d$.menu.community.name+'</h1>'+
-        '<ul class="list-unstyled">'+
-          '<li><a href="'+d$.f.participer.l+'">'+h$.f.participer.name+'</a></li>'+
-          '<li><a href="'+d$.f.colibri.l+'">'+d$.f.colibri.d0+'</a></li>'+
-          '<li><a href="'+d$.f.benevalo.l+'">'+h$.f.benevalo.name+'</a></li>'+
-          '<li><a href="'+d$.f.partenaires.l+'">'+h$.f.partenaires.name+'</a></li>'+
-
-        '</ul>'+
-      '</nav>'+
-      '<nav class="col-xs-4">'+
-        '<h1>'+d$.menu.site.name+'</h1>'+
-        '<ul class="list-unstyled">'+
-          '<li><a href="'+d$.f.aide.l+'">'+h$.f.aide.name+'</a></li>'+
-          '<li class="fs_faq"><a href="'+d$.f.faq.l+'">'+h$.f.faq.name+'</a></li>'+
-          '<li><a href="'+d$.f.legals.l+'">'+h$.f.legals.name+'</a></li>'+
-          '<li><a href="'+d$.f.cgu.l+'"><abbr>'+h$.f.cgu.name+'</abbr></a></li>'+
-          '<li><a href="'+d$.f.credits.l+'">'+h$.f.credits.name+'</a></li>'+
-        '</ul>'+
-      '</nav>'+
-    '</div>'+
-    '<div class="col-sm-4">'+
-      '<div class="col-xs-12">'+
-        '<h1>'+d$.menu.follow.name+'</h1>'+
-        '<ul class="list-inline">'+h$.menu.follow.footer+'</ul>'+
-        '<h2>'+h$.f.newsletter.name+'</h2>'+
-        '<form action="https://contact.framasoft.org/php_list/lists/?p=subscribe&amp;id=2" method="post" name="subscribeform">'+
-          '<div class="input-group input-group-sm">'+
-            '<input class="form-control" title="'+d$.t['type-your-email']+'" name="email" size="40" type="text" placeholder="'+d$.t['your-email']+'" />'+
-              '<span class="input-group-btn">'+
-              '  <button class="btn btn-default" name="subscribe" type="submit" value="subscribe">'+d$.t.subscribe+h$SR(d$.t['to-the-newsletter'])+'</button>'+
-              '</span>'+
-            '</div>'+
-            '<input name="htmlemail" type="hidden" value="1" /> <input name="list[5]" type="hidden" value="signup" /> <input name="listname[5]" type="hidden" value="Newsletter" />'+
-            '<div style="display: none;"><input name="VerificationCodeX" size="20" type="text" value="" /></div>'+
-        '</form>'+
-      '</div>'+
-    '</div>'+
-  '</div>'+
-'</footer>';
-
-          f$('body').append(h$.footer);
-
-          if(f$('body').height() < f$(window).height()) {
-            f$('#framafooter').css('position','absolute');
-          } else {
-            f$('#framafooter').css('position','relative');
-          }
-
-          f$(window).on('resize, scroll, click', function() {
-            f$('#framafooter').css('position','relative');
-            if(f$('body').height() < f$(window).height()) {
-              f$('#framafooter').css('position','absolute');
+        /** c$.js.j$ = n.jquery() mais on garde l$.js.j$
+         * en fallback pour les cas très particuliers */
+        switch (c$.js.j$) {
+          case 'AJAX':
+            if (n.jquery() === 'AJAX') {
+              n.loadJS(n.l('lib/jquery/jquery.min.js', 'n'), n.fQuery);
+              n$.log.push(`✔ jQuery ${n$.j$} AJAX`);
             } else {
-              f$('#framafooter').css('position','relative');
+              n.fQuery();
+              n$.log.push(`✔ jQuery ${n$.j$} HTML`);
             }
-            setTimeout( function() { // au cas où une animation redimentionne le body
-              if(f$('body').height() < f$(window).height()) {
-                f$('#framafooter').css('position','absolute');
-              } else {
-                f$('#framafooter').css('position','relative');
-              }
-            }, 800);
-          });
-        }
-
-        /*******************
-         *   BootStrap JS
-         *******************/
-        if (c$.js.b$) {
-          if (typeof f$().modal == 'function' || c$.js.b$ == 'html') {
-            console.log('✔ Bootstrap HTML');
-            go_BootStrap();
-          } else {
-            f$.getScript(n$.nav.url+'lib/bootstrap/js/bootstrap.min.js', function() {
-              console.log('✔ Bootstrap AJAX');
-              go_BootStrap();
-            });
-          }
-        } else {
-          console.info('✘ Bootstrap');
-        }
-
-        // Audio JS
-        if (c$.js.audio) {
-          f$('audio').each(function() {
-            f$(this).wrap('<div class="audio" />');
-            var outer = this.outerHTML;
-            var regex = new RegExp('<' + this.tagName, 'i');
-              var newTag = outer.replace(regex, '<video');
-              regex = new RegExp('</' + this.tagName, 'i');
-              newTag = newTag.replace(regex, '</video');
-            f$(this).replaceWith(newTag);
-          });
-        }
-
-        // Video JS
-        if (c$.js.video) {
-          f$('link[href*="/nav/css/nav.css"]').before('<link href="'+n$.nav.url+'lib/video-js/video-js.css" media="all" rel="stylesheet"/>');
-          // Paramètres à ajouter à la vidéo pour appliquer VideoJS en surcouche
-          f$('video').attr({
-            'class':'video-js vjs-default-skin',
-            'data-setup':'{}'});
-          // Numérotation des vidéos (pour pouvoir utiliser l'API : videojs('id').ready() )
-          f$('video').each(function(index) {
-            if(f$(this).has('source[type*="webm"]').length && (n$.browser.firefox || n$.browser.opera || ns.browser.chrome)) {
-              f$(this).children('source[type*="mp4"]').remove();
-            }
-            f$(this).attr('id','f_video_'+index);
-          });
-
-          f$.getScript(n$.nav.url+'lib/video-js/video.js', function() {
-            console.log('✔ video.js');
-            videojs.options.flash.swf = n$.nav.url+'lib/video-js/video-js.swf';
-            // On "clique" sur les sous-titres Français
-            // pour chaque vidéo dès que VideoJS est prêt
-            f$('video').each(function(index) {
-              videojs('f_video_'+index).ready(function() { f$("li.vjs-menu-item:contains('Français')").trigger('click'); });
-            });
-          });
-        }
-
-        // Bloqueur d'iframe style Flashblock
-        /* Vidéos Youtube */
-        var f$_yt_i=0;
-        f$('a[href*="youtube.com/watch"],a[href*="youtu.be/"]').has('img').click(function() {
-          // Si lien youtube <a> on l'ajoute le code au clic + ajout d'un Id à l'iframe
-          var f$_yt_iframe = f$(this).attr('href').replace(
-            /(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com(?:\/embed\/|\/v\/|\/watch\?v=))([\w\-]{10,12})\b[?=&\w]*(?!['"][^<>]*>|<\/a>)/ig,
-            '<iframe id="youtube'+ f$_yt_i +'" src="https://www.youtube.com/embed/$1?autoplay=1" width="560" height="315" frameborder="0" allowfullscreen ></iframe>');
-          f$(this).after(f$_yt_iframe);
-          // On supprime <a><img/></a>
-          f$(this).remove();
-          f$_yt_i++;
-          return false;
-        });
-        /** Même chose à faire pour Soundcloud, Dailymotion, Vimeo **/
-
-        // Flux RSS Global
-        f$('head').append(h$.rssLink);
-
-        // Favicon et Apple touch icon
-        if (!c$.icons.keep) {
-          f$('link[rel*=icon]').remove();
-          c$.icons.fav = (!c$.icons.fav) ? 'favicon-violet.png' : c$.icons.fav;
-          c$.icons.apple = (!c$.icons.apple) ? 'apple-violet.png' : c$.icons.apple;
-          f$('head').append('<link rel="icon" type="image/png" href="'+n$.nav.url+'img/icons/'+c$.icons.fav+'" />');
-          f$('head').append('<link rel="apple-touch-icon" href="'+n$.nav.url+'img/icons/'+c$.icons.apple+'" />');
-        }
-
-        // Opt-in
-        var f$_optin_dejavu = f$Cookie('r','opt-in');
-        if (c$.optin[0]!='' && !f$_optin_dejavu) {
-          f$(c$.optin[0]).after(
-            h$Alert('info', 'fs_opt-in',
-              '<input type="checkbox" id="fs_opt-in_checkbox" value="false" />'+
-              '<label for="fs_opt-in_checkbox">'+d$.meta.optin.t+'</label>'+
-              '<br /><small>'+d$.meta.optin.d1+
-                '&nbsp;<a href="'+d$.f.newsletter.l+'" id="link-opt-in" target="_blank" >'+d$.meta.optin.d2+h$.newwindow+'</a>'+
-              '</small>'
-            )
-          );
-
-          f$(c$.optin[0]).focusin(function() {
-            f$('#fs_opt-in_error').remove();
-            // Ajout du cookie (expire au bout d'un an)
-            f$Cookie('w',c$.optin[2],true,c$.optin[3]);
-          });
-
-          // Requête ajax crossdomain lorsque la case est cochée
-          f$('#fs_opt-in input, #fs_opt-in label').on('click', function() {
-            f$('#fs_opt-in_error').remove();
-            f$_email = f$(c$.optin[0]).val();
-            if(c$.optin[1]!='' && f$(c$.optin[0]).val()!=f$(c$.optin[1]).val()) { // Cas où il y a un champs pour confirmer email
-              f$(c$.optin[0]).after(
-                h$Alert('danger', 'fs_opt-in_error', d$.meta.optin.e2)
-              );
-              return false;
-            } else if( !i$Email(f$(c$.optin[0]).val())) {
-              f$(c$.optin[0]).after(
-                h$Alert('danger', 'fs_opt-in_error', d$.meta.optin.e2.replace('%f$_email%', f$_email))
-              );
-              return false;
+            break;
+          case 'noConflict':
+            n$.log.push(`✔ jQuery.noConflict ${n$.j$} AJAX`);
+            n.loadJS(n.l('lib/jquery/jquery.min.js', 'n'), n.fQuery);
+            break;
+          default:
+            if (window.jQuery === undefined) {
+              n$.log.push('✘ jQuery');
             } else {
-              f$('#fs_opt-in input').attr('checked', true);
-              f$.ajax({
-                type: "POST",
-                url: 'https://contact.framasoft.org/php_list/lists/?p=subscribe&id=2', // URL d'abonnement à la liste
-                crossDomain:true,
-                data: 'makeconfirmed=1&htmlemail=1&list%5B5%5D=signup&listname%5B5%5D=Newsletter&email='+f$_email.replace('@','%40')+'&VerificationCodeX=&subscribe=Abonnement' // Paramètres habituellement passés dans le formulaire
-              });
-              // On supprime la case à cocher (pas possible de décocher ; l'annulation se fait depuis le mail reçu)
-              f$('#fs_opt-in').remove();
-              // Message d'alert pour confirmer l'inscription
-              f$(c$.optin[0]).after(
-                h$Alert(
-                  'success', 'fs_opt-in_confirm',
-                  d$.meta.optin.s1.replace('%f$_email%', f$_email),
-                  true
-                )
-              );
+              n$.log.push(`✔ jQuery ${n$.j$} HTML`);
+              n.fQuery();
             }
-          });
+            break;
         }
+      } else {
+        n$.log.push(`✘ ${n$.container.replace(/<.*/, '☁')} config.js ${n$.version}`);
+      }
+    },
 
-        // Macaron
-        if(c$.donate && !n$.inframe) {
-          f$('#framanav_donation').show().delay(Math.random() * (29000 - 1000) + 1000).fadeOut(600).fadeIn(600);
+    /** jQuery is ready ********************************************* */
+    fQuery() {
+      switch (c$.js.j$) {
+        case 'noConflict': f$ = jQuery.noConflict(); break;
+        default: f$ = jQuery; break;
+      }
+
+      f$(document).ready(() => {
+        f$.ajaxSetup({ cache: true });
+
+        if (n$.container !== '☀') { f$('body').prepend(n$.container); }
+
+        // On charge ensuite les données
+        let f$I18n = {};
+        let f$Fr = {};
+        let dataI18n = function dataI18n() {};
+        let dataFr = function dataFr() {};
+        if (n.is.lang('en') || !n.is.lang('fr', 'b')) {
+          dataI18n = f$.getJSON(n.l('html/data.en.json', 'n'))
+            .fail(() => { n$.log.push('✘ data.en.json'); })
+            .done((data) => { f$I18n = data; });
         }
+        dataFr = f$.getJSON(n.l('html/data.fr.json', 'n'))
+          .fail(() => { n$.log.push('✘ data.fr.json'); })
+          .done((data) => { f$Fr = data; });
 
-        // Liens À propos
-        f$('#framafooter a[href*="/nav/html/"], #fs_about a').attr('href', function() {
-          return f$(this).attr('href')
-                         .replace('credits.html', 'credits.html#'+c$.credits)
-                         .replace('legals.html', 'legals.html#'+c$.host);
-        });
+        f$.when(dataI18n, dataFr) // eslint-disable-line promise/catch-or-return
+          .then(() => {
+            n.mergeObj(d$, f$Fr); // import default locale 'fr' dans d$
+            n.mergeObj(d$, f$I18n); // import locale dans d$
 
-        // Crédits
-        if(i$('/html/credits.html') && location.hash) {
-          f$('#site-credits').load(n$.nav.url+'html/credits/'+location.hash.replace('#','')+'.html');
-        };
+            if (n$.inframe) { f$('#framanav_container').hide(); }
 
-        // Hébergeur et Iframe Piwik sur Mentions légales
-        if(i$('/html/legals.html')) {
-          if(location.hash) {
-            f$('#modal-legals-host').load(n$.nav.url+'html/host/'+location.hash.replace('#','')+'.html');
-          }
-          f$('#piwik-iframe').html('<iframe style="border: 0; height: 200px; width: 600px;" src="'+c$.piwik.url+'/index.php?module=CoreAdminHome&action=optOut&language=fr"></iframe>')
-        }
+            Object.keys(d$.menu).forEach((k) => {
+              d$.menu[k].list = [];
+            });
+            d$.menu.about.site = '';
 
-        // Ext.js
-        if (typeof c$.js.ext === "function") {
-          c$.js.ext();
-        } else if(c$.js.ext === true) {
-          f$.getScript(n$.nav.url+'ext/'+n$.site+'.js');
-        } else if(typeof c$.js.ext === "string") {
-          f$.getScript(n$.nav.url+'ext/'+c$.js.ext+'.js');
-        }
-        /** On peut ajouter des scripts jQuery "génériques" ici mais... **/
-
-        function go_BootStrap() {
-          // Redéfini f$ pour Bootstrap en mode noConflict si nécessaire
-          switch (c$.js.j$) {
-            case 'noConflict': var f$ = jQuery.noConflict(); break;
-            default          : var f$ = jQuery; break;
-          }
-
-          /**
-           *  Accessibilité
-           *  code issu de https://github.com/paypal/bootstrap-accessibility-plugin
-           **/
-          // Modal
-          if(typeof f$().modal == 'function') {
-            var modalhide =   f$.fn.modal.Constructor.prototype.hide;
-            f$.fn.modal.Constructor.prototype.hide = function(){
-              var modalOpener = this.$element.parent().find('[data-target="#' + this.$element.attr('id') + '"]');
-                modalhide.apply(this, arguments);
-                modalOpener.focus();
-            }
-          }
-          /** Fin accessibilité **/
-
-          if (!n$.inframe) { // Pas de bandeau, nav, modale et macaron en mode iframe
-
-            if(c$.fixed || i$('/nav/html/')) {
-              f$('body').addClass('fnav-fixed');
-            }
-
-            // Liens de la nav à ouvrir dans un onglet
-            if(!i$('/nav/html/')) {
-              f$('#framanav .dropdown-menu a').attr('target','_blank').append(h$.newwindow);
-            }
-
-            /** ... on ajoute surtout les scripts qui font appel à BootStrap et jQuery ici **/
-
-            // Activation des popovers
-            if(typeof f$().popover == 'function') {
-              f$('a[rel="popover"]').each(function() {
-                f$(this).popover({
-                  html: true,
-                  trigger: 'focus hover'
-                });
-                f$(this).removeAttr('title');
-              });
-            }
-
-            // Modal et Alert d'info
-            var f$_alert_dejavu = f$Cookie('r','nav-alert');
-            var f$_modalInfo_dejavu = f$Cookie('r',c$.modal.info[2]);
-
-            // Modal
-            if (c$.modal.info[0]!='') {
-              f$('body').append(
-                h$Modal( // id, title, body, footer
-                  'finfo', c$.modal.info[0],
-                  c$.modal.info[1],
-                  '<button class="btn" id="modal-close" data-dismiss="modal">'+d$.t.close+'</button>'+
-                  '<button class="btn btn-primary" id="modal-set-cookie" >'+d$.t.nevershow+'</button>'
-                )
-              );
-
-              if(!f$_modalInfo_dejavu) {
-                f$('#modal-finfo').modal('show');
-                f$('#modal-set-cookie').click(function() {
-                  f$Cookie('w',c$.modal.info[2],true,c$.modal.info[3]); // cookie pour 7 jours par défaut (cf config ci-dessous)
-                  f$('#modal-finfo').modal('hide');
-                });
-                f$('#modal-finfo .close, #modal-close').click(function() {
-                  f$Cookie('w',c$.modal.info[2],true); // cookie pour la session
-                  f$('#modal-finfo').modal('hide');
-                });
-              }
-            }
-
-            // Alert
-            if (c$.alert[1]!='' && !f$_alert_dejavu) {
-
-              f$_alert_margin_top = '';
-              if (c$.fixed || i$('/nav/html/')) {
-                f$('#framanav_container ~ *:not(script):first').css('margin-top', '-=42');
-              }
-
-              f$('#framanav_container').after(
-                h$Alert(
-                  c$.alert[0], 'nav-alert',
-                  '<div style="margin:0 auto; max-width:800px;"><p class="text-center">'+c$.alert[1]+'</p></div>',
-                  true
-                )
-              );
-
-              // Cookie enregistré en fermant (7 jours par défaut cf config.js)
-              f$('#nav-alert').bind('closed.bs.alert', function () {
-                f$Cookie('w',c$.alert[2],true,c$.alert[3]);
-              });
-
-            }
-
-            // Fenêtre modal pour dons sur téléchargements
-            if (c$.modal.don[0]!='') {
-              f$('body').append(
-                h$Modal(
-                  'soutenir', d$.meta.modaldon.t,
-                  // body
-                  '<div id="lldemars-framasoft"></div>'+
-                  d$.meta.modaldon.d[0].replace('%c$.modal.don[1]%', c$.modal.don[1])+
-                  d$.meta.modaldon.d[1]+d$.meta.modaldon.d[2]+d$.meta.modaldon.d[3],
-                  // footer
-                  '<div class="clearfix"><p class="col-md-12 text-center"><a target="_blank" id="modal-don" href="'+d$.meta.soutenir.l+'/?f=modal&s='+n$.site+'" class="btn btn-soutenir btn-block">'+h$icon(d$.meta.soutenir.i)+' '+d$.meta.modaldon.b1+h$.newwindow+'</a></p>'+
-                  '<!--<p class="col-md-6 text-center"><a target="_blank" id="modal-contact" href="'+d$.f.participer.l+'" class="btn btn-info btn-block">'+h$icon(d$.f.participer.i)+' '+d$.meta.modaldon.b2+h$.newwindow+'</a></p>-->'+
-                  '<p class="col-md-6 text-center"><a id="modal-dl" href="javascript:void(0);" class="btn btn-xs btn-default btn-block" >'+d$.meta.modaldon.b3.replace('%c$.modal.don[2]%',c$.modal.don[2])+'</a></p>'+
-                  '<p class="col-md-6 text-center"><a id="modal-dl2" href="javascript:void(0);" class="btn btn-xs btn-default btn-block" style="line-height: 36px;">'+d$.meta.modaldon.b4+'<br></a></p></div>'
-                )
-              );
-
-              if(c$.modal.don[0]=='onstart') {
-                var dejavu = f$Cookie('r', 'dondl');
-                if(!dejavu) {
-                  f$('#modal-soutenir').modal('show');
-                  f$('#modal-soutenir').css('display','block'); // bugfix
-                  f$('#modal-contact, #modal-don, #modal-dl, #modal-soutenir .close').click(function() {
-                    f$Cookie('w','dondl',true,c$.modal.don[3]);
-                    f$('#modal-soutenir').modal('hide');
-                  });
-                  f$('#modal-dl2').click(function() {
-                    f$Cookie('w','dondl',true,365*24*60*60*1000);
-                    f$('#modal-soutenir').modal('hide');
-                  });
-                }
-              } else {
-                f$(c$.modal.don[0]).click(function() {
-                  var dejavu = f$Cookie('r','dondl');
-                  if(!dejavu) {
-                    link=f$Link(f$(this).attr('href'));
-                    f$('#modal-soutenir').modal('show');
-                    f$('#modal-contact, #modal-don, #modal-dl').click(function() {
-                      f$Cookie('w','dondl',true,c$.modal.don[3]);
-                      f$('#modal-soutenir').modal('hide');
-                      window.location.href = link;
-                    });
-                    f$('#modal-dl2').click(function() {
-                      f$Cookie('w','dondl',true,365*24*60*60*1000);
-                      f$('#modal-soutenir').modal('hide');
-                      window.location.href = link;
-                    });
-                    return false;
+            // Class couleurs + Dropdown menu
+            Object.keys(d$.f).forEach((k) => {
+              switch (d$.f[k].c) {
+                case 'b': d$.menu.soft.list.push(k); break;
+                case 'r': d$.menu.culture.list.push(k); break;
+                case 'v': d$.menu.services.list.push(k); break;
+                case 'j': d$.menu.vrac.list.push(k); break;
+                case 'f': d$.menu.follow.list.push(k); break;
+                default: // case: 'o':
+                  if (k !== 'dio') {
+                    d$.menu.about.list.push(k);
+                  } else {
+                    d$.menu.services.list.push(k);
                   }
+                  break;
+              }
+
+              // "À propos" du site
+              if (n$.name === n.text(n.html.frama(k))) {
+                const f$Soft = n.wrap(d$.f[k].soft, ' (', ')') || '';
+                d$.menu.about.site = [d$.menu.about.site, '<li class="dropdown-header">', n.html.frama(k), f$Soft, '</li>', n.html.divider()].join('');
+                if (d$.f[k].doc !== undefined) {
+                  d$.f.doc.l = d$.f[k].doc;
+                }
+                if (d$.f[k].git !== undefined) {
+                  d$.menu.about.site = [d$.menu.about.site, '<li class="fs_about fs_git"><a href="', d$.f[k].git, '">', n.html.i(d$.f.git.i), '&nbsp;', d$.f.git.p, d$.f.git.s, '</a></li>'].join('');
+                }
+                if (d$.f[k].src !== undefined) {
+                  d$.menu.about.site = [d$.menu.about.site, '<li class="fs_about fs_src"><a href="', d$.f[k].src, '">', n.html.i('fa-code-fork'), '&nbsp;', d$.t.source, f$Soft, '</a></li>'].join('');
+                }
+                d$.f.faq.l = `${d$.f.faq.l}#${n$.lname}`;
+                d$.f.aide.l = d$.f.aide.l.replace(/aide$/, n$.lname);
+              }
+            });
+
+            /** On balance le code html */
+            f$('#framanav_container').prepend(n.html.navbar());
+            // Placement des popovers à gauche
+            f$('#fs_services li:odd a, #fs_about li:even a').attr('data-placement', 'left');
+            // Réagencement À propos
+            f$('#fs_about li').has('a[href*="status."]').after(d$.menu.about.site);
+            f$('#fs_about .fs_git').before(f$('#fs_about .fs_aide, #fs_about .fs_faq, #fs_about .fs_doc'));
+
+            f$('#fs_about ul').prepend(`<li class="dropdown-header">${n.html.frama('soft')}</li>${n.html.divider()}`);
+            f$('#fs_about .fs_dio2').before(`<li class="dropdown-header"><b>${d$.t.campaign}<b></li>${n.html.divider()}`);
+
+            f$('#fs_services .fs_dio, #fs_about .fs_dio2, #fs_about .fs_cuo').addClass('dropdown-header');
+            f$('#fs_services .fs_dio a').wrapInner('<b>');
+            f$('#fs_about .fs_dio2 a, #fs_about .fs_cuo a').addClass('text-left');
+
+            // Ajout des dividers
+            f$([
+              '.fs_start', '.fs_zic', ' .fs_evl', ' .fs_evl2', ' .fs_dio',
+              '.fs_maestro', ' .fs_carte', ' .fs_minetest', ' .fs_news',
+              ' .fs_services.fs_git', '.fs_wiki', ' .fs_petitions',
+              ' .fs_gplus', ' .fs_wikipedia', ' .fs_status', ' .fs_credits',
+            ].join()).after(n.html.divider());
+
+            // Ajout des boutons mobile/desktop
+            f$('#fs_about .dropdown-menu').append([
+              n.html.divider(),
+              '<li class="framanav-mobile"><a href="javascript:void(0);">',
+              n.html.i('fa-mobile'), '&nbsp;', d$.t.mobile,
+              '</a></li>',
+              '<li class="framanav-desktop"><a href="javascript:void(0);">',
+              n.html.i('fa-desktop'), '&nbsp;', d$.t.desktop,
+              '</a></li>',
+            ].join(''));
+            n.viewport();
+
+            f$('#framanav_container').css('opacity', '1');
+
+            n.benevalo();
+            n.myframa();
+            n.footer();
+
+            /** Import de bootstrap.js ****************************** */
+            if (c$.js.b$) {
+              if (typeof f$().modal === 'function' || c$.js.b$ === 'html') {
+                n$.log.push('✔ Bootstrap HTML');
+                n.bootstrap();
+              } else {
+                f$.getScript(n.l('lib/bootstrap/js/bootstrap.min.js', 'n'), () => {
+                  n$.log.push('✔ Bootstrap AJAX');
+                  n.bootstrap();
                 });
               }
+            } else {
+              n$.log.push('✘ Bootstrap');
             }
 
-            // Modal FAQ
-            if(d$.f.faq.l.indexOf(n$.name.toLowerCase()) > -1) {
-              f$('body').append(
-                h$Modal(
-                  'fsFAQ', d$.f.faq.s+' '+n$.name,
-                  '',
-                  '<span class="pull-left">'+d$.t["another-question"]+' <a href="'+d$.f.contact.l+'">'+d$.t["contact-us"]+'</a></span> <button class="btn" id="modal-close" data-dismiss="modal">'+d$.t.close+'</button>',
-                  'lg'
-                )
-              );
-              f$('.fs_faq a').on('click', function() {
-                if(f$('#modal-fsFAQ .modal-body').html() == '') {
-                  f$('#modal-fsFAQ .modal-body').load('https://contact.framasoft.org/foire-aux-questions/ #'+n$.name.toLowerCase()+' .list-group-item', function(data) {
-                    if( f$(data).find('#'+n$.name.toLowerCase()).length < 1 ) {
-                      window.location.href = f$('.fs_faq a').attr('href');
-                    } else {
-                      f$('#modal-fsFAQ').modal('show');
-                    }
-                  });
+            /** À traiter en dernier ******************************** */
+            n.audioJS();
+            n.videoJS();
+            n.ytBlock();
+
+            // Flux RSS Global
+            f$('head').append(n.html.link('rss', d$.f.rss.l, d$.f.rss.d1));
+
+            // Favicon et Apple touch icon
+            if (!c$.icons.keep) {
+              f$('link[rel*=icon]').remove();
+              c$.icons.fav = c$.icons.fav || 'favicon-violet.png';
+              c$.icons.apple = c$.icons.apple || 'apple-violet.png';
+              f$('head').append(n.html.link('fav', n.l(`img/icons/${c$.icons.fav}`, 'n')));
+              f$('head').append(n.html.link('apple', n.l(`img/icons/${c$.icons.apple}`, 'n')));
+            }
+
+            n.optin();
+            n.macaron();
+
+            // Liens À propos
+            f$('#framafooter a[href*="/nav/html/"], #fs_about a').attr('href', function addHash() {
+              return f$(this).attr('href')
+                .replace('credits.html', `credits.html#${c$.credits}`)
+                .replace('legals.html', `legals.html#${c$.host}`);
+            });
+
+            // Crédits
+            if (n.is.url('/html/credits.html') && window.location.hash) {
+              f$('#site-credits').load(n.l(window.location.hash.replace('#', 'html/credits/').replace(/$/, '.html'), 'n'));
+            }
+
+            // Hébergeur et Iframe Piwik sur Mentions légales
+            if (n.is.url('/html/legals.html')) {
+              if (window.location.hash) {
+                f$('#modal-legals-host').load(n.l(window.location.hash.replace('#', 'html/host/').replace(/$/, '.html'), 'n'));
+              }
+              f$('#piwik-iframe').html(`<iframe style="border: 0; height: 200px; width: 600px;" src="${c$.piwik.url}index.php?module=CoreAdminHome&action=optOut&language=fr"></iframe>`);
+            }
+
+            // Ext.js
+            if (typeof c$.js.ext === 'function') {
+              c$.js.ext();
+            } else if (c$.js.ext === true) {
+              f$.getScript(n.l(`ext/${n$.site}.js`, 'n'));
+            } else if (typeof c$.js.ext === 'string') {
+              f$.getScript(n.l(`ext/${c$.js.ext}.js`, 'n'));
+            }
+          })
+          .fail((err) => { n$.log.push('✘ data.*.json', err); });
+      }); // </document.ready>
+    },
+
+    /** Bootstrap required ****************************************** */
+    bootstrap() {
+      // Redéfini f$ pour Bootstrap en mode noConflict si nécessaire
+      switch (c$.js.j$) {
+        case 'noConflict': f$ = jQuery.noConflict(); break;
+        default: f$ = jQuery; break;
+      }
+
+      /**
+       *  Accessibilité
+       *  code issu de https://github.com/paypal/bootstrap-accessibility-plugin
+       */
+      // Modal
+      if (typeof f$().modal === 'function') {
+        const modalhide = f$.fn.modal.Constructor.prototype.hide;
+        f$.fn.modal.Constructor.prototype.hide = function fixModalA11y() {
+          const modalOpener = this.$element.parent().find(['[data-target="#', this.$element.attr('id'), '"]'].join(''));
+          modalhide.apply(this, arguments); // eslint-disable-line prefer-rest-params
+          modalOpener.focus();
+        };
+      }
+      /** Fin accessibilité */
+
+      if (!n$.inframe) { // Pas de bandeau, nav, modale et macaron en mode iframe
+        // Liens de la nav à ouvrir dans un onglet
+        if (!n.is.url('/nav/html/')) {
+          f$('#framanav .dropdown-menu a').attr('target', '_blank').append(n.html.newWindow());
+        }
+
+        /** ... on ajoute surtout les scripts qui font appel à BootStrap et jQuery ici */
+
+        // Activation des popovers
+        if (typeof f$().popover === 'function') {
+          f$('a[rel="popover"]').each(function enablePopover() {
+            f$(this).popover({
+              html: true,
+              trigger: 'focus hover',
+            });
+            f$(this).removeAttr('title');
+          });
+        }
+
+        n.bsModalInfo();
+        n.bsAlert();
+        n.bsModalSoutenir();
+        n.bsModalFAQ();
+      } // </!n$.inframe>
+    },
+
+    /** Fonctions génériques **************************************** */
+    l(href, nav, version) {
+      // Lien absolu depuis l’emplacement de la nav
+      if (nav === 'n' && n$.baseurl !== '') {
+        if (version === 'v') {
+          return `${n$.baseurl}${href}?${n$.version}`;
+        }
+        return `${n$.baseurl}${href}`;
+      }
+      // Lien relatif converti en url absolue (le navigateur fait lui-même le boulot)
+      const link = document.createElement('a');
+      link.href = href;
+      return [link.protocol, '//', link.host, link.pathname, link.search, link.hash].join('');
+    },
+
+    loadJS(url, callback) {
+      if (!this.loadedScript) {
+        this.loadedScript = [];
+      }
+
+      if (this.loadedScript.indexOf(url) === -1) {
+        this.loadedScript.push(url);
+        const head = document.getElementsByTagName('head')[0];
+        const e = document.createElement('script');
+        e.src = url;
+        e.type = 'text/javascript';
+        e.charset = 'utf-8';
+
+        let done = false;
+        e.onload = function isLoaded() {
+          if (!done && (!this.readyState ||
+            this.readyState === 'loaded' || this.readyState === 'complete')) {
+            done = true;
+            callback();
+            e.onload = null; // Handle memory leak in IE
+            e.onreadystatechange = e.onload;
+          }
+        };
+        e.onreadystatechange = e.onload;
+        head.appendChild(e);
+      }
+    },
+
+    loadCSS(css) {
+      function AddLink(stylesheet, position) {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+
+        switch (stylesheet) {
+          case '0': // Bootstrap
+            link.media = (css.b$) ? 'all' : 'none';
+            link.href = n.l('lib/bootstrap/css/bootstrap.min.css', 'n');
+            break;
+          case '2': // Font-Awesome
+            link.media = 'all';
+            link.href = n.l('lib/fork-awesome/css/fork-awesome.min.css', 'n');
+            break;
+          case '3': // Nav
+            link.media = 'screen';
+            link.href = n.l('css/nav.css', 'n', 'v');
+            break;
+          case '4': // Frama
+            link.media = (css.frama) ? 'all' : 'none';
+            link.href = n.l('css/frama.css', 'n', 'v');
+            break;
+          case '5': // Ext *obsolete*
+            link.media = (css.ext) ? 'all' : 'none';
+            link.href = n.l(`ext/${n$.site}.css`, 'n', 'v');
+            break;
+          default:
+            // no default
+            break;
+        }
+
+        if (link.media !== 'none' && stylesheet !== '1') {
+          // Ajout au début du <head>
+          if (position !== undefined) {
+            document.getElementsByTagName('head')[0].insertBefore(
+              link,
+              document.getElementsByTagName('head')[0].firstChild,
+            );
+          // Ajout à la fin <head>
+          } else {
+            document.getElementsByTagName('head')[0].appendChild(link);
+          }
+        }
+      }
+
+      /** Parcours décroissant à partir de la position du '1' (= css du site)
+       *  exemple 02-1-345 → on commence par le 2 puis le 0 */
+      for (let i = css.order.indexOf('1'); i >= 0; i -= 1) {
+        AddLink(css.order[i], 'first');
+      }
+      /** Parcours croissant pour le reste
+       * exemple 02-1-345 → dans l'ordre 3, 4 et 5 */
+      for (let i = css.order.indexOf('1'); i < css.order.length; i += 1) {
+        AddLink(css.order[i]);
+      }
+    },
+
+    mergeObj(a, b) {
+      function MergeRecursive(o1, o2) {
+        const o3 = o1;
+        Object.keys(o2).forEach((p) => {
+          try {
+            if (o2[p].constructor === Object) {
+              o3[p] = MergeRecursive(o3[p], o2[p]);
+            } else if (o2[p].constructor === Array) {
+              for (let i = 0; i < o2[p].length; i += 1) {
+                o3[p][i] = o2[p][i];
+              }
+            } else {
+              o3[p] = o2[p];
+            }
+          } catch (e) {
+            o3[p] = o2[p];
+          }
+        });
+        return o3;
+      }
+
+      MergeRecursive(a, b);
+    },
+
+    cookie(action, name, value, time) {
+      if (action === 'w') {
+        const t = typeof time !== 'undefined' ? time : 31536000000; // 365 * 24 * 60 * 60 * 1000
+        const today = new Date();
+        const expires = new Date();
+        expires.setTime(today.getTime() + t);
+        document.cookie = [name, '=', encodeURIComponent(value), ';expires=', expires.toGMTString()].join('');
+      } else {
+        const oRegex = new RegExp(['(?:; )?', name, '=([^;]*);?'].join(''));
+        if (oRegex.test(document.cookie)) {
+          return decodeURIComponent(RegExp.$1);
+        }
+      }
+      return null;
+    },
+
+    wrap(text, prefix, sufix) {
+      const t = text || ''; const p = prefix || ''; const s = sufix || '';
+      return t.replace(/^/, p).replace(/$/, s);
+    },
+
+    text(html) {
+      const div = document.createElement('div');
+      div.innerHTML = html;
+      const text = div.textContent || div.innerText || '';
+      return text;
+    },
+
+    // Version de jQuery à utiliser
+    /**
+      si undefined              → AJAX
+      si 1.9.0 < jquery < 3.0.0 → HTML
+      sinon                     → noConflict
+      /!\ si $ déjà défini (prototype, mootools, etc)
+      */
+    jquery() {
+      if (window.jQuery !== undefined) {
+        const version = window.jQuery.fn.jquery.split(' ')[0].split('.');
+        if ((version[0] < 2 && version[1] < 9) || // < 1.9
+            (version[0] === 1 && version[1] === 9 && version[2] < 1) || // 1.9.0
+            (version[0] > 2)) { // 3.x
+          return 'noConflict';
+        }
+        return 'HTML';
+      }
+      return 'AJAX';
+    },
+
+    bsPlugins(jQuery) { // WIP Detecter la présence de Bootstrap
+      const plugins = ['modal', 'dropdown', 'alert', 'tooltip', 'popover', 'carousel', 'tab'];
+      const score = [];
+      for (let i = 0; i < plugins.length; i += 1) {
+        score.push(+(typeof jQuery()[plugins[i]] === 'function'));
+      }
+      return score.join('');
+    },
+
+    bsAlert() {
+      const dejavu = n.cookie('r', 'nav-alert');
+      if (c$.alert[1] !== '' && !dejavu) {
+        f$('#framanav_container').after(n.html.alert(
+          c$.alert[0], 'nav-alert',
+          `<div><p class="text-center">${c$.alert[1]}</p></div>`,
+          true,
+        ));
+
+        // Cookie enregistré en fermant (7 jours par défaut cf config.js)
+        f$('#nav-alert').bind('closed.bs.alert', () => {
+          n.cookie('w', c$.alert[2], true, c$.alert[3]);
+        });
+      }
+    },
+
+    bsModalInfo() {
+      const dejavu = n.cookie('r', c$.modal.info[2]);
+      if (c$.modal.info[0] !== '') {
+        f$('body').append(n.html.modal(
+          'finfo', // id
+          c$.modal.info[0], // title
+          c$.modal.info[1], // body
+          [ // footer
+            '<button class="btn" id="modal-close" data-dismiss="modal">',
+            d$.t.close,
+            '</button>',
+            '<button class="btn btn-primary" id="modal-set-cookie" >',
+            d$.t.nevershow,
+            '</button>',
+          ].join(''),
+        ));
+
+        if (!dejavu) {
+          f$('#modal-finfo').modal('show');
+          f$('#modal-set-cookie').click(() => {
+            // cookie de 7 jours par défaut
+            n.cookie('w', c$.modal.info[2], true, c$.modal.info[3]);
+            f$('#modal-finfo').modal('hide');
+          });
+          f$('#modal-finfo .close, #modal-close').click(() => {
+            // cookie de session
+            n.cookie('w', c$.modal.info[2], true);
+            f$('#modal-finfo').modal('hide');
+          });
+        }
+      }
+    },
+
+    bsModalFAQ() {
+      if (d$.f.faq.l.indexOf(n$.lname) > -1) {
+        f$('body').append(n.html.modal(
+          'fsFAQ', // id
+          [d$.f.faq.s, n$.name].join(' '), // title (/!\ space)
+          '', // body (ajax load bellow)
+          [ // footer
+            '<span class="pull-left">', d$.t['another-question'],
+            ' <a href="', d$.f.contact.l, '">', d$.t['contact-us'], '</a>',
+            '</span> ',
+            '<button class="btn" id="modal-close" data-dismiss="modal">', d$.t.close, '</button>',
+          ].join(''),
+          'lg', // size
+        ));
+        f$('.fs_faq a').on('click', () => {
+          if (f$('#modal-fsFAQ .modal-body').html() === '') {
+            f$('#modal-fsFAQ .modal-body').load(
+              ['https://contact.framasoft.org/foire-aux-questions/ #', n$.lname, ' .list-group-item'].join(''),
+              (data) => {
+                if (f$(data).find(n$.lname.replace(/^/, '#')).length < 1) {
+                  window.location.href = f$('.fs_faq a').attr('href');
                 } else {
                   f$('#modal-fsFAQ').modal('show');
                 }
-                return false;
-              });
-            }
-          }// </!n$.inframe>
-        } // </go_BootStrap>
-      }); // </nav.html>
-  }); // </document.ready>
-}   // </start_jQuery>
-
-/************************ Fonctions globales **************************/
-//----------------------Fonctions f$ -----------------------------------
-// Conversion en url absolue (c'est le navigateur qui fait lui-même le boulot)
-function f$Link(href) {
-  var link = document.createElement("a");
-  link.href = href;
-  return (link.protocol+"//"+link.host+link.pathname+link.search+link.hash);
-}
-
-// Import de la config l$ dans c$
-// ou du fichier de lang (en) dans d$ (fr)
-function f$Merge(global, local) {
-
-  function MergeRecursive(obj1, obj2) {
-    for (var p in obj2) {
-      try {
-        if ( obj2[p].constructor == Object ) {
-          obj1[p] = MergeRecursive(obj1[p], obj2[p]);
-        } else if (obj2[p].constructor == Array) {
-          for (var i = 0; i < obj2[p].length; i++) {
-            obj1[p][i] = obj2[p][i];
+              },
+            );
+          } else {
+            f$('#modal-fsFAQ').modal('show');
           }
-        } else {
-          obj1[p] = obj2[p];
-        }
-      } catch(e) {
-        obj1[p] = obj2[p];
+          return false;
+        });
       }
-    }
-    return obj1;
-  }
+    },
 
-  MergeRecursive(global, local);
-}
+    bsModalSoutenir() {
+      if (c$.modal.don[0] !== '') {
+        f$('body').append(n.html.modal(
+          'soutenir', d$.meta.modaldon.t,
+          d$.meta.modaldon.d.join('').replace('%c$.modal.don[1]%', c$.modal.don[1]),
+          [ // footer
+            '<div class="clearfix"><p class="col-md-12 text-center">',
+            '  <a target="_blank" id="modal-don" href="', d$.meta.soutenir.l, '/?f=modal&s=', n$.site, '" class="btn btn-soutenir btn-block">',
+            n.html.i(d$.meta.soutenir.i), ' ', d$.meta.modaldon.b1, n.html.newWindow(),
+            '  </a></p>',
+            '<p class="col-md-6 text-center">',
+            '  <a id="modal-dl" href="javascript:void(0);" class="btn btn-xs btn-default btn-block" >',
+            d$.meta.modaldon.b3.replace('%c$.modal.don[2]%', c$.modal.don[2]),
+            '  </a>',
+            '</p>',
+            '<p class="col-md-6 text-center">',
+            '  <a id="modal-dl2" href="javascript:void(0);" class="btn btn-xs btn-default btn-block" style="line-height: 36px;">',
+            d$.meta.modaldon.b4,
+            '  </a>',
+            '</p></div>',
+          ].join(''),
+        ));
 
-// Cookies
-function f$Cookie(set, name, value, time) {
+        // Les modales « onstart » sont déclenchées par un clic sur un lien temporaire
+        c$.modal.don[0] = c$.modal.don[0].replace('onstart', 'a[href="#SoutenirFramasoft"]');
+        f$('body').append('<a href="#SoutenirFramasoft" class="sr-only"></a>');
 
-  if (set == 'w') {
-
-    time = typeof time !== 'undefined' ? time : 365*24*60*60*1000;
-    var today = new Date(), expires = new Date();
-    expires.setTime(today.getTime() + time);
-    document.cookie = name + "=" + encodeURIComponent(value) + ";expires=" + expires.toGMTString();
-
-  } else {
-
-    var oRegex = new RegExp("(?:; )?" + name + "=([^;]*);?");
-    if (oRegex.test(document.cookie)) {
-      return decodeURIComponent(RegExp["$1"]);
-    } else {
-      return null;
-    }
-
-  }
-
-}
-
-// Ajout de scripts (quand jQuery est prêt utiliser plutôt f$.getScript())
-function f$LoadJS(url, callback) {
-  if (!this.loadedScript) {
-    this.loadedScript = new Array();
-  }
-
-  // indexOf n'existe pas pour IE8
-  if (!Array.prototype.indexOf) {
-    Array.prototype.indexOf = function(elt /*, from*/) {
-      var len = this.length >>> 0;
-      var from = Number(arguments[1]) || 0;
-      from = (from < 0)
-           ? Math.ceil(from)
-           : Math.floor(from);
-      if (from < 0)
-        from += len;
-      for (; from < len; from++) {
-        if (from in this &&
-            this[from] === elt)
-        return from;
-      }
-      return -1;
-    };
-  } // fin indexOf
-
-  if (this.loadedScript.indexOf(url) == -1) {
-    this.loadedScript.push(url);
-    var head = document.getElementsByTagName("head")[0];
-    var e = document.createElement("script");
-    e.src = url;
-    e.type = "text/javascript";
-    e.charset ="utf-8";
-
-    var done = false;
-    e.onload = e.onreadystatechange = function() {
-      if ( !done && (!this.readyState ||
-        this.readyState === "loaded" || this.readyState === "complete") ) {
-        done = true;
-        callback();
-        e.onload = e.onreadystatechange = null; // Handle memory leak in IE
-      }
-    };
-
-    head.appendChild(e);
-  }
-}
-
-// Ajout de CSS
-function f$LoadCSS(css) {
-  function AddLink(stylesheet, position) {
-    var link = document.createElement('link');
-        link.rel = "stylesheet";
-
-    switch( stylesheet ) {
-      case '0': // Bootstrap
-        link.media = (css.b$) ? 'all' : 'none';
-        link.href  = n$.nav.url+'lib/bootstrap/css/bootstrap.min.css';
-      break;
-      case '2': // Font-Awesome
-        link.media = 'all';
-        link.href   = n$.nav.url+'lib/fork-awesome/css/fork-awesome.min.css';
-      break;
-      case '3': // Nav
-        link.media = 'screen';
-        link.href   = n$.nav.url+'css/nav.css?'+n$.version;
-      break;
-      case '4': // Frama
-        link.media = (css.frama) ? 'all' : 'none';
-        link.href   = n$.nav.url+'css/frama.css?'+n$.version;
-      break;
-      case '5': // Ext
-        link.media = (css.ext) ? 'all' : 'none';
-        if(typeof css.ext === 'boolean') {
-          link.href   = n$.nav.url+'ext/'+n$.site+'.css?'+n$.version;
-        } else {
-          link.href   = n$.nav.url+'ext/'+css.ext+'.css?'+n$.version;
-        }
-      break;
-    }
-    if(link.media != 'none' && stylesheet != '1') {
-      // Ajout au début du <head>
-      if ( position != undefined ) {
-        document.getElementsByTagName('head')[0].insertBefore(
-          link,
-          document.getElementsByTagName('head')[0].firstChild
-        );
-      // Ajout à la fin <head>
-      } else {
-        document.getElementsByTagName('head')[0].appendChild(link);
-      }
-    }
-  }
-
-  /** Parcours décroissant à partir de la position du '1' (= css du site)
-   *  exemple 02-1-345 → on commence par le 2 puis le 0 **/
-  for(var i = css.order.indexOf('1'); i >= 0; i--) {
-    AddLink(css.order[i], 'first');
-  }
-  /** Parcours croissant pour le reste
-   * exemple 02-1-345 → dans l'ordre 3, 4 et 5 **/
-  for(var i = css.order.indexOf('1'); i < css.order.length; i++) {
-    AddLink(css.order[i]);
-  }
-}
-
-//----------------------Fonctions HTML ---------------------------------
-// Modales
-function h$Modal(id, title, body, footer, lg) {
-  lg = (lg == undefined) ? '' : ' modal-lg';
-  var html =
-    '<div class="modal fade" lang="'+d$.meta.lg+'" id="modal-'+id+'" tabindex="-1" role="dialog" aria-labelledby="modal-'+id+'Label" aria-hidden="true">'+
-      '<div class="modal-dialog'+lg+'">'+
-        '<div class="modal-content">'+
-          '<div class="modal-header">'+
-            '<button type="button" class="close" data-dismiss="modal" title="'+d$.t.close+'"><i aria-hidden="true">&times;</i>'+h$SR(d$.t.close)+'</button>'+
-            '<h1 id="modal-'+id+'Label">'+title+'</h1>'+
-          '</div>'+
-          '<div class="modal-body">'+body+'</div>'+
-          '<div class="modal-footer">'+footer+'</div>'+
-        '</div>'+
-      '</div>'+
-    '</div>';
-  return html;
-}
-
-// Popover
-function h$Popover(title, description, placement) {
-  html = ( title != undefined && description != undefined )
-       ? 'rel="popover" data-content="'+description+'" title="'+title+'"'
-       : '';
-  html += ( placement != undefined )
-        ? ' data-placement="'+placement+'"'
-        : '';
-  return html;
-}
-
-// Alert
-function h$Alert(type, id, body, close) {
-  close = ( close )
-        ? '<button type="button" class="close" data-dismiss="alert" title="'+d$.t.close+'"><i aria-hidden="true">&times;</i>'+h$SR(d$.t.close)+'</button>'
-        : ''
-  html = '<div class="alert alert-'+type+' fade in" id="'+id+'">'+close+body+'</div>'
-  return html;
-}
-
-// Texte pour lecteur d'écran
-function h$SR(text) {
-  return '<span class="sr-only">'+text+'</span>';
-}
-
-// Icône Font-Awesome
-function h$icon(classCSS) {
-  return '<i class="fa fa-fw fa-lg '+classCSS+'" aria-hidden="true"></i>';
-}
-
-//----------------------Fonctions i$ -----------------------------------
-// Sur quel site/page on est ?
-function i$(string, location) {
-  switch (location) {
-    case 'h' : location = window.location.host; break;
-    case 'u' : location = window.location.href; break;
-    default:
-      location = window.location.href;
-      return (location.indexOf(string) > -1);
-    break;
-  }
-
-  if( typeof string === 'object' || typeof string === 'function' ) { // RegExp
-    return (string.test(location));
-  } else { // String
-    return (location == string);
-  }
-}
-
-// Est-ce une adresse email valide ?
-function i$Email(emailAddress) {
-  var pattern = new RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i);
-  return pattern.test(emailAddress)==true;
-}
-
-// Dans quel langue est la page web ?
-function i$Lang(lg) {
-  var lang = '';
-  var html = document.getElementsByTagName("html");
-  var meta = document.getElementsByTagName('script');
-
-  if(window.location.host.indexOf('framindmap.org')  > -1 // Contournement de Wisemapping
-    && document.getElementById("userSettingsBtn")
-    && document.getElementById("userSettingsBtn").innerHTML == 'Compte'){
-
-    lang = 'fr';
-
-  } else if(html[0].getAttribute("lang")) {
-
-    lang = html[0].getAttribute("lang");
-
-  } else if(html[0].getAttribute("locale")) {
-
-    lang = html[0].getAttribute("locale");
-
-  } else {
-
-    for (var i = 0; i < meta.length; i++) {
-      if ((meta[i].getAttribute("http-equiv") && meta[i].getAttribute("content")
-           && meta[i].getAttribute("http-equiv").indexOf("Language") > -1)
-        ||(meta[i].getAttribute("property") && meta[i].getAttribute("content")
-           && meta[i].getAttribute("property").indexOf("locale") > -1)) {
-
-          lang = meta[i].getAttribute("content");
-
-      }
-    }
-  }
-  return (lang.substr(0,2).toLowerCase() == lg)
-}
-
-function u$Lang(lg) {
-  var userLang = navigator.languages || [root.navigator.language || root.navigator.userLanguage];
-  for (var i = 0; i < userLang.length; i++) {
-    if(userLang[i].substring(0,2).toLowerCase() == lg) {
-      return true;
-    }
-  }
-}
-
-// Version de jQuery à utiliser
-/**
-  si undefined              → AJAX
-  si 1.9.0 < jquery < 3.0.0 → HTML
-  sinon                     → noConflict
-  /!\ si $ déjà défini (prototype, mootools, etc)
-  **/
-function i$jQuery() {
-  if (window.jQuery === undefined) {
-    return 'AJAX';
-  } else {
-    var version = window.jQuery.fn.jquery.split(' ')[0].split('.');
-    if ( (version[0] < 2 && version[1] < 9)                        // < 1.9
-         || (version[0] == 1 && version[1] == 9 && version[2] < 1) // 1.9.0
-         || (version[0] > 2) ) {                                   // 3.x
-      return 'noConflict';
-    } else {
-      return 'HTML';
-    }
-  }
-}
-
-function i$Agent() {
-  return (/Framatech/i.test(window.navigator.userAgent));
-}
-
-function i$Before(date) {
-  return new Date(new Date().toDateString()) < new Date(date);
-}
-
-function i$After(date) {
-  return new Date(new Date().toDateString()) > new Date(date);
-}
-
-/***********************************************************************
- *                           Config globale                            *
- ***********************************************************************/
-var c$ = {
-  js: {
-    j$: i$jQuery(),                 // 'AJAX'       = jQuery de la nav ;
-                                    // 'HTML'       = jQuery (1.9.1 ou +) présent dans la page ;
-                                    // 'noConflict' = variable $ et jQuery renommés en js ;
-    b$: 'bootstrap',                // 'bootstrap'  = bootstrap de la nav;
-                                    // 'html'       = bootstrap présent dans la page ;
-                                    //  false       = on désactive bootstrap
-    ext: false,                     // ext/n$.site.js si true ou bien une fonction lancée au dom.ready
-    audio: false,
-    video: false
-  },
-  css: {
-    order: '012345',                /** cas possibles : 012345, 102345, 015234 **/
-    b$: true,                       // 0 : bootstrap
-                                    // 1 : css du site
-                                    // 2 : font-awesome
-                                    // 3 : nav.css
-    frama: true,                    // 4 : frama.css
-    ext:false                       // 5 : nav/ext/n$.site.css si true
-  },
-  mobile: true, // activer le viewport
-  fixed: false, // position de la nav
-
-  footer: true,
-
-  donate: true, // macaron
-  modal: {
-    don: ['', 'de télécharger', 'télécharger', 604800000],
-    /**
-      0 : sélecteur jQuery ou 'onstart' pour l'afficher à l'ouverture de la page
-      3 : durée du cookie (7 jours)
-     **/
-    info: ['', '', 'modal-info', 604800000],
-    /** [titre, texte, nom du cookie, durée du cookie (7 jours)] **/
-  },
-  alert: ['black', '', 'nav-alert', 604800000],
-  /** [couleur (classes bootstrap), texte, nom du cookie, durée du cookie (7 jours)] **/
-  mute: false,  // désactive macaron, modal, alert
-
-  optin: ['', '', 'opt-in', 604800000],
-  /** [sélecteur email1, email2, nom du cookie, durée du cookie (7 jours)] **/
-
-  icons: {
-    keep: false, // garder les icônes du site (connard.pro, pouhiou.com)
-    fav: false,  // favicon-violet.png
-    apple: false // n$.site+'.png'
-  },
-  host: 'hetzner',
-  credits: n$.site,
-  piwik: {
-    id: '',
-    url: 'https://stats.framasoft.org/'
-  }
-};
-
-// Bandeau soutenir défiscalisation
-var f$_today = new Date();
-var f$_dd = f$_today.getDate();
-var f$_mm = f$_today.getMonth()+1;
-var f$_yyyy = f$_today.getFullYear();
-
-if(f$_mm == 12 && (31-f$_dd) < 16 && n$.site != 'soutenir' && i$Lang('fr')) {
-  f$_rebours = ((31-f$_dd) == 0) ? '24 heures' : 31-f$_dd+' jours';
-  c$.alert[0] = 'info';
-  c$.alert[1] =
-    'Rappel : il vous reste <b>'+f$_rebours+'</b> pour faire un <b>don défiscalisé en '+f$_yyyy+'</b> à Framasoft.'+
-    '<br/>Merci pour votre soutien <a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir"><i class="fa fa-heart" aria-hidden="true"></i><span class="sr-only">Faire un don ?</a>';
-}
-
-// Bandeau Enquête
-if( i$Before('2018/02/05') && i$Lang('fr')) {
-  var f$_endDay = new Date(2018,1,5); // Janvier = 0 ; Février = 1 en JS :-/
-  var f$_diffDays = Math.round((f$_endDay.getTime() - f$_today.getTime())/(24*60*60*1000))+1;
-
-  f$_rebours = (f$_diffDays <= 1) ? '24 heures' : f$_diffDays+' jours';
-  c$.alert[0] = 'info';
-  c$.alert[1] =
-    '#Framavous : à vous de nous dire ce que vous pensez de ce qu’on fait !'+
-    ' Plus que <b>'+f$_rebours+'</b> pour répondre à <a href="https://frama.link/framavous">notre enquête</a> sur vous, '+
-    'vos attentes, et vos usages des outils qu’on propose. <a href="https://frama.link/framavous">https://frama.link/framavous</a>'
-}
-
-// Bandeau PeerTube
-if( i$Before('2017/12/16') && n$.site != 'soutenir') {
-  c$.alert[0] = 'success';
-  c$.alert[1] =
-    '<p>Sur les 90 000 € nécessaires à Framasoft pour boucler notre budget 2018, un tiers financera le développement <a href="https://framatube.org">PeerTube/Framatube</a>, un autre les services <a href="https://degooglisons-internet.org/liste">Dégooglisons Internet</a>. Ces paliers sont atteints : merci !</p>'+
-    '<p>Le 3e et dernier palier nous permettra de concrétiser <a href="https://contributopia.org/fr/services/">le monde des services de Contributopia</a>. Vous pouvez y contribuer en soutenant Framasoft <a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir"><i class="fa fa-heart" aria-hidden="true"></i><span class="sr-only">Faire un don ?</a></p>'+
-    '<div class="clearfix fsbarre hidden" style="max-width:500px;margin:10px auto"><div class="col-xs-10"><div class="progress" style="margin-bottom:0;"><div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="30000" style="width: 0%"><span class="dons"></span></div></div></div><div class="col-xs-2">30 000 €</div></div>';
-  if(i$Lang('en') || !u$Lang('fr')) {
-    c$.alert[1] =
-    '<p>Of the €90,000 Framasoft needs to meet our 2018 budget, one third will finance the development of <a href="https://framatube.org/#en">PeerTube/Framatube</a>, another will help maintain the services of our <a href="https://degooglisons-internet.org/liste/?l=en">De-googl-ify Internet</a> campaign. Thank you for helping us reaching those goals!</p>'+
-    '<p>The third and final goal will enable us to create the services of our <a href="https://contributopia.org/en/services/">Contributopia</a> campaign. You can contribute to this by supporting Framasoft <a href="https://soutenir.framasoft.org/en/" class="btn btn-xs btn-soutenir"><i class="fa fa-heart" aria-hidden="true"></i><span class="sr-only">Make a donation?</a></p>'+
-    '<div class="clearfix fsbarre hidden" style="max-width:500px;margin:10px auto"><div class="col-xs-10"><div class="progress" style="margin-bottom:0;"><div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="30000" style="width: 0%"><span class="dons"></span></div></div></div><div class="col-xs-2">30 000 €</div></div>';
-  }
-
-  var startDons = 53000;
-  setInterval(function(){
-    if (window.jQuery !== undefined && n$.site != 'contributopia') {
-      if(jQuery('.fsbarre').length && jQuery('.fsbarre').hasClass('hidden') ) {
-        jQuery.getJSON( 'https://soutenir.framasoft.org/sites/all/dons/total.txt' )
-          .fail(function() { console.error('✘ don') })
-          .done( function(data) {
-            if( (data-startDons)/900 > 66 ) {
-              jQuery('.fsbarre .progress-bar').removeClass('progress-bar-danger').addClass('progress-bar-success');
-              jQuery('.fsbarre .progress-bar').attr({
-                'aria-valuenow':(data-startDons),
-                'aria-valuenow':'90000',
-                'style':'width:'+(data-startDons)/900+'%'
+        // Les autres des liens présents dans la pageq
+        f$(c$.modal.don[0]).each(function eventModal() {
+          f$(this).click(() => {
+            const dejavu = n.cookie('r', 'dondl');
+            if (!dejavu) {
+              const link = n.l(f$(this).attr('href')).replace(/#SoutenirFramasoft$/, '#');
+              f$('a[href="#SoutenirFramasoft"]').remove();
+              f$('#modal-soutenir').modal('show');
+              f$('#modal-soutenir').css('display', 'block'); // bugfix
+              f$('#modal-contact, #modal-don, #modal-dl, #modal-soutenir .close').click(() => {
+                n.cookie('w', 'dondl', true, c$.modal.don[3]);
+                f$('#modal-soutenir').modal('hide');
+                window.location.href = link;
               });
-              jQuery('.fsbarre .col-xs-2').text('90 000 €');
-            } else if ( (data-startDons)/900 > 33 ) {
-              jQuery('.progress-bar.active').removeClass('progress-bar-danger').addClass('progress-bar-warning');
-              jQuery('.fsbarre .progress-bar').attr({
-                'aria-valuenow':(data-startDons),
-                'aria-valuenow':'60000',
-                'style':'width:'+(data-startDons)/600+'%'
+              f$('#modal-dl2').click(() => {
+                n.cookie('w', 'dondl', true, 31536000000); // 365 * 24 * 60 * 60 * 1000
+                f$('#modal-soutenir').modal('hide');
+                window.location.href = link;
               });
-              jQuery('.fsbarre .col-xs-2').text('60 000 €');
-            } else {
-              jQuery('.fsbarre .progress-bar').attr({
-                'aria-valuenow':(data-startDons),
-                'aria-valuenow':'30000',
-                'style':'width:'+(data-startDons)/300+'%'
-              });
+              return false;
             }
-            jQuery('.fsbarre').removeClass('hidden');
-            jQuery('.fsbarre .dons').text((data-startDons)+'€')
+            return true;
           });
+        });
+        if (c$.modal.don[0] === 'a[href="#SoutenirFramasoft"]') {
+          f$(c$.modal.don[0]).trigger('click');
+        }
       }
-    }
-  }, 500)
-}
+    },
 
-// Bandeau maintenance
-/*if (/(bin|soft|forms|forum.|dvd|book|zic|date|cloud|participer.|memo|notes|talk|mindmap|wiki.|lab|soutenir.|contact.|android|start|10ans.|games|degooglisons-internet)/i.test(n$.site)) {
-  c$.alert[0] = 'warning';
-  c$.alert[1] =
-    '<b>Message de service :</b> Mercredi 1er Février, dès 9h, nous procéderons à une migration importante sur nos serveurs. '+
-    'En conséquence, <a href="https://status.framasoft.org/incident/195">de nombreux sites et services seront indisponibles</a>, et ce pendant plusieurs heures.';
-}*/
+    viewport(type) {
+      const vp = f$('meta[name="viewport"]');
+      const btnDesktop = f$('.framanav-desktop');
+      const btnMobile = f$('.framanav-mobile');
+
+      switch (type) {
+        case 'mobile': // switch sur le viewport mobile
+          if (vp.length === 0) {
+            f$('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
+          } else {
+            vp.attr('content', 'width=device-width, initial-scale=1.0');
+          }
+          btnDesktop.addClass('visible-xs-inline').show();
+          btnMobile.hide();
+          break;
+        case 'desktop': // switch sur le viewport desktop
+          if (vp.length) {
+            vp.attr('content', 'width=1024');
+          }
+          btnDesktop.removeClass('visible-xs-inline').hide();
+          btnMobile.show();
+          break;
+        default: // init du viewport
+          if (c$.mobile) { // viewport mobile par défaut dans la config
+            n.viewport('mobile');
+          } else if (f$('meta[name="viewport"]').length === 0) {
+            n.viewport('desktop');
+          }
+          // Si (Dés)Activation mannuel, le cookie prend la main le temps de la session
+          switch (n.cookie('r', 'nav_viewport')) {
+            case 'mobile': n.viewport('mobile'); break;
+            case 'desktop': n.viewport('desktop'); break;
+            default:
+              // no default
+              break;
+          }
+          // Boutons (Dés)Activer le mode mobile
+          btnMobile.on('click', () => {
+            n.viewport('mobile');
+            document.cookie = 'nav_viewport=mobile;expire=0';
+            return false;
+          });
+          btnDesktop.on('click', () => {
+            n.viewport('desktop');
+            document.cookie = 'nav_viewport=desktop;expire=0';
+            return false;
+          });
+          break;
+      }
+    },
+
+    /** Framatrucs ************************************************** */
+    benevalo() {
+      // Le bouton soutenir remplacé par un bouton bénévalo
+      // pendant 3 jours autour de la pleine lune
+      const today = Math.floor(new Date().getTime() / 1000);
+      const fullMoon = 1453603580; // 24/01/2016 02:46:20
+      const moonRev = 2551443; // 29j 12h 44m 3s
+
+      if ((today - fullMoon) % moonRev < 129600 ||
+        (today - fullMoon) % moonRev > moonRev - 129600) {
+        f$('#btn-benevalo').show();
+        f$('#btn-benevalo').prev().hide();
+      }
+    },
+
+    footer() {
+      f$('body').append(n.html.footer());
+
+      if (f$('body').height() < f$(window).height()) {
+        f$('#framafooter').css('position', 'absolute');
+      } else {
+        f$('#framafooter').css('position', 'relative');
+      }
+
+      f$(window).on('resize, scroll, click', () => {
+        f$('#framafooter').css('position', 'relative');
+        if (f$('body').height() < f$(window).height()) {
+          f$('#framafooter').css('position', 'absolute');
+        } else {
+          f$('#framafooter').css('position', 'relative');
+        }
+        setTimeout(() => { // au cas où une animation redimentionne le body
+          if (f$('body').height() < f$(window).height()) {
+            f$('#framafooter').css('position', 'absolute');
+          } else {
+            f$('#framafooter').css('position', 'relative');
+          }
+        }, 800);
+      });
+    },
+
+    macaron() {
+      f$('#framanav_donation')
+        .show()
+        .delay((Math.random() * 28000) + 1000)
+        .fadeOut(600)
+        .fadeIn(600);
+    },
+
+    maestro() {
+      if (!n$.inframe) {
+        md5 = function () {for(var m=[],l=0;64>l;)m[l]=0|4294967296*Math.abs(Math.sin(++l));return function(c){var e,g,f,a,h=[];c=unescape(encodeURI(c));for(var b=c.length,k=[e=1732584193,g=-271733879,~e,~g],d=0;d<=b;)h[d>>2]|=(c.charCodeAt(d)||128)<<8*(d++%4);h[c=16*(b+8>>6)+14]=8*b;for(d=0;d<c;d+=16){b=k;for(a=0;64>a;)b=[f=b[3],(e=b[1]|0)+((f=b[0]+[e&(g=b[2])|~e&f,f&e|~f&g,e^g^f,g^(e|~f)][b=a>>4]+(m[a]+(h[[a,5*a+1,3*a+5,7*a][b]%16+d]|0)))<<(b=[7,12,17,22,5,9,14,20,4,11,16,23,6,10,15,21][4*b+a++%4])|f>>>32-b),e,g];for(a=4;a;)k[--a]=k[a]+b[a]}for(c="";32>a;)c+=(k[a>>3]>>4*(1^a++&7)&15).toString(16);return c}}(); // eslint-disable-line
+        const tonality = md5(n$.url).substring(0, 8); // eslint-disable-line
+        const concerto = n$.url.split(/[?#]/)[0].substring(n$.url.lastIndexOf('/') + 1).replace(/[^a-zA-Z0-9=?]/g, '');
+        const currentW = parseInt((window.innerWidth - 60) * (2 / 3), 10);
+        const currentH = parseInt(window.innerHeight - 160, 10);
+        const talkW = parseInt(currentW / 2, 10);
+        const talkH = parseInt(talkW * (9 / 16), 10);
+        n$.maestro = [
+          'https://framaestro.org/p/#', tonality, '/', concerto, '/',
+          '0,20,', currentW, ',', currentH, ',', encodeURIComponent(n$.url), ';',
+          '0,', (currentW + 40), ',', talkW, ',', talkH, ',',
+          encodeURIComponent('https://framatalk.org/', tonality, concerto), ';',
+        ].join('');
+      }
+    },
+
+    myframa() {
+      if (!n$.inframe) {
+        const bookmarkURL = window.location.href;
+        const bookmarkTitle = document.title || bookmarkURL;
+        const myFrama = [
+          'https://my.framasoft.org/?post=', encodeURIComponent(bookmarkURL),
+          '&title=', encodeURIComponent(bookmarkTitle),
+          '&description=', encodeURIComponent(document.getSelection()),
+          '&source=bookmarklet',
+        ].join('');
+
+        f$('#btn-myframa').on('click', () => {
+          window.open(
+            myFrama, 'myframa',
+            'menubar=no,height=500,width=600,toolbar=no,scrollbars=yes,status=no,dialog=1',
+          );
+          return false;
+        });
+        f$('#btn-myframa a').attr('href', myFrama);
+      }
+    },
+
+    optin() {
+      const f$OptInDejavu = n.cookie('r', 'opt-in');
+      if (c$.optin[0] !== '' && !f$OptInDejavu) {
+        f$(c$.optin[0])
+          .after(n.html.alert(
+            'info',
+            'fs_opt-in',
+            [
+              '<input type="checkbox" id="fs_opt-in_checkbox" value="false" />',
+              '<label for="fs_opt-in_checkbox">', d$.meta.optin.t, '</label><br>',
+              '<small>', d$.meta.optin.d1,
+              '&nbsp;<a href="', d$.f.newsletter.l, '" id="link-opt-in" target="_blank" >', d$.meta.optin.d2, n.html.newWindow(), '</a>',
+              '</small>',
+            ].join(''),
+          ));
+
+        f$(c$.optin[0]).focusin(() => {
+          f$('#fs_opt-in_error').remove();
+          // Ajout du cookie (expire au bout d'un an)
+          n.cookie('w', c$.optin[2], true, c$.optin[3]);
+        });
+
+        // Requête ajax crossdomain lorsque la case est cochée
+        f$('#fs_opt-in input, #fs_opt-in label').on('click', () => {
+          f$('#fs_opt-in_error').remove();
+          const f$Email = f$(c$.optin[0]).val();
+          if (c$.optin[1] !== '' && f$(c$.optin[0]).val() !== f$(c$.optin[1]).val()) { // Cas où il y a un champs pour confirmer email
+            f$(c$.optin[0]).after(n.html.alert(
+              'danger',
+              'fs_opt-in_error',
+              d$.meta.optin.e2,
+            ));
+            return false;
+          } else if (!n.is.email(f$(c$.optin[0]).val())) {
+            f$(c$.optin[0]).after(n.html.alert(
+              'danger',
+              'fs_opt-in_error',
+              d$.meta.optin.e2.replace('%f$Email%', f$Email),
+            ));
+            return false;
+          }
+
+          f$('#fs_opt-in input').attr('checked', true);
+          f$.ajax({
+            type: 'POST',
+            url: 'https://contact.framasoft.org/php_list/lists/?p=subscribe&id=2', // URL d'abonnement à la liste
+            crossDomain: true,
+            data: ['makeconfirmed=1&htmlemail=1&list%5B5%5D=signup&listname%5B5%5D=Newsletter&email=', f$Email.replace('@', '%40'), '&VerificationCodeX=&subscribe=Abonnement'].join(''), // Paramètres habituellement passés dans le formulaire
+          });
+          // On supprime la case à cocher (pas possible de décocher ;
+          // l'annulation se fait depuis le mail reçu)
+          f$('#fs_opt-in').remove();
+          // Message d'alert pour confirmer l'inscription
+          f$(c$.optin[0]).after(n.html.alert(
+            'success', 'fs_opt-in_confirm',
+            d$.meta.optin.s1.replace('%f$Email%', f$Email),
+            true,
+          ));
+          return true;
+        });
+      }
+    },
+
+    /** Fonctions medias ******************************************** */
+    audioJS() {
+      if (c$.js.audio) {
+        f$('audio').each(function replaceByVideo() {
+          f$(this).wrap('<div class="audio" />');
+          const outer = this.outerHTML;
+          let regex = new RegExp(this.tagName.replace(/^/, '<'), 'i');
+          let newTag = outer.replace(regex, '<video');
+          regex = new RegExp(this.tagName.replace(/^/, '</'), 'i');
+          newTag = newTag.replace(regex, '</video');
+          f$(this).replaceWith(newTag);
+        });
+      }
+    },
+
+    videoJS() {
+      if (c$.js.video) {
+        f$('link[href*="/nav/css/nav.css"]')
+          .before(n.html.link('css', n.l('lib/video-js/video-js.css', 'n'), 'all'));
+
+        f$('video').each(function initVideoJS(index) {
+          // Format webm d’abord
+          if (f$(this).has('source[type*="webm"]').length && (n$.browser.firefox || n$.browser.opera || n$.browser.chrome)) {
+            f$(this).children('source[type*="mp4"]').remove();
+          }
+          // Paramètres à ajouter à la vidéo pour appliquer VideoJS en surcouche
+          // + numérotation des vidéos (pour pouvoir utiliser l'API : videojs('id').ready() )
+          f$(this).attr({
+            class: 'video-js vjs-default-skin',
+            'data-setup': '{}',
+            id: `f_video_${index}`,
+          });
+        });
+
+        f$.getScript(n.l('lib/video-js/video.js', 'n'), () => {
+          n$.log.push('✔ video.js');
+          /* global videojs */
+          videojs.options.flash.swf = n.l('lib/video-js/video-js.swf', 'n');
+          // On "clique" sur les sous-titres Français
+          // pour chaque vidéo dès que VideoJS est prêt
+          f$('video').each((index) => {
+            videojs(`f_video_${index}`).ready(() => { f$('li.vjs-menu-item:contains("Français")').trigger('click'); });
+          });
+        });
+      }
+    },
+
+    ytBlock() {
+      // Bloqueur d'iframe style Flashblock pour Youtube
+      // faire de même pour Soundcloud, Dailymotion, Vimeo
+      f$('a[href*="youtube.com/watch"], a[href*="youtu.be/"]')
+        .has('img')
+        .append(n.wrap(n.html.i('fa-play fc_light'), '<span class="btn-youtube">', '</span>'))
+        .wrapInner('<span style="position:relative" />')
+        .each(function addIframe(index) {
+          f$(this).click(() => {
+            // Si lien youtube <a> on l'ajoute le code au clic + ajout d'un Id à l'iframe
+            const ytIframe = [
+              '<iframe id="youtube', index, '" src="https://www.youtube.com/embed/',
+              f$(this).attr('href').replace(
+                /(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com(?:\/embed\/|\/v\/|\/watch\?v=))([-\w]{10,12})\b[?=&\w]*(?!['"][^<>]*>|<\/a>)/ig,
+                '$1',
+              ),
+              '?autoplay=1" width="560" height="315" frameborder="0" allowfullscreen ></iframe>',
+            ].join('');
+            f$(this).after(ytIframe);
+            f$(this).remove();
+            return false;
+          });
+        });
+    },
+
+    /** Fonctions booleénnes **************************************** */
+    is: {
+      url(string, location) {
+        let l = window.location.href;
+        switch (location) {
+          case 'h': l = window.location.host; break;
+          case 'u': break;
+          default:
+            return (l.indexOf(string) > -1);
+        }
+
+        if (typeof string === 'object' || typeof string === 'function') { // RegExp
+          return (string.test(l));
+        }
+        return (l === string);
+      },
+
+      email(emailAddress) {
+        const pattern = new RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2, 4}$/i);
+        return pattern.test(emailAddress) === true;
+      },
+
+      lang(lg, browser) {
+        if (browser !== 'b') { // Langue de la page
+          let lang = '';
+          const html = document.getElementsByTagName('html');
+          const meta = document.getElementsByTagName('script');
+
+          if (window.location.host.indexOf('framindmap.org') > -1 // Contournement de Wisemapping
+            && document.getElementById('userSettingsBtn')
+            && document.getElementById('userSettingsBtn').innerHTML === 'Compte') {
+            lang = 'fr';
+          } else if (html[0].getAttribute('lang')) {
+            lang = html[0].getAttribute('lang');
+          } else if (html[0].getAttribute('locale')) {
+            lang = html[0].getAttribute('locale');
+          } else {
+            for (let i = 0; i < meta.length; i += 1) {
+              if ((meta[i].getAttribute('http-equiv') && meta[i].getAttribute('content') &&
+                  meta[i].getAttribute('http-equiv').indexOf('Language') > -1) ||
+                  (meta[i].getAttribute('property') && meta[i].getAttribute('content')
+                   && meta[i].getAttribute('property').indexOf('locale') > -1)) {
+                lang = meta[i].getAttribute('content');
+              }
+            }
+          }
+          return (lang.substr(0, 2).toLowerCase() === lg);
+        }
+        // Langue du navigateur
+        const userLang = navigator.languages ||
+          [root.navigator.language || root.navigator.userLanguage];
+        for (let i = 0; i < userLang.length; i += 1) {
+          if (userLang[i].substring(0, 2).toLowerCase() === lg) {
+            return true;
+          }
+        }
+        return false;
+      },
+
+      before(date) {
+        return new Date(new Date().toDateString()) < new Date(date);
+      },
+
+      after(date) {
+        return new Date(new Date().toDateString()) > new Date(date);
+      },
+
+    },
+
+    /** HTML ******************************************************** */
+    html: {
+      sr(text) { // Lecteur d’écran
+        const t = text || '';
+        return n.wrap(t, '<span class="sr-only">', '</span>');
+      },
+
+      i(class1, class2) { // Icône Fork-Awesome
+        const c1 = class1 || '';
+        const c2 = class2 || 'fa-fw fa-lg';
+        return ['<i class="fa ', c2, ' ', c1, '" aria-hidden="true"></i>'].join('');
+      },
+
+      newWindow() { // Icône + texte
+        return n.wrap(n.html.sr(n.wrap(d$.t.newwindow, '(', ')')), '&nbsp;', n.html.i('fa-external-link', 'new-window'));
+      },
+
+      divider() { // Séparateur de menu
+        return '<li role="presentation" class="divider"></li>';
+      },
+
+      frama(truc) { // Framatruc en couleur
+        const html = []; let color;
+
+        if (truc === 'soft') {
+          return '<b class="violet">Frama</b><b class="orange">soft</b>';
+        }
+
+        switch (d$.f[truc].c) {
+          case 'b': color = 'bleu'; break;
+          case 'r': color = 'rouge'; break;
+          case 'v': color = 'vert'; break;
+          case 'j': color = 'jaune'; break;
+          case 'f': color = 'violet'; break;
+          default: // case: 'o':
+            color = 'orange';
+            break;
+        }
+
+        // Prefix violet
+        if (d$.f[truc].p !== undefined && d$.f[truc].p !== '') {
+          html.push(n.wrap(d$.f[truc].p, '<b class="violet">', '</b>'));
+        }
+
+        // Suffixe en couleur et accessible
+        if (d$.f[truc].s !== undefined && d$.f[truc].s !== '') {
+          switch (d$.f[truc].a) {
+            case 'en':
+              html.push(n.wrap(d$.f[truc].s, `<b class="${color}" lang="en">`, '</b>'));
+              break;
+            case 'abbr':
+              html.push(n.wrap(d$.f[truc].s, `<b class="${color}"><abbr>`, '</abbr></b>'));
+              break;
+            default:
+              html.push(n.wrap(d$.f[truc].s, `<b class="${color}">`, '</b>'));
+              break;
+          }
+        }
+
+        return html.join('');
+      },
+
+      link(type, url, context) {
+        const html = [];
+
+        if (type !== undefined && url !== undefined) {
+          switch (type) {
+            case 'css':
+              html.push('<link rel="stylesheet" ');
+              if (context !== undefined) { html.push(' media="', context, '"'); }
+              html.push(' href="', url, '" />');
+              break;
+            case 'rss':
+              html.push('<link rel="alternate" type="application/rss+xml"');
+              if (context !== undefined) { html.push(' title="', context, '"'); }
+              html.push(' href="', url, '" />');
+              break;
+            case 'fav':
+              html.push('<link rel="icon" type="image/png" href="', url, '" />');
+              break;
+            case 'apple':
+              html.push('<link rel="apple-touch-icon" href="', url, '" />');
+              break;
+            default:
+              // no default
+              break;
+          }
+        }
+        return html.join('');
+      },
+
+      menu(type, title, list) {
+        const html = []; let dropdown;
+
+        // Menus footer
+        if (type === 'footer') {
+          html.push('<nav class="col-xs-4">', '<h1>', title, '</h1>', '<ul class="list-unstyled">');
+
+          for (let i = 0; i < list.length; i += 1) {
+            const k = list[i];
+            html.push('<li><a href="', d$.f[k].l, '">', n.text(n.html.frama(k)), '</a></li>');
+          }
+
+          html.push('</ul>', '</nav>');
+        }
+
+        // Menus "Nous suivre" du footer
+        if (type === 'follow') {
+          html.push('<h1>', title, '</h1>', '  <ul class="list-inline">');
+
+          for (let i = 0; i < list.length; i += 1) {
+            const k = list[i];
+            html.push(
+              '<li class="fs_', k, '">',
+              '<a href="', d$.f[k].l, '" title="', d$.f[k].t1, '" ', n.html.popover(d$.f[k].t1, d$.f[k].d1, 'top'), '>',
+              n.html.i(d$.f[k].i, 'fa-fw fa-2x'), n.html.sr(d$.f[k].name),
+              '</a></li>',
+            );
+          }
+
+          html.push('</ul>');
+        }
+
+        // Menus dropdown
+        if (type === 'dropdown') {
+          html.push(
+            '<a href="#" class="dropdown-toggle" data-toggle="dropdown">',
+            title,
+            '<b class="caret"></b></a>',
+            '<ul class="dropdown-menu">',
+          );
+
+          for (let i = 0; i < list.length; i += 1) {
+            const k = list[i];
+            dropdown = (k === 'dio') ? d$.f[k].c : 'v';
+            html.push(
+              '<li class="fs_dropdown_', dropdown, ' fs_', k, '">',
+              '<a href="', d$.f[k].l, '" ', n.html.popover(d$.f[k].t1, d$.f[k].d1), '>',
+              n.html.i(d$.f[k].i), '&nbsp;', n.text(n.html.frama(k)),
+              '</a></li>',
+            );
+          }
+
+          html.push('</ul>');
+        }
+
+        return html.join('');
+      },
+
+      navbar() {
+        const html = [
+          '<nav class="navbar navbar-default" id="framanav" role="menubar" style="display:none">',
+          '  <button type="button" class="navbar-toggle text-muted" data-toggle="collapse" data-target=".navbar-ex1-collapse">',
+          n.html.sr(d$.t.toggle), n.html.i('fa-bars'),
+          '  </button>',
+          '  <div class="nav-container">',
+          '    <div class="navbar-header">',
+          '      <a class="navbar-brand" href="', d$.meta.home.l, '">',
+          '        <img src="', n$.baseurl, 'img/logo.png" />',
+          '        <span class="hidden-sm">', n.html.frama('soft'), '</span>',
+          '      </a>',
+          '      <a href="#nav-end" id="nav-skip">', d$.t.skip, '</a>',
+          '    </div>',
+          '    <div class="collapse navbar-collapse navbar-ex1-collapse">',
+          '      <ul class="nav navbar-nav">',
+        ];
+        Object.keys(d$.menu).forEach((k) => {
+          if (k !== 'site' && k !== 'community') {
+            html.push(
+              '<li class="dropdown" id="fs_', k, '">',
+              n.html.menu('dropdown', d$.menu[k].name, d$.menu[k].list),
+              '</li>',
+            );
+          }
+        });
+        html.push(
+          '<li><a href="', d$.meta.soutenir.l, '/?f=nav" class="btn-soutenir" ', n.html.popover(d$.meta.soutenir.t1, d$.meta.soutenir.d1, 'bottom'), '>',
+          n.html.i(d$.meta.soutenir.i), '&nbsp;', d$.meta.soutenir.s,
+          '</a></li>',
+          '<li id="btn-benevalo"><a href="', d$.meta.benevalo.l, '" class="btn-info" ', n.html.popover(d$.meta.benevalo.t1, d$.meta.benevalo.d1, 'bottom'), '>',
+          n.html.i(d$.meta.benevalo.i), '&nbsp;', d$.meta.benevalo.s,
+          '</a></li>',
+          '<li id="btn-myframa"><a href="', d$.meta.myframa.l, '" class="btn-primary" ', n.html.popover(d$.meta.myframa.t1, d$.meta.myframa.d1, 'bottom'), '>',
+          n.html.i(d$.meta.myframa.i), '&nbsp;', d$.meta.myframa.s,
+          '</a></li>',
+          '      </ul>',
+          '    </div>',
+          '  </div>',
+          '  <a id="nav-end" class="sr-only"></a>',
+          '</nav>',
+          '<a href="', d$.meta.soutenir.l, '/?f=macaron" id="framanav_donation" rel="donBadge" style="display:none" class="hidden-xs">', n.html.sr(d$.meta.soutenir.s), '</a>',
+        );
+        return html.join('');
+      },
+
+      newsletter() {
+        return [
+          '<h2>', n.text(n.html.frama('newsletter')), '</h2>',
+          '<form action="https://contact.framasoft.org/php_list/lists/?p=subscribe&amp;id=2" method="post" name="subscribeform">',
+          '  <div class="input-group input-group-sm">',
+          '    <input class="form-control" title="', d$.t['type-your-email'], '" name="email" size="40" type="text" placeholder="', d$.t['your-email'], '" />',
+          '      <span class="input-group-btn">',
+          '        <button class="btn btn-default" name="subscribe" type="submit" value="subscribe">', d$.t.subscribe, n.html.sr(d$.t['to-the-newsletter']), '</button>',
+          '      </span>',
+          '    </div>',
+          '    <input name="htmlemail" type="hidden" value="1" />',
+          '    <input name="list[5]" type="hidden" value="signup" />',
+          '    <input name="listname[5]" type="hidden" value="Newsletter" />',
+          '    <div style="display: none;"><input name="VerificationCodeX" size="20" type="text" value="" /></div>',
+          '</form>',
+        ].join('');
+      },
+
+      footer() {
+        return [
+          '<footer id="framafooter" class="row hidden-print" role="contentinfo">',
+          '  <div class="container">',
+          '    <div class="clearfix col-sm-8">',
+          n.html.menu('footer', n.text(n.html.frama('soft')), ['asso', 'charte', 'contact', 'stats', 'status']),
+          n.html.menu('footer', d$.menu.community.name, ['participer', 'colibri', 'benevalo', 'partenaires']),
+          n.html.menu('footer', d$.menu.site.name, ['aide', 'faq', 'legals', 'cgu', 'credits']),
+          '    </div>',
+          '    <div class="col-sm-4">',
+          '      <div class="col-xs-12">',
+          n.html.menu('follow', d$.menu.follow.name, ['diaspora', 'mastodon', 'twitter', 'facebook', 'rss']),
+          n.html.newsletter(),
+          '      </div>',
+          '    </div>',
+          '  </div>',
+          '</footer>',
+        ].join('');
+      },
+
+      modal(id, title, body, footer, lg) { // Modales
+        const size = (lg === undefined) ? '' : ' modal-lg';
+        const html = [
+          '<div class="modal fade" lang="', d$.meta.lg, '" id="modal-', id, '" tabindex="-1" role="dialog" aria-labelledby="modal-', id, 'Label" aria-hidden="true">',
+          '  <div class="modal-dialog', size, '">',
+          '    <div class="modal-content">',
+          '      <div class="modal-header">',
+          '        <button type="button" class="close" data-dismiss="modal" title="', d$.t.close, '"><i aria-hidden="true">&times;</i>', n.html.sr(d$.t.close), '</button>',
+          '        <h1 id="modal-', id, 'Label">', title, '</h1>',
+          '      </div>',
+          '      <div class="modal-body">', body, '</div>',
+          '      <div class="modal-footer">', footer, '</div>',
+          '    </div>',
+          '  </div>',
+          '</div>',
+        ];
+        return html.join('');
+      },
+
+      popover(title, description, placement) { // Popover
+        const html = [];
+        if (title !== undefined && description !== undefined) {
+          html.push('rel="popover" data-content="', description, '" title="', title, '"');
+        }
+        if (placement !== undefined) {
+          html.push(' data-placement="', placement, '"');
+        }
+        return html.join('');
+      },
+
+      alert(type, id, body, close) { // Alert
+        const html = [];
+        html.push('<div class="alert alert-', type, ' fade in" id="', id, '">');
+        if (close) {
+          html.push(
+            '<button type="button" class="close" data-dismiss="alert" title="',
+            d$.t.close,
+            '"><i aria-hidden="true">&times;</i>',
+            n.html.sr(d$.t.close),
+            '</button>',
+          );
+        }
+        html.push(body, '</div>');
+        return html.join('');
+      },
+
+    },
+
+  };
+
+  n.mergeObj(n$, n); // export des fonctions pour config.js
+
+  n.init();
+
+  /** **************************************************************** *
+   *                           Config globale                          *
+   ** **************************************************************** */
+  c$ = {
+    js: {
+      j$: n.jquery(),
+      /**
+       * 'AJAX'       = jQuery de la nav ;
+       * 'HTML'       = jQuery (1.9.1 ou +) présent dans la page ;
+       * 'noConflict' = variable $ et jQuery renommés en js ;
+       */
+      b$: 'bootstrap',
+      /**
+       * 'bootstrap'  = bootstrap de la nav;
+       * 'html'       = bootstrap présent dans la page ;
+       * false        = on désactive bootstrap;
+       */
+      ext: false,
+      /**
+       * ext/n$.site.js si true
+       * ou bien une fonction lancée au dom.ready
+       */
+      audio: false,
+      video: false,
+    },
+    css: {
+      order: '012345',
+      /** cas possibles : 012345, 102345, 015234
+        0 : bootstrap
+        1 : css du site
+        2 : font-awesome
+        3 : nav.css
+        4 : frama.css
+        5 : nav/ext/n$.site.css si true */
+      b$: true,
+      frama: true,
+      ext: false,
+    },
+    mobile: true, // activer le viewport
+
+    modal: {
+      don: ['', 'de télécharger', 'télécharger', 604800000],
+      /**
+        0 : sélecteur jQuery ou 'onstart' pour l'afficher à l'ouverture de la page
+        3 : durée du cookie (7 jours)
+       */
+      info: ['', '', 'modal-info', 604800000],
+      /** [titre, texte, nom du cookie, durée du cookie (7 jours)] */
+    },
+    alert: ['black', '', 'nav-alert', 604800000],
+    /** [couleur (classes bootstrap), texte, nom du cookie, durée du cookie (7 jours)] */
+
+    optin: ['', '', 'opt-in', 604800000],
+    /** [sélecteur email1, email2, nom du cookie, durée du cookie (7 jours)] */
+
+    icons: {
+      keep: false, // garder les icônes du site (connard.pro, pouhiou.com)
+      fav: false, // favicon-violet.png
+      apple: false, // n$.site+'.png'
+    },
+    host: 'hetzner',
+    credits: n$.site,
+    piwik: {
+      id: '',
+      url: 'https://stats.framasoft.org/',
+    },
+  };
+
+  // Bandeau soutenir défiscalisation
+  const f$Today = new Date();
+  const f$DD = f$Today.getDate();
+  const f$MM = f$Today.getMonth() + 1;
+  const f$YYYY = f$Today.getFullYear();
+
+  if (f$MM === 12 && (31 - f$MM) < 16 && n$.site !== 'soutenir' && n.is.lang('fr')) {
+    const f$Rebours = ((31 - f$DD) === 0) ? '24 heures' : [(31 - f$DD), ' jours'].join('');
+    c$.alert[0] = 'info';
+    c$.alert[1] = [
+      'Rappel&nbsp;: il vous reste <b>', f$Rebours, '</b> pour faire un <b>don défiscalisé en ', f$YYYY, '</b> à Framasoft.',
+      '<br/>Merci pour votre soutien <a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir">', n.html.i('fa-heart', ''), n.html.sr('Faire un don ?'), '</a>',
+    ].join('');
+  }
+}());

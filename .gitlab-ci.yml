@@ -1,11 +1,33 @@
+image: node:8.9.4-stretch
+stages:
+  - test
+  - deploy
+
+test:
+  stage: test
+  before_script:
+  - apt-get update -yqq
+  - npm install -g eslint
+  - npm install -g eslint-plugin-filenames
+  - npm install -g eslint-plugin-import
+  - npm install -g eslint-plugin-html
+  - npm install -g eslint-plugin-promise
+  - npm install -g eslint-plugin-vue
+  - npm install -g eslint-config-airbnb-base
+  - npm install -g babel-eslint
+  - DEBIAN_FRONTEND=noninteractive apt-get install jsonlint -yqq
+  script:
+    - jsonlint-php html/*.json
+    - eslint nav.js config.js ext/*.js
+
 deploy:
   stage: deploy
   before_script:
   - apt-get update -yqq
   - DEBIAN_FRONTEND=noninteractive apt-get install ssh sassc rsync -yqq
   script:
-  - sassc css/scss/frama.scss css/frama.css
-  -  mkdir .public
+  - sassc -m -t compressed css/scss/frama.scss css/frama.css
+  - mkdir .public
   - cp -r * .public
   - mv .public public
   - mkdir "${HOME}/.ssh"

@@ -8,3 +8,8 @@
         background:#eef;
     }
 }
+[data-url^="http://localhost"][data-url$="home.html"] {
+    body {
+        background:#efe;
+    }
+}

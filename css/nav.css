@@ -1,5 +1,5 @@
 #framanav_container {
-  width: 100%;  
+  width: 100%;
 }
 
 .fnav-fixed {
@@ -137,7 +137,9 @@
     z-index:1002;
     background-color: #FAFAFA !important;
     border-radius:0;
-    border-top:0px solid #FAFAFA;
+    border-top: none;
+    border-left: none;
+    border-right: none;
     border-bottom:1px solid #bdbdbd;
 }
 
@@ -149,7 +151,7 @@
 }
 
 #framanav .dropdown-toggle {
-    padding:7px 4px 5px 10px !important;*/
+    padding:7px 4px 5px 10px !important;
 }
 
 #framanav .nav-container {
@@ -438,6 +440,11 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
     overflow:visible !important;
 }
 
+#nav-alert > div {
+    margin:0 auto;
+    max-width:800px;
+}
+
 /* Video JS */
 .vjs-default-skin .vjs-big-play-button {
     left:50%;
@@ -480,6 +487,23 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
 
 .audio .vjs-progress-control {
     font-size:0.9em;
+}
+
+.btn-youtube {
+    line-height: 2.5em;
+    text-align: center;
+    left: 50%;
+    top: 50%;
+    margin-left: -78px;
+    margin-top: -48px;
+    position: absolute;
+    width: 4em;
+    height: 2.6em;
+    font-size: 3em;
+    display: block;
+    z-index: 2;
+    background-color: rgba(206, 32, 33, 0.9);
+    border-radius: 0.5em;
 }
 
 /* Opt-in */

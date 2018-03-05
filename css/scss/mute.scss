@@ -1,0 +1,64 @@
+[data-url*=".framaboard.org/"],
+[data-url*="://framabookin.org/b"],
+
+/* dans Ethercalc */
+[data-url*="://framacalc.org"]:not([data-url$="/_start"]),
+[data-url*="://framacalc.org"]:not([data-url$="/_start"]),
+[data-url*="://framacalc.org"]:not([data-url="https://framacalc.org/"]),
+[data-url*="://framacalc.org"]:not([data-url="https://lite.framacalc.org/"]),
+
+[data-url*="://framacarte.org"][data-url*="/map/"],                     /* dans uMap */
+[data-url*="://framacolibri.org"],
+
+/* dans Nextcloud */
+/* [data-url*="://framagenda.org"][data-url*="index.php/app"]:not([data-url*="registration"]),
+ * [data-url*="://framagenda.org"][data-url*="index.php/setting"], */
+[data-url*="://framadrive.org"][data-url*="index.php/app"]:not([data-url*="registration"]),
+[data-url*="://framadrive.org"][data-url*="index.php/setting"],
+
+[data-url*="://framaestro.org/p/"],                                     /* dans Maestro */
+[data-url*="://framindmap.org/c/maps"][data-url*="/edit"],              /* dans l’éditeur de Wisemapping */
+[data-url*="://framinetest.org/carte/"],                                /* dans la carte Minetest */
+[data-url*="://framanews.org/ttrss"],                                   /* dans TTRSS (pas actif) */
+[data-url*="://framapack.org/admin/"],                                  /* dans l’interface admin de Framapack */
+[data-url*="://framapiaf.org"]:not([data-url*="/about"]),
+[data-url*="://framateam.org"],
+[data-url*="://framatube.org"][data-url*="/embed_player"],              /* dans le lecteur vidéo de Mediadrop */
+[data-url*="://framavectoriel.org/svg-editor"],                         /* dans SVG-Edit */
+[data-url*="://framavox.org"],
+
+[data-url*="://mypads.framapack.org"],                                  /* dans MyPads */
+[data-url*=".framapad.org/p/"],                                         /* dans Etherpad */
+
+[data-url*="://bot.framasoft.org"],
+[data-url*="://forum.framasoft.org"],
+[data-url*="://my.framasoft.org"][data-url*="source=bookmarklet"],      /* dans la popup MyFrama */
+[data-url*="://status.framasoft.org"],
+
+[data-url*="://connard.pro"],
+[data-url*="://degooglisons-internet.org"],
+[data-url*="://contributopia.org"],
+
+[data-inframe="true"] {
+    /* Pas de bandeau */
+    #nav-alert {
+        display: none !important;
+    }
+
+    /* Pas de modale */
+    #modal-finfo[style],
+    #modal-finfo[style] + .modal-backdrop,
+    #modal-soutenir[style],
+    #modal-soutenir[style] + .modal-backdrop {
+        display: none !important;
+    }
+    .modal-open {
+        overflow: auto;
+    }
+
+    /* Pas de macaron */
+    #framanav_donation,
+    #framanav_donation[style] {
+        display: none !important;
+    }
+}

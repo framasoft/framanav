@@ -1,0 +1,220 @@
+[data-url*=".framaboard.org/"] #framanav_container {
+
+    @import '../../lib/bootstrap/css/bootstrap.min';
+    @import '../nav';
+
+    /* Dropdown */
+    .caret {
+      display: inline-block;
+      width: 0;
+      height: 0;
+      margin-left: 2px;
+      vertical-align: middle;
+      border-top: 4px dashed;
+      border-top: 4px solid \9;
+      border-right: 4px solid transparent;
+      border-left: 4px solid transparent;
+    }
+
+    #framanav .dropup,
+    #framanav .dropdown {
+      position: relative;
+    }
+    #framanav .dropdown-toggle:focus {
+      padding: 7px 4px 5px 10px !important
+    }
+    #framanav .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 1000;
+      display: none;
+      float: left;
+      min-width: 160px;
+      padding: 5px 0;
+      margin: 2px 0 0;
+      list-style: none;
+      font-size: 14px;
+      text-align: left;
+      background-color: #ffffff;
+      border: 1px solid #cccccc;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      border-radius: 4px;
+      -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+      -webkit-background-clip: padding-box;
+              background-clip: padding-box;
+    }
+    #framanav .dropdown-menu.pull-right {
+      right: 0;
+      left: auto;
+    }
+    #framanav .dropdown-menu .divider {
+      height: 1px;
+      margin: 9px 0;
+      overflow: hidden;
+      background-color: #e5e5e5;
+    }
+    #framanav .dropdown-menu > li > a {
+      display: block;
+      padding: 3px 20px;
+      clear: both;
+      font-weight: normal;
+      line-height: 1.42857143;
+      white-space: nowrap;
+    }
+    #framanav .dropdown-menu > li > a:hover,
+    #framanav .dropdown-menu > li > a:focus {
+      text-decoration: none;
+      background-color: #f5f5f5;
+    }
+    #framanav .dropdown-menu > .active > a,
+    #framanav .dropdown-menu > .active > a:hover,
+    #framanav .dropdown-menu > .active > a:focus {
+      color: #ffffff;
+      text-decoration: none;
+      outline: 0;
+      background-color: #337ab7;
+    }
+    #framanav .dropdown-menu > .disabled > a,
+    #framanav .dropdown-menu > .disabled > a:hover,
+    #framanav .dropdown-menu > .disabled > a:focus {
+      color: #777777;
+    }
+    #framanav .dropdown-menu > .disabled > a:hover,
+    #framanav .dropdown-menu > .disabled > a:focus {
+      text-decoration: none;
+      background-color: transparent;
+      background-image: none;
+      filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+      cursor: not-allowed;
+    }
+    #framanav .open > .dropdown-menu {
+      display: block;
+    }
+    #framanav .open > a {
+      outline: 0;
+    }
+    #framanav .dropdown-menu-right {
+      left: auto;
+      right: 0;
+    }
+    #framanav .dropdown-menu-left {
+      left: 0;
+      right: auto;
+    }
+    #framanav .dropdown-header {
+      display: block;
+      padding: 3px 20px;
+      font-size: 12px;
+      line-height: 1.42857143;
+      color: #777777;
+      white-space: nowrap;
+    }
+    #framanav .dropdown-backdrop {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      z-index: 990;
+    }
+    #framanav .pull-right > .dropdown-menu {
+      right: 0;
+      left: auto;
+    }
+    #framanav .dropup .caret,
+    #framanav .navbar-fixed-bottom .dropdown .caret {
+      border-top: 0;
+      border-bottom: 4px dashed;
+      border-bottom: 4px solid \9;
+      content: "";
+    }
+    #framanav .dropup .dropdown-menu,
+    #framanav .navbar-fixed-bottom .dropdown .dropdown-menu {
+      top: auto;
+      bottom: 100%;
+      margin-bottom: 2px;
+    }
+    @media (min-width: 768px) {
+      #framanav .navbar-right .dropdown-menu {
+        left: auto;
+        right: 0;
+      }
+      #framanav .navbar-right .dropdown-menu-left {
+        left: 0;
+        right: auto;
+      }
+    }
+
+    #framanav .nav > li > a .fa,
+    #framanav a:hover .fa {
+      color: #fff;
+    }
+}
+
+[data-url*=".framaboard.org/"] {
+    /*----------------------------------------------------------------------*/
+    /* Fix après Bootstrap */
+    #popover-container {
+        top:42px;
+    }
+    #popover-content {
+        top: 60px;
+        max-height: calc(100% - 110px);
+    }
+
+    /* Button color from Framacss */
+    .btn-red {  /* = btn-danger */
+        color: #fff;
+        text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
+        background-color: #CC2D18;
+        border-color: #CC2D18;
+    }
+
+    a.btn-red:hover,
+    .btn-red:hover,
+    .btn-red:focus {
+        color: #fff;
+        background-color: #B82E12;
+        border-color: #B82E12;
+    }
+
+    a.btn-blue, /* = btn-primary */
+    .btn-blue {
+        color: #fff;
+        text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
+        background-color: #6A5687;
+        border-color: #6A5687;
+    }
+
+    a.btn-blue:hover,
+    .btn-blue:hover,
+    a.btn-blue:focus,
+    .btn-blue:focus {
+        color: #fff;
+        background-color: #635182;
+        border-color: #635182;
+    }
+
+    .btn-blue:disabled {
+        color: #777;
+        text-shadow: none;
+        border: 1px solid #ccc;
+        background: #f7f7f7;
+    }
+    a:focus {
+        border:none;
+    }
+
+    #ui-datepicker-div {
+        z-index: 1002 !important; /* Above the nav */
+    }
+
+    #modal-box {
+      max-height: calc(100% - 65px);
+      top: 60px;
+    }
+
+}
+
