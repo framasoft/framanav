@@ -2,10 +2,8 @@
 [data-url*="://framabookin.org/b"],
 
 /* dans Ethercalc */
-[data-url*="://framacalc.org"]:not([data-url$="/_start"]),
-[data-url*="://framacalc.org"]:not([data-url$="/_start"]),
-[data-url*="://framacalc.org"]:not([data-url="https://framacalc.org/"]),
-[data-url*="://framacalc.org"]:not([data-url="https://lite.framacalc.org/"]),
+[data-url*="framacalc.org/"]:not([data-url$="/_start"]),
+[data-url*="framacalc.org/"]:not([data-url$="framacalc.org/"]),
 
 [data-url*="://framacarte.org"][data-url*="/map/"],                     /* dans uMap */
 [data-url*="://framacolibri.org"],
