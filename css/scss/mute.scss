@@ -1,3 +1,5 @@
+/* Ni bandeau, ni modale, ni macaron */
+/* ------------------------------------------------------------------ */
 [data-url*=".framaboard.org/"],
 [data-url*="://framabookin.org/b"],
 
@@ -25,9 +27,6 @@
 [data-url*="://framavectoriel.org/svg-editor"],                         /* dans SVG-Edit */
 [data-url*="://framavox.org"],
 
-[data-url*="://mypads.framapad.org"],                                  /* dans MyPads */
-[data-url*=".framapad.org/p/"],                                         /* dans Etherpad */
-
 [data-url*="://bot.framasoft.org"],
 [data-url*="://forum.framasoft.org"],
 [data-url*="://my.framasoft.org"][data-url*="source=bookmarklet"],      /* dans la popup MyFrama */
@@ -38,12 +37,10 @@
 [data-url*="://contributopia.org"],
 
 [data-inframe="true"] {
-    /* Pas de bandeau */
     #nav-alert {
         display: none !important;
     }
 
-    /* Pas de modale */
     #modal-finfo[style],
     #modal-finfo[style] + .modal-backdrop,
     #modal-soutenir[style],
@@ -54,17 +51,34 @@
         overflow: auto;
     }
 
-    /* Pas de macaron */
     #framanav_donation,
     #framanav_donation[style] {
         display: none !important;
     }
 }
 
-[data-url*=".frama.site/admin"] {                                       /* dans Grav */
-    /* Pas de macaron */
+/* Ni bandeau ni macaron */
+/* ------------------------------------------------------------------ */
+[data-url*="://mypads.framapad.org"],                                   /* dans MyPads */
+[data-url*=".framapad.org/p/"] {                                        /* dans Etherpad */
+    #nav-alert {
+        display: none !important;
+    }
+
     #framanav_donation,
     #framanav_donation[style] {
         display: none !important;
     }
 }
+
+/* Uniquement macaron */
+/* ------------------------------------------------------------------ */
+[data-url*=".frama.site/admin"] {                                       /* dans Grav */
+    #framanav_donation,
+    #framanav_donation[style] {
+        display: none !important;
+    }
+}
+
+
+
