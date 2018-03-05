@@ -385,8 +385,19 @@ switch (n$.site) {
     l$ = {
       js: {
         ext() {
-          if (n$.is.url('/auth') || n$.is.url('remote_follow')) { $('.container').addClass('ombre'); }
-          $('img[src*="/packs/logo"]').attr('src', 'https://framasoft.org/nav/img/icons/piaf.png');
+          if (n$.is.url('/auth') || n$.is.url('remote_follow')) {
+            f$('.container').addClass('ombre');
+          }
+          if (n$.is.url('/settings/preferences')) {
+            f$('.content').addClass('ombre');
+          }
+          if (n$.is.url('/about/more')) {
+            f$('.landing-page').addClass('container ombre');
+            f$('.information-board, .header-wrapper.compact').addClass('well');
+            f$('.panel').css('background', '#6A5687');
+            f$('.extended-description ul:eq(1)').css('list-style', 'none');
+          }
+          f$('img[src*="/packs/logo"]').attr('src', 'https://framasoft.org/nav/img/icons/piaf.png');
         },
       },
     };
