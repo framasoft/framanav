@@ -20,6 +20,7 @@
 [data-url*="://framapack.org/admin/"],                                  /* dans l’interface admin de Framapack */
 [data-url*="://framaphonie.org"],
 [data-url*="://framapiaf.org"]:not([data-url*="/about"]),
+[data-url*=".frama.site/admin"],                                        /* dans Grav */
 [data-url*="://framateam.org"],
 [data-url*="://framavectoriel.org/svg-editor"],                         /* dans SVG-Edit */
 [data-url*="://framavox.org"],

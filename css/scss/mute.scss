@@ -60,3 +60,11 @@
         display: none !important;
     }
 }
+
+[data-url*=".frama.site/admin"] {                                       /* dans Grav */
+    /* Pas de macaron */
+    #framanav_donation,
+    #framanav_donation[style] {
+        display: none !important;
+    }
+}
