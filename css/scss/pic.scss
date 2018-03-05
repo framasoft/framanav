@@ -1,0 +1,5 @@
+[data-url*="://framapic.org/"] {
+    #myfiles .icon::before, .fa::before {
+        font: inherit; /* Fix conflit font/fork awesome */
+    }
+}
