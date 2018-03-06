@@ -1,0 +1,92 @@
+[data-url*="://framabee.org"],
+[data-url*="://trouvons.org"],
+[data-url*="://tontonroger.org"] {
+    /* Aération et meilleure lisibilité des résultats */
+    .result {
+        margin-bottom:10px;
+        padding:5px 10px 15px 15px;
+    }
+
+    .result:hover {
+        background:#f5f5f5;
+    }
+
+    .result .external-link {
+        color: #757575;
+    }
+
+    .result .pull-right small a {
+        color: #757575;
+    }
+
+    .result .pull-right small a,
+    .btn a {
+        text-decoration: none;
+    }
+
+    @media (min-width: 992px) {
+        .result .pull-right {
+            visibility:hidden;
+        }
+        .result:hover .pull-right  {
+            visibility:visible;
+        }
+    }
+
+    /* Boutons (fix marges et couleur) */
+    #sidebar_results .btn {
+        margin: 0 0px 5px 5px;
+    }
+
+    #sidebar_results .btn-default a {
+        color: #333;
+    }
+
+    #sidebar_results p.btn {
+        margin: 0 0px 5px 0px;
+    }
+
+    /* En cache (juste une icône + tooltip) */
+    .result .pull-right small a.text-info {
+        color:#FFF;
+        font-size:1px;
+        position:relative;
+    }
+
+    .result .pull-right small a.text-info .glyphicon-link:before {
+        content: "\f1da";
+        font: normal normal normal 14px/1 ForkAwesome;
+        color: #757575;
+        padding-left: 2px;
+        font-size: 1.2em;
+        font-size: 14px;
+    }
+
+    .result .pull-right small a.text-info:hover .glyphicon-link:after {
+        content: 'En cache';
+        position: absolute;
+        white-space: nowrap;
+        top:-25px; right:0px;
+        padding: 3px 8px;
+        background-color: #000;
+        border-radius: 4px;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 12px;
+        line-height: 1.42857143;
+
+    }
+
+    /* Titres tronqués + mots recherchés en gras */
+    h4.result_header {
+        font-weight:500;
+        white-space: nowrap;
+        line-height: 24px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display:block;
+        max-width: 90%;
+    }
+    .highlight {
+        font-weight:600;
+    }
+}

@@ -15,7 +15,6 @@ var l$; l$ = l$ || {}; // eslint-disable-line
 // credits et placer un tracker sur un lien de la modale Soutenir
 
 switch (n$.site) {
-  case 'noenaute': n$.site = 'pouhiou'; break;
   case 'huit.re': n$.site = 'link'; break;
   case 'tontonroger': n$.site = 'bee'; break;
   case 'trouvons': n$.site = 'bee'; break;
