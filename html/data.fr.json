@@ -71,8 +71,8 @@
       "d1": "(Promis, nous ne revendons pas nos fichiers, même à la NSA !)",
       "d2": "Pourquoi m’inscrire ?",
       "e1": "Les adresses emails ne correspondent pas.",
-      "e2": "L’adresse email %f$_email% n’est pas valide.",
-      "s1": "Votre adresse email <strong>%f$_email%</strong> a été ajoutée à notre liste. Vous devriez avoir reçu un email de confirmation."
+      "e2": "L’adresse email %f$Email% n’est pas valide.",
+      "s1": "Votre adresse email <strong>%f$Email%</strong> a été ajoutée à notre liste. Vous devriez avoir reçu un email de confirmation."
     }
   },
   "t": {

@@ -33,8 +33,8 @@
       "d1": "(We swear, we won't resell our files, even to the NSA!",
       "d2": "Why suscribe ?",
       "e1": "Email addresses don't match.",
-      "e2": "The email address %f$_email% is not valid.",
-      "s1": "Your email address <strong>%f$_email%</strong> has been added to our list. You should have received a confirmation email."
+      "e2": "The email address %f$Email% is not valid.",
+      "s1": "Your email address <strong>%f$Email%</strong> has been added to our list. You should have received a confirmation email."
     }
   },
   "t": {
