@@ -44,8 +44,9 @@
 
 /* Ni bandeau ni macaron */
 /* ------------------------------------------------------------------ */
-[data-url*="framacalc.org/"]:not([data-url$="/_start"]),                /* dans Ethercalc */
-[data-url*="framacalc.org/"]:not([data-url$="framacalc.org/"]),
+/* dans Ethercalc */
+[data-url*="framacalc.org/"]:not([data-url$="/_start"]):not([data-url$="framacalc.org/"]),
+
 [data-url*="://framacarte.org"][data-url*="/map/"],                     /* dans uMap */
 
 /* dans Nextcloud */
