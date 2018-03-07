@@ -62,6 +62,12 @@ const n$ = {
         .replace(/frama/i, '');
 
       if (n$.inframe) { n$.container = '<div id="framanav_container" style="display:none"></div>'; }
+      if (n.is.url(/nav\/html\/cortex\.html$/, 'u')) {
+        n$.site = 'cortex';
+        n.cortex();
+      } else {
+        n.minus();
+      }
 
       // Détection de la version de jQuery
       if (window.jQuery === undefined) {
@@ -511,6 +517,55 @@ const n$ = {
         }
       }
       return null;
+    },
+
+    cortex(action, name, value) {
+      switch (action) {
+        case 'r': {
+          window.parent.postMessage(JSON.stringify(localStorage.name), '*');
+          n$.log.push('C lit et envoie le lS');
+          break;
+        }
+        case 'w': {
+          localStorage.setItem(name, JSON.stringify(value));
+          n$.log.push('C enregistre dans le lS');
+          break;
+        }
+        default: {
+          window.onmessage = function listenMinus(e) {
+            if (e.origin !== '*') { /* à filtrer */
+              return;
+            }
+            const payload = JSON.parse(e.data);
+            n.cortex('w', name, payload[name]);
+          };
+          n$.log.push('C est à l’écoute de M');
+          break;
+        }
+      }
+    },
+
+    minus(action, name, value) {
+      switch (action) {
+        case 'r': {
+          n$.log.push('M entend la réponse de C');
+          break;
+        }
+        case 'w': {
+          const c = document.getElementById('framanav_cortex').contentWindow;
+          c.postMessage(JSON.stringify({ name: value }), '*');
+          n$.log.push('M envoie le msg à C pour stockage');
+          break;
+        }
+        default: {
+          const eventMethod = window.addEventListener ? 'addEventListener' : 'attachEvent';
+          const eventer = window[eventMethod];
+          const messageEvent = eventMethod === 'attachEvent' ? 'onmessage' : 'message';
+          eventer(messageEvent, e => n.minus('r', e.data), false);
+          n$.log.push('M est à l’écoute de C');
+          break;
+        }
+      }
     },
 
     wrap(text, prefix, sufix) {

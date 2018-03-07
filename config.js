@@ -34,6 +34,13 @@ if ((n$.is.url(/.framapad/i, 'h') && !n$.is.url(/mypads./i, 'h')) ||
 }
 
 switch (n$.site) {
+  case 'cortex':
+    l$ = {
+      js: { b$: false },
+      css: { b$: false, frama: false },
+    };
+    break;
+
   case 'forum':
     n$.name = 'Framagora';
     l$ = {
