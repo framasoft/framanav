@@ -509,7 +509,7 @@ switch (n$.site) {
     } else {
       l$ = {
         js: { video: true },
-        modal: { don: ['a[href="/svg-editor.html"]', 'd’utiliser', 'créer une image'] },
+        modal: { don: ['a[href$="svg-editor.html"]', 'd’utiliser', 'créer une image'] },
       };
     }
     break;

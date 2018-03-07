@@ -71,6 +71,14 @@
         }
     }
 
+    .result.result-images {
+        float:left;
+        padding: 10px;
+    }
+    .result-default {
+        clear:left;
+    }
+
     /* Boutons (fix marges et couleur) */
     #sidebar_results .btn {
         margin: 0 0px 5px 5px;
