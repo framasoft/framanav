@@ -42,8 +42,18 @@
     .row.menu-container {
         margin: 30px 0 30px 0;}
 
-    /* Pas de menu catégorie sur l’accueil */
+    /* Sur l’accueil */
     #menu ~ #search_form #categories { display:none; }
+    #menu ~ #search_form .search-wrapper {
+        margin: 40px auto 10px auto;
+    }
+
+    @media (min-width: 992px) {
+        #menu ~ #search_form .search-wrapper {
+            max-width:80%;
+            float:none;
+        }
+    }
 
     /* Mise en forme des select (plus discrets) */
     #search_form #time-range,
@@ -61,6 +71,7 @@
         background-position-x: 100%;
         border-radius: 0px;
         margin: 15px 0;
+        padding: 4px 8px;
     }
 
     #search_form #time-range:hover,
