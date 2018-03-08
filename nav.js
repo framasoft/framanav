@@ -30,7 +30,7 @@ const n$ = {
   inframe: window.top.location !== window.self.document.location,
   container: [
     '<div id="framanav_container" class="hidden-print" style="height:42px; opacity : 0"></div>',
-    '<iframe id="framanav_cortex" src="http://frama.org/nav/html/cortex.html" ',
+    '<iframe id="framanav_cortex" src="https://framasoft.org/nav/html/cortex.html" ',
     'style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;"></iframe>',
   ].join(''),
   browser: {
@@ -447,10 +447,6 @@ const n$ = {
             link.media = (css.frama) ? 'all' : 'none';
             link.href = n.l('css/frama.css', 'n', 'v');
             break;
-          case '5': // Ext *obsolete*
-            link.media = (css.ext) ? 'all' : 'none';
-            link.href = n.l(`ext/${n$.site}.css`, 'n', 'v');
-            break;
           default:
             // no default
             break;
@@ -471,12 +467,12 @@ const n$ = {
       }
 
       /** Parcours décroissant à partir de la position du '1' (= css du site)
-       *  exemple 02-1-345 → on commence par le 2 puis le 0 */
+       *  exemple 02-1-34 → on commence par le 2 puis le 0 */
       for (let i = css.order.indexOf('1'); i >= 0; i -= 1) {
         AddLink(css.order[i], 'first');
       }
       /** Parcours croissant pour le reste
-       * exemple 02-1-345 → dans l'ordre 3, 4 et 5 */
+       * exemple 02-1-34 → dans l'ordre 3 et 4 */
       for (let i = css.order.indexOf('1'); i < css.order.length; i += 1) {
         AddLink(css.order[i]);
       }
@@ -1454,17 +1450,15 @@ const n$ = {
       video: false,
     },
     css: {
-      order: '012345',
-      /** cas possibles : 012345, 102345, 015234
+      order: '01234',
+      /** cas possibles : 01234, 10234
         0 : bootstrap
         1 : css du site
         2 : font-awesome
         3 : nav.css
-        4 : frama.css
-        5 : nav/ext/n$.site.css si true */
+        4 : frama.css */
       b$: true,
       frama: true,
-      ext: false,
     },
     mobile: true, // activer le viewport
 
