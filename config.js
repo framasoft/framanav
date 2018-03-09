@@ -44,7 +44,7 @@ switch (n$.site) {
   case 'forum':
     n$.name = 'Framagora';
     l$ = {
-      css: { order: '102345' },
+      css: { order: '10234' },
       optin: ['#email_confirm', '#email'],
       modal: {
         info: [
@@ -109,7 +109,7 @@ switch (n$.site) {
               .parent().hide();
           },
         },
-        css: { order: '015234', b$: false },
+        css: { b$: false },
       };
     } else {
       l$.optin = ['#registration #email'];
@@ -169,7 +169,6 @@ switch (n$.site) {
   case 'contact':
     l$ = {
       js: { ext: true },
-      css: { ext: true },
       optin: ['#wpcf7-f24-p5-o1 .wpcf7-email'],
     };
     break;
@@ -383,7 +382,7 @@ switch (n$.site) {
 
   case 'phonie':
     l$ = {
-      css: { order: '102345' },
+      css: { order: '10234' },
     };
     break;
 
@@ -455,7 +454,7 @@ switch (n$.site) {
           });
         },
       },
-      css: { order: '102345' },
+      css: { order: '10234' },
     };
     break;
 

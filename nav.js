@@ -41,6 +41,7 @@ const n$ = {
     chrome: !!window.chrome && !(!!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0),
     ie: /*@cc_on!@*/false || !!document.documentMode, // eslint-disable-line
   },
+  storage: {},
   log: [],
 };
 
@@ -62,12 +63,8 @@ const n$ = {
         .replace(/frama/i, '');
 
       if (n$.inframe) { n$.container = '<div id="framanav_container" style="display:none"></div>'; }
-      if (n.is.url(/nav\/html\/cortex\.html$/, 'u')) {
-        n$.site = 'cortex';
-        n.cortex();
-      } else {
-        n.minus();
-      }
+      if (n.is.url(/nav\/html\/cortex\.html$/, 'u')) { n$.site = 'cortex'; }
+      if (n.is.url(/nav\/test\//, 'u')) { n$.site = 'code'; }
 
       // Détection de la version de jQuery
       if (window.jQuery === undefined) {
@@ -159,6 +156,12 @@ const n$ = {
         f$.ajaxSetup({ cache: true });
 
         if (n$.container !== '☀') { f$('body').prepend(n$.container); }
+
+        if (n.is.url(/nav\/html\/cortex\.html$/, 'u')) {
+          n.cortex();
+        } else {
+          n.minus();
+        }
 
         // On charge ensuite les données
         let f$I18n = {};
@@ -294,7 +297,7 @@ const n$ = {
               f$('head').append(n.html.link('apple', n.l(`img/icons/${c$.icons.apple}`, 'n')));
             }
 
-            n.optin();
+            n.storageReady(() => { n.optin(); });
             n.macaron();
 
             // Liens À propos
@@ -374,7 +377,7 @@ const n$ = {
 
         n.bsModalInfo();
         n.bsAlert();
-        n.bsModalSoutenir();
+        n.storageReady(() => n.bsModalSoutenir());
         n.bsModalFAQ();
       } // </!n$.inframe>
     },
@@ -444,10 +447,6 @@ const n$ = {
             link.media = (css.frama) ? 'all' : 'none';
             link.href = n.l('css/frama.css', 'n', 'v');
             break;
-          case '5': // Ext *obsolete*
-            link.media = (css.ext) ? 'all' : 'none';
-            link.href = n.l(`ext/${n$.site}.css`, 'n', 'v');
-            break;
           default:
             // no default
             break;
@@ -468,12 +467,12 @@ const n$ = {
       }
 
       /** Parcours décroissant à partir de la position du '1' (= css du site)
-       *  exemple 02-1-345 → on commence par le 2 puis le 0 */
+       *  exemple 02-1-34 → on commence par le 2 puis le 0 */
       for (let i = css.order.indexOf('1'); i >= 0; i -= 1) {
         AddLink(css.order[i], 'first');
       }
       /** Parcours croissant pour le reste
-       * exemple 02-1-345 → dans l'ordre 3, 4 et 5 */
+       * exemple 02-1-34 → dans l'ordre 3 et 4 */
       for (let i = css.order.indexOf('1'); i < css.order.length; i += 1) {
         AddLink(css.order[i]);
       }
@@ -519,51 +518,84 @@ const n$ = {
       return null;
     },
 
-    cortex(action, name, value) {
+    cortex(action, msg) {
+      const m = msg;
       switch (action) {
-        case 'r': {
-          window.parent.postMessage(JSON.stringify(localStorage.name), '*');
-          n$.log.push('C lit et envoie le lS');
+        case 'o': // output to Minus
+          try {
+            window.parent.postMessage(localStorage.framanav, '*');
+          } catch (e) {
+            window.parent.postMessage(JSON.stringify(n.storageInit()), '*');
+          }
           break;
-        }
-        case 'w': {
-          localStorage.setItem(name, JSON.stringify(value));
-          n$.log.push('C enregistre dans le lS');
+        case 'i': // input in localStorage
+          try {
+            localStorage.setItem('framanav', JSON.stringify(m));
+          } catch (e) {
+            // Pas accès au localStorage
+          }
           break;
-        }
-        default: {
-          window.onmessage = function listenMinus(e) {
-            if (e.origin !== '*') { /* à filtrer */
-              return;
+        default: // init
+          try {
+            if (localStorage.framanav === undefined) {
+              n.cortex('i', n.storageInit());
             }
-            const payload = JSON.parse(e.data);
-            n.cortex('w', name, payload[name]);
+          } catch (e) {
+            // Pas accès au localStorage
+          }
+          n.cortex('o');
+
+          window.onmessage = function listenMinus(event) {
+            /* if(event.origin !== 'frama.web') {
+              return;
+            } */
+            const payload = JSON.parse(event.data);
+            if (payload.framanav !== n.storageInit() &&
+              Object.keys(payload.framanav).length) {
+              n.mergeObj(n$.storage, payload.framanav);
+              n.cortex('i', n$.storage);
+            }
+            n.cortex('o');
           };
-          n$.log.push('C est à l’écoute de M');
           break;
+      }
+    },
+
+    minus(action, msg) {
+      const m = msg; const c = document.getElementById('framanav_cortex');
+      if (c) {
+        switch (action) {
+          case 'i': { // input in n$.storage
+            n$.storage = JSON.parse(m);
+            break;
+          }
+          case 'o': { // output to Cortex
+            c.contentWindow.postMessage(JSON.stringify({ framanav: m }), '*');
+            break;
+          }
+          default: { // init
+            n.minus('o', n$.storage);
+
+            const eventMethod = (window.addEventListener) ? 'addEventListener' : 'attachEvent';
+            const eventer = window[eventMethod];
+            const messageEvent = (eventMethod === 'attachEvent') ? 'onmessage' : 'message';
+            eventer(messageEvent, e => n.minus('i', e.data), false);
+            break;
+          }
         }
       }
     },
 
-    minus(action, name, value) {
-      switch (action) {
-        case 'r': {
-          n$.log.push('M entend la réponse de C');
-          break;
-        }
-        case 'w': {
-          const c = document.getElementById('framanav_cortex').contentWindow;
-          c.postMessage(JSON.stringify({ name: value }), '*');
-          n$.log.push('M envoie le msg à C pour stockage');
-          break;
-        }
-        default: {
-          const eventMethod = window.addEventListener ? 'addEventListener' : 'attachEvent';
-          const eventer = window[eventMethod];
-          const messageEvent = eventMethod === 'attachEvent' ? 'onmessage' : 'message';
-          eventer(messageEvent, e => n.minus('r', e.data), false);
-          n$.log.push('M est à l’écoute de C');
-          break;
+    storageInit() {
+      return { modal: { don: [false, 604800000] }, optin: [false, 604800000] };
+    },
+
+    storageReady(callback) {
+      if (document.getElementById('framanav_cortex')) {
+        if (Object.keys(n$.storage).length > 0) {
+          callback();
+        } else {
+          window.setTimeout(n.storageReady.bind(null, callback), 100);
         }
       }
     },
@@ -722,6 +754,9 @@ const n$ = {
         // Les autres des liens présents dans la pageq
         f$(c$.modal.don[0]).each(function eventModal() {
           f$(this).click(() => {
+            if (n$.storage.modal.don[0]) {
+              n.cookie('w', 'dondl', true, n$.storage.modal.don[1]);
+            }
             const dejavu = n.cookie('r', 'dondl');
             if (!dejavu) {
               const link = n.l(f$(this).attr('href')).replace(/#SoutenirFramasoft$/, '#');
@@ -730,11 +765,15 @@ const n$ = {
               f$('#modal-soutenir').css('display', 'block'); // bugfix
               f$('#modal-contact, #modal-don, #modal-dl, #modal-soutenir .close').click(() => {
                 n.cookie('w', 'dondl', true, c$.modal.don[3]);
+                n$.storage.modal.don = [true, c$.modal.don[3]];
+                n.minus('o', n$.storage);
                 f$('#modal-soutenir').modal('hide');
                 window.location.href = link;
               });
               f$('#modal-dl2').click(() => {
                 n.cookie('w', 'dondl', true, 31536000000); // 365 * 24 * 60 * 60 * 1000
+                n$.storage.modal.don = [true, 31536000000];
+                n.minus('o', n$.storage);
                 f$('#modal-soutenir').modal('hide');
                 window.location.href = link;
               });
@@ -890,8 +929,11 @@ const n$ = {
     },
 
     optin() {
-      const f$OptInDejavu = n.cookie('r', 'opt-in');
-      if (c$.optin[0] !== '' && !f$OptInDejavu) {
+      if (n$.storage.optin[0]) {
+        n.cookie('w', c$.optin[2], true, n$.storage.optin[2]);
+      }
+      const dejavu = n.cookie('r', 'opt-in');
+      if (c$.optin[0] !== '' && !dejavu) {
         f$(c$.optin[0])
           .after(n.html.alert(
             'info',
@@ -909,6 +951,8 @@ const n$ = {
           f$('#fs_opt-in_error').remove();
           // Ajout du cookie (expire au bout d'un an)
           n.cookie('w', c$.optin[2], true, c$.optin[3]);
+          n$.storage.optin = [true, c$.optin[3]];
+          n.minus('o', n$.storage);
         });
 
         // Requête ajax crossdomain lorsque la case est cochée
@@ -1406,17 +1450,15 @@ const n$ = {
       video: false,
     },
     css: {
-      order: '012345',
-      /** cas possibles : 012345, 102345, 015234
+      order: '01234',
+      /** cas possibles : 01234, 10234
         0 : bootstrap
         1 : css du site
         2 : font-awesome
         3 : nav.css
-        4 : frama.css
-        5 : nav/ext/n$.site.css si true */
+        4 : frama.css */
       b$: true,
       frama: true,
-      ext: false,
     },
     mobile: true, // activer le viewport
 
