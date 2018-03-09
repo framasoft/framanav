@@ -37,7 +37,7 @@ switch (n$.site) {
   case 'cortex':
     l$ = {
       js: { b$: false },
-      css: { b$: false, frama: false },
+      css: { order: '1' }, // Désactive toutes CSS
     };
     break;
 
