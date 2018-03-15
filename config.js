@@ -71,11 +71,11 @@ switch (n$.site) {
             qui étaient encore un peu actives&nbsp;:
           <p>
           <ul>
-            <li><a href="https://framacolibri.org/c/framasoft-vous/cherche-logiciel-libre-pour">Cherche logiciel libre pour…</a></li>',
-            <li><a href="https://framacolibri.org/c/framasoft-vous/ask-frama">Questions / réponses</a></li>',
-            <li><a href="https://framacolibri.org/c/qualite/framakey">Framakey</a></li>',
-            <li><a href="https://framacolibri.org/c/qualite">Améliorons ensemble les outils Framasoft</a></li>',
-            <li><a href="https://framacolibri.org/c/framasoft-vous/presentations">Présentation des membres</a></li>',
+            <li><a href="https://framacolibri.org/c/framasoft-vous/cherche-logiciel-libre-pour">Cherche logiciel libre pour…</a></li>
+            <li><a href="https://framacolibri.org/c/framasoft-vous/ask-frama">Questions / réponses</a></li>
+            <li><a href="https://framacolibri.org/c/qualite/framakey">Framakey</a></li>
+            <li><a href="https://framacolibri.org/c/qualite">Améliorons ensemble les outils Framasoft</a></li>
+            <li><a href="https://framacolibri.org/c/framasoft-vous/presentations">Présentation des membres</a></li>
           </ul>
           <p>
             Si vous avez des questions, on se retrouve là-bas…
