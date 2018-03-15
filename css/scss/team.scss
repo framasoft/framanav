@@ -12,7 +12,7 @@
       font-weight: bold;
     }
 
-    .lead { font-style:italic; }
+    .lead { font-style: italic; }
 
     .container-fluid {
       /* = .container.ombre */
@@ -23,7 +23,7 @@
       background-color: #FFF;
       box-shadow: $ombre;
       /* = replace Mattermost style */
-      height:auto !important;
+      height: auto !important;
       /* = .container de BS */
       margin-right: auto;
       margin-left: auto;
@@ -67,22 +67,22 @@
     }
 
     .signup-team__container {
-      padding:0px;
-      max-width:auto;
-    }
+      padding: 0px;
+      max-width: auto;
 
-    .signup-team__container .btn {
-      padding: 6px 12px;
-      font-size: 14px;
-      line-height: 1.42857143;
-      border-radius: 4px;
-      font-weight: normal;
-      margin-right: 0px;
-      margin-bottom:10px;
-    }
+      .btn {
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        border-radius: 4px;
+        font-weight: normal;
+        margin-right: 0px;
+        margin-bottom: 10px;
+      }
 
-    .signup-team__container .btn.btn--full {
-      max-width:350px
+      .btn.btn--full {
+        max-width: 350px
+      }
     }
 
     .signup-team__container .btn-custom-login.email,
@@ -91,17 +91,14 @@
       text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
       background-color: #6A5687 !important;
       border-color: #6A5687 !important;
-    }
 
-    .signup-team__container .btn-custom-login.email:hover,
-    .signup-team__container .btn-custom-login.email:focus,
-    .signup-team__container .btn-custom-login.email:active,
-    .btn-primary:hover,
-    .btn-primary:focus,
-    .btn-primary:active {
-      color: #fff !important;
-      background-color: #635182 !important;
-      border-color: #635182 !important;
+      &:hover,
+      &:focus,
+      &:active {
+        color: #fff !important;
+        background-color: #635182 !important;
+        border-color: #635182 !important;
+      }
     }
 
     .signup-team__container .btn-custom-login.gitlab {
@@ -109,14 +106,14 @@
       text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
       background-color: #11809E !important;
       border-color: #11809E !important;
-    }
 
-    .signup-team__container .btn-custom-login.gitlab:hover,
-    .signup-team__container .btn-custom-login.gitlab:focus,
-    .signup-team__container .btn-custom-login.gitlab:active {
-      color: #fff !important;
-      background-color: #0C5B7A !important;
-      border-color: #0C5B7A !important;
+      &:hover,
+      &:focus,
+      &:active {
+        color: #fff !important;
+        background-color: #0C5B7A !important;
+        border-color: #0C5B7A !important;
+      }
     }
   }
 
@@ -140,8 +137,8 @@
     }
 
     button.close {
-      color:#333;
-      background:#fff !important;
+      color: #333;
+      background: #fff !important;
     }
   }
 
@@ -167,25 +164,25 @@
   .signup-team__container h4:nth-child(2),
   .signup-team__container h4:nth-child(3), /* Sous-titre */
   .row.footer {          /* Footer Mattermost */
-    display:none;
+    display: none;
   }
 
   /* /select_team */
   /*.outMM .margin--extra,         /* Créer équipe + Console admin */
   .outMM .signup-team__container .signup__content:nth-child(5) {
-    display:none;
+    display: none;
   }
   /* /signup_user_complete */
   .outMM .signup-team__container .or__container,
   .outMM .signup-team__container > span.color--light,
   .outMM .signup-team__container > p {
-    display:none;
+    display: none;
   }
 
   /* /login */
   .outMM#ct-login .signup__content > div > .form-group, /* Pas de compte ? */
   .outMM .signup__content .or__container {
-    display:none;
+    display: none;
   }
 
   .outMM .signup-team__container .btn.btn-custom-login > span {
@@ -195,7 +192,7 @@
   /* Trop de ménage ? */
   .outMM form .margin--extra,
   #ListModalLabel {
-    display:block;
+    display: block;
   }
 
   /*******************
@@ -207,6 +204,10 @@
 
     #root {
       margin-top: 0 !important;
+    }
+
+    .container-fluid, .inner-wrap > .row.main {
+      top: 20px;
     }
 
     .sidebar--left {
@@ -229,7 +230,7 @@
 
     .admin-sidebar {
       top: 42px;
-      padding-bottom:42px;
+      padding-bottom: 42px;
     }
 
     .admin-sidebar .team__header .team__name,
