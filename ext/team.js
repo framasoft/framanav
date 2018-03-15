@@ -138,12 +138,15 @@ const updateDisplay = function updateDisplay(currentId) {
       if (f$('#Options').length === 0) {
         f$('.signup-team__container .signup__content:first .signup-team-all:first').after(f$pteams);
         f$('#ListImport').prepend(f$('.signup-team__container .signup__content:eq(0) .signup-team-all'));
-        f$('#ListBtn').click(f$('#ListModal').modal('show'));
-        f$('a[href*="signup_user_complete"]').click(function hideListModal() {
+        f$('#ListBtn').on('click', () => {
+          f$('#ListModal').modal('show');
+        });
+        f$('a[href*="signup_user_complete"]').on('click', () => {
           f$('#ListModal').modal('hide');
           window.location.href = f$(this).attr('href');
           return false;
         });
+        f$('.margin--extra').hide();
       }
       break;
     case 'ct-reset_password':
