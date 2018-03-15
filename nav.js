@@ -1047,7 +1047,7 @@ const n$ = {
       // Bloqueur d'iframe style Flashblock pour Youtube
       // faire de même pour Soundcloud, Dailymotion, Vimeo
       f$('a[href*="youtube.com/watch"], a[href*="youtu.be/"]')
-        .has('img')
+        .has('> img')
         .append(n.wrap(n.html.i('fa-play fc_light'), '<span class="btn-youtube">', '</span>'))
         .wrapInner('<span style="position:relative" />')
         .each(function addIframe(index) {

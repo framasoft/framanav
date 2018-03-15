@@ -490,16 +490,16 @@ a#framanav_donation:hover {filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opac
 }
 
 .btn-youtube {
-    line-height: 2.5em;
+    line-height: 2.2em;
     text-align: center;
     left: 50%;
     top: 50%;
-    margin-left: -78px;
-    margin-top: -48px;
+    margin-left: -50px;
+    margin-top: -38px;
     position: absolute;
-    width: 4em;
-    height: 2.6em;
-    font-size: 3em;
+    width: 3.2em;
+    height: 2.1em;
+    font-size: 2.5em;
     display: block;
     z-index: 2;
     background-color: rgba(206, 32, 33, 0.9);
