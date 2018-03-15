@@ -137,7 +137,7 @@ const updateDisplay = function updateDisplay(currentId) {
       f$('body').removeClass('inMM outMM').addClass('outMM');
       if (f$('#Options').length === 0) {
         f$('.signup-team__container .signup__content:first .signup-team-all:first').after(f$pteams);
-        f$('#ListImport').prepend(f$('.signup-team__container .signup__content:eq(1) .signup-team-all'));
+        f$('#ListImport').prepend(f$('.signup-team__container .signup__content:eq(0) .signup-team-all'));
         f$('#ListBtn').click(f$('#ListModal').modal('show'));
         f$('a[href*="signup_user_complete"]').click(function hideListModal() {
           f$('#ListModal').modal('hide');
