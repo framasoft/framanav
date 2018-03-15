@@ -62,7 +62,9 @@
 [data-url*="://framapiaf.org"]:not([data-url*="/about"]),               /* dans Mastodon */
 [data-url*="://framavectoriel.org/svg-editor"],                         /* dans SVG-Edit */
 
-[data-url*="://forum.framasoft.org"] {
+[data-url*="://docs.framasoft.org"],
+[data-url*="://forum.framasoft.org"],
+[data-url*="://participer.framasoft.org"] {
     #nav-alert {
         display: none !important;
     }
