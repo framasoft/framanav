@@ -20,6 +20,7 @@
     .dropup,
     .dropdown {
       position: relative;
+    }
 
     .dropdown-toggle:focus {
       padding: 7px 4px 5px 10px !important
@@ -89,6 +90,7 @@
     .dropdown-menu > .disabled > a:focus {
       color: #777777;
     }
+
     .dropdown-menu > .disabled > a:hover,
     .dropdown-menu > .disabled > a:focus {
       text-decoration: none;
@@ -119,6 +121,7 @@
       color: #777777;
       white-space: nowrap;
     }
+
     .dropdown-backdrop {
       position: fixed;
       left: 0;
@@ -127,6 +130,7 @@
       top: 0;
       z-index: 990;
     }
+
     .pull-right > .dropdown-menu {
       right: 0;
       left: auto;
@@ -138,6 +142,7 @@
       border-bottom: 4px solid \9;
       content: "";
     }
+
     .dropup .dropdown-menu,
     .navbar-fixed-bottom .dropdown .dropdown-menu {
       top: auto;
@@ -216,7 +221,7 @@
   }
 
   a:focus {
-    border:none;
+    border: none;
   }
 
   #ui-datepicker-div {
