@@ -146,7 +146,7 @@ const updateDisplay = function updateDisplay(currentId) {
           window.location.href = f$(this).attr('href');
           return false;
         });
-        f$('.margin--extra').hide();
+        f$('.margin--extra, .signup__content > h4').hide();
       }
       break;
     case 'ct-reset_password':
