@@ -28,8 +28,10 @@
 [data-url*=".framapad.org/p/"],                                         /* dans Etherpad */
 
 [data-url*="://bot.framasoft.org"],
+[data-url*="://docs.framasoft.org"],
 [data-url*="://forum.framasoft.org"],
 [data-url*="://my.framasoft.org"][data-url*="source=bookmarklet"],      /* dans la popup MyFrama */
+[data-url*="://participer.framasoft.org"],
 [data-url*="://status.framasoft.org"],
 
 [data-url*="://connard.pro"],
