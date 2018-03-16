@@ -201,14 +201,15 @@
   .inMM {
 
     overflow: hidden;
+    padding-top: 62px;
 
     #root {
       margin-top: 0 !important;
     }
 
-    .app__content {
+    /*.app__content {
       top: 20px;
-    }
+    }*/
 
     .sidebar--left {
       height: calc(100% - 21px);
