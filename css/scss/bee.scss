@@ -297,8 +297,7 @@
   }
 
   .result-torrent .result-content br:nth-of-type(1),
-  .result-torrent .result-content .glyphicon-transfer,
-  .result-torrent time {
+  .result-torrent .result-content .glyphicon-transfer {
     display:none;
   }
 
@@ -318,8 +317,14 @@
     content: " • "
   }
 
-  /* Cartes */
-  .result-map > small {
+  .result-torrent small:nth-of-type(1) + .result-content {
+    margin-left: 41px;
+  }
+
+  /* Cartes et vidéos */
+  .result-map > small,
+  .result-videos > small {
+
     float:left;
     margin-right:10px;
     /* bullet hidden :| */
@@ -358,5 +363,41 @@
     table {
       margin:0;
     }
+  }
+
+  /* Videos */
+  .btn-youtube { display: none; }
+
+  .result-videos {
+
+    .container-fluid { clear:left; }
+
+    [id^="result-video"] {
+      text-align:center;
+      padding:10px;
+      clear:left;
+    }
+  }
+
+  /* Time */
+  .result time {
+    position:absolute;
+    right:23px;
+    margin-top: -40px;
+    font-size:small;
+    background:#fff;
+    padding:2px 5px;
+    border:1px solid #ddd;
+    display:none;
+  }
+  .result:hover time {
+    display:block;
+  }
+
+  .result-default .container-fluid img[style] {
+    padding: 0;
+    margin:5px 0;
+    max-height:96px !important;
+
   }
 }
