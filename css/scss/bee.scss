@@ -1,223 +1,319 @@
 [data-url*="://framabee.org"],
 [data-url*="://trouvons.org"],
 [data-url*="://tontonroger.org"] {
-    /* Page ombrée */
-    body {
-        background: #eee;
-    }
+  /* Page ombrée */
+  body {
+    background: #eee;
+  }
 
-    body > .container {
-      background-color: #FFF;
-      -webkit-box-shadow: 0px 3px 4px rgba(50, 50, 50, 0.2);
-      -moz-box-shadow: 0px 3px 4px rgba(50, 50, 50, 0.2);
-      box-shadow: 0px 3px 4px rgba(50, 50, 50, 0.2);
-      margin-top: 20px;
-      margin-bottom: 30px;
-      padding: 20px 30px;
-    }
+  body > .container {
+    background-color: #FFF;
+    -webkit-box-shadow: 0px 3px 4px rgba(50, 50, 50, 0.2);
+    -moz-box-shadow: 0px 3px 4px rgba(50, 50, 50, 0.2);
+    box-shadow: 0px 3px 4px rgba(50, 50, 50, 0.2);
+    margin-top: 20px;
+    margin-bottom: 30px;
+    padding: 20px 30px;
+  }
 
-    /* Alignement form de recherche */
-    #search_form .row:first-child {
-        margin: 0;
-    }
-    #categories {
-        border-bottom: 5px solid #eee;
-    }
-    #categories li label.btn {
-        background: #fff;
-        border-radius: 0;
-        color: #333;
-        box-shadow: none;
-        border-bottom: 5px solid #eee !important;
-        text-shadow: none;
-        margin-bottom: -5px;
-    }
-    #categories li.active label.btn {
-        border-color: #6A5687 !important;
-    }
-    #categories li label.btn:not(.active):hover {
-        border-color: #B49CD9 !important;
-    }
+  /* Alignement form de recherche */
+  #search_form .row:first-child {
+    margin: 0;
+  }
+  #categories {
+    border-bottom: 5px solid #eee;
+  }
+  #categories li label.btn {
+    background: #fff;
+    border-radius: 0;
+    color: #333;
+    box-shadow: none;
+    border-bottom: 5px solid #eee !important;
+    text-shadow: none;
+    margin-bottom: -5px;
+  }
+  #categories li.active label.btn {
+    border-color: #6A5687 !important;
+  }
+  #categories li label.btn:not(.active):hover {
+    border-color: #B49CD9 !important;
+  }
 
-    .row.menu-container {
-        margin: 30px 0 30px 0;}
+  .row.menu-container {
+    margin: 30px 0 30px 0;}
 
-    /* Sur l’accueil */
-    #menu ~ #search_form #categories { display:none; }
+  /* Sur l’accueil */
+  #menu ~ #search_form #categories { display:none; }
+  #menu ~ #search_form .search-wrapper {
+    margin: 40px auto 10px auto;
+  }
+
+  @media (min-width: 992px) {
     #menu ~ #search_form .search-wrapper {
-        margin: 40px auto 10px auto;
+      max-width:80%;
+      float:none;
+    }
+  }
+
+  /* Mise en forme des select (plus discrets) */
+  #search_form #time-range,
+  #search_form #language {
+    height: 28px;
+    line-height: 28px;
+    width: auto;
+    color: #757575;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: transparent;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAO0lEQVRIiWNgGAWjYBQMc9DY2Fje0NDwHx9ubGysp5klFBuOzxKqGY7NEqobDgMNUEATw0fBKBgF5AMAW3FF3fjvFokAAAAASUVORK5CYII=");
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    border-radius: 0px;
+    margin: 15px 0;
+    padding: 4px 8px;
+  }
+
+  #search_form #time-range:hover,
+  #search_form #language:hover {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+  }
+  @media (min-width: 768px) {
+    #search_form #time-range {
+      float: right
+    }
+  }
+
+  /* Champ de recherche davantage mis en évidence */
+  #search_form .search-wrapper input {
+    height: 46px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.33;
+    box-shadow: -1px 2px 3px rgba(50, 50, 50, 0.2);
+    border-right: none;
+  }
+
+  #search_form .search-wrapper .input-group-addon:first-child {
+    border:none;
+    background: #fff;
+    padding-top: 2px;
+    padding-left: 0;
+    padding-bottom: 2px;
+  }
+  #search_form .search-wrapper .input-group-addon:first-child img {
+    width: 40px;
+    max-height: 40px;
+  }
+  #search_empty,
+  #search_submit {
+    box-shadow: 0px 2px 3px rgba(50, 50, 50, 0.2);
+    boder-left: none;
+    background: #fff;
+    border-radius: 0;
+  }
+  #search_submit {
+    border-right: none;
+  }
+  #search_empty .glyphicon-remove:before {
+    content: '\f12d';
+    font: normal normal normal 14px/1 ForkAwesome;
+  }
+
+  /* Aération et meilleure lisibilité des résultats */
+  .result {
+    margin-bottom: 10px;
+    padding: 5px 10px 15px 15px;
+  }
+
+  .result:hover {
+    background: #f5f5f5;
+  }
+
+  .result .external-link {
+    color: #757575;
+  }
+
+  .result .pull-right small a {
+    color: #757575;
+  }
+
+  .result .pull-right small a,
+  .btn a {
+    text-decoration: none;
+  }
+
+  @media (min-width: 992px) {
+    .result .pull-right {
+      visibility: hidden;
+    }
+    .result:hover .pull-right  {
+      visibility: visible;
+    }
+  }
+
+  .result.result-images {
+    float: left;
+    padding: 10px;
+  }
+  .result-default,
+  .result-torrent {
+    clear: left;
+  }
+
+  /* Boutons (fix marges et couleur) */
+  #sidebar_results {
+    .btn {
+      margin: 0 0px 5px 5px;
     }
 
-    @media (min-width: 992px) {
-        #menu ~ #search_form .search-wrapper {
-            max-width:80%;
-            float:none;
-        }
+    .btn-default a {
+      color: #333;
     }
 
-    /* Mise en forme des select (plus discrets) */
-    #search_form #time-range,
-    #search_form #language {
-        height: 28px;
-        line-height: 28px;
-        width: auto;
-        color: #757575;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        background: transparent;
-        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAO0lEQVRIiWNgGAWjYBQMc9DY2Fje0NDwHx9ubGysp5klFBuOzxKqGY7NEqobDgMNUEATw0fBKBgF5AMAW3FF3fjvFokAAAAASUVORK5CYII=");
-        background-repeat: no-repeat;
-        background-position-x: 100%;
-        border-radius: 0px;
-        margin: 15px 0;
-        padding: 4px 8px;
+    p.btn {
+      margin: 0 0px 5px 0px;
     }
+  }
 
-    #search_form #time-range:hover,
-    #search_form #language:hover {
+  /* En cache (juste une icône + tooltip) */
+  .result .pull-right small a.text-info {
+    color: #FFF;
+    font-size: 1px;
+    position: relative;
+  }
+
+  .result .pull-right small a.text-info .glyphicon-link:before {
+    content: "\f1da";
+    font: normal normal normal 14px/1 ForkAwesome;
+    color: #757575;
+    padding-left: 2px;
+    font-size: 1.2em;
+    font-size: 14px;
+  }
+
+  .result .pull-right small a.text-info:hover .glyphicon-link:after {
+    content: 'En cache';
+    position: absolute;
+    white-space: nowrap;
+    top:-25px;
+    right: 0px;
+    padding: 3px 8px;
+    background-color: #000;
+    border-radius: 4px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    line-height: 1.42857143;
+
+  }
+
+  /* Titres tronqués + mots recherchés en gras */
+  h4.result_header {
+    font-weight: 500;
+    white-space: nowrap;
+    line-height: 24px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    max-width: 90%;
+  }
+  .highlight {
+    font-weight: 600;
+  }
+
+  /* Torrents */
+  .result-torrent > small {
+    float:left;
+    margin-right:10px;
+    /* bullet hidden :| */
+    color:#fff;
+    margin-left:-11px;
+
+    a {
+      display: inline-block;
+      padding: 6px 12px;
+      margin-bottom: 0;
+      font-size: 14px;
+      font-weight: normal;
+      line-height: 1.42857143;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      text-decoration: none;
+      background: #fff;
+      /* text hidden */
+      color: #FFF;
+      font-size: 0.1px;
+
+      &:active,
+      &:focus,
+      &:hover {
         color: #333;
         background-color: #e6e6e6;
         border-color: #adadad;
+      }
     }
-    @media (min-width: 768px) {
-        #search_form #time-range {
-            float: right
-        }
-    }
+  }
 
-    /* Champ de recherche davantage mis en évidence */
-    #search_form .search-wrapper input {
-        height: 46px;
-        padding: 10px 16px;
-        font-size: 18px;
-        line-height: 1.33;
-        box-shadow: -1px 2px 3px rgba(50, 50, 50, 0.2);
-        border-right: none;
-    }
+  /* Lien magnet et télécharger (juste une icône + tooltip) */
+  .result-torrent > small a .glyphicon:before {
+    color: #333;
+    padding-left: 2px;
+    font-size: 1.2em;
+    font-size: 14px;
+  }
 
-    #search_form .search-wrapper .input-group-addon:first-child {
-        border:none;
-        background: #fff;
-        padding-top: 2px;
-        padding-left: 0;
-        padding-bottom: 2px;
-    }
-    #search_form .search-wrapper .input-group-addon:first-child img {
-        width: 40px;
-        max-height: 40px;
-    }
-    #search_empty,
-    #search_submit {
-        box-shadow: 0px 2px 3px rgba(50, 50, 50, 0.2);
-        boder-left: none;
-        background: #fff;
-        border-radius: 0;
-    }
-    #search_submit {
-        border-right: none;
-    }
-    #search_empty .glyphicon-remove:before {
-        content: '\f12d';
-        font: normal normal normal 14px/1 ForkAwesome;
-    }
+  .result-torrent > small a:hover .glyphicon:after {
+    position: absolute;
+    white-space: nowrap;
+    top:-35px;
+    right: -35px;
+    padding: 3px 8px;
+    background-color: #000;
+    border-radius: 4px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    line-height: 1.42857143;
+    color:#fff;
+  }
 
-    /* Aération et meilleure lisibilité des résultats */
-    .result {
-        margin-bottom: 10px;
-        padding: 5px 10px 15px 15px;
-    }
+  .result-torrent > small:nth-of-type(1) a:hover .glyphicon:after {
+    content: 'Lien magnet';
+  }
 
-    .result:hover {
-        background: #f5f5f5;
-    }
+  .result-torrent > small:nth-of-type(2) a:hover .glyphicon:after {
+    content: 'Télécharger';
+  }
 
-    .result .external-link {
-        color: #757575;
-    }
+  .result-torrent > small:nth-of-type(1) a {
+    border-radius: 4px 0 0 4px;
+  }
 
-    .result .pull-right small a {
-        color: #757575;
-    }
+  .result-torrent > small:nth-of-type(2) a {
+    margin-left: -11px;
+    border-radius: 0 4px 4px 0;
+  }
 
-    .result .pull-right small a,
-    .btn a {
-        text-decoration: none;
-    }
+  .result-torrent .result-content br:nth-of-type(1),
+  .result-torrent .result-content .glyphicon-transfer {
+    display:none;
+  }
 
-    @media (min-width: 992px) {
-        .result .pull-right {
-            visibility: hidden;
-        }
-        .result:hover .pull-right  {
-            visibility: visible;
-        }
-    }
+  .result-torrent .result-content {
+    line-height: 2em;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 8px 12px;
+    background: #fff !important;
+  }
 
-    .result.result-images {
-        float: left;
-        padding: 10px;
-    }
-    .result-default,
-    .result-torrent {
-        clear: left;
-    }
+  .result-torrent .result-content .badge {
+    vertical-align: middle;
+  }
 
-    /* Boutons (fix marges et couleur) */
-    #sidebar_results .btn {
-        margin: 0 0px 5px 5px;
-    }
-
-    #sidebar_results .btn-default a {
-        color: #333;
-    }
-
-    #sidebar_results p.btn {
-        margin: 0 0px 5px 0px;
-    }
-
-    /* En cache (juste une icône + tooltip) */
-    .result .pull-right small a.text-info {
-        color: #FFF;
-        font-size: 1px;
-        position: relative;
-    }
-
-    .result .pull-right small a.text-info .glyphicon-link:before {
-        content: "\f1da";
-        font: normal normal normal 14px/1 ForkAwesome;
-        color: #757575;
-        padding-left: 2px;
-        font-size: 1.2em;
-        font-size: 14px;
-    }
-
-    .result .pull-right small a.text-info:hover .glyphicon-link:after {
-        content: 'En cache';
-        position: absolute;
-        white-space: nowrap;
-        top:-25px;
-        right: 0px;
-        padding: 3px 8px;
-        background-color: #000;
-        border-radius: 4px;
-        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-        font-size: 12px;
-        line-height: 1.42857143;
-
-    }
-
-    /* Titres tronqués + mots recherchés en gras */
-    h4.result_header {
-        font-weight: 500;
-        white-space: nowrap;
-        line-height: 24px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: block;
-        max-width: 90%;
-    }
-    .highlight {
-        font-weight: 600;
-    }
+  .result-torrent .result-content .glyphicon-floppy-disk:before {
+    content: " • "
+  }
 }
