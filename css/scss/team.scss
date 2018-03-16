@@ -214,10 +214,6 @@
         margin-top: -20px;
     }
 
-    /*.app__content {
-      top: 20px;
-    }*/
-
     .sidebar--left {
       height: calc(100% - 21px);
     }
@@ -235,6 +231,11 @@
     }
 
     .navbar-right .dropdown-menu { right: -100px; }
+
+    #editStatusMenu {
+        left:auto;
+        top:60px;
+    }
 
     .admin-sidebar {
       top: 42px;
