@@ -731,13 +731,13 @@ if (l$.piwik.id !== '' &&
   }
 
   // Framaclic
-  /* (function framaclic() {
+  (function framaclic() {
     const d = document;
     const g = d.createElement('img');
     const s = d.getElementsByTagName('body')[0];
     g.style = 'border:0'; g.alt = '';
     g.src = ['https://framaclic.org/h/', l$.piwik.id].join(''); s.appendChild(g);
-  }()); */
+  }());
 }
 
 /** ****************************************************************** *
