@@ -27,9 +27,10 @@ if (n$.is.url(/framaboard/i, 'h')) { n$.site = 'board'; }
 if (n$.is.url(/framadate/i, 'h')) { n$.site = 'date'; }
 if (n$.is.url(/framacalc/i, 'h')) { n$.site = 'calc'; }
 
-if (n$.is.url('mypads.framapad.org', 'h')) { n$.site = 'mypads'; }
+if (n$.is.url('mypads.framapad.org', 'h') || n$.is.url('beta3.framapad.org', 'h')) { n$.site = 'mypads'; }
 if ((n$.is.url(/.framapad/i, 'h') && !n$.is.url(/mypads./i, 'h')) ||
-    (n$.is.url(/mypads.framapad/i, 'h') && n$.is.url('/p/'))) {
+    (n$.is.url(/mypads.framapad/i, 'h') && n$.is.url('/p/')) ||
+    (n$.is.url(/beta3.framapad/i, 'h') && n$.is.url('/p/'))) {
   n$.site = 'etherpad';
 }
 
