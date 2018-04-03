@@ -623,8 +623,7 @@ const n$ = {
       if (window.jQuery !== undefined) {
         const version = window.jQuery.fn.jquery.split(' ')[0].split('.');
         if ((version[0] < 2 && version[1] < 9) || // < 1.9
-            (version[0] === 1 && version[1] === 9 && version[2] < 1) || // 1.9.0
-            (version[0] > 2)) { // 3.x
+            (version[0] === 1 && version[1] === 9 && version[2] < 1)) { // 1.9.0
           return 'noConflict';
         }
         return 'HTML';
