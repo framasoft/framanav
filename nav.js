@@ -21,8 +21,8 @@ const d$ = {};
 let c$ = {};
 
 const n$ = {
-  version: '180301', // n° version de la nav
-  f$: '1.12.4', // n° version de notre jQuery
+  version: '180403', // n° version de la nav
+  f$: '3.3.1', // n° version de notre jQuery
   b$: '3.3.7', // n° version de Bootsrap
   host: window.location.host,
   url: window.location.href,
@@ -120,7 +120,7 @@ const n$ = {
         switch (c$.js.j$) {
           case 'AJAX':
             if (n.jquery() === 'AJAX') {
-              n.loadJS(n.l('lib/jquery/jquery.min.js', 'n'), n.fQuery);
+              n.loadJS(n.l(`lib/jquery/jquery-${n$.f$}.min.js`, 'n'), n.fQuery);
               n$.log.push(`✔ jQuery ${n$.j$} AJAX`);
             } else {
               n.fQuery();
@@ -129,7 +129,7 @@ const n$ = {
             break;
           case 'noConflict':
             n$.log.push(`✔ jQuery.noConflict ${n$.j$} AJAX`);
-            n.loadJS(n.l('lib/jquery/jquery.min.js', 'n'), n.fQuery);
+            n.loadJS(n.l(`lib/jquery/jquery-${n$.f$}.min.js`, 'n'), n.fQuery);
             break;
           default:
             if (window.jQuery === undefined) {
