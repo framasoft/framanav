@@ -356,7 +356,7 @@ switch (n$.site) {
   case 'mypads':
     n$.name = 'Framapad';
     l$ = {
-      js: { ext: true },
+      //js: { ext: true },
       credits: 'pad',
     };
     break;
