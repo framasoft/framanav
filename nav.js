@@ -455,8 +455,8 @@ const n$ = {
         if (link.media !== 'none' && stylesheet !== '1') {
           // Ajout au début du <head>
           if (position !== undefined) {
-            document.getElementsByTagName('head')[0].insertBefore(link, 
-              document.getElementsByTagName('head')[0].firstChild);
+            document.getElementsByTagName('head')[0]
+              .insertBefore(link, document.getElementsByTagName('head')[0].firstChild);
           // Ajout à la fin <head>
           } else {
             document.getElementsByTagName('head')[0].appendChild(link);
