@@ -455,8 +455,8 @@ const n$ = {
         if (link.media !== 'none' && stylesheet !== '1') {
           // Ajout au début du <head>
           if (position !== undefined) {
-            document.getElementsByTagName('head')[0].insertBefore(link, 
-              document.getElementsByTagName('head')[0].firstChild);
+            document.getElementsByTagName('head')[0]
+              .insertBefore(link, document.getElementsByTagName('head')[0].firstChild);
           // Ajout à la fin <head>
           } else {
             document.getElementsByTagName('head')[0].appendChild(link);
@@ -644,7 +644,7 @@ const n$ = {
         f$('#framanav_container').after(n.html.alert(
           c$.alert[0], 'nav-alert',
           `<div><p class="text-center">${c$.alert[1]}</p></div>`,
-          true,
+          true // eslint-disable-line comma-dangle
         ));
 
         // Cookie enregistré en fermant (7 jours par défaut cf config.js)
@@ -668,7 +668,7 @@ const n$ = {
             '<button class="btn btn-primary" id="modal-set-cookie" >',
             d$.t.nevershow,
             '</button>',
-          ].join(''),
+          ].join('') // eslint-disable-line comma-dangle
         ));
 
         if (!dejavu) {
@@ -699,7 +699,7 @@ const n$ = {
             '</span> ',
             '<button class="btn" id="modal-close" data-dismiss="modal">', d$.t.close, '</button>',
           ].join(''),
-          'lg', // size
+          'lg' // eslint-disable-line comma-dangle
         ));
         f$('.fs_faq a').on('click', () => {
           if (f$('#modal-fsFAQ .modal-body').html() === '') {
@@ -711,7 +711,7 @@ const n$ = {
                 } else {
                   f$('#modal-fsFAQ').modal('show');
                 }
-              },
+              } // eslint-disable-line comma-dangle
             );
           } else {
             f$('#modal-fsFAQ').modal('show');
@@ -741,7 +741,7 @@ const n$ = {
             d$.meta.modaldon.b4,
             '  </a>',
             '</p></div>',
-          ].join(''),
+          ].join('') // eslint-disable-line comma-dangle
         ));
 
         // Les modales « onstart » sont déclenchées par un clic sur un lien temporaire
@@ -917,7 +917,7 @@ const n$ = {
         f$('#btn-myframa').on('click', () => {
           window.open(
             myFrama, 'myframa',
-            'menubar=no,height=500,width=600,toolbar=no,scrollbars=yes,status=no,dialog=1',
+            'menubar=no,height=500,width=600,toolbar=no,scrollbars=yes,status=no,dialog=1' // eslint-disable-line comma-dangle
           );
           return false;
         });
@@ -941,7 +941,7 @@ const n$ = {
               '<small>', d$.meta.optin.d1,
               '&nbsp;<a href="', d$.f.newsletter.l, '" id="link-opt-in" target="_blank" >', d$.meta.optin.d2, n.html.newWindow(), '</a>',
               '</small>',
-            ].join(''),
+            ].join('') // eslint-disable-line comma-dangle
           ));
 
         f$(c$.optin[0]).focusin(() => {
@@ -960,14 +960,14 @@ const n$ = {
             f$(c$.optin[0]).after(n.html.alert(
               'danger',
               'fs_opt-in_error',
-              d$.meta.optin.e2,
+              d$.meta.optin.e2 // eslint-disable-line comma-dangle
             ));
             return false;
           } else if (!n.is.email(f$(c$.optin[0]).val())) {
             f$(c$.optin[0]).after(n.html.alert(
               'danger',
               'fs_opt-in_error',
-              d$.meta.optin.e2.replace('%f$Email%', f$Email),
+              d$.meta.optin.e2.replace('%f$Email%', f$Email) // eslint-disable-line comma-dangle
             ));
             return false;
           }
@@ -986,7 +986,7 @@ const n$ = {
           f$(c$.optin[0]).after(n.html.alert(
             'success', 'fs_opt-in_confirm',
             d$.meta.optin.s1.replace('%f$Email%', f$Email),
-            true,
+            true // eslint-disable-line comma-dangle
           ));
           return true;
         });
@@ -1054,7 +1054,7 @@ const n$ = {
               '<iframe id="youtube', index, '" src="https://www.youtube.com/embed/',
               f$(this).attr('href').replace(
                 /(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com(?:\/embed\/|\/v\/|\/watch\?v=))([-\w]{10,12})\b[?=&\w]*(?!['"][^<>]*>|<\/a>)/ig,
-                '$1',
+                '$1' // eslint-disable-line comma-dangle
               ),
               '?autoplay=1" width="560" height="315" frameborder="0" allowfullscreen ></iframe>',
             ].join('');
@@ -1250,7 +1250,7 @@ const n$ = {
               '<li class="fs_', k, '">',
               '<a href="', d$.f[k].l, '" title="', d$.f[k].t1, '" ', n.html.popover(d$.f[k].t1, d$.f[k].d1, 'top'), '>',
               n.html.i(d$.f[k].i, 'fa-fw fa-2x'), n.html.sr(d$.f[k].name),
-              '</a></li>',
+              '</a></li>' // eslint-disable-line comma-dangle
             );
           }
 
@@ -1263,7 +1263,7 @@ const n$ = {
             '<a href="#" class="dropdown-toggle" data-toggle="dropdown">',
             title,
             '<b class="caret"></b></a>',
-            '<ul class="dropdown-menu">',
+            '<ul class="dropdown-menu">' // eslint-disable-line comma-dangle
           );
 
           for (let i = 0; i < list.length; i += 1) {
@@ -1273,7 +1273,7 @@ const n$ = {
               '<li class="fs_dropdown_', dropdown, ' fs_', k, '">',
               '<a href="', d$.f[k].l, '" ', n.html.popover(d$.f[k].t1, d$.f[k].d1), '>',
               n.html.i(d$.f[k].i), '&nbsp;', n.text(n.html.frama(k)),
-              '</a></li>',
+              '</a></li>' // eslint-disable-line comma-dangle
             );
           }
 
@@ -1305,7 +1305,7 @@ const n$ = {
             html.push(
               '<li class="dropdown" id="fs_', k, '">',
               n.html.menu('dropdown', d$.menu[k].name, d$.menu[k].list),
-              '</li>',
+              '</li>' // eslint-disable-line comma-dangle
             );
           }
         });
@@ -1324,7 +1324,7 @@ const n$ = {
           '  </div>',
           '  <a id="nav-end" class="sr-only"></a>',
           '</nav>',
-          '<a href="', d$.meta.soutenir.l, '/?f=macaron" id="framanav_donation" rel="donBadge" style="display:none" class="hidden-xs">', n.html.sr(d$.meta.soutenir.s), '</a>',
+          '<a href="', d$.meta.soutenir.l, '/?f=macaron" id="framanav_donation" rel="donBadge" style="display:none" class="hidden-xs">', n.html.sr(d$.meta.soutenir.s), '</a>' // eslint-disable-line comma-dangle
         );
         return html.join('');
       },
@@ -1406,7 +1406,7 @@ const n$ = {
             d$.t.close,
             '"><i aria-hidden="true">&times;</i>',
             n.html.sr(d$.t.close),
-            '</button>',
+            '</button>' // eslint-disable-line comma-dangle
           );
         }
         html.push(body, '</div>');
