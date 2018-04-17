@@ -350,10 +350,6 @@ switch (n$.site) {
     l$ = {
       js: { video: true },
       modal: { don: ['a[href*=".framapad.org/p/"]', 'd’utiliser', 'créer un pad'] },
-      alert: [
-        'warning',
-        'Suite à un problème technique, l’export des pads ne fonctionne plus. Nous allons réparer ça prochainement. Désolé pour le désagrément.',
-      ],
     };
     break;
 
