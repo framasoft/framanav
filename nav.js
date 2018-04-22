@@ -163,29 +163,30 @@ const n$ = {
           n.minus();
         }
 
-        let exti18n = `http://127.0.0.1:8000/html/${n$.site}.json`; // won't for with file:// proto
+        const exti18n = `http://127.0.0.1:8000/html/${n$.site}.json`; // won't for with file:// proto
         f$.getJSON(exti18n).done((data) => {
-            f$.when(f$.getJSON('https://rawgit.com/unicode-cldr/cldr-core/master/defaultContent.json'),
-                    f$.getJSON('https://rawgit.com/unicode-cldr/cldr-core/master/availableLocales.json'),
-                    f$.getJSON('https://rawgit.com/unicode-cldr/cldr-dates-modern/master/main/en/dateFields.json'),
-                    f$.getScript('https://cdnjs.cloudflare.com/ajax/libs/sprintf/1.1.1/sprintf.min.js'),
-                    f$.getScript('https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.5.0/cldr.js'),
-                    f$.getScript('https://cdnjs.cloudflare.com/ajax/libs/globalize/1.3.0/globalize.js'),
-                    f$.getScript('https://cdnjs.cloudflare.com/ajax/libs/globalize/1.3.0/globalize/message.js'))
-                .then((cldrdc, cldral, dateen /*, foo, bar, baz, blah */) => {
-                    // setup cldr locales and globalize
-                    Cldr.load(cldrdc[0], cldral[0]);
-                    let en = new Cldr('en');
-                    let fr = new Cldr('fr'); // ToDo: dateen[0]);
-                    // This needs work!
-                    Globalize.load(dateen[0]);
-                    let eng = Globalize('en'); // BUG! exception: maxLanguageId is undefined
-                })
-                .then(() => {
-                    // if Globalize is correctly initilized, then loads frama extension's json data
-                    Globalize.loadMessages(data[0]);
-                })
-                .fail((err) => { console.log('err', err); n$.log.push('✘ team.json'); });
+          f$.when(
+            f$.getJSON('https://rawgit.com/unicode-cldr/cldr-core/master/defaultContent.json'),
+            f$.getJSON('https://rawgit.com/unicode-cldr/cldr-core/master/availableLocales.json'),
+            f$.getJSON('https://rawgit.com/unicode-cldr/cldr-dates-modern/master/main/en/dateFields.json'),
+            f$.getScript('https://cdnjs.cloudflare.com/ajax/libs/sprintf/1.1.1/sprintf.min.js'),
+            f$.getScript('https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.5.0/cldr.js'),
+            f$.getScript('https://cdnjs.cloudflare.com/ajax/libs/globalize/1.3.0/globalize.js'),
+            f$.getScript('https://cdnjs.cloudflare.com/ajax/libs/globalize/1.3.0/globalize/message.js')
+          ).then((cldrdc, cldral, dateen /*, foo, bar, baz, blah */) => {
+              // setup cldr locales and globalize
+              Cldr.load(cldrdc[0], cldral[0]);
+              const en = new Cldr('en');
+              const fr = new Cldr('fr'); // ToDo: dateen[0]);
+              // This needs work!
+              Globalize.load(dateen[0]);
+              const eng = Globalize('en'); // BUG! exception: maxLanguageId is undefined
+            })
+            .then(() => {
+              // if Globalize is correctly initilized, then loads frama extension's json data
+              Globalize.loadMessages(data[0]);
+            })
+            .fail((err) => { console.log('err', err); n$.log.push('✘ team.json'); });
         });
 
         // On charge ensuite les données
