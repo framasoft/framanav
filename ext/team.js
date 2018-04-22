@@ -4,11 +4,11 @@
 
 // used by the 3cols markup
 const htmlstrings = {
-    framateamhtml: '<b class="violet">Frama</b><b class="vert">team</b>',
-    framalanghtml: '<a href="https://participer.framasoft.org/traduction-rejoignez-framalang"><b class="violet">Frama</b><b class="rouge">lang</b></a>',
-    mattermosthtml: '<a href="https://about.mattermost.com/">Mattermost</a>',
-    licencehtml: '<a href="https://github.com/mattermost/platform/blob/master/LICENSE.txt">licence <abbr>MIT</abbr></a>',
-    upstreamlink: sprintf('<a href="https://github.com/mattermost/platform">%(upstreamtext)s</a>', { upstreamtext: Globalize.messageFormatter('presentation/upstreamtext')})
+  framateamhtml: '<b class="violet">Frama</b><b class="vert">team</b>',
+  framalanghtml: '<a href="https://participer.framasoft.org/traduction-rejoignez-framalang"><b class="violet">Frama</b><b class="rouge">lang</b></a>',
+  mattermosthtml: '<a href="https://about.mattermost.com/">Mattermost</a>',
+  licencehtml: '<a href="https://github.com/mattermost/platform/blob/master/LICENSE.txt">licence <abbr>MIT</abbr></a>',
+  upstreamlink: sprintf('<a href="https://github.com/mattermost/platform">%(upstreamtext)s</a>', { upstreamtext: Globalize.messageFormatter('presentation/upstreamtext') })
 };
 
 switch (c$.js.j$) {
@@ -30,8 +30,7 @@ let f$screen = [
   '    <div class="carousel-inner">',
 ].join('');
 
-
-['01-discuter','02-canaux','03-pimpez','04-rechercher'].forEach((k) => {
+['01-discuter', '02-canaux', '03-pimpez', '04-rechercher'].forEach((k) => {
   const f$active = (k === '01-discuter') ? ' active' : '';
   f$screen += [
     '    <div class="item', f$active, '">',
@@ -89,23 +88,22 @@ const f$3Cols = sprintf([
   '      <p class="text-center"><a href="https://framacloud.org/fr/cultiver-son-jardin/gitlab.html" class="btn btn-success"><i class="glyphicon glyphicon-tree-deciduous"></i> framacloud.org</a></p>',
   '    </div></div>',
 ].join(''), {
+  // these translations use a language-independant markup which may appear at various position according to language
+  framaware: Globalize.formatMessage('presentation/framaware', htmlstrings),
+  licence: Globalize.formatMessage('presentation/licence', htmlstrings),
+  serviceby: Globalize.formatMessage('presentation/serviceby', htmlstrings),
+  learn: Globalize.formatMessage('presentation/learn', htmlstrings),
+  trad: Globalize.formatMessage('presentation/trad', htmlstrings),
+  'contrib-upstream': Globalize.formatMessage('presentation/contrib-upstream', htmlstrings),
 
-    // these translations use a language-independant markup which may appear at various position according to language
-    framaware: Globalize.formatMessage('presentation/framaware', htmlstrings),
-    licence: Globalize.formatMessage('presentation/licence', htmlstrings),
-    serviceby: Globalize.formatMessage('presentation/serviceby', htmlstrings),
-    learn: Globalize.formatMessage('presentation/learn', htmlstrings),
-    trad: Globalize.formatMessage('presentation/trad', htmlstrings),
-    'contrib-upstream': Globalize.formatMessage('presentation/contrib-upstream', htmlstrings),
-
-    'h2-1': Globalize.messageFormatter('presentation/h2-1'),
-    'h2-2': Globalize.messageFormatter('presentation/h2-2'),
-    'h2-3': Globalize.messageFormatter('presentation/h2-3'),
-    aide: Globalize.messageFormatter('presentation/aide'),
-    createyours: Globalize.messageFormatter('presentation/createyours'),
-    invite: Globalize.messageFormatter('presentation/invite'),
-    newchans: Globalize.messageFormatter('presentation/newchans'),
-    'home-install': Globalize.messageFormatter('presentation/home-install')
+  'h2-1': Globalize.messageFormatter('presentation/h2-1'),
+  'h2-2': Globalize.messageFormatter('presentation/h2-2'),
+  'h2-3': Globalize.messageFormatter('presentation/h2-3'),
+  aide: Globalize.messageFormatter('presentation/aide'),
+  createyours: Globalize.messageFormatter('presentation/createyours'),
+  invite: Globalize.messageFormatter('presentation/invite'),
+  newchans: Globalize.messageFormatter('presentation/newchans'),
+  'home-install': Globalize.messageFormatter('presentation/home-install')
 });
 
 const f$pteams = sprintf([
@@ -134,7 +132,8 @@ const f$pteams = sprintf([
 ].join(''), { join: Globalize.messageFormatter('teams/join'),
               create: Globalize.messageFormatter('teams/create'),
               close: Globalize.messageFormatter('teams/close'),
-              list: Globalize.messageFormatter('teams/list') });
+              list: Globalize.messageFormatter('teams/list')
+            });
 //----------------------------------------------------------------------
 
 const f$origin = n$.url.split('/');
