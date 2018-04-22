@@ -8,7 +8,7 @@ const htmlstrings = {
   framalanghtml: '<a href="https://participer.framasoft.org/traduction-rejoignez-framalang"><b class="violet">Frama</b><b class="rouge">lang</b></a>',
   mattermosthtml: '<a href="https://about.mattermost.com/">Mattermost</a>',
   licencehtml: '<a href="https://github.com/mattermost/platform/blob/master/LICENSE.txt">licence <abbr>MIT</abbr></a>',
-  upstreamlink: sprintf('<a href="https://github.com/mattermost/platform">%(upstreamtext)s</a>', { upstreamtext: Globalize.messageFormatter('presentation/upstreamtext') })
+  upstreamlink: sprintf('<a href="https://github.com/mattermost/platform">%(upstreamtext)s</a>', { upstreamtext: Globalize.messageFormatter('presentation/upstreamtext') }),
 };
 
 switch (c$.js.j$) {
@@ -53,9 +53,11 @@ f$screen += sprintf([
   '    </a>',
   '  </div>',
   '</div>',
-].join(''), { pause: Globalize.messageFormatter('diapos/pause'),
-              prev: Globalize.messageFormatter('diapos/prev'),
-              next: Globalize.messageFormatter('diapos/next') });
+].join(''), {
+  pause: Globalize.messageFormatter('diapos/pause'),
+  prev: Globalize.messageFormatter('diapos/prev'),
+  next: Globalize.messageFormatter('diapos/next')
+});
 
 const f$3Cols = sprintf([
   '<div class="col-md-5 text-center h1 framateam"><a href="/signup_user_complete" class="btn btn-lg btn-success">',
@@ -129,11 +131,12 @@ const f$pteams = sprintf([
   '    </div>',
   '  </div>',
   '</div>',
-].join(''), { join: Globalize.messageFormatter('teams/join'),
-              create: Globalize.messageFormatter('teams/create'),
-              close: Globalize.messageFormatter('teams/close'),
-              list: Globalize.messageFormatter('teams/list')
-            });
+].join(''), {
+  join: Globalize.messageFormatter('teams/join'),
+  create: Globalize.messageFormatter('teams/create'),
+  close: Globalize.messageFormatter('teams/close'),
+  list: Globalize.messageFormatter('teams/list')
+});
 //----------------------------------------------------------------------
 
 const f$origin = n$.url.split('/');
