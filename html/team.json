@@ -37,5 +37,45 @@
             "contrib-upstream": "Pour participer au développement du logiciel, proposer des améliorations ou simplement le télécharger, rendez-vous sur %(upstreamlink)s.",
             "home-install": "Si vous souhaitez installer ce logiciel pour votre propre usage et ainsi gagner en autonomie, nous vous aidons sur :"
 	}
+    },
+
+    "en": {
+	"header": {
+            "lead": "Collaborative communication"
+	},
+	"slides": {
+            "01-discuter": "Communicate with your team over a chat on steroids",
+            "02-canaux": "Create channels according to team's needs",
+            "03-pimpez": "Markdown-powered messages",
+            "04-rechercher": "Find colleagues messages and answer without getting lost"
+	},
+	"diapos": {
+            "pause": "Pause",
+            "prev": "Previous slide",
+            "next": "Next slide"
+	},
+	"teams": {
+            "join": "Join a new public team",
+            "create": "Create a new team",
+            "close": "Close",
+            "list": "Public teams listing"
+	},
+	"presentation": {
+            "h2-1": "Getting started",
+            "serviceby": "{framateamhtml} is a free/libre <b>chat</b> service to communicate with a team providing colleagues' notifications, conversation history and searching.",
+            "framaware": "{framateamhtml} relies upon the free software {mattermosthtml}.",
+            "createyours": "Create your team",
+            "invite": "Invite members",
+            "newchans": "Create channels (public or private)",
+            "aide": "Help",
+            "h2-2": "The software",
+            "licence": "Mattermost is licensed under {licencehtml}.",
+            "h2-3": "Cultivat your garden",
+            "learn": "To learn how to format messages, use emoticons, share images and documents or manage {framateamhtml}, checkout our help pages:",
+            "trad": "(official documentation translation by the team of {framalanghtml})",
+            "upstreamtext": "project website",
+            "contrib-upstream": "To participate into the development of the software, suggest improvements or just download it, go to %(upstreamlink)s.",
+            "home-install": "If you wish to install your own instance of the software and increase your autonomy, we help you at:"
+	}
     }
 }
