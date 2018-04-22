@@ -1,0 +1,41 @@
+{
+    "fr": {
+	"header": {
+            "lead": "Communication collaborative"
+	},
+	"slides": {
+            "01-discuter": "Discutez avec votre équipe sur un tchat boosté aux stéroïdes",
+            "02-canaux": "Créez des canaux de discussion selon les besoins de votre équipe",
+            "03-pimpez": "Pimpez vos messages en utilisant la puissance du Markdown",
+            "04-rechercher": "Retrouvez les messages de vos collègues et répondez sans perdre le fil"
+	},
+	"diapos": {
+            "pause": "Pause",
+            "prev": "Diapo précédente",
+            "next": "Diapo suivante"
+	},
+	"teams": {
+            "join": "Rejoindre une équipe publique",
+            "create": "Créer une équipe",
+            "close": "Fermer",
+            "list": "Liste des équipes publiques"
+	},
+	"presentation": {
+            "h2-1": "Prise en main",
+            "serviceby": "{framateamhtml} est un service de <b>tchat</b> libre qui permet de communiquer avec son équipe en notifiant ses collègues, de conserver ses conversations et d’y faire des recherches.",
+            "framaware": "{framateamhtml} repose sur le logiciel libre {mattermosthtml}.",
+            "createyours": "Créez votre équipe",
+            "invite": "Invitez vos membres",
+            "newchans": "Créez vos canaux de communication (publics ou privés)",
+            "aide": "Aide",
+            "h2-2": "Le logiciel",
+            "licence": "Mattermost est sous {licencehtml}.",
+            "h2-3": "Cultivez votre jardin",
+            "learn": "Pour apprendre à mettre en page vos messages, utiliser des émoticônes, partager des images et documents et maîtriser {framateamhtml}, consultez nos pages d’aide :",
+            "trad": "(traduction de la documentation officielle par l’équipe {framalanghtml})",
+            "upstreamtext": "le site de développement",
+            "contrib-upstream": "Pour participer au développement du logiciel, proposer des améliorations ou simplement le télécharger, rendez-vous sur %(upstreamlink)s.",
+            "home-install": "Si vous souhaitez installer ce logiciel pour votre propre usage et ainsi gagner en autonomie, nous vous aidons sur :"
+	}
+    }
+}
