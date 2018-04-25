@@ -37,7 +37,7 @@ if (n$.is.lang('en') || !n$.is.lang('fr', 'b')) {
       h2_2: 'The software',
       framaware: '<b class="violet">Frama</b><b class="vert">team</b> relies upon the free software <a href="https://about.mattermost.com/">Mattermost</a>.',
       licence: 'Mattermost is licensed under <a href="https://github.com/mattermost/platform/blob/master/LICENSE.txt">licence <abbr>MIT</abbr></a>.',
-      h2_3: 'Cultivat your garden',
+      h2_3: 'Cultivate your garden',
       contrib_upstream: 'To participate into the development of the software, suggest improvements or just download it, go to <a href="https://github.com/mattermost/platform">project website</a>.',
       home_install: 'If you wish to install your own instance of the software and increase your autonomy, we help you at:',
     },
@@ -152,7 +152,7 @@ const f$3Cols = `
         <p class="text-center" role="presentation">
           <i class="glyphicon glyphicon-question-sign" aria-hidden="true"></i>
         </p>
-        <p>${i18n.presentation.seviceby}</p>
+        <p>${i18n.presentation.serviceby}</p>
         <ol>
           <li>${i18n.presentation.createyours}</li>
           <li>${i18n.presentation.invite}</li>
