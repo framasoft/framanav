@@ -7,107 +7,212 @@ switch (c$.js.j$) {
   default: f$ = jQuery; break; // eslint-disable-line
 }
 
+let i18n = {};
+if (n$.is.lang('en') || !n$.is.lang('fr', 'b')) {
+  i18n = {
+    header: {
+      lead: 'Collaborative communication',
+    },
+    slides: {
+      discuter: 'Communicate with your team over a chat on steroids',
+      canaux: 'Create channels according to team\'s needs',
+      pimpez: 'Markdown-powered messages',
+      rechercher: 'Find colleagues messages and answer without getting lost',
+    },
+    diapos: {
+      pause: 'Pause',
+      prev: 'Previous slide',
+      next: 'Next slide',
+    },
+    create: 'Create an account',
+    presentation: {
+      h2_1: 'Getting started',
+      serviceby: '<b class="violet">Frama</b><b class="vert">team</b> is a free/libre <b>chat</b> service to communicate with a team providing colleagues\' notifications, conversation history and searching.',
+      createyours: 'Create your team',
+      invite: 'Invite members',
+      newchans: 'Create channels (public or private)',
+      aide: 'Help',
+      learn: 'To learn how to format messages, use emoticons, share images and documents or manage <b class="violet">Frama</b><b class="vert">team</b>, checkout our help pages:',
+      trad: '(official documentation translation by the team of <a href="https://participer.framasoft.org/traduction-rejoignez-framalang"><b class="violet">Frama</b><b class="rouge">lang</b></a>)',
+      h2_2: 'The software',
+      framaware: '<b class="violet">Frama</b><b class="vert">team</b> relies upon the free software <a href="https://about.mattermost.com/">Mattermost</a>.',
+      licence: 'Mattermost is licensed under <a href="https://github.com/mattermost/platform/blob/master/LICENSE.txt">licence <abbr>MIT</abbr></a>.',
+      h2_3: 'Cultivat your garden',
+      contrib_upstream: 'To participate into the development of the software, suggest improvements or just download it, go to <a href="https://github.com/mattermost/platform">project website</a>.',
+      home_install: 'If you wish to install your own instance of the software and increase your autonomy, we help you at:',
+    },
+    teams: {
+      join: 'Join a new public team',
+      create: 'Create a new team',
+      close: 'Close',
+      list: 'Public teams listing',
+    },
+  };
+} else {
+  i18n = {
+    header: {
+      lead: 'Communication collaborative',
+    },
+    slides: {
+      discuter: 'Discutez avec votre équipe sur un tchat boosté aux stéroïdes',
+      canaux: 'Créez des canaux de discussion selon les besoins de votre équipe',
+      pimpez: 'Pimpez vos messages en utilisant la puissance du Markdown',
+      rechercher: 'Retrouvez les messages de vos collègues et répondez sans perdre le fil',
+    },
+    diapos: {
+      pause: 'Pause',
+      prev: 'Diapo précédente',
+      next: 'Diapo suivante',
+    },
+    create: 'Créer un compte',
+    presentation: {
+      h2_1: 'Prise en main',
+      serviceby: '<b class="violet">Frama</b><b class="vert">team</b> est un service de <b>tchat</b> libre qui permet de communiquer avec son équipe en notifiant ses collègues, de conserver ses conversations et d’y faire des recherches.',
+      createyours: 'Créez votre équipe',
+      invite: 'Invitez vos membres',
+      newchans: 'Créez vos canaux de communication (publics ou privés)',
+      aide: 'Aide',
+      learn: 'Pour apprendre à mettre en page vos messages, utiliser des émoticônes, partager des images et documents et maîtriser <b class="violet">Frama</b><b class="vert">team</b>, consultez nos pages d’aide :',
+      trad: '(traduction de la documentation officielle par l’équipe <a href="https://participer.framasoft.org/traduction-rejoignez-framalang"><b class="violet">Frama</b><b class="rouge">lang</b></a>)',
+      h2_2: 'Le logiciel',
+      framaware: '<b class="violet">Frama</b><b class="vert">team</b> repose sur le logiciel libre <a href="https://about.mattermost.com/">Mattermost</a>.',
+      licence: 'Mattermost est sous <a href="https://github.com/mattermost/platform/blob/master/LICENSE.txt">licence <abbr>MIT</abbr></a>.',
+      h2_3: 'Cultivez votre jardin',
+      contrib_upstream: 'Pour participer au développement du logiciel, proposer des améliorations ou simplement le télécharger, rendez-vous sur <a href="https://github.com/mattermost/platform">le site de développement</a>..',
+      home_install: 'Si vous souhaitez installer ce logiciel pour votre propre usage et ainsi gagner en autonomie, nous vous aidons sur :',
+    },
+    teams: {
+      join: 'Rejoindre une équipe publique',
+      create: 'Créer une équipe',
+      close: 'Fermer',
+      list: 'Liste des équipes publiques',
+    },
+  };
+}
+
 //----------------------------------------------------------------------
-const f$header = [
-  '<header role="banner" class="col-xs-12 framateam">',
-  '<h1><a href="/"><span class="frama">Frama</span><span class="services">team</span></a></h1>',
-  '<p class="lead">Communication collaborative</p>',
-  '<hr class="trait" role="presentation" />',
-  '</header>'].join('');
+const f$header = `
+  <header role="banner" class="col-xs-12 framateam">
+    <h1><a href="/"><b class="frama">Frama</b><b class="services">team</b></a></h1>
+    <p class="lead">${i18n.header.lead}</p>
+    <hr class="trait" role="presentation" />
+  </header>`;
 
 const f$slides = {
-  '01-discuter': 'Discutez avec votre équipe sur un tchat boosté aux stéroïdes',
-  '02-canaux': 'Créez des canaux de discussion selon les besoins de votre équipe',
-  '03-pimpez': 'Pimpez vos messages en utilisant la puissance du Markdown',
-  '04-rechercher': 'Retrouvez les messages de vos collègues et répondez sans perdre le fil',
+  '01-discuter': i18n.slides.discuter,
+  '02-canaux': i18n.slides.canaux,
+  '03-pimpez': i18n.slides.pimpez,
+  '04-rechercher': i18n.slides.rechercher,
 };
 
-let f$screen = [
-  '<div class="text-center framateam">',
-  '  <div id="carousel-team" data-interval="7000" class="carousel slide" role="presentation">',
-  '    <div class="carousel-inner">',
-].join('');
+let f$screen = `
+  <div class="text-center framateam">
+    <div id="carousel-team" data-interval="7000" class="carousel slide" role="presentation">
+      <div class="carousel-inner">`;
 Object.keys(f$slides).forEach((k) => {
-  const f$active = (k === '01-discuter') ? ' active' : '';
-  f$screen += [
-    '    <div class="item', f$active, '">',
-    '      <img src="https://framasoft.org/nav/ext/team-', k, '.jpg" alt="" />',
-    '      <div class="carousel-caption">',
-    '        <p class="h3">', f$slides[k], '</p>',
-    '      </div>',
-    '    </div>',
-  ].join('');
+  const active = (k === '01-discuter') ? ' active' : '';
+  f$screen += `
+        <div class="item ${active}">
+          <img src="https://framasoft.org/nav/ext/team-${k}.jpg" alt="" />
+          <div class="carousel-caption">
+            <p class="h3">${f$slides[k]}</p>
+          </div>
+        </div>`;
 });
-f$screen += [
-  '    </div>',
-  '    <p class="text-center" id="play-pause"><a href="#play-pause" class="carousel-control" title="Pause"><span class="glyphicon glyphicon-pause"></span><span class="sr-only">Pause</span></a></p>',
-  '    <a class="left carousel-control" href="#carousel-team" role="button" data-slide="prev" title="Diapo précédente">',
-  '      <i class="glyphicon glyphicon-chevron-left"></i><span class="sr-only">Diapo précédente</span>',
-  '    </a>',
-  '    <a class="right carousel-control" href="#carousel-team" role="button" data-slide="next" title="Diapo suivante">',
-  '      <i class="glyphicon glyphicon-chevron-right"></i><span class="sr-only">Diapo suivante</span>',
-  '    </a>',
-  '  </div>',
-  '</div>',
-].join('');
+f$screen += `
+      </div>
+      <p class="text-center" id="play-pause">
+        <a href="#play-pause" class="carousel-control" title="${i18n.diapo.pause}">
+          <i class="glyphicon glyphicon-pause" aria-hidden="true"></i>
+          <span class="sr-only">${i18n.diapo.pause}</span>
+        </a>
+      </p>
+      <a class="left carousel-control" href="#carousel-team" role="button" data-slide="prev" title="${i18n.diapo.prev}">
+        <i class="glyphicon glyphicon-chevron-left" aria-hidden="true"></i>
+        <span class="sr-only">${i18n.diapo.prev}</span>
+      </a>
+      <a class="right carousel-control" href="#carousel-team" role="button" data-slide="next" title="${i18n.diapo.next}">
+        <i class="glyphicon glyphicon-chevron-right" aria-hidden="true"></i>
+        <span class="sr-only">${i18n.diapo.next}</span>
+      </a>,
+    </div>,
+  </div>`;
 
-const f$3Cols = [
-  '<div class="col-md-5 text-center h1 framateam"><a href="/signup_user_complete" class="btn btn-lg btn-success">',
-  '  <i class="fa fa-fw fa-lg fa-user"></i> Créer un compte',
-  '</a></div>',
-  '<div class="col-md-12 framateam">',
-  '  <hr role="presentation" />',
-  '  <div class="row">',
-  '    <div class="col-md-4" id="tuto-faq">',
-  '      <h2>Prise en main</h2>',
-  '      <p class="text-center" role="presentation"><span class="glyphicon glyphicon-question-sign"></span></p>',
-  '      <p><b class="violet">Frama</b><b class="vert">team</b> est un service de <b>tchat</b> libre qui permet de communiquer avec son équipe en notifiant ses collègues, de conserver ses conversations et d’y faire des recherches.</p>',
-  '      <ol><li>Créez votre équipe</li><li>Invitez vos membres</li><li>Créez vos canaux de communication (publics ou privés)</li></ol>',
-  '      <p>Pour apprendre à mettre en page vos messages, utiliser des émoticônes, partager des images et documents et maîtriser <b class="violet">Frama</b><b class="vert">team</b>, consultez nos pages d’aide :</p>',
-  '      <p class="text-center"><a href="https://docs.framasoft.org/fr/mattermost/index.html" class="btn btn-primary">Aide »</a></p>',
-  '      <p>(traduction de la documentation officielle par l’équipe <a href="https://participer.framasoft.org/traduction-rejoignez-framalang"><b class="violet">Frama</b><b class="rouge">lang</b></a>)</p>',
-  '    </div>',
-  '    <div class="col-md-4" id="le-logiciel">',
-  '      <h2>Le logiciel</h2>',
-  '      <p class="text-center" role="presentation"><span class="glyphicon glyphicon-cloud"></span></p>',
-  '      <p><b class="violet">Frama</b><b class="vert">team</b> repose sur le logiciel libre <a href="https://about.mattermost.com/">Mattermost</a>.</p>',
-  '      <p>Mattermost est sous <a href="https://github.com/mattermost/platform/blob/master/LICENSE.txt">licence <abbr>MIT</abbr></a>.</p>',
-  '    </div>',
-  '    <div class="col-md-4" id="jardin">',
-  '      <h2>Cultivez votre jardin</h2>',
-  '      <p class="text-center" role="presentation"><span class="glyphicon glyphicon-tree-deciduous"></span></p>',
-  '      <p>Pour participer au développement du logiciel, proposer des améliorations',
-  '         ou simplement le télécharger, rendez-vous sur <a href="https://github.com/mattermost/platform">le site de développement</a>.</p>',
-  '      <br>',
-  '      <p>Si vous souhaitez installer ce logiciel pour votre propre usage et ainsi gagner en autonomie, nous vous aidons sur :</p>',
-  '      <p class="text-center"><a href="https://framacloud.org/fr/cultiver-son-jardin/gitlab.html" class="btn btn-success"><i class="glyphicon glyphicon-tree-deciduous"></i> framacloud.org</a></p>',
-  '    </div></div>',
-].join('');
+const f$3Cols = `
+  <div class="col-md-5 text-center h1 framateam">
+    <a href="/signup_user_complete" class="btn btn-lg btn-success">
+      <i class="fa fa-fw fa-lg fa-user" aria-hidden="true"></i> ${i18n.create}
+    </a>
+  </div>
+  <div class="col-md-12 framateam">
+    <hr role="presentation" />
+    <div class="row">
+      <div class="col-md-4" id="tuto-faq">
+        <h2>${i18n.presentation.h2_1}</h2>
+        <p class="text-center" role="presentation">
+          <i class="glyphicon glyphicon-question-sign" aria-hidden="true"></i>
+        </p>
+        <p>${i18n.presentation.seviceby}</p>
+        <ol>
+          <li>${i18n.presentation.createyours}</li>
+          <li>${i18n.presentation.invite}</li>
+          <li>${i18n.presentation.newchans}</li>
+        </ol>
+        <p>${i18n.presentation.learn}</p>
+        <p class="text-center">
+          <a href="https://docs.framasoft.org/fr/mattermost/index.html" class="btn btn-primary">${i18n.presentation.aide} »</a>
+        </p>
+        <p>${i18n.presentation.trad}</p>
+      </div>
+      <div class="col-md-4" id="le-logiciel">
+        <h2>${i18n.presentation.h2_2}</h2>
+        <p class="text-center" role="presentation">
+          <i class="glyphicon glyphicon-cloud" aria-hidden="true"></i>
+        </p>
+        <p>${i18n.presentation.framaware}</p>
+        <p>${i18n.presentation.licence}</p>
+      </div>
+      <div class="col-md-4" id="jardin">
+        <h2>${i18n.presentation.h2_3}</h2>
+        <p class="text-center" role="presentation">
+          <i class="glyphicon glyphicon-tree-deciduous" aria-hidden="true"></i>
+        </p>
+        <p>${i18n.presentation.contrib_upstream}</p>
+        <br>
+        <p>${i18n.presentation.home_install}</p>
+        <p class="text-center">
+          <a href="https://framacloud.org/fr/cultiver-son-jardin/gitlab.html" class="btn btn-success">
+            <i class="glyphicon glyphicon-tree-deciduous" aria-hidden="true"></i> framacloud.org
+          </a>
+        </p>
+      </div>
+    </div>`;
 
-const f$pteams = [
-  '<div class="text-center framateam" id="Options">',
-  '  <p><a href="javascript:void(0)" id="ListBtn" class="btn btn-primary btn-block">',
-  '    <i class="fa fa-fw fa-user-plus"></i> Rejoindre une équipe publique',
-  '  </a></p>',
-  '  <p><a href="/create_team" class="btn btn-success btn-block">',
-  '    <i class="fa fa-fw fa-lg fa-group"></i> Créer une équipe',
-  '  </a></p>',
-  '  <div class="modal fade" id="ListModal" tabindex="-1" role="dialog" aria-labelledby="ListModalLabel">',
-  '    <div class="modal-dialog modal-lg">',
-  '      <div class="modal-content">',
-  '        <div class="modal-header">',
-  '          <button type="button" class="close" data-dismiss="modal" aria-label="Fermer"><span aria-hidden="true">&times;</span></button>',
-  '          <h4 class="modal-title" id="ListModalLabel">Liste des équipes publiques</h4>',
-  '        </div>',
-  '        <div class="modal-body" id="ListImport"></div>',
-  '        <div class="modal-footer">',
-  '          <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>',
-  '        </div>',
-  '      </div>',
-  '    </div>',
-  '  </div>',
-  '</div>',
-].join('');
+const f$pteams = `
+  <div class="text-center framateam" id="Options">
+    <p><a href="javascript:void(0)" id="ListBtn" class="btn btn-primary btn-block">
+      <i class="fa fa-fw fa-user-plus" aria-hidden="true"></i> ${i18n.teams.join}
+    </a></p>
+    <p><a href="/create_team" class="btn btn-success btn-block">
+      <i class="fa fa-fw fa-lg fa-group" aria-hidden="true"></i> ${i18n.teams.create}
+    </a></p>
+    <div class="modal fade" id="ListModal" tabindex="-1" role="dialog" aria-labelledby="ListModalLabel">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="${i18n.teams.close}">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="ListModalLabel">${i18n.teams.list}</h4>
+          </div>
+          <div class="modal-body" id="ListImport"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">${i18n.teams.close}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>`;
 //----------------------------------------------------------------------
 
 const f$origin = n$.url.split('/');
