@@ -23,8 +23,13 @@ if (n$.is.lang('en') || !n$.is.lang('fr', 'b')) {
       pause: 'Pause',
       prev: 'Previous slide',
       next: 'Next slide',
+      play: 'Play',
     },
     create: 'Create an account',
+    connect_framagit: 'Sign in with Framagit',
+    create_framagit: 'Sign up with Framagit',
+    email: 'Email address or User name',
+    password: 'Password',
     presentation: {
       h2_1: 'Getting started',
       serviceby: '<b class="violet">Frama</b><b class="vert">team</b> is a free/libre <b>chat</b> service to communicate with a team providing colleagues\' notifications, conversation history and searching.',
@@ -63,8 +68,13 @@ if (n$.is.lang('en') || !n$.is.lang('fr', 'b')) {
       pause: 'Pause',
       prev: 'Diapo précédente',
       next: 'Diapo suivante',
+      play: 'Lecture',
     },
     create: 'Créer un compte',
+    connect_framagit: 'Se connecter avec Framagit',
+    create_framagit: 'Créer un compte avec Framagit',
+    email: 'Email address or User name',
+    password: 'Mot de passe',
     presentation: {
       h2_1: 'Prise en main',
       serviceby: '<b class="violet">Frama</b><b class="vert">team</b> est un service de <b>tchat</b> libre qui permet de communiquer avec son équipe en notifiant ses collègues, de conserver ses conversations et d’y faire des recherches.',
@@ -267,7 +277,7 @@ const updateDisplay = function updateDisplay(currentId) {
         .removeClass('btn-custom-login')
         .addClass('btn-link')
         .css('width', '100%')
-        .html('<i class="fa fa-fw fa-gitlab"></i>Ouvrir un compte avec Framagit');
+        .html(`<i class="fa fa-fw fa-gitlab" aria-hidden="true"></i> ${i18n.create_framagit}`);
       f$('.signup-team__container form').after(f$('.signup-team__container > div:first'));
       break;
     case 'ct-login':
@@ -282,26 +292,29 @@ const updateDisplay = function updateDisplay(currentId) {
       if (f$('#carousel-team').length === 0) {
         f$('.signup-team__container').parent().before(f$screen);
       }
-      f$('.signup__content .form-group:has(a[href$="reset_password"])').addClass('pull-right').css('margin-top', '7px');
-      f$('.signup__content .form-group:has(button.btn-primary)').before(f$('.form-group:has(a[href$="reset_password"])'));
-      f$('.signup__email-container input[name="loginId"]').attr('placeholder', 'Adresse électronique ou Nom d’utilisateur');
+      f$('.signup__content .form-group:has(a[href$="reset_password"])')
+        .addClass('pull-right').css('margin-top', '7px');
+      f$('.signup__content .form-group:has(button.btn-primary)')
+        .before(f$('.form-group:has(a[href$="reset_password"])'));
+      f$('.signup__email-container input[name="loginId"]').attr('placeholder', i18n.email);
+      f$('.signup__email-container input[name="loginPassword"]').attr('placeholder', i18n.password);
 
       f$('.signup__content .gitlab')
         .removeClass('btn-custom-login')
         .addClass('btn-link')
         .css('width', '100%')
-        .html('<i class="fa fa-fw fa-gitlab" aria-hidden="true"></i> Se connecter avec Framagit');
+        .html(`<i class="fa fa-fw fa-gitlab" aria-hidden="true"></i> ${i18n.connect_framagit}`);
 
       f$('#play-pause a').on('click', function playPause() {
         if (f$(this).children('.glyphicon').hasClass('glyphicon-pause')) {
           f$(this).children('.glyphicon').addClass('glyphicon-play').removeClass('glyphicon-pause');
-          f$(this).attr('title', 'Lecture');
-          f$(this).children('.sr-only').text('Lecture');
+          f$(this).attr('title', i18n.diapos.play);
+          f$(this).children('.sr-only').text(i18n.diapos.play);
           f$('#carousel-team').carousel('pause');
         } else {
           f$(this).children('.glyphicon').addClass('glyphicon-pause').removeClass('glyphicon-play');
-          f$(this).attr('title', 'Pause');
-          f$(this).children('.sr-only').text('Pause');
+          f$(this).attr('title', i18n.diapos.pause);
+          f$(this).children('.sr-only').text(i18n.diapos.pause);
           f$('#carousel-team').carousel('cycle');
         }
         return false;
