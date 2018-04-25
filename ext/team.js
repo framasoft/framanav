@@ -122,18 +122,18 @@ Object.keys(f$slides).forEach((k) => {
 f$screen += `
       </div>
       <p class="text-center" id="play-pause">
-        <a href="#play-pause" class="carousel-control" title="${i18n.diapo.pause}">
+        <a href="#play-pause" class="carousel-control" title="${i18n.diapos.pause}">
           <i class="glyphicon glyphicon-pause" aria-hidden="true"></i>
-          <span class="sr-only">${i18n.diapo.pause}</span>
+          <span class="sr-only">${i18n.diapos.pause}</span>
         </a>
       </p>
-      <a class="left carousel-control" href="#carousel-team" role="button" data-slide="prev" title="${i18n.diapo.prev}">
+      <a class="left carousel-control" href="#carousel-team" role="button" data-slide="prev" title="${i18n.diapos.prev}">
         <i class="glyphicon glyphicon-chevron-left" aria-hidden="true"></i>
-        <span class="sr-only">${i18n.diapo.prev}</span>
+        <span class="sr-only">${i18n.diapos.prev}</span>
       </a>
-      <a class="right carousel-control" href="#carousel-team" role="button" data-slide="next" title="${i18n.diapo.next}">
+      <a class="right carousel-control" href="#carousel-team" role="button" data-slide="next" title="${i18n.diapos.next}">
         <i class="glyphicon glyphicon-chevron-right" aria-hidden="true"></i>
-        <span class="sr-only">${i18n.diapo.next}</span>
+        <span class="sr-only">${i18n.diapos.next}</span>
       </a>,
     </div>,
   </div>`;
