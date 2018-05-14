@@ -676,6 +676,7 @@ switch (n$.site) {
   case 'wiki': /**           */ l$.piwik.id = '64'; break;
   case 'trad': /**           */ l$.piwik.id = '65'; break;
   case 'clic': /**           */ l$.piwik.id = '66'; break;
+  case 'story': /**          */ l$.piwik.id = '67'; break;
 
   // no default
 }
