@@ -48,6 +48,7 @@
 [data-url*="framacalc.org/"]:not([data-url$="/_start"]):not([data-url$="framacalc.org/"]),
 
 [data-url*="://framacarte.org"][data-url*="/map/"],                     /* dans uMap */
+[data-url*="://framacloud.org"],
 
 /* dans Nextcloud */
 /* [data-url*="://framagenda.org"][data-url*="index.php/app"]:not([data-url*="registration"]),
