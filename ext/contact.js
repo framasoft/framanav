@@ -12,13 +12,13 @@ jQuery(document).ready(() => {
       'zic', 'colibri', 'evl', 'dio',
     ],
     [ // Ordre alphabétique pour tout ce qui est en vert
-      'agenda', 'bag', 'bee', 'bin', 'board', 'calc', 'carte', 'date',
+      'agenda', 'bag', 'bee', 'bin', 'board', 'calc', 'clic', 'carte', 'date',
       'drive', 'drop', 'forms', 'games', 'git', 'link', 'listes',
       'maestro', 'memo',
     ],
     [
       'mindmap', 'minetest', 'my', 'news', 'notes', 'pad', 'petitions',
-      'piaf', 'pic', 'site', 'slides', 'sphere', 'talk', 'team',
+      'piaf', 'pic', 'site', 'slides', 'sphere', 'story', 'talk', 'team',
       'vectoriel', 'vox', 'wiki',
     ],
   ];
