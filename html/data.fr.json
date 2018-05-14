@@ -672,6 +672,20 @@
       "t1": "Prise de notes",
       "d1": "Avec Framanotes vous pouvez prendre et conserver des notes, images, liens… et même des fichiers ; et les synchroniser avec tous vos appareils (voire les partager avec des ami⋅e⋅s)."
     },
+    "story": {
+      "p": "Frama",
+      "s": "story",
+      "c": "v",
+      "i": "fa-thumb-tack",
+      "l": "https://framastory.org",
+      "git": "https://framagit.org/framasoft/pickweaver/",
+      "soft": "PickWeaver",
+      "src": "https://framagit.org/framasoft/pickweaver/",
+
+      "d0": " ",
+      "t1": " ",
+      "d1": " "
+    },
     "bag": {
       "p": "Frama",
       "s": "bag",
@@ -816,21 +830,21 @@
       "t1": "Réduire des liens",
       "d1": "Avec Frama.link, il est possible de raccourcir des adresses web trop longues. Sur les réseaux sociaux et le microblogging, un lien raccourci permet d’économiser de l’espace et gagner en clarté."
     },
-    "git": {
+    "clic": {
       "p": "Frama",
-      "s": "git",
-      "a": "en",
+      "s": "clic",
       "c": "v",
-      "i": "fa-git",
-      "l": "https://framagit.org",
-      "soft": "Gitlab",
-      "src": "https://about.gitlab.com/contributing/",
-      "doc": "https://docs.framasoft.org/fr/gitlab/",
-      "cloud": "https://framacloud.org/fr/cultiver-son-jardin/gitlab.html",
+      "i": "fa-hand-pointer-o",
+      "l": "https://framaclic",
+      "git": "https://framagit.org/framasoft/framaclic",
+      "soft": "Dolomon",
+      "src": "https://framagit.org/luc/dolomon",
+      "cloud": "http://framacloud.org/cultiver-son-jardin/installation-de-dolomon/",
+      "doc": "https://docs.framasoft.org/fr/dolomon/",
 
-      "d0": "Alternative à Github",
-      "t1": "Héberger du code libre",
-      "d1": "Framagit est un outil qui s’adresse avant tout aux développeurs. Il permet d’héberger vos projets de logiciels libres et de travailler collaborativement dessus."
+      "d0": " ",
+      "t1": " ",
+      "d1": " "
     },
     "site": {
       "p": "Frama",
@@ -858,6 +872,22 @@
       "d0": "Votre wiki en quelques clics",
       "t1": "Hébergement de wikis",
       "d1": "Framawiki vous permet de créer un wiki facilement et de l’héberger sur nos serveurs. Aucune publicité ni traquage ne portera atteinte aux données de vos visiteurs et visiteuses."
+    },
+    "git": {
+      "p": "Frama",
+      "s": "git",
+      "a": "en",
+      "c": "v",
+      "i": "fa-git",
+      "l": "https://framagit.org",
+      "soft": "Gitlab",
+      "src": "https://about.gitlab.com/contributing/",
+      "doc": "https://docs.framasoft.org/fr/gitlab/",
+      "cloud": "https://framacloud.org/fr/cultiver-son-jardin/gitlab.html",
+
+      "d0": "Alternative à Github",
+      "t1": "Héberger du code libre",
+      "d1": "Framagit est un outil qui s’adresse avant tout aux développeurs. Il permet d’héberger vos projets de logiciels libres et de travailler collaborativement dessus."
     },
     "my": {
       "p": "My",
