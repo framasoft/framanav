@@ -1093,7 +1093,7 @@ const n$ = {
           const html = document.getElementsByTagName('html');
           const meta = document.getElementsByTagName('script');
 
-          if (window.location.host.indexOf('framabin.org/p/') > -1 // Contournement de PrivateBin
+          if (window.location.href.indexOf('framabin.org/p/') > -1 // Contournement de PrivateBin
             && document.getElementById('language')
             && document.getElementById('language').innerHTML.indexOf('> français <') > -1) {
             lang = 'fr';
