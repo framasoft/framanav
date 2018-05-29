@@ -1,0 +1,50 @@
+[data-url*="://framabin.org/p/"] {
+  body {
+    padding: 0;
+    background: #eee;
+  }
+
+  .ombre header a {
+    text-decoration: none;
+  }
+
+  .container .container {
+    width: auto;
+    padding: 0;
+  }
+
+  #framanav .dropdown-menu > li > div {
+    white-space: inherit;
+  }
+
+  #framanav .dropdown-menu > li > div {
+    padding: 0;
+  }
+
+  .reloadlink.navbar-brand {
+    display:none;
+  }
+
+  .navbar .container,
+  #navbar,
+  #navbar .navbar-nav,
+  #navbar .navbar-nav li:first-of-type{
+    padding: 0;
+    margin: 0;
+  }
+
+  .navbar {
+    background: transparent;
+    border: none;
+  }
+
+  footer.container {
+    display: none;
+  }
+
+  #tuto-faq p > .glyphicon,
+  #le-logiciel p > .glyphicon,
+  #jardin p > .glyphicon {
+    font-size: 50px;
+  }
+}
