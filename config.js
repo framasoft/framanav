@@ -106,7 +106,7 @@ switch (n$.site) {
 
   case 'bin':
     l$ = {
-      js: { video: true },
+      js: { video: true, ext: true },
       modal: {
         don: ['onstart', 'd’utiliser', ['utiliser ', n$.name].join('')],
       },
