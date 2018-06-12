@@ -144,6 +144,7 @@ switch (n$.site) {
 
   case 'book':
     l$ = {
+      js: { j$: 'noConflict', b$: 'html' },
       modal: { don: ['a[href*="download-monitor/download.php?id="]'] },
     };
     break;
