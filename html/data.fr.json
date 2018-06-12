@@ -626,21 +626,6 @@
       "t1": "Des pétitions sans offrir les adresses de vos soutiens",
       "d1": "Framapetitions vous permet de lancer des pétitions sur les sujets qui vous tiennent à cœur. En quelques clics, votre pétition est publiée et les adresses de vos soutiens ne seront pas exploités par des régies publicitaires."
     },
-    "sites": {
-      "p": "Frama",
-      "s": "sites",
-      "c": "v",
-      "i": "fa-globe",
-      "l": "https://framasites.org",
-      "git": "https://framagit.org/framasoft/framasites",
-      "soft": "Grav",
-      "src": "https://getgrav.org/",
-      "cloud": "http://framacloud.org/cultiver-son-jardin/installation-de-grav/",
-
-      "d0": "Hébergement de sites",
-      "t1": "Créez un site web qui respectera vos visiteurs",
-      "d1": "Framasites vous permet de créer un site web facilement, avec des outils libres et de l’héberger sur nos serveurs. Aucune publicité ni traquage ne portera atteinte aux données de vos visiteurs et visiteuses."
-    },
     "memo": {
       "p": "Fra",
       "s": "memo",
@@ -857,7 +842,7 @@
       "doc": "https://docs.framasoft.org/fr/grav/",
 
       "d0": "Votre site web en quelques clics",
-      "t1": "Hébergement de sites",
+      "t1": "Créez un site web qui respectera vos visiteurs",
       "d1": "Framasite vous permet de créer un site web facilement et de l’héberger sur nos serveurs. Aucune publicité ni traquage ne portera atteinte aux données de vos visiteurs et visiteuses."
     },
     "wiki": {
