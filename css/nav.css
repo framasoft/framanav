@@ -677,11 +677,11 @@ body.apropos #piwik-iframe {
     display:block !important;
 }
 
-.fs_petitions {
+.fs_petitions, .fs_story {
     display:none !important;
 }
 
-.fs_clic, .fs_story {
+.fs_clic {
     visibility: hidden;
 }
 
