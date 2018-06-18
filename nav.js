@@ -1119,7 +1119,7 @@ const n$ = {
         }
         // Langue du navigateur
         const userLang = navigator.languages ||
-          [root.navigator.language || root.navigator.userLanguage];
+          [navigator.language || navigator.userLanguage];
         for (let i = 0; i < userLang.length; i += 1) {
           if (userLang[i].substring(0, 2).toLowerCase() === lg) {
             return true;
