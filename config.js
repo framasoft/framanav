@@ -99,6 +99,9 @@ switch (n$.site) {
           if (jQuery('.explain').length) { jQuery('#q').focus(); }
           jQuery('.footer').hide();
           jQuery('body').css('margin-bottom', '0');
+          if (n$.is.lang('fr', 'b') && document.cookie.indexOf('language=') === -1) {
+            document.getElementById('language').value = 'fr';
+          }   
         },
       },
     };
