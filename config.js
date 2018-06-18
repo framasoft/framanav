@@ -102,14 +102,15 @@ switch (n$.site) {
           // Default search in fr
           if (n$.is.lang('fr', 'b') && document.cookie.indexOf('language=') === -1) {
             document.getElementById('language').value = 'fr';
-            document.querySelector('select[name="language"]').value = 'fr';
+            document.querySelector('#tab_general select[name="language"]').value = 'fr';
+            document.querySelector('#search_form select[name="language"]').value = 'fr';
           }
           // Active search engine list
           let i18n = {
             search: 'Search engines used',
             pref: 'You can <a href="/preferences">choose others in the preferences</a>',
           };
-          if (n$.is.lang('fr')) {
+          if (document.cookie.indexOf('locale=fr') > -1 || n$.is.lang('fr', 'b')) {
             i18n = {
               search: 'Moteurs de recherche utilisés',
               pref: 'Vous pouvez <a href="/preferences">en choisir d’autres dans les préférences</a>',
