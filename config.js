@@ -194,13 +194,21 @@ switch (n$.site) {
     } catch (e) {
       // continue regardless of error
     }
-    if (n$.is.url('framacalc.org/_start') || n$.is.url('https://framacalc.org/', 'u') ||
-        n$.is.url('https://lite.framacalc.org/', 'u')) {
+    if (n$.is.url('accueil.framacalc.org')) {
       // Si on est sur la page d'accueil
-      l$.modal = {
-        don: ['a[href*="lite.framacalc.org/"]', 'd’utiliser', 'créer un calc'],
+      if (n$.is.lang('fr')) {
+        l$.modal = {
+          don: ['a[href*="lite.framacalc.org/"]', 'd’utiliser', 'créer un calc'],
+        };
+      }
+      l$.js = {
+        ext() {
+          if (n$.cookie('r', 'calc-alert')) { $('#classic .alert').hide(); }
+          $('#classic .alert').on('closed.bs.alert', () => {
+            n$.cookie('w', 'calc-alert', true, 31536000000);
+          });
+        },
       };
-      l$.js = { ext() { jQuery('#drop label:eq(0)').hide(); } };
     } else { // dans Ethercalc
       l$ = {
         js: {
@@ -214,7 +222,9 @@ switch (n$.site) {
     break;
 
   case 'carte':
-    l$.modal = { don: ['a.btn-primary[href*="/map/new/"]', 'd’utiliser', 'créer une carte'] };
+    if (n$.is.lang('fr')) {
+      l$.modal = { don: ['a.btn-primary[href*="/map/new/"]', 'd’utiliser', 'créer une carte'] };
+    }
     break;
 
   case 'clic':
