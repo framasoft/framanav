@@ -101,9 +101,7 @@ switch (n$.site) {
           jQuery('body').css('margin-bottom', '0');
           // Default search in fr
           if (n$.is.lang('fr', 'b') && document.cookie.indexOf('language=') === -1) {
-            document.getElementById('language').value = 'fr';
-            document.querySelector('#tab_general select[name="language"]').value = 'fr';
-            document.querySelector('#search_form select[name="language"]').value = 'fr';
+            $('select[name="language"] option[value="fr"]').prop('selected', true);
           }
           // Active search engine list
           let i18n = {
