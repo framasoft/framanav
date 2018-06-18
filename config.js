@@ -99,9 +99,40 @@ switch (n$.site) {
           if (jQuery('.explain').length) { jQuery('#q').focus(); }
           jQuery('.footer').hide();
           jQuery('body').css('margin-bottom', '0');
+          // Default search in fr
           if (n$.is.lang('fr', 'b') && document.cookie.indexOf('language=') === -1) {
             document.getElementById('language').value = 'fr';
+            document.querySelector('select[name="language"]').value = 'fr';
           }
+          // Active search engine list
+          let i18n = {
+            search: 'Search engines used',
+            pref: 'You can <a href="/preferences">choose others in the preferences</a>',
+          };
+          if (n$.is.lang('fr')) {
+            i18n = {
+              search: 'Moteurs de recherche utilisés',
+              pref: 'Vous pouvez <a href="/preferences">en choisir d’autres dans les préférences</a>',
+            };
+          }
+          let engines = '';
+          $('#main_results .label-default').each((i) => {
+            const html = $('<div />').append($('#main_results .label-default').eq(i).clone()).html();
+            if (engines.indexOf(html) === -1) {
+              engines += `${html} `;
+            }
+          });
+          $('#sidebar_results').append(`
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">${i18n.search}</h4>
+              </div>
+              <div class="panel-body">
+                <p>${engines.replace(/pull-right/g, '')}</p>
+                <p>${i18n.pref}</p>
+              </div>
+            </div>
+          `);
         },
       },
     };
