@@ -28,9 +28,9 @@ if (n$.is.url(/framadate/i, 'h')) { n$.site = 'date'; }
 if (n$.is.url(/framacalc/i, 'h')) { n$.site = 'calc'; }
 
 if (n$.is.url('mypads.framapad.org', 'h') || n$.is.url('beta3.framapad.org', 'h')) { n$.site = 'mypads'; }
-if ((n$.is.url(/.framapad/i, 'h') && !n$.is.url(/mypads./i, 'h')) ||
-    (n$.is.url(/mypads.framapad/i, 'h') && n$.is.url('/p/')) ||
-    (n$.is.url(/beta3.framapad/i, 'h') && n$.is.url('/p/'))) {
+if ((n$.is.url(/.framapad/i, 'h') && !n$.is.url(/mypads./i, 'h'))
+  || (n$.is.url(/mypads.framapad/i, 'h') && n$.is.url('/p/'))
+  || (n$.is.url(/beta3.framapad/i, 'h') && n$.is.url('/p/'))) {
   n$.site = 'etherpad';
 }
 
@@ -711,13 +711,13 @@ switch (n$.site) {
   // no default
 }
 
-if (l$.piwik.id !== '' &&
+if (l$.piwik.id !== ''
     // Pas de Piwik si DoNotTrack
     // DNT est respecté mais on évite les notifications des uBlock, Ghostery, etc
-    !(navigator.doNotTrack === 'yes' ||
-    navigator.doNotTrack === '1' ||
-    navigator.msDoNotTrack === '1' ||
-    window.doNotTrack === '1')) {
+    && !(navigator.doNotTrack === 'yes'
+    || navigator.doNotTrack === '1'
+    || navigator.msDoNotTrack === '1'
+    || window.doNotTrack === '1')) {
   // Code Javascript
   if (l$.piwik.mode === 'js') {
     var _paq = _paq || []; // eslint-disable-line
@@ -780,8 +780,8 @@ if (n$.is.url(/(phonie)/i, 'h')) {
   l$.icons.fav = 'favicon-jaune.png';
 }
 
-if (n$.is.url(/(agenda|bag|bee|bin|blog|board|bookin|book|calc|carte|cloud|code|colibri|date|drive|drop|dvd|forms|games|key|lab|lang|libre|link|listes|maestro|memo|mindmap|minetest|news|pack|phonie|piaf|pic|site|slides|sphere|start|stats|status|talk|team|tube|vectoriel|vox|zic)/i, 'h') ||
-    n$.is.url(/(bot.|contact.|degooglisons-internet|forum.|participer.|soutenir.)/i, 'h')) {
+if (n$.is.url(/(agenda|bag|bee|bin|blog|board|bookin|book|calc|carte|cloud|code|colibri|date|drive|drop|dvd|forms|games|key|lab|lang|libre|link|listes|maestro|memo|mindmap|minetest|news|pack|phonie|piaf|pic|site|slides|sphere|start|stats|status|talk|team|tube|vectoriel|vox|zic)/i, 'h')
+  || n$.is.url(/(bot.|contact.|degooglisons-internet|forum.|participer.|soutenir.)/i, 'h')) {
   l$.icons.apple = [n$.site, '.png'].join('');
   l$.icons.fav = ['fav_', n$.site, '.png'].join('');
 }
