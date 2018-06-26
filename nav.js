@@ -21,7 +21,7 @@ const d$ = {};
 let c$ = {};
 
 const n$ = {
-  version: '180403', // n° version de la nav
+  version: '180626', // n° version de la nav
   f$: '3.3.1', // n° version de notre jQuery
   b$: '3.3.7', // n° version de Bootsrap
   host: window.location.host,
