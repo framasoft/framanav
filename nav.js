@@ -1505,4 +1505,31 @@ const n$ = {
       '<br/>Merci pour votre soutien <a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir">', n.html.i('fa-heart', ''), n.html.sr('Faire un don ?'), '</a>',
     ].join('');
   }
+
+  // Bandeau Peertube
+  if (n.is.before('2018/07/05')) {
+    const f$end = new Date('07/05/2018 11:59 PM');
+    const f$now = new Date();
+    const f$days = (f$end - f$now < 0) ? 0 : Math.floor((f$end - f$now) / 86400000);
+
+    if (n.is.lang('fr')) {
+      c$.alert[0] = 'info';
+      c$.alert[1] = `
+        Plus que <b>${f$days} jours</b> pour façonner le futur de
+        <b><i class="fa fa-peertube" aria-hidden="true"></i> PeerTube</b>,
+        et concrétiser une alternative aux plateformes centralisatrices à la YouTube !
+        <a href="https://www.kisskissbankbank.com/fr/projects/peertube-a-free-and-federated-video-platform">
+          Contribuez ici
+        </a>.`;
+    } else {
+      c$.alert[0] = 'info';
+      c$.alert[1] = `
+        Only <b>${f$days} days</b> left to shape
+        <b><i class="fa fa-peertube" aria-hidden="true"></i> PeerTube</b>'s future,
+        and make an alternative to centralized YouTube-like platforms a reality!
+        <a href="https://www.kisskissbankbank.com/en/projects/peertube-a-free-and-federated-video-platform">
+          Contribute here
+        </a>.`;
+    }
+  }
 }());
