@@ -30,7 +30,7 @@ const n$ = {
   inframe: window.top.location !== window.self.document.location,
   container: [
     '<div id="framanav_container" class="hidden-print" style="height:42px; opacity : 0"></div>',
-    '<iframe id="framanav_cortex" src="https://framasoft.org/nav/html/cortex.html" ',
+    '<iframe id="framanav_cortex" src="https://framasoft.org/nav/html/cortex.html" aria-hidden="true" ',
     'style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;"></iframe>',
   ].join(''),
   browser: {
@@ -88,11 +88,11 @@ const n$ = {
           n$.baseurl = this.l(scripts[i].getAttribute('src').replace('nav.js', ''));
           // On ajout une div vide de 42px qui contiendra la nav
           // (évite les sauts de mise en page avant le chargement des fichiers)
-          if (scripts[i].parentNode.tagName.toLowerCase() === 'body') {
+          /* if (scripts[i].parentNode.tagName.toLowerCase() === 'body') {
             // si nav.js est appelé en haut du body, c'est super rapide
             document.write(n$.container);
             n$.container = '☀';
-          } // sinon c'est dans le head, il faut attendre document.ready (voir plus bas)
+          } // sinon c'est dans le head, il faut attendre document.ready (voir plus bas) */
         }
       }
 
@@ -359,14 +359,19 @@ const n$ = {
       if (!n$.inframe) { // Pas de bandeau, nav, modale et macaron en mode iframe
         // Liens de la nav à ouvrir dans un onglet
         if (!n.is.url('/nav/html/')) {
-          f$('#framanav .dropdown-menu a').attr('target', '_blank').append(n.html.newWindow());
+          f$('#framanav .dropdown-menu a')
+            .attr({
+              target: '_blank',
+              rel: 'noreferrer',
+            })
+            .append(n.html.newWindow());
         }
 
         /** ... on ajoute surtout les scripts qui font appel à BootStrap et jQuery ici */
 
         // Activation des popovers
         if (typeof f$().popover === 'function') {
-          f$('a[rel="popover"]').each(function enablePopover() {
+          f$('a[data-toggle="popover"]').each(function enablePopover() {
             f$(this).popover({
               html: true,
               trigger: 'focus hover',
@@ -1254,7 +1259,7 @@ const n$ = {
             html.push(
               '<li class="fs_', k, '">',
               '<a href="', d$.f[k].l, '" title="', d$.f[k].t1, '" ', n.html.popover(d$.f[k].t1, d$.f[k].d1, 'top'), '>',
-              n.html.i(d$.f[k].i, 'fa-fw fa-2x'), n.html.sr(d$.f[k].name),
+              n.html.i(d$.f[k].i, 'fa-fw fa-2x'), n.html.sr(d$.f[k].s),
               '</a></li>' // eslint-disable-line comma-dangle
             );
           }
@@ -1297,7 +1302,7 @@ const n$ = {
           '  <div class="nav-container">',
           '    <div class="navbar-header">',
           '      <a class="navbar-brand" href="', d$.meta.home.l, '">',
-          '        <img src="', n$.baseurl, 'img/logo.png" />',
+          '        <img src="', n$.baseurl, 'img/logo.png" alt="" />',
           '        <span class="hidden-sm">', n.html.frama('soft'), '</span>',
           '      </a>',
           '      <a href="#nav-end" id="nav-skip">', d$.t.skip, '</a>',
@@ -1394,7 +1399,7 @@ const n$ = {
       popover(title, description, placement) { // Popover
         const html = [];
         if (title !== undefined && description !== undefined) {
-          html.push('rel="popover" data-content="', description, '" title="', title, '"');
+          html.push('data-toggle="popover" data-content="', description, '" title="', title, '"');
         }
         if (placement !== undefined) {
           html.push(' data-placement="', placement, '"');
