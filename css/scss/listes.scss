@@ -25,6 +25,10 @@
     footer:not(#framafooter) {
         display: none;
     }
+    
+    #framafooter[style] {
+        position: relative;
+    }
 }
 
 
