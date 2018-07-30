@@ -1,0 +1,10 @@
+[data-url*="://framaforms.org"] {
+  .page-node-webform-results:not(.admin-menu) #block-system-main table th:nth-of-type(4),
+  .page-node-webform-results:not(.admin-menu) #block-system-main table td:nth-of-type(4) {
+    display:none;
+  }
+
+  #admin-menu {
+    z-index: 1003;
+  }
+}
