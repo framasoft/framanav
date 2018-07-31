@@ -1,0 +1,473 @@
+meta:
+  name: Framasoft
+  baseURL: https://framasoft.org
+  framaname: <b class="violet">Frama</b><b class="orange">soft</b>
+
+fnav:
+  soutenir:
+    icon: fa-heart
+    t1: Parce que libre ne signifie pas gratuit
+    d1: Framasoft ne serait rien sans sa communauté de bénévoles mais ne pourrait pas fonctionner non plus sans le service de l’association qui a des frais et emploie sept indispensables permanents. Notre financement dépend de vous, c’est-à-dire des dons individuels collectés sur Internet. Si vous pensez que nous le méritons…
+  myframa:
+    name: MyFrama
+    icon: fa-star
+    link: https://my.framasoft.org
+  benevalo:
+    icon: fa-paw
+
+  cat:
+    logiciel:
+      color: bleu
+      sites:
+        libre:
+          link: http://framalibre.org
+          name: <b class="violet">Frama</b><b class="bleu" lang="fr">libre</b>
+          icon: fa-linux
+          git: https://framagit.org/framasoft/framalibre
+
+        key:
+          link: https://framakey.org
+          name: <b class="violet">Frama</b><b class="bleu" lang="en">key</b>
+          icon: fa-usb
+
+        dvd:
+          link: http://framadvd.org
+          name: <b class="violet">Frama</b><b class="bleu"><abbr>dvd</abbr></b>
+          icon: fa-play-circle-o
+
+        pack:
+          link: http://framapack.org
+          name: <b class="violet">Frama</b><b class="bleu">pack</b>
+          icon: fa-download
+          git: https://framagit.org/framasoft/framapack
+
+        start:
+          link: https://framastart.org
+          name: <b class="violet">Frama</b><b class="bleu">start</b>
+          icon: fa-rocket
+          git: https://framagit.org/framasoft/framastart
+
+        evl:
+          link: https://enventelibre.org/40-framasoft
+          icon: fa-shopping-cart
+          name: <b class="violet">EnVente</b><b class="jaune">Libre</b>
+
+        vvl:
+          link: http://vvlibri.org/
+          icon: fa-legal
+          name: Veni Vidi Libri
+
+        clibre:
+          link: http://clibre.eu
+          name: CLibre.eu
+
+    culture:
+      color: rouge
+      sites:
+        blog:
+          link: https://framablog.org
+          name: <b class="violet">Frama</b><b class="rouge">blog</b>
+          icon: fa-pencil
+
+        book:
+          link: http://framabook.org
+          name: <b class="violet">Frama</b><b class="rouge" lang="en">book</b>
+          icon: fa-book
+
+        bookin:
+          link: http://framabookin.org
+          name: <b class="violet">Frama</b><b class="rouge" lang="en">bookin</b>
+          icon: fa-coffee
+          git: https://framagit.org/framasoft/framabookin
+          soft: BicBucStriim
+          src: https://github.com/rvolz/BicBucStriim
+
+        lang:
+          link: https://participer.framasoft.org/traduction-rejoignez-framalang/
+          name: <b class="violet">Frama</b><b class="rouge" lang="en">lang</b>
+          icon: fa-language
+
+        tube:
+          link: https://framatube.org
+          name: <b class="violet">Frama</b><b class="rouge">tube</b>
+          icon: fa-film
+          git: https://framagit.org/framasoft/framatube
+          soft: Peertube
+          src: https://github.com/Chocobozzz/PeerTube
+
+        zic:
+          link: http://framazic.org
+          name: <b class="violet">Frama</b><b class="rouge">zic</b>
+          icon: fa-music
+
+        evl:
+          link: '@:data.cat.logiciel.sites.evl.link'
+          icon: '@:data.cat.logiciel.sites.evl.icon'
+          name: '@:data.cat.logiciel.sites.evl.name'
+
+        ptilouk:
+          link: http://ptilouk.net
+          icon: fa-picture-o
+          name: Ptilouk
+
+        planet:
+          link: http://planet-libre.org
+          icon: fa-globe
+          name: Planet-libre,
+
+    cloud:
+      color: vert
+      sites:
+        dio:
+          git: https://framagit.org/framasoft/degooglisons
+
+        pad:
+          link: https://framapad.org
+          name: <b class="violet">Frama</b><b class="vert">pad</b>
+          icon: fa-align-left
+          git: https://framagit.org/framasoft/framapad
+          soft: Etherpad
+          src: https://github.com/ether/etherpad-lite
+
+        calc:
+          link: https://framacalc.org
+          name: <b class="violet">Frama</b><b class="vert">calc</b>
+          icon: fa-th
+          git: https://framagit.org/framasoft/framacalc
+          soft: Ethercalc
+          src: https://github.com/audreyt/ethercalc
+
+        forms:
+          link: https://framaforms.org
+          name: <b class="violet">Frama</b><b class="vert">forms</b>
+          icon: fa-list-ul
+          git: https://framagit.org/framasoft/framaforms
+          soft: Webform
+          src: https://www.drupal.org/project/webform
+
+        agenda:
+          link: https://framagenda.org
+          name: <b class="violet">Fram</b><b class="vert">agenda</b>
+          icon: fa-calendar
+          git: https://framagit.org/framasoft/framagenda
+          soft: Nextcloud
+          src: https://github.com/nextcloud/
+
+        date:
+          link: https://framadate.org
+          name: <b class="violet">Frama</b><b class="vert">date</b>
+          icon: fa-calendar-check-o
+          git: https://framagit.org/framasoft/framadate,
+
+        board:
+          link: https://framaboard.org
+          name: <b class="violet">Frama</b><b class="vert" lang="en">board</b>
+          icon: fa-dashboard
+          git: https://framagit.org/framasoft/framaboard
+          soft: Kanboard
+          src: https://github.com/fguillot/kanboard
+
+        mindmap:
+          link: https://framindmap.org
+          name: <b class="violet">Fra</b><b class="vert" lang="en">mindmap</b>
+          icon: fa-sitemap
+          git: https://framagit.org/framasoft/framindmap
+          soft: Wisemapping
+          src: https://bitbucket.org/wisemapping/wisemapping-open-source
+
+        vectoriel:
+          link: http://framavectoriel.org
+          name: <b class="violet">Frama</b><b class="vert" lang="fr">vectoriel</b>
+          icon: fa-paint-brush
+          git: https://framagit.org/framasoft/framavectoriel
+          soft: SVG-Edit
+          src: https://github.com/SVG-Edit/svgedit
+
+        slides:
+          link: https://framaslides.org
+          name: <b class="violet">Frama</b><b class="vert" lang="en">slides</b>
+          icon: fa-pie-chart
+          git: https://framagit.org/framasoft/framaslides
+          soft: Strut
+          src: https://github.com/tantaman/Strut
+        maestro:
+          link: https://framaestro.org
+          name: <b class="violet">Fra</b><b class="vert" lang="it">maestro</b>
+          icon: fa-magic
+          git: https://framagit.org/framasoft/framaestro,
+
+        bee:
+          link: https://framabee.org
+          name: <b class="violet">Frama</b><b class="vert" lang="en">bee</b>
+          icon: fa-search
+          soft: Searx
+          src: https://github.com/asciimoo/searx
+
+        sphere:
+          link: https://framasphere.org
+          name: <b class="violet">Frama</b><b class="vert" lang="fr">sphère</b>
+          icon: fa-diaspora
+          git: https://framagit.org/framasoft/framasphere
+          soft: Disapora*
+          src: https://github.com/diaspora
+
+        piaf:
+          link: https://framapiaf.org
+          name: <b class="violet">Frama</b><b class="vert">piaf</b>
+          icon: fa-mastodon
+          git: https://framagit.org/framasoft/framapiaf
+          soft: Mastodon
+          src: https://github.com/tootsuite/mastodon
+
+        team:
+          link: https://framateam.org
+          name: <b class="violet">Frama</b><b class="vert" lang="en">team</b>
+          icon: fa-comments-o
+          soft: Mattermost
+          src: https://github.com/mattermost
+
+        listes:
+          link: https://framalistes.org
+          name: <b class="violet">Frama</b><b class="vert" lang="fr">listes</b>
+          icon: fa-group
+          soft: Sympa
+          src: https://www.sympa.org/
+
+        talk:
+          link: https://framatalk.org
+          name: <b class="violet">Frama</b><b class="vert" lang="en">talk</b>
+          icon: fa-video-camera
+          git: https://framagit.org/framasoft/framatalk
+          soft: Jitsi Meet
+          src: https://github.com/jitsi/jitsi-meet/
+
+        vox:
+          link: https://framavox.org
+          name: <b class="violet">Frama</b><b class="vert">vox</b>
+          icon: fa-bullhorn
+          git: https://framagit.org/framasoft/framavox
+          soft: Loomio
+          src: https://github.com/loomio
+
+        petitions:
+          link: https://framapetitions.org
+          name: <b class="violet">Frama</b><b class="vert">petitions</b>
+          icon: fa-balance-scale
+          git: https://framagit.org/framasoft/framapetitions
+          soft: Webform
+          src: https://www.drupal.org/project/webform
+
+        memo:
+          link: https://framemo.org
+          name: <b class="violet">Fra</b><b class="vert" lang="fr">memo</b>
+          icon: fa-object-group
+          git: https://framagit.org/framasoft/framemo
+          soft: Scrumblr
+          src: https://github.com/aliasaria/scrumblr
+
+        notes:
+          link: https://framanotes.org
+          name: <b class="violet">Frama</b><b class="vert">notes</b>
+          icon: fa-sticky-note
+          git: https://framagit.org/framasoft/framanotes
+          soft: Turtl
+          src: https://github.com/turtl
+
+        story:
+          link: https://framastory.org
+          name: <b class="violet">Frama</b><b class="vert">story</b>
+          icon: fa-thumb-tack
+          git: https://framagit.org/framasoft/pickweaver
+          soft: PickWeaver
+          src: https://framagit.org/framasoft/pickweaver
+
+        bag:
+          link: https://framabag.org
+          name: <b class="violet">Frama</b><b class="vert">bag</b>
+          icon: fa-briefcase
+          git: https://framagit.org/framasoft/framabag
+          soft: Wallabag
+          src: https://github.com/wallabag
+
+        news:
+          link: https://framanews.org
+          name: <b class="violet">Frama</b><b class="vert" lang="en">news</b>
+          icon: fa-newspaper-o
+          git: https://framagit.org/framasoft/framanews
+          soft: TT-RSS
+          src: https://tt-rss.org/gitlab/fox/tt-rss/wikis/home
+
+        carte:
+          link: https://framacarte.org
+          name: <b class="violet">Frama</b><b class="vert">carte</b>
+          icon: fa-map
+          git: https://framagit.org/framasoft/framacarte
+          soft: uMap
+          src: https://github.com/umap-project
+
+        games:
+          link: http://framagames.org
+          name: <b class="violet">Frama</b><b class="vert" lang="en">games</b>
+          icon: fa-gamepad
+          git: https://framagit.org/framasoft/framagames
+
+        minetest:
+          link: https://framinetest.org
+          name: <b class="violet">Fra</b><b class="vert" lang="en">minetest</b>
+          icon: fa-cube
+          git: https://github.com/minetest
+          soft: Minetest
+          cloud: https://framacloud.org/fr/cultiver-son-jardin/minetest.html
+
+        drop:
+          link: https://framadrop.org
+          name: <b class="violet">Frama</b><b class="vert">drop</b>
+          icon: fa-send
+          git: https://framagit.org/framasoft/framadrop
+          soft: Lufi
+          src: https://framagit.org/luc/lufi
+
+        bin:
+          link: https://framabin.org
+          name: <b class="violet">Frama</b><b class="vert" lang="en">bin</b>
+          icon: fa-paste
+          git: https://framagit.org/framasoft/framabin
+          soft: Privatebin
+          src: https://github.com/PrivateBin/PrivateBin
+
+        pic:
+          link: https://framapic.org
+          name: <b class="violet">Frama</b><b class="vert">pic</b>
+          icon: fa-photo
+          git: https://framagit.org/framasoft/framapic
+          soft: Lutim
+          src: https://framagit.org/luc/lutim
+
+        link:
+          link: https://frama.link
+          name: <b class="violet">Frama</b><b class="vert" lang="en">link</b>
+          icon: fa-link
+          git: https://framagit.org/framasoft/framalink
+          soft: LSTU
+          src: https://framagit.org/luc/lstu
+
+        drive:
+          link: https://framadrive.org
+          name: <b class="violet">Frama</b><b class="vert" lang="en">drive</b>
+          icon: fa-cloud-upload
+          git: https://framagit.org/framasoft/framadrive
+          soft: Nextcloud
+          src: https://github.com/nextcloud
+
+        clic:
+          link: https://framaclic.org
+          name: <b class="violet">Frama</b><b class="vert">clic</b>
+          icon: a-hand-pointer-o
+          git: https://framagit.org/framasoft/framaclic
+          soft: Dolomon
+          src: https://framagit.org/luc/dolomon
+
+        my:
+          link: https://my.framasoft.org
+          name: <b class="violet" lang="en">My</b><b class="vert">Frama</b>
+          icon: fa-star
+          git: https://framagit.org/framasoft/myframa
+          soft: Shaarli
+          src: https://github.com/shaarli/Shaarli
+
+        git:
+          link: https://framagit.org
+          name: <b class="violet">Frama</b><b class="vert" lang="en">git</b>
+          icon: fa-git
+          soft: Gitlab
+          src: https://about.gitlab.com/contributing
+
+        site:
+          link: https://frama.site
+          name: <b class="violet">Frama</b><b class="vert">site</b>
+          icon: fa-globe
+          soft: Grav
+          src: https://getgrav.org/
+          doc: https://docs.framasoft.org/fr/grav/
+
+        wiki:
+          link: https://frama.wiki
+          name: <b class="violet">Frama</b><b class="vert">wiki</b>
+          icon: fa-puzzle-piece
+          soft: Dokuwiki
+          src: https://www.dokuwiki.org
+
+    follow:
+      color: violet
+      sites:
+        diaspora:
+          link: https://framasphere.org/u/framasoft
+          name: Diaspora*
+          icon: fa-diaspora
+        mastodon:
+          link: https://framapiaf.org/@Framasoft
+          name: Mastodon
+          icon: fa-mastodon
+        twitter:
+          link: https://twitter.com/framasoft
+          name: Twitter
+          icon: fa-twitter
+        facebook:
+          link: https://www.facebook.com/framasoft
+          name: Facebook
+          icon: fa-facebook
+        newsletter:
+          link: https://contact.framasoft.org/newsletter
+          name: <i lang="en">Newsletter</i>
+          icon: fa-envelope-o
+        rss:
+          link: https://rss.framasoft.org
+          name: <abbr>RSS</abbr>
+          icon: fa-rss
+        wikipedia:
+          icon: fa-wikipedia-w
+        colibri:
+          link: https://framacolibri.org
+          name: <b class="violet">Frama</b><b class="jaune" lang="fr">colibri</b>
+          icon: fa-comment
+        wiki:
+          link: https://wiki.framasoft.org
+          name: Framawiki
+          icon: fa-puzzle-piece
+
+    about:
+      color: orange
+      sites:
+        asso:
+          icon: fa-home
+        participer:
+          icon: fa-paw
+          git: https://framagit.org/framasoft/participer
+        charte:
+          icon: fa-heart
+        benevalo:
+          icon: fa-trophy
+        contact:
+          icon: fa-envelope
+        partenaires:
+          icon: fa-group
+        stats:
+          icon: fa-line-chart
+        status:
+          icon: fa-heartbeat
+        doc:
+          icon: fa-graduation-cap
+        faq:
+          icon: fa-question-circle,
+        aide:
+          icon: fa-life-ring
+        legals:
+          icon: fa-university
+        cgu:
+          icon: fa-legal
+        credits:
+          icon: fa-creative-commons
+        dio:
+          git: https://framagit.org/framasoft/degooglisons,
+        cuo:
+          git: https://framagit.org/framasoft/contributopia,
