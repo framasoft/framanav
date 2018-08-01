@@ -8,6 +8,27 @@ nav:
 
 home: Accueil
 
+txt:
+  newWindow: nouvelle fenêtre
+  close: Fermer
+  nevershow: Ne plus afficher
+  toggle: Afficher/masquer le menu
+  skip: Sauter le menu
+  pause: Pause
+  play: Lecture
+  slidePrev: Diapo précédente
+  slideNext: Diapo suivante
+  mobile: Activer le mode mobile
+  desktop: Désactiver le mode mobile
+  typeYourEmail: Saisissez votre courriel
+  yourEmail: Votre courriel
+  subscribe: S’abonner
+  toTheNewsletter:  à la lettre d’informations
+  source: Source
+  contactUs: Contactez-nous
+  anotherQuestion: Votre question n’est pas listée ?
+  campaign: Campagnes
+
 fnav:
   soutenir:
     name: Faire un don ?
@@ -41,27 +62,6 @@ fnav:
     e1: Les adresses emails ne correspondent pas.
     e2: L’adresse email %f$Email% n’est pas valide.
     s1: Votre adresse email <strong>%f$Email%</strong> a été ajoutée à notre liste. Vous devriez avoir reçu un email de confirmation.
-
-  txt:
-    newWindow: nouvelle fenêtre
-    close: Fermer
-    nevershow: Ne plus afficher
-    toggle: Afficher/masquer le menu
-    skip: Sauter le menu
-    pause: Pause
-    play: Lecture
-    slidePrev: Diapo précédente
-    slideNext: Diapo suivante
-    mobile: Activer le mode mobile
-    desktop: Désactiver le mode mobile
-    typeYourEmail: Saisissez votre courriel
-    yourEmail: Votre courriel
-    subscribe: S’abonner
-    toTheNewsletter:  à la lettre d’informations
-    source: Source
-    contactUs: Contactez-nous
-    anotherQuestion: Votre question n’est pas listée ?
-    campaign: Campagnes
 
   cat:
     logiciel:
@@ -127,9 +127,9 @@ fnav:
           t1: Quand la musique est libre
           d1: Une « musique libre » est une musique qui offre au mélomane les mêmes libertés qu’un logiciel libre. Un site dédié permettant de mieux la comprendre accompagné d’une petite sélection permettant de constater que la qualité est au rendez-vous.
         evl:
-          d0: '@:cat.logiciel.sites.evl.d0'
-          t1: '@:cat.logiciel.sites.evl.t1'
-          d1: '@:cat.logiciel.sites.evl.d1'
+          d0: '@:fnav.cat.logiciel.sites.evl.d0'
+          t1: '@:fnav.cat.logiciel.sites.evl.t1'
+          d1: '@:fnav.cat.logiciel.sites.evl.d1'
         ptilouk:
           t1: Ptilouk
           d1: Bandes dessinées libres
@@ -416,7 +416,7 @@ fnav:
           name: Mentions légales
           link: https://framasoft.org/nav/html/legals.html
         cgu:
-          name: <abbr>CGU</abbr>,
+          name: <abbr>CGU</abbr>
           link: https://framasoft.org/nav/html/cgu.html
         credits:
           name: Crédits

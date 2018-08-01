@@ -6,10 +6,7 @@ meta:
 fnav:
   soutenir:
     icon: fa-heart
-    t1: Parce que libre ne signifie pas gratuit
-    d1: Framasoft ne serait rien sans sa communauté de bénévoles mais ne pourrait pas fonctionner non plus sans le service de l’association qui a des frais et emploie sept indispensables permanents. Notre financement dépend de vous, c’est-à-dire des dons individuels collectés sur Internet. Si vous pensez que nous le méritons…
   myframa:
-    name: MyFrama
     icon: fa-star
     link: https://my.framasoft.org
   benevalo:
@@ -17,7 +14,6 @@ fnav:
 
   cat:
     logiciel:
-      color: bleu
       sites:
         libre:
           link: http://framalibre.org
@@ -59,10 +55,10 @@ fnav:
 
         clibre:
           link: http://clibre.eu
+          icon: fa-leaf
           name: CLibre.eu
 
     culture:
-      color: rouge
       sites:
         blog:
           link: https://framablog.org
@@ -101,9 +97,9 @@ fnav:
           icon: fa-music
 
         evl:
-          link: '@:data.cat.logiciel.sites.evl.link'
-          icon: '@:data.cat.logiciel.sites.evl.icon'
-          name: '@:data.cat.logiciel.sites.evl.name'
+          link: https://enventelibre.org/40-framasoft
+          icon: fa-shopping-cart
+          name: <b class="violet">EnVente</b><b class="jaune">Libre</b>
 
         ptilouk:
           link: http://ptilouk.net
@@ -113,10 +109,9 @@ fnav:
         planet:
           link: http://planet-libre.org
           icon: fa-globe
-          name: Planet-libre,
+          name: Planet-libre
 
-    cloud:
-      color: vert
+    services:
       sites:
         dio:
           git: https://framagit.org/framasoft/degooglisons
@@ -398,7 +393,6 @@ fnav:
           src: https://www.dokuwiki.org
 
     follow:
-      color: violet
       sites:
         diaspora:
           link: https://framasphere.org/u/framasoft
@@ -436,7 +430,6 @@ fnav:
           icon: fa-puzzle-piece
 
     about:
-      color: orange
       sites:
         asso:
           icon: fa-home
