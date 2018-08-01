@@ -49,7 +49,7 @@ fnav:
           name: <b class="violet">EnVente</b><b class="jaune">Libre</b>
 
         vvl:
-          link: http://vvlibri.org/
+          link: http://vvlibri.org
           icon: fa-legal
           name: Veni Vidi Libri
 
@@ -79,7 +79,7 @@ fnav:
           src: https://github.com/rvolz/BicBucStriim
 
         lang:
-          link: https://participer.framasoft.org/traduction-rejoignez-framalang/
+          link: https://participer.framasoft.org/traduction-rejoignez-framalang
           name: <b class="violet">Frama</b><b class="rouge" lang="en">lang</b>
           icon: fa-language
 
@@ -146,13 +146,13 @@ fnav:
           icon: fa-calendar
           git: https://framagit.org/framasoft/framagenda
           soft: Nextcloud
-          src: https://github.com/nextcloud/
+          src: https://github.com/nextcloud
 
         date:
           link: https://framadate.org
           name: <b class="violet">Frama</b><b class="vert">date</b>
           icon: fa-calendar-check-o
-          git: https://framagit.org/framasoft/framadate,
+          git: https://framagit.org/framasoft/framadate
 
         board:
           link: https://framaboard.org
@@ -189,7 +189,7 @@ fnav:
           link: https://framaestro.org
           name: <b class="violet">Fra</b><b class="vert" lang="it">maestro</b>
           icon: fa-magic
-          git: https://framagit.org/framasoft/framaestro,
+          git: https://framagit.org/framasoft/framaestro
 
         bee:
           link: https://framabee.org
@@ -226,7 +226,7 @@ fnav:
           name: <b class="violet">Frama</b><b class="vert" lang="fr">listes</b>
           icon: fa-group
           soft: Sympa
-          src: https://www.sympa.org/
+          src: https://www.sympa.org
 
         talk:
           link: https://framatalk.org
@@ -234,7 +234,7 @@ fnav:
           icon: fa-video-camera
           git: https://framagit.org/framasoft/framatalk
           soft: Jitsi Meet
-          src: https://github.com/jitsi/jitsi-meet/
+          src: https://github.com/jitsi/jitsi-meet
 
         vox:
           link: https://framavox.org
@@ -382,8 +382,8 @@ fnav:
           name: <b class="violet">Frama</b><b class="vert">site</b>
           icon: fa-globe
           soft: Grav
-          src: https://getgrav.org/
-          doc: https://docs.framasoft.org/fr/grav/
+          src: https://getgrav.org
+          doc: https://docs.framasoft.org/fr/grav
 
         wiki:
           link: https://frama.wiki
@@ -451,7 +451,7 @@ fnav:
         doc:
           icon: fa-graduation-cap
         faq:
-          icon: fa-question-circle,
+          icon: fa-question-circle
         aide:
           icon: fa-life-ring
         legals:
@@ -461,6 +461,6 @@ fnav:
         credits:
           icon: fa-creative-commons
         dio:
-          git: https://framagit.org/framasoft/degooglisons,
+          git: https://framagit.org/framasoft/degooglisons
         cuo:
-          git: https://framagit.org/framasoft/contributopia,
+          git: https://framagit.org/framasoft/contributopia

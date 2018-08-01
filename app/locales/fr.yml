@@ -44,11 +44,11 @@ fnav:
     t1: Le bénévolat valorisé, qu’est-ce que c’est ?
     d1: Amis bénévoles, vous avez contribué récemment à l’activité de Framasoft ? C’est le moment de remplir votre bénévolat valorisé. Le « bénévalo » permet de rendre compte de l’activité des bénévoles et de confirmer que Framasoft reste bien une association majoritairement non lucrative. C’est important pour nous.
   modaldon:
-    title: Soutenez Framasoft,
+    title: Soutenez Framasoft
     desc: '
-      <p>Vous êtes sur le point %c$.modal.don[1]% une ressource <b>libre</b> issue de la quarantaine de projets du réseau Framasoft.</p>,
-      <p>Cette ressource est <b>gratuite</b> (et le sera tant que nous existerons) parce que <b>Framasoft est une association d’intérêt général à but non lucratif</b> dont l’objectif est justement la diffusion du logiciel libre et sa culture au plus large public.,
-      <p>Mais tout ceci est rendu possible parce que Framasoft est <b>soutenue par les dons (défiscalisables) de ses utilisateurs</b>.</p>,
+      <p>Vous êtes sur le point %c$.modal.don[1]% une ressource <b>libre</b> issue de la quarantaine de projets du réseau Framasoft.</p>
+      <p>Cette ressource est <b>gratuite</b> (et le sera tant que nous existerons) parce que <b>Framasoft est une association d’intérêt général à but non lucratif</b> dont l’objectif est justement la diffusion du logiciel libre et sa culture au plus large public.
+      <p>Mais tout ceci est rendu possible parce que Framasoft est <b>soutenue par les dons (défiscalisables) de ses utilisateurs</b>.</p>
       <p>Merci de prendre quelques minutes en nous aidant à pérenniser et développer notre action.</p>
       '
     b1: Je veux faire un don<br /> à l’association Framasoft
@@ -56,7 +56,7 @@ fnav:
     b3: Non merci, je souhaite<br>seulement <b>%c$.modal.don[2]%</b>
     b4: Je soutiens déjà Framasoft
   optin:
-    t: J’accepte que Framasoft m’envoie à cette adresse des informations importantes,
+    t: J’accepte que Framasoft m’envoie à cette adresse des informations importantes
     d1: (Promis, nous ne revendons pas nos fichiers, même à la NSA !)
     d2: Pourquoi m’inscrire ?
     e1: Les adresses emails ne correspondent pas.
@@ -68,21 +68,21 @@ fnav:
       name: Logiciel libre
       sites:
         libre:
-          doc: https://docs.framasoft.org/fr/framalibre/
+          doc: https://docs.framasoft.org/fr/framalibre
           d0: Annuaire de logiciels libres
           t1: L’annuaire de logiciels libres
           d1: Plus de 1600 logiciels classés, testés et commentés dans le projet historique et fondateur de Framasoft. On y trouve également des tutoriels et des articles de fond.
         key:
-          doc: https://docs.framasoft.org/fr/framakey/
+          doc: https://docs.framasoft.org/fr/framakey
           d0: Clé usb
           t1: Le plein de liberté dans une simple clé
           d1: Dans une clé USB (ou tout autre support mobile) utiliser en mode nomade une centaine de logiciels libres portables pour Windows, tester voire installer une distribution GNU/Linux ou encore avoir accès hors ligne à toute la Wikipédia francophone.
         dvd:
-          d0: DVD,
+          d0: DVD
           t1: Le plein de liberté dans un DVD
           d1: Un DVD rempli non seulement des meilleurs logiciels libres pour Windows, Mac et GNU/Linux (avec une distribution dedans) mais aussi de la culture libre (textes, photos, audios et vidéos). Existe en une version spéciale école.
         pack:
-          doc: https://docs.framasoft.org/fr/framapack/
+          doc: https://docs.framasoft.org/fr/framapack
           d0: Installateur de logiciels
           t1: Distribution massive
           d1: Pratique, sur Framapack on fait son marché des meilleurs logiciels libres Windows dans leur dernière version. On les sélectionne et ils s’installent tous ensemble d’un simple clic !
@@ -147,34 +147,34 @@ fnav:
           d1: Liste de tous les services que nous proposons classés selon les usages, avec une barre de recherche pour mieux vous aider à trouver celui qui correspond à vos attentes.
         pad:
           cloud: https://framacloud.org/fr/cultiver-son-jardin/etherpad.html
-          doc: https://docs.framasoft.org/fr/etherpad/
-          d0: Traitement de texte,
-          t1: Éditer collaborativement,
-          d1: Écrivons tous ensemble sur le même document dans une interface de rédaction collective en ligne. Aucune inscription requise, on se donne un pseudo, une couleur et on se lance !,
+          doc: https://docs.framasoft.org/fr/etherpad
+          d0: Traitement de texte
+          t1: Éditer collaborativement
+          d1: Écrivons tous ensemble sur le même document dans une interface de rédaction collective en ligne. Aucune inscription requise, on se donne un pseudo, une couleur et on se lance !
         calc:
           d0: Tableur
           t1: Un tableur collaboratif
           d1: Framacalc est au tableur ce que Framapad est au traitement de texte, autrement dit la possibilité d’éditer simplement et collectivement en ligne sur un même document.
         forms:
-          doc: https://docs.framasoft.org/fr/framaforms/
+          doc: https://docs.framasoft.org/fr/framaforms
           d0: Questionnaires
           t1: Création de questionnaires
           d1: Framaforms vous permet de créer les questionaires dont vous avez besoin, que ce soit dans un cadre scolaire, familial ou associatif. Créez vos questions en fonction de vos besoins, des formulaires à choix multiples aux champs de texte libre.
         agenda:
           cloud: https://framacloud.org/fr/cultiver-son-jardin/nextcloud.html
-          doc: https://docs.framasoft.org/fr/nextcloud/
+          doc: https://docs.framasoft.org/fr/nextcloud
           d0: Agenda
           t1: Agenda partagé
           d1: Avec Framagenda vous pouvez créer des agendas personnels, professionnels, le planning d´une salle ou des activités de votre organisation, et les partager librement. Vous restez maîtres de vos données, et vous choisissez auprès de qui, où et quand elles s´affichent.
         date:
-          cloud: https://framacloud.org/fr/cultiver-son-jardin/framadate.html,
-          doc: https://docs.framasoft.org/fr/framadate/
+          cloud: https://framacloud.org/fr/cultiver-son-jardin/framadate.html
+          doc: https://docs.framasoft.org/fr/framadate
           d0: Alternative à Doodle
           t1: Organiser des rendez-vous et des sondages
           d1: Framadate c’est un peu comme Doodle mais en libre. Rien de plus simple de créer un rendez-vous ou un sondage sans inscription pour y inviter vos collaborateurs.
         board:
           cloud: https://framacloud.org/fr/cultiver-son-jardin/kanboard.html
-          doc: https://docs.framasoft.org/fr/kanboard/
+          doc: https://docs.framasoft.org/fr/kanboard
           d0: Alternative à Trello
           t1: Gérer des projets
           d1: Framaboard est un gestionnaire collaboratif de tâches et de projets, en suivant la méthode Kanban. Son système visuel permet de s’y retrouver au premier coup d’œil, quelle que soit votre habitude à utiliser ce genre d’outil.
@@ -184,18 +184,18 @@ fnav:
           t1: Créer des cartes mentales
           d1: Interface fluide et intuitive pour créer rapidement et simplement des cartes heuristiques à même votre navigateur. Pertinent en situation de brainstorming ou de prise de notes.
         vectoriel:
-          cloud: https://framacloud.org/fr/cultiver-son-jardin/svg-edit.html,
+          cloud: https://framacloud.org/fr/cultiver-son-jardin/svg-edit.html
           d0: Dessin,
           t1: Dessiner en vectoriel,
           d1: Pour créer et éditer simplement et rapidement de belles images en ligne au format ouvert SVG. Les enfants adorent !
         slides:
-          cloud: https://framacloud.org/fr/cultiver-son-jardin/framaslides.html,
-          doc: https://docs.framasoft.org/fr/strut/,
-          d0: Diaporamas,
+          cloud: https://framacloud.org/fr/cultiver-son-jardin/framaslides.html
+          doc: https://docs.framasoft.org/fr/strut
+          d0: Diaporamas
           t1: Créer et partager des diaporamas,
           d1: Framaslides vous permet de créer directement en ligne un diaporama ou une présentation, d’y accéder avec une simple connexion internet, et de la partager.
         maestro:
-          doc: https://docs.framasoft.org/fr/framaestro/
+          doc: https://docs.framasoft.org/fr/framaestro
           cloud: https://framacloud.org/fr/cultiver-son-jardin/framaestro.html
           d0: Tableau de bord
           t1: Orchestrez vos projets collaboratifs
@@ -207,12 +207,12 @@ fnav:
           d1: Framabee est un meta-moteur de recherche libre et anonyme. Vos recherches effectuées au travers de ce moteur sont envoyées à différents moteurs avant d’être affichées dans votre navigateur. L’intérêt ? Notre moteur est alors un intermédiaire entre vous et Google (et autres), ainsi vos données personnelles (adresse IP, historique de vos recherches, géolocalisation, profil) ne sont pas enregistrées chez eux.
         carte:
           cloud: https://framacloud.org/fr/cultiver-son-jardin/umap.html
-          doc: https://docs.framasoft.org/fr/umap/
+          doc: https://docs.framasoft.org/fr/umap
           d0: Cartes géographiques personnalisées
           t1: Cartographie personnalisée
           d1: Framacarte vous permet de dessiner, marquer, colorier, annoter… les fonds de carte d’OpenStreetMap pour les afficher ensuite dans votre site web ou les imprimer.
         sphere:
-          doc: https://docs.framasoft.org/fr/diaspora/
+          doc: https://docs.framasoft.org/fr/diaspora
           d0: Réseau social Diaspora*
           t1: Le réseau social libre
           d1: Framasphère est un réseau social libre, basé sur le logiciel décentralisé Diaspora*. Retrouvez vos amis sur Framasphère - ou d’autres pods Diaspora* - et échangez avec eux sans être pisté.
@@ -224,24 +224,24 @@ fnav:
           d1: Framapiaf est un service libre de microblogging, basé sur le logiciel décentralisé Mastodon. Retrouvez vos amis sur Framapiaf - ou d’autres instances Mastodon, GNU Social, Friendica - et échangez avec eux sans être pisté.
         team:
           cloud: https://framacloud.org/fr/cultiver-son-jardin/gitlab.html
-          doc: https://docs.framasoft.org/fr/mattermost/
+          doc: https://docs.framasoft.org/fr/mattermost
           d0: Communication collaborative
           t1: Communication collaborative
           d1: Framateam est un service de tchat libre qui permet de communiquer avec son équipe en notifiant ses collègues, de conserver ses conversations et d’y faire des recherches.
         listes:
-          doc: https://docs.framasoft.org/fr/sympa/
+          doc: https://docs.framasoft.org/fr/sympa
           d0: Liste de diffusion
           t1: Liste de diffusion
           d1: 'Framalistes vous permet de créer des liste de diffusion emails : toute personne s´abonnant à votre liste pourra recevoir les emails qui y sont envoyés, et y participer à son tour. À vous de choisir si cette liste est publique, semi-privée ou privée.'
         talk:
           cloud: https://framacloud.org/fr/cultiver-son-jardin/jitsi-meet.html
-          doc: https://docs.framasoft.org/fr/jitsimeet/
+          doc: https://docs.framasoft.org/fr/jitsimeet
           d0: Visioconférence
           t1: Visioconférence
           d1: Framatalk vous permet de discuter avec vos amis sans installation complexe de logiciel ni inscription. Tout se passe entre vous et vos amis, directement depuis votre navigateur web.
         vox:
           cloud: https://framacloud.org/fr/cultiver-son-jardin/loomio.html
-          doc: https://docs.framasoft.org/fr/loomio/
+          doc: https://docs.framasoft.org/fr/loomio
           d0: Prise de décision
           t1: Décider ensemble
           d1: Framavox vous aide à prendre des décisions communautaires. Discutez, échangez, mettez-vous d’accord et passez à l’action, le tout dans les délais que vous vous êtes fixés au départ.
@@ -255,7 +255,7 @@ fnav:
           t1: Mettez vos idées au clair
           d1: Framemo est un service minimaliste qui permet d’éditer et d’organiser collaborativement des idées sous forme de notes
         notes:
-          doc: https://docs.framasoft.org/fr/turtl/
+          doc: https://docs.framasoft.org/fr/turtl
           cloud: https://framacloud.org/fr/cultiver-son-jardin/turtl.html
           d0: Notes
           t1: Prise de notes
@@ -266,7 +266,7 @@ fnav:
           d1:
         bag:
           cloud: https://framacloud.org/fr/cultiver-son-jardin/wallabag.html
-          doc: https://docs.framasoft.org/fr/wallabag/
+          doc: https://docs.framasoft.org/fr/wallabag
           d0: Alternative à Pocket
           t1: Ne ratez plus aucun article !
           d1: Framabag vous permet de mettre de côté les articles que vous n’avez pas le temps de lire tout de suite.
@@ -285,13 +285,13 @@ fnav:
           d1: Framinetest Édu est un monde du jeu « bac à sable » Minetest (monde de blocs à modifier) dédié à l'éducation, aux activités pédagogiques et au <i lang='en'>serious gaming</i>.
         drive:
           cloud: https://framacloud.org/fr/cultiver-son-jardin/nextcloud.html
-          doc: https://docs.framasoft.org/fr/nextcloud/
+          doc: https://docs.framasoft.org/fr/nextcloud
           d0: Alternative à Dropbox
           t1: Héberger ses documents en ligne
           d1: Framadrive vous permet de stocker vos documents en ligne, de les synchroniser sur vos ordinateurs, mobiles, etc… et de les partager avec qui vous voulez.
         drop:
           cloud: https://framacloud.org/fr/cultiver-son-jardin/lufi.html
-          doc: https://docs.framasoft.org/fr/lufi/
+          doc: https://docs.framasoft.org/fr/lufi
           d0: Alternative à WeTransfer
           t1: Partager des fichiers de façon confidentielle
           d1: Avec Framadrop, fini les pièces jointes trop lourdes qui empêchent l’envoi d’un email. Ce service libre vous permet de partager facilement des fichiers de manière sécurisé.
@@ -303,7 +303,7 @@ fnav:
           d1: Avec Framabin, vous pouvez partager des informations que seuls vous et votre correspondant aurez le pouvoir de déchiffrer, et ceci de manière très simple.
         pic:
           cloud: https://framacloud.org/fr/cultiver-son-jardin/lutim.html
-          doc: https://docs.framasoft.org/fr/lutim/
+          doc: https://docs.framasoft.org/fr/lutim
           d0: Partage d’images
           t1: Partager des images de façon confidentielle
           d1: Framapic vous permet de partager facilement des images, par exemple pour les publier sur Twitter, Facebook, ou… Framasphère !
@@ -314,8 +314,8 @@ fnav:
           t1: Réduire des liens,
           d1: Avec Frama.link, il est possible de raccourcir des adresses web trop longues. Sur les réseaux sociaux et le microblogging, un lien raccourci permet d’économiser de l’espace et gagner en clarté.
         clic:
-          cloud: http://framacloud.org/cultiver-son-jardin/installation-de-dolomon/
-          doc: https://docs.framasoft.org/fr/dolomon/
+          cloud: http://framacloud.org/cultiver-son-jardin/installation-de-dolomon
+          doc: https://docs.framasoft.org/fr/dolomon
           d0:
           t1:
           d1:
@@ -328,14 +328,14 @@ fnav:
           t1: Hébergement de wikis
           d1: Framawiki vous permet de créer un wiki facilement et de l’héberger sur nos serveurs. Aucune publicité ni traquage ne portera atteinte aux données de vos visiteurs et visiteuses.
         git:
-          doc: https://docs.framasoft.org/fr/gitlab/
+          doc: https://docs.framasoft.org/fr/gitlab
           cloud: https://framacloud.org/fr/cultiver-son-jardin/gitlab.html
           d0: Alternative à Github
           t1: Héberger du code libre
           d1: Framagit est un outil qui s’adresse avant tout aux développeurs. Il permet d’héberger vos projets de logiciels libres et de travailler collaborativement dessus.
         my:
           cloud: https://framacloud.org/fr/cultiver-son-jardin/shaarli.html
-          doc: https://docs.framasoft.org/fr/shaarli/
+          doc: https://docs.framasoft.org/fr/shaarli
           d0: Marque-pages
           t1: Marquez et partagez vos liens
           d1: MyFrama est un petit fourre-tout numérique, qui vous permet de conserver et retrouver les liens que vous aimez à la manière de del.ico.us ! Avec un système d´étiquettes et de tri automatique, vous pouvez ranger aisément vos onglets et marque-pages, et utiliser le bouton MyFrama pour retrouver les services Framasoft que vous utilisez !
@@ -371,7 +371,7 @@ fnav:
           t1: Le forum du réseau Framasoft,
           d1: Vous avez une question ? Nous avons (peut-être) une réponse ! « Si tu ne sais pas, demande. Si tu sais, partage. » Framacolibri est notre convivial espace d’échange d’informations autour du Libre.
         wiki:
-          t1: Framawiki,
+          t1: Framawiki
           d1: Le wiki de Framasoft
 
     about:
@@ -382,7 +382,7 @@ fnav:
           link: https://soutenir.framasoft.org/association
         participer:
           name: Participer
-          link: https://participer.framasoft.org/fr/
+          link: https://participer.framasoft.org/fr
         charte:
           name: Notre charte
           link: https://framasoft.org/nav/html/charte.html
@@ -392,7 +392,7 @@ fnav:
         contact:
           name: Nous contacter
           link: https://contact.framasoft.org
-          t1: Contacter Framasoft,
+          t1: Contacter Framasoft
           d1: Vous souhaitez prendre contact avec nous ?
         partenaires:
           name: Partenaires
@@ -405,10 +405,10 @@ fnav:
           link: https://status.framasoft.org
         doc:
           name: Documentation
-          link: https://docs.framasoft.org/fr/
+          link: https://docs.framasoft.org/fr
         faq:
           name: <abbr>FAQ</abbr>
-          link: https://contact.framasoft.org/foire-aux-questions/
+          link: https://contact.framasoft.org/foire-aux-questions
         aide:
           name: Aide
           link: https://contact.framasoft.org/#aide
@@ -425,12 +425,12 @@ fnav:
           name: '<b>2014-2017</b> : Dégooglisons Internet'
           link: https://degooglisons-internet.org
           d0: Campagne de sensibilitation,
-          t1: '<b class='violet'>Dégooglisons</b> <b class='orange'>Internet</b> : une ambitieuse campagne.'
+          t1: '<b class="violet">Dégooglisons</b> <b class="orange">Internet</b> : une ambitieuse campagne.'
           d1: Les services en ligne de géants tentaculaires comme Google, Amazon, Facebook, Apple ou Microsoft (GAFAM) mettent en danger nos vies numériques. <b class='violet'>Frama</b><b class='orange'>soft</b> s’est lancé comme défi audacieux de vous proposer, avec votre aide, une alternative Libre, Éthique, Décentralisé et Solidaire pour chacun de ces services.
         cuo:
           name: '<b>2017-2020</b> : Contributopia'
           link: https://contributopia.org/fr/home
           d0: Campagne de sensiblisation,
-          t1: '<b class='violet'>Contrib</b><b class='orange'>utopia</b> : dégoogliser ne suffit pas'
-          d1: '<b class='violet'>Frama</b><b class='orange'>soft</b> vous invite à un voyage exaltant : explorons ensemble des mondes numériques. Des mondes où les outils informatiques se conçoivent en collaboration, où les pratiques respectueuses essaiment et pollinisent, où s’ouvrent les portes de la contribution.'
+          t1: '<b class="violet">Contrib</b><b class="orange">utopia</b> : dégoogliser ne suffit pas'
+          d1: '<b class="violet">Frama</b><b class="orange">soft</b> vous invite à un voyage exaltant : explorons ensemble des mondes numériques. Des mondes où les outils informatiques se conçoivent en collaboration, où les pratiques respectueuses essaiment et pollinisent, où s’ouvrent les portes de la contribution.'
 

@@ -9,21 +9,21 @@
       <template slot="collapse">
         <navbar-nav>
           <dropdown
-            ref="dropdown" tag="li"
-            :id="'fs_' + key"
-            v-for="(cat, key) in $t('fnav.cat')"
-            :key="key"
+            ref="dropdown" tag="li" :id="'fs_' + key"
+            v-for="(cat, key) in $t('fnav.cat')" :key="key"
           >
             <a class="dropdown-toggle" role="button">
               {{ cat.name }} <b class="caret"></b>
             </a>
             <template slot="dropdown">
-              <li :class="'fs_' + l"
-                v-for="(site, l) in cat.sites"
-                :key="l">
-                <a :href="site.link"
-                  v-popover.left.hover-focus="{ title: $t('fnav.cat.' + key + '.sites.' + l + '.t1'), content: $t('fnav.cat.' + key + '.sites.' + l + '.d1') }"
-                >
+              <popover tag="li" :class="'fs_' + l"
+                :enable="$i18n.messages[$t('lang')].fnav.cat[key].sites[l].t1 ? true : false"
+                :placement="((key === 'services' || key === 'about') && !(index % 2)) ? 'left' : 'right'"
+                :auto-placement="false" trigger="hover-focus" append-to="#framanav"
+                :title="text($t('fnav.cat.' + key + '.sites.' + l + '.t1'))"
+                v-for="(site, l, index) in cat.sites" :key="l"
+              >
+                <a :href="site.link">
                   <i :class="'fa fa-lg ' + data.fnav.cat[key].sites[l].icon" aria-hidden="true"></i>
                   {{
                     data.fnav.cat[key].sites[l].name
@@ -31,37 +31,50 @@
                     : text($t('fnav.cat.' + key + '.sites.' + l + '.name'))
                   }}
                 </a>
-              </li>
+                <template slot="popover">
+                  <div v-html="$t('fnav.cat.' + key + '.sites.' + l + '.d1')"></div>
+                </template>
+              </popover>
             </template>
           </dropdown>
-          <li id="btn-soutenir" v-show="!benevalo()">
-            <a :href="$t('fnav.soutenir.link') + '/?f=nav'"
-              class="btn-soutenir"
-              v-popover.bottom.hover-focus="{ title: $t('fnav.soutenir.t1'), content: $t('fnav.soutenir.d1') }"
-            >
+          <popover tag="li" id="btn-soutenir" v-show="!benevalo()"
+            placement="bottom" trigger="hover-focus" append-to="#framanav"
+            :title="text($t('fnav.soutenir.t1'))"
+          >
+            <a :href="$t('fnav.soutenir.link') + '/?f=nav'" class="btn-soutenir">
               <i :class="'fa fa-lg ' + data.fnav.soutenir.icon" aria-hidden="true"></i>
               {{ text($t('fnav.soutenir.name')) }}
             </a>
-          </li>
-          <li id="btn-benevalo" v-show="benevalo()">
-            <a :href="$t('fnav.benevalo.link')"
-              class="btn-info"
-              v-popover.bottom.hover-focus="{ title: $t('fnav.benevalo.t1'), content: $t('fnav.benevalo.d1') }"
-            >
+            <template slot="popover">
+              <div v-html="$t('fnav.soutenir.d1')"></div>
+            </template>
+          </popover>
+          <popover tag="li" id="btn-benevalo" v-show="benevalo()"
+            placement="bottom" trigger="hover-focus" append-to="#framanav"
+            :title="text($t('fnav.benevalo.t1'))"
+          >
+            <a :href="$t('fnav.benevalo.link')" class="btn-info">
               <i :class="'fa fa-lg ' + data.fnav.benevalo.icon" aria-hidden="true"></i>
               {{ text($t('fnav.benevalo.name')) }}
             </a>
-          </li>
-          <li id="btn-myframa">
-            <a :href="myframa"
-              class="btn-primary"
-              v-popover.bottom.hover-focus="{ title: $t('fnav.myframa.t1'), content: $t('fnav.myframa.d1') }"
+            <template slot="popover">
+              <div v-html="$t('fnav.benevalo.d1')"></div>
+            </template>
+          </popover>
+          <popover tag="li" id="btn-myframa"
+            placement="bottom" trigger="hover-focus" append-to="#framanav"
+            :title="text($t('fnav.myframa.t1'))"
+          >
+            <a :href="myframa" class="btn-primary"
               @click="window.open(myframa, 'myframa', 'menubar=no,height=500,width=600,toolbar=no,scrollbars=yes,status=no,dialog=1'); return false;"
             >
               <i :class="'fa fa-lg ' + data.fnav.myframa.icon" aria-hidden="true"></i>
               {{ text($t('data.fnav.cat.services.sites.my.name')) }}
             </a>
-          </li>
+            <template slot="popover">
+              <div v-html="$t('fnav.myframa.d1')"></div>
+            </template>
+          </popover>
         </navbar-nav>
       </template>
     </navbar>
@@ -77,11 +90,14 @@
 </template>
 
 <script>
-import { Btn, Dropdown, Navbar, NavbarNav, Popover } from 'uiv';
+import { Btn, Dropdown, Navbar, NavbarNav, Popover, Tooltip } from 'uiv';
 import { text } from '../../tools';
 export default {
   components: {
-    Btn, Dropdown, Navbar, NavbarNav, Popover,
+    Btn, Dropdown, Navbar, NavbarNav, Popover, Tooltip
+  },
+  directives: {
+    Popover, Tooltip
   },
   data() {
     return {
@@ -114,6 +130,12 @@ export default {
       return ((today - fullMoon) % moonRev < 129600
         || (today - fullMoon) % moonRev > moonRev - 129600);
     },
+    divider(key) {
+      return ([
+        'start', 'zic', ' evl', ' dio', 'maestro', ' carte', ' minetest',
+        ' news', 'git', 'wiki', ' petitions', ' wikipedia', ' status',
+        ' credits'].indexOf(key) > -1);
+    }
   }
 }
 </script>

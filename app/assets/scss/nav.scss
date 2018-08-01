@@ -164,10 +164,22 @@
   #fs_logiciel .dropdown-menu li.fs_clibre a:hover,
   #fs_logiciel .dropdown-menu li.fs_vvl a:hover,
   #fs_culture .dropdown-menu li.fs_ptilouk a:hover,
-  #fs_culture .dropdown-menu li.fs_planet-libre a:hover,
+  #fs_culture .dropdown-menu li.fs_evl a:hover,
+  #fs_culture .dropdown-menu li.fs_planet a:hover,
   #fs_follow .dropdown-menu li.fs_colibri a:hover,
   #fs_follow .dropdown-menu li.fs_wiki a:hover {
     background-color: $jaune;
+  }
+
+  .dropdown-menu {
+    .fs_start,  .fs_evl,
+    .fs_zic, .fs_evl,
+    .fs_dio, .fs_slides, .fs_maestro, .fs_bee, .fs_carte, .fs_talk, .fs_vox,
+    .fs_bag, .fs_news, .fs_games, .fs_minetest, .fs_site, .fs_wiki,
+    .fs_wikipedia,
+    .fs_stats, .fs_status, .fs_cgu, .fs_credits {
+      border-bottom: 1px solid #e5e5e5;
+    }
   }
 
   .popover {
@@ -246,6 +258,38 @@
     }
   }
 }
+
+@media (min-width: 992px) {
+  #fs_services ul,
+  #fs_about ul {
+    min-width:320px !important;
+  }
+
+  #fs_services ul { margin-left:-106px; }
+  #fs_about ul { margin-left:-124px; }
+
+  #fs_services li,
+  #fs_about li {
+    width:50% !important;
+    float:left;
+  }
+
+  #fs_services li.fs_dio,
+  #fs_services li.dropdown-header,
+  #fs_about li.fs_dio,
+  #fs_about li.fs_cuo,
+  #fs_about li.dropdown-header {
+    width:100% !important;
+    text-align: center;
+    padding: 0;
+  }
+}
+
+#framanav li.dropdown-header:not(.fs_dio) {
+  padding: 5px 0;
+}
+
+
 
 #framanav_donation {
   position: fixed;
@@ -638,35 +682,6 @@ body.apropos #piwik-iframe {
   max-width:640px;
   margin-left:auto;
   margin-right:auto;
-}
-
-@media (min-width: 992px) {
-  #fs_services ul,
-  #fs_about ul {
-    min-width:320px !important;
-  }
-
-  #fs_services ul { margin-left:-106px; }
-  #fs_about ul { margin-left:-124px; }
-
-  #fs_services li,
-  #fs_about li {
-    width:50% !important;
-    float:left;
-  }
-
-  #fs_services li.divider,
-  #fs_services li.dropdown-header,
-  #fs_about li.divider,
-  #fs_about li.dropdown-header {
-    width:100% !important;
-    text-align:center;
-    padding:0;
-  }
-}
-
-#framanav li.dropdown-header:not(.fs_dio) {
-  padding: 5px 0;
 }
 
  /* Hack pour n'afficher la nav que lorsque la feuille de style est prête */
