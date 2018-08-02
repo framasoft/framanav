@@ -14,12 +14,6 @@ txt:
   nevershow: Ne plus afficher
   toggle: Afficher/masquer le menu
   skip: Sauter le menu
-  pause: Pause
-  play: Lecture
-  slidePrev: Diapo précédente
-  slideNext: Diapo suivante
-  mobile: Activer le mode mobile
-  desktop: Désactiver le mode mobile
   typeYourEmail: Saisissez votre courriel
   yourEmail: Votre courriel
   subscribe: S’abonner
@@ -28,6 +22,8 @@ txt:
   contactUs: Contactez-nous
   anotherQuestion: Votre question n’est pas listée ?
   campaign: Campagnes
+  community: Communauté
+  site: Site
 
 fnav:
   soutenir:
@@ -139,7 +135,7 @@ fnav:
     services:
       name: Services libres
       sites:
-        dio:
+        diolist:
           name: Tous les services
           link: https://degooglisons-internet.org/fr/list
           d0: Liste des services
@@ -356,9 +352,11 @@ fnav:
           t1: Framasoft sur Facebook (on sait c’est très mal…)
           d1: Bien que Facebook ne soit pas libre, Framasoft y a un compte afin de sensibiliser le public qui ne connait pas le libre là où il se trouve.<br>Nous vous invitons évidemment à <b>nous suivre plutôt sur Diaspora*</b>, mais on ne vous en voudra pas si vous le faites sur Facebook 😉
         newsletter:
+          name: <i lang="en">Newsletter</i>
           t1: Lettre d’informations
           d1: Rejoignez <b>nos 100 000</b> abonnés à notre lettre d’informations.
         rss:
+          name: Flux <abbr>RSS</abbr>
           t1: Flux RSS
           d1: Flux RSS agrégé des différents sites.
         wikipedia:

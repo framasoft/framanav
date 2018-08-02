@@ -15,6 +15,10 @@
 #framanav_container {
   @import "bootstrap-nav";
   width: 100%;
+
+  #framafooter {
+    position: absolute;
+  }
 }
 
 #framanav.navbar {
@@ -174,13 +178,45 @@
   .dropdown-menu {
     .fs_start,  .fs_evl,
     .fs_zic, .fs_evl,
-    .fs_dio, .fs_slides, .fs_maestro, .fs_bee, .fs_carte, .fs_talk, .fs_vox,
+    .fs_diolist, .fs_slides, .fs_maestro, .fs_bee, .fs_carte, .fs_talk, .fs_vox,
     .fs_bag, .fs_news, .fs_games, .fs_minetest, .fs_site, .fs_wiki,
     .fs_wikipedia,
     .fs_stats, .fs_status, .fs_cgu, .fs_credits {
       border-bottom: 1px solid #e5e5e5;
     }
   }
+
+  @media (min-width: 992px) {
+    #fs_services .dropdown-menu,
+    #fs_about .dropdown-menu {
+      min-width: 320px;
+    }
+
+    #fs_services ul { margin-left: -106px; }
+    #fs_about ul { margin-left: -124px; }
+
+    #fs_services .dropdown-menu li,
+    #fs_about .dropdown-menu li {
+      width: 50%;
+      float: left;
+    }
+
+    #fs_services .dropdown-menu .fs_diolist,
+    #fs_services .dropdown-menu .dropdown-header,
+    #fs_about .dropdown-menu .fs_dio,
+    #fs_about .dropdown-menu .fs_cuo,
+    #fs_about .dropdown-menu .dropdown-header {
+      width: 100%;
+      text-align: center;
+      padding: 0;
+    }
+
+    #fs_about .dropdown-menu .dropdown-header {
+      border-bottom: 1px solid #e5e5e5;
+      padding: 5px 0;
+    }
+  }
+
 
   .popover {
     width : 300px;
@@ -206,6 +242,10 @@
     }
   }
 
+  .popover.top { /*  Framafooter */
+    margin-top:-30px;
+  }
+
   .popover-title { font-weight: bold; }
 
   #btn-soutenir .btn-soutenir,
@@ -217,8 +257,7 @@
     font-size: 12px;
     color: #fff;
     text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
-    padding-bottom: 0px;
-    padding-top: 0px;
+    padding: 0px;
     border: none ;
     text-align:center;
 
@@ -258,38 +297,6 @@
     }
   }
 }
-
-@media (min-width: 992px) {
-  #fs_services ul,
-  #fs_about ul {
-    min-width:320px !important;
-  }
-
-  #fs_services ul { margin-left:-106px; }
-  #fs_about ul { margin-left:-124px; }
-
-  #fs_services li,
-  #fs_about li {
-    width:50% !important;
-    float:left;
-  }
-
-  #fs_services li.fs_dio,
-  #fs_services li.dropdown-header,
-  #fs_about li.fs_dio,
-  #fs_about li.fs_cuo,
-  #fs_about li.dropdown-header {
-    width:100% !important;
-    text-align: center;
-    padding: 0;
-  }
-}
-
-#framanav li.dropdown-header:not(.fs_dio) {
-  padding: 5px 0;
-}
-
-
 
 #framanav_donation {
   position: fixed;
@@ -600,57 +607,52 @@
   border-top:1px solid #ccc;
   height:auto;
   text-align:left;
-}
 
-#framafooter .container {
-  background:#dfdfdf;
-  min-height:0px;
-  padding: 0;
-}
 
-#framafooter h1 {
-  font-size:14px;
-  font-weight:bold;
-  margin-top:0;
-}
+  .container {
+    background:#dfdfdf;
+    min-height:0px;
+    padding: 0;
+  }
 
-#framafooter h2 {
-  font-size:14px;
-  font-weight:bold;
-}
-#framafooter a {
-  color:#333;
-  text-decoration:none;
-  border-bottom:none;
-  font-size:14px;
-}
+  h1 {
+    font-size:14px;
+    font-weight:bold;
+    margin-top:0;
+  }
 
-#framafooter a:hover,
-#framafooter a:focus {
-  text-decoration:underline;
-}
+  h2 {
+    font-size:14px;
+    font-weight:bold;
+  }
+  a {
+    color:#333;
+    text-decoration:none;
+    border-bottom:none;
+    font-size:14px;
 
-#framafooter a .fa-fw {
-  padding:5px;
-  width:36px;
-  height:36px;
-  text-decoration:none;
-}
-#framafooter a:hover .fa,
-#framafooter a:focus .fa {
-  background:#6A5687;
-  color:#fff;
-  border-radius:5px;
-}
+    .fa-fw {
+      padding:5px;
+      width:36px;
+      height:36px;
+      text-decoration:none;
+    }
 
-#framafooter .btn {
-  margin-top:0;
-}
+    &:hover, &:focus {
+      text-decoration:underline;
 
-#framafooter .popover {
-  margin-top: -30px;
-}
+      .fa {
+        background:#6A5687;
+        color:#fff;
+        border-radius:5px;
+      }
+    }
+  }
 
+  .btn {
+    margin-top:0;
+  }
+}
 /* Modal header title */
 .modal-header h1,.modal-header h2,.modal-header h3,
 .modal-header h4,.modal-header h5,.modal-header h6, .modal-header p {

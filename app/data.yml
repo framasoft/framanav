@@ -113,7 +113,7 @@ fnav:
 
     services:
       sites:
-        dio:
+        diolist:
           git: https://framagit.org/framasoft/degooglisons
 
         pad:
@@ -412,11 +412,9 @@ fnav:
           icon: fa-facebook
         newsletter:
           link: https://contact.framasoft.org/newsletter
-          name: <i lang="en">Newsletter</i>
           icon: fa-envelope-o
         rss:
           link: https://rss.framasoft.org
-          name: <abbr>RSS</abbr>
           icon: fa-rss
         wikipedia:
           icon: fa-wikipedia-w
@@ -464,3 +462,9 @@ fnav:
           git: https://framagit.org/framasoft/degooglisons
         cuo:
           git: https://framagit.org/framasoft/contributopia
+
+  footer:
+    frama: ['asso', 'charte', 'contact', 'stats', 'status']
+    community: ['participer', 'benevalo', 'partenaires']
+    site: ['aide', 'faq', 'legals', 'cgu', 'credits']
+    follow: ['diaspora', 'mastodon', 'twitter', 'facebook', 'rss']
