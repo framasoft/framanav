@@ -173,6 +173,10 @@
     #framanav .navbar-collapse {
         padding: 0 !important;
     }
+
+    #framanav .navbar-toggle {
+      display: none;
+    }
 }
 @media (max-width: 768px) { /* la nav pour tablette/mobile n'a pas ce problème */
     #framanav .nav-container {
