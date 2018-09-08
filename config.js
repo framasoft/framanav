@@ -139,7 +139,7 @@ switch (n$.site) {
 
   case 'bin':
     l$ = {
-      js: { video: true, ext: true },
+      js: { ext: true },
       modal: {
         don: ['onstart', 'd’utiliser', ['utiliser ', n$.name].join('')],
       },
@@ -148,7 +148,7 @@ switch (n$.site) {
 
   case 'blog':
     l$ = {
-      js: { audio: true, video: true },
+      js: { j$: 'noConflict', b$: 'bootstrap', audio: true, video: true },
       optin: ['#commentform #email'],
     };
     break;
@@ -238,7 +238,7 @@ switch (n$.site) {
 
   case 'contact':
     l$ = {
-      js: { ext: true },
+      js: { j$: 'noConflict', b$: 'bootstrap', ext: true },
       optin: ['#wpcf7-f24-p5-o1 .wpcf7-email'],
     };
     break;
@@ -280,6 +280,7 @@ switch (n$.site) {
     break;
 
   case 'key':
+    l$.js = { j$: 'noConflict', b$: 'bootstrap' };
     l$.modal = { don: ['a[href*="framaclic.org"]'] };
     break;
 
@@ -616,6 +617,8 @@ switch (n$.site) {
   case 'zic':
     l$ = {
       js: {
+        j$: 'noConflict', 
+        b$: 'bootstrap',
         video: true,
         ext() {
           jQuery('button[name^="sp_"]').each(function clickableMoreBtn() {
