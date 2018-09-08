@@ -148,7 +148,12 @@ switch (n$.site) {
 
   case 'blog':
     l$ = {
-      js: { j$: 'noConflict', b$: 'bootstrap', audio: true, video: true },
+      js: {
+        j$: 'noConflict', 
+        b$: 'bootstrap', 
+        audio: true, 
+        video: true,
+      },
       optin: ['#commentform #email'],
     };
     break;
@@ -617,7 +622,7 @@ switch (n$.site) {
   case 'zic':
     l$ = {
       js: {
-        j$: 'noConflict', 
+        j$: 'noConflict',
         b$: 'bootstrap',
         video: true,
         ext() {
