@@ -149,9 +149,9 @@ switch (n$.site) {
   case 'blog':
     l$ = {
       js: {
-        j$: 'noConflict', 
-        b$: 'bootstrap', 
-        audio: true, 
+        j$: 'noConflict',
+        b$: 'bootstrap',
+        audio: true,
         video: true,
       },
       optin: ['#commentform #email'],
