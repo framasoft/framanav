@@ -301,24 +301,11 @@ const n$ = {
             n.macaron();
 
             // Liens À propos
-            f$('#framafooter a[href*="/nav/html/"], #fs_about a').attr('href', function addHash() {
+            f$('#framafooter a, #fs_about a').attr('href', function addHash() {
               return f$(this).attr('href')
-                .replace('credits.html', `credits.html#${c$.credits}`)
-                .replace('legals.html', `legals.html#${c$.host}`);
+                .replace('credits', `credits#${c$.credits}`)
+                .replace('legals', `legals#${c$.host}`);
             });
-
-            // Crédits
-            if (n.is.url('/html/credits.html') && window.location.hash) {
-              f$('#site-credits').load(n.l(window.location.hash.replace('#', 'html/credits/').replace(/$/, '.html'), 'n'));
-            }
-
-            // Hébergeur et Iframe Piwik sur Mentions légales
-            if (n.is.url('/html/legals.html')) {
-              if (window.location.hash) {
-                f$('#modal-legals-host').load(n.l(window.location.hash.replace('#', 'html/host/').replace(/$/, '.html'), 'n'));
-              }
-              f$('#piwik-iframe').html(`<iframe style="border: 0; height: 200px; width: 600px;" src="${c$.piwik.url}index.php?module=CoreAdminHome&action=optOut&language=fr"></iframe>`);
-            }
 
             // Ext.js
             if (typeof c$.js.ext === 'function') {

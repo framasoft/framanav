@@ -981,7 +981,7 @@
       "s": "L’association",
       "c": "o",
       "i": "fa-home",
-      "l": "https://soutenir.framasoft.org/association"
+      "l": "https://framasoft.org/fr/association"
     },
     "participer": {
       "s": "Participer",
@@ -994,7 +994,7 @@
       "s": "Notre charte",
       "c": "o",
       "i": "fa-heart",
-      "l": "https://framasoft.org/nav/html/charte.html"
+      "l": "https://framasoft.org/fr/charte"
     },
     "benevalo": {
       "s": "Bénévolat valorisé",
@@ -1052,20 +1052,20 @@
       "s": "Mentions légales",
       "c": "o",
       "i": "fa-university",
-      "l": "https://framasoft.org/nav/html/legals.html"
+      "l": "https://framasoft.org/fr/legals"
     },
     "cgu": {
       "s": "CGU",
       "a": "abbr",
       "c": "o",
       "i": "fa-legal",
-      "l": "https://framasoft.org/nav/html/cgu.html"
+      "l": "https://framasoft.org/fr/cgu"
     },
     "credits": {
       "s": "Crédits",
       "c": "o",
       "i": "fa-creative-commons",
-      "l": "https://framasoft.org/nav/html/credits.html"
+      "l": "https://framasoft.org/fr/credits"
     },
     "dio2": {
       "p": "<b>2014-2017</b> : Dégooglisons ",
@@ -1084,7 +1084,7 @@
       "s": "utopia",
       "c": "o",
       "i": "",
-      "l": "https://contributopia.org/fr/home",
+      "l": "https://contributopia.org/fr/",
       "git": "https://framagit.org/framasoft/contributopia",
 
       "d0": "Campagne de sensiblisation",

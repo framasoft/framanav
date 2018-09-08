@@ -303,7 +303,8 @@
       "d1": "Framasoft Wiki"
     },
     "asso": {
-      "s": "Our association"
+      "s": "Our association",
+      "l": "https://framasoft.org/en/association"
     },
     "participer": {
       "s": "Participate",
@@ -311,7 +312,7 @@
     },
     "charte": {
       "s": "Our chart",
-      "l": "https://framasoft.org/nav/html/charte.en.html"
+      "l": "https://framasoft.org/en/charte"
     },
     "benevalo": {
       "s": "Volunteering"
@@ -337,23 +338,26 @@
       "s": "Help"
     },
     "legals": {
-      "s": "Legals"
+      "s": "Legals",
+      "l": "https://framasoft.org/en/legals"
     },
     "cgu": {
-      "s": "Terms of Use"
+      "s": "Terms of Use",
+      "l": "https://framasoft.org/en/cgu"
     },
     "credits": {
-      "s": "Credits"
+      "s": "Credits",
+      "l": "https://framasoft.org/en/credits"
     },
     "dio2": {
       "p": "<b>2014-2017</b> : De-googl-ify ",
       "s": "Internet",
-      "l": "https://degooglisons-internet.org/?l=en",
+      "l": "https://degooglisons-internet.org/en/",
       "t1": "<b class='violet'>De-googl-ize</b> <b class='orange'>Internet</b> : an ambitions campaign.",
       "d1": "Online services as provided by hegemonic giants such as Google, Amazon, Facebook, Apple or Microsoft (GAFAM) are putting our digital life and privacy at risk. <b class='violet'>Frama</b><b class='orange'>soft</b> was indulging in a big challenge : offer, with your help, a Libre, Ethic, Decentralized and Solidary alternative for every popular service."
     },
     "cuo": {
-      "l": "https://contributopia.org/en/home",
+      "l": "https://contributopia.org/en/",
       "t1": "<b class='violet'>Contrib</b><b class='orange'>utopia</b> : de-googl-ify is not enough",
       "d1": "<b class='violet'>Frama</b><b class='orange'>soft</b> invites you on an exciting journey: let's explore digital worlds together. worlds where computer tools are conceived in collaboration, where respectful practices swarm and pollinate, where the doors of contribution open."
     }
