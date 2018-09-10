@@ -243,7 +243,7 @@ switch (n$.site) {
 
   case 'contact':
     l$ = {
-      js: { j$: 'noConflict', b$: 'bootstrap', ext: true },
+      js: { ext: true },
       optin: ['#wpcf7-f24-p5-o1 .wpcf7-email'],
     };
     break;
