@@ -85,5 +85,11 @@
     }
 }
 
-
+/* Pas de nav du tout (mais scripts actifs) */
+/* ------------------------------------------------------------------ */
+[data-url*="://framindmap.org/c/maps"][data-url*="/edit"] {
+    #framanav_container {
+        display: none;
+    }
+} 
 
