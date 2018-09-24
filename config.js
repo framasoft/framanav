@@ -276,7 +276,7 @@ switch (n$.site) {
       video: true,
     };
     break;
-    
+
   case 'dvd':
     l$ = {
       js: { video: true },
