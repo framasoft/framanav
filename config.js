@@ -258,13 +258,6 @@ switch (n$.site) {
     }
     break;
 
-  case 'dvd':
-    l$ = {
-      js: { video: true },
-      modal: { don: ['a[href*="iso.framadvd.org"]'] },
-    };
-    break;
-
   case 'drive':
     l$.js = { video: true };
     break;
@@ -275,8 +268,19 @@ switch (n$.site) {
         if (!n$.is.url('https://framadrop.org/', 'u')) {
           $('main .row:last,main hr:last').hide();
         }
+        $('#delete-day option[value="60"]').append(' (max 2Mo)');
+        $('#delete-day option[value="30"]').append(' (max 50Mo)');
+        $('#delete-day option[value="7"]').append(' (max 200Mo)');
+        $('#delete-day option[value="1"]').append(' (max 500Mo)');
       },
       video: true,
+    };
+    break;
+    
+  case 'dvd':
+    l$ = {
+      js: { video: true },
+      modal: { don: ['a[href*="iso.framadvd.org"]'] },
     };
     break;
 
