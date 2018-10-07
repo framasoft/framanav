@@ -720,7 +720,7 @@ const n$ = {
           d$.meta.modaldon.d.join('').replace('%c$.modal.don[1]%', c$.modal.don[1]),
           [ // footer
             '<div class="clearfix"><p class="col-md-12 text-center">',
-            '  <a target="_blank" id="modal-don" href="', d$.meta.soutenir.l, '/?f=modal&s=', n$.site, '" class="btn btn-soutenir btn-block">',
+            '  <a target="_blank" id="modal-don" href="', d$.meta.soutenir.l, '?f=modal&s=', n$.site, '" class="btn btn-soutenir btn-block">',
             n.html.i(d$.meta.soutenir.i), ' ', d$.meta.modaldon.b1, n.html.newWindow(),
             '  </a></p>',
             '<p class="col-md-6 text-center">',
@@ -1307,7 +1307,7 @@ const n$ = {
           }
         });
         html.push(
-          '<li><a href="', d$.meta.soutenir.l, '/?f=nav" class="btn-soutenir" ', n.html.popover(d$.meta.soutenir.t1, d$.meta.soutenir.d1, 'bottom'), '>',
+          '<li><a href="', d$.meta.soutenir.l, '?f=nav" class="btn-soutenir" ', n.html.popover(d$.meta.soutenir.t1, d$.meta.soutenir.d1, 'bottom'), '>',
           n.html.i(d$.meta.soutenir.i), '&nbsp;', d$.meta.soutenir.s,
           '</a></li>',
           '<li id="btn-benevalo"><a href="', d$.meta.benevalo.l, '" class="btn-info" ', n.html.popover(d$.meta.benevalo.t1, d$.meta.benevalo.d1, 'bottom'), '>',
@@ -1321,7 +1321,7 @@ const n$ = {
           '  </div>',
           '  <a id="nav-end" class="sr-only"></a>',
           '</nav>',
-          '<a href="', d$.meta.soutenir.l, '/?f=macaron" id="framanav_donation" rel="donBadge" style="display:none" class="hidden-xs">', n.html.sr(d$.meta.soutenir.s), '</a>' // eslint-disable-line comma-dangle
+          '<a href="', d$.meta.soutenir.l, '?f=macaron" id="framanav_donation" rel="donBadge" style="display:none" class="hidden-xs">', n.html.sr(d$.meta.soutenir.s), '</a>' // eslint-disable-line comma-dangle
         );
         return html.join('');
       },
