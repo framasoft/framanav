@@ -149,7 +149,7 @@ switch (n$.site) {
   case 'blog':
     l$ = {
       js: {
-        j$: 'noConflict',
+        j$: 'HTML',
         b$: 'bootstrap',
         audio: true,
         video: true,
