@@ -473,7 +473,7 @@ switch (n$.site) {
     l$ = {
       js: { video: true },
       modal: { don: ['onstart', 'd’utiliser', ['utiliser ', n$.name].join('')] },
-      host: 'soyoustart'
+      host: 'soyoustart',
     };
     break;
 
