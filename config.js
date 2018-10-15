@@ -219,7 +219,6 @@ switch (n$.site) {
         },
         css: { b$: !n$.inframe },
         mobile: false,
-        host: 'ovh',
       };
     }
     break;
@@ -474,6 +473,7 @@ switch (n$.site) {
     l$ = {
       js: { video: true },
       modal: { don: ['onstart', 'd’utiliser', ['utiliser ', n$.name].join('')] },
+      host: 'soyoustart'
     };
     break;
 
