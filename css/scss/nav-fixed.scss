@@ -23,7 +23,11 @@
         z-index: 1000;
     }
 
-    #nav-alert.alert {
-        margin-bottom: 42px;
-    }
+    /**
+     * Deactivated on 22/10/2018
+     * There was an extra margin on these websites
+     */
+    // #nav-alert.alert {
+    //     margin-bottom: 42px;
+    // }
 }
