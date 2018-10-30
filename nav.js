@@ -1094,6 +1094,8 @@ const n$ = {
             && document.getElementById('userSettingsBtn')
             && document.getElementById('userSettingsBtn').innerHTML === 'Compte') {
             lang = 'fr';
+          } else if (html[0].getAttribute('xml:lang')) {
+            lang = html[0].getAttribute('xml:lang');
           } else if (html[0].getAttribute('lang')) {
             lang = html[0].getAttribute('lang');
           } else if (html[0].getAttribute('locale')) {
