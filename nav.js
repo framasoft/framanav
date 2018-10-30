@@ -1503,7 +1503,7 @@ const n$ = {
 
   // Bandeau campagne de dons 2018
   if (n.is.before('2018/11/04')) {
-    if (n.is.lang('fr')) {
+    if (n.is.lang('fr', 'b')) {
       c$.alert[0] = 'info';
       c$.alert[1] = `
       Vous êtes sur un service de l’association <b class="violet">Frama</b><b class="orange">soft</b>, qui ne vit que de <b>vos dons</b>.<br>
