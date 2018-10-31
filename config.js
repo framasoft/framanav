@@ -454,6 +454,12 @@ switch (n$.site) {
         },
       },
     };
+    /**
+     * Deactivate the alerts elsewhere than homepage, main view and public profile and tags view
+     */
+    if (!(n$.is.url(/framapiaf.org\/web/, 'u') || n$.is.url(/framapiaf.org\/about/, 'u') || n$.is.url(/framapiaf.org\/@/, 'u') || n$.is.url(/framapiaf.org\/tags/, 'u'))) {
+      l$.alert = ['', ''];
+    }
     break;
 
   case 'pic':
