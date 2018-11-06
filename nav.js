@@ -1502,17 +1502,17 @@ const n$ = {
   }
 
   // Bandeau campagne de dons 2018
-  if (n.is.before('2018/11/04')) {
+  if (n.is.before('2018/11/14')) {
     if (n.is.lang('fr', 'b')) {
       c$.alert[0] = 'info';
       c$.alert[1] = `
-      Vous êtes sur un service de l’association <b class="violet">Frama</b><b class="orange">soft</b>, qui ne vit que de <b>vos dons</b>.<br>
-      C’est le moment de <a href="https://soutenir.framasoft.org/fr"><b>nous soutenir</b></a> ❤&nbsp;!`;
+      Ce sont les dons qui permettent à <b class="violet">Frama</b><b class="orange">soft</b> de proposer ces services.<br>
+      Vous aussi pouvez <a href="https://soutenir.framasoft.org/fr"><b>contribuer financièrement</b></a> ❤&nbsp;!`;
     } else {
       c$.alert[0] = 'info';
       c$.alert[1] = `
-      You are using a service of the <b class="violet">Frama</b><b class="orange">soft</b> non-profit association, which lives only on <b>your donations</b>.<br>
-      It’s time to <a href="https://soutenir.framasoft.org/en"><b>support us</b></a> ❤!`;
+      It's the donations that allows <b class="violet">Frama</b><b class="orange">soft</b> to offer these services.<br>
+      You too can <a href="https://soutenir.framasoft.org/en"><b>contribute financially</b></a> ❤!`;
     }
   }
 }());
