@@ -46,7 +46,6 @@ if (n$.is.lang('en') || !n$.is.lang('fr', 'b')) {
       limit: '<b class="violet">Frama</b><b class="vert">team</b> has some limitations:',
       limituser: 'Maximum number of users per team: 175',
       limitchans: 'Maximum number of channels per team: 2000',
-      limitnotif: 'Maximum number of notifications per channel: 1000',
       h2_3: 'Cultivate your garden',
       contrib_upstream: 'To participate into the development of the software, suggest improvements or just download it, go to <a href="https://github.com/mattermost/platform">project website</a>.',
       home_install: 'If you wish to install your own instance of the software and increase your autonomy, we help you at:',
@@ -96,7 +95,6 @@ if (n$.is.lang('en') || !n$.is.lang('fr', 'b')) {
       limit: '<b class="violet">Frama</b><b class="vert">team</b> comporte un certain nombre de limitations&nbsp;:',
       limituser: 'Nombre maximum d\'utilisateurs par équipe&nbsp;: 175',
       limitchans: 'Nombre maximum de canaux par équipe&nbsp;: 2000',
-      limitnotif: 'Nombre maximum de notifications par canal&nbsp;: 1000',
       h2_3: 'Cultivez votre jardin',
       contrib_upstream: 'Pour participer au développement du logiciel, proposer des améliorations ou simplement le télécharger, rendez-vous sur <a href="https://github.com/mattermost/platform">le site de développement</a>..',
       home_install: 'Si vous souhaitez installer ce logiciel pour votre propre usage et ainsi gagner en autonomie, nous vous aidons sur :',
@@ -195,7 +193,6 @@ const f$3Cols = `
         <ol>
           <li>${i18n.presentation.limituser}</li>
           <li>${i18n.presentation.limitchans}</li>
-          <li>${i18n.presentation.limitnotif}</li>
         </ol>
       </div>
       <div class="col-md-4" id="jardin">
