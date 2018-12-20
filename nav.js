@@ -1492,7 +1492,7 @@ const n$ = {
   const f$MM = f$Today.getMonth() + 1;
   const f$YYYY = f$Today.getFullYear();
 
-  if (f$MM === 12 && (31 - f$MM) < 16 && n$.site !== 'soutenir' && n.is.lang('fr')) {
+  if (f$MM === 12 && (31 - f$DD) < 16 && n$.site !== 'soutenir' && n.is.lang('fr')) {
     const f$Rebours = ((31 - f$DD) === 0) ? '24 heures' : [(31 - f$DD), ' jours'].join('');
     c$.alert[0] = 'info';
     c$.alert[1] = [
