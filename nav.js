@@ -1496,7 +1496,7 @@ const n$ = {
     const f$Rebours = ((31 - f$DD) === 0) ? '24 heures' : [(31 - f$DD), ' jours'].join('');
     c$.alert[0] = 'info';
     c$.alert[1] = [
-      'Rappel&nbsp;: il vous reste <b>', f$Rebours, '</b> pour faire un <b>don défiscalisé en ', f$YYYY, '</b> à Framasoft.',
+      'Rappel&nbsp;: il vous reste <b>', f$Rebours, '</b> pour faire un <a href="https://framablog.org/2018/11/22/impots-et-dons-a-framasoft-le-prelevement-a-la-source-en-2019/"><b>don défiscalisé en ', f$YYYY, '</b></a> à Framasoft.',
       '<br/>Merci pour votre soutien <a href="https://soutenir.framasoft.org" class="btn btn-xs btn-soutenir">', n.html.i('fa-heart', ''), n.html.sr('Faire un don ?'), '</a>',
     ].join('');
   }
