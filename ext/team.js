@@ -152,8 +152,8 @@ f$screen += `
       <a class="right carousel-control" href="#carousel-team" role="button" data-slide="next" title="${i18n.diapos.next}">
         <i class="glyphicon glyphicon-chevron-right" aria-hidden="true"></i>
         <span class="sr-only">${i18n.diapos.next}</span>
-      </a>,
-    </div>,
+      </a>
+    </div>
   </div>`;
 
 const f$3Cols = `
