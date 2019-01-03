@@ -128,7 +128,7 @@ if (document.getElementById('fnav') === null) {
   fnav.id = 'fnav';
   document.getElementsByTagName('body')[0].insertBefore(fnav, document.getElementsByTagName('body')[0].children[0]);
 }
-if (document.getElementById('ffooter') === null) {
+if (!window.vuefsPrerender) {
   const ffooter = document.createElement('div');
   ffooter.id = 'ffooter';
   document.getElementsByTagName('body')[0].appendChild(ffooter);
