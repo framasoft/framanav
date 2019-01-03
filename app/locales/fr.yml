@@ -6,8 +6,6 @@ nav:
   langChange: Changer la langue
   lang: Langue
 
-home: Accueil
-
 txt:
   newWindow: nouvelle fenêtre
   close: Fermer
@@ -104,7 +102,6 @@ fnav:
     clibre:
       t1: CLibre.eu
       d1: Un annuaire des principaux logiciels et alternatives libres
-
     blog:
       d0: Blog
       t1: L’actualité du « Libre »
@@ -129,10 +126,6 @@ fnav:
       d0: Musique
       t1: Quand la musique est libre
       d1: Une « musique libre » est une musique qui offre au mélomane les mêmes libertés qu’un logiciel libre. Un site dédié permettant de mieux la comprendre accompagné d’une petite sélection permettant de constater que la qualité est au rendez-vous.
-    evl:
-      d0: '@:fnav.cat.logiciel.sites.evl.d0'
-      t1: '@:fnav.cat.logiciel.sites.evl.t1'
-      d1: '@:fnav.cat.logiciel.sites.evl.d1'
     ptilouk:
       t1: Ptilouk
       d1: Bandes dessinées libres
@@ -185,14 +178,14 @@ fnav:
       d1: Interface fluide et intuitive pour créer rapidement et simplement des cartes heuristiques à même votre navigateur. Pertinent en situation de brainstorming ou de prise de notes.
     vectoriel:
       cloud: https://framacloud.org/fr/cultiver-son-jardin/svg-edit.html
-      d0: Dessin,
-      t1: Dessiner en vectoriel,
+      d0: Dessin
+      t1: Dessiner en vectoriel
       d1: Pour créer et éditer simplement et rapidement de belles images en ligne au format ouvert SVG. Les enfants adorent !
     slides:
       cloud: https://framacloud.org/fr/cultiver-son-jardin/framaslides.html
       doc: https://docs.framasoft.org/fr/strut
       d0: Diaporamas
-      t1: Créer et partager des diaporamas,
+      t1: Créer et partager des diaporamas
       d1: Framaslides vous permet de créer directement en ligne un diaporama ou une présentation, d’y accéder avec une simple connexion internet, et de la partager.
     maestro:
       doc: https://docs.framasoft.org/fr/framaestro
@@ -217,10 +210,10 @@ fnav:
       t1: Le réseau social libre
       d1: Framasphère est un réseau social libre, basé sur le logiciel décentralisé Diaspora*. Retrouvez vos amis sur Framasphère - ou d’autres pods Diaspora* - et échangez avec eux sans être pisté.
     piaf:
-      doc: https://docs.framasoft.org/fr/mastodon/,
-      cloud: https://framacloud.org/fr/cultiver-son-jardin/mastodon.html,
-      d0: Microblogging,
-      t1: Réseau social en 500 caractères,
+      doc: https://docs.framasoft.org/fr/mastodon/
+      cloud: https://framacloud.org/fr/cultiver-son-jardin/mastodon.html
+      d0: Microblogging
+      t1: Réseau social en 500 caractères
       d1: Framapiaf est un service libre de microblogging, basé sur le logiciel décentralisé Mastodon. Retrouvez vos amis sur Framapiaf - ou d’autres instances Mastodon, GNU Social, Friendica - et échangez avec eux sans être pisté.
     team:
       cloud: https://framacloud.org/fr/cultiver-son-jardin/gitlab.html
@@ -246,8 +239,8 @@ fnav:
       t1: Décider ensemble
       d1: Framavox vous aide à prendre des décisions communautaires. Discutez, échangez, mettez-vous d’accord et passez à l’action, le tout dans les délais que vous vous êtes fixés au départ.
     petitions:
-      d0: Pétitions,
-      t1: Des pétitions sans offrir les adresses de vos soutiens,
+      d0: Pétitions
+      t1: Des pétitions sans offrir les adresses de vos soutiens
       d1: Framapetitions vous permet de lancer des pétitions sur les sujets qui vous tiennent à cœur. En quelques clics, votre pétition est publiée et les adresses de vos soutiens ne seront pas exploités par des régies publicitaires.
     memo:
       cloud: https://framacloud.org/fr/cultiver-son-jardin/scrumblr.html
@@ -296,10 +289,10 @@ fnav:
       t1: Partager des fichiers de façon confidentielle
       d1: Avec Framadrop, fini les pièces jointes trop lourdes qui empêchent l’envoi d’un email. Ce service libre vous permet de partager facilement des fichiers de manière sécurisé.
     bin:
-      cloud: https://framacloud.org/fr/cultiver-son-jardin/privatebin.html,
-      doc: https://docs.framasoft.org/fr/privatebin/,
-      d0: Alternative à Pastebin,
-      t1: Transmettre des données chiffrées,
+      cloud: https://framacloud.org/fr/cultiver-son-jardin/privatebin.html
+      doc: https://docs.framasoft.org/fr/privatebin/
+      d0: Alternative à Pastebin
+      t1: Transmettre des données chiffrées
       d1: Avec Framabin, vous pouvez partager des informations que seuls vous et votre correspondant aurez le pouvoir de déchiffrer, et ceci de manière très simple.
     pic:
       cloud: https://framacloud.org/fr/cultiver-son-jardin/lutim.html
@@ -308,10 +301,10 @@ fnav:
       t1: Partager des images de façon confidentielle
       d1: Framapic vous permet de partager facilement des images, par exemple pour les publier sur Twitter, Facebook, ou… Framasphère !
     link:
-      cloud: https://framacloud.org/fr/cultiver-son-jardin/lstu.html,
-      doc: https://docs.framasoft.org/fr/lstu/,
-      d0: Raccourcisseur d’URL,
-      t1: Réduire des liens,
+      cloud: https://framacloud.org/fr/cultiver-son-jardin/lstu.html
+      doc: https://docs.framasoft.org/fr/lstu/
+      d0: Raccourcisseur d’URL
+      t1: Réduire des liens
       d1: Avec Frama.link, il est possible de raccourcir des adresses web trop longues. Sur les réseaux sociaux et le microblogging, un lien raccourci permet d’économiser de l’espace et gagner en clarté.
     clic:
       cloud: http://framacloud.org/cultiver-son-jardin/installation-de-dolomon
@@ -366,8 +359,8 @@ fnav:
       t1: Article Framasoft sur Wikipédia
       d1: Parcourez le (long) article Framasoft sur l’(incontournable) encyclopédie libre Wikipédia.
     colibri:
-      d0: Forum,
-      t1: Le forum du réseau Framasoft,
+      d0: Forum
+      t1: Le forum du réseau Framasoft
       d1: Vous avez une question ? Nous avons (peut-être) une réponse ! « Si tu ne sais pas, demande. Si tu sais, partage. » Framacolibri est notre convivial espace d’échange d’informations autour du Libre.
     wikifs:
       t1: Framawiki
@@ -415,16 +408,16 @@ fnav:
     credits:
       name: Crédits
       link: https://framasoft.org/fr/credits
-    dio:
+    dio2:
       name: '<b>2014-2017</b> : Dégooglisons Internet'
       link: https://degooglisons-internet.org
-      d0: Campagne de sensibilitation,
+      d0: Campagne de sensibilitation
       t1: '<b class="violet">Dégooglisons</b> <b class="orange">Internet</b> : une ambitieuse campagne.'
       d1: Les services en ligne de géants tentaculaires comme Google, Amazon, Facebook, Apple ou Microsoft (GAFAM) mettent en danger nos vies numériques. <b class='violet'>Frama</b><b class='orange'>soft</b> s’est lancé comme défi audacieux de vous proposer, avec votre aide, une alternative Libre, Éthique, Décentralisé et Solidaire pour chacun de ces services.
-    cuo:
+    cuo2:
       name: '<b>2017-2020</b> : Contributopia'
       link: https://contributopia.org
-      d0: Campagne de sensiblisation,
+      d0: Campagne de sensiblisation
       t1: '<b class="violet">Contrib</b><b class="orange">utopia</b> : dégoogliser ne suffit pas'
       d1: '<b class="violet">Frama</b><b class="orange">soft</b> vous invite à un voyage exaltant : explorons ensemble des mondes numériques. Des mondes où les outils informatiques se conçoivent en collaboration, où les pratiques respectueuses essaiment et pollinisent, où s’ouvrent les portes de la contribution.'
 

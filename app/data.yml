@@ -440,7 +440,8 @@ fnav:
       'wikipedia', 'colibri', 'wikifs']
     about:
       ['asso', 'participer', 'charte', 'benevalo', 'contact', 'partenaires',
-      'stats', 'status', 'doc', 'faq', 'aide', 'legals', 'cgu', 'credits']
+      'stats', 'status', 'doc', 'faq', 'aide', 'legals', 'cgu', 'credits',
+      'dio2', 'cuo2']
 
   footer:
     frama: ['asso', 'charte', 'contact', 'stats', 'status']
