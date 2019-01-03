@@ -123,7 +123,7 @@ const i18n = new VueI18n({
   silentTranslationWarn: true,
 });
 
-if(document.getElementById('fnav') === null) {
+if (document.getElementById('fnav') === null) {
   const fnav = document.createElement('div');
   fnav.id = 'fnav';
   document.getElementsByTagName('body')[0].insertBefore(fnav, document.getElementsByTagName('body')[0].children[0]);
