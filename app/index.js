@@ -123,15 +123,17 @@ const i18n = new VueI18n({
   silentTranslationWarn: true,
 });
 
-const fnav = document.createElement('div');
-fnav.id = 'fnav';
-document.getElementsByTagName('body')[0].insertBefore(fnav, document.getElementsByTagName('body')[0].children[0]);
+if(document.getElementById('fnav') === null) {
+  const fnav = document.createElement('div');
+  fnav.id = 'fnav';
+  document.getElementsByTagName('body')[0].insertBefore(fnav, document.getElementsByTagName('body')[0].children[0]);
+}
 const ffooter = document.createElement('div');
 ffooter.id = 'ffooter';
 document.getElementsByTagName('body')[0].appendChild(ffooter);
 const fcss = document.createElement('link');
 fcss.rel = 'stylesheet';
-fcss.href = '../main.css';
+fcss.href = '../main.css'; // to replace by absolute link
 document.getElementsByTagName('head')[0].appendChild(fcss);
 
 // Routes
