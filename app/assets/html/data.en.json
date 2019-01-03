@@ -1,0 +1,361 @@
+{
+  "meta": {
+    "lg": "en",
+    "soutenir": {
+      "s": "Make a donation ?",
+      "l": "https://soutenir.framasoft.org/en/",
+      "t1": "Because free as in “free speech” doesn't mean free as in “free beer”",
+      "d1": "Framasoft would not exist without our strong volunteer community but could not work anyway without the association which pays seven permanent employees. Our funding relies on you, which means every individual donation. If you think we deserve it…"
+    },
+    "myframa": {
+      "t1": "Marquez et partagez vos liens",
+      "d1": "MyFrama est un service en ligne libre de partage de lien."
+    },
+    "benevalo": {
+      "t1": "Le bénévolat valorisé, qu’est-ce que c’est ?",
+      "d1": "Amis bénévoles, vous avez contribué récemment à l’activité de Framasoft ? C’est le moment de remplir votre bénévolat valorisé. Le « bénévalo » permet de rendre compte de l’activité des bénévoles et de confirmer que Framasoft reste bien une association majoritairement non lucrative. C’est important pour nous."
+    },
+    "modaldon": {
+      "t": "Support Framasoft",
+      "d": [
+        "<p>You are on the point %c$.modal.don[1]% a resource <b>free</b> from the forty or so Framasoft network projects.</p>",
+        "<p>This resource is <b>free</b> (and will be for as long as we exist) because <b>Framasoft is a non-profit organisation</b> whose objective is precisely the diffusion of free software and its culture to the widest possible audience.",
+        "<p>But all this is made possible because Framasoft is <b>supported by the donations of its users</b>.</p>",
+        "<p>Thank you for taking a few minutes by helping us to perpetuate and develop our action.</p>"
+      ],
+      "b1": "I want to make a donation<br>to Framasoft association",
+      "b2": "I want to participate. <br>Where do we start?",
+      "b3": "No, thank you, I only<br>wish <b>%c$.modal.don[2]%</b>",
+      "b4": "I already support Framasoft"
+    },
+    "optin": {
+      "t": "I agree to Framasoft sending important information to this address",
+      "d1": "(We swear, we won't resell our files, even to the NSA!",
+      "d2": "Why suscribe ?",
+      "e1": "Email addresses don't match.",
+      "e2": "The email address %f$Email% is not valid.",
+      "s1": "Your email address <strong>%f$Email%</strong> has been added to our list. You should have received a confirmation email."
+    }
+  },
+  "t": {
+    "newwindow": "new window",
+    "close": "Close",
+    "nevershow": "Do not display anymore",
+    "toggle": "Toggle menu",
+    "skip": "Skip menu",
+    "pause": "Pause",
+    "play": "Play",
+    "slide-prev": "Previous slide",
+    "slide-next": "Next slide",
+    "mobile": "Activate mobile mode",
+    "desktop": "Deactivate mobile mode",
+    "type-your-email": "Enter your email address",
+    "your-email": "Your email here",
+    "subscribe":"Suscribe",
+    "to-the-newsletter": " to the newsletter",
+    "source": "Source",
+    "campaign": "Campaigns"
+  },
+  "menu": {
+    "soft": { "name": "Free Software" },
+    "culture": { "name": "Free Culture" },
+    "services": { "name": "Free Services" },
+    "follow": { "name": "Follow us" },
+    "about": { "name": "About" },
+    "community": { "name": "Community" },
+    "site": { "name": "Site" }
+  },
+  "f": {
+    "libre": {
+      "t1": "Free software directory",
+      "d1": "1600+ software indexed, tagged and tested, this is the historical initial project by Framasoft. Content also include howtos and full reviews."
+    },
+    "key": {
+      "t1": "Le plein de liberté dans une simple clé",
+      "d1": "Packed in a USB device (or any other mobile device) you can be mobile and enjoy 100+ free software for Windows, test a GNU/Linux distro and access offline Wikipedia."
+    },
+    "dvd": {
+      "t1": "Full tank of Freedom in a DVD",
+      "d1": "This DVD is full with best free software for Windows, Mac and GNU/Linux (distro included) with additional free and open source cultural content (texts, photos, audio and video files). A dedicated Education version is also available."
+    },
+    "pack": {
+      "t1": "Massive install",
+      "d1": "Framapack offers an handy way to pick on the best Free or open source software for Windows with updated version. You just select the ones you wish and they all install on one click !"
+    },
+    "start": {
+      "t1": "Framastart",
+      "d1": "The top free and Libre software on a single page."
+    },
+    "evl": {
+      "t1": "Our Libre little shop",
+      "d1": "Online shop for various Framasoft products : Framakey, Framabook, Framadvd, goodies and t-shirts."
+    },
+    "vvl": {
+      "t1": "Veni Vidi Libri",
+      "d1": "Everything on Free licenses."
+    },
+    "clibre": {
+      "t1": "CLibre.eu",
+      "d1": "Another index of Free software and alternatives"
+    },
+    "blog": {
+      "t1": "Libre News",
+      "d1": "Weekly report on Libre and Free Software and Culture. Rich contributions in the comments, numerous exclusive translations, interviews of individuals promoting Free and open source projects of all kind, ews from our various projects."
+    },
+    "book": {
+      "t1": "Le pari du livre libre",
+      "d1": "Notre maison d’édition qui comporte une vingtaine de titres autour du logiciel libre, initiation à la programmation, réflexion sur le droit d’auteur mais aussi des BD et même un roman. Un livre libre offre au lecteur les mêmes libertés qu’un logiciel libre."
+    },
+    "bookin": {
+      "t1": "A Free digital Library",
+      "d1": "Our digital Library offers hundredth of works from the Public Domain. It can be browsed and searched online from mobile devices (smartphones, tablets, e-readers…) and can be added directly to your favorite e-book reader via an OPDS feed."
+    },
+    "lang": {
+      "t1": "Collaborative Translation",
+      "d1": "Let's translate together, mainly from English into French, in a collaborative effort, taking advantage of online real-time work and of volunteer participation. Article, news, subtitles or even books&nbsp;!"
+    },
+    "tube": {
+      "t1": "Our Libre « YouTube »",
+      "d1": "French or French subtitled videos about Free and Libre software and Free culture. Interviews, confs, docs, TV excepts… everything for your information."
+    },
+    "zic": {
+      "t1": "When music is getting free",
+      "d1": "A « free music » offers to music lovers the same fundamental freedoms as Free software. This dedcated site lets you undersatnd this concept, along with a tasteful selection."
+    },
+    "evl2": {
+      "t1": "Our Libre little shop",
+      "d1": "Online shop for various Framasoft products : Framakey, Framabook, Framadvd, goodies and t-shirts."
+    },
+    "ptilouk": {
+      "t1": "Ptilouk",
+      "d1": "Free and Libre Comics"
+    },
+    "planet-libre": {
+      "t1": "Planet-libre",
+      "d1": "Selection of french speaking  news."
+    },
+    "dio": {
+      "p": "All services",
+      "l": "https://degooglisons-internet.org/list/?l=en",
+      "d0": "List of services",
+      "t1": "List of services",
+      "d1": "List of all the services we offer classified by usage, with a search bar to help you find the one that meets your needs."
+    },
+    "pad": {
+      "t1": "Collaborative editing",
+      "d1": "Let's write together on the same document in real time in an online interface. No prior registration required, a nick is enough, every participant has her own color and let's go!"
+    },
+    "calc": {
+      "t1": "Collaborative Spreadsheet Edition",
+      "d1": "Framacalc is a spreadsheet program that lets you edit colloratively and easily on the same online document."
+    },
+    "forms": {
+      "t1": "Création de questionnaires",
+      "d1": "Framaforms vous permet de créer les questionaires dont vous avez besoin, que ce soit dans un cadre scolaire, familial ou associatif. Créez vos questions en fonction de vos besoins, des formulaires à choix multiples aux champs de texte libre."
+    },
+    "agenda": {
+      "t1": "Agenda partagé",
+      "d1": "Framagenda vous permet de créer des agendas, de les publier en ligne et de les partager."
+    },
+    "date": {
+      "doc": "https://docs.framasoft.org/en/framadate/",
+      "t1": "Organize appointments and surveys",
+      "d1": "Framadate is a Doodle-like software, but it is free and open source. Create an appointment or a survey without registration and invite your friends or colleagues."
+    },
+    "board": {
+      "t1": "Project management",
+      "d1": "Framaboard is a simple and open source visual task board manager inspired by Kanban method. You can get things done and organized at first look, even if you are not familiar with this kind of tools."
+    },
+    "mindmap": {
+      "t1": "Create mind maps",
+      "d1": "Mindmapping made easy with a seamless intuitive interface. Create mind maps right from your browser. Take notes, brainstorm, make a conf using it."
+    },
+    "vectoriel": {
+      "t1": "Vector graphics",
+      "d1": "Create and edit easily nice images online in SVG open format. Children will love it!"
+    },
+    "bee": {
+      "t1": "This metasearch engine is foraging the Web for you",
+      "d1": "Framabee is a free and anonymous metasearch engine. You search request is processed via this engine and sent to various search engines, then the results are displayed in your browser. The intersting point is Framabee is running between you and Google (and other popular search engines), so your personal data such as IP address, search history, geolocation, and profile are not collected by search engines."
+    },
+    "carte": {
+      "t1": "Cartographie personnalisée",
+      "d1": "Framacarte lets you draw, mark, colorize, annotate… basemaps from OpenStreetMap, then you can show them on your website or print."
+    },
+    "piaf": {
+      "t1": "Réseau social en 500 caractères",
+      "d1": "Framapiaf est un service libre de microblogging, basé sur le logiciel décentralisé Mastodon. Retrouvez vos amis sur Framapiaf - ou d’autres instances Mastodon, GNU Social, Friendica - et échangez avec eux sans être pisté."
+    },
+    "sphere": {
+      "doc": "https://docs.framasoft.org/en/diaspora/",
+      "t1": "The Free and Libre social media network",
+      "d1": "Framasphère is a Free, Libre and open source social media network, built over Diaspora* software. Join your friends on Framasphère*, or any other Diaspora* pod — and begin to share without being tracked."
+    },
+    "team": {
+      "doc": "https://docs.framasoft.org/en/mattermost/",
+      "t1": "Communication collaborative",
+      "d1": "Framateam est un service de tchat libre qui permet de communiquer avec son équipe en notifiant ses collègues, de conserver ses conversations et d’y faire des recherches."
+    },
+    "listes": {
+      "t1": "Liste de diffusion",
+      "d1": "Framaforms sert à créer des listes de diffusion pour vous permettre d’envoyer des mails à l’ensemble des membres qui y sont inscrits."
+    },
+    "talk": {
+      "t1": "Visioconférence",
+      "d1": "Framatalk vous permet de discuter avec vos amis sans installation complexe de logiciel ni inscription. Tout se passe entre vous et vos amis, directement depuis votre navigateur web. "
+    },
+    "vox": {
+      "doc": "https://docs.framasoft.org/en/loomio/",
+      "t1": "Décider ensemble",
+      "d1": "Framavox vous aide à prendre des décisions communautaires. Discutez, échangez, mettez-vous d’accord et passez à l’action, le tout dans les délais que vous vous êtes fixés au départ."
+    },
+    "petitions": {
+      "t1": "Des pétitions sans offrir les adresses de vos soutiens",
+      "d1": "Framapetitions vous permet de lancer des pétitions sur les sujets qui vous tiennent à cœur. En quelques clics, votre pétition est publiée et les adresses de vos soutiens ne seront pas exploités par des régies publicitaires."
+    },
+    "memo": {
+      "t1": "Mettez vos idées au clair",
+      "d1": "Framemo est un service minimaliste qui permet d’éditer et d’organiser collaborativement des idées sous forme de notes"
+    },
+    "notes": {
+      "t1": "Prise de notes",
+      "d1": "Framanotes vous permet d’enregistrer des informations, sous forme de notes, images, vidéos, ou pages web et d'y accéder de n'importe où."
+    },
+    "bag": {
+      "t1": "Ne ratez plus aucun article !",
+      "d1": "Framabag vous permet de mettre de côté les articles que vous n’avez pas le temps de lire tout de suite."
+    },
+    "news": {
+      "t1": "Stay tuned to the news",
+      "d1": "Suscribe to RSS feed of your favorite sites, stay in tune with the news with Framanews!"
+    },
+    "games": {
+      "t1": "Play online or offline",
+      "d1": "Framagames is a compilation of free games you can play online or download on your computer, or your tablet… You need no prior install to play."
+    },
+    "minetest": {
+      "t1": "L’alternative libre à Minecraft",
+      "d1": "Framinetest Édu est un monde du jeu « bac à sable » Minetest (monde de blocs à modifier) dédié à l'éducation, aux activités pédagogiques et au <i lang='en'>serious gaming</i>."
+    },
+    "drive": {
+      "t1": "Host documents online",
+      "d1": "Framadrive lets you upload your documents online, synchronize them on your other devices… and share them with the contacts you select."
+    },
+    "drop": {
+      "t1": "Sharing files in a confidential way",
+      "d1": "With Framadrop, say goodbye to big attachment files that cannot be sent over your mail client. This Free and libre service lets you share your documents easily and securely."
+    },
+    "bin": {
+      "t1": "Send encrypted data",
+      "d1": "Framabin lets you share information that only you and the sendee can decrypt, in a simple easy way."
+    },
+    "pic": {
+      "t1": "Sharing pictures in a confidential way",
+      "d1": "Framapic is your online resource to share pics, e.g to show them on Twitter, Facebook, or… Framasphère !"
+    },
+    "link": {
+      "t1": "Links shortening",
+      "d1": "With Frama.link, you can shorten longish URLs. On social media and microblogging, a shortened link spares you energy and is clearer."
+    },
+    "git": {
+      "t1": "Hosting code in the open",
+      "d1": "Framagit is a tool for developers. You can host your free and libre software and manage your work with easy access for contributors."
+    },
+    "diaspora": {
+      "t1": "Framasoft on Diaspora*",
+      "d1": "Our account on free social media network Diaspora*"
+    },
+    "mastodon": {
+      "t1": "Framasoft on Mastodon",
+      "d1": "Our account on free social media network Mastodon"
+    },
+    "twitter": {
+      "t1": "Framasoft on Twitter (we know it is bad…)",
+      "d1": "Bien que Twitter ne soit pas libre, Framasoft y a un compte afin de sensibiliser le public qui ne connait pas le libre là où il se trouve.<br>Nous vous invitons évidemment à <b>nous suivre plutôt sur Mastodon</b>, mais on ne vous en voudra pas si vous le faites sur Twitter 😉"
+    },
+    "facebook": {
+      "t1": "Framasoft on Facebook (we know it is very bad…)",
+      "d1": "Bien que Facebook ne soit pas libre, Framasoft y a un compte afin de sensibiliser le public qui ne connait pas le libre là où il se trouve.<br>Nous vous invitons évidemment à <b>nous suivre plutôt sur Diaspora*</b>, mais on ne vous en voudra pas si vous le faites sur Facebook 😉"
+    },
+    "gplus": {
+      "t1": "Framasoft on Google+ (shame on us)",
+      "d1": "Bien que Google+ ne soit pas libre, Framasoft y a un compte afin de sensibiliser le public qui ne connait pas le libre là où il se trouve.<br>Nous vous invitons évidemment à <b>nous suivre plutôt sur Diaspora*</b>, mais on ne vous en voudra pas si vous le faites sur Google+ (ou alors juste un peu 😉)"
+    },
+    "newsletter": {
+      "s": "Newsletter",
+      "t1": "Newsletter",
+      "d1": "Join <strong>75 000</strong> registered people on our newsletter."
+    },
+    "rss": {
+      "t1": "RSS",
+      "d1": "RSS feed aggregating various sites."
+    },
+    "wikipedia": {
+      "t1": "Framasoft blopost about Wikipedia",
+      "d1": "Browse our (longish) blogpost on the unbelieveable Free Wikipedia service."
+    },
+    "colibri": {
+      "t1": "Framasoft network forum",
+      "d1": "Have you any question? We may have an answer!"
+    },
+    "wiki": {
+      "t1": "Framawiki",
+      "d1": "Framasoft Wiki"
+    },
+    "asso": {
+      "s": "Our association"
+    },
+    "participer": {
+      "s": "Participate",
+      "l": "https://participer.framasoft.org/en/"
+    },
+    "charte": {
+      "s": "Our chart",
+      "l": "https://framasoft.org/nav/html/charte.en.html"
+    },
+    "benevalo": {
+      "s": "Volunteering"
+    },
+    "contact": {
+      "s": "Contact us",
+      "t1": "Contact Framasoft",
+      "d1": "Do you wish to contact us?"
+    },
+    "partenaires": {
+      "s": "Partners"
+    },
+    "stats": {
+      "s": "Metrics"
+    },
+    "status": {
+      "s": "Services review"
+    },
+    "doc": {
+      "l": "https://docs.framasoft.org/en/"
+    },
+    "aide": {
+      "s": "Help"
+    },
+    "legals": {
+      "s": "Legals"
+    },
+    "cgu": {
+      "s": "Terms of Use"
+    },
+    "credits": {
+      "s": "Credits"
+    },
+    "dio2": {
+      "p": "<b>2014-2017</b> : De-googl-ify ",
+      "s": "Internet",
+      "l": "https://degooglisons-internet.org/?l=en",
+      "t1": "<b class='violet'>De-googl-ize</b> <b class='orange'>Internet</b> : an ambitions campaign.",
+      "d1": "Online services as provided by hegemonic giants such as Google, Amazon, Facebook, Apple or Microsoft (GAFAM) are putting our digital life and privacy at risk. <b class='violet'>Frama</b><b class='orange'>soft</b> was indulging in a big challenge : offer, with your help, a Libre, Ethic, Decentralized and Solidary alternative for every popular service."
+    },
+    "cuo": {
+      "l": "https://contributopia.org/en/home",
+      "t1": "<b class='violet'>Contrib</b><b class='orange'>utopia</b> : de-googl-ify is not enough",
+      "d1": "<b class='violet'>Frama</b><b class='orange'>soft</b> invites you on an exciting journey: let's explore digital worlds together. worlds where computer tools are conceived in collaboration, where respectful practices swarm and pollinate, where the doors of contribution open."
+    }
+  }
+}

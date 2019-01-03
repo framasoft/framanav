@@ -4,7 +4,9 @@
       <btn type="button" class="btn btn-default dropdown-toggle"
         aria-haspopup="true" aria-expanded="false"
         :title="$t('nav.langChange')">
-        <i class="fa fa-lg fa-language" aria-hidden="true"></i> {{ $t("nav.lang") }} <span class="caret"></span>
+        <i class="fa fa-lg fa-language" aria-hidden="true"></i>
+        <span v-html="$t('nav.lang')"></span>
+        <span class="caret"></span>
       </btn>
       <template slot="dropdown">
         <li v-for="lang in locales.avalaible"
@@ -12,6 +14,13 @@
           <router-link :to="'/' + lang + '/' + ($route.path.split('/')[2] || '')">
             {{ locales[lang] }}
           </router-link>
+        </li>
+        <li role="separator" class="divider" v-if="$root.meta.i18n"></li>
+        <li v-if="$root.meta.i18n">
+          <a :href="$root.meta.i18n">
+            <i class="fa fa-fw fa-plus" aria-hidden="true"></i>
+            <span v-html="$t('nav.translate')"></span>
+          </a>
         </li>
       </template>
     </dropdown>
@@ -27,7 +36,6 @@ export default {
   },
   data() {
     return {
-      data: this.$i18n.messages.data,
       currentComponent: '',
       switchLanguage: 'en',
       locales: this.$i18n.messages.locales,

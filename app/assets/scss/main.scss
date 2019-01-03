@@ -13,6 +13,8 @@ $img-ombre: 0px 2px 6px rgba(50, 50, 50, 0.4);
 $carousel-ombre: 0px 3px 3px rgba(50, 50, 50, 0.5);
 $button-ombre: 0px 1px 1px rgba(50, 50, 50, 0.5);
 
+@import "../fonts/ptsans_caption";
+
 body {
   background: $bgcolor;
   font-size:14px;
@@ -34,10 +36,10 @@ h1 {
   padding: 20px 30px;
 }
 
-#tuto-faq p[role="presentation"] .glyphicon,
-#tuto-video > p[role="presentation"] .glyphicon,
-#le-logiciel > p[role="presentation"] .glyphicon,
-#jardin > p[role="presentation"] .glyphicon {
+#tuto-faq p[role="presentation"] i,
+#tuto-video > p[role="presentation"] i,
+#le-logiciel > p[role="presentation"] i,
+#jardin > p[role="presentation"] i {
   font-size:50px;
 }
 

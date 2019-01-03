@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import VueI18n from 'vue-i18n';
 import vueHeadful from 'vue-headful';
+import PortalVue from 'portal-vue';
 
 import App from './App.vue';
 import Home from './components/pages/Home.vue';
@@ -13,6 +14,7 @@ import './assets/scss/main.scss';
 Vue.use(VueRouter);
 Vue.use(VueI18n);
 Vue.component('vue-headful', vueHeadful);
+Vue.use(PortalVue);
 
 const defaultLocale = 'fr';
 const locales = [];
@@ -33,32 +35,50 @@ const lang = window.location.href
   .split('/')[(process.env.BASE_URL === '' || (window.location.href.match(/\//g)).length === 3) ? 3 : 4]
   .substr(0, 2)
   .toLowerCase() || defaultLocale;
-document.getElementsByTagName('html')[0].setAttribute('lang', lang);
-const userLang = navigator.languages ||
-  [navigator.language || navigator.userLanguage];
+const userLang = navigator.languages
+  || [navigator.language || navigator.userLanguage];
 let defaultRouteLang = '';
 
 const messages = {};
 messages.locales = require('./lang.yml'); // eslint-disable-line
-messages.locales.avalaible = locales;
+messages.locales.avalaible = Object.keys(messages.locales).filter(n => locales.indexOf(n) > -1);
 
 // Data import
-messages.data = {};
-messages.data = require('./data.yml'); // eslint-disable-line
-messages.data['/'] = `/${process.env.BASE_URL.replace(/(.+)/, '$1/')}`;
-messages.data['/img/'] = `${messages.data['/']}img/`;
+let data = {};
+data = require('./data.yml'); // eslint-disable-line
+data['/'] = `/${process.env.BASE_URL.replace(/(.+)/, '$1/')}`;
+data.hash = window.location.hash.replace('#', '');
+data.txt = data.txt || {};
+data.html = data.html || {};
+Object.keys(data.color).forEach((k) => {
+  if (data.txt[k] === undefined) {
+    const tmp = document.createElement('div');
+    tmp.innerHTML = data.color[k];
+    data.txt[k] = tmp.textContent || tmp.innerText;
+  }
+});
+
+Object.keys(data.link).forEach((k) => {
+  if (data.html[k] === undefined) {
+    if (data.color[k] !== undefined) {
+      data.html[k] = `<a href="${data.link[k]}">${data.color[k]}</a>`;
+    } else if (data.txt[k] !== undefined) {
+      data.html[k] = `<a href="${data.link[k]}">${data.txt[k]}</a>`;
+    }
+  }
+});
 
 const routes = [
-  { path: '/', component: Home },
+  { path: '/', component: Home, meta: { id: 'home', lang: defaultLocale } },
 ];
 
 for (let i = 0; i < locales.length; i += 1) {
   messages[locales[i]] = {};
   // Locales import
   /* eslint-disable */
-  import(/* webpackChunkName: "lang-[request]" */`./locales/${locales[i]}.yml`).then((data) => {
-    messages[locales[i]] = data;
-    messages[locales[i]].data = messages.data;
+  import(/* webpackChunkName: "lang-[request]" */`./locales/${locales[i]}.yml`).then((locale) => {
+    messages[locales[i]] = locale;
+    messages[locales[i]].data = data;
     messages[locales[i]].lang = locales[i];
   }).catch((err) => {
     console.error(err);
@@ -71,6 +91,7 @@ for (let i = 0; i < locales.length; i += 1) {
     routes.push({
       path: `/${locales[i]}${pages[j].toLowerCase().replace(/^/, '/').replace('/home', '')}`,
       component: component.default,
+      meta: { id: pages[j].toLowerCase(), lang: locales[i] },
     });
   }
 }
@@ -86,8 +107,8 @@ for (let j = 0; j < userLang.length; j += 1) { // check if user locales
 
 // Home redirection
 const currentURL = window.location.href.replace(/\/+$/, '');
-if ((currentURL.split('/')[3] === undefined || currentURL.split('/')[3] === process.env.BASE_URL) &&
-  (currentURL.split('/')[4] === undefined)) {
+if ((currentURL.split('/')[3] === undefined || currentURL.split('/')[3] === process.env.BASE_URL)
+  && (currentURL.split('/')[4] === undefined)) {
   if (defaultRouteLang === '') {
     defaultRouteLang = defaultLocale;
   }
@@ -102,6 +123,17 @@ const i18n = new VueI18n({
   silentTranslationWarn: true,
 });
 
+const fnav = document.createElement('div');
+fnav.id = 'fnav';
+document.getElementsByTagName('body')[0].insertBefore(fnav, document.getElementsByTagName('body')[0].children[0]);
+const ffooter = document.createElement('div');
+ffooter.id = 'ffooter';
+document.getElementsByTagName('body')[0].appendChild(ffooter);
+const fcss = document.createElement('link');
+fcss.rel = 'stylesheet';
+fcss.href = '../main.css';
+document.getElementsByTagName('head')[0].appendChild(fcss);
+
 // Routes
 const router = new VueRouter({
   routes,
@@ -110,9 +142,10 @@ const router = new VueRouter({
 });
 
 new Vue({ // eslint-disable-line no-new
-  el: '#app',
+  el: '#fnav',
   router,
   i18n,
+  data,
   mounted() {
     // You'll need this for renderAfterDocumentEvent.
     document.dispatchEvent(new Event('render-event'));

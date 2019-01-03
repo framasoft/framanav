@@ -1,8 +1,5 @@
 <template>
-  <div id="app">
-    <vue-headful
-      :title="$t('meta.title')"
-    />
+  <div id="fnav">
     <Nav />
     <router-view></router-view>
   </div>
@@ -11,7 +8,7 @@
 <script>
 import Nav from './components/partials/Nav.vue'
 export default {
-  name: 'app',
+  name: 'fnav',
   components: {
     Nav,
   }

@@ -2,9 +2,10 @@
   padding-top:42px;
 
   #framanav_container {
-    position: fixed;
+    position: absolute;
     top: 0;
     z-index: 1000;
+    width: 100%;
   }
 
   #nav-alert.alert {
@@ -12,13 +13,8 @@
   }
 }
 
-#framanav_container {
+#fnav, #ffooter {
   @import "bootstrap-nav";
-  width: 100%;
-
-  #framafooter {
-    position: absolute;
-  }
 }
 
 #framanav.navbar {
@@ -355,9 +351,6 @@
   margin-left:15px
 }
 
-
-
-
 .modal-backdrop {
   z-index: 1029 !important;
 }
@@ -607,7 +600,6 @@
   border-top:1px solid #ccc;
   height:auto;
   text-align:left;
-
 
   .container {
     background:#dfdfdf;
