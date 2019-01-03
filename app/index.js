@@ -128,9 +128,11 @@ if (document.getElementById('fnav') === null) {
   fnav.id = 'fnav';
   document.getElementsByTagName('body')[0].insertBefore(fnav, document.getElementsByTagName('body')[0].children[0]);
 }
-const ffooter = document.createElement('div');
-ffooter.id = 'ffooter';
-document.getElementsByTagName('body')[0].appendChild(ffooter);
+if (document.getElementById('ffooter') === null) {
+  const ffooter = document.createElement('div');
+  ffooter.id = 'ffooter';
+  document.getElementsByTagName('body')[0].appendChild(ffooter);
+}
 const fcss = document.createElement('link');
 fcss.rel = 'stylesheet';
 fcss.href = '../main.css'; // to replace by absolute link
