@@ -13,8 +13,11 @@
   }
 }
 
-#fnav, #ffooter {
+#fnav {
   @import "bootstrap-nav";
+}
+#ffooter {
+  @import "bootstrap-footer";
 }
 
 #framanav.navbar {

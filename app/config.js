@@ -5,7 +5,7 @@
 // de nav.js. La variable c$ contient toutes les valeurs par défaut ainsi
 // que les explications pour comprendre à quoi ça correspond.
 
-/* global n$:{} f$ */
+// /* global n$:{} */ // f$
 
 var l$; l$ = l$ || {}; // eslint-disable-line
 
@@ -14,6 +14,7 @@ var l$; l$ = l$ || {}; // eslint-disable-line
 // Cette variable n'est utilisée que pour charger les fichiers ext_css,
 // credits et placer un tracker sur un lien de la modale Soutenir
 
+/*
 switch (n$.site) {
   case 'huit.re': n$.site = 'link'; break;
   case 'tontonroger': n$.site = 'bee'; break;
@@ -27,7 +28,10 @@ if (n$.is.url(/framaboard/i, 'h')) { n$.site = 'board'; }
 if (n$.is.url(/framadate/i, 'h')) { n$.site = 'date'; }
 if (n$.is.url(/framacalc/i, 'h')) { n$.site = 'calc'; }
 
-if (n$.is.url('mypads.framapad.org', 'h') || n$.is.url('beta3.framapad.org', 'h')) { n$.site = 'mypads'; }
+if (n$.is.url('mypads.framapad.org', 'h')
+  || n$.is.url('beta3.framapad.org', 'h')) {
+  n$.site = 'mypads';
+}
 if ((n$.is.url(/.framapad/i, 'h') && !n$.is.url(/mypads./i, 'h'))
   || (n$.is.url(/mypads.framapad/i, 'h') && n$.is.url('/p/'))
   || (n$.is.url(/beta3.framapad/i, 'h') && n$.is.url('/p/'))) {
@@ -111,12 +115,15 @@ switch (n$.site) {
           if (document.cookie.indexOf('locale=fr') > -1 || n$.is.lang('fr', 'b')) {
             i18n = {
               search: 'Moteurs de recherche utilisés',
-              pref: 'Vous pouvez <a href="/preferences">en choisir d’autres dans les préférences</a>',
+              pref:
+'Vous pouvez <a href="/preferences">en choisir d’autres dans les préférences</a>',
             };
           }
           let engines = '';
           $('#main_results .label-default').each((i) => {
-            const html = $('<div />').append($('#main_results .label-default').eq(i).clone()).html();
+            const html = $('<div />')
+              .append($('#main_results .label-default')
+              .eq(i).clone()).html();
             if (engines.indexOf(html) === -1) {
               engines += `${html} `;
             }
@@ -302,7 +309,7 @@ switch (n$.site) {
           'title="consulter l’annonce sur le Framablog">fait peau neuve</a>.<br>',
           'Certains liens prééxistants ne sont plus valides. ',
           '<a href="https://contact.framasoft.org/foire-aux-questions/#libre_v2">',
-          'Vous avez du mal à vous y retrouver ?</a>',
+          'Vous avez du mal à vous y retrouver&nbsp;?</a>',
         ].join(''),
       ],
     };
@@ -419,8 +426,10 @@ switch (n$.site) {
             const addMaestroBtn = setInterval(() => {
               if (jQuery('#editbar .menu_right').length && !jQuery('#maestroBtn').length) {
                 jQuery('#editbar .menu_right').prepend([
-                  '<li id="maestroBtn"><a title="Ajouter une visio-conférence" href="', n$.maestro, '">',
-                  '  <button class="buttonicon fa fa-video-camera" style="top:0 !important;"></button>',
+                  '<li id="maestroBtn"><a title="Ajouter une visio-conférence" href="',
+                  n$.maestro, '">',
+                  '  <button class="buttonicon fa fa-video-camera" ',
+                  'style="top:0 !important;"></button>',
                   '  <span class="sr-only">Visio-conférence</span>',
                   '</a></li>',
                 ].join(''));
@@ -447,7 +456,7 @@ switch (n$.site) {
       };
     }
     break;
-  // </framapad> -------------------------------------------------------
+    // </framapad> -------------------------------------------------------
 
   case 'phonie':
     l$ = {
@@ -502,7 +511,8 @@ switch (n$.site) {
         ext() {
           jQuery('link[href*=bootstrap-complete]').remove();
           jQuery('#inscription-email').text(function emailReplace() {
-            return jQuery(this).text().replace('inscription-framasphere@framalistes.org', 'rt+framasphere@framasoft.org');
+            return jQuery(this).text()
+              .replace('inscription-framasphere@framalistes.org', 'rt+framasphere@framasoft.org');
           });
           jQuery.getJSON('https://framasphere.org/nodeinfo/2.0').done((data) => {
             jQuery('#userFramasphere').text(data.usage.users.total);
@@ -593,7 +603,8 @@ switch (n$.site) {
           [
             '<b class="violet">Frama</b><b class="vert">wiki</b> est en phase de test. ',
             'Le service fonctionne, mais n’est pas encore facile à utiliser par quiconque. ',
-            'C’est à l’écoute de vos retours que nous allons l’améliorer et le documenter au cours des semaines à venir.',
+            'C’est à l’écoute de vos retours que nous allons l’améliorer et ',
+            'le documenter au cours des semaines à venir.',
           ].join(''),
         ],
         icons: {
@@ -630,157 +641,22 @@ switch (n$.site) {
 
   // no default
 }
-
-/** ****************************************************************** *
- *                               Piwik                                 *
- * ******************************************************************* */
-l$.piwik = {
-  id: '',
-  url: 'https://stats.framasoft.org/',
-  mode: 'js',
-};
-
-switch (n$.site) {
-  case 'soft': /**           */ l$.piwik.id = '1'; break;
-  case 'forum': /**          */ l$.piwik.id = '2'; break;
-  case 'blog': /**           */ l$.piwik.id = '3'; break;
-  case 'pad': /**            */ l$.piwik.id = '4'; break;
-  case 'etherpad': /**       */ l$.piwik.id = '4'; break;
-  case 'key': /**            */ l$.piwik.id = '5'; break;
-  case 'dvd': /**            */ l$.piwik.id = '6'; break;
-  case 'book': /**           */ l$.piwik.id = '7'; break;
-  case 'tube': /**           */ l$.piwik.id = '8'; break;
-  case 'zic': /**            */ l$.piwik.id = '9'; break;
-  case 'date': /**           */ l$.piwik.id = '10'; break;
-  case 'calc': /**           */ l$.piwik.id = '11'; break;
-  case 'mindmap': /**        */ l$.piwik.id = '12'; break;
-  case 'vectoriel': /**      */ l$.piwik.id = '13'; break;
-  case 'phonie': /**         */ l$.piwik.id = '14'; break;
-  case 'lab': /**            */ l$.piwik.id = '16'; break;
-  case 'code': /**           */ l$.piwik.id = '17'; break;
-  // case 'localhost': /**      */ l$.piwik.id = '17'; break;
-  case 'soutenir': /**       */ l$.piwik.id = '18'; break;
-  case 'contact': /**        */ l$.piwik.id = '19'; break;
-  case 'news': /**           */ l$.piwik.id = '20'; break;
-  case 'bag': /**            */ l$.piwik.id = '21'; break;
-  case 'start': /**          */ l$.piwik.id = '23'; break;
-  case 'pack': /**           */ l$.piwik.id = '24'; break;
-  case '10ans': /**          */ l$.piwik.id = '25'; break;
-  case 'sphere': /**         */ l$.piwik.id = '26'; break;
-  case 'bee': /**            */ l$.piwik.id = '27'; break;
-  case 'games': /**          */ l$.piwik.id = '28'; break;
-  case 'git': /**            */ l$.piwik.id = '29'; break;
-  case 'degooglisons-internet': l$.piwik.id = '30'; break;
-  case 'pic': /**            */ l$.piwik.id = '31'; l$.piwik.mode = 'img'; break;
-  case 'link': /**           */ l$.piwik.id = '32'; break;
-  case 'participer': /**     */ l$.piwik.id = '33'; break;
-  case 'colibri': /**        */ l$.piwik.id = '33'; break;
-  case 'bin': /**            */ l$.piwik.id = '34'; l$.piwik.mode = 'img'; break;
-  case 'cloud': /**          */ l$.piwik.id = '35'; break;
-  case 'status': /**         */ l$.piwik.id = '37'; break;
-  case 'bookin': /**         */ l$.piwik.id = '38'; break;
-  case 'stats': /**          */ l$.piwik.id = '39'; break;
-  case 'drive': /**          */ l$.piwik.id = '40'; break;
-  case 'board': /**          */ l$.piwik.id = '41'; break;
-  case 'drop': /**           */ l$.piwik.id = '42'; l$.piwik.mode = 'img'; break;
-  case 'carte': /**          */ l$.piwik.id = '43'; break;
-  case 'forms': /**          */ l$.piwik.id = '44'; break;
-  case 'petition': /**       */ l$.piwik.id = '45'; break;
-  case 'vox': /**            */ l$.piwik.id = '47'; break;
-  case 'team': /**           */ l$.piwik.id = '48'; break;
-  case 'memo': /**           */ l$.piwik.id = '49'; break;
-  case 'talk': /**           */ l$.piwik.id = '50'; break;
-  case 'minetest': /**       */ l$.piwik.id = '51'; break;
-  case 'notes': /**          */ l$.piwik.id = '52'; break;
-  case 'agenda': /**         */ l$.piwik.id = '53'; break;
-  case 'listes': /**         */ l$.piwik.id = '54'; break;
-  case 'my': /**             */ l$.piwik.id = '56'; break;
-  case 'troll': /**          */ l$.piwik.id = '57'; break;
-  case 'slides': /**         */ l$.piwik.id = '58'; break;
-  case 'maestro': /**        */ l$.piwik.id = '59'; break;
-  case 'docs': /**           */ l$.piwik.id = '60'; break;
-  case 'libre': /**          */ l$.piwik.id = '61'; break;
-  case 'piaf': /**           */ l$.piwik.id = '62'; break;
-  case 'contributopia': /**  */ l$.piwik.id = '63'; break;
-  case 'site': /**           */ l$.piwik.id = '64'; break;
-  case 'wiki': /**           */ l$.piwik.id = '64'; break;
-  case 'trad': /**           */ l$.piwik.id = '65'; break;
-  case 'clic': /**           */ l$.piwik.id = '66'; break;
-  case 'story': /**          */ l$.piwik.id = '67'; break;
-
-  // no default
-}
-
-if (l$.piwik.id !== ''
-    // Pas de Piwik si DoNotTrack
-    // DNT est respecté mais on évite les notifications des uBlock, Ghostery, etc
-    && !(navigator.doNotTrack === 'yes'
-    || navigator.doNotTrack === '1'
-    || navigator.msDoNotTrack === '1'
-    || window.doNotTrack === '1')) {
-  // Code Javascript
-  if (l$.piwik.mode === 'js') {
-    var _paq = _paq || []; // eslint-disable-line
-
-    // Conformité CNIL
-    _paq.push([function piwikCNIL() {
-      const self = this;
-      function getOriginalVisitorCookieTimeout() {
-        const now = new Date();
-        const nowTs = Math.round(now.getTime() / 1000);
-        const visitorInfo = self.getVisitorInfo();
-        const createTs = parseInt(visitorInfo[2], 10);
-        const cookieTimeout = 33696000; // 13 mois en secondes
-        const originalTimeout = (createTs + cookieTimeout) - nowTs;
-        return originalTimeout;
-      }
-      this.setVisitorCookieTimeout(getOriginalVisitorCookieTimeout());
-    }]);
-
-    _paq.push(['trackPageView']);
-    _paq.push(['enableLinkTracking']);
-    // Code Piwik JS
-    (function piwikJS() {
-      const u = l$.piwik.url;
-      _paq.push(['setTrackerUrl', [u, 'p.php'].join('')]);
-      _paq.push(['setSiteId', l$.piwik.id]);
-      const d = document;
-      const g = d.createElement('script');
-      const s = d.getElementsByTagName('script')[0];
-      g.type = 'text/javascript'; g.defer = true; g.async = true;
-      g.src = [u, 'p.js'].join(''); s.parentNode.insertBefore(g, s);
-    }());
-  // Code Piwik Image
-  } else {
-    (function piwikImg() {
-      const d = document;
-      const g = d.createElement('img');
-      const s = d.getElementsByTagName('body')[0];
-      g.style = 'border:0'; g.alt = '';
-      g.src = [l$.piwik.url, 'p.php?idsite=', l$.piwik.id, '&rec=1'].join(''); s.appendChild(g);
-    }());
-  }
-
-  // Framaclic
-  (function framaclic() {
-    const d = document;
-    const g = d.createElement('img');
-    const s = d.getElementsByTagName('body')[0];
-    g.style = 'border:0'; g.alt = '';
-    g.src = ['https://framaclic.org/h/', l$.piwik.id].join(''); s.appendChild(g);
-  }());
-}
+*/
 
 /** ****************************************************************** *
  *                             Favicons                                *
  * ******************************************************************* */
 l$.icons = l$.icons || {};
 
+/*
 if (n$.is.url(/(phonie)/i, 'h')) {
   l$.icons.fav = 'favicon-jaune.png';
 }
 
-if (n$.is.url(/(agenda|bag|bee|bin|blog|board|bookin|book|calc|carte|cloud|code|colibri|date|drive|drop|dvd|forms|games|key|lab|lang|libre|link|listes|maestro|memo|mindmap|minetest|news|pack|phonie|piaf|pic|site|slides|sphere|start|stats|status|talk|team|tube|vectoriel|vox|zic)/i, 'h')
+if (n$.is.url(/(agenda|bag|bee|bin|blog|board|bookin|book|calc|carte|cloud|code|
+* colibri|date|drive|drop|dvd|forms|games|key|lab|lang|libre|link|listes|
+* maestro|memo|mindmap|minetest|news|pack|phonie|piaf|pic|site|slides|sphere|
+* start|stats|status|talk|team|tube|vectoriel|vox|zic)/i, 'h')
   || n$.is.url(/(bot.|contact.|degooglisons-internet|forum.|participer.|soutenir.)/i, 'h')) {
   l$.icons.apple = [n$.site, '.png'].join('');
   l$.icons.fav = ['fav_', n$.site, '.png'].join('');
@@ -790,3 +666,4 @@ if (n$.is.url(/(pad)/i, 'h')) {
   l$.icons.fav = 'fav_pad.png';
   l$.icons.apple = 'pad.png';
 }
+*/

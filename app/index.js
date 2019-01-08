@@ -123,6 +123,7 @@ const i18n = new VueI18n({
   silentTranslationWarn: true,
 });
 
+// Framanav
 if (document.getElementById('fnav') === null) {
   const fnav = document.createElement('div');
   fnav.id = 'fnav';
