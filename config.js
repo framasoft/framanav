@@ -233,13 +233,6 @@ switch (n$.site) {
     l$.js = { b$: 'html' };
     break;
 
-  case 'connard':
-    l$ = {
-      css: { frama: false },
-      icons: { keep: true },
-    };
-    break;
-
   case 'contact':
     l$ = {
       js: { ext: true },
