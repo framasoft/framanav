@@ -15,28 +15,7 @@ var l$; l$ = l$ || {}; // eslint-disable-line
 // credits et placer un tracker sur un lien de la modale Soutenir
 
 /*
-switch (n$.site) {
-  case 'huit.re': n$.site = 'link'; break;
-  case 'tontonroger': n$.site = 'bee'; break;
-  case 'trouvons': n$.site = 'bee'; break;
 
-  // no default
-}
-
-// Config pour domaine et sous-domaine
-if (n$.is.url(/framaboard/i, 'h')) { n$.site = 'board'; }
-if (n$.is.url(/framadate/i, 'h')) { n$.site = 'date'; }
-if (n$.is.url(/framacalc/i, 'h')) { n$.site = 'calc'; }
-
-if (n$.is.url('mypads.framapad.org', 'h')
-  || n$.is.url('beta3.framapad.org', 'h')) {
-  n$.site = 'mypads';
-}
-if ((n$.is.url(/.framapad/i, 'h') && !n$.is.url(/mypads./i, 'h'))
-  || (n$.is.url(/mypads.framapad/i, 'h') && n$.is.url('/p/'))
-  || (n$.is.url(/beta3.framapad/i, 'h') && n$.is.url('/p/'))) {
-  n$.site = 'etherpad';
-}
 
 switch (n$.site) {
   case 'cortex':
@@ -234,13 +213,6 @@ switch (n$.site) {
 
   case 'clic':
     l$.js = { b$: 'html' };
-    break;
-
-  case 'connard':
-    l$ = {
-      css: { frama: false },
-      icons: { keep: true },
-    };
     break;
 
   case 'contact':

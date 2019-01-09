@@ -1,95 +1,220 @@
 <template>
-  <div id="framanav_container" class="hidden-print" style="'height:42px;" v-show="!inframe">
-
-
-    <navbar id="framanav" role="menubar">
-      <span slot="brand">
-        <a class="navbar-brand" slot="brand" :href="$root.link.soft">
-          <img :src="$root['/'] + 'img/logo.png'" alt="" />
-          <span class="hidden-sm" v-html="$root.color.soft"></span>
-        </a>
-        <a href="#nav-end" id="nav-skip" v-html="$t('txt.skip')"></a>
-      </span>
-      <template slot="collapse">
-        <navbar-nav>
-          <dropdown
-            ref="dropdown" tag="li" :id="'fs_' + key"
-            v-for="(cat, key) in $t('fnav.cat')" :key="key"
-          >
-            <a class="dropdown-toggle" role="button">
-              {{ cat.name }} <b class="caret"></b>
-            </a>
-            <template slot="dropdown">
-              <li class="dropdown-header" v-if="key === 'about'" v-html="$root.color.soft"></li>
-              <popover tag="li" :class="'fs_' + l"
-                :enable="$i18n.messages[$t('lang')].fnav.sites[l].t1 ? true : false"
-                :placement="((key === 'services' || key === 'about') && !(index % 2)) ? 'right' : 'left'"
-                :auto-placement="false" trigger="hover-focus" append-to="#framanav"
-                :title="text($t('fnav.sites.' + l + '.t1'))"
-                v-for="(l, index) in $root.fnav.cat[key]" :key="l"
-              >
-                <a :href="($t('fnav.sites.' + l + '.link').indexOf('fnav.') > -1) ? $root.link[l] : $t('fnav.sites.' + l + '.link')">
-                  <i :class="'fa fa-fw fa-lg ' + $root.icon[l]" aria-hidden="true"></i>
-                  {{
-                    ($t('fnav.sites.' + l + '.name').indexOf('fnav.') > -1)
-                    ? $root.txt[l]
-                    : text($t('fnav.sites.' + l + '.name'))
-                  }}
-                  <span class="sr-only" v-html="'(' + $t('txt.newWindow') + ')'"></span>
-                  <i class="fa new-window fa-external-link" aria-hidden="true"></i>
-                </a>
-                <template slot="popover">
-                  <div v-html="$t('fnav.sites.' + l + '.d1')"></div>
-                </template>
-              </popover>
-            </template>
-          </dropdown>
-          <popover tag="li" id="btn-soutenir" v-show="!benevalo()"
-            placement="bottom" trigger="hover-focus" append-to="#framanav"
-            :title="text($t('fnav.soutenir.t1'))"
-          >
-            <a :href="$root.link.soutenir + '/?f=nav'" class="btn-soutenir">
-              <i :class="'fa fa-fw fa-lg ' + $root.icon.soutenir" aria-hidden="true"></i>
-              {{ text($t('fnav.soutenir.name')) }}
-            </a>
-            <template slot="popover">
-              <div v-html="$t('fnav.soutenir.d1')"></div>
-            </template>
-          </popover>
-          <popover tag="li" id="btn-benevalo" v-show="benevalo()"
-            placement="bottom" trigger="hover-focus" append-to="#framanav"
-            :title="text($t('fnav.benevalo.t1'))"
-          >
-            <a :href="$root.link.benevalo" class="btn-info">
-              <i :class="'fa fa-fw fa-lg ' + $root.icon.benevalo" aria-hidden="true"></i>
-              {{ text($t('fnav.benevalo.name')) }}
-            </a>
-            <template slot="popover">
-              <div v-html="$t('fnav.benevalo.d1')"></div>
-            </template>
-          </popover>
-          <popover tag="li" id="btn-myframa"
-            placement="bottom" trigger="hover-focus" append-to="#framanav"
-            :title="text($t('fnav.myframa.t1'))"
-          >
-            <a :href="myframa" class="btn-primary"
-              @click="window.open(myframa, 'myframa', 'menubar=no,height=500,width=600,toolbar=no,scrollbars=yes,status=no,dialog=1'); return false;"
+  <div>
+    <!-- Menus -->
+    <div id="framanav_container" class="hidden-print" style="height:42px;" v-show="!inframe">
+      <navbar id="framanav" style="display: none;" role="menubar">
+        <span slot="brand">
+          <a class="navbar-brand" slot="brand" :href="$root.link.soft">
+            <img :src="$root['/'] + 'img/logo.png'" alt="" />
+            <span class="hidden-sm" v-html="$root.color.soft"></span>
+          </a>
+          <a href="#nav-end" id="nav-skip" v-html="$t('txt.skip')"></a>
+        </span>
+        <template slot="collapse">
+          <navbar-nav>
+            <dropdown
+              ref="dropdown" tag="li" :id="'fs_' + key"
+              v-for="(cat, key) in $t('fnav.cat')" :key="key"
             >
-              <i :class="'fa fa-fw fa-lg ' + $root.icon.my" aria-hidden="true"></i>
-              {{ $root.txt.my }}
-            </a>
-            <template slot="popover">
-              <div v-html="$t('fnav.myframa.d1')"></div>
-            </template>
-          </popover>
-        </navbar-nav>
-      </template>
-    </navbar>
+              <a class="dropdown-toggle" role="button">
+                {{ cat.name }} <b class="caret"></b>
+              </a>
+              <template slot="dropdown">
+                <li class="dropdown-header" v-if="key === 'about'" v-html="$root.color.soft"></li>
+                <popover tag="li" :class="'fs_' + l"
+                  :enable="$i18n.messages[$t('lang')].fnav.sites[l].t1 ? true : false"
+                  :placement="((key === 'services' || key === 'about') && !(index % 2)) ? 'right' : 'left'"
+                  :auto-placement="false" trigger="hover-focus" append-to="#framanav"
+                  :title="text($t('fnav.sites.' + l + '.t1'))"
+                  v-for="(l, index) in $root.fnav.cat[key]" :key="l"
+                >
+                  <a :href="($t('fnav.sites.' + l + '.link').indexOf('fnav.') > -1) ? $root.link[l] : $t('fnav.sites.' + l + '.link')">
+                    <i :class="'fa fa-fw fa-lg ' + $root.icon[l]" aria-hidden="true"></i>
+                    {{
+                      ($t('fnav.sites.' + l + '.name').indexOf('fnav.') > -1)
+                      ? $root.txt[l]
+                      : text($t('fnav.sites.' + l + '.name'))
+                    }}
+                    <span class="sr-only" v-html="'(' + $t('txt.newWindow') + ')'"></span>
+                    <i class="fa new-window fa-external-link" aria-hidden="true"></i>
+                  </a>
+                  <template slot="popover">
+                    <div v-html="$t('fnav.sites.' + l + '.d1')"></div>
+                  </template>
+                </popover>
+              </template>
+            </dropdown>
+            <popover tag="li" id="btn-soutenir" v-show="!benevalo()"
+              placement="bottom" trigger="hover-focus" append-to="#framanav"
+              :title="text($t('fnav.soutenir.t1'))"
+            >
+              <a :href="$root.link.soutenir + '/?f=nav'" class="btn-soutenir">
+                <i :class="'fa fa-fw fa-lg ' + $root.icon.soutenir" aria-hidden="true"></i>
+                {{ text($t('fnav.soutenir.name')) }}
+              </a>
+              <template slot="popover">
+                <div v-html="$t('fnav.soutenir.d1')"></div>
+              </template>
+            </popover>
+            <popover tag="li" id="btn-benevalo" v-show="benevalo()"
+              placement="bottom" trigger="hover-focus" append-to="#framanav"
+              :title="text($t('fnav.benevalo.t1'))"
+            >
+              <a :href="$root.link.benevalo" class="btn-info">
+                <i :class="'fa fa-fw fa-lg ' + $root.icon.benevalo" aria-hidden="true"></i>
+                {{ text($t('fnav.benevalo.name')) }}
+              </a>
+              <template slot="popover">
+                <div v-html="$t('fnav.benevalo.d1')"></div>
+              </template>
+            </popover>
+            <popover tag="li" id="btn-myframa"
+              placement="bottom" trigger="hover-focus" append-to="#framanav"
+              :title="text($t('fnav.myframa.t1'))"
+            >
+              <a :href="myframa" class="btn-primary"
+                @click="window.open(myframa, 'myframa', 'menubar=no,height=500,width=600,toolbar=no,scrollbars=yes,status=no,dialog=1'); return false;"
+              >
+                <i :class="'fa fa-fw fa-lg ' + $root.icon.my" aria-hidden="true"></i>
+                {{ $root.txt.my }}
+              </a>
+              <template slot="popover">
+                <div v-html="$t('fnav.myframa.d1')"></div>
+              </template>
+            </popover>
+          </navbar-nav>
+        </template>
+      </navbar>
+    </div>
+
+    <!-- Make a donation -->
     <a :href="$root.link.soutenir + '/?f=macaron'"
       id="framanav_donation"
       class="hidden-xs">
       <span class="sr-only" v-html="text($t('fnav.soutenir.name'))"></span>
     </a>
+
+    <!-- Alert -->
+    <div id="nav-alert"
+      :class="'alert alert-' + alert[1] + ' fade in'"
+      v-show="alert[2] != '' && !alert[0]">
+      <button type="button" class="close" data-dismiss="alert" :title="$t('txt.close')">
+        <i aria-hidden="true">×</i><span class="sr-only" v-html="$t('txt.close')"></span>
+      </button>
+      <div>
+        <p class="text-center" v-html="alert[2]"></p>
+      </div>
+    </div>
+
+    <!-- Modal info -->
+    <modal v-model="modal.info[0]"
+      :title="modal.info[1]"
+      id="modal-finfo"
+      aria-labelledby="modal-finfoLabel"
+      v-show="modal.info[1] !== ''">
+      <div slot="header">
+        <button type="button" class="close" @click="modal.info[0] = false;">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only" v-html="$t('txt.close')"></span>
+        </button>
+        <h1 id="modal-finfoLabel"
+          v-html="modal.info[1]"
+        ></h1>
+      </div>
+
+      <div class="clearfix"  id="modal-finfoBody" v-html="modal.info[2]"></div>
+
+      <div slot="footer">
+        <button class="btn"
+          v-html="$t('txt.close')"
+          @click="modal.info[0] = false; cookie('w', modal.info[3], true);"
+        ></button>
+        <button class="btn btn-primary"
+          v-html="$t('txt.nevershow')"
+          @click="modal.info[0] = false; cookie('w', modal.info[3], true, modal.info[4]);"
+        ></button>
+      </div>
+    </modal>
+
+    <!-- Modal FAQ -->
+    <modal v-model="modal.faq[0]"
+      :title="modal.faq[1]"
+      id="modal-fsFAQ"
+      aria-labelledby="modal-fsFAQLabel"
+      ><!-- v-show="this.$root.f.faq.l.indexOf(this.lname) > -1" -->
+      <div slot="header">
+        <button type="button" class="close" @click="modal.info[0] = false;">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only" v-html="$t('txt.close')"></span>
+        </button>
+        <h1 id="modal-fsFAQLabel"></h1>
+        <!-- v-html="['d$.f.faq.s', this.name].join(' ')" -->
+      </div>
+
+      <div class="clearfix" id="modal-fsFAQBody">
+        <!--
+          Import from
+          https://contact.framasoft.org/foire-aux-questions/ #this.lname  .list-group-item
+        -->
+      </div>
+
+      <div slot="footer">
+        <span class="pull-left">{{ $t('another-question') }}
+          <a :href="$t('f.contact.l')" v-html="$t('contact-us')"></a>
+        </span>
+        <button class="btn"
+          v-html="$t('txt.close')"
+          @click="modal.faq[0] = false;"
+        ></button>
+      </div>
+    </modal>
+
+    <!-- Modal don -->
+    <modal v-model="modal.don[0]"
+      :title="$t('fnav.modaldon.t')"
+      id="modal-soutenir"
+      aria-labelledby="modal-soutenirLabel"
+      v-show="modal.don[1] !== ''">
+      <div slot="header">
+        <button type="button" class="close" @click="modal.don[0] = false;">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only" v-html="$t('txt.close')"></span>
+        </button>
+        <h1 id="modal-soutenirLabel"
+          v-html="$t('fnav.modaldon.t')"
+        ></h1>
+      </div>
+
+      <div class="clearfix" id="modal-soutenirBody"
+        v-html="$t('fnav.modaldon.desc').replace('%c$.modal.don[1]%', modal.don[2])">
+      </div>
+
+      <div slot="footer">
+        <div class="clearfix">
+          <p class="col-md-12 text-center">',
+            <a target="_blank" href="soutenir ?f=modal&s= this.site"
+              class="btn btn-soutenir btn-block">
+              n.html.i(d$.meta.soutenir.i), ' ', d$.meta.modaldon.b1, n.html.newWindow()
+            </a>
+          </p>
+          <p class="col-md-6 text-center">
+            <a id="modal-dl" href="javascript:void(0);"
+              class="btn btn-xs btn-default btn-block">
+              d$.meta.modaldon.b3.replace('%c$.modal.don[2]%', c$.modal.don[2])
+            </a>
+          </p>
+          <p class="col-md-6 text-center">
+            <a id="modal-dl2" href="javascript:void(0);"
+              class="btn btn-xs btn-default btn-block"
+              style="line-height: 36px;">
+                d$.meta.modaldon.b4
+            </a>
+          </p>
+        </div>
+      </div>
+    </modal>
+
+    <!-- Footer -->
     <portal target-el="#ffooter">
       <footer id="framafooter"
         class="clearfix hidden-print"
@@ -183,17 +308,18 @@
 </template>
 
 <script>
-import { Btn, Dropdown, Navbar, NavbarNav, Popover, Tooltip } from 'uiv';
+import { Btn, Dropdown, Navbar, NavbarNav, Popover, Tooltip, Modal, Alert } from 'uiv';
 import { text, analytics } from '../../tools';
 export default {
   components: {
-    Btn, Dropdown, Navbar, NavbarNav, Popover, Tooltip
+    Btn, Dropdown, Navbar, NavbarNav, Popover, Tooltip, Modal, Alert
   },
   directives: {
     Popover, Tooltip
   },
   data() {
     return {
+      // Init nav
       version: '190108', // n° version de la nav
       inframe: window.top.location !== window.self.document.location,
       myframa: 'https://my.framasoft.org',
@@ -214,12 +340,35 @@ export default {
       },
       storage: {},
       log: [],
+      // Global config
+      modal: {
+        don: [false, '', '', '', 604800000],
+        /** [show, querySelector or 'onstart', text action, text actionBtn, cookie duration (7 days)] */
+        faq: [false],
+        /** [show] */
+        info: [false, '', '', 'modal-info', 604800000],
+        /** [show, title, text, cookie name, cookie duration (7 days)] */
+      },
+      alert: [false, 'black', '', 'nav-alert', 604800000],
+      /** [show, color (from bootstrap), text, cookie name, cookie duration (7 days)] */
+      optin: [false, '', '', 'opt-in', 604800000],
+      /** [show, email1 selector, email2, cookie name, cookie duration (7 days)] */
     };
   },
   mounted() {
     this.name = this.site[0].toUpperCase() + this.site.slice(1).replace('.framasoft', ''); // Nom du service
     this.lname = this.name.toLowerCase();
-    this.site = this.site.replace(/framand/i, 'and')
+
+    // Get current script root url
+    const scripts = document.getElementsByTagName('script');
+    for (let i = 0; i < scripts.length; i += 1) {
+      if (scripts[i].getAttribute('src') && scripts[i].getAttribute('src').indexOf('/nav.js') > -1) {
+        this.baseurl = this.l(scripts[i].getAttribute('src').replace('nav.js', ''));
+      }
+    }
+
+    // [site] Cleaning (shortest name for config)
+    this.site = this.site.replace(/framand/i, 'and') // TODO : remplacer par noFrama ?
         .replace(/framage/i, 'age')
         .replace(/framae/i, 'mae')
         .replace(/(\.framasoft|frama\.)/i, '')
@@ -227,6 +376,32 @@ export default {
         .replace(/frame/i, 'me')
         .replace(/frama/i, '');
 
+    // [site] Aliases
+    switch (this.site) {
+      case 'huit.re': this.site = 'link'; break;
+      case 'tontonroger': this.site = 'bee'; break;
+      case 'trouvons': this.site = 'bee'; break;
+
+      // no default
+    }
+
+    // [site] Subdomains
+    if (this.isURL(/framaboard/i, 'h')) { this.site = 'board'; }
+    if (this.isURL(/framadate/i, 'h')) { this.site = 'date'; }
+    if (this.isURL(/framacalc/i, 'h')) { this.site = 'calc'; }
+
+    // [site] Exceptions Framapad
+    if (this.isURL('mypads.framapad.org', 'h')
+      || this.isURL('beta3.framapad.org', 'h')) {
+      this.site = 'mypads';
+    }
+    if ((this.isURL(/.framapad/i, 'h') && !this.isURL(/mypads./i, 'h'))
+      || (this.isURL(/mypads.framapad/i, 'h') && this.isURL('/p/'))
+      || (this.isURL(/beta3.framapad/i, 'h') && this.isURL('/p/'))) {
+      this.site = 'etherpad';
+    }
+
+    // MyFrama button
     if (!this.inframe) {
       const bookmarkURL = window.location.href;
       const bookmarkTitle = document.title || bookmarkURL;
@@ -238,24 +413,21 @@ export default {
       ].join('');
     }
 
+    // Footer position refresh on events
     window.addEventListener('click', this.footerPosition);
     window.addEventListener('load', this.footerPosition);
     window.addEventListener('resize', this.footerPosition);
     window.addEventListener('scroll', this.footerPosition);
 
+    // Add [data-*] attributes for CSS
     document.getElementsByTagName('html')[0].setAttribute('data-url', window.location.href);
     document.getElementsByTagName('html')[0].setAttribute('data-inframe', this.inframe);
 
-    const scripts = document.getElementsByTagName('script');
-    for (let i = 0; i < scripts.length; i += 1) {
-      if (scripts[i].getAttribute('src') && scripts[i].getAttribute('src').indexOf('/nav.js') > -1) {
-        this.baseurl = this.l(scripts[i].getAttribute('src').replace('nav.js', ''));
-      }
-    }
-    /* eslint-disable */
-    require('../../config.js');
-    /* eslint-enable */
-    this.log.push(`✔ ☁ config.js ${this.version}`);
+    // Load CSS
+    const fcss = document.createElement('link');
+    fcss.rel = 'stylesheet';
+    fcss.href = this.l('main.css', 'n');
+    document.getElementsByTagName('head')[0].appendChild(fcss);
 
     // Matomo
     analytics(this.site);
@@ -305,6 +477,16 @@ export default {
     rss.href = 'https://rss.framasoft.org';
     rss.title = this.$i18n.t('fnav.sites.rss.d1'); // !? not translated
     document.getElementsByTagName('head')[0].appendChild(rss);
+
+    // Config (WIP)
+    this.modal.info[0] = true;
+    this.modal.info[1] = 'Veggie ipsum';
+    this.modal.info[2] = ['<p>Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. ',
+      'Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip.</p>',
+      '<p>Celery quandong swiss chard chicory earthnut pea potato. ',
+      'Salsify taro catsear garlic gram celery bitterleaf wattle seed collard greens nori. ',
+      'Grape wattle seed kombu beetroot horseradish carrot squash brussels sprout chard.<p>'
+    ].join('');
   },
   methods: {
     text(html) {

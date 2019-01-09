@@ -129,15 +129,13 @@ if (document.getElementById('fnav') === null) {
   fnav.id = 'fnav';
   document.getElementsByTagName('body')[0].insertBefore(fnav, document.getElementsByTagName('body')[0].children[0]);
 }
+// Footer
 if (!window.vuefsPrerender) {
   const ffooter = document.createElement('div');
   ffooter.id = 'ffooter';
+  ffooter.style = 'display: none;';
   document.getElementsByTagName('body')[0].appendChild(ffooter);
 }
-const fcss = document.createElement('link');
-fcss.rel = 'stylesheet';
-fcss.href = '../main.css'; // to replace by absolute link
-document.getElementsByTagName('head')[0].appendChild(fcss);
 
 // Routes
 const router = new VueRouter({

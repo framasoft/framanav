@@ -16,8 +16,15 @@
 #fnav {
   @import "bootstrap-nav";
 }
+
 #ffooter {
   @import "bootstrap-footer";
+}
+
+/* Display nav and footer only when CSS is ready */
+#framanav[style*="display: none"],
+#ffooter[style*="display: none"] {
+  display: block !important;
 }
 
 #framanav.navbar {

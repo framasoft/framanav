@@ -22,6 +22,19 @@ txt:
   campaign: Campagnes
   community: Communauté
   site: Site
+  action:
+  - de télécharger
+  - d’utiliser
+  actionBtn:
+  - télécharger
+  - utiliser
+  - jouer
+  - créer un calc
+  - créer un pad
+  - créer une carte
+  - créer une image
+  - créer un sondage
+
 
 fnav:
   soutenir:
