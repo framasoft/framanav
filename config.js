@@ -46,7 +46,6 @@ switch (n$.site) {
     n$.name = 'Framagora';
     l$ = {
       css: { order: '10234' },
-      optin: ['#email_confirm', '#email'],
       modal: {
         info: [
           'Fermeture de Framagora', `
@@ -250,10 +249,6 @@ switch (n$.site) {
     }
     break;
 
-  case 'drive':
-    l$.js = { video: true };
-    break;
-
   case 'drop':
     l$.js = {
       ext() {
@@ -271,7 +266,6 @@ switch (n$.site) {
 
   case 'dvd':
     l$ = {
-      js: { video: true },
       modal: { don: ['a[href*="iso.framadvd.org"]'] },
     };
     break;
@@ -323,10 +317,6 @@ switch (n$.site) {
     }
     break;
 
-  case 'minetest':
-    l$.js = { video: true };
-    break;
-
   case 'my':
     if (n$.is.url('source=bookmarklet')) {
       n$.inframe = true;
@@ -376,7 +366,6 @@ switch (n$.site) {
   // <framapad> --------------------------------------------------------
   case 'pad':
     l$ = {
-      js: { video: true },
       modal: { don: ['a[href*=".framapad.org/p/"]', 'd’utiliser', 'créer un pad'] },
     };
     break;
@@ -433,12 +422,6 @@ switch (n$.site) {
     break;
     // </framapad> -------------------------------------------------------
 
-  case 'phonie':
-    l$ = {
-      css: { order: '10234' },
-    };
-    break;
-
   case 'piaf':
     l$ = {
       js: {
@@ -478,20 +461,10 @@ switch (n$.site) {
     };
     break;
 
-  case 'soft':
-    l$ = {
-      icons: {
-        fav: 'favicon-violet.png',
-        apple: 'soft.png',
-      },
-    };
-    break;
-
   case 'sphere':
     l$ = {
       js: {
         ext() {
-          jQuery('link[href*=bootstrap-complete]').remove();
           jQuery('#inscription-email').text(function emailReplace() {
             return jQuery(this).text().replace('inscription-framasphere@framalistes.org', 'rt+framasphere@framasoft.org');
           });
@@ -570,7 +543,6 @@ switch (n$.site) {
     l$ = {
       js: {
         ext: true,
-        video: n$.is.url('https://framavox.org/', 'u'),
       },
     };
     break;
@@ -587,19 +559,11 @@ switch (n$.site) {
             'C’est à l’écoute de vos retours que nous allons l’améliorer et le documenter au cours des semaines à venir.',
           ].join(''),
         ],
-        icons: {
-          fav: 'fav_wiki.png',
-          apple: 'wiki.png',
-        },
       };
     } else {
       n$.inframe = n$.is.url('mediamanager.php');
       l$ = {
         alert: ['', ''],
-        icons: {
-          fav: 'fav_wiki2.png',
-          apple: 'wiki2.png',
-        },
       };
     }
     break;
@@ -773,7 +737,7 @@ if (n$.is.url(/(phonie)/i, 'h')) {
   l$.icons.fav = 'favicon-jaune.png';
 }
 
-if (n$.is.url(/(agenda|bag|bee|bin|blog|board|bookin|book|calc|carte|cloud|code|colibri|date|drive|drop|dvd|forms|games|key|lab|lang|libre|link|listes|maestro|memo|mindmap|minetest|news|pack|phonie|piaf|pic|site|slides|sphere|start|stats|status|talk|team|tube|vectoriel|vox|zic)/i, 'h')
+if (n$.is.url(/(agenda|bag|bee|bin|blog|board|bookin|book|calc|carte|cloud|code|colibri|date|drive|drop|dvd|forms|games|key|lab|lang|libre|link|listes|maestro|memo|mindmap|minetest|news|pack|phonie|piaf|pic|site|slides|sphere|start|stats|status|talk|team|tube|vectoriel|vox|wiki|zic)/i, 'h')
   || n$.is.url(/(bot.|contact.|degooglisons-internet|forum.|participer.|soutenir.)/i, 'h')) {
   l$.icons.apple = [n$.site, '.png'].join('');
   l$.icons.fav = ['fav_', n$.site, '.png'].join('');
@@ -782,4 +746,9 @@ if (n$.is.url(/(agenda|bag|bee|bin|blog|board|bookin|book|calc|carte|cloud|code|
 if (n$.is.url(/(pad)/i, 'h')) {
   l$.icons.fav = 'fav_pad.png';
   l$.icons.apple = 'pad.png';
+}
+
+if (n$.is.url(/(framawiki)/i, 'h')) {
+  l$.icons.fav = 'fav_wiki2.png';
+  l$.icons.apple = 'wiki2.png';
 }
