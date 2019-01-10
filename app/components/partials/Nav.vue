@@ -96,59 +96,58 @@
 
     <!-- Alert -->
     <div id="nav-alert"
-      :class="'alert alert-' + alert[1] + ' fade in'"
-      v-show="alert[2] != '' && !alert[0]">
-      <button type="button" class="close" data-dismiss="alert" :title="$t('txt.close')">
+      :class="'alert alert-' + config.alert[0] + ' fade in'"
+      v-if="config.alert[1] !== '' && state.alert">
+      <button type="button" class="close" :title="$t('txt.close')">
         <i aria-hidden="true">×</i><span class="sr-only" v-html="$t('txt.close')"></span>
       </button>
       <div>
-        <p class="text-center" v-html="alert[2]"></p>
+        <p class="text-center" v-html="config.alert[1]"></p>
       </div>
     </div>
 
     <!-- Modal info -->
-    <modal v-model="modal.info[0]"
-      :title="modal.info[1]"
+    <modal v-model="state.modal.info"
+      :title="config.modal.info[0]"
       id="modal-finfo"
       aria-labelledby="modal-finfoLabel"
-      v-show="modal.info[1] !== ''">
+      v-if="config.modal.info[0] !== ''">
       <div slot="header">
-        <button type="button" class="close" @click="modal.info[0] = false;">
+        <button type="button" class="close" @click="state.modal.info = false;">
           <span aria-hidden="true">&times;</span>
           <span class="sr-only" v-html="$t('txt.close')"></span>
         </button>
         <h1 id="modal-finfoLabel"
-          v-html="modal.info[1]"
+          v-html="config.modal.info[0]"
         ></h1>
       </div>
 
-      <div class="clearfix"  id="modal-finfoBody" v-html="modal.info[2]"></div>
+      <div class="clearfix"  id="modal-finfoBody" v-html="config.modal.info[1]"></div>
 
       <div slot="footer">
         <button class="btn"
           v-html="$t('txt.close')"
-          @click="modal.info[0] = false; cookie('w', modal.info[3], true);"
+          @click="state.modal.info = false; cookie('w', config.modal.info[2], true);"
         ></button>
         <button class="btn btn-primary"
           v-html="$t('txt.nevershow')"
-          @click="modal.info[0] = false; cookie('w', modal.info[3], true, modal.info[4]);"
+          @click="state.modal.info = false; cookie('w', config.modal.info[2], true, config.modal.info[3]);"
         ></button>
       </div>
     </modal>
 
     <!-- Modal FAQ -->
-    <modal v-model="modal.faq[0]"
-      :title="modal.faq[1]"
+    <modal v-model="state.modal.faq"
+      :title="$t('fnav.sites.faq.name') + ' ' + name"
       id="modal-fsFAQ"
       aria-labelledby="modal-fsFAQLabel"
       ><!-- v-show="this.$root.f.faq.l.indexOf(this.lname) > -1" -->
       <div slot="header">
-        <button type="button" class="close" @click="modal.info[0] = false;">
+        <button type="button" class="close" @click="state.modal.faq = false;">
           <span aria-hidden="true">&times;</span>
           <span class="sr-only" v-html="$t('txt.close')"></span>
         </button>
-        <h1 id="modal-fsFAQLabel"></h1>
-        <!-- v-html="['d$.f.faq.s', this.name].join(' ')" -->
+        <h1 id="modal-fsFAQLabel" v-html="$t('fnav.sites.faq.name') + ' ' + name"></h1>
       </div>
 
       <div class="clearfix" id="modal-fsFAQBody">
@@ -164,50 +163,52 @@
         </span>
         <button class="btn"
           v-html="$t('txt.close')"
-          @click="modal.faq[0] = false;"
+          @click="state.modal.faq = false;"
         ></button>
       </div>
     </modal>
 
     <!-- Modal don -->
-    <modal v-model="modal.don[0]"
-      :title="$t('fnav.modaldon.t')"
+    <modal v-model="state.modal.don"
+      :title="$t('fnav.modaldon.title')"
       id="modal-soutenir"
       aria-labelledby="modal-soutenirLabel"
-      v-show="modal.don[1] !== ''">
+      v-if="config.modal.don[1] !== ''">
       <div slot="header">
-        <button type="button" class="close" @click="modal.don[0] = false;">
+        <button type="button" class="close" @click="state.modal.don = false;">
           <span aria-hidden="true">&times;</span>
           <span class="sr-only" v-html="$t('txt.close')"></span>
         </button>
         <h1 id="modal-soutenirLabel"
-          v-html="$t('fnav.modaldon.t')"
+          v-html="$t('fnav.modaldon.title')"
         ></h1>
       </div>
 
       <div class="clearfix" id="modal-soutenirBody"
-        v-html="$t('fnav.modaldon.desc').replace('%c$.modal.don[1]%', modal.don[2])">
+        v-html="$t('fnav.modaldon.desc').replace('%modal.don[1]%', config.modal.don[1])">
       </div>
 
       <div slot="footer">
         <div class="clearfix">
-          <p class="col-md-12 text-center">',
-            <a target="_blank" href="soutenir ?f=modal&s= this.site"
+          <p class="col-md-12 text-center">
+            <a target="_blank" :href="$root.link.soutenir + '?f=modal&s=' + site"
               class="btn btn-soutenir btn-block">
-              n.html.i(d$.meta.soutenir.i), ' ', d$.meta.modaldon.b1, n.html.newWindow()
+              <i :class="'fa fa-fw ' + $root.icon.soutenir" aria-hidden="true"></i>
+              <span v-html="$t('fnav.modaldon.b1')"></span>
+              <span class="sr-only" v-html="'(' + $t('txt.newWindow') + ')'"></span>
             </a>
           </p>
           <p class="col-md-6 text-center">
             <a id="modal-dl" href="javascript:void(0);"
               class="btn btn-xs btn-default btn-block">
-              d$.meta.modaldon.b3.replace('%c$.modal.don[2]%', c$.modal.don[2])
+              <span v-html="$t('fnav.modaldon.b3').replace('%modal.don[2]%', config.modal.don[2])"></span>
             </a>
           </p>
           <p class="col-md-6 text-center">
             <a id="modal-dl2" href="javascript:void(0);"
               class="btn btn-xs btn-default btn-block"
-              style="line-height: 36px;">
-                d$.meta.modaldon.b4
+              style="line-height: 36px;"
+              v-html="$t('fnav.modaldon.b4')">
             </a>
           </p>
         </div>
@@ -218,7 +219,7 @@
     <portal target-el="#ffooter">
       <footer id="framafooter"
         class="clearfix hidden-print"
-        :style="footerStyle"
+        :style="state.footer"
         role="contentinfo"
         v-show="!inframe">
         <div class="container">
@@ -309,7 +310,7 @@
 
 <script>
 import { Btn, Dropdown, Navbar, NavbarNav, Popover, Tooltip, Modal, Alert } from 'uiv';
-import { text, analytics } from '../../tools';
+import { text, analytics, mergeObj } from '../../tools';
 export default {
   components: {
     Btn, Dropdown, Navbar, NavbarNav, Popover, Tooltip, Modal, Alert
@@ -323,7 +324,6 @@ export default {
       version: '190108', // n° version de la nav
       inframe: window.top.location !== window.self.document.location,
       myframa: 'https://my.framasoft.org',
-      footerStyle: 'position: relative',
       host: window.location.host,
       name: '',
       lname: '',
@@ -341,18 +341,28 @@ export default {
       storage: {},
       log: [],
       // Global config
-      modal: {
-        don: [false, '', '', '', 604800000],
-        /** [show, querySelector or 'onstart', text action, text actionBtn, cookie duration (7 days)] */
-        faq: [false],
-        /** [show] */
-        info: [false, '', '', 'modal-info', 604800000],
-        /** [show, title, text, cookie name, cookie duration (7 days)] */
+      config: {
+        modal: {
+          don: ['', '', '', 604800000],
+          /** [querySelector or 'onstart', text action, text actionBtn, cookie duration (7 days)] */
+          info: ['', '', 'modal-info', 604800000],
+          /** [title, text, cookie name, cookie duration] */
+        },
+        alert: ['black', '', 'nav-alert', 604800000],
+        /** [color (from bootstrap), text, cookie name, cookie duration] */
+        optin: ['', '', 'opt-in', 604800000],
+        /** [email1 selector, email2, cookie name, cookie duration] */
       },
-      alert: [false, 'black', '', 'nav-alert', 604800000],
-      /** [show, color (from bootstrap), text, cookie name, cookie duration (7 days)] */
-      optin: [false, '', '', 'opt-in', 604800000],
-      /** [show, email1 selector, email2, cookie name, cookie duration (7 days)] */
+      state: {
+        footer: 'position: relative',
+        modal: {
+          don: false,
+          faq: false,
+          info: false,
+        },
+        alert: false,
+        optin: false,
+      },
     };
   },
   mounted() {
@@ -479,14 +489,10 @@ export default {
     document.getElementsByTagName('head')[0].appendChild(rss);
 
     // Config (WIP)
-    this.modal.info[0] = true;
-    this.modal.info[1] = 'Veggie ipsum';
-    this.modal.info[2] = ['<p>Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. ',
-      'Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip.</p>',
-      '<p>Celery quandong swiss chard chicory earthnut pea potato. ',
-      'Salsify taro catsear garlic gram celery bitterleaf wattle seed collard greens nori. ',
-      'Grape wattle seed kombu beetroot horseradish carrot squash brussels sprout chard.<p>'
-    ].join('');
+    mergeObj(this.config, l$);
+    this.state.modal.info = true;
+    this.state.modal.don = true;
+    this.state.alert = true;
   },
   methods: {
     text(html) {
@@ -535,11 +541,11 @@ export default {
         ' credits'].indexOf(key) > -1);
     },
     footerPosition() {
-      this.footerStyle = (document.body.scrollHeight < window.innerHeight )
+      this.state.footer = (document.body.scrollHeight < window.innerHeight )
         ? 'position: absolute'
         : 'position: relative';
       setTimeout(() => { // au cas où une animation redimentionne le body
-        this.footerStyle = (document.body.scrollHeight < window.innerHeight )
+        this.state.footer = (document.body.scrollHeight < window.innerHeight )
           ? 'position: absolute'
           : 'position: relative';
       }, 800);

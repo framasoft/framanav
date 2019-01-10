@@ -53,14 +53,14 @@ fnav:
   modaldon:
     title: Soutenez Framasoft
     desc: '
-      <p>Vous êtes sur le point %c$.modal.don[1]% une ressource <b>libre</b> issue de la quarantaine de projets du réseau Framasoft.</p>
+      <p>Vous êtes sur le point %modal.don[1]% une ressource <b>libre</b> issue de la quarantaine de projets du réseau Framasoft.</p>
       <p>Cette ressource est <b>gratuite</b> (et le sera tant que nous existerons) parce que <b>Framasoft est une association d’intérêt général à but non lucratif</b> dont l’objectif est justement la diffusion du logiciel libre et sa culture au plus large public.
       <p>Mais tout ceci est rendu possible parce que Framasoft est <b>soutenue par les dons (défiscalisables) de ses utilisateurs</b>.</p>
       <p>Merci de prendre quelques minutes en nous aidant à pérenniser et développer notre action.</p>
       '
     b1: Je veux faire un don<br /> à l’association Framasoft
     b2: Je veux participer.<br />Par où on commence ?
-    b3: Non merci, je souhaite<br>seulement <b>%c$.modal.don[2]%</b>
+    b3: Non merci, je souhaite<br>seulement <b>%modal.don[2]%</b>
     b4: Je soutiens déjà Framasoft
   optin:
     t: J’accepte que Framasoft m’envoie à cette adresse des informations importantes

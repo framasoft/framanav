@@ -15,6 +15,7 @@
 
 #fnav {
   @import "bootstrap-nav";
+  @import "global";
 }
 
 #ffooter {
@@ -209,8 +210,8 @@
 
     #fs_services .dropdown-menu .fs_diolist,
     #fs_services .dropdown-menu .dropdown-header,
-    #fs_about .dropdown-menu .fs_dio,
-    #fs_about .dropdown-menu .fs_cuo,
+    #fs_about .dropdown-menu .fs_dio2,
+    #fs_about .dropdown-menu .fs_cuo2,
     #fs_about .dropdown-menu .dropdown-header {
       width: 100%;
       text-align: center;
@@ -353,16 +354,17 @@
   font-size:14px !important;
 }
 
-#modal-soutenir #lldemars-framasoft { /* lldemars-framasoft.png */
-  background-image: url(../img/soutenir.png);
-  float:right;
-  width:150px;
-  height:243px;
-  margin-left:15px
-}
+.modal-backdrop { // Outside #fnav (no bootstrap)
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #000;
 
-.modal-backdrop {
-  z-index: 1029 !important;
+  &.fade { opacity: 0; }
+  &.in { opacity: 0.5; }
 }
 
 /* --- on s'assure on a bien une nav collée en haut en cas de petit écran --- */
