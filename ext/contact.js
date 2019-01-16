@@ -163,7 +163,7 @@ jQuery(document).ready(() => {
       const f$target = jQuery(this).attr('href');
       switch (f$target) {
         case '#general':
-          jQuery('#concerne option:gt(6)').remove();
+          jQuery('#concerne option:gt(7)').remove();
           jQuery('#concerne').parent().parent().show();
           break;
         case '#aide':
@@ -225,6 +225,11 @@ jQuery(document).ready(() => {
           jQuery('#menu a[href="#general"]').trigger('click');
           jQuery('#concerne option').prop('selected', false);
           jQuery('#concerne option[value$="presse"]').prop('selected', true);
+          break;
+        case '#newsletter':
+          jQuery('#menu a[href="#general"]').trigger('click');
+          jQuery('#concerne option').prop('selected', false);
+          jQuery('#concerne option[value$="newsletter"]').prop('selected', true);
           break;
         // Framaprojets
         default:
