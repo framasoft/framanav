@@ -229,7 +229,7 @@ jQuery(document).ready(() => {
         case '#newsletter':
           jQuery('#menu a[href="#general"]').trigger('click');
           jQuery('#concerne option').prop('selected', false);
-          jQuery('#concerne option[value$="newsletter"]').prop('selected', true);
+          jQuery('#concerne option[value$="Newsletter"]').prop('selected', true);
           break;
         // Framaprojets
         default:
