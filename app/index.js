@@ -136,6 +136,12 @@ if (!window.vuefsPrerender) {
   ffooter.style = 'display: none;';
   document.getElementsByTagName('body')[0].appendChild(ffooter);
 }
+// Optin
+if (!window.vuefsPrerender) {
+  const foptin = document.createElement('div');
+  foptin.id = 'foptin';
+  document.getElementsByTagName('body')[0].appendChild(foptin);
+}
 
 // Routes
 const router = new VueRouter({

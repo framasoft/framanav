@@ -22,6 +22,11 @@
   @import "bootstrap-footer";
 }
 
+#foptin {
+  @import "bootstrap-optin";
+  @import "frama/alerts";
+}
+
 /* Display nav and footer only when CSS is ready */
 #framanav[style*="display: none"],
 #ffooter[style*="display: none"] {

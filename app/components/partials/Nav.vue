@@ -114,7 +114,7 @@
       v-if="config.modal.info[0] !== ''">
       <div slot="header">
         <button type="button" class="close" @click="state.modal.info = false;">
-          <span aria-hidden="true">&times;</span>
+          <span aria-hidden="true">×</span>
           <span class="sr-only" v-html="$t('txt.close')"></span>
         </button>
         <h1 id="modal-finfoLabel"
@@ -144,7 +144,7 @@
       ><!-- v-show="this.$root.f.faq.l.indexOf(this.lname) > -1" -->
       <div slot="header">
         <button type="button" class="close" @click="state.modal.faq = false;">
-          <span aria-hidden="true">&times;</span>
+          <span aria-hidden="true">×</span>
           <span class="sr-only" v-html="$t('txt.close')"></span>
         </button>
         <h1 id="modal-fsFAQLabel" v-html="$t('fnav.sites.faq.name') + ' ' + name"></h1>
@@ -173,10 +173,11 @@
       :title="$t('fnav.modaldon.title')"
       id="modal-soutenir"
       aria-labelledby="modal-soutenirLabel"
-      v-if="config.modal.don[1] !== ''">
+      v-if="config.modal.don[1] !== ''"
+      @hide="donClose();">
       <div slot="header">
         <button type="button" class="close" @click="state.modal.don = false;">
-          <span aria-hidden="true">&times;</span>
+          <span aria-hidden="true">×</span>
           <span class="sr-only" v-html="$t('txt.close')"></span>
         </button>
         <h1 id="modal-soutenirLabel"
@@ -199,21 +200,52 @@
             </a>
           </p>
           <p class="col-md-6 text-center">
-            <a id="modal-dl" href="javascript:void(0);"
-              class="btn btn-xs btn-default btn-block">
+            <button id="modal-dl"
+              :href="state.modal.donTarget"
+              class="btn btn-xs btn-default btn-block"
+              @click="state.modal.don = false;">
               <span v-html="$t('fnav.modaldon.b3').replace('%modal.don[2]%', config.modal.don[2])"></span>
-            </a>
+            </button>
           </p>
           <p class="col-md-6 text-center">
-            <a id="modal-dl2" href="javascript:void(0);"
+            <button id="modal-dl2"
               class="btn btn-xs btn-default btn-block"
               style="line-height: 36px;"
+              @click="state.modal.don = false; storage.modal.don = [true, 31536000000]"
               v-html="$t('fnav.modaldon.b4')">
-            </a>
+            </button>
           </p>
         </div>
       </div>
     </modal>
+
+    <!-- Optin -->
+    <portal target-el="#foptin">
+      <div class="alert alert-danger fade in"
+        id="fs_opt-in_error"
+        v-if="state.optinEmail !== '' && !isEmail(state.optinEmail)">
+        <p v-html="$t('fnav.optin.e2').replace('%f$Email%', '<b>' + state.optinEmail + '</b>')"></p>
+      </div>
+      <div class="alert alert-success fade in"
+        id="fs_opt-in_confirm"
+        v-if="state.optinSent">
+        <p v-html="$t('fnav.optin.s1').replace('%f$Email%', state.optinEmail)"></p>
+      </div>
+      <div class="alert alert-info fade in"
+        id="fs_opt-in"
+        v-if="state.optin && !state.optinSent">
+        <input type="checkbox" id="fs_opt-in_checkbox" v-model="state.optinChecked" :value="state.optinChecked" @change="subscribe()">
+        <label for="fs_opt-in_checkbox" v-html="$t('fnav.optin.t')"></label>
+        <br>
+        <small>
+          <span v-html="$t('fnav.optin.d1')"></span>&nbsp;
+          <a :href="$root.link.newsletter" id="link-opt-in" target="_blank" >
+            <span v-html="$t('fnav.optin.d2')"></span>
+            <span class="sr-only" v-html="'(' + $t('txt.newWindow') + ')'"></span>
+          </a>
+        </small>
+      </div>
+    </portal>
 
     <!-- Footer -->
     <portal target-el="#ffooter">
@@ -338,7 +370,7 @@ export default {
         chrome: !!window.chrome && !(!!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0),
         ie: /*@cc_on!@*/false || !!document.documentMode, // eslint-disable-line
       },
-      storage: {},
+      storage: this.storageInit(),
       log: [],
       // Global config
       config: {
@@ -350,18 +382,22 @@ export default {
         },
         alert: ['black', '', 'nav-alert', 604800000],
         /** [color (from bootstrap), text, cookie name, cookie duration] */
-        optin: ['', '', 'opt-in', 604800000],
-        /** [email1 selector, email2, cookie name, cookie duration] */
+        optin: ['', 'opt-in', 604800000],
+        /** [email selector, cookie name, cookie duration] */
       },
       state: {
         footer: 'position: relative',
         modal: {
           don: false,
+          donTarget: '#SoutenirFramasoft',
           faq: false,
           info: false,
         },
         alert: false,
         optin: false,
+        optinChecked: false,
+        optinEmail: '',
+        optinSent: false,
       },
     };
   },
@@ -490,9 +526,11 @@ export default {
 
     // Config (WIP)
     mergeObj(this.config, l$);
-    this.state.modal.info = true;
-    this.state.modal.don = true;
+    // this.state.modal.info = true;
+    // this.state.modal.don = true;
     this.state.alert = true;
+    this.state.optin = true;
+    document.querySelector(this.config.optin[0]).after(document.getElementById('foptin'));
   },
   methods: {
     text(html) {
@@ -549,6 +587,114 @@ export default {
           ? 'position: absolute'
           : 'position: relative';
       }, 800);
+    },
+    donClose() {
+      this.cookie('w', 'dondl', true, this.storage.modal.don[1]);
+      window.location.href= this.state.modal.donTarget;
+    },
+    subscribe() {
+      this.state.optinEmail
+        = (this.config.optin[0] !== '' && document.querySelector(this.config.optin[0]) !== null)
+        ? document.querySelector(this.config.optin[0]).value
+        : '';
+      if (this.isEmail(this.state.optinEmail)) {
+        fetch('https://contact.framasoft.org/php_list/lists/?p=subscribe&id=2', {
+          method: 'POST',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: [
+            'makeconfirmed=1&htmlemail=1&list%5B5%5D=signup&listname%5B5%5D=Newsletter&email=',
+            this.state.optinEmail.replace('@', '%40'),
+            '&VerificationCodeX=&subscribe=Abonnement'
+          ].join(''), // Paramètres habituellement passés dans le formulaire
+        }).catch((err) => {
+          console.error(err); // eslint-disable-line
+        });
+        this.state.optinSent = true;
+      }
+      console.log(this.state.optinChecked); // eslint-disable-line
+      this.state.optinChecked = false;
+    },
+    /* Storage */
+    storageInit() {
+      return { modal: { don: [false, 604800000] }, optin: [false, 604800000] };
+    },
+    storageReady(callback) {
+      if (document.getElementById('framanav_cortex')) {
+        if (Object.keys(this.storage).length > 0) {
+          callback();
+        } else {
+          window.setTimeout(this.storageReady.bind(null, callback), 100);
+        }
+      }
+    },
+    cortex(action, msg) {
+      const m = msg;
+      switch (action) {
+        case 'o': // output to Minus
+          try {
+            window.parent.postMessage(localStorage.framanav, '*');
+          } catch (e) {
+            window.parent.postMessage(JSON.stringify(this.storageInit()), '*');
+          }
+          break;
+        case 'i': // input in localStorage
+          try {
+            localStorage.setItem('framanav', JSON.stringify(m));
+          } catch (e) {
+            // Pas accès au localStorage
+          }
+          break;
+        default: // init
+          try {
+            if (localStorage.framanav === undefined) {
+              this.cortex('i', this.storageInit());
+            }
+          } catch (e) {
+            // Pas accès au localStorage
+          }
+          this.cortex('o');
+
+          window.onmessage = function listenMinus(event) {
+            /* if(event.origin !== 'frama.web') {
+              return;
+            } */
+            const payload = JSON.parse(event.data);
+            if (payload.framanav !== this.storageInit()
+              && Object.keys(payload.framanav).length) {
+              this.mergeObj(this.storage, payload.framanav);
+              this.cortex('i', this.storage);
+            }
+            this.cortex('o');
+          };
+          break;
+      }
+    },
+    minus(action, msg) {
+      const m = msg; const c = document.getElementById('framanav_cortex');
+      if (c) {
+        switch (action) {
+          case 'i': { // input in n$.storage
+            this.storage = JSON.parse(m);
+            break;
+          }
+          case 'o': { // output to Cortex
+            c.contentWindow.postMessage(JSON.stringify({ framanav: m }), '*');
+            break;
+          }
+          default: { // init
+            this.minus('o', this.storage);
+
+            const eventMethod = (window.addEventListener) ? 'addEventListener' : 'attachEvent';
+            const eventer = window[eventMethod];
+            const messageEvent = (eventMethod === 'attachEvent') ? 'onmessage' : 'message';
+            eventer(messageEvent, e => this.minus('i', e.data), false);
+            break;
+          }
+        }
+      }
     },
     // Boolean functions
     isURL(string, location) {
