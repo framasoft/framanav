@@ -95,16 +95,13 @@
     </a>
 
     <!-- Alert -->
-    <div id="nav-alert"
-      :class="'alert alert-' + config.alert[0] + ' fade in'"
-      v-if="config.alert[1] !== '' && state.alert">
-      <button type="button" class="close" :title="$t('txt.close')">
-        <i aria-hidden="true">×</i><span class="sr-only" v-html="$t('txt.close')"></span>
-      </button>
-      <div>
-        <p class="text-center" v-html="config.alert[1]"></p>
-      </div>
-    </div>
+    <alert id="nav-alert"
+      :type="config.alert[0]"
+      v-if="config.alert[1] !== '' && state.alert"
+      dismissible
+      @dismissed="state.alert = false; cookie('w', config.alert[2], true, config.alert[3]);">
+      <div><p class="text-center" v-html="config.alert[1]"></p></div>
+    </alert>
 
     <!-- Modal info -->
     <modal v-model="state.modal.info"
@@ -113,7 +110,8 @@
       aria-labelledby="modal-finfoLabel"
       v-if="config.modal.info[0] !== ''">
       <div slot="header">
-        <button type="button" class="close" @click="state.modal.info = false;">
+        <button type="button" class="close"
+          @click="state.modal.info = false; cookie('w', config.modal.info[2], true);">
           <span aria-hidden="true">×</span>
           <span class="sr-only" v-html="$t('txt.close')"></span>
         </button>
@@ -351,11 +349,19 @@ export default {
     Popover, Tooltip
   },
   data() {
+    const bookmarkURL = window.location.href;
+    const bookmarkTitle = document.title || bookmarkURL;
+
     return {
       // Init nav
       version: '190108', // n° version de la nav
       inframe: window.top.location !== window.self.document.location,
-      myframa: 'https://my.framasoft.org',
+      myframa: [
+          'https://my.framasoft.org/?post=', encodeURIComponent(bookmarkURL),
+          '&title=', encodeURIComponent(bookmarkTitle),
+          '&description=', encodeURIComponent(document.getSelection()),
+          '&source=bookmarklet',
+        ].join(''),
       host: window.location.host,
       name: '',
       lname: '',
@@ -447,18 +453,6 @@ export default {
       this.site = 'etherpad';
     }
 
-    // MyFrama button
-    if (!this.inframe) {
-      const bookmarkURL = window.location.href;
-      const bookmarkTitle = document.title || bookmarkURL;
-      this.myframa = [
-        'https://my.framasoft.org/?post=', encodeURIComponent(bookmarkURL),
-        '&title=', encodeURIComponent(bookmarkTitle),
-        '&description=', encodeURIComponent(document.getSelection()),
-        '&source=bookmarklet',
-      ].join('');
-    }
-
     // Footer position refresh on events
     window.addEventListener('click', this.footerPosition);
     window.addEventListener('load', this.footerPosition);
@@ -526,11 +520,37 @@ export default {
 
     // Config (WIP)
     mergeObj(this.config, l$);
-    // this.state.modal.info = true;
-    // this.state.modal.don = true;
-    this.state.alert = true;
-    this.state.optin = true;
-    document.querySelector(this.config.optin[0]).after(document.getElementById('foptin'));
+
+    /** Alert */
+    if (this.config.alert[1] !== '') {
+      this.state.alert = !this.cookie('r', this.config.alert[2]);
+    }
+
+    /** Modal info */
+    if (this.config.modal.info[0] !== '') {
+      this.state.modal.info = !this.cookie('r', this.config.modal.info[2]);
+    }
+
+    /** Modal don */
+    if (this.config.modal.don[0] !== '') {
+      if (this.storage.modal.don[0]) {
+        // Global cookie send locally
+        this.cookie('w', this.config.modal.don[1], true, this.storage.modal.don[2]);
+      }
+      this.state.modal.don = !this.cookie('r', 'dondl');
+    }
+
+    /** Opt-in */
+    if (this.config.optin[0] !== '') {
+      if (this.storage.optin[0]) {
+        // Global cookie send locally
+        this.cookie('w', this.config.optin[1], true, this.storage.optin[2]);
+      }
+      // Move box next to email input
+      document.querySelector(this.config.optin[0]).after(document.getElementById('foptin'));
+      // Display checkbox
+      this.state.optin = (!this.cookie('r', 'opt-in'));
+    }
   },
   methods: {
     text(html) {
@@ -598,6 +618,7 @@ export default {
         ? document.querySelector(this.config.optin[0]).value
         : '';
       if (this.isEmail(this.state.optinEmail)) {
+        // Subscribe
         fetch('https://contact.framasoft.org/php_list/lists/?p=subscribe&id=2', {
           method: 'POST',
           mode: 'cors',
@@ -613,8 +634,13 @@ export default {
           console.error(err); // eslint-disable-line
         });
         this.state.optinSent = true;
+
+        // Never ask again
+        this.cookie('w', this.config.optin[1], true, this.config.optin[2]);
+        this.storage.optin = [true, this.config.optin[2]];
+        this.minus('o', this.storage);
       }
-      console.log(this.state.optinChecked); // eslint-disable-line
+      // Not a valid email
       this.state.optinChecked = false;
     },
     /* Storage */
