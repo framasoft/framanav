@@ -94,6 +94,14 @@
       <span class="sr-only" v-html="text($t('fnav.soutenir.name'))"></span>
     </a>
 
+    <!-- Cortex -->
+    <iframe
+      id="framanav_cortex"
+      src="https://framasoft.org/nav/html/cortex.html"
+      aria-hidden="true"
+      style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;"
+    ></iframe>
+
     <!-- Alert -->
     <alert id="nav-alert"
       :type="config.alert[0]"
@@ -408,6 +416,12 @@ export default {
     };
   },
   mounted() {
+    if (this.isURL(/nav\/html\/cortex\.html$/, 'u')) {
+      this.cortex();
+    } else {
+      this.minus();
+    }
+
     this.name = this.site[0].toUpperCase() + this.site.slice(1).replace('.framasoft', ''); // Nom du service
     this.lname = this.name.toLowerCase();
 

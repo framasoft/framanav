@@ -85,9 +85,9 @@ fnav:
   sites:
     libre:
       doc: https://docs.framasoft.org/fr/framalibre
-      d0: Annuaire de logiciels libres
-      t1: L’annuaire de logiciels libres
-      d1: Plus de 1600 logiciels classés, testés et commentés dans le projet historique et fondateur de Framasoft. On y trouve également des tutoriels et des articles de fond.
+      d0: Annuaire du libre
+      t1: L’annuaire du libre
+      d1: 'Le projet historique de Framasoft : des centaines de logiciels et de contenus culturels libres, classés, testés et présentés dans des fiches synthétiques.'
     key:
       doc: https://docs.framasoft.org/fr/framakey
       d0: Clé usb
