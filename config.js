@@ -754,7 +754,7 @@ if (n$.is.url(/(framawiki)/i, 'h')) {
 }
 
 /* Bandeau urgence */
-if (/(contact|degooglisons-internet|soft)/.test(n$.site)) {
+if (/(contact|degooglisons-internet|soft|listes)/.test(n$.site)) {
   l$.alert = [
     'warning',
     `Framalistes indisponible&nbsp;: victime de son succès, nous allons migrer Framalistes 
