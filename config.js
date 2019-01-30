@@ -753,7 +753,7 @@ if (n$.is.url(/(framawiki)/i, 'h')) {
   l$.icons.apple = 'wiki2.png';
 }
 
-/* Bandeau urgence */
+/* Bandeau urgence
 if (/(contact|degooglisons-internet|soft|listes)/.test(n$.site)) {
   l$.alert = [
     'warning',
@@ -764,3 +764,4 @@ if (/(contact|degooglisons-internet|soft|listes)/.test(n$.site)) {
     <a href="https://status.framasoft.org/incident/458">+ d’infos</a>`,
   ];
 }
+*/
