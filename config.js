@@ -757,10 +757,11 @@ if (n$.is.url(/(framawiki)/i, 'h')) {
 if (/(contact|degooglisons-internet|soft|listes)/.test(n$.site)) {
   l$.alert = [
     'warning',
-    `<strong>Framalistes indisponible&nbsp;:</strong> victime de son succès, nous allons migrer Framalistes 
-    vers un serveur plus adapté, à partir du <strong>mardi 29/01/2019 à 21h</strong> (UTC+1).
-    Le service devrait être coupé pendant environ 24h. Vos emails seront traités 
-    à l’issue de cette coupure. 
+    `<strong>Framalistes indisponible&nbsp;:</strong> victime de son succès,
+    nous allons migrer Framalistes vers un serveur plus adapté, à partir du
+    <strong>mardi 29/01/2019 à 21h</strong> (UTC+1).
+    Le service devrait être coupé pendant environ 24h. Vos emails seront traités
+    à l’issue de cette coupure.
     <a href="https://status.framasoft.org/incident/458">+ d’infos</a>`,
   ];
 }
