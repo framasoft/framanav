@@ -232,13 +232,6 @@ switch (n$.site) {
     l$.js = { b$: 'html' };
     break;
 
-  case 'contact':
-    l$ = {
-      js: { ext: true },
-      optin: ['#wpcf7-f24-p5-o1 .wpcf7-email'],
-    };
-    break;
-
   case 'date':
     l$.js = { ext: n$.is.url('framadate.org', 'h') };
     if (n$.is.lang('fr')) {
