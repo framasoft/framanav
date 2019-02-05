@@ -136,7 +136,7 @@
     },
     "dio": {
       "p": "All services",
-      "l": "https://degooglisons-internet.org/list/?l=en",
+      "l": "https://degooglisons-internet.org/en/list",
       "d0": "List of services",
       "t1": "List of services",
       "d1": "List of all the services we offer classified by usage, with a search bar to help you find the one that meets your needs."
@@ -277,12 +277,9 @@
       "t1": "Framasoft on Facebook (we know it is very bad…)",
       "d1": "Bien que Facebook ne soit pas libre, Framasoft y a un compte afin de sensibiliser le public qui ne connait pas le libre là où il se trouve.<br>Nous vous invitons évidemment à <b>nous suivre plutôt sur Diaspora*</b>, mais on ne vous en voudra pas si vous le faites sur Facebook 😉"
     },
-    "gplus": {
-      "t1": "Framasoft on Google+ (shame on us)",
-      "d1": "Bien que Google+ ne soit pas libre, Framasoft y a un compte afin de sensibiliser le public qui ne connait pas le libre là où il se trouve.<br>Nous vous invitons évidemment à <b>nous suivre plutôt sur Diaspora*</b>, mais on ne vous en voudra pas si vous le faites sur Google+ (ou alors juste un peu 😉)"
-    },
     "newsletter": {
       "s": "Newsletter",
+      "l": "https://contact.framasoft.org/en/newsletter",
       "t1": "Newsletter",
       "d1": "Join <strong>130 000</strong> registered people on our newsletter."
     },
@@ -319,6 +316,7 @@
     },
     "contact": {
       "s": "Contact us",
+      "l": "https://contact.framasoft.org/en/",
       "t1": "Contact Framasoft",
       "d1": "Do you wish to contact us?"
     },
@@ -336,6 +334,7 @@
     },
     "aide": {
       "s": "Help"
+      "l": "https://contact.framasoft.org/en/#aide",
     },
     "legals": {
       "s": "Legals",

@@ -739,8 +739,8 @@
       "i": "fa-cloud-upload",
       "l": "https://framadrive.org",
       "git": "https://framagit.org/framasoft/framadrive",
-      "soft": "Owncloud",
-      "src": "https://github.com/owncloud/",
+      "soft": "Nextcloud",
+      "src": "https://github.com/nextcloud",
       "cloud": "https://framacloud.org/fr/cultiver-son-jardin/nextcloud.html",
       "doc": "https://docs.framasoft.org/fr/nextcloud/",
 
@@ -930,7 +930,7 @@
       "a": "en",
       "c": "f",
       "i": "fa-envelope-o",
-      "l": "https://contact.framasoft.org/newsletter",
+      "l": "https://contact.framasoft.org/fr/newsletter",
 
       "t1": "Lettre d’informations",
       "d1": "Rejoignez <b>nos 130 000</b> abonnés à notre lettre d’informations."
@@ -1005,7 +1005,7 @@
       "s": "Nous contacter",
       "c": "o",
       "i": "fa-envelope",
-      "l": "https://contact.framasoft.org",
+      "l": "https://contact.framasoft.org/fr/",
 
       "t1": "Contacter Framasoft",
       "d1": "Vous souhaitez prendre contact avec nous ?"
@@ -1039,13 +1039,13 @@
       "a": "abbr",
       "c": "o",
       "i": "fa-question-circle",
-      "l": "https://contact.framasoft.org/foire-aux-questions/"
+      "l": "https://contact.framasoft.org/fr/faq/"
     },
     "aide": {
       "s": "Aide",
       "c": "o",
       "i": "fa-life-ring",
-      "l": "https://contact.framasoft.org/#aide"
+      "l": "https://contact.framasoft.org/fr/#aide"
     },
     "legals": {
       "s": "Mentions légales",
