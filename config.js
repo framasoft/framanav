@@ -253,7 +253,6 @@ switch (n$.site) {
         $('#delete-day option[value="7"]').append(' (max 200Mo)');
         $('#delete-day option[value="1"]').append(' (max 500Mo)');
       },
-      video: true,
     };
     break;
 
@@ -286,7 +285,6 @@ switch (n$.site) {
 
   case 'link':
     l$ = {
-      js: { video: true },
       modal: {
         don: ['onstart', 'd’utiliser', ['utiliser ', n$.name].join('')],
       },
@@ -301,7 +299,6 @@ switch (n$.site) {
 
   case 'mindmap':
     l$ = {
-      js: { video: true },
       css: { b$: false },
       optin: ['#user #email'],
     };
@@ -433,7 +430,6 @@ switch (n$.site) {
 
   case 'pic':
     l$ = {
-      js: { video: true },
       modal: { don: ['onstart', 'd’utiliser', ['utiliser ', n$.name].join('')] },
       host: 'soyoustart',
     };
@@ -509,14 +505,6 @@ switch (n$.site) {
     };
     break;
 
-  case 'tube':
-    n$.inframe = n$.is.url('/embed_player');
-    l$ = {
-      js: { video: true },
-      host: 'ovh',
-    };
-    break;
-
   case 'vectoriel':
     if (n$.is.url('svg-editor')) { // Dans SVG-Editor
       l$ = {
@@ -526,7 +514,6 @@ switch (n$.site) {
       };
     } else {
       l$ = {
-        js: { video: true },
         modal: { don: ['a[href$="svg-editor.html"]', 'd’utiliser', 'créer une image'] },
       };
     }
