@@ -178,7 +178,7 @@ switch (n$.site) {
                   } else {
                     jQuery('#lisez-bordel').hide();
                   }
-                }) 
+                })
                 .after(`
                 <p id="lisez-bordel" class="alert alert-warning" style="display: none;">
                   Veuillez saisir votre identifiant et non votre adresse email
