@@ -170,6 +170,20 @@ switch (n$.site) {
               'a[href^="/?controller=UserViewController&action=external"]',
               'input[name="is_ldap_user"]'].join())
               .parent().hide();
+            if (/(controller=PasswordResetController|controller=AuthController)/.test(window.location.href)) {
+              jQuery('#form-username')
+                .on('keyup', () => {
+                  if (/@/.test(jQuery('#form-username').val())) {
+                    jQuery('#lisez-bordel').show();
+                  } else {
+                    jQuery('#lisez-bordel').hide();
+                  }
+                }) 
+                .after(`
+                <p id="lisez-bordel" class="alert alert-warning" style="display: none;">
+                  Veuillez saisir votre identifiant et non votre adresse email
+                </p>`);
+            }
           },
         },
         css: { b$: false },
