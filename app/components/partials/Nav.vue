@@ -349,6 +349,7 @@
 <script>
 import { Btn, Dropdown, Navbar, NavbarNav, Popover, Tooltip, Modal, Alert } from 'uiv';
 import { text, analytics, mergeObj } from '../../tools';
+import { siteConfig } from '../../config';
 export default {
   components: {
     Btn, Dropdown, Navbar, NavbarNav, Popover, Tooltip, Modal, Alert
@@ -416,6 +417,13 @@ export default {
     };
   },
   mounted() {
+    const html = document.getElementsByTagName('html');
+    setInterval(() => {
+      if (html[0].getAttribute('lang') && this.$i18n.locale !== html[0].getAttribute('lang')) {
+        this.$i18n.locale = html[0].getAttribute('lang');
+      }
+    }, 1000);
+
     if (this.isURL(/nav\/html\/cortex\.html$/, 'u')) {
       this.cortex();
     } else {
@@ -460,11 +468,13 @@ export default {
     if (this.isURL('mypads.framapad.org', 'h')
       || this.isURL('beta3.framapad.org', 'h')) {
       this.site = 'mypads';
+      this.name = 'Framapad';
     }
     if ((this.isURL(/.framapad/i, 'h') && !this.isURL(/mypads./i, 'h'))
       || (this.isURL(/mypads.framapad/i, 'h') && this.isURL('/p/'))
       || (this.isURL(/beta3.framapad/i, 'h') && this.isURL('/p/'))) {
       this.site = 'etherpad';
+      this.name = 'Framapad';
     }
 
     // Footer position refresh on events
@@ -474,14 +484,8 @@ export default {
     window.addEventListener('scroll', this.footerPosition);
 
     // Add [data-*] attributes for CSS
-    document.getElementsByTagName('html')[0].setAttribute('data-url', window.location.href);
-    document.getElementsByTagName('html')[0].setAttribute('data-inframe', this.inframe);
-
-    // Load CSS
-    const fcss = document.createElement('link');
-    fcss.rel = 'stylesheet';
-    fcss.href = this.l('main.css', 'n');
-    document.getElementsByTagName('head')[0].appendChild(fcss);
+    html[0].setAttribute('data-url', window.location.href);
+    html[0].setAttribute('data-inframe', this.inframe);
 
     // Matomo
     analytics(this.site);
@@ -512,28 +516,43 @@ export default {
 
     icons[0].file = icons[0].file || 'favicon-violet.png';
     icons[0].link = document.createElement('link');
-    icons[0].link.rel = 'icon';
-    icons[0].link.type = 'image/png';
-    icons[0].link.href = this.l(`icons/${icons[0].file}`, 'n');
+    Object.assign(icons[0].link, {
+      rel: 'icon',
+      type: 'image/png',
+      href: this.l(`icons/${icons[0].file}`, 'n'),
+    });
     document.getElementsByTagName('head')[0].appendChild(icons[0].link);
 
-    icons[1].file = icons[1].file || 'apple-violet.png';
+    icons[1].file = icons[1].file || 'apple-orange.png';
     icons[1].link = document.createElement('link');
-    icons[1].link.rel = 'apple-touch-icon';
-    icons[1].link.type = 'image/png';
-    icons[1].link.href = this.l(`icons/${icons[1].file}`, 'n');
+    Object.assign(icons[1].link, {
+      rel: 'apple-touch-icon',
+      type: 'image/png',
+      href: this.l(`icons/${icons[1].file}`, 'n'),
+    });
     document.getElementsByTagName('head')[0].appendChild(icons[1].link);
 
     // RSS
     const rss = document.createElement('link');
-    rss.rel = 'alternate';
-    rss.type = 'application/rss+xml';
-    rss.href = 'https://rss.framasoft.org';
-    rss.title = this.$i18n.t('fnav.sites.rss.d1'); // !? not translated
+    Object.assign(rss, {
+      rel: 'alternate',
+      type: 'application/rss+xml',
+      href: 'https://rss.framasoft.org',
+      title: this.$i18n.t('fnav.sites.rss.d1'), // !? not translated
+    });
     document.getElementsByTagName('head')[0].appendChild(rss);
 
-    // Config (WIP)
-    mergeObj(this.config, l$);
+    /*********** Config ***********/
+    mergeObj(this.config, (siteConfig(this) !== {}) ? siteConfig(this) : l$ || {});
+    if (this.config.js !== undefined && this.config.js.ext !== undefined) {
+      if (this.config.js.jQuery) {
+        this.loadJS(this.l('lib/jquery/jquery-3.3.1.min.js', 'n'), () => {
+          this.loadExtJS(this.config.js.ext);
+        });
+      } else {
+        this.loadExtJS(this.config.js.ext);
+      }
+    }
 
     /** Alert */
     if (this.config.alert[1] !== '') {
@@ -701,13 +720,17 @@ export default {
             /* if(event.origin !== 'frama.web') {
               return;
             } */
-            const payload = JSON.parse(event.data);
-            if (payload.framanav !== this.storageInit()
-              && Object.keys(payload.framanav).length) {
-              this.mergeObj(this.storage, payload.framanav);
-              this.cortex('i', this.storage);
+            try {
+              const payload = JSON.parse(event.data);
+              if (payload.framanav !== this.storageInit()
+                && Object.keys(payload.framanav).length) {
+                this.mergeObj(this.storage, payload.framanav);
+                this.cortex('i', this.storage);
+              }
+              this.cortex('o');
+            } catch (e) {
+              // Pas du JSON ?
             }
-            this.cortex('o');
           };
           break;
       }
@@ -716,8 +739,12 @@ export default {
       const m = msg; const c = document.getElementById('framanav_cortex');
       if (c) {
         switch (action) {
-          case 'i': { // input in n$.storage
-            this.storage = JSON.parse(m);
+          case 'i': { // input in this.storage
+            try {
+              this.storage = JSON.parse(m);
+            } catch (e) {
+              // Pas du JSON
+            }
             break;
           }
           case 'o': { // output to Cortex
@@ -804,6 +831,53 @@ export default {
 
     isAfter(date) {
       return new Date(new Date().toDateString()) > new Date(date);
+    },
+    loadExtJS(ext) {
+      const script = document.createElement('script');
+      switch (typeof ext) {
+        case 'string':
+          script.setAttribute('src', this.l(`ext/${ext}.js`, 'n'));
+          document.head.appendChild(script);
+          break;
+        case 'function':
+          ext();
+          break;
+        case 'boolean':
+          if (ext) {
+            script.setAttribute('src', this.l(`ext/${this.site}.js`, 'n'));
+            document.head.appendChild(script);
+          }
+          break;
+
+        // no default:
+      }
+    },
+    loadJS(url, callback) {
+      if (!this.loadedScript) {
+        this.loadedScript = [];
+      }
+
+      if (this.loadedScript.indexOf(url) === -1) {
+        this.loadedScript.push(url);
+        const head = document.getElementsByTagName('head')[0];
+        const e = document.createElement('script');
+        e.src = url;
+        e.type = 'text/javascript';
+        e.charset = 'utf-8';
+
+        let done = false;
+        e.onload = function isLoaded() {
+          if (!done && (!this.readyState
+            || this.readyState === 'loaded' || this.readyState === 'complete')) {
+            done = true;
+            callback();
+            e.onload = null; // Handle memory leak in IE
+            e.onreadystatechange = e.onload;
+          }
+        };
+        e.onreadystatechange = e.onload;
+        head.appendChild(e);
+      }
     },
   }
 }

@@ -4,7 +4,7 @@
       <I18n/>
     </div>
     <h1 id="framasoft" class="sitename">
-      <router-link :to="'/' + $t('lang') + '/'" v-html="$root.color.soft"></router-link>
+      <router-link :to="`/${$t('lang')}/`" v-html="$root.color.soft"></router-link>
     </h1>
     <p class="lead" v-html="$t('meta.lead')"></p>
     <hr class="trait" role="presentation" />

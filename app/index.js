@@ -31,10 +31,34 @@ req.keys().forEach((key) => {
   pages.push(key.replace(/\.\/(.*)\.vue/, '$1'));
 });
 
-const lang = window.location.href
-  .split('/')[(process.env.BASE_URL === '' || (window.location.href.match(/\//g)).length === 3) ? 3 : 4]
-  .substr(0, 2)
-  .toLowerCase() || defaultLocale;
+let lang = '';
+const html = document.getElementsByTagName('html');
+const meta = document.getElementsByTagName('script');
+
+if (window.location.href.indexOf('framabin.org/p/') > -1 // Contournement de PrivateBin
+  && document.getElementById('language')
+  && document.getElementById('language').innerHTML.indexOf('> français <') > -1) {
+  lang = 'fr';
+} else if (window.location.host.indexOf('framindmap.org') > -1 // Contournement de Wisemapping
+  && document.getElementById('userSettingsBtn')
+  && document.getElementById('userSettingsBtn').innerHTML === 'Compte') {
+  lang = 'fr';
+} else if (html[0].getAttribute('xml:lang')) {
+  lang = html[0].getAttribute('xml:lang');
+} else if (html[0].getAttribute('lang')) {
+  lang = html[0].getAttribute('lang');
+} else if (html[0].getAttribute('locale')) {
+  lang = html[0].getAttribute('locale');
+} else {
+  for (let i = 0; i < meta.length; i += 1) {
+    if ((meta[i].getAttribute('http-equiv') && meta[i].getAttribute('content')
+      && meta[i].getAttribute('http-equiv').indexOf('Language') > -1)
+      || (meta[i].getAttribute('property') && meta[i].getAttribute('content')
+          && meta[i].getAttribute('property').indexOf('locale') > -1)) {
+      lang = meta[i].getAttribute('content');
+    }
+  }
+}
 const userLang = navigator.languages
   || [navigator.language || navigator.userLanguage];
 let defaultRouteLang = '';
@@ -123,11 +147,26 @@ const i18n = new VueI18n({
   silentTranslationWarn: true,
 });
 
-// Framanav
+/** <framanav> */
 if (document.getElementById('fnav') === null) {
+  // Framanav
   const fnav = document.createElement('div');
   fnav.id = 'fnav';
   document.getElementsByTagName('body')[0].insertBefore(fnav, document.getElementsByTagName('body')[0].children[0]);
+  // Load CSS
+  const scripts = document.getElementsByTagName('script');
+  const fcss = document.createElement('link');
+  let i = 0;
+  while (fcss.getAttribute('rel') === undefined || i < scripts.length) {
+    if (scripts[i].getAttribute('src') && scripts[i].getAttribute('src').indexOf('/nav.js') > -1) {
+      Object.assign(fcss, {
+        rel: 'stylesheet',
+        href: `${scripts[i].getAttribute('src').replace('nav.js', '')}main.css`,
+      });
+    }
+    i += 1;
+  }
+  document.getElementsByTagName('head')[0].appendChild(fcss);
 }
 // Footer
 if (!window.vuefsPrerender) {
@@ -142,6 +181,7 @@ if (!window.vuefsPrerender) {
   foptin.id = 'foptin';
   document.getElementsByTagName('body')[0].appendChild(foptin);
 }
+/** </framanav> */
 
 // Routes
 const router = new VueRouter({

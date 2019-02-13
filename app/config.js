@@ -1,11 +1,10 @@
 /** ****************************************************************** *
  *                          Config des sites                           *
  * ******************************************************************* */
-function config(site) {
-
+function siteConfig(vue) {
   let l$; l$ = l$ || {}; // eslint-disable-line
 
-  switch (site) {
+  switch (vue.site) {
     case 'cortex':
       break;
 
@@ -64,15 +63,15 @@ function config(site) {
             jQuery('.footer').hide();
             jQuery('body').css('margin-bottom', '0');
             // Default search in fr
-            if (n$.is.lang('fr', 'b') && document.cookie.indexOf('language=') === -1) {
-              $('select[name="language"] option[value="fr"]').prop('selected', true);
+            if (vue.isLang('fr', 'b') && document.cookie.indexOf('language=') === -1) {
+              jQuery('select[name="language"] option[value="fr"]').prop('selected', true);
             }
             // Active search engine list
             let i18n = {
               search: 'Search engines used',
               pref: 'You can <a href="/preferences">choose others in the preferences</a>',
             };
-            if (document.cookie.indexOf('locale=fr') > -1 || n$.is.lang('fr', 'b')) {
+            if (document.cookie.indexOf('locale=fr') > -1 || vue.isLang('fr', 'b')) {
               i18n = {
                 search: 'Moteurs de recherche utilisés',
                 pref:
@@ -80,15 +79,16 @@ function config(site) {
               };
             }
             let engines = '';
-            $('#main_results .label-default').each((i) => {
-              const html = $('<div />')
-                .append($('#main_results .label-default')
-                .eq(i).clone()).html();
+            jQuery('#main_results .label-default').each((i) => {
+              const html = jQuery('<div />')
+                .append(jQuery('#main_results .label-default')
+                  .eq(i).clone())
+                .html();
               if (engines.indexOf(html) === -1) {
                 engines += `${html} `;
               }
             });
-            $('#sidebar_results').append(`
+            jQuery('#sidebar_results').append(`
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h4 class="panel-title">${i18n.search}</h4>
@@ -108,7 +108,7 @@ function config(site) {
       l$ = {
         js: { ext: true },
         modal: {
-          don: ['onstart', 'd’utiliser', ['utiliser ', n$.name].join('')],
+          don: ['onstart', 'd’utiliser', ['utiliser ', vue.name].join('')],
         },
       };
       break;
@@ -120,10 +120,9 @@ function config(site) {
       break;
 
     case 'board':
-      if (n$.is.url('.framaboard')) { // dans Kanboard
+      if (vue.isURL('.framaboard')) { // dans Kanboard
         l$ = {
           js: {
-            b$: 'html',
             ext() {
               jQuery('h1 .logo a').html('<b class="violet">Frama</b><b class="vert">board</b>');
               jQuery('h1 .logo').removeClass('logo');
@@ -134,7 +133,6 @@ function config(site) {
                 .parent().hide();
             },
           },
-          css: { b$: false },
         };
       } else {
         l$.optin = ['#registration #email'];
@@ -143,7 +141,6 @@ function config(site) {
 
     case 'book':
       l$ = {
-        js: { j$: 'noConflict', b$: 'bootstrap' },
         modal: { don: ['a[href*="download-monitor/download.php?id="]'] },
       };
       break;
@@ -153,23 +150,23 @@ function config(site) {
       try {
         if (window.top.location.href.indexOf('framacalc.org/=') > -1) {
           document.getElementById('framanav_container').style = 'height:42px; opacity:0';
-          n$.inframe = false;
+          document.getElementsByTagName('html')[0].setAttribute('data-inframe', 'false');
         }
       } catch (e) {
         // continue regardless of error
       }
-      if (n$.is.url('accueil.framacalc.org')) {
+      if (vue.isURL('accueil.framacalc.org')) {
         // Si on est sur la page d'accueil
-        if (n$.is.lang('fr')) {
+        if (vue.isLang('fr')) {
           l$.modal = {
             don: ['a[href*="lite.framacalc.org/"]', 'd’utiliser', 'créer un calc'],
           };
         }
         l$.js = {
           ext() {
-            if (n$.cookie('r', 'calc-alert')) { $('#classic .alert').hide(); }
-            $('#classic .alert').on('closed.bs.alert', () => {
-              n$.cookie('w', 'calc-alert', true, 31536000000);
+            if (vue.cookie('r', 'calc-alert')) { jQuery('#classic .alert').hide(); }
+            jQuery('#classic .alert').on('closed.bs.alert', () => {
+              vue.cookie('w', 'calc-alert', true, 31536000000);
             });
           },
         };
@@ -178,35 +175,20 @@ function config(site) {
           js: {
             ext() { jQuery(window).trigger('resize'); },
           },
-          css: { b$: !n$.inframe },
-          mobile: false,
-          host: 'ovh',
         };
       }
       break;
 
     case 'carte':
-      if (n$.is.lang('fr')) {
+      if (vue.isLang('fr')) {
         l$.modal = { don: ['a.btn-primary[href*="/map/new/"]', 'd’utiliser', 'créer une carte'] };
       }
       break;
 
-    case 'clic':
-      l$.js = { b$: 'html' };
-      break;
-
-    case 'contact':
-      l$ = {
-        js: { ext: true },
-        optin: ['#wpcf7-f24-p5-o1 .wpcf7-email'],
-      };
-      break;
-
     case 'date':
-      l$.js = { ext: n$.is.url('framadate.org', 'h') };
-      if (n$.is.lang('fr')) {
+      if (vue.isLang('fr')) {
         l$.modal = { don: ['a[href*="create_poll.php?"]', 'd’utiliser', 'créer un sondage'] };
-        if (n$.is.url('create_poll.php?')) {
+        if (vue.isURL('create_poll.php?')) {
           l$.optin = ['#formulaire input#email'];
         }
       }
@@ -214,23 +196,17 @@ function config(site) {
 
     case 'dvd':
       l$ = {
-        js: { video: true },
         modal: { don: ['a[href*="iso.framadvd.org"]'] },
       };
-      break;
-
-    case 'drive':
-      l$.js = { video: true };
       break;
 
     case 'drop':
       l$.js = {
         ext() {
-          if (!n$.is.url('https://framadrop.org/', 'u')) {
-            $('main .row:last,main hr:last').hide();
+          if (!vue.isURL('https://framadrop.org/', 'u')) {
+            jQuery('main .row:last,main hr:last').hide();
           }
         },
-        video: true,
       };
       break;
 
@@ -246,8 +222,8 @@ function config(site) {
       l$ = {
         js: {
           ext() {
-            if (n$.inframe) {
-              f$('a').attr('target', '_blank');
+            if (vue.inframe) {
+              document.querySelectorAll('a').forEach(a => Object.assign(a, { target: '_blank' }));
             }
           },
         },
@@ -269,42 +245,44 @@ function config(site) {
 
     case 'link':
       l$ = {
-        js: { video: true },
         modal: {
-          don: ['onstart', 'd’utiliser', ['utiliser ', n$.name].join('')],
+          don: ['onstart', 'd’utiliser', ['utiliser ', vue.name].join('')],
         },
       };
       break;
 
-    case 'maestro':
+    case 'localhost:8080':
       l$ = {
-        js: { b$: 'html' },
+        alert: [
+          'info',
+          ` ${vue.$root.color.libre}, l’annuaire des logiciels libres de l’association
+            ${vue.$root.color.soft}
+            <a href="https://framablog.org/2017/03/21/framalibre-lannuaire-du-libre-renait-entre-vos-mains/"
+            >fait peau neuve</a>.<br>
+            Certains liens prééxistants ne sont plus valides.
+            <a href="${vue.$root.link.contact}/fr/faq/#libre_v2">
+            Vous avez du mal à vous y retrouver&nbsp;?</a>`,
+        ],
       };
       break;
 
     case 'mindmap':
       l$ = {
-        js: { video: true },
-        css: { b$: false },
         optin: ['#user #email'],
       };
-      if (n$.is.url('framindmap.org/c/maps/') && !n$.is.url('/edit')) {
-        l$.modal = { don: ['onstart', 'd’utiliser', ['utiliser ', n$.name].join('')] };
+      if (vue.isURL('framindmap.org/c/maps/') && !vue.isURL('/edit')) {
+        l$.modal = { don: ['onstart', 'd’utiliser', ['utiliser ', vue.name].join('')] };
       }
-      if (n$.is.url('framindmap.org/c/maps') && n$.is.url('/edit')) {
+      if (vue.isURL('framindmap.org/c/maps') && vue.isURL('/edit')) {
         // [Fix] Suppression de la nav dans l'éditeur
         const f$NavContainer = document.getElementById('framanav_container');
         f$NavContainer.parentNode.removeChild(f$NavContainer);
       }
       break;
 
-    case 'minetest':
-      l$.js = { video: true };
-      break;
-
     case 'my':
-      if (n$.is.url('source=bookmarklet')) {
-        n$.inframe = true;
+      if (vue.isURL('source=bookmarklet')) {
+        document.getElementsByTagName('html')[0].setAttribute('data-inframe', 'true');
         l$ = {
           js: {
             ext() {
@@ -321,10 +299,10 @@ function config(site) {
         l$ = {
           js: {
             ext() {
-              if (n$.inframe) {
-                f$('#linklist').addClass('container-fluid').removeClass('container');
-                f$('#pageheader').hide();
-                f$('a').attr('target', '_blank');
+              if (vue.inframe) {
+                jQuery('#linklist').addClass('container-fluid').removeClass('container');
+                jQuery('#pageheader').hide();
+                jQuery('a').attr('target', '_blank');
               }
             },
           },
@@ -332,19 +310,9 @@ function config(site) {
       }
       break;
 
-    case 'news':
-      if (n$.is.url('framanews.org/ttrss')) { // N’est pas actif
-        l$ = {
-          js: {
-            ext() { jQuery(window).trigger('resize'); },
-          },
-        };
-      }
-      break;
-
     case 'pack':
       l$ = {
-        modal: { don: ['onstart', 'd’utiliser', ['utiliser ', n$.name].join('')] },
+        modal: { don: ['onstart', 'd’utiliser', ['utiliser ', vue.name].join('')] },
       };
       break;
 
@@ -356,14 +324,12 @@ function config(site) {
       break;
 
     case 'mypads':
-      n$.name = 'Framapad';
       l$ = {
         credits: 'pad',
       };
       break;
 
     case 'etherpad': // dans Etherpad
-      n$.name = 'Framapad';
       l$ = {
         js: {
           ext() {
@@ -373,12 +339,12 @@ function config(site) {
               'ou <a href="', window.location.href, '/export/txt">txt</a> ',
               'de votre document et <a href="https://contact.framasoft.org/#framapad">contactez-nous</a>.</p>',
             ].join(''));
-            if (!n$.inframe) {
+            if (!vue.inframe) {
               const addMaestroBtn = setInterval(() => {
                 if (jQuery('#editbar .menu_right').length && !jQuery('#maestroBtn').length) {
                   jQuery('#editbar .menu_right').prepend([
                     '<li id="maestroBtn"><a title="Ajouter une visio-conférence" href="',
-                    n$.maestro, '">',
+                    vue.maestro, '">',
                     '  <button class="buttonicon fa fa-video-camera" ',
                     'style="top:0 !important;"></button>',
                     '  <span class="sr-only">Visio-conférence</span>',
@@ -392,7 +358,7 @@ function config(site) {
         },
         credits: 'pad',
       };
-      if (n$.is.url(/(beta.framapad)/i, 'h')) {
+      if (vue.isURL(/(beta.framapad)/i, 'h')) {
         l$.modal = {
           info: [
             'Avertissement',
@@ -415,7 +381,7 @@ function config(site) {
       l$ = {
         js: {
           ext() {
-            f$('img[src*="/packs/logo"]').attr('src', 'https://framasoft.org/nav/img/icons/piaf.png');
+            jQuery('img[src*="/packs/logo"]').attr('src', 'https://framasoft.org/nav/img/icons/piaf.png');
           },
         },
       };
@@ -423,7 +389,7 @@ function config(site) {
 
     case 'pic':
       l$ = {
-        modal: { don: ['onstart', 'd’utiliser', ['utiliser ', n$.name].join('')] },
+        modal: { don: ['onstart', 'd’utiliser', ['utiliser ', vue.name].join('')] },
       };
       break;
 
@@ -497,15 +463,8 @@ function config(site) {
       };
       break;
 
-    case 'tube':
-      n$.inframe = n$.is.url('/embed_player');
-      l$ = {
-        host: 'ovh',
-      };
-      break;
-
     case 'vectoriel':
-      if (n$.is.url('svg-editor')) { // Dans SVG-Editor
+      if (vue.isURL('svg-editor')) { // Dans SVG-Editor
         l$ = {};
       } else {
         l$ = {
@@ -523,7 +482,7 @@ function config(site) {
       break;
 
     case 'wiki':
-      if (n$.is.url('frama.wiki', 'h')) {
+      if (vue.isURL('frama.wiki', 'h')) {
         l$ = {
           alert: [
             'info',
@@ -536,7 +495,7 @@ function config(site) {
           ],
         };
       } else {
-        n$.inframe = n$.is.url('mediamanager.php');
+        // vue.isURL('mediamanager.php');
         l$ = {
           alert: ['', ''],
         };
@@ -564,6 +523,6 @@ function config(site) {
 }
 
 export {
-  config,
+  siteConfig, // eslint-disable-line
 };
 
