@@ -265,7 +265,7 @@ switch (n$.site) {
         $('#delete-day option[value="60"]').append(' (max 2Mo)');
         $('#delete-day option[value="30"]').append(' (max 50Mo)');
         $('#delete-day option[value="7"]').append(' (max 200Mo)');
-        $('#delete-day option[value="1"]').append(' (max 500Mo)');
+        $('#delete-day option[value="1"]').append(' (500Mo et +)');
       },
     };
     break;
