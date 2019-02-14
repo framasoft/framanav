@@ -167,8 +167,10 @@ if (document.getElementById('fnav') === null) {
 // Footer
 if (!window.vuefsPrerender) {
   const ffooter = document.createElement('div');
-  ffooter.id = 'ffooter';
-  ffooter.style = 'display: none;';
+  Object.assign(ffooter, {
+    id: 'ffooter',
+    style: 'display: none;',
+  });
   document.getElementsByTagName('body')[0].appendChild(ffooter);
 }
 // Optin

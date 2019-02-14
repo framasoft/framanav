@@ -5,15 +5,11 @@
     <ul>
       <li><a :href="$root['/'] + 'test/home.html'">home</a></li>
       <li><a :href="$root['/'] + 'test/index.html'">index</a></li>
-      <li><a :href="$root['/'] + 'test/index-fixed.html'">index fixed</a></li>
       <li><a :href="$root['/'] + 'test/jQuery.html'">jQuery</a></li>
-      <li><a :href="$root['/'] + 'test/noConflict.html'">jQuery noConflict</a></li>
-      <li><a :href="$root['/'] + 'test/media.html'">media</a></li>
       <li><a :href="$root['/'] + 'test/verbose.html'">verbose</a></li>
       <li><a :href="$root['/'] + 'test/verbose-en.html'">verbose-en</a></li>
       <li><a :href="$root['/'] + 'test/verbose-fixed.html'">verbose fixed</a></li>
       <li><a :href="$root['/'] + 'test/verbose-iframe.html'">verbose iframe</a></li>
-      <li><a :href="$root['/'] + 'test/verbose-slow.html'">verbose slow</a></li>
     </ul>
   </div>
 </template>

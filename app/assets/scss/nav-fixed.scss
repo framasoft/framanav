@@ -11,13 +11,12 @@
 [data-url*="://framazic.org"],
 [data-url*="://contact.framasoft.org"],
 [data-url*="://status.framasoft.org"],
-[data-url*="/nav/html/"],
-[data-url$="nav/test/verbose-fixed.html"] {
+[data-url$="test/verbose-fixed.html"] {
     body {
         padding-top: 42px;
     }
 
-    #framanav_container {
+    #fnav {
         position: fixed;
         top: 0;
         z-index: 1000;
