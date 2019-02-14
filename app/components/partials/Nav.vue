@@ -192,7 +192,7 @@
       </div>
 
       <div class="clearfix" id="modal-soutenirBody"
-        v-html="$t('fnav.modaldon.desc').replace('%modal.don[1]%', config.modal.don[1])">
+        v-html="$t('fnav.modaldon.desc').replace('%modal.don[1]%', $t(config.modal.don[1]))">
       </div>
 
       <div slot="footer">
@@ -210,7 +210,14 @@
               :href="state.modal.donTarget"
               class="btn btn-xs btn-default btn-block"
               @click="state.modal.don = false;">
-              <span v-html="$t('fnav.modaldon.b3').replace('%modal.don[2]%', config.modal.don[2])"></span>
+              <span
+                v-if="config.modal.don[2] === 'txt.actionBtn.use'"
+                v-html="$t('fnav.modaldon.b3').replace('%modal.don[2]%', `${$t(config.modal.don[2])} ${name}`)"
+              ></span>
+              <span
+                v-else
+                v-html="$t('fnav.modaldon.b3').replace('%modal.don[2]%', $t(config.modal.don[2]))"
+              ></span>
             </button>
           </p>
           <p class="col-md-6 text-center">
@@ -391,7 +398,7 @@ export default {
       config: {
         modal: {
           don: ['', '', '', 604800000],
-          /** [querySelector or 'onstart', text action, text actionBtn, cookie duration (7 days)] */
+          /** [querySelector or 'onstart', 'txt.action.*', 'txt.actionBtn.*', cookie duration (7 days)] */
           info: ['', '', 'modal-info', 604800000],
           /** [title, text, cookie name, cookie duration] */
         },
@@ -538,19 +545,24 @@ export default {
       rel: 'alternate',
       type: 'application/rss+xml',
       href: 'https://rss.framasoft.org',
-      title: this.$i18n.t('fnav.sites.rss.d1'), // !? not translated
+      title: this.$i18n.t('fnav.sites.rss.d1'),
     });
     document.getElementsByTagName('head')[0].appendChild(rss);
-
     /*********** Config ***********/
-    mergeObj(this.config, (siteConfig(this) !== {}) ? siteConfig(this) : l$ || {});
+    mergeObj(
+      this.config, // default config
+      (!!Object.keys(siteConfig(this)).length)
+      ? siteConfig(this) // config.js
+      : l$ || {} // inline config (or nothing)
+    );
+
     if (this.config.js !== undefined && this.config.js.ext !== undefined) {
       if (this.config.js.jQuery) {
         this.loadJS(this.l('lib/jquery/jquery-3.3.1.min.js', 'n'), () => {
-          this.loadExtJS(this.config.js.ext);
+          this.config.js.ext();
         });
       } else {
-        this.loadExtJS(this.config.js.ext);
+        this.config.js.ext();
       }
     }
 
@@ -831,26 +843,6 @@ export default {
 
     isAfter(date) {
       return new Date(new Date().toDateString()) > new Date(date);
-    },
-    loadExtJS(ext) {
-      const script = document.createElement('script');
-      switch (typeof ext) {
-        case 'string':
-          script.setAttribute('src', this.l(`ext/${ext}.js`, 'n'));
-          document.head.appendChild(script);
-          break;
-        case 'function':
-          ext();
-          break;
-        case 'boolean':
-          if (ext) {
-            script.setAttribute('src', this.l(`ext/${this.site}.js`, 'n'));
-            document.head.appendChild(script);
-          }
-          break;
-
-        // no default:
-      }
     },
     loadJS(url, callback) {
       if (!this.loadedScript) {

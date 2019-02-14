@@ -100,13 +100,9 @@ for (let i = 0; i < locales.length; i += 1) {
   messages[locales[i]] = {};
   // Locales import
   /* eslint-disable */
-  import(/* webpackChunkName: "lang-[request]" */`./locales/${locales[i]}.yml`).then((locale) => {
-    messages[locales[i]] = locale;
-    messages[locales[i]].data = data;
-    messages[locales[i]].lang = locales[i];
-  }).catch((err) => {
-    console.error(err);
-  });
+  messages[locales[i]] = require(`./locales/${locales[i]}.yml`);
+  messages[locales[i]].data = data;
+  messages[locales[i]].lang = locales[i];
   /* eslint-enable */
 
   // Localized routes

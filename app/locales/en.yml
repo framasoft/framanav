@@ -320,4 +320,6 @@ fnav:
       d0: Campagne de sensiblisation,
       t1: '<b class='violet'>Contrib</b><b class='orange'>utopia</b>: de-googl-ify is not enough'
       d1: '<b class='violet'>Frama</b><b class='orange'>soft</b> invites you on an exciting journey: let's explore digital worlds together. worlds where computer tools are conceived in collaboration, where respectful practices swarm and pollinate, where the doors of contribution open.'
-
+bee:
+  search: Search engines used
+  pref: You can <a href="/preferences">choose others in the preferences</a>
