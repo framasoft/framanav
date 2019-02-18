@@ -631,7 +631,7 @@ switch (n$.site) {
   case 'status': /**         */ l$.piwik.id = '37'; break;
   case 'bookin': /**         */ l$.piwik.id = '38'; break;
   case 'stats': /**          */ l$.piwik.id = '39'; break;
-  case 'drive': /**          */ l$.piwik.id = '40'; break;
+  case 'drive': /**          */ l$.piwik.id = '40'; l$.piwik.mode = 'img'; break;
   case 'board': /**          */ l$.piwik.id = '41'; break;
   case 'drop': /**           */ l$.piwik.id = '42'; l$.piwik.mode = 'img'; break;
   case 'carte': /**          */ l$.piwik.id = '43'; break;
@@ -643,7 +643,7 @@ switch (n$.site) {
   case 'talk': /**           */ l$.piwik.id = '50'; break;
   case 'minetest': /**       */ l$.piwik.id = '51'; break;
   case 'notes': /**          */ l$.piwik.id = '52'; break;
-  case 'agenda': /**         */ l$.piwik.id = '53'; break;
+  case 'agenda': /**         */ l$.piwik.id = '53'; l$.piwik.mode = 'img'; break;
   case 'listes': /**         */ l$.piwik.id = '54'; break;
   case 'my': /**             */ l$.piwik.id = '56'; break;
   case 'troll': /**          */ l$.piwik.id = '57'; break;
