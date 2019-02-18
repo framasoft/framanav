@@ -838,7 +838,7 @@ const n$ = {
 
       if ((today - fullMoon) % moonRev < 129600
         || (today - fullMoon) % moonRev > moonRev - 129600) {
-        f$('#btn-benevalo').show();
+        f$('#btn-benevalo').show().css('display', 'block');
         f$('#btn-benevalo').prev().hide();
       }
     },
