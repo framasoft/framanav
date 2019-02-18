@@ -651,7 +651,7 @@ switch (n$.site) {
   case 'maestro': /**        */ l$.piwik.id = '59'; break;
   case 'docs': /**           */ l$.piwik.id = '60'; break;
   case 'libre': /**          */ l$.piwik.id = '61'; break;
-  case 'piaf': /**           */ l$.piwik.id = '62'; break;
+  case 'piaf': /**           */ l$.piwik.id = '62'; l$.piwik.mode = 'img'; break;
   case 'contributopia': /**  */ l$.piwik.id = '63'; break;
   case 'site': /**           */ l$.piwik.id = '64'; break;
   case 'wiki': /**           */ l$.piwik.id = '64'; break;
