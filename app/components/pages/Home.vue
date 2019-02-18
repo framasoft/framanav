@@ -10,6 +10,9 @@
       <li><a :href="$root['/'] + 'test/verbose-en.html'">verbose-en</a></li>
       <li><a :href="$root['/'] + 'test/verbose-fixed.html'">verbose fixed</a></li>
       <li><a :href="$root['/'] + 'test/verbose-iframe.html'">verbose iframe</a></li>
+      <li><a :href="$root['/'] + 'test/site.html#://framabin.org/p/'">framabin</a></li>
+      <li><a :href="$root['/'] + 'test/site.html#://framavox.org'">framavox</a></li>
+      <li><a :href="$root['/'] + 'test/site.html#://framateam.org'">framateam</a></li>
     </ul>
   </div>
 </template>

@@ -164,21 +164,6 @@ if (document.getElementById('fnav') === null) {
   }
   document.getElementsByTagName('head')[0].appendChild(fcss);
 }
-// Footer
-if (!window.vuefsPrerender) {
-  const ffooter = document.createElement('div');
-  Object.assign(ffooter, {
-    id: 'ffooter',
-    style: 'display: none;',
-  });
-  document.getElementsByTagName('body')[0].appendChild(ffooter);
-}
-// Optin
-if (!window.vuefsPrerender) {
-  const foptin = document.createElement('div');
-  foptin.id = 'foptin';
-  document.getElementsByTagName('body')[0].appendChild(foptin);
-}
 /** </framanav> */
 
 // Routes

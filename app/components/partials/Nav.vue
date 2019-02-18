@@ -260,106 +260,34 @@
       </div>
     </portal>
 
-    <!-- Footer -->
-    <portal target-el="#ffooter">
-      <footer id="framafooter"
-        class="clearfix hidden-print"
-        :style="state.footer"
-        role="contentinfo"
-        v-show="!inframe">
-        <div class="container">
-          <div class="clearfix col-sm-8">
-            <nav class="col-xs-4">
-              <h1 v-html="$root.txt.soft"></h1>
-              <ul class="list-unstyled">
-                <li v-for="key in $root.fnav.footer.frama">
-                  <a
-                    :href="($t('fnav.sites.' + key + '.link').indexOf('fnav.') > -1) ? $root.link[key] : $t('fnav.sites.' + key + '.link')"
-                    v-html="$t('fnav.sites.' + key + '.name')"
-                  ></a>
-                </li>
-              </ul>
-            </nav>
-            <nav class="col-xs-4">
-              <h1>{{ $t('txt.community') }}</h1>
-              <ul class="list-unstyled">
-                <li>
-                  <a :href="$root.link.colibri">
-                    {{ text($root.txt.colibri) }}
-                  </a>
-                </li>
-                <li v-for="key in $root.fnav.footer.community">
-                  <a
-                    :href="($t('fnav.sites.' + key + '.link').indexOf('fnav.') > -1) ? $root.link[key] : $t('fnav.sites.' + key + '.link')"
-                    v-html="$t('fnav.sites.' + key + '.name')"
-                  ></a>
-                </li>
-              </ul>
-            </nav>
-            <nav class="col-xs-4">
-              <h1 v-html="$t('txt.site')"></h1>
-              <ul class="list-unstyled">
-                <li v-for="key in $root.fnav.footer.site">
-                  <a
-                    :href="($t('fnav.sites.' + key + '.link').indexOf('fnav.') > -1) ? $root.link[key] : $t('fnav.sites.' + key + '.link')"
-                    v-html="$t('fnav.sites.' + key + '.name')"
-                  ></a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-          <div class="col-sm-4">
-            <div class="col-xs-12">
-              <h1 v-html="$t('fnav.cat.follow.name')"></h1>
-              <ul class="list-inline">
-                <popover tag="li" :class="'fs_' + key"
-                  v-for="key in $root.fnav.footer.follow" :key="key"
-                  placement="top" trigger="hover-focus" append-to="#framanav"
-                  :title="text($t('fnav.sites.' + key + '.t1'))"
-                >
-                  <a :href="($t('fnav.sites.' + key + '.link').indexOf('fnav.') > -1) ? $root.link[key] : $t('fnav.sites.' + key + '.link')">
-                    <i :class="'fa fa-fw fa-2x ' + $root.icon[key]" aria-hidden="true"></i>
-                    <span class="sr-only">{{
-                      ($t('fnav.sites.' + key + '.name').indexOf('fnav.') > -1)
-                      ? $root.txt[key]
-                      : text($t('fnav.sites.' + key + '.name')) }}</span>
-                  </a>
-                    <template slot="popover">
-                    <div v-html="$t('fnav.sites.' + key + '.d1')"></div>
-                  </template>
-                </popover>
-              </ul>
-              <h2 v-html="$t('fnav.sites.newsletter.name')"></h2>
-              <form action="https://contact.framasoft.org/php_list/lists/?p=subscribe&amp;id=2"
-                method="post" name="subscribeform">
-                <div class="input-group input-group-sm">
-                  <input class="form-control" :title="$t('txt.typeYourEmail')" name="email" size="40" :placeholder="$t('txt.yourEmail')" type="text">
-                  <span class="input-group-btn">
-                    <button class="btn btn-default" name="subscribe" type="submit" value="subscribe">
-                      {{ $t('txt.subscribe') }}<span class="sr-only" v-html="$t('txt.toTheNewsletter')"></span>
-                    </button>
-                  </span>
-                </div>
-                <input name="htmlemail" value="1" type="hidden">
-                <input name="list[5]" value="signup" type="hidden">
-                <input name="listname[5]" value="Newsletter" type="hidden">
-                <div style="display: none;"><input name="VerificationCodeX" size="20" value="" type="text"></div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </portal>
+    <Framabin v-if="/:\/\/framabin.org.p/.test(url)" />
+    <Framavox v-if="/:\/\/framavox.org/.test(url)" />
+
+    <Footer />
   </div>
 </template>
 
 <script>
+import Footer from './Footer.vue';
+import Framabin from './Framabin.vue';
+import Framavox from './Framavox.vue';
+
 import { Btn, Dropdown, Navbar, NavbarNav, Popover, Tooltip, Modal, Alert } from 'uiv';
 import { text, analytics, mergeObj } from '../../tools';
 import { siteConfig } from '../../config';
+
 export default {
   components: {
-    Btn, Dropdown, Navbar, NavbarNav, Popover, Tooltip, Modal, Alert
+    Btn, Dropdown, Navbar, NavbarNav, Popover, Tooltip, Modal, Alert,
+    Footer, Framabin, Framavox,
+  },
+  created() {
+    // Optin
+    if (!window.vuefsPrerender) {
+      const foptin = document.createElement('div');
+      foptin.id = 'foptin';
+      document.getElementsByTagName('body')[0].appendChild(foptin);
+    }
   },
   directives: {
     Popover, Tooltip
@@ -408,7 +336,6 @@ export default {
         /** [email selector, cookie name, cookie duration] */
       },
       state: {
-        footer: 'position: relative',
         modal: {
           don: false,
           donTarget: '#SoutenirFramasoft',
@@ -642,16 +569,6 @@ export default {
         'start', 'zic', ' evl', ' dio', 'maestro', ' carte', ' minetest',
         ' news', 'git', 'wiki', ' petitions', ' wikipedia', ' status',
         ' credits'].indexOf(key) > -1);
-    },
-    footerPosition() {
-      this.state.footer = (document.body.scrollHeight < window.innerHeight )
-        ? 'position: absolute'
-        : 'position: relative';
-      setTimeout(() => { // au cas où une animation redimentionne le body
-        this.state.footer = (document.body.scrollHeight < window.innerHeight )
-          ? 'position: absolute'
-          : 'position: relative';
-      }, 800);
     },
     donClose() {
       this.cookie('w', 'dondl', true, this.storage.modal.don[1]);

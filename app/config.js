@@ -88,7 +88,17 @@ function siteConfig(vue) {
 
     case 'bin':
       l$ = {
-        // js: { ext: true }, // TODO Import bin.js
+        js: {
+          ext() {
+            const container = document.querySelector('.container.ombre');
+            container
+              .insertBefore(document.getElementById('framabin_header'),
+                container.firstChild);
+            container
+              .appendChild(document.getElementById('framabin_presentation'));
+            document.getElementById('sendbutton').classList.add('btn-primary');
+          },
+        },
         modal: {
           don: ['onstart', 'txt.action.use', 'txt.actionBtn.use'],
         },
@@ -226,7 +236,9 @@ function siteConfig(vue) {
       break;
 
     case 'localhost:8080':
-      l$.modal = { don: ['onstart', 'txt.action.use', 'txt.actionBtn.use'] };
+      l$ = {
+        modal: { don: ['onstart', 'txt.action.use', 'txt.actionBtn.use'] },
+      };
       break;
 
     case 'mindmap':
@@ -416,10 +428,6 @@ function siteConfig(vue) {
       if (!vue.isURL('svg-editor')) { // Pas dans SVG-Editor
         l$.modal = { don: ['a[href$="svg-editor.html"]', 'txt.action.use', 'txt.actionBtn.img'] };
       }
-      break;
-
-    case 'vox':
-      // l$.js = { ext: true }, // TODO Import vox.js
       break;
 
     case 'wiki':

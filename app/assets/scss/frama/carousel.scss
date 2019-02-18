@@ -10,6 +10,11 @@
       width: 100%;
       margin: 0;
     }
+
+    .prev,
+    .next {
+      display: none !important;
+    }
   }
 
   .carousel-inner {
