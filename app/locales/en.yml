@@ -59,7 +59,7 @@ fnav:
       Framasoft is <b>supported by the donations of its users</b>.</p> <p>Thank you
       for taking a few minutes by helping us to perpetuate and develop our action.</p> '
     b1: I want to make a donation<br>to Framasoft association
-    b2: I want to participate. <br>Where do we start?
+    b2: I want to participate.<br>Where do we start?
     b3: No, thank you, I only<br>wish <b>%c$.modal.don[2]%</b>
     b4: I already support Framasoft
   optin:

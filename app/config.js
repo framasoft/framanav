@@ -88,17 +88,6 @@ function siteConfig(vue) {
 
     case 'bin':
       l$ = {
-        js: {
-          ext() {
-            const container = document.querySelector('.container.ombre');
-            container
-              .insertBefore(document.getElementById('framabin_header'),
-                container.firstChild);
-            container
-              .appendChild(document.getElementById('framabin_presentation'));
-            document.getElementById('sendbutton').classList.add('btn-primary');
-          },
-        },
         modal: {
           don: ['onstart', 'txt.action.use', 'txt.actionBtn.use'],
         },
@@ -233,12 +222,6 @@ function siteConfig(vue) {
 
     case 'link':
       l$.modal = { don: ['onstart', 'txt.action.use', 'txt.actionBtn.use'] };
-      break;
-
-    case 'localhost:8080':
-      l$ = {
-        modal: { don: ['onstart', 'txt.action.use', 'txt.actionBtn.use'] },
-      };
       break;
 
     case 'mindmap':

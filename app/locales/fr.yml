@@ -71,8 +71,8 @@ fnav:
       <p>Mais tout ceci est rendu possible parce que Framasoft est <b>soutenue par
       les dons (défiscalisables) de ses utilisateurs</b>.</p> <p>Merci de prendre
       quelques minutes en nous aidant à pérenniser et développer notre action.</p> '
-    b1: Je veux faire un don<br /> à l’association Framasoft
-    b2: Je veux participer.<br />Par où on commence ?
+    b1: Je veux faire un don<br>à l’association Framasoft
+    b2: Je veux participer.<br>Par où on commence ?
     b3: Non merci, je souhaite<br>seulement <b>%modal.don[2]%</b>
     b4: Je soutiens déjà Framasoft
   optin:

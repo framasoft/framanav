@@ -124,9 +124,7 @@ export default {
     window.addEventListener('scroll', this.footerPosition);
   },
   methods: {
-    text(html) {
-      return text(html)
-    },
+    text,
     footerPosition() {
       this.state.footer = (document.body.scrollHeight < window.innerHeight )
         ? 'position: absolute'

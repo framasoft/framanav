@@ -163,149 +163,37 @@ function mergeObj(a, b) {
   MergeRecursive(a, b);
 }
 
-/** ****************************************************************** *
- *                               Matomo                                *
- * ******************************************************************* */
-function analytics(site, config) {
-  const c = config || {
-    id: '',
-    url: 'https://stats.framasoft.org/',
-    mode: 'js',
-  };
-
-  switch (site) {
-    case 'soft': /**           */ c.id = '1'; break;
-    case 'forum': /**          */ c.id = '2'; break;
-    case 'blog': /**           */ c.id = '3'; break;
-    case 'pad': /**            */ c.id = '4'; break;
-    case 'etherpad': /**       */ c.id = '4'; break;
-    case 'key': /**            */ c.id = '5'; break;
-    case 'dvd': /**            */ c.id = '6'; break;
-    case 'book': /**           */ c.id = '7'; break;
-    case 'tube': /**           */ c.id = '8'; break;
-    case 'zic': /**            */ c.id = '9'; break;
-    case 'date': /**           */ c.id = '10'; break;
-    case 'calc': /**           */ c.id = '11'; break;
-    case 'mindmap': /**        */ c.id = '12'; break;
-    case 'vectoriel': /**      */ c.id = '13'; break;
-    case 'phonie': /**         */ c.id = '14'; break;
-    case 'lab': /**            */ c.id = '16'; break;
-    case 'code': /**           */ c.id = '17'; break;
-    // case 'localhost:8080': /**      */ c.id = '17'; break;
-    case 'soutenir': /**       */ c.id = '18'; break;
-    case 'contact': /**        */ c.id = '19'; break;
-    case 'news': /**           */ c.id = '20'; break;
-    case 'bag': /**            */ c.id = '21'; break;
-    case 'start': /**          */ c.id = '23'; break;
-    case 'pack': /**           */ c.id = '24'; break;
-    case '10ans': /**          */ c.id = '25'; break;
-    case 'sphere': /**         */ c.id = '26'; break;
-    case 'bee': /**            */ c.id = '27'; break;
-    case 'games': /**          */ c.id = '28'; break;
-    case 'git': /**            */ c.id = '29'; break;
-    case 'degooglisons-internet': c.id = '30'; break;
-    case 'pic': /**            */ c.id = '31'; c.mode = 'img'; break;
-    case 'link': /**           */ c.id = '32'; break;
-    case 'participer': /**     */ c.id = '33'; break;
-    case 'colibri': /**        */ c.id = '33'; break;
-    case 'bin': /**            */ c.id = '34'; c.mode = 'img'; break;
-    case 'cloud': /**          */ c.id = '35'; break;
-    case 'status': /**         */ c.id = '37'; break;
-    case 'bookin': /**         */ c.id = '38'; break;
-    case 'stats': /**          */ c.id = '39'; break;
-    case 'drive': /**          */ c.id = '40'; break;
-    case 'board': /**          */ c.id = '41'; break;
-    case 'drop': /**           */ c.id = '42'; c.mode = 'img'; break;
-    case 'carte': /**          */ c.id = '43'; break;
-    case 'forms': /**          */ c.id = '44'; break;
-    case 'petition': /**       */ c.id = '45'; break;
-    case 'vox': /**            */ c.id = '47'; break;
-    case 'team': /**           */ c.id = '48'; break;
-    case 'memo': /**           */ c.id = '49'; break;
-    case 'talk': /**           */ c.id = '50'; break;
-    case 'minetest': /**       */ c.id = '51'; break;
-    case 'notes': /**          */ c.id = '52'; break;
-    case 'agenda': /**         */ c.id = '53'; break;
-    case 'listes': /**         */ c.id = '54'; break;
-    case 'my': /**             */ c.id = '56'; break;
-    case 'troll': /**          */ c.id = '57'; break;
-    case 'slides': /**         */ c.id = '58'; break;
-    case 'maestro': /**        */ c.id = '59'; break;
-    case 'docs': /**           */ c.id = '60'; break;
-    case 'libre': /**          */ c.id = '61'; break;
-    case 'piaf': /**           */ c.id = '62'; break;
-    case 'contributopia': /**  */ c.id = '63'; break;
-    case 'site': /**           */ c.id = '64'; break;
-    case 'wiki': /**           */ c.id = '64'; break;
-    case 'trad': /**           */ c.id = '65'; break;
-    case 'clic': /**           */ c.id = '66'; break;
-    case 'story': /**          */ c.id = '67'; break;
-
-    // no default
-  }
-
-  if (c.id !== ''
-      // Pas de Matomo si DoNotTrack
-      // DNT est respecté mais on évite les notifications des uBlock, Ghostery, etc
-      && !(navigator.doNotTrack === 'yes'
-      || navigator.doNotTrack === '1'
-      || navigator.msDoNotTrack === '1'
-      || window.doNotTrack === '1')) {
-    // Code Javascript
-    if (c.mode === 'js') {
-      var _paq = _paq || []; // eslint-disable-line
-
-      // Conformité CNIL
-      _paq.push([function matomoCNIL() {
-        const self = this;
-        function getOriginalVisitorCookieTimeout() {
-          const now = new Date();
-          const nowTs = Math.round(now.getTime() / 1000);
-          const visitorInfo = self.getVisitorInfo();
-          const createTs = parseInt(visitorInfo[2], 10);
-          const cookieTimeout = 33696000; // 13 mois en secondes
-          const originalTimeout = (createTs + cookieTimeout) - nowTs;
-          return originalTimeout;
-        }
-        this.setVisitorCookieTimeout(getOriginalVisitorCookieTimeout());
-      }]);
-
-      _paq.push(['trackPageView']);
-      _paq.push(['enableLinkTracking']);
-      // Code Matomo JS
-      (function matomoJS() {
-        const u = c.url;
-        _paq.push(['setTrackerUrl', [u, 'p.php'].join('')]);
-        _paq.push(['setSiteId', c.id]);
-        const d = document;
-        const g = d.createElement('script');
-        const s = d.getElementsByTagName('script')[0];
-        g.type = 'text/javascript'; g.defer = true; g.async = true;
-        g.src = [u, 'p.js'].join(''); s.parentNode.insertBefore(g, s);
-      }());
-    // Code Matomo Image
-    } else {
-      (function matomoImg() {
-        const d = document;
-        const g = d.createElement('img');
-        const s = d.getElementsByTagName('body')[0];
-        g.style = 'border:0'; g.alt = '';
-        g.src = [c.url, 'p.php?idsite=', c.id, '&rec=1'].join(''); s.appendChild(g);
-      }());
+function cookie(action, name, value, time) {
+  if (action === 'w') {
+    const t = typeof time !== 'undefined' ? time : 31536000000; // 365 * 24 * 60 * 60 * 1000
+    const today = new Date();
+    const expires = new Date();
+    expires.setTime(today.getTime() + t);
+    document.cookie = [name, '=', encodeURIComponent(value), ';expires=', expires.toGMTString()].join('');
+  } else {
+    const oRegex = new RegExp(['(?:; )?', name, '=([^;]*);?'].join(''));
+    if (oRegex.test(document.cookie)) {
+      return decodeURIComponent(RegExp.$1);
     }
-
-    // Framaclic
-    (function framaclic() {
-      const d = document;
-      const g = d.createElement('img');
-      const s = d.getElementsByTagName('body')[0];
-      g.style = 'border:0'; g.alt = '';
-      g.src = ['https://framaclic.org/h/', c.id].join(''); s.appendChild(g);
-    }());
   }
+  return null;
+}
+
+function isEmail(emailAddress) { // RegEx from https://emailregex.com/
+  const pattern = new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+  return pattern.test(emailAddress) === true;
+}
+
+function isBefore(date) {
+  return new Date(new Date().toDateString()) < new Date(date);
+}
+
+function isAfter(date) {
+  return new Date(new Date().toDateString()) > new Date(date);
 }
 
 export {
   randomName, rmDiacritics, text, sanitize, noFrama,
-  analytics, mergeObj,
+  mergeObj, cookie,
+  isEmail, isAfter, isBefore,
 };

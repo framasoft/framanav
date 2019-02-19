@@ -149,20 +149,6 @@ if (document.getElementById('fnav') === null) {
   const fnav = document.createElement('div');
   fnav.id = 'fnav';
   document.getElementsByTagName('body')[0].insertBefore(fnav, document.getElementsByTagName('body')[0].children[0]);
-  // Load CSS
-  const scripts = document.getElementsByTagName('script');
-  const fcss = document.createElement('link');
-  let i = 0;
-  while (fcss.getAttribute('rel') === undefined || i < scripts.length) {
-    if (scripts[i].getAttribute('src') && scripts[i].getAttribute('src').indexOf('/nav.js') > -1) {
-      Object.assign(fcss, {
-        rel: 'stylesheet',
-        href: `${scripts[i].getAttribute('src').replace('nav.js', '')}main.css`,
-      });
-    }
-    i += 1;
-  }
-  document.getElementsByTagName('head')[0].appendChild(fcss);
 }
 /** </framanav> */
 

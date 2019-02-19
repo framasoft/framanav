@@ -11,8 +11,8 @@
       <div class="row">
         <div class="col-md-4" id="tuto-faq">
           <h2 v-html="$t('bin.presentation.h2_1')"></h2>
-          <p class="text-center" aria-hidden="true">
-            <i class="glyphicon glyphicon-question-sign"></i>
+          <p class="text-center" role="presentation" aria-hidden="true">
+            <i class="fa fa-question-circle"></i>
           </p>
           <div id="aboutbox">
             <p v-html="$t('bin.presentation.serviceby')"></p>
@@ -26,8 +26,8 @@
          </div>
          <div class="col-md-4" id="le-logiciel">
           <h2 v-html="$t('bin.presentation.h2_2')"></h2>
-          <p class="text-center" aria-hidden="true">
-            <i class="glyphicon glyphicon-cloud"></i>
+          <p class="text-center" role="presentation" aria-hidden="true">
+            <i class="fa fa-cloud"></i>
           </p>
           <p v-html="$t('bin.presentation.framaware')"></p>
           <p v-html="$t('bin.presentation.license')"></p>
@@ -42,7 +42,7 @@
          </div>
          <div class="col-md-4" id="jardin">
           <h2 v-html="$t('bin.presentation.h2_3')"></h2>
-          <p class="text-center" aria-hidden="true">
+          <p class="text-center" role="presentation" aria-hidden="true">
             <i class="glyphicon glyphicon-tree-deciduous"></i>
           </p>
           <p v-html="$t('bin.presentation.contrib_upstream')"></p>
@@ -58,3 +58,21 @@
     </section>
   </div>
 </template>
+
+<script>
+export default {
+  mounted() {
+    const container = document.querySelector('.container.ombre');
+    if (container) {
+      container
+        .insertBefore(document.getElementById('framabin_header'),
+          container.firstChild);
+      container
+        .appendChild(document.getElementById('framabin_presentation'));
+    }
+    if (document.getElementById('sendbutton')) {
+      document.getElementById('sendbutton').classList.add('btn-primary');
+    }
+  }
+}
+</script>

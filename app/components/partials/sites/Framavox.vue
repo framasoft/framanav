@@ -73,8 +73,8 @@
 
         <div class="col-md-4" id="tuto-faq">
           <h2 class="h2" v-html="$t('vox.presentation.h2_1')"></h2>
-          <p class="text-center" role="presentation">
-            <i class="fa fa-question-circle" aria-hidden="true"></i>
+          <p class="text-center" role="presentation" aria-hidden="true">
+            <i class="fa fa-question-circle"></i>
           </p>
           <p v-html="$t('vox.presentation.serviceby')"></p>
           <ol>
@@ -96,8 +96,8 @@
         </div>
         <div class="col-md-4" id="le-logiciel">
           <h2 class="h2" v-html="$t('vox.presentation.h2_2')"></h2>
-          <p class="text-center" role="presentation">
-            <i class="fa fa-cloud" aria-hidden="true"></i>
+          <p class="text-center" role="presentation" aria-hidden="true">
+            <i class="fa fa-cloud"></i>
           </p>
           <p v-html="$t('vox.presentation.framaware')"></p>
           <p v-html="$t('vox.presentation.instance')"></p>
@@ -105,8 +105,8 @@
         </div>
         <div class="col-md-4" id="jardin">
           <h2 class="h2" v-html="$t('vox.presentation.h2_3')"></h2>
-          <p class="text-center" role="presentation">
-            <i class="glyphicon glyphicon-tree-deciduous" aria-hidden="true"></i>
+          <p class="text-center" role="presentation" aria-hidden="true">
+            <i class="glyphicon glyphicon-tree-deciduous"></i>
           </p>
           <p v-html="$t('vox.presentation.contrib_upstream')"></p>
           <p v-html="$t('vox.presentation.home_install')"></p>
@@ -137,7 +137,7 @@ export default {
     document.getElementsByTagName('body')[0].appendChild(fvox);
 
     const hidden = document.querySelectorAll('.md-dialog-container, .md-scroll-mask, .md-dialog-backdrop, .lmo-navbar');
-    hidden.forEach((el) => { el.style = "display: none"; });
+    hidden.forEach((el) => { el.style.display = 'none'; });
   },
   data() {
     return {
@@ -149,7 +149,7 @@ export default {
     dashboard() {
       this.home = false;
       const hidden = document.querySelectorAll('.md-dialog-container, .md-scroll-mask, .md-dialog-backdrop, .lmo-navbar');
-      hidden.forEach((el) => { el.style = "display: block"; });
+      hidden.forEach((el) => { el.style.display = 'block'; });
     }
   },
 };
