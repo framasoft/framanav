@@ -4,7 +4,11 @@
     -moz-box-sizing: content-box !important;
     box-sizing: content-box !important;
   }
-
+  
+  &:.fullscreen-composer #reply-control.fullscreen {
+    z-index: 1005;
+  }
+  
   #discourse-modal.in {
     display: block !important;
     visibility: visible !important;
@@ -23,10 +27,6 @@
   #reply-control .d-editor-button-bar,
   #reply-control .reply-area {
     box-sizing: border-box !important;
-  }
-  
-  .fullscreen-composer #reply-control.fullscreen {
-    z-index: 1005;
   }
 
   .modal.hidden[style*="block"] {
