@@ -1,17 +1,7 @@
 meta:
   title: Framasoft
   lead: There is a long way to go, but the road is Free…
-nav:
-  langChange: Change the language
-  lang: Language
-carousel:
-  play: Play
-  pause: Pause
-  prev: Previous slide
-  next: Next slide
 txt:
-  newWindow: new window
-  close: Close
   nevershow: Do not display anymore
   toggle: Toggle menu
   skip: Skip menu
@@ -19,12 +9,9 @@ txt:
   yourEmail: Your email here
   subscribe: Suscribe
   toTheNewsletter: to the newsletter
-  source: Source
-  contactUs: Contact us
   anotherQuestion: Votre question n’est pas listée ?
   campaign: Campaigns
   community: Community
-  site: Site
 fnav:
   soutenir:
     name: Make a donation ?
@@ -51,7 +38,7 @@ fnav:
       bien une association majoritairement non lucrative. C’est important pour nous.
   modaldon:
     title: Support Framasoft
-    desc: ' <p>You are on the point %c$.modal.don[1]% a resource <b>free</b> from
+    desc: ' <p>You are on the point {action} a resource <b>free</b> from
       the forty or so Framasoft network projects.</p> <p>This resource is <b>free</b>
       (and will be for as long as we exist) because <b>Framasoft is a non-profit organisation</b>
       whose objective is precisely the diffusion of free software and its culture
@@ -60,15 +47,15 @@ fnav:
       for taking a few minutes by helping us to perpetuate and develop our action.</p> '
     b1: I want to make a donation<br>to Framasoft association
     b2: I want to participate.<br>Where do we start?
-    b3: No, thank you, I only<br>wish <b>%c$.modal.don[2]%</b>
+    b3: No, thank you, I only<br>wish <b>{btn}</b>
     b4: I already support Framasoft
   optin:
     t: I agree to Framasoft sending important information to this address
     d1: (We swear, we won’t resell our files, even to the NSA!)
     d2: Why suscribe ?
     e1: Email addresses don’t match.
-    e2: The email address %f$Email% is not valid.
-    s1: Your email address <strong>%f$Email%</strong> has been added to our list.
+    e2: The email address {email} is not valid.
+    s1: Your email address {email} has been added to our list.
       You should have received a confirmation email.
   cat:
     logiciel:
@@ -404,10 +391,9 @@ fnav:
       name: Credits
       link: https://framasoft.org/en/credits
     dio2:
-      name: '<b>2014-2017</b>: De-googl-ify Internet'
+      name: '<b>2014-2017</b>: @:txt.dio'
       d0: Campagne de sensibilitation,
-      t1: '<b class="violet">De-googl-ize</b> <b class="orange">Internet</b>: an ambitions
-        campaign.'
+      t1: '@:color.dio: an ambitions campaign.'
       d1: 'Online services as provided by hegemonic giants such as Google, Amazon,
         Facebook, Apple or Microsoft (GAFAM) are putting our digital life and privacy
         at risk. @:data.color.soft was indulging in a big challenge: offer, with your

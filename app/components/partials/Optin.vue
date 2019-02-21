@@ -2,25 +2,30 @@
   <portal target-el="#foptin">
     <div class="alert alert-danger fade in"
       id="fs_opt-in_error"
-      v-if="state.email !== '' && !isEmail(state.email)">
-      <p v-html="$t('fnav.optin.e2').replace('%f$Email%', '<b>' + state.email + '</b>')"></p>
+      v-if="state.email !== '' && !is.email(state.email)">
+      <p v-html="$t('fnav.optin.e2', { email: `<b>${state.email}</b>`})"></p>
     </div>
     <div class="alert alert-success fade in"
       id="fs_opt-in_confirm"
       v-if="state.sent">
-      <p v-html="$t('fnav.optin.s1').replace('%f$Email%', state.email)"></p>
+      <p v-html="$t('fnav.optin.s1', { email: `<b>${state.email}</b>`})"></p>
     </div>
     <div class="alert alert-info fade in"
       id="fs_opt-in"
       v-if="state.optin && !state.sent">
-      <input type="checkbox" id="fs_opt-in_checkbox" v-model="state.checked" :value="state.checked" @change="subscribe()">
+      <input
+        id="fs_opt-in_checkbox"
+        type="checkbox"
+        v-model="state.checked"
+        :value="state.checked"
+        @change="subscribe()">
       <label for="fs_opt-in_checkbox" v-html="$t('fnav.optin.t')"></label>
       <br>
       <small>
         <span v-html="$t('fnav.optin.d1')"></span>&nbsp;
         <a :href="$root.link.newsletter" id="link-opt-in" target="_blank" >
           <span v-html="$t('fnav.optin.d2')"></span>
-          <span class="sr-only" v-html="'(' + $t('txt.newWindow') + ')'"></span>
+          <span class="sr-only" v-html="`(${$t('txt.newWindow')})`"></span>
         </a>
       </small>
     </div>
@@ -29,7 +34,6 @@
 
 <script>
 import { Alert } from 'uiv';
-import { isEmail, cookie } from '../../tools';
 export default {
   components: {
     Alert,
@@ -54,6 +58,7 @@ export default {
   },
   data() {
     return {
+      cfg: this.config,
       state: {
         optin: false,
         checked: false,
@@ -63,25 +68,27 @@ export default {
     }
   },
   mounted() {
-    if (this.config[0] !== '') {
+    if (this.cfg[0] === '') { // Keep local config
+      this.siteConfig(this.$root.site);
+    }
+    if (this.cfg[0] !== '') {
       if (this.storage[0]) {
         // Global cookie send locally
-        this.cookie('w', this.config[1], true, this.storage[2]);
+        this.cookie('w', this.cfg[1], true, this.storage[2]);
       }
       // Move box next to email input
-      document.querySelector(this.config[0]).after(document.getElementById('foptin'));
+      document.querySelector(this.cfg[0]).after(document.getElementById('foptin'));
       // Display checkbox
       this.state.optin = (!this.cookie('r', 'opt-in'));
     }
   },
   methods: {
-    cookie, isEmail,
     subscribe() {
       this.state.email
-        = (this.config[0] !== '' && document.querySelector(this.config[0]) !== null)
-        ? document.querySelector(this.config[0]).value
+        = (this.cfg[0] !== '' && document.querySelector(this.cfg[0]) !== null)
+        ? document.querySelector(this.cfg[0]).value
         : '';
-      if (this.isEmail(this.state.email)) {
+      if (this.is.email(this.state.email)) {
         // Subscribe
         fetch('https://contact.framasoft.org/php_list/lists/?p=subscribe&id=2', {
           method: 'POST',
@@ -100,13 +107,39 @@ export default {
         this.state.sent = true;
 
         // Never ask again
-        this.cookie('w', this.config[1], true, this.config[2]);
-        // this.storage = [true, this.config[2]];
+        this.cookie('w', this.cfg[1], true, this.cfg[2]);
+        // this.storage = [true, this.cfg[2]];
         // this.minus('o', this.storage);
       }
       // Not a valid email
       this.state.checked = false;
     },
+    siteConfig(site) {
+      switch (site) {
+        case 'blog':
+          this.cfg = ['#commentform #email'];
+          break;
+        case 'board':
+          if (!/\.framaboard/.test(this.$root.host)) {
+            this.cfg = ['#registration #email'];
+          }
+          break;
+        case 'date':
+          this.cfg = /create_poll\.php\?/.test(this.$root.url) ? ['#formulaire input#email'] : [''];
+          break;
+        case 'mindmap':
+          this.cfg = ['#user #email'];
+          break;
+        case 'localhost:8080':
+          this.cfg = ['#email'];
+          break;
+
+        // no-default
+      }
+      this.config.forEach((v, i) => {
+        if (this.cfg[i] === undefined) { this.cfg[i] = v; }
+      });
+    }
   },
 }
 </script>

@@ -4,7 +4,7 @@
       class="clearfix hidden-print"
       :style="state.footer"
       role="contentinfo"
-      v-show="!inframe">
+      v-show="!$root.inframe">
       <div class="container">
         <div class="clearfix col-sm-8">
           <nav class="col-xs-4">
@@ -12,8 +12,8 @@
             <ul class="list-unstyled">
               <li v-for="key in $root.fnav.footer.frama">
                 <a
-                  :href="($t('fnav.sites.' + key + '.link').indexOf('fnav.') > -1) ? $root.link[key] : $t('fnav.sites.' + key + '.link')"
-                  v-html="$t('fnav.sites.' + key + '.name')"
+                  :href="/^fnav/.test($t(`fnav.sites.${key}.link`)) ? $root.link[key] : $t(`fnav.sites.${key}.link`)"
+                  v-html="$t(`fnav.sites.${key}.name`)"
                 ></a>
               </li>
             </ul>
@@ -28,8 +28,8 @@
               </li>
               <li v-for="key in $root.fnav.footer.community">
                 <a
-                  :href="($t('fnav.sites.' + key + '.link').indexOf('fnav.') > -1) ? $root.link[key] : $t('fnav.sites.' + key + '.link')"
-                  v-html="$t('fnav.sites.' + key + '.name')"
+                  :href="/^fnav/.test($t(`fnav.sites.${key}.link`)) ? $root.link[key] : $t(`fnav.sites.${key}.link`)"
+                  v-html="$t(`fnav.sites.${key}.name`)"
                 ></a>
               </li>
             </ul>
@@ -39,8 +39,8 @@
             <ul class="list-unstyled">
               <li v-for="key in $root.fnav.footer.site">
                 <a
-                  :href="($t('fnav.sites.' + key + '.link').indexOf('fnav.') > -1) ? $root.link[key] : $t('fnav.sites.' + key + '.link')"
-                  v-html="$t('fnav.sites.' + key + '.name')"
+                  :href="/^fnav/.test($t(`fnav.sites.${key}.link`)) ? $root.link[key] : $t(`fnav.sites.${key}.link`)"
+                  v-html="$t(`fnav.sites.${key}.name`)"
                 ></a>
               </li>
             </ul>
@@ -50,20 +50,20 @@
           <div class="col-xs-12">
             <h1 v-html="$t('fnav.cat.follow.name')"></h1>
             <ul class="list-inline">
-              <popover tag="li" :class="'fs_' + key"
+              <popover tag="li" :class="`fs_${key}`"
                 v-for="key in $root.fnav.footer.follow" :key="key"
                 placement="top" trigger="hover-focus" append-to="#framanav"
-                :title="text($t('fnav.sites.' + key + '.t1'))"
+                :title="text($t(`fnav.sites.${key}.t1`))"
               >
-                <a :href="($t('fnav.sites.' + key + '.link').indexOf('fnav.') > -1) ? $root.link[key] : $t('fnav.sites.' + key + '.link')">
-                  <i :class="'fa fa-fw fa-2x ' + $root.icon[key]" aria-hidden="true"></i>
+                <a :href="/^fnav/.test($t(`fnav.sites.${key}.link`)) ? $root.link[key] : $t(`fnav.sites.${key}.link`)">
+                  <i :class="`fa fa-fw fa-2x ${$root.icon[key]}`" aria-hidden="true"></i>
                   <span class="sr-only">{{
-                    ($t('fnav.sites.' + key + '.name').indexOf('fnav.') > -1)
+                    /^fnav/.test($t(`fnav.sites.${key}.name`))
                     ? $root.txt[key]
-                    : text($t('fnav.sites.' + key + '.name')) }}</span>
+                    : text($t(`fnav.sites.${key}.name`)) }}</span>
                 </a>
                   <template slot="popover">
-                  <div v-html="$t('fnav.sites.' + key + '.d1')"></div>
+                  <div v-html="$t(`fnav.sites.${key}.d1`)"></div>
                 </template>
               </popover>
             </ul>
@@ -92,7 +92,6 @@
 
 <script>
 import { Popover, Tooltip } from 'uiv';
-import { text } from '../../tools';
 export default {
   components: {
     Popover, Tooltip,
@@ -110,7 +109,6 @@ export default {
   },
   data() {
     return {
-      inframe: window.top.location !== window.self.document.location,
       state: {
         footer: 'position: relative',
       }
@@ -124,7 +122,6 @@ export default {
     window.addEventListener('scroll', this.footerPosition);
   },
   methods: {
-    text,
     footerPosition() {
       this.state.footer = (document.body.scrollHeight < window.innerHeight )
         ? 'position: absolute'

@@ -1,30 +1,16 @@
 meta:
   title: Framasoft
   lead: La route est longue mais la voie est libre…
-nav:
-  langChange: Changer la langue
-  lang: Langue
-carousel:
-  play: Lecture
-  pause: Pause
-  prev: Diapo précédente
-  next: Diapo suivante
 txt:
-  newWindow: nouvelle fenêtre
-  close: Fermer
-  nevershow: Ne plus afficher
   toggle: Afficher/masquer le menu
   skip: Sauter le menu
   typeYourEmail: Saisissez votre courriel
   yourEmail: Votre courriel
   subscribe: S’abonner
   toTheNewsletter: à la lettre d’informations
-  source: Source
-  contactUs: Contactez-nous
   anotherQuestion: Votre question n’est pas listée ?
   campaign: Campagnes
   community: Communauté
-  site: Site
   action:
     dl: de télécharger
     use: d’utiliser
@@ -63,7 +49,7 @@ fnav:
       bien une association majoritairement non lucrative. C’est important pour nous.
   modaldon:
     title: Soutenez Framasoft
-    desc: ' <p>Vous êtes sur le point %modal.don[1]% une ressource <b>libre</b> issue
+    desc: ' <p>Vous êtes sur le point {action} une ressource <b>libre</b> issue
       de la quarantaine de projets du réseau Framasoft.</p> <p>Cette ressource est
       <b>gratuite</b> (et le sera tant que nous existerons) parce que <b>Framasoft
       est une association d’intérêt général à but non lucratif</b> dont l’objectif
@@ -73,15 +59,15 @@ fnav:
       quelques minutes en nous aidant à pérenniser et développer notre action.</p> '
     b1: Je veux faire un don<br>à l’association Framasoft
     b2: Je veux participer.<br>Par où on commence ?
-    b3: Non merci, je souhaite<br>seulement <b>%modal.don[2]%</b>
+    b3: Non merci, je souhaite<br>seulement <b>{btn}</b>
     b4: Je soutiens déjà Framasoft
   optin:
     t: J’accepte que Framasoft m’envoie à cette adresse des informations importantes
     d1: (Promis, nous ne revendons pas nos fichiers, même à la NSA !)
     d2: Pourquoi m’inscrire ?
     e1: Les adresses emails ne correspondent pas.
-    e2: L’adresse email %f$Email% n’est pas valide.
-    s1: Votre adresse email <strong>%f$Email%</strong> a été ajoutée à notre liste.
+    e2: L’adresse email {email} n’est pas valide.
+    s1: Votre adresse email {email} a été ajoutée à notre liste.
       Vous devriez avoir reçu un email de confirmation.
   cat:
     logiciel:
@@ -526,23 +512,21 @@ fnav:
       name: Crédits
       link: https://framasoft.org/fr/credits
     dio2:
-      name: '<b>2014-2017</b> : Dégooglisons Internet'
+      name: '<b>2014-2017</b> : @:txt.dio'
       link: https://degooglisons-internet.org
       d0: Campagne de sensibilitation
-      t1: '<b class="violet">Dégooglisons</b> <b class="orange">Internet</b> : une
+      t1: '@:color.dio : une
         ambitieuse campagne.'
       d1: Les services en ligne de géants tentaculaires comme Google, Amazon, Facebook,
-        Apple ou Microsoft (GAFAM) mettent en danger nos vies numériques. <b class='violet'>Frama</b><b
-        class='orange'>soft</b> s’est lancé comme défi audacieux de vous proposer,
+        Apple ou Microsoft (GAFAM) mettent en danger nos vies numériques. @:data.color.soft s’est lancé comme défi audacieux de vous proposer,
         avec votre aide, une alternative Libre, Éthique, Décentralisé et Solidaire
         pour chacun de ces services.
     cuo2:
       name: '<b>2017-2020</b> : Contributopia'
       link: https://contributopia.org
       d0: Campagne de sensiblisation
-      t1: '<b class="violet">Contrib</b><b class="orange">utopia</b> : dégoogliser
-        ne suffit pas'
-      d1: '<b class="violet">Frama</b><b class="orange">soft</b> vous invite à un
+      t1: '@:data.color.cuo : dégoogliser ne suffit pas'
+      d1: '@:data.color.soft vous invite à un
         voyage exaltant : explorons ensemble des mondes numériques. Des mondes où
         les outils informatiques se conçoivent en collaboration, où les pratiques
         respectueuses essaiment et pollinisent, où s’ouvrent les portes de la contribution.'

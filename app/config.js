@@ -2,52 +2,9 @@
  *                          Config des sites                           *
  * ******************************************************************* */
 function siteConfig(vue) {
-  let l$; l$ = l$ || {}; // eslint-disable-line
+  let l$ = {};
 
   switch (vue.site) {
-    case 'forum':
-      l$ = {
-        modal: {
-          info: [
-            'Fermeture de Framagora', `
-            <p>
-              Après 15 années d’existence, le forum historique de Framasoft,
-              ferme ses portes.
-              Pour les nostalgiques et les curieux, il reste toujours possible
-              de consulter les discussions mais c’est maintenant le forum
-              ${vue.$root.html.colibri} qui prend la relève.
-            </p>
-            <p>
-              Nous avions mis en place ${vue.$root.html.colibri} en 2015
-              pour permettre aux bénévoles souhaitant
-              participer aux projets de Framasoft de s’organiser sur un
-              forum vierge et moderne. Aujourd’hui, la dynamique est bien là.
-            </p>
-            <p>
-              Nous y avons donc reporté les quelques catégories de Framagora
-              qui étaient encore un peu actives&nbsp;:
-            <p>
-            <ul>
-              <li><a href="${vue.$root.link.colibri}/c/framasoft-vous/cherche-logiciel-libre-pour">Cherche logiciel libre pour…</a></li>
-              <li><a href="${vue.$root.link.colibri}/c/framasoft-vous/ask-frama">Questions / réponses</a></li>
-              <li><a href="${vue.$root.link.colibri}/c/qualite/framakey">Framakey</a></li>
-              <li><a href="${vue.$root.link.colibri}/c/qualite">Améliorons ensemble les outils Framasoft</a></li>
-              <li><a href="${vue.$root.link.colibri}/c/framasoft-vous/presentations">Présentation des membres</a></li>
-            </ul>
-            <p>
-              Si vous avez des questions, on se retrouve là-bas…
-              <img src="${vue.$root.link.colibri}/images/emoji/emoji_one/wink.png?v=0" alt=";)" style="width:20px"/>
-            </p>
-            <p class="text-center">
-              <a href="${vue.$root.link.colibri}" class="btn btn-default">
-                <b>https://</b><b class="violet">frama</b><b class="jaune">colibri</b><b>.org</b>
-              </a>
-            </p>`,
-          ],
-        },
-      };
-      break;
-
     case 'bee':
       l$ = {
         js: {
@@ -85,23 +42,8 @@ function siteConfig(vue) {
         },
       };
       break;
-
-    case 'bin':
-      l$ = {
-        modal: {
-          don: ['onstart', 'txt.action.use', 'txt.actionBtn.use'],
-        },
-      };
-      break;
-
-    case 'blog':
-      l$ = {
-        optin: ['#commentform #email'],
-      };
-      break;
-
     case 'board':
-      if (vue.isURL('.framaboard')) { // dans Kanboard
+      if (/\.framaboard/.test(vue.$root.host)) { // dans Kanboard
         l$ = {
           js: {
             ext() {
@@ -115,29 +57,18 @@ function siteConfig(vue) {
             },
           },
         };
-      } else {
-        l$.optin = ['#registration #email'];
       }
       break;
 
-    case 'book':
-      l$ = {
-        modal: { don: ['a[href*="download-monitor/download.php?id="]'] },
-      };
-      break;
-
     case 'calc':
-      if (vue.isURL('accueil.framacalc.org')) {
+      if (/accueil\.framacalc\.org/.test(vue.$root.host)) {
         // Si on est sur la page d'accueil
         l$ = {
-          modal: {
-            don: ['a[href*="lite.framacalc.org/"]', 'txt.action.use', 'txt.actionBtn.calc'],
-          },
           js: {
             ext() {
-              if (vue.cookie('r', 'calc-alert')) { jQuery('#classic .alert').hide(); }
+              if (vue.$root.cookie('r', 'calc-alert')) { jQuery('#classic .alert').hide(); }
               jQuery('#classic .alert').on('closed.bs.alert', () => {
-                vue.cookie('w', 'calc-alert', true, 31536000000);
+                vue.$root.cookie('w', 'calc-alert', true, 31536000000);
               });
             },
           },
@@ -161,28 +92,11 @@ function siteConfig(vue) {
       }
       break;
 
-    case 'carte':
-      l$.modal = { don: ['a.btn-primary[href*="/map/new/"]', 'txt.action.use', 'txt.actionBtn.map'] };
-      break;
-
-    case 'date':
-      l$ = {
-        modal: {
-          don: ['a[href*="create_poll.php?"]', 'txt.action.use', 'txt.actionBtn.poll'],
-        },
-        optin: (vue.isURL('create_poll.php?') ? ['#formulaire input#email'] : ['']),
-      };
-      break;
-
-    case 'dvd':
-      l$.modal = { don: ['a[href*="iso.framadvd.org"]'] };
-      break;
-
     case 'drop':
       l$ = {
         js: {
           ext() {
-            if (!vue.isURL('https://framadrop.org/', 'u')) {
+            if (vue.$root.url !== 'https://framadrop.org/') {
               jQuery('main .row:last,main hr:last').hide();
             }
           },
@@ -190,48 +104,20 @@ function siteConfig(vue) {
       };
       break;
 
-    case 'games':
-      l$.modal = { don: ['.play a', 'txt.action.use', 'txt.actionBtn.use'] };
-      break;
-
-    case 'key':
-      l$.modal = { don: ['a[href*="framaclic.org"]'] };
-      break;
-
     case 'libre':
       l$ = {
         js: {
           ext() {
-            if (vue.inframe) {
+            if (vue.$root.inframe) {
               document.querySelectorAll('a').forEach(a => Object.assign(a, { target: '_blank' }));
             }
           },
         },
-        alert: [
-          'info',
-          ` ${vue.$root.color.libre}, l’annuaire des logiciels libres de l’association
-            ${vue.$root.color.soft}
-            <a href="https://framablog.org/2017/03/21/framalibre-lannuaire-du-libre-renait-entre-vos-mains/"
-            >fait peau neuve</a>.<br>
-            Certains liens prééxistants ne sont plus valides.
-            <a href="${vue.$root.link.contact}/fr/faq/#libre_v2">
-            Vous avez du mal à vous y retrouver&nbsp;?</a>`,
-        ],
       };
-      break;
-
-    case 'link':
-      l$.modal = { don: ['onstart', 'txt.action.use', 'txt.actionBtn.use'] };
       break;
 
     case 'mindmap':
-      l$ = {
-        optin: ['#user #email'],
-      };
-      if (vue.isURL('framindmap.org/c/maps/') && !vue.isURL('/edit')) {
-        l$.modal = { don: ['onstart', 'txt.action.use', 'txt.actionBtn.use'] };
-      }
-      if (vue.isURL('framindmap.org/c/maps') && vue.isURL('/edit')) {
+      if (/framindmap.org\/c\/maps\/(.*?)\/edit/.test(vue.$root.url)) {
         // [Fix] Suppression de la nav dans l'éditeur
         const f$NavContainer = document.getElementById('framanav_container');
         f$NavContainer.parentNode.removeChild(f$NavContainer);
@@ -239,7 +125,7 @@ function siteConfig(vue) {
       break;
 
     case 'my':
-      if (vue.isURL('source=bookmarklet')) {
+      if (/source=bookmarklet/.test(vue.$root.url)) {
         document.getElementsByTagName('html')[0].setAttribute('data-inframe', 'true');
         l$ = {
           js: {
@@ -256,7 +142,7 @@ function siteConfig(vue) {
         l$ = {
           js: {
             ext() {
-              if (vue.inframe) {
+              if (vue.$root.inframe) {
                 document.getElementById('linklist').classList.add('container-fluid');
                 document.getElementById('linklist').classList.remove('container');
                 document.getElementById('pageheader').style.display = 'none';
@@ -268,29 +154,17 @@ function siteConfig(vue) {
       }
       break;
 
-    case 'pack':
-      l$.modal = { don: ['onstart', 'txt.action.use', 'txt.actionBtn.use'] };
-      break;
-
     // <framapad> --------------------------------------------------------
-    case 'pad':
-      l$.modal = { don: ['a[href*=".framapad.org/p/"]', 'txt.action.use', 'txt.actionBtn.pad'] };
-      break;
-
-    case 'mypads':
-      l$ = { credits: 'pad' };
-      break;
-
     case 'etherpad': // dans Etherpad
       l$ = {
         js: {
           ext() {
             jQuery('#loading').delay(2000).append(`
               <p class="small">Si le pad refuse de s’afficher, essayez de télécharger<br>
-              l’export <a href="${window.location.href}/export/html">html</a>
-              ou <a href="${window.location.href}/export/txt">txt</a>
+              l’export <a href="${vue.$root.url}/export/html">html</a>
+              ou <a href="${vue.$root.url}/export/txt">txt</a>
               de votre document et <a href="${vue.$root.link.contact}/#framapad">contactez-nous</a>.</p>`);
-            if (!vue.inframe) {
+            if (!vue.$root.inframe) {
               const addMaestroBtn = setInterval(() => {
                 if (jQuery('#editbar .menu_right').length && !jQuery('#maestroBtn').length) {
                   jQuery('#editbar .menu_right').prepend(`
@@ -308,24 +182,9 @@ function siteConfig(vue) {
             }
           },
         },
-        credits: 'pad',
       };
-      if (vue.isURL(/(beta.framapad)/i, 'h')) {
-        l$.modal = {
-          info: [
-            'Avertissement',
-            ` <p>Cette instance de Framapad (<b>beta</b>.framapad.org) est
-              instable et ne doit servir que pour des tests.<p>
-              <p>Pensez à utiliser régulièrement la fonction d’export pendant vos tests.</p>
-              <p>Merci.<br>L’équipe technique</p>`,
-          ],
-        };
-      }
       break;
       // </framapad> -------------------------------------------------------
-
-    case 'phonie':
-      break;
 
     case 'piaf':
       l$ = {
@@ -334,24 +193,6 @@ function siteConfig(vue) {
             jQuery('img[src*="/packs/logo"]').attr('src', 'https://framasoft.org/nav/img/icons/piaf.png');
           },
         },
-      };
-      break;
-
-    case 'pic':
-      l$ = {
-        modal: { don: ['onstart', 'txt.action.use', 'txt.actionBtn.use'] },
-      };
-      break;
-
-    case 'site':
-      l$ = {
-        alert: [
-          'info',
-          ` ${vue.$root.color.site} est en phase de test.
-            Le service fonctionne, mais n’est pas encore facile à utiliser par quiconque.
-            C’est à l’écoute de vos retours que nous allons l’améliorer
-            et le documenter au cours des semaines à venir.`,
-        ],
       };
       break;
 
@@ -405,31 +246,6 @@ function siteConfig(vue) {
 
     case 'team':
       // l$.js = { ext: true }, // TODO Import team.js
-      break;
-
-    case 'vectoriel':
-      if (!vue.isURL('svg-editor')) { // Pas dans SVG-Editor
-        l$.modal = { don: ['a[href$="svg-editor.html"]', 'txt.action.use', 'txt.actionBtn.img'] };
-      }
-      break;
-
-    case 'wiki':
-      if (vue.isURL('frama.wiki', 'h')) {
-        l$ = {
-          alert: [
-            'info',
-            ` ${vue.$root.color.wiki} est en phase de test.
-              Le service fonctionne, mais n’est pas encore facile à utiliser par quiconque.
-              C’est à l’écoute de vos retours que nous allons l’améliorer
-              et le documenter au cours des semaines à venir.`,
-          ],
-        };
-      } else {
-        // vue.isURL('mediamanager.php');
-        l$ = {
-          alert: ['', ''],
-        };
-      }
       break;
 
     case 'zic':

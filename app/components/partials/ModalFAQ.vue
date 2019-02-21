@@ -1,6 +1,6 @@
 <template>
   <modal v-model="state.faq"
-    :title="`${$t('fnav.sites.faq.name')} ${name}`"
+    :title="`${$t('fnav.sites.faq.name')} ${$root.name}`"
     id="modal-fsFAQ"
     aria-labelledby="modal-fsFAQLabel"
     ><!-- v-show="this.$root.f.faq.l.indexOf(this.lname) > -1" -->
@@ -9,7 +9,7 @@
         <span aria-hidden="true">×</span>
         <span class="sr-only" v-html="$t('txt.close')"></span>
       </button>
-      <h1 id="modal-fsFAQLabel" v-html="`${$t('fnav.sites.faq.name')} ${name}`"></h1>
+      <h1 id="modal-fsFAQLabel" v-html="`${$t('fnav.sites.faq.name')} ${$root.name}`"></h1>
     </div>
 
     <div class="clearfix" id="modal-fsFAQBody">
@@ -33,7 +33,6 @@
 
 <script>
 import { Modal } from 'uiv';
-import { cookie } from '../../tools';
 export default {
   components: {
     Modal,
@@ -50,9 +49,6 @@ export default {
         faq: false,
       },
     }
-  },
-  methods: {
-    cookie,
   },
 }
 </script>

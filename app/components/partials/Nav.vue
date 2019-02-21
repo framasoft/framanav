@@ -1,13 +1,13 @@
 <template>
   <div>
-    <Meta :site="site" :baseurl="baseurl" />
+    <Meta />
 
     <!-- Menus -->
-    <div id="framanav_container" class="hidden-print" style="height:42px;" v-show="!inframe">
+    <div id="framanav_container" class="hidden-print" style="height:42px;" v-show="!$root.inframe">
       <navbar id="framanav" style="display: none;" role="menubar">
         <span slot="brand">
           <a class="navbar-brand" slot="brand" :href="$root.link.soft">
-            <img :src="$root['/'] + 'img/logo.png'" alt="" />
+            <img :src="`${$root['/']}img/logo.png`" alt="" />
             <span class="hidden-sm" v-html="$root.color.soft"></span>
           </a>
           <a href="#nav-end" id="nav-skip" v-html="$t('txt.skip')"></a>
@@ -15,7 +15,7 @@
         <template slot="collapse">
           <navbar-nav>
             <dropdown
-              ref="dropdown" tag="li" :id="'fs_' + key"
+              ref="dropdown" tag="li" :id="`fs_${key}`"
               v-for="(cat, key) in $t('fnav.cat')" :key="key"
             >
               <a class="dropdown-toggle" role="button">
@@ -23,25 +23,26 @@
               </a>
               <template slot="dropdown">
                 <li class="dropdown-header" v-if="key === 'about'" v-html="$root.color.soft"></li>
-                <popover tag="li" :class="'fs_' + l"
-                  :enable="!!$i18n.messages[$t('lang')].fnav.sites[l].t1"
-                  :placement="((key === 'services' || key === 'about') && !(index % 2)) ? 'right' : 'left'"
-                  :auto-placement="false" trigger="hover-focus" append-to="#framanav"
-                  :title="text($t('fnav.sites.' + l + '.t1'))"
+                <popover
                   v-for="(l, index) in $root.fnav.cat[key]" :key="l"
+                  tag="li" :class="`fs_${l}`"
+                  :enable="!/^fnav/.test($t(`fnav.sites.${l}.t1`))"
+                  :placement="/(services|about)/.test(key) && !(index % 2) ? 'right' : 'left'"
+                  :auto-placement="false" trigger="hover-focus" append-to="#framanav"
+                  :title="text($t(`fnav.sites.${l}.t1`))"
                 >
-                  <a :href="($t('fnav.sites.' + l + '.link').indexOf('fnav.') > -1) ? $root.link[l] : $t('fnav.sites.' + l + '.link')">
-                    <i :class="'fa fa-fw fa-lg ' + $root.icon[l]" aria-hidden="true"></i>
+                  <a :href="/^fnav/.test($t(`fnav.sites.${l}.link`)) ? $root.link[l] : $t(`fnav.sites.${l}.link`)">
+                    <i :class="`fa fa-fw fa-lg ${$root.icon[l]}`" aria-hidden="true"></i>
                     {{
-                      ($t('fnav.sites.' + l + '.name').indexOf('fnav.') > -1)
+                      /^fnav/.test($t(`fnav.sites.${l}.name`))
                       ? $root.txt[l]
-                      : text($t('fnav.sites.' + l + '.name'))
+                      : text($t(`fnav.sites.${l}.name`))
                     }}
-                    <span class="sr-only" v-html="'(' + $t('txt.newWindow') + ')'"></span>
+                    <span class="sr-only" v-html="`(${$t('txt.newWindow')})`"></span>
                     <i class="fa new-window fa-external-link" aria-hidden="true"></i>
                   </a>
                   <template slot="popover">
-                    <div v-html="$t('fnav.sites.' + l + '.d1')"></div>
+                    <div v-html="$t(`fnav.sites.${l}.d1`)"></div>
                   </template>
                 </popover>
               </template>
@@ -50,8 +51,8 @@
               placement="bottom" trigger="hover-focus" append-to="#framanav"
               :title="text($t('fnav.soutenir.t1'))"
             >
-              <a :href="$root.link.soutenir + '/?f=nav'" class="btn-soutenir">
-                <i :class="'fa fa-fw fa-lg ' + $root.icon.soutenir" aria-hidden="true"></i>
+              <a :href="`${$root.link.soutenir}/?f=nav`" class="btn-soutenir">
+                <i :class="`fa fa-fw fa-lg ${$root.icon.soutenir}`" aria-hidden="true"></i>
                 {{ text($t('fnav.soutenir.name')) }}
               </a>
               <template slot="popover">
@@ -63,7 +64,7 @@
               :title="text($t('fnav.benevalo.t1'))"
             >
               <a :href="$root.link.benevalo" class="btn-info">
-                <i :class="'fa fa-fw fa-lg ' + $root.icon.benevalo" aria-hidden="true"></i>
+                <i :class="`fa fa-fw fa-lg ${$root.icon.benevalo}`" aria-hidden="true"></i>
                 {{ text($t('fnav.benevalo.name')) }}
               </a>
               <template slot="popover">
@@ -77,7 +78,7 @@
               <a :href="myframa" class="btn-primary"
                 @click="window.open(myframa, 'myframa', 'menubar=no,height=500,width=600,toolbar=no,scrollbars=yes,status=no,dialog=1'); return false;"
               >
-                <i :class="'fa fa-fw fa-lg ' + $root.icon.my" aria-hidden="true"></i>
+                <i :class="`fa fa-fw fa-lg ${$root.icon.my}`" aria-hidden="true"></i>
                 {{ $root.txt.my }}
               </a>
               <template slot="popover">
@@ -107,17 +108,16 @@
     <AlertInfo :config="config.alert" />
 
     <!-- TODO
-    <ModalFAQ :name="name" />
+    <ModalFAQ />
     -->
     <ModalInfo :config="config.modal.info" />
     <ModalDon
-      :name="name"
       :config="config.modal.don"
       :storage="storage.modal.don"
     />
 
-    <Framabin v-if="/:\/\/framabin.org.p/.test(url)" />
-    <Framavox v-if="/:\/\/framavox.org/.test(url)" />
+    <Framabin v-if="/:\/\/framabin.org.p/.test($root.url)" />
+    <Framavox v-if="/:\/\/framavox.org/.test($root.url)" />
 
     <Optin
       :config="config.optin"
@@ -142,7 +142,6 @@ import Framabin from './sites/Framabin.vue';
 import Framavox from './sites/Framavox.vue';
 
 import { Btn, Dropdown, Navbar, NavbarNav, Popover, Tooltip, Modal } from 'uiv';
-import { text, mergeObj, cookie } from '../../tools';
 import { siteConfig } from '../../config';
 
 export default {
@@ -155,63 +154,47 @@ export default {
     Framabin, Framavox,
   },
   created() {
-    // Get current script root url
-    const scripts = document.getElementsByTagName('script');
-    this.baseurl = this.link(scripts[scripts.length-1].src.replace('nav.js', ''));
-
     // Add [data-*] attributes for CSS
     const html = document.getElementsByTagName('html');
-    html[0].setAttribute('data-url', window.location.href);
-    html[0].setAttribute('data-inframe', this.inframe);
+    html[0].setAttribute('data-url', this.$root.url);
+    html[0].setAttribute('data-inframe', this.$root.inframe);
 
     // Load CSS
     const fcss = document.createElement('link');
     Object.assign(fcss, {
       rel: 'stylesheet',
-      href: `${this.baseurl}main.css`,
+      href: `${this.$root.baseurl}main.css`,
     });
     document.getElementsByTagName('head')[0].appendChild(fcss);
 
     this.storage = this.storageInit;
 
-    mergeObj(
+    let localConfig = {};
+    try {
+      localConfig = l$;
+    } catch (e) {
+      // continue regardless of error
+    }
+    this.config = this.merge(
       this.config, // default config
       (!!Object.keys(siteConfig(this)).length)
       ? siteConfig(this) // config.js
-      : l$ || {} // inline config (or nothing)
+      : localConfig
     );
   },
   directives: {
     Popover, Tooltip
   },
   data() {
-    const bookmarkURL = window.location.href;
-    const bookmarkTitle = document.title || bookmarkURL;
-
     return {
       // Init nav
       version: '190108', // n° version de la nav
-      inframe: window.top.location !== window.self.document.location,
       myframa: [
-          'https://my.framasoft.org/?post=', encodeURIComponent(bookmarkURL),
-          '&title=', encodeURIComponent(bookmarkTitle),
+          'https://my.framasoft.org/?post=', encodeURIComponent(this.$root.url),
+          '&title=', encodeURIComponent(document.title || this.$root.url),
           '&description=', encodeURIComponent(document.getSelection()),
           '&source=bookmarklet',
         ].join(''),
-      host: window.location.host,
-      name: '',
-      lname: '',
-      site: window.location.host.replace(/^(www|test)\./i, '').replace(/\.(com|net|org|fr|pro)$/i, ''),
-      url: window.location.href,
-      baseurl: '',
-      browser: {
-        agent: navigator.userAgent,
-        opera: !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0,
-        firefox: typeof InstallTrigger !== 'undefined',
-        safari: Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0,
-        chrome: !!window.chrome && !(!!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0),
-        ie: /*@cc_on!@*/false || !!document.documentMode, // eslint-disable-line
-      },
       storageInit: {
         modal: { don: [false, 604800000] },
         optin: [false, 604800000],
@@ -240,45 +223,6 @@ export default {
       }
     }, 1000);
 
-    this.name = this.site[0].toUpperCase() + this.site.slice(1).replace('.framasoft', ''); // Nom du service
-    this.lname = this.name.toLowerCase();
-
-    // [site] Cleaning (shortest name for config)
-    this.site = this.site.replace(/framand/i, 'and') // TODO : remplacer par noFrama ?
-        .replace(/framage/i, 'age')
-        .replace(/framae/i, 'mae')
-        .replace(/(\.framasoft|frama\.)/i, '')
-        .replace(/framin/i, 'min')
-        .replace(/frame/i, 'me')
-        .replace(/frama/i, '');
-
-    // [site] Aliases
-    switch (this.site) {
-      case 'huit.re': this.site = 'link'; break;
-      case 'tontonroger': this.site = 'bee'; break;
-      case 'trouvons': this.site = 'bee'; break;
-
-      // no default
-    }
-
-    // [site] Subdomains
-    if (this.isURL(/framaboard/i, 'h')) { this.site = 'board'; }
-    if (this.isURL(/framadate/i, 'h')) { this.site = 'date'; }
-    if (this.isURL(/framacalc/i, 'h')) { this.site = 'calc'; }
-
-    // [site] Exceptions Framapad
-    if (this.isURL('mypads.framapad.org', 'h')
-      || this.isURL('beta3.framapad.org', 'h')) {
-      this.site = 'mypads';
-      this.name = 'Framapad';
-    }
-    if ((this.isURL(/.framapad/i, 'h') && !this.isURL(/mypads./i, 'h'))
-      || (this.isURL(/mypads.framapad/i, 'h') && this.isURL('/p/'))
-      || (this.isURL(/beta3.framapad/i, 'h') && this.isURL('/p/'))) {
-      this.site = 'etherpad';
-      this.name = 'Framapad';
-    }
-
     /*********** Config ***********/
     if (this.config.js !== undefined && this.config.js.ext !== undefined) {
       if (this.config.js.jQuery) {
@@ -291,13 +235,12 @@ export default {
     }
   },
   methods: {
-    text, cookie,
     link(href) {
       const link = document.createElement('a');
       link.href
         = (/:\/\//.test(href))
         ? href
-        : `${this.baseurl}${href.replace(/^\//, '')}`;
+        : `${this.$root.baseurl}${href.replace(/^\//, '')}`;
       link.href = link.href.replace(/\?$/, `?${this.version}`)
       return [link.protocol, '//', link.host, link.pathname, link.search, link.hash].join('');
     },
@@ -315,32 +258,17 @@ export default {
         ' news', 'git', 'wiki', ' petitions', ' wikipedia', ' status',
         ' credits'].indexOf(key) > -1);
     },
-    // Boolean functions
-    isURL(string, location) {
-      let l = window.location.href;
-      switch (location) {
-        case 'h': l = window.location.host; break;
-        case 'u': break;
-        default:
-          return (l.indexOf(string) > -1);
-      }
-
-      if (typeof string === 'object' || typeof string === 'function') { // RegExp
-        return (string.test(l));
-      }
-      return (l === string);
-    },
     isLang(lg, browser) {
       if (browser !== 'b') { // Langue de la page
         let lang = '';
         const html = document.getElementsByTagName('html');
         const meta = document.getElementsByTagName('script');
 
-        if (window.location.href.indexOf('framabin.org/p/') > -1 // Contournement de PrivateBin
+        if (this.$root.url.indexOf('framabin.org/p/') > -1 // Contournement de PrivateBin
           && document.getElementById('language')
           && document.getElementById('language').innerHTML.indexOf('> français <') > -1) {
           lang = 'fr';
-        } else if (window.location.host.indexOf('framindmap.org') > -1 // Contournement de Wisemapping
+        } else if (this.$root.host.indexOf('framindmap.org') > -1 // Contournement de Wisemapping
           && document.getElementById('userSettingsBtn')
           && document.getElementById('userSettingsBtn').innerHTML === 'Compte') {
           lang = 'fr';
@@ -379,9 +307,11 @@ export default {
         this.loadedScript.push(url);
         const head = document.getElementsByTagName('head')[0];
         const e = document.createElement('script');
-        e.src = url;
-        e.type = 'text/javascript';
-        e.charset = 'utf-8';
+        Object.assign(e, {
+          src: url,
+          type: 'text/javascript',
+          charset: 'utf-8',
+        });
 
         let done = false;
         e.onload = function isLoaded() {

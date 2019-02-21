@@ -97,7 +97,6 @@ let config = {
       { from: path.resolve(__dirname, './app/assets/fonts'), to: 'fonts' },
       { from: path.resolve(__dirname, './app/assets/icons'), to: 'icons' },
       { from: path.resolve(__dirname, './app/assets/img'), to: 'img' },
-      { from: path.resolve(__dirname, './app/assets/html'), to: 'html' },
       { from: path.resolve(__dirname, './app/assets/ext'), to: 'ext' },
       { from: path.resolve(__dirname, './app/assets/lib'), to: 'lib' },
       { from: path.resolve(__dirname, './app/assets/test'), to: 'test' },
@@ -137,15 +136,18 @@ if (process.env.NODE_ENV === 'development') {
     }),
   ]);
 } else { // NODE_ENV === 'production|preview'
-  const routes = [root];
+  const routes = [];
   const pages = [];
   // Import pages list
   fs.readdirSync('./app/components/pages').forEach(file => {
     pages.push(file.replace(/(.*)\.vue/, '$1'));
   });
-  // Localized routes
-  for (let i = 0; i < locales.length; i += 1) {
-    for (let j = 0; j < pages.length; j += 1) {
+  for (let j = 0; j < pages.length; j += 1) {
+    routes.push(
+      `${root}${pages[j].toLowerCase().replace('home', '')}`
+    );
+    // Localized routes
+    for (let i = 0; i < locales.length; i += 1) {
       routes.push(
         `${root}${locales[i]}${pages[j].toLowerCase().replace(/^/, '/').replace('/home', '')}`
       );

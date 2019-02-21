@@ -28,7 +28,7 @@ export default {
     },
   },
   mounted() {
-    if (/cortex(.html)?$/.test(window.location.href)) {
+    if (/cortex(.html)?$/.test(this.$root.url)) {
       this.cortex();
     } else {
       this.minus();
