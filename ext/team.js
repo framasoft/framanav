@@ -251,10 +251,12 @@ if (f$origin[4] === 'channels' || f$origin[4] === 'tutorial') {
 
 const updateDisplay = function updateDisplay(currentId) {
   const body = document.getElementsByTagName('body')[0];
-  body.classList.remove('inMM', 'outMM');
   if (/ct-(channels|admin-console|tutorial)/.test(currentId)) {
+    body.classList.remove('inMM', 'outMM');
     body.classList.add('inMM');
-  } else {
+  }
+  if (/ct-(select_team|reset_password|create_team|signup_user_complete|login)/.test(currentId)) {
+    body.classList.remove('inMM', 'outMM');
     body.classList.add('outMM');
   }
   switch (currentId) {
