@@ -250,19 +250,18 @@ if (f$origin[4] === 'channels' || f$origin[4] === 'tutorial') {
 }
 
 const updateDisplay = function updateDisplay(currentId) {
+  const body = document.getElementsByTagName('body')[0];
+  body.classList.remove('inMM', 'outMM');
+  if (/ct-(channels|admin-console|tutorial)/.test(currentId)) {
+    body.classList.add('inMM');
+  } else {
+    body.classList.add('outMM');
+  }
   switch (currentId) {
-    case 'ct-channels':
-      f$('body').removeClass('inMM outMM').addClass('inMM');
-      break;
-    case 'ct-admin-console':
-      f$('body').removeClass('inMM outMM').addClass('inMM');
-      break;
     case 'ct-tutorial':
-      f$('body').removeClass('inMM outMM').addClass('inMM');
       f$('.tutorial__steps h1').html('<b class="violet">Frama</b><b class="vert">team</b>');
       break;
     case 'ct-select_team':
-      f$('body').removeClass('inMM outMM').addClass('outMM');
       if (f$('#Options').length === 0) {
         f$('.signup-team__container .signup__content:first .signup-team-all:first').after(f$pteams);
         f$('#ListImport').prepend(f$('.signup-team__container .signup__content:eq(0) .signup-team-all'));
@@ -277,15 +276,7 @@ const updateDisplay = function updateDisplay(currentId) {
         f$('.margin--extra, .signup__content > h4').hide();
       }
       break;
-    case 'ct-reset_password':
-      f$('body').removeClass('inMM outMM').addClass('outMM');
-      break;
-    case 'ct-create_team':
-      f$('body').removeClass('inMM outMM').addClass('outMM');
-      break;
     case 'ct-signup_user_complete':
-      f$('body').removeClass('inMM outMM').addClass('outMM');
-
       f$('.signup-team__container .gitlab')
         .removeClass('btn-custom-login')
         .addClass('btn-link')
@@ -294,8 +285,6 @@ const updateDisplay = function updateDisplay(currentId) {
       f$('.signup-team__container form').after(f$('.signup-team__container > div:first'));
       break;
     case 'ct-login':
-      f$('body').removeClass('inMM outMM').addClass('outMM');
-
       f$('.signup-team__container').after(f$3Cols);
 
       if (!f$('.signup-team__container').parent().hasClass('col-md-6')) {
@@ -372,15 +361,15 @@ setInterval(() => {
 }, 1000);
 
 // Court-circuiter ReactJS sur l'accès aux teams
-f$('a[href*="/channels"]').on('click', function teamAccess() {
-  window.location.href = f$(this).attr('href');
-  return false;
-});
+document
+  .querySelectorAll('a[href*="/channels"]')
+  .forEach(a => a.onclick = (e) => { window.location.href = a.href; e.preventDefault(); });
 
 // Lien https://docs.framasoft.org/fr/mattermost/index.html
 setInterval(() => {
-  f$('a[href*="docs.mattermost.com/help"], a[href*="docs.mattermost.com/index"]')
-    .attr('href', function replaceDocsURL() {
-      return f$(this).attr('href').replace('docs.mattermost.com', 'docs.framasoft.org/fr/mattermost');
-    });
+  document
+    .querySelectorAll('a[href*="docs.mattermost.com/help"], a[href*="docs.mattermost.com/index"]')
+    .forEach(a => Object.assign(a, {
+      href: a.href.replace('docs.mattermost.com', 'docs.framasoft.org/fr/mattermost')
+    }));
 }, 1000);
