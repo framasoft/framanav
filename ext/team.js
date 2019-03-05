@@ -289,8 +289,7 @@ const updateDisplay = function updateDisplay(currentId) {
       if (f$('#carousel-team').length === 0) {
         f$('.signup-team__container').parent().before(f$screen);
       }
-      f$('.signup__content .form-group:has(a[href$="reset_password"])')
-        .addClass('pull-right').css('margin-top', '7px');
+
       f$('.signup__content .form-group:has(button.btn-primary)')
         .before(f$('.form-group:has(a[href$="reset_password"])'));
       f$('.signup__email-container input[name="loginId"]').attr('placeholder', i18n.email);

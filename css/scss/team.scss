@@ -225,7 +225,12 @@
         filter: invert(60%) sepia(17%) saturate(1077%) hue-rotate(220deg) brightness(93%) contrast(92%);
       }
     }
+  }
 
+  #ct-login #login_forgot {
+    display: block;
+    float: right;
+    margin-top: 7px;
   }
   /*******************
    * Dans Mattermost *
