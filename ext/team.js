@@ -273,15 +273,10 @@ const updateDisplay = function updateDisplay(currentId) {
           window.location.href = f$(this).attr('href');
           return false;
         });
-        f$('.margin--extra, .signup__content > h4').hide();
       }
       break;
     case 'ct-signup_user_complete':
-      f$('.signup-team__container .gitlab')
-        .removeClass('btn-custom-login')
-        .addClass('btn-link')
-        .css('width', '100%')
-        .html(`<i class="fa fa-fw fa-gitlab" aria-hidden="true"></i> ${i18n.create_framagit}`);
+      f$('.signup-team__container .gitlab span span span').html(i18n.create_framagit);
       f$('.signup-team__container form').after(f$('.signup-team__container > div:first'));
       break;
     case 'ct-login':
@@ -301,11 +296,7 @@ const updateDisplay = function updateDisplay(currentId) {
       f$('.signup__email-container input[name="loginId"]').attr('placeholder', i18n.email);
       f$('.signup__email-container input[name="loginPassword"]').attr('placeholder', i18n.password);
 
-      f$('.signup__content .gitlab')
-        .removeClass('btn-custom-login')
-        .addClass('btn-link')
-        .css('width', '100%')
-        .html(`<i class="fa fa-fw fa-gitlab" aria-hidden="true"></i> ${i18n.connect_framagit}`);
+      f$('.signup__content .gitlab span span span').html(i18n.connect_framagit);
 
       f$('#play-pause a').on('click', function playPause() {
         if (f$(this).children('.glyphicon').hasClass('glyphicon-pause')) {
@@ -323,15 +314,11 @@ const updateDisplay = function updateDisplay(currentId) {
       });
 
       f$('#carousel-team').carousel('cycle');
-      f$('.signup-team__container h5').hide();
       break;
     default:
       // no default
       break;
   }
-
-  f$('.inMM .framateam').hide();
-  f$('.outMM .framateam').show();
 
   if (f$('.outMM').length > 0 && f$('header.col-xs-12').length === 0) {
     f$('.container-fluid').prepend(f$header);
