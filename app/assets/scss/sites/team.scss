@@ -6,6 +6,10 @@
 
     background: #eee !important;
 
+    .framateam {
+      display: block;
+    }
+
     h1 {
       font-family: "DejaVu Sans",Verdana,Geneva,sans-serif !important;
       font-size: 48px;
@@ -169,9 +173,12 @@
 
   /* /select_team */
   /*.outMM .margin--extra,         /* Créer équipe + Console admin */
-  .outMM .signup-team__container .signup__content:nth-child(5) {
+  .outMM .signup-team__container .signup__content:nth-child(5),
+  #ct-select_team .margin--extra, 
+  #ct-select_team .signup__content > h4 {
     display: none;
   }
+
   /* /signup_user_complete */
   .outMM .signup-team__container .or__container,
   .outMM .signup-team__container > span.color--light,
@@ -181,7 +188,8 @@
 
   /* /login */
   .outMM#ct-login .signup__content > div > .form-group, /* Pas de compte ? */
-  .outMM .signup__content .or__container {
+  .outMM .signup__content .or__container,
+  .signup-team__container h5 {
     display: none;
   }
 
@@ -195,6 +203,35 @@
     display: block;
   }
 
+  #ct-signup_user_complete .gitlab,
+  #ct-login .gitlab {
+    background: none !important;
+    color: #0C5B7A !important;
+    text-shadow: none;
+    width: 100%;
+    border: none;
+    
+    &:hover,
+    &:focus {
+      color: #635182 !important;
+      text-decoration: underline !important;
+    }
+
+    .icon {
+      filter: invert(70%) sepia(15%) saturate(6919%) hue-rotate(170deg) brightness(89%) contrast(91%);
+      
+      &:hover,
+      &:focus { 
+        filter: invert(60%) sepia(17%) saturate(1077%) hue-rotate(220deg) brightness(93%) contrast(92%);
+      }
+    }
+  }
+
+  #ct-login #login_forgot {
+    display: block;
+    float: right;
+    margin-top: 7px;
+  }
   /*******************
    * Dans Mattermost *
    *******************/
@@ -203,6 +240,10 @@
     overflow: hidden;
     padding-top: 62px;
     background: inherit;
+
+    .framateam {
+      display: none;
+    }
 
     #root {
       margin-top: 0 !important;
@@ -261,7 +302,7 @@
     }
 
     .sidebar--left .sidebar__switcher {
-      bottom: 21px;
+      margin-bottom: 21px;
     }
 
     .post-right__container .post-create__container {
@@ -326,4 +367,8 @@
       }
     }
   }
+}
+
+[data-url*="framateam.org/framasoft/"] .system-notice {
+  display:none;
 }

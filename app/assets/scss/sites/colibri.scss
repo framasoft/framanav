@@ -4,7 +4,11 @@
     -moz-box-sizing: content-box !important;
     box-sizing: content-box !important;
   }
-
+  
+  #reply-control.fullscreen {
+    z-index: 1005;
+  }
+  
   #discourse-modal.in {
     display: block !important;
     visibility: visible !important;
@@ -20,7 +24,8 @@
   #reply-control .wmd-controls .d-editor-preview-wrapper,
   #reply-control .wmd-controls .d-editor-input,
   #reply-control .wmd-controls .d-editor-preview,
-  #reply-control .d-editor-button-bar {
+  #reply-control .d-editor-button-bar,
+  #reply-control .reply-area {
     box-sizing: border-box !important;
   }
 
