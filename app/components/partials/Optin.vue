@@ -77,7 +77,11 @@ export default {
         this.cookie('w', this.cfg[1], true, this.storage[2]);
       }
       // Move box next to email input
-      document.querySelector(this.cfg[0]).after(document.getElementById('foptin'));
+      if (document.querySelector(this.cfg[0])) {
+        document.querySelector(this.cfg[0]).after(document.getElementById('foptin'));
+      } else {
+        document.getElementById('foptin').style.display = 'none';
+      }
       // Display checkbox
       this.state.optin = (!this.cookie('r', 'opt-in'));
     }

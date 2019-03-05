@@ -598,3 +598,41 @@ vox:
       site de développement</a>.
     home_install: 'Si vous souhaitez installer ce logiciel pour votre propre usage
       et ainsi gagner en autonomie, nous vous aidons sur :'
+team:
+  header:
+    lead: Communication collaborative
+  carousel:
+  - Discutez avec votre équipe sur un tchat boosté aux stéroïdes
+  - Créez des canaux de discussion selon les besoins de votre équipe
+  - Pimpez vos messages en utilisant la puissance du Markdown
+  - Retrouvez les messages de vos collègues et répondez sans perdre le fil
+  create: Créer un compte
+  connect_framagit: Se connecter avec Framagit
+  create_framagit: Créer un compte avec Framagit
+  email: Email address or User name
+  password: Mot de passe
+  presentation:
+    h2_1: Prise en main
+    serviceby: '@:data.color.team  est un service de <b>tchat</b> libre
+      qui permet de communiquer avec son équipe en notifiant ses collègues,
+      de conserver ses conversations et d’y faire des recherches.'
+    createyours: Créez votre équipe
+    invite: Invitez vos membres
+    newchans: Créez vos canaux de communication (publics ou privés)
+    aide: Aide
+    learn: 'Pour apprendre à mettre en page vos messages, utiliser des émoticônes,
+      partager des images et documents et maîtriser @:data.color.team, consultez nos pages d’aide :'
+    trad: (traduction de la documentation officielle par l’équipe @:data.html.lang)
+    h2_2: Le logiciel
+    framaware: '@:data.color.team repose sur le logiciel libre <a href="https://about.mattermost.com/">Mattermost</a>.'
+    license: Mattermost est sous licence @:data.license.mit</>.
+    h2_3: Cultivez votre jardin
+    contrib_upstream: Pour participer au développement du logiciel,
+      proposer des améliorations ou simplement le télécharger, rendez-vous sur
+      <a href="https://github.com/mattermost/platform">le site de développement</a>.
+    home_install: 'Si vous souhaitez installer ce logiciel pour votre propre usage
+      et ainsi gagner en autonomie, nous vous aidons sur :'
+  teams:
+    join: Rejoindre une équipe publique
+    create: Créer une équipe
+    list: Liste des équipes publiques

@@ -118,6 +118,7 @@
 
     <Framabin v-if="/:\/\/framabin.org.p/.test($root.url)" />
     <Framavox v-if="/:\/\/framavox.org/.test($root.url)" />
+    <Framateam v-if="/:\/\/framateam.org/.test($root.url)" />
 
     <Optin
       :config="config.optin"
@@ -140,6 +141,7 @@ import Optin from './Optin.vue';
 import Footer from './Footer.vue';
 import Framabin from './sites/Framabin.vue';
 import Framavox from './sites/Framavox.vue';
+import Framateam from './sites/Framateam.vue';
 
 import { Btn, Dropdown, Navbar, NavbarNav, Popover, Tooltip, Modal } from 'uiv';
 import { siteConfig } from '../../config';
@@ -151,7 +153,7 @@ export default {
     Meta, Cortex, AlertInfo, ModalFAQ, ModalInfo, ModalDon,
 
     Optin, Footer,
-    Framabin, Framavox,
+    Framabin, Framavox, Framateam,
   },
   created() {
     // Add [data-*] attributes for CSS

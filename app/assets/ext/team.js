@@ -88,7 +88,7 @@ if (n$.is.lang('en') || !n$.is.lang('fr', 'b')) {
       framaware: '<b class="violet">Frama</b><b class="vert">team</b> repose sur le logiciel libre <a href="https://about.mattermost.com/">Mattermost</a>.',
       licence: 'Mattermost est sous <a href="https://github.com/mattermost/platform/blob/master/LICENSE.txt">licence <abbr>MIT</abbr></a>.',
       h2_3: 'Cultivez votre jardin',
-      contrib_upstream: 'Pour participer au développement du logiciel, proposer des améliorations ou simplement le télécharger, rendez-vous sur <a href="https://github.com/mattermost/platform">le site de développement</a>..',
+      contrib_upstream: 'Pour participer au développement du logiciel, proposer des améliorations ou simplement le télécharger, rendez-vous sur <a href="https://github.com/mattermost/platform">le site de développement</a>.',
       home_install: 'Si vous souhaitez installer ce logiciel pour votre propre usage et ainsi gagner en autonomie, nous vous aidons sur :',
     },
     teams: {
