@@ -361,15 +361,16 @@ setInterval(() => {
 }, 1000);
 
 // Court-circuiter ReactJS sur l'accès aux teams
-document
-  .querySelectorAll('a[href*="/channels"]')
-  .forEach(a => a.onclick = (e) => { window.location.href = a.href; e.preventDefault(); });
+f$('a[href*="/channels"]').on('click', function teamAccess() {
+  window.location.href = f$(this).attr('href');
+  return false;
+});
 
 // Lien https://docs.framasoft.org/fr/mattermost/index.html
 setInterval(() => {
   document
     .querySelectorAll('a[href*="docs.mattermost.com/help"], a[href*="docs.mattermost.com/index"]')
     .forEach(a => Object.assign(a, {
-      href: a.href.replace('docs.mattermost.com', 'docs.framasoft.org/fr/mattermost')
+      href: a.href.replace('docs.mattermost.com', 'docs.framasoft.org/fr/mattermost'),
     }));
 }, 1000);
