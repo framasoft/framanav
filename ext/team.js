@@ -290,7 +290,7 @@ const updateDisplay = function updateDisplay(currentId) {
 
       f$('.signup__content .form-group:has(button.btn-primary)')
         .before(f$('.form-group:has(a[href$="reset_password"])'));
-      if (!!document.getElementById('loginId').length) {
+      if (document.getElementById('loginId').length) {
         document.getElementById('loginId').placeholder = i18n.email;
         document.getElementById('loginPassword').placeholder = i18n.password;
       }
