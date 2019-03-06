@@ -273,7 +273,8 @@ const updateDisplay = function updateDisplay(currentId) {
       if (document.querySelector('.signup-team__container .gitlab span span span')) {
         document.querySelector('.signup-team__container .gitlab span span span').innerHTML = i18n.create_framagit;
       }
-      f$('.signup-team__container form').after(f$('.signup-team__container > div:first'));
+      // f$('.signup-team__container form')
+      //   .after(f$('.signup-team__container > div:first'));
       break;
     case 'ct-login': {
       f$('.signup-team__container').after(f$3Cols);
