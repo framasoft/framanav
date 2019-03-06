@@ -270,7 +270,9 @@ const updateDisplay = function updateDisplay(currentId) {
       }
       break;
     case 'ct-signup_user_complete':
-      document.querySelector('.signup-team__container .gitlab span span span').innerHTML = i18n.create_framagit;
+      if (document.querySelector('.signup-team__container .gitlab span span span')) {
+        document.querySelector('.signup-team__container .gitlab span span span').innerHTML = i18n.create_framagit;
+      }
       f$('.signup-team__container form').after(f$('.signup-team__container > div:first'));
       break;
     case 'ct-login': {
@@ -290,11 +292,11 @@ const updateDisplay = function updateDisplay(currentId) {
 
       f$('.signup__content .form-group:has(button.btn-primary)')
         .before(f$('.form-group:has(a[href$="reset_password"])'));
-      if (document.getElementById('loginId')) {
+      if (document.getElementById('login_section')) {
         document.getElementById('loginId').placeholder = i18n.email;
         document.getElementById('loginPassword').placeholder = i18n.password;
+        document.querySelector('.signup__content .gitlab span span span').innerHTML = i18n.connect_framagit;
       }
-      document.querySelector('.signup__content .gitlab span span span').innerHTML = i18n.connect_framagit;
 
       f$('#play-pause a').on('click', function playPause() {
         if (f$(this).children('.glyphicon').hasClass('glyphicon-pause')) {
