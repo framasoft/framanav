@@ -256,7 +256,7 @@ const updateDisplay = function updateDisplay(currentId) {
       f$('.tutorial__steps h1').html('<b class="violet">Frama</b><b class="vert">team</b>');
       break;
     case 'ct-select_team':
-      if (!document.getElementbyId('Options').length) {
+      if (!document.getElementById('Options').length) {
         f$('.signup-team__container .signup__content:first .signup-team-all:first').after(f$pteams);
         f$('#ListImport').prepend(f$('.signup-team__container .signup__content:eq(0) .signup-team-all'));
         f$('#ListBtn').on('click', () => {
@@ -290,8 +290,8 @@ const updateDisplay = function updateDisplay(currentId) {
 
       f$('.signup__content .form-group:has(button.btn-primary)')
         .before(f$('.form-group:has(a[href$="reset_password"])'));
-      document.getElementbyId('loginId').placeholder = i18n.email;
-      document.getElementbyId('loginPassword').placeholder = i18n.password;
+      document.getElementById('loginId').placeholder = i18n.email;
+      document.getElementById('loginPassword').placeholder = i18n.password;
 
       document.querySelector('.signup__content .gitlab span span span').innerHTML = i18n.connect_framagit;
 
