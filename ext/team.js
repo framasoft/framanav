@@ -346,9 +346,9 @@ setInterval(() => {
     ? `ct-${f$current[4].split('?')[0]}`
     : `ct-${f$current[3].split('?')[0]}`;
 
-  if (f$bodyId !== f$currentId 
-    || (document.querySelector('.outMM')  && !document.querySelector('#root header.clearfix'))
-    || (document.querySelector('#ct-login.outMM')  && !document.querySelector('#root #carousel-team') && !document.querySelector('#root #tuto-faq'))) {
+  if (f$bodyId !== f$currentId
+    || (document.querySelector('.outMM') && !document.querySelector('#root header.clearfix'))
+    || (document.querySelector('#ct-login.outMM') && !document.querySelector('#root #carousel-team') && !document.querySelector('#root #tuto-faq'))) {
     updateDisplay(f$currentId);
   }
 
