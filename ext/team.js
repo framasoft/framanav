@@ -110,7 +110,7 @@ if (n$.is.lang('en') || !n$.is.lang('fr', 'b')) {
 
 //----------------------------------------------------------------------
 const f$header = `
-  <header role="banner" class="col-xs-12 framateam">
+  <header role="banner" class="clearfix framateam">
     <h1><a href="/"><b class="frama">Frama</b><b class="services">team</b></a></h1>
     <p class="lead">${i18n.header.lead}</p>
     <hr class="trait" role="presentation" />
@@ -238,16 +238,8 @@ const f$pteams = `
   </div>`;
 //----------------------------------------------------------------------
 
-const f$origin = n$.url.split('/');
 let f$current = window.location.href.split('/');
 let f$bodyId = f$('body').attr('id');
-
-// Juste pour savoir d'où on vient
-if (f$origin[4] === 'channels' || f$origin[4] === 'tutorial') {
-  f$('body').addClass(`og-${f$origin[4]}`);
-} else {
-  f$('body').addClass(`og-${f$origin[3]}`);
-}
 
 const updateDisplay = function updateDisplay(currentId) {
   const body = document.getElementsByTagName('body')[0];
@@ -264,7 +256,7 @@ const updateDisplay = function updateDisplay(currentId) {
       f$('.tutorial__steps h1').html('<b class="violet">Frama</b><b class="vert">team</b>');
       break;
     case 'ct-select_team':
-      if (f$('#Options').length === 0) {
+      if (!document.getElementbyId('Options').length) {
         f$('.signup-team__container .signup__content:first .signup-team-all:first').after(f$pteams);
         f$('#ListImport').prepend(f$('.signup-team__container .signup__content:eq(0) .signup-team-all'));
         f$('#ListBtn').on('click', () => {
@@ -278,14 +270,18 @@ const updateDisplay = function updateDisplay(currentId) {
       }
       break;
     case 'ct-signup_user_complete':
-      f$('.signup-team__container .gitlab span span span').html(i18n.create_framagit);
+      document.querySelector('.signup-team__container .gitlab span span span').innerHTML = i18n.create_framagit;
       f$('.signup-team__container form').after(f$('.signup-team__container > div:first'));
       break;
     case 'ct-login':
       f$('.signup-team__container').after(f$3Cols);
 
-      if (!f$('.signup-team__container').parent().hasClass('col-md-6')) {
-        f$('.signup-team__container').wrap('<div class="col-md-6">');
+      const stc = document.querySelector('.signup-team__container');
+      if (stc && !stc.parent().classList.contains('col-md-6')) {
+        wrap = document.createElement('div');
+        wrap.classList.add('col-md-6');
+        stc.parentNode.insertBefore(wrap, stc);
+        wrap.appendChild(stc);
       }
 
       if (f$('#carousel-team').length === 0) {
@@ -294,10 +290,10 @@ const updateDisplay = function updateDisplay(currentId) {
 
       f$('.signup__content .form-group:has(button.btn-primary)')
         .before(f$('.form-group:has(a[href$="reset_password"])'));
-      f$('.signup__email-container input[name="loginId"]').attr('placeholder', i18n.email);
-      f$('.signup__email-container input[name="loginPassword"]').attr('placeholder', i18n.password);
+      document.getElementbyId('loginId').placeholder = i18n.email;
+      document.getElementbyId('loginPassword').placeholder = i18n.password;
 
-      f$('.signup__content .gitlab span span span').html(i18n.connect_framagit);
+      document.querySelector('.signup__content .gitlab span span span').innerHTML = i18n.connect_framagit;
 
       f$('#play-pause a').on('click', function playPause() {
         if (f$(this).children('.glyphicon').hasClass('glyphicon-pause')) {
@@ -321,7 +317,8 @@ const updateDisplay = function updateDisplay(currentId) {
       break;
   }
 
-  if (f$('.outMM').length > 0 && f$('header.col-xs-12').length === 0) {
+  if (!!document.querySelectorAll('.outMM').length
+    && !document.querySelectorAll('header.clearfix').length) {
     f$('.container-fluid').prepend(f$header);
   }
 };
@@ -331,7 +328,7 @@ setInterval(() => {
   f$current = window.location.href.split('/');
   f$bodyId = f$('body').attr('id');
 
-  const f$currentId = (f$current[4] === 'channels' || f$origin[4] === 'tutorial')
+  const f$currentId = (f$current[4] === 'channels' || f$current[4] === 'tutorial')
     ? `ct-${f$current[4].split('?')[0]}`
     : `ct-${f$current[3].split('?')[0]}`;
 
@@ -346,6 +343,13 @@ setInterval(() => {
   if (f$('.modal:visible').length === 0) {
     f$('body .modal-backdrop').remove();
   }
+  
+  // Lien https://docs.framasoft.org/fr/mattermost/index.html
+  document
+    .querySelectorAll('a[href*="docs.mattermost.com/help"], a[href*="docs.mattermost.com/index"]')
+    .forEach(a => Object.assign(a, {
+      href: a.href.replace('docs.mattermost.com', 'docs.framasoft.org/fr/mattermost'),
+    }));
 }, 1000);
 
 // Court-circuiter ReactJS sur l'accès aux teams
@@ -353,12 +357,3 @@ f$('a[href*="/channels"]').on('click', function teamAccess() {
   window.location.href = f$(this).attr('href');
   return false;
 });
-
-// Lien https://docs.framasoft.org/fr/mattermost/index.html
-setInterval(() => {
-  document
-    .querySelectorAll('a[href*="docs.mattermost.com/help"], a[href*="docs.mattermost.com/index"]')
-    .forEach(a => Object.assign(a, {
-      href: a.href.replace('docs.mattermost.com', 'docs.framasoft.org/fr/mattermost'),
-    }));
-}, 1000);
