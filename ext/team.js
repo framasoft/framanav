@@ -276,12 +276,13 @@ const updateDisplay = function updateDisplay(currentId) {
       // f$('.signup-team__container form')
       //   .after(f$('.signup-team__container > div:first'));
       break;
-    case 'ct-signup_email':
+    case 'ct-signup_email': {
       const vname = document.getElementById('valid_name');
       if (vname) {
         vname.innerHTML = vname.innerHTML.replace('des symboles \'.\', \'-\' et \'_\'', 'symboles <kbd>.</kbd>, <kbd>-</kbd> ou <kbd>_</kbd>');
       }
       break;
+    }
     case 'ct-login': {
       f$('.signup-team__container').after(f$3Cols);
 
@@ -332,7 +333,7 @@ const updateDisplay = function updateDisplay(currentId) {
     && !document.querySelectorAll('header.clearfix').length) {
     f$('.container-fluid').prepend(f$header);
   }
-  
+
   body.id = currentId;
 };
 
@@ -345,7 +346,7 @@ setInterval(() => {
     ? `ct-${f$current[4].split('?')[0]}`
     : `ct-${f$current[3].split('?')[0]}`;
 
-  if (f$bodyId !== f$currentId 
+  if (f$bodyId !== f$currentId
     && !(document.getElementById('root').classList.contains('container-fluid')
       || document.getElementById('root').classList.contains('channel-view'))) {
     updateDisplay(f$currentId);
