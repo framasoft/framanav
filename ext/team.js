@@ -277,7 +277,7 @@ const updateDisplay = function updateDisplay(currentId) {
       f$('.signup-team__container').after(f$3Cols);
 
       const stc = document.querySelector('.signup-team__container');
-      if (stc && !stc.parent().classList.contains('col-md-6')) {
+      if (stc && !stc.parentNode.classList.contains('col-md-6')) {
         const wrap = document.createElement('div');
         wrap.classList.add('col-md-6');
         stc.parentNode.insertBefore(wrap, stc);
@@ -290,9 +290,10 @@ const updateDisplay = function updateDisplay(currentId) {
 
       f$('.signup__content .form-group:has(button.btn-primary)')
         .before(f$('.form-group:has(a[href$="reset_password"])'));
-      document.getElementById('loginId').placeholder = i18n.email;
-      document.getElementById('loginPassword').placeholder = i18n.password;
-
+      if (!!document.getElementById('loginId').length) {
+        document.getElementById('loginId').placeholder = i18n.email;
+        document.getElementById('loginPassword').placeholder = i18n.password;
+      }
       document.querySelector('.signup__content .gitlab span span span').innerHTML = i18n.connect_framagit;
 
       f$('#play-pause a').on('click', function playPause() {
