@@ -256,7 +256,7 @@ const updateDisplay = function updateDisplay(currentId) {
       f$('.tutorial__steps h1').html('<b class="violet">Frama</b><b class="vert">team</b>');
       break;
     case 'ct-select_team':
-      if (!document.getElementById('Options').length) {
+      if (!document.getElementById('Options')) {
         f$('.signup-team__container .signup__content:first .signup-team-all:first').after(f$pteams);
         f$('#ListImport').prepend(f$('.signup-team__container .signup__content:eq(0) .signup-team-all'));
         f$('#ListBtn').on('click', () => {
@@ -290,7 +290,7 @@ const updateDisplay = function updateDisplay(currentId) {
 
       f$('.signup__content .form-group:has(button.btn-primary)')
         .before(f$('.form-group:has(a[href$="reset_password"])'));
-      if (document.getElementById('loginId').length) {
+      if (document.getElementById('loginId')) {
         document.getElementById('loginId').placeholder = i18n.email;
         document.getElementById('loginPassword').placeholder = i18n.password;
       }
