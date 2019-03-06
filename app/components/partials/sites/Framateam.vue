@@ -175,19 +175,37 @@ export default {
       document.getElementsByTagName('body')[0].appendChild(fteam[k]);
     });
 
-    // Court-circuiter ReactJS sur l'accès aux teams
-    document
-      .querySelectorAll('a[href*="/channels"]')
-      .forEach(a => a.onclick = (e) => { window.location.href = a.href; e.preventDefault(); });
+    let f$current = window.location.href.split('/');
+    let f$bodyId = document.getElementsByTagName('body')[0].id || '';
 
-    // Lien https://docs.framasoft.org/fr/mattermost/index.html
+    // Ajout d'un id pour savoir sur quelle page on est
     setInterval(() => {
+      f$current = window.location.href.split('/');
+      f$bodyId = document.getElementsByTagName('body')[0].id || '';
+
+      const f$currentId = (f$current[4] === 'channels' || f$current[4] === 'tutorial')
+        ? `ct-${f$current[4].split('?')[0]}`
+        : `ct-${f$current[3].split('?')[0]}`;
+
+      if (f$bodyId !== f$currentId.replace('test', 'select_team')
+        || (document.querySelector('.outMM') && !document.querySelector('#root #fteam_header'))
+        || (document.querySelector('#ct-login.outMM') && !document.querySelector('#root #fteam_screen') && !document.querySelector('#root #fteam_prez'))
+        || (document.querySelector('#ct-select_team.outMM') && !document.querySelector('#root #fteam_public'))) {
+        this.updateDisplay(f$currentId.replace('test', 'select_team'));
+      }
+
+      // Lien https://docs.framasoft.org/fr/mattermost/index.html
       document
         .querySelectorAll('a[href*="docs.mattermost.com/help"], a[href*="docs.mattermost.com/index"]')
         .forEach(a => Object.assign(a, {
           href: a.href.replace('docs.mattermost.com', 'docs.framasoft.org/fr/mattermost')
         }));
     }, 1000);
+
+    // Court-circuiter ReactJS sur l'accès aux teams
+    document
+      .querySelectorAll('a[href*="/channels"]')
+      .forEach(a => a.onclick = (e) => { window.location.href = a.href; e.preventDefault(); });
   },
   data() {
     return {
@@ -200,10 +218,12 @@ export default {
   methods: {
     updateDisplay(currentId) {
       const body = document.getElementsByTagName('body')[0];
-      body.classList.remove('inMM', 'outMM');
       if (/ct-(channels|admin-console|tutorial)/.test(currentId)) {
+        body.classList.remove('inMM', 'outMM');
         body.classList.add('inMM');
-      } else {
+      }
+      if (/ct-(select_team|reset_password|create_team|signup_user_complete|signup_email|login)/.test(currentId)) {
+        body.classList.remove('inMM', 'outMM');
         body.classList.add('outMM');
       }
       switch (currentId) {
@@ -212,71 +232,76 @@ export default {
           if (title) { title.innerHTML = this.$root.color.team; }
           break;
         case 'ct-select_team':
-          if (!document.getElementbyId('Options').length) {
-            // /!\ Portal  jQuery('.signup-team__container .signup__content:first .signup-team-all:first').after(f$pteams);
-            // jQuery('#ListImport').prepend(jQuery('.signup-team__container .signup__content:eq(0) .signup-team-all'));
+          if (!document.querySelector('#root #fteam_public')) {
+            // ⚠️ vue-portal #fteam_screen
+            document.getElementById('site_description')
+              .insertAdjacentElement('afterend', document.getElementById('fteam_public'));
+
+            document.getElementById('ListImport')
+              .insertAdjacentElement('afterbegin',
+                document.querySelectorAll('.signup-team__container .signup__content .signup-team-all')[0]);
           }
           break;
         case 'ct-signup_user_complete':
           document
-            .querySelector('.signup-team__container .gitlab')
+            .querySelector('.signup-team__container .gitlab span span span')
             .innerHTML = this.$i18n.t('team.create_framagit');
-          // jQuery('.signup-team__container form').after(jQuery('.signup-team__container > div:first'));
           break;
-        case 'ct-login':
-          // /!\ Portal jQuery('.signup-team__container').after(f$3Cols);
-
+        case 'ct-signup_email':
+          const vname = document.getElementById('valid_name');
+          if (vname) {
+            vname.innerHTML = vname.innerHTML.replace('des symboles \'.\', \'-\' et \'_\'', 'symboles <kbd>.</kbd>, <kbd>-</kbd> ou <kbd>_</kbd>');
+          }
+          break;
+        case 'ct-login': {
           const stc = document.querySelector('.signup-team__container');
-          if (stc && !stc.parent().classList.contains('col-md-6')) {
-            wrap = document.createElement('div');
-            wrap.classList.add('col-md-6');
-            stc.parentNode.insertBefore(wrap, stc);
-            wrap.appendChild(stc);
+          if (stc) {
+            if (!stc.parentNode.classList.contains('col-md-6')) {
+              const wrap = document.createElement('div');
+              wrap.classList.add('col-md-6');
+              stc.parentNode.insertBefore(wrap, stc);
+              wrap.appendChild(stc);
+            }
+            // ⚠️ vue-portal #fteam_screen
+            if (!document.querySelector('#root #fteam_screen')) {
+              stc.parentNode
+                .insertAdjacentElement('beforebegin', document.getElementById('fteam_screen'));
+            }
+
+          }
+          if (document.getElementById('login_section')) {
+            // ⚠️ vue-portal #fteam_prez
+            if (!document.querySelector('#root #fteam_prez')) {
+              document.getElementById('login_section')
+                .insertAdjacentElement('afterend', document.getElementById('fteam_prez'));
+
+              stc.parentNode.insertAdjacentElement('afterend',
+                document.querySelector('#fteam_prez .col-md-5'));
+            }
+            document.getElementById('loginId').placeholder = this.$i18n.t('team.email');
+            document.getElementById('loginPassword').placeholder = this.$i18n.t('team.password');
+            document.querySelector('.signup__content .gitlab span span span').innerHTML = this.$i18n.t('team.connect_framagit');
+
+            document.querySelector('.signup__content .form-group:nth-of-type(3)')
+              .insertAdjacentElement('beforebegin',
+                document.getElementById('login_forgot'));
           }
 
-          /* /!\ Portal
-            if (jQuery('#carousel-team').length === 0) {
-              jQuery('.signup-team__container').parent().before(f$screen);
-            }
-          */
-          /* jQuery('.signup__content .form-group:has(button.btn-primary)')
-            .before(jQuery('.form-group:has(a[href$="reset_password"])')); */
-          document.getElementbyId('loginId').placeholder = this.$i18n.t('team.email');
-          document.getElementbyId('loginPassword').placeholder = this.$i18n.t('team.password');
-
-          document.querySelector('.signup__content .gitlab').innerHTML = this.$i18n.t('team.connect_framagit');
           break;
-
+        }
         default:
           // no default
           break;
       }
 
-      if (!!document.querySelectorAll('.outMM').length
-        && !document.querySelectorAll('header.clearfix').length) {
-        /* /!\ Portal jQuery('.container-fluid').prepend(f$header); */
+      // ⚠️ vue-portal #fteam_header
+      if (document.querySelector('.outMM')
+        && !document.querySelector('#root #fteam_header')) {
+        document.getElementById('root').insertAdjacentElement('afterbegin', document.getElementById('fteam_header'));
       }
+
+      body.id = currentId;
     },
   }
 };
 </script>
-
-<style>
-.inMM .framateam {
-  display: none;
-}
-
-.outMM .framateam {
-  display: block;
-}
-
-#ct-select_team .margin--extra,
-#ct-select_team .signup__content > h4 {
-  display: none;
-}
-
-#ct-login .signup__content #login_forgot {
-  float:right;
-  margin-top: 7px;
-}
-</style>

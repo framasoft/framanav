@@ -609,7 +609,7 @@ team:
   create: Créer un compte
   connect_framagit: Se connecter avec Framagit
   create_framagit: Créer un compte avec Framagit
-  email: Email address or User name
+  email: Adresse email ou nom d’utilisateur
   password: Mot de passe
   presentation:
     h2_1: Prise en main

@@ -18,7 +18,7 @@
 
     .lead { font-style: italic; }
 
-    .container-fluid {
+    #root.container-fluid {
       /* = .container.ombre */
       margin-top: 30px;
       margin-bottom: 30px;
@@ -31,26 +31,17 @@
       /* = .container de BS */
       margin-right: auto;
       margin-left: auto;
-    }
-
-    .container-fluid[style] {
-      margin-top: 72px !important;
-    }
-
-    @media (min-width: 768px) {
-      .container-fluid {
+      @media (min-width: 768px) {
         width: 750px;
       }
-    }
-
-    @media (min-width: 992px) {
-      .container-fluid {
+      @media (min-width: 992px) {
         width: 970px;
       }
-    }
-    @media (min-width: 1200px) {
-      .container-fluid {
+      @media (min-width: 1200px) {
         width: 1170px;
+      }
+      &[style] {
+        margin-top: 72px !important;
       }
     }
 
@@ -119,6 +110,24 @@
         border-color: #0C5B7A !important;
       }
     }
+
+    &#ct-login {
+      .signup__email-container {
+        padding-bottom: 0;
+      }
+    }
+
+    &#ct-login .signup__email-container,
+    &#ct-signup_user_complete .signup-team__container .inner__content { /* = .well */
+      min-height: 20px;
+      padding: 19px;
+      margin-bottom: 20px;
+      background-color: #f5f5f5;
+      border: 1px solid #e3e3e3;
+      border-radius: 4px;
+      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+    }
   }
 
   #ListModal {
@@ -146,46 +155,21 @@
     }
   }
 
-  #ct-login.outMM .signup__email-container {
-    padding-bottom: 0;
-  }
-
-  .outMM#ct-login .signup__email-container,
-  .outMM#ct-signup_user_complete .signup-team__container .inner__content { /* = .well */
-    min-height: 20px;
-    padding: 19px;
-    margin-bottom: 20px;
-    background-color: #f5f5f5;
-    border: 1px solid #e3e3e3;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
-        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
-  }
-
+  /* Cleaning */
   .signup-header,         /* Bandeau Déconnexion / Accueil / Page précédente */
   .signup-team-logo,      /* Logo Mattermost */
   .signup-team__container h1,   /* Titre Framateam */
   .signup-team__container h4:nth-child(2),
   .signup-team__container h4:nth-child(3), /* Sous-titre */
-  .row.footer {          /* Footer Mattermost */
-    display: none;
-  }
-
+  .row.footer,          /* Footer Mattermost */
   /* /select_team */
-  /*.outMM .margin--extra,         /* Créer équipe + Console admin */
   .outMM .signup-team__container .signup__content:nth-child(5),
-  #ct-select_team .margin--extra, 
-  #ct-select_team .signup__content > h4 {
-    display: none;
-  }
-
+  #ct-select_team .margin--extra,
+  #ct-select_team .signup__content > h4,
   /* /signup_user_complete */
   .outMM .signup-team__container .or__container,
   .outMM .signup-team__container > span.color--light,
-  .outMM .signup-team__container > p {
-    display: none;
-  }
-
+  .outMM .signup-team__container > p,
   /* /login */
   .outMM#ct-login .signup__content > div > .form-group, /* Pas de compte ? */
   .outMM .signup__content .or__container,
@@ -210,7 +194,7 @@
     text-shadow: none;
     width: 100%;
     border: none;
-    
+
     &:hover,
     &:focus {
       color: #635182 !important;
@@ -219,9 +203,9 @@
 
     .icon {
       filter: invert(70%) sepia(15%) saturate(6919%) hue-rotate(170deg) brightness(89%) contrast(91%);
-      
+
       &:hover,
-      &:focus { 
+      &:focus {
         filter: invert(60%) sepia(17%) saturate(1077%) hue-rotate(220deg) brightness(93%) contrast(92%);
       }
     }
@@ -231,6 +215,15 @@
     display: block;
     float: right;
     margin-top: 7px;
+  }
+
+  #fteam_public, #fteam_prez, #fteam_screen {
+    display: none;
+  }
+  #ct-select_team #fteam_public,
+  #ct-login #fteam_prez
+  #ct-login #fteam_screen {
+    display: block;
   }
   /*******************
    * Dans Mattermost *

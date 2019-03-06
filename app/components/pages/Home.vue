@@ -12,7 +12,8 @@
       <li><a :href="$root['/'] + 'test/verbose-iframe.html'">verbose iframe</a></li>
       <li><a :href="$root['/'] + 'test/site.html#://framabin.org/p/'">framabin</a></li>
       <li><a :href="$root['/'] + 'test/site.html#://framavox.org'">framavox</a></li>
-      <li><a :href="$root['/'] + 'test/site.html#://framateam.org'">framateam</a></li>
+      <li><a :href="$root['/'] + 'test/team_login.html#://framateam.org'">framateam</a></li>
+      <li><a :href="$root['/'] + 'test/team_select_team.html#://framateam.org'">framateam</a></li>
     </ul>
   </div>
 </template>

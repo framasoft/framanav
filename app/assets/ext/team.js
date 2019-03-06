@@ -42,6 +42,10 @@ if (n$.is.lang('en') || !n$.is.lang('fr', 'b')) {
       h2_2: 'The software',
       framaware: '<b class="violet">Frama</b><b class="vert">team</b> relies upon the free software <a href="https://about.mattermost.com/">Mattermost</a>.',
       licence: 'Mattermost is licensed under <a href="https://github.com/mattermost/platform/blob/master/LICENSE.txt">licence <abbr>MIT</abbr></a>.',
+      h2_4: 'Limitations',
+      limit: '<b class="violet">Frama</b><b class="vert">team</b> has some limitations:',
+      limituser: 'Maximum number of users per team: 175',
+      limitchans: 'Maximum number of channels per team: 2000',
       h2_3: 'Cultivate your garden',
       contrib_upstream: 'To participate into the development of the software, suggest improvements or just download it, go to <a href="https://github.com/mattermost/platform">project website</a>.',
       home_install: 'If you wish to install your own instance of the software and increase your autonomy, we help you at:',
@@ -87,8 +91,12 @@ if (n$.is.lang('en') || !n$.is.lang('fr', 'b')) {
       h2_2: 'Le logiciel',
       framaware: '<b class="violet">Frama</b><b class="vert">team</b> repose sur le logiciel libre <a href="https://about.mattermost.com/">Mattermost</a>.',
       licence: 'Mattermost est sous <a href="https://github.com/mattermost/platform/blob/master/LICENSE.txt">licence <abbr>MIT</abbr></a>.',
+      h2_4: 'Les limitations',
+      limit: '<b class="violet">Frama</b><b class="vert">team</b> comporte un certain nombre de limitations&nbsp;:',
+      limituser: 'Nombre maximum d\'utilisateurs par équipe&nbsp;: 175',
+      limitchans: 'Nombre maximum de canaux par équipe&nbsp;: 2000',
       h2_3: 'Cultivez votre jardin',
-      contrib_upstream: 'Pour participer au développement du logiciel, proposer des améliorations ou simplement le télécharger, rendez-vous sur <a href="https://github.com/mattermost/platform">le site de développement</a>.',
+      contrib_upstream: 'Pour participer au développement du logiciel, proposer des améliorations ou simplement le télécharger, rendez-vous sur <a href="https://github.com/mattermost/platform">le site de développement</a>..',
       home_install: 'Si vous souhaitez installer ce logiciel pour votre propre usage et ainsi gagner en autonomie, nous vous aidons sur :',
     },
     teams: {
@@ -144,8 +152,8 @@ f$screen += `
       <a class="right carousel-control" href="#carousel-team" role="button" data-slide="next" title="${i18n.diapos.next}">
         <i class="glyphicon glyphicon-chevron-right" aria-hidden="true"></i>
         <span class="sr-only">${i18n.diapos.next}</span>
-      </a>,
-    </div>,
+      </a>
+    </div>
   </div>`;
 
 const f$3Cols = `
@@ -181,6 +189,11 @@ const f$3Cols = `
         </p>
         <p>${i18n.presentation.framaware}</p>
         <p>${i18n.presentation.licence}</p>
+        <h2>${i18n.presentation.h2_4}</h2>
+        <ol>
+          <li>${i18n.presentation.limituser}</li>
+          <li>${i18n.presentation.limitchans}</li>
+        </ol>
       </div>
       <div class="col-md-4" id="jardin">
         <h2>${i18n.presentation.h2_3}</h2>
@@ -237,19 +250,18 @@ if (f$origin[4] === 'channels' || f$origin[4] === 'tutorial') {
 }
 
 const updateDisplay = function updateDisplay(currentId) {
+  const body = document.getElementsByTagName('body')[0];
+  body.classList.remove('inMM', 'outMM');
+  if (/ct-(channels|admin-console|tutorial)/.test(currentId)) {
+    body.classList.add('inMM');
+  } else {
+    body.classList.add('outMM');
+  }
   switch (currentId) {
-    case 'ct-channels':
-      f$('body').removeClass('inMM outMM').addClass('inMM');
-      break;
-    case 'ct-admin-console':
-      f$('body').removeClass('inMM outMM').addClass('inMM');
-      break;
     case 'ct-tutorial':
-      f$('body').removeClass('inMM outMM').addClass('inMM');
       f$('.tutorial__steps h1').html('<b class="violet">Frama</b><b class="vert">team</b>');
       break;
     case 'ct-select_team':
-      f$('body').removeClass('inMM outMM').addClass('outMM');
       if (f$('#Options').length === 0) {
         f$('.signup-team__container .signup__content:first .signup-team-all:first').after(f$pteams);
         f$('#ListImport').prepend(f$('.signup-team__container .signup__content:eq(0) .signup-team-all'));
@@ -261,28 +273,13 @@ const updateDisplay = function updateDisplay(currentId) {
           window.location.href = f$(this).attr('href');
           return false;
         });
-        f$('.margin--extra, .signup__content > h4').hide();
       }
       break;
-    case 'ct-reset_password':
-      f$('body').removeClass('inMM outMM').addClass('outMM');
-      break;
-    case 'ct-create_team':
-      f$('body').removeClass('inMM outMM').addClass('outMM');
-      break;
     case 'ct-signup_user_complete':
-      f$('body').removeClass('inMM outMM').addClass('outMM');
-
-      f$('.signup-team__container .gitlab')
-        .removeClass('btn-custom-login')
-        .addClass('btn-link')
-        .css('width', '100%')
-        .html(`<i class="fa fa-fw fa-gitlab" aria-hidden="true"></i> ${i18n.create_framagit}`);
+      f$('.signup-team__container .gitlab span span span').html(i18n.create_framagit);
       f$('.signup-team__container form').after(f$('.signup-team__container > div:first'));
       break;
     case 'ct-login':
-      f$('body').removeClass('inMM outMM').addClass('outMM');
-
       f$('.signup-team__container').after(f$3Cols);
 
       if (!f$('.signup-team__container').parent().hasClass('col-md-6')) {
@@ -292,18 +289,13 @@ const updateDisplay = function updateDisplay(currentId) {
       if (f$('#carousel-team').length === 0) {
         f$('.signup-team__container').parent().before(f$screen);
       }
-      f$('.signup__content .form-group:has(a[href$="reset_password"])')
-        .addClass('pull-right').css('margin-top', '7px');
+
       f$('.signup__content .form-group:has(button.btn-primary)')
         .before(f$('.form-group:has(a[href$="reset_password"])'));
       f$('.signup__email-container input[name="loginId"]').attr('placeholder', i18n.email);
       f$('.signup__email-container input[name="loginPassword"]').attr('placeholder', i18n.password);
 
-      f$('.signup__content .gitlab')
-        .removeClass('btn-custom-login')
-        .addClass('btn-link')
-        .css('width', '100%')
-        .html(`<i class="fa fa-fw fa-gitlab" aria-hidden="true"></i> ${i18n.connect_framagit}`);
+      f$('.signup__content .gitlab span span span').html(i18n.connect_framagit);
 
       f$('#play-pause a').on('click', function playPause() {
         if (f$(this).children('.glyphicon').hasClass('glyphicon-pause')) {
@@ -321,15 +313,11 @@ const updateDisplay = function updateDisplay(currentId) {
       });
 
       f$('#carousel-team').carousel('cycle');
-      f$('.signup-team__container h5').hide();
       break;
     default:
       // no default
       break;
   }
-
-  f$('.inMM .framateam').hide();
-  f$('.outMM .framateam').show();
 
   if (f$('.outMM').length > 0 && f$('header.col-xs-12').length === 0) {
     f$('.container-fluid').prepend(f$header);
@@ -366,8 +354,9 @@ f$('a[href*="/channels"]').on('click', function teamAccess() {
 
 // Lien https://docs.framasoft.org/fr/mattermost/index.html
 setInterval(() => {
-  f$('a[href*="docs.mattermost.com/help"], a[href*="docs.mattermost.com/index"]')
-    .attr('href', function replaceDocsURL() {
-      return f$(this).attr('href').replace('docs.mattermost.com', 'docs.framasoft.org/fr/mattermost');
-    });
+  document
+    .querySelectorAll('a[href*="docs.mattermost.com/help"], a[href*="docs.mattermost.com/index"]')
+    .forEach(a => Object.assign(a, {
+      href: a.href.replace('docs.mattermost.com', 'docs.framasoft.org/fr/mattermost'),
+    }));
 }, 1000);
