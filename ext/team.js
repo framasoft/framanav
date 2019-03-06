@@ -273,12 +273,12 @@ const updateDisplay = function updateDisplay(currentId) {
       document.querySelector('.signup-team__container .gitlab span span span').innerHTML = i18n.create_framagit;
       f$('.signup-team__container form').after(f$('.signup-team__container > div:first'));
       break;
-    case 'ct-login':
+    case 'ct-login': {
       f$('.signup-team__container').after(f$3Cols);
 
       const stc = document.querySelector('.signup-team__container');
       if (stc && !stc.parent().classList.contains('col-md-6')) {
-        wrap = document.createElement('div');
+        const wrap = document.createElement('div');
         wrap.classList.add('col-md-6');
         stc.parentNode.insertBefore(wrap, stc);
         wrap.appendChild(stc);
@@ -312,6 +312,7 @@ const updateDisplay = function updateDisplay(currentId) {
 
       f$('#carousel-team').carousel('cycle');
       break;
+    }
     default:
       // no default
       break;
@@ -343,7 +344,7 @@ setInterval(() => {
   if (f$('.modal:visible').length === 0) {
     f$('body .modal-backdrop').remove();
   }
-  
+
   // Lien https://docs.framasoft.org/fr/mattermost/index.html
   document
     .querySelectorAll('a[href*="docs.mattermost.com/help"], a[href*="docs.mattermost.com/index"]')
