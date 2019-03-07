@@ -61,43 +61,6 @@ export default {
   methods: {
     siteConfig(site) {
       switch (site) {
-        case 'localhost:8080':
-          this.cfg = [
-            'Fermeture de Framagora', `
-            <p>
-              Après 15 années d’existence, le forum historique de Framasoft,
-              ferme ses portes.
-              Pour les nostalgiques et les curieux, il reste toujours possible
-              de consulter les discussions mais c’est maintenant le forum
-              ${this.$root.html.colibri} qui prend la relève.
-            </p>
-            <p>
-              Nous avions mis en place ${this.$root.html.colibri} en 2015
-              pour permettre aux bénévoles souhaitant
-              participer aux projets de Framasoft de s’organiser sur un
-              forum vierge et moderne. Aujourd’hui, la dynamique est bien là.
-            </p>
-            <p>
-              Nous y avons donc reporté les quelques catégories de Framagora
-              qui étaient encore un peu actives&nbsp;:
-            <p>
-            <ul>
-              <li><a href="${this.$root.link.colibri}/c/framasoft-vous/cherche-logiciel-libre-pour">Cherche logiciel libre pour…</a></li>
-              <li><a href="${this.$root.link.colibri}/c/framasoft-vous/ask-frama">Questions / réponses</a></li>
-              <li><a href="${this.$root.link.colibri}/c/qualite/framakey">Framakey</a></li>
-              <li><a href="${this.$root.link.colibri}/c/qualite">Améliorons ensemble les outils Framasoft</a></li>
-              <li><a href="${this.$root.link.colibri}/c/framasoft-vous/presentations">Présentation des membres</a></li>
-            </ul>
-            <p>
-              Si vous avez des questions, on se retrouve là-bas… ${this.$root.emoji.wink}
-            </p>
-            <p class="text-center">
-              <a href="${this.$root.link.colibri}" class="btn btn-default">
-                <b>https://</b>${this.$root.color.colibri.toLowerCase()}<b>.org</b>
-              </a>
-            </p>`,
-          ];
-          break;
         case 'etherpad':
           if (/(beta\.framapad)/.test(this.$root.host)) {
             this.cfg = [
