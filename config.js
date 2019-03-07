@@ -430,7 +430,8 @@ switch (n$.site) {
     l$ = {
       js: {
         ext() {
-          f$('img[src*="/packs/logo"]').attr('src', 'https://framasoft.org/nav/img/icons/piaf.png');
+          document.querySelectorAll('img[src*="/packs/logo"]')
+            .forEach(img => Object.assign(img, { src: 'https://framasoft.org/nav/img/icons/piaf.png' }));
         },
       },
     };
