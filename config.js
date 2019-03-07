@@ -42,55 +42,6 @@ switch (n$.site) {
     };
     break;
 
-  case 'forum':
-    n$.name = 'Framagora';
-    l$ = {
-      css: { order: '10234' },
-      modal: {
-        info: [
-          'Fermeture de Framagora', `
-          <p>
-            Après 15 années d’existence, le forum historique de Framasoft,
-            ferme ses portes.
-            Pour les nostalgiques et les curieux, il reste toujours possible
-            de consulter les discussions mais c’est maintenant le forum
-            <a href="https://framacolibri.org" style="text-decoration:none">
-              <b class="violet">Frama</b><b class="jaune">colibri</b>
-            </a> qui prend la relève.
-          </p>
-          <p>
-            Nous avions mis en place
-            <a href="https://framacolibri.org" style="text-decoration:none">
-              <b class="violet">Frama</b><b class="jaune">colibri</b>
-            </a> en 2015 pour permettre aux bénévoles souhaitant
-            participer aux projets de Framasoft de s’organiser sur un
-            forum vierge et moderne. Aujourd’hui, la dynamique est bien là.
-          </p>
-          <p>
-            Nous y avons donc reporté les quelques catégories de Framagora
-            qui étaient encore un peu actives&nbsp;:
-          <p>
-          <ul>
-            <li><a href="https://framacolibri.org/c/framasoft-vous/cherche-logiciel-libre-pour">Cherche logiciel libre pour…</a></li>
-            <li><a href="https://framacolibri.org/c/framasoft-vous/ask-frama">Questions / réponses</a></li>
-            <li><a href="https://framacolibri.org/c/qualite/framakey">Framakey</a></li>
-            <li><a href="https://framacolibri.org/c/qualite">Améliorons ensemble les outils Framasoft</a></li>
-            <li><a href="https://framacolibri.org/c/framasoft-vous/presentations">Présentation des membres</a></li>
-          </ul>
-          <p>
-            Si vous avez des questions, on se retrouve là-bas…
-            <img src="https://framacolibri.org/images/emoji/emoji_one/wink.png?v=0" alt=";)" style="width:20px"/>
-          </p>
-          <p class="text-center">
-            <a href="https://framacolibri.org" class="btn btn-default">
-              <b>https://</b><b class="violet">frama</b><b class="jaune">colibri</b><b>.org</b>
-            </a>
-          </p>`,
-        ],
-      },
-    };
-    break;
-
   case 'bee':
     l$ = {
       js: {
@@ -537,7 +488,6 @@ l$.piwik = {
 
 switch (n$.site) {
   case 'soft': /**           */ l$.piwik.id = '1'; break;
-  case 'forum': /**          */ l$.piwik.id = '2'; break;
   case 'blog': /**           */ l$.piwik.id = '3'; break;
   case 'pad': /**            */ l$.piwik.id = '4'; break;
   case 'etherpad': /**       */ l$.piwik.id = '4'; break;
@@ -671,12 +621,8 @@ if (l$.piwik.id !== ''
  * ******************************************************************* */
 l$.icons = l$.icons || {};
 
-if (n$.is.url(/(phonie)/i, 'h')) {
-  l$.icons.fav = 'favicon-jaune.png';
-}
-
 if (n$.is.url(/(agenda|bag|bee|bin|blog|board|bookin|book|calc|carte|cloud|code|colibri|date|drive|drop|dvd|forms|games|key|lab|lang|libre|link|listes|maestro|memo|mindmap|minetest|news|pack|phonie|piaf|pic|site|slides|sphere|start|stats|status|talk|team|tube|vectoriel|vox|wiki|zic)/i, 'h')
-  || n$.is.url(/(bot.|contact.|degooglisons-internet|forum.|participer.|soutenir.)/i, 'h')) {
+  || n$.is.url(/(bot.|contact.|degooglisons-internet|participer.|soutenir.)/i, 'h')) {
   l$.icons.apple = [n$.site, '.png'].join('');
   l$.icons.fav = ['fav_', n$.site, '.png'].join('');
 }
