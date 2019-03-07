@@ -464,22 +464,6 @@ switch (n$.site) {
     };
     break;
 
-  case 'sphere':
-    l$ = {
-      js: {
-        ext() {
-          jQuery('#inscription-email').text(function emailReplace() {
-            return jQuery(this).text().replace('inscription-framasphere@framalistes.org', 'rt+framasphere@framasoft.org');
-          });
-          jQuery.getJSON('https://framasphere.org/nodeinfo/2.0').done((data) => {
-            jQuery('#userFramasphere').text(data.usage.users.total);
-          });
-        },
-      },
-      css: { order: '10234' },
-    };
-    break;
-
   case 'status':
     l$ = {
       js: {
@@ -567,14 +551,6 @@ switch (n$.site) {
       js: {
         j$: 'noConflict',
         b$: 'bootstrap',
-        video: true,
-        ext() {
-          jQuery('button[name^="sp_"]').each(function clickableMoreBtn() {
-            jQuery(this).on('click', function toggleMoreSection() {
-              jQuery(['.', jQuery(this).attr('name')].join('')).toggle();
-            });
-          });
-        },
       },
     };
     break;
