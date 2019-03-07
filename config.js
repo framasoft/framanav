@@ -465,39 +465,6 @@ switch (n$.site) {
     };
     break;
 
-  case 'status':
-    l$ = {
-      js: {
-        ext() {
-          jQuery('.section-components:eq(0) li.sub-component').each(function addContactLink() {
-            const framatruc = jQuery(this).children('a');
-            framatruc.after([
-              '<span class="col-xs-1 pull-right">',
-              '  <a href="https://contact.framasoft.org/#',
-              framatruc.text().split(' ', 1)[0].toLowerCase().replace(/è/g, 'e'),
-              '" class="btn btn-success btn-outline btn-xs" title="Signaler une panne concernant ',
-              framatruc.text(), '">',
-              '    <i class="fa fa-fw fa-lg fa-bug" aria-hidden="true"></i>',
-              '    <span class="sr-only">Signaler</span>',
-              '</a></span>',
-            ].join(''));
-          });
-          jQuery('.section-components:eq(0) li.sub-component a.btn[title]').tooltip();
-          jQuery('.section-status').append([
-            '<p class="well"><i class="fa fa-warning" aria-hidden="true"></i> ',
-            'Le statut des services n’est pas détecté automatiquement. ',
-            'Cette page est actualisée manuellement par l’équipe technique ',
-            'lorsqu’un incident est constaté ou qu’une opération de maintenance ',
-            'est programmée afin d’en informer le public. ',
-            'Si un service vous semble en panne mais n’est pas indiqué ',
-            'comme tel ici, merci de <a href="https://contact.framasoft.org/#aide">',
-            'nous le signaler</a>.</p>',
-          ].join(''));
-        },
-      },
-    };
-    break;
-
   case 'team':
     l$ = {
       js: { j$: 'noConflict', b$: 'html', ext: true },
