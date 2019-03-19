@@ -4,18 +4,18 @@
         top: 42px;
     }
 
-    #storage-alert-container {
+    #umap-alert-container {
         top: 42px;
     }
 
-    #storage-tooltip-container {
+    #umap-tooltip-container {
         top: 102px;
     }
 }
 
 /* Cartes mode édition */
-[data-url*="://framacarte.org/"][data-inframe="false"] .storage-edit-enabled {
-    .storage-main-edit-toolbox {
+[data-url*="://framacarte.org/"][data-inframe="false"] .umap-edit-enabled {
+    .umap-main-edit-toolbox {
         top:42px;
     }
 
@@ -23,7 +23,7 @@
         top: 90px;
     }
 
-    #storage-ui-container {
+    #umap-ui-container {
         top: 88px;
     }
 }

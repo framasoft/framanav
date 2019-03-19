@@ -47,10 +47,6 @@ export default {
     }
   },
   props: {
-    config: {
-      type: Array,
-      required: true,
-    },
     storage: {
       type: Array,
       required: true,
@@ -58,7 +54,8 @@ export default {
   },
   data() {
     return {
-      cfg: this.config,
+      config: ['', 'opt-in', 604800000],
+      /** [email selector, cookie name, cookie duration] */
       state: {
         optin: false,
         checked: false,
@@ -68,17 +65,16 @@ export default {
     }
   },
   mounted() {
-    if (this.cfg[0] === '') { // Keep local config
-      this.siteConfig(this.$root.site);
-    }
-    if (this.cfg[0] !== '') {
+    this.siteConfig(this.$root.site);
+
+    if (this.config[0] !== '') {
       if (this.storage[0]) {
         // Global cookie send locally
-        this.cookie('w', this.cfg[1], true, this.storage[2]);
+        this.cookie('w', this.config[1], true, this.storage[2]);
       }
       // Move box next to email input
-      if (document.querySelector(this.cfg[0])) {
-        document.querySelector(this.cfg[0]).after(document.getElementById('foptin'));
+      if (document.querySelector(this.config[0])) {
+        document.querySelector(this.config[0]).after(document.getElementById('foptin'));
       } else {
         document.getElementById('foptin').style.display = 'none';
       }
@@ -119,29 +115,41 @@ export default {
       this.state.checked = false;
     },
     siteConfig(site) {
-      switch (site) {
-        case 'blog':
-          this.cfg = ['#commentform #email'];
-          break;
-        case 'board':
-          if (!/\.framaboard/.test(this.$root.host)) {
-            this.cfg = ['#registration #email'];
-          }
-          break;
-        case 'date':
-          this.cfg = /create_poll\.php\?/.test(this.$root.url) ? ['#formulaire input#email'] : [''];
-          break;
-        case 'mindmap':
-          this.cfg = ['#user #email'];
-          break;
-        case 'localhost:8080':
-          this.cfg = ['#email'];
-          break;
-
-        // no-default
+      let c = [];
+      // Local config
+      try {
+        if (l$.optin.constructor === Array) {
+          c = l$.optin;
+        }
+      } catch (e) {
+        // continue regardless of error
       }
+
+      // Site config (< Local config)
+      if (c[0] === undefined) {
+        switch (site) {
+          case 'blog':
+            c = ['#commentform #email'];
+            break;
+          case 'board':
+            if (!/\.framaboard/.test(this.$root.host)) {
+              c = ['#registration #email'];
+            }
+            break;
+          case 'date':
+            c = /create_poll\.php\?/.test(this.$root.url) ? ['#formulaire input#email'] : [''];
+            break;
+          case 'mindmap':
+            c = ['#user #email'];
+            break;
+
+          // no-default
+        }
+      }
+
+      // Merge + return config
       this.config.forEach((v, i) => {
-        if (this.cfg[i] === undefined) { this.cfg[i] = v; }
+        if (c[i] !== undefined) { this.config[i] = c[i]; }
       });
     }
   },

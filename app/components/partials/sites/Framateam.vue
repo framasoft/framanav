@@ -175,23 +175,24 @@ export default {
       document.getElementsByTagName('body')[0].appendChild(fteam[k]);
     });
 
-    let f$current = window.location.href.split('/');
-    let f$bodyId = document.getElementsByTagName('body')[0].id || '';
+    let ct = this.$root.url.split('/');
+    let bodyId = document.getElementsByTagName('body')[0].id || '';
 
     // Ajout d'un id pour savoir sur quelle page on est
     setInterval(() => {
-      f$current = window.location.href.split('/');
-      f$bodyId = document.getElementsByTagName('body')[0].id || '';
+      ct = this.$root.url.split('/');
+      bodyId = document.getElementsByTagName('body')[0].id || '';
 
-      const f$currentId = (f$current[4] === 'channels' || f$current[4] === 'tutorial')
-        ? `ct-${f$current[4].split('?')[0]}`
-        : `ct-${f$current[3].split('?')[0]}`;
+      const debug = /login/.test(ct[4]) ? 'login' : 'select_team';
 
-      if (f$bodyId !== f$currentId.replace('test', 'select_team')
+      const ctId = (ct[4] === 'channels' || ct[4] === 'tutorial')
+        ? `ct-${ct[4].split('?')[0]}`
+        : `ct-${ct[3].split('?')[0]}`;
+      if (bodyId !== ctId.replace('test', debug)
         || (document.querySelector('.outMM') && !document.querySelector('#root #fteam_header'))
         || (document.querySelector('#ct-login.outMM') && !document.querySelector('#root #fteam_screen') && !document.querySelector('#root #fteam_prez'))
         || (document.querySelector('#ct-select_team.outMM') && !document.querySelector('#root #fteam_public'))) {
-        this.updateDisplay(f$currentId.replace('test', 'select_team'));
+        this.updateDisplay(ctId.replace('test', debug));
       }
 
       // Lien https://docs.framasoft.org/fr/mattermost/index.html

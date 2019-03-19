@@ -105,25 +105,19 @@
         :init="storageInit"/>
     -->
 
-    <AlertInfo :config="config.alert" />
+    <AlertInfo />
 
     <!-- TODO
     <ModalFAQ />
     -->
-    <ModalInfo :config="config.modal.info" />
-    <ModalDon
-      :config="config.modal.don"
-      :storage="storage.modal.don"
-    />
+    <ModalInfo />
+    <ModalDon :storage="storage.modal.don" />
 
     <Framabin v-if="/:\/\/framabin.org.p/.test($root.url)" />
     <Framavox v-if="/:\/\/framavox.org/.test($root.url)" />
     <Framateam v-if="/:\/\/framateam.org/.test($root.url)" />
 
-    <Optin
-      :config="config.optin"
-      :storage="storage.optin"
-    />
+    <Optin :storage="storage.optin" />
     <Footer />
   </div>
 </template>
@@ -144,7 +138,6 @@ import Framavox from './sites/Framavox.vue';
 import Framateam from './sites/Framateam.vue';
 
 import { Btn, Dropdown, Navbar, NavbarNav, Popover, Tooltip, Modal } from 'uiv';
-import { siteConfig } from '../../config';
 
 export default {
   components: {
@@ -170,19 +163,6 @@ export default {
     document.getElementsByTagName('head')[0].appendChild(fcss);
 
     this.storage = this.storageInit;
-
-    let localConfig = {};
-    try {
-      localConfig = l$;
-    } catch (e) {
-      // continue regardless of error
-    }
-    this.config = this.merge(
-      this.config, // default config
-      (!!Object.keys(siteConfig(this)).length)
-      ? siteConfig(this) // config.js
-      : localConfig
-    );
   },
   directives: {
     Popover, Tooltip
@@ -190,7 +170,7 @@ export default {
   data() {
     return {
       // Init nav
-      version: '190108', // n° version de la nav
+      version: '190319', // n° version de la nav
       myframa: [
           'https://my.framasoft.org/?post=', encodeURIComponent(this.$root.url),
           '&title=', encodeURIComponent(document.title || this.$root.url),
@@ -202,19 +182,7 @@ export default {
         optin: [false, 604800000],
       },
       storage: {},
-      // Global config
-      config: {
-        modal: {
-          don: ['', '', '', 604800000],
-          /** [querySelector or 'onstart', 'txt.action.*', 'txt.actionBtn.*', cookie duration (7 days)] */
-          info: ['', '', 'modal-info', 604800000],
-          /** [title, text, cookie name, cookie duration] */
-        },
-        alert: ['', '', 'nav-alert', 604800000],
-        /** [color (from bootstrap), text, cookie name, cookie duration] */
-        optin: ['', 'opt-in', 604800000],
-        /** [email selector, cookie name, cookie duration] */
-      },
+      js: function() {},
     };
   },
   mounted() {
@@ -225,14 +193,15 @@ export default {
       }
     }, 1000);
 
-    /*********** Config ***********/
-    if (this.config.js !== undefined && this.config.js.ext !== undefined) {
-      if (this.config.js.jQuery) {
+    /*********** Custom JavaScript ***********/
+    this.customJS(this.$root.site);
+    if(typeof this.js === 'function') {
+      if (/jQuery/.test(this.js.toString()) && window.jQuery === undefined) {
         this.loadJS(this.link('lib/jquery/jquery-3.3.1.min.js'), () => {
-          this.config.js.ext();
+          this.js();
         });
       } else {
-        this.config.js.ext();
+        this.js();
       }
     }
   },
@@ -327,6 +296,149 @@ export default {
         };
         e.onreadystatechange = e.onload;
         head.appendChild(e);
+      }
+    },
+    customJS(site) {
+      switch (site) {
+        case 'bee':
+          this.js = function() {
+            if (jQuery('.explain').length) { jQuery('#q').focus(); }
+            jQuery('.footer').hide();
+            jQuery('body').css('margin-bottom', '0');
+            // Default search in fr
+            if (this.isLang('fr', 'b') && document.cookie.indexOf('language=') === -1) {
+              jQuery('select[name="language"] option[value="fr"]').prop('selected', true);
+            }
+            // Active search engine list
+            let engines = '';
+            jQuery('#main_results .label-default').each((i) => {
+              const html = jQuery('<div />')
+                .append(jQuery('#main_results .label-default')
+                  .eq(i).clone())
+                .html();
+              if (engines.indexOf(html) === -1) {
+                engines += `${html} `;
+              }
+            });
+            jQuery('#sidebar_results').append(`
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">${this.$i18n.t('bee.search')}</h4>
+                </div>
+                <div class="panel-body">
+                  <p>truc</p>
+                  <p>${this.$i18n.t('bee.pref')}</p>
+                </div>
+              </div>
+            `);
+          };
+          break;
+
+        case 'board':
+          if (/\.framaboard/.test(this.$root.host)) { // dans Kanboard
+            this.js = function() {
+              jQuery('h1 .logo a').html(this.$root.color.board);
+              jQuery('h1 .logo').removeClass('logo');
+              jQuery([
+                'a[href$="?controller=UserCreationController&action=show&remote=1"]',
+                'a[href^="/?controller=UserViewController&action=external"]',
+                'input[name="is_ldap_user"]'].join())
+                .parent().hide();
+            };
+          }
+          break;
+
+        case 'calc':
+          // dans Ethercalc
+          if (!/accueil\.framacalc\.org/.test(this.$root.host)) {
+            this.js = function() {
+              try {
+                if (window.top.location.href.indexOf('framacalc.org/=') > -1) {
+                  document.getElementById('framanav_container').style = 'height:42px; opacity:0';
+                  document.getElementsByTagName('html')[0].setAttribute('data-inframe', 'false');
+                }
+              } catch (e) {
+                // continue regardless of error
+              }
+              window.dispatchEvent(new Event('resize'));
+            };
+          }
+          break;
+
+        case 'drop':
+          this.js = function() {
+            if (this.$root.url !== 'https://framadrop.org/') {
+              jQuery('main .row:last,main hr:last').hide();
+            }
+          };
+          break;
+
+        case 'libre':
+          this.js = function() {
+            if (this.$root.inframe) {
+              document.querySelectorAll('a').forEach(a => Object.assign(a, { target: '_blank' }));
+            }
+          };
+          break;
+
+        case 'my':
+          if (/source=bookmarklet/.test(this.$root.url)) {
+            document.getElementsByTagName('html')[0].setAttribute('data-inframe', 'true');
+            this.js = function() {
+              document.getElementById('loginform').insertAdjacentHTML('beforeEnd',
+                `<p class="alert alert-warning"><b>Rappel&nbsp;:</b> MyFrama sert à
+                regrouper en un même endroit vos liens (notament vos pads, calcs, sondages, etc).
+                Il ne permet <strong>pas de créer un compte unique</strong> pour
+                accéder à l’ensemble des services de Framasoft.</p>`);
+            };
+          } else {
+            this.js = function() {
+              if (this.$root.inframe) {
+                document.getElementById('linklist').classList.add('container-fluid');
+                document.getElementById('linklist').classList.remove('container');
+                document.getElementById('pageheader').style.display = 'none';
+                document.querySelectorAll('a').forEach(a => Object.assign(a, { target: '_blank' }));
+              }
+            };
+          }
+          break;
+
+        // <framapad> --------------------------------------------------------
+        case 'etherpad': // dans Etherpad
+          this.js = function() {
+            jQuery('#loading').delay(2000).append(`
+              <p class="small">Si le pad refuse de s’afficher, essayez de télécharger<br>
+              l’export <a href="${this.$root.url}/export/html">html</a>
+              ou <a href="${this.$root.url}/export/txt">txt</a>
+              de votre document et <a href="${this.$root.link.contact}/#framapad">contactez-nous</a>.</p>`);
+            if (!this.$root.inframe) {
+              const addMaestroBtn = setInterval(() => {
+                if (jQuery('#editbar .menu_right').length && !jQuery('#maestroBtn').length) {
+                  jQuery('#editbar .menu_right').prepend(`
+                    <li id="maestroBtn">
+                      <a title="Ajouter une visio-conférence"
+                        href="${this.maestro}">
+                        <button class="buttonicon fa fa-video-camera"
+                          style="top:0 !important;"></button>
+                        <span class="sr-only">Visio-conférence</span>
+                      </a>
+                    </li>`);
+                  clearInterval(addMaestroBtn);
+                }
+              }, 1000);
+            }
+          };
+          break;
+          // </framapad> -------------------------------------------------------
+
+        case 'piaf':
+          this.js = function() {
+            document.querySelectorAll('img[src*="/packs/logo"]')
+              .forEach(img => Object.assign(img, { src: 'https://framasoft.org/nav/img/icons/piaf.png' }));
+          };
+          break;
+
+        // no default
       }
     },
   }

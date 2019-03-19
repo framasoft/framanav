@@ -97,7 +97,6 @@ let config = {
       { from: path.resolve(__dirname, './app/assets/fonts'), to: 'fonts' },
       { from: path.resolve(__dirname, './app/assets/icons'), to: 'icons' },
       { from: path.resolve(__dirname, './app/assets/img'), to: 'img' },
-      { from: path.resolve(__dirname, './app/assets/ext'), to: 'ext' },
       { from: path.resolve(__dirname, './app/assets/lib'), to: 'lib' },
       { from: path.resolve(__dirname, './app/assets/test'), to: 'test' },
     ]),
