@@ -3,7 +3,7 @@
     :type="config[0]"
     v-if="state.alert"
     dismissible
-    @dismissed="state.alert = false; cookie('w', configg[2], true, config[3]);">
+    @dismissed="state.alert = false; cookie('w', config[2], true, config[3]);">
     <div><p class="text-center" v-html="config[1]"></p></div>
   </alert>
 </template>

@@ -82,11 +82,27 @@ export default {
     this.siteConfig(this.$root.site);
 
     if (this.config[0] !== '') {
-      if (this.storage[0]) {
-        // Global cookie send locally
-        this.cookie('w', this.config[1], true, this.storage[2]);
+      if (this.config[0] === 'onstart') {
+        if (this.storage[0]) {
+          // Global cookie send locally
+          this.cookie('w', this.config[1], true, this.storage[2]);
+        }
+        this.state.don = !this.cookie('r', 'dondl');
+      } else {
+        document.querySelectorAll(this.config[0]).forEach(a =>
+          a.onclick = (e) => {
+            if (this.storage[0]) {
+              // Global cookie send locally
+              this.cookie('w', this.config[1], true, this.storage[2]);
+            }
+            this.state.don = !this.cookie('r', 'dondl');
+            if (this.state.don) {
+              this.state.donTarget = a.href;
+              e.preventDefault();
+            }
+          }
+        )
       }
-      this.state.don = !this.cookie('r', 'dondl');
     }
   },
   methods: {

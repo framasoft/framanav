@@ -85,8 +85,8 @@ export default {
   methods: {
     subscribe() {
       this.state.email
-        = (this.cfg[0] !== '' && document.querySelector(this.cfg[0]) !== null)
-        ? document.querySelector(this.cfg[0]).value
+        = (this.config[0] !== '' && document.querySelector(this.config[0]) !== null)
+        ? document.querySelector(this.config[0]).value
         : '';
       if (this.is.email(this.state.email)) {
         // Subscribe
@@ -107,8 +107,8 @@ export default {
         this.state.sent = true;
 
         // Never ask again
-        this.cookie('w', this.cfg[1], true, this.cfg[2]);
-        // this.storage = [true, this.cfg[2]];
+        this.cookie('w', this.config[1], true, this.config[2]);
+        // this.storage = [true, this.config[2]];
         // this.minus('o', this.storage);
       }
       // Not a valid email
