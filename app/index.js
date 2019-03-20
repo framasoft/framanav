@@ -212,7 +212,7 @@ for (let j = 0; j < userLang.length; j += 1) { // check if user locales
 }
 
 // Redirections
-for (let i = 0; i < pages.length; i += 1) {
+/* for (let i = 0; i < pages.length; i += 1) {
   if (!window.vuefsPrerender) {
     routes.push({
       path: `/${pages[i].toLowerCase().replace('home', '')}`,
@@ -226,7 +226,7 @@ for (let i = 0; i < pages.length; i += 1) {
       component: component.default,
     });
   }
-}
+} */
 
 // Create VueI18n instance with options
 const i18n = new VueI18n({
