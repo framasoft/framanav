@@ -387,7 +387,7 @@ export default {
             this.js = function() {
               document.getElementById('loginform').insertAdjacentHTML('beforeEnd',
                 `<p class="alert alert-warning"><b>Rappel&nbsp;:</b> MyFrama sert à
-                regrouper en un même endroit vos liens (notament vos pads, calcs, sondages, etc).
+                regrouper en un même endroit vos liens (notamment vos pads, calcs, sondages, etc).
                 Il ne permet <strong>pas de créer un compte unique</strong> pour
                 accéder à l’ensemble des services de Framasoft.</p>`);
             };

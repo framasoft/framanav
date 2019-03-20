@@ -82,6 +82,18 @@ export default {
         }
       }
 
+      if (c[0] === undefined
+        && this.is.after('2019/03/20')
+        && this.is.before('2019/03/22')) {
+        c = [
+          'info black',
+          `<a href="https://pledge2019.eu/fr" class="saveyourinternet">
+            <img src="${this.$root.baseurl}img/com/saveyourinternet.png" alt=""/>
+          </a>`,
+          'nav-alert-syi'
+        ];
+      }
+
       // Merge + return config
       this.config.forEach((v, i) => {
         if (c[i] !== undefined) { this.config[i] = c[i]; }

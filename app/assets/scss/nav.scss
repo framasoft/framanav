@@ -379,16 +379,21 @@
     padding-top:52px;
   }
 
-  #nav-alert.alert-don {
-    color: #333;
-    background-color: #FFC529;
-    border-color: #333;
-  }
+  #nav-alert.alert-info.black {
+    color: #fff !important;
+    background-color:  #010001 !important;
+    border-color: #010001 !important;
 
-  #nav-alert.alert-black {
-    color: #fff;
-    background-color:  #333;
-    border-color: #333;
+    .saveyourinternet {
+      width: 100%;
+      display: block;
+      background-color:  #010001 !important;
+      border-color: #010001 !important;
+
+      &:hover, &:focus {
+        background-color:  #010001 !important;
+      }
+    }
   }
 
   #nav-alert.alert {
@@ -398,36 +403,30 @@
     line-height:18px;
     font-family: "DejaVu Sans",Verdana,Geneva,sans-serif !important;
     text-shadow:none;
-  }
 
-  #nav-alert.alert p {
-    margin-bottom:5px;
-    margin-top:0px;
-  }
+    p {
+      margin-bottom:5px;
+      margin-top:0px;
+    }
 
-  #nav-alert a:not(.btn) {
-    text-decoration: underline !important;
-    -moz-text-decoration-style: dotted;
-    -webkit-text-decoration-style: dotted;
-    -ms-text-decoration-style: dotted;
-    text-decoration-style: dotted;
-  }
+    a:not(.btn) {
+      text-decoration: underline !important;
+      -moz-text-decoration-style: dotted;
+      -webkit-text-decoration-style: dotted;
+      -ms-text-decoration-style: dotted;
+      text-decoration-style: dotted;
 
-  #nav-alert a:not(.btn):hover,
-  #nav-alert a:not(.btn):focus{
-    text-decoration: underline !important;
-    -moz-text-decoration-style: solid;
-    -webkit-text-decoration-style: solid;
-    -ms-text-decoration-style: solid;
-    text-decoration-style: solid;
-  }
-
-  #nav-alert a:not(.btn) {
-    text-decoration: underline !important;
-  }
-
-  #nav-alert.alert a {
-    font-weight:inherit !important;
+      &:hover, &:focus {
+        text-decoration: underline !important;
+        -moz-text-decoration-style: solid;
+        -webkit-text-decoration-style: solid;
+        -ms-text-decoration-style: solid;
+        text-decoration-style: solid;
+      }
+    }
+    a {
+      font-weight:inherit !important;
+    }
   }
 
   #nav-alert.alert-success a:not(.btn),
