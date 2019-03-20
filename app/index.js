@@ -236,15 +236,6 @@ const i18n = new VueI18n({
   silentTranslationWarn: true,
 });
 
-/** <framanav> */
-if (document.getElementById('fnav') === null) {
-  // Framanav
-  const fnav = document.createElement('div');
-  fnav.id = 'fnav';
-  document.getElementsByTagName('body')[0].insertBefore(fnav, document.getElementsByTagName('body')[0].children[0]);
-}
-/** </framanav> */
-
 // Routes
 const router = new VueRouter({
   routes,
@@ -252,14 +243,25 @@ const router = new VueRouter({
   base: `${__dirname}${process.env.BASE_URL}`,
 });
 
-new Vue({ // eslint-disable-line no-new
-  el: '#fnav',
-  router,
-  i18n,
-  data,
-  mounted() {
-    // You'll need this for renderAfterDocumentEvent.
-    document.dispatchEvent(new Event('render-event'));
-  },
-  render: h => h(App),
-});
+document.addEventListener('DOMContentLoaded', () => {
+  /** <framanav> */
+  if (document.getElementById('fnav') === null) {
+    // Framanav
+    const fnav = document.createElement('div');
+    fnav.id = 'fnav';
+    document.getElementsByTagName('body')[0].insertBefore(fnav, document.getElementsByTagName('body')[0].children[0]);
+  }
+  /** </framanav> */
+
+  new Vue({ // eslint-disable-line no-new
+    el: '#fnav',
+    router,
+    i18n,
+    data,
+    mounted() {
+      // You'll need this for renderAfterDocumentEvent.
+      document.dispatchEvent(new Event('render-event'));
+    },
+    render: h => h(App),
+  });
+}, false);
