@@ -1,29 +1,3 @@
 <template>
-  <div class="container ombre">
-    <header-component></header-component>
-    <h1>Tests</h1>
-    <ul>
-      <li><a :href="$root['/'] + 'test/home.html'">home</a></li>
-      <li><a :href="$root['/'] + 'test/index.html'">index</a></li>
-      <li><a :href="$root['/'] + 'test/jQuery.html'">jQuery</a></li>
-      <li><a :href="$root['/'] + 'test/verbose.html'">verbose</a></li>
-      <li><a :href="$root['/'] + 'test/verbose-en.html'">verbose-en</a></li>
-      <li><a :href="$root['/'] + 'test/verbose-fixed.html'">verbose fixed</a></li>
-      <li><a :href="$root['/'] + 'test/verbose-iframe.html'">verbose iframe</a></li>
-      <li><a :href="$root['/'] + 'test/site.html#://framabin.org/p/'">framabin</a></li>
-      <li><a :href="$root['/'] + 'test/site.html#://framavox.org'">framavox</a></li>
-      <li><a :href="$root['/'] + 'test/team_login.html#://framateam.org'">framateam</a></li>
-      <li><a :href="$root['/'] + 'test/team_select_team.html#://framateam.org'">framateam</a></li>
-    </ul>
-  </div>
+  <div></div>
 </template>
-
-<script>
-import HeaderComponent from '../partials/Header.vue'
-
-export default {
-  components: {
-    HeaderComponent,
-  }
-}
-</script>

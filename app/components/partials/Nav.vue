@@ -7,7 +7,7 @@
       <navbar id="framanav" style="display: none;" role="menubar">
         <span slot="brand">
           <a class="navbar-brand" slot="brand" :href="$root.link.soft">
-            <img :src="`${$root['/']}img/logo.png`" alt="" />
+            <img :src="`${$root.baseurl}img/logo.png`" alt="" />
             <span class="hidden-sm" v-html="$root.color.soft"></span>
           </a>
           <a href="#nav-end" id="nav-skip" v-html="$t('txt.skip')"></a>
