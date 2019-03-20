@@ -1,0 +1,30 @@
+meta:
+  title: Framasoft
+  author: Framasoft
+  canonical: https://framasoft.org
+
+fnav:
+  cat:
+    logiciel:
+      ['libre', 'key', 'dvd', 'pack', 'start', 'evl', 'vvl', 'clibre']
+    culture:
+      ['blog', 'book', 'bookin', 'lang', 'tube', 'zic', 'evl', 'ptilouk', 'planet']
+    services:
+      ['diolist', 'pad', 'calc', 'forms', 'agenda', 'date', 'board', 'mindmap', 'vectoriel',
+      'slides', 'maestro', 'bee', 'carte', 'sphere', 'piaf', 'team', 'listes', 'talk', 'vox',
+      'memo', 'notes', 'bag', 'news', 'games',
+      'minetest', 'drop', 'bin', 'pic', 'link', 'drive', 'clic', 'my', 'git',
+      'site', 'wiki']
+    follow:
+      ['diaspora', 'mastodon', 'twitter', 'facebook', 'newsletter', 'rss',
+      'wikipedia', 'colibri', 'wikifs']
+    about:
+      ['asso', 'participer', 'charte', 'benevalo', 'contact', 'partenaires',
+      'stats', 'status', 'doc', 'faq', 'aide', 'legals', 'cgu', 'credits',
+      'dio2', 'cuo2']
+
+  footer:
+    frama: ['asso', 'charte', 'contact', 'stats', 'status']
+    community: ['participer', 'benevalo', 'partenaires']
+    site: ['aide', 'faq', 'legals', 'cgu', 'credits']
+    follow: ['diaspora', 'mastodon', 'twitter', 'facebook', 'rss']

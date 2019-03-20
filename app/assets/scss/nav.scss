@@ -1,0 +1,628 @@
+.fnav-fixed {
+  padding-top:42px;
+
+  #framanav_container {
+    position: absolute;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+  }
+
+  #nav-alert.alert {
+    margin-bottom: 42px;
+  }
+}
+
+#fnav {
+  @import "bootstrap-nav";
+  @import "global";
+
+
+  #framanav.navbar {
+    font-size: 12px;
+    font-family: "DejaVu Sans",Verdana,Geneva,sans-serif;
+    text-align: justify;
+    display: block;
+    min-height: 30px;
+    margin-bottom: 0;
+    height: 42px;
+    width: auto;
+    z-index: 1002;
+    background-color: #FAFAFA;
+    border-radius: 0;
+    border: none;
+    border-bottom:1px solid #bdbdbd;
+
+    .container-fluid {
+      margin:auto;
+      background-color:#f8f8f8;
+    }
+
+    @media (min-width: 768px) {
+      .container-fluid {
+        width: 1015px;
+        width: -moz-fit-content;
+        width: -webkit-fit-content;
+        width: fit-content;
+      }
+
+      .collapse { /* bug dans certaines config en box-sizing: content-box*/
+        height:40px ;
+        float:left;
+      }
+
+      .navbar-collapse {
+        padding: 0;
+      }
+    }
+    @media (max-width: 768px) { /* la nav pour tablette/mobile n'a pas ce problème */
+      .container-fluid {
+        width:auto;
+      }
+    }
+
+    /* Brand */
+    .violet, .frama { color: $violet;}
+    .orange, .soft { color: $orange;}
+
+    .navbar-brand {
+      font-weight: bold;
+      height: 40px;
+      padding:0;
+      line-height:40px;
+      font-size: 20px;
+      margin-right:15px;
+      text-decoration: none;
+
+      img {
+        margin: 0;
+        width: 38px;
+        height: 38px;
+        border:none;
+        display: inline;
+        vertical-align: top;
+      }
+
+      b {
+        border:none;
+        display: inline;
+        vertical-align: top;
+      }
+    }
+
+    li {
+      margin: 0;
+    }
+
+    .dropdown {
+      box-shadow: none;
+      background: transparent;
+      border-radius: none;
+      z-index: auto;
+      padding: 0;
+      width: auto;
+
+      a {
+        .caret {
+          margin-left: -50%;
+          margin-top: 25px;
+          visibility: hidden;
+        }
+
+        &:hover .caret,
+        &:focus .caret {
+          visibility: visible;
+        }
+      }
+    }
+
+    .dropdown-toggle {
+      padding: 7px 4px 5px 10px;
+    }
+
+    .dropdown-menu {
+      min-width: 140px;
+      padding : 5px 0px;
+      left: 0;
+      top: 100%;
+      bottom: auto;
+      width: auto;
+
+      li {
+        font-size: 12px;
+        font-family: "DejaVu Sans",Verdana,Geneva,sans-serif;
+        text-align: justify;
+        display: block;
+        width: auto;
+        padding: 0;
+        background-color: #fff;
+        border: none;
+
+        .fa {
+          opacity: 1;
+          margin-right: 0;
+        }
+
+        a:hover {
+          color: #fff;
+        }
+      }
+
+      .divider {
+        background-color: #e5e5e5;
+        opacity: 1;
+      }
+
+      > li > a { padding: 5px 10px; }
+    }
+
+    #fs_logiciel .dropdown-menu li a:hover { background-color: $bleu; }
+    #fs_culture .dropdown-menu li a:hover { background-color: $rouge; }
+    #fs_services .dropdown-menu li a:hover { background-color: $vert; }
+    #fs_follow .dropdown-menu li a:hover { background-color: $violet; }
+    #fs_about .dropdown-menu li a:hover { background-color: $orange; }
+
+    #fs_logiciel .dropdown-menu li.fs_evl a:hover,
+    #fs_logiciel .dropdown-menu li.fs_clibre a:hover,
+    #fs_logiciel .dropdown-menu li.fs_vvl a:hover,
+    #fs_culture .dropdown-menu li.fs_ptilouk a:hover,
+    #fs_culture .dropdown-menu li.fs_evl a:hover,
+    #fs_culture .dropdown-menu li.fs_planet a:hover,
+    #fs_follow .dropdown-menu li.fs_colibri a:hover,
+    #fs_follow .dropdown-menu li.fs_wiki a:hover {
+      background-color: $jaune;
+    }
+
+    .dropdown-menu {
+      .fs_start,  .fs_evl,
+      .fs_zic, .fs_evl,
+      .fs_diolist, .fs_slides, .fs_maestro, .fs_bee, .fs_carte, .fs_talk, .fs_vox,
+      .fs_bag, .fs_news, .fs_games, .fs_minetest, .fs_site, .fs_wiki,
+      .fs_wikipedia,
+      .fs_stats, .fs_status, .fs_cgu, .fs_credits {
+        border-bottom: 1px solid #e5e5e5;
+      }
+    }
+
+    @media (min-width: 992px) {
+      #fs_services .dropdown-menu,
+      #fs_about .dropdown-menu {
+        min-width: 320px;
+      }
+
+      #fs_services ul { margin-left: -106px; }
+      #fs_about ul { margin-left: -124px; }
+
+      #fs_services .dropdown-menu li,
+      #fs_about .dropdown-menu li {
+        width: 50%;
+        float: left;
+      }
+
+      #fs_services .dropdown-menu .fs_diolist,
+      #fs_services .dropdown-menu .dropdown-header,
+      #fs_about .dropdown-menu .fs_dio2,
+      #fs_about .dropdown-menu .fs_cuo2,
+      #fs_about .dropdown-menu .dropdown-header {
+        width: 100%;
+        text-align: center;
+        padding: 0;
+      }
+
+      #fs_about .dropdown-menu .dropdown-header {
+        border-bottom: 1px solid #e5e5e5;
+        padding: 5px 0;
+      }
+    }
+
+
+    .popover {
+      width : 300px;
+
+      a {
+        color:#333;
+        text-decoration:none;
+      }
+    }
+    .popover.right,
+    .popover.left {
+      margin-top:35px;
+
+      .arrow {
+        margin-top:-45px;
+      }
+    }
+
+    .popover.bottom {
+      margin-left:-100px;
+      .arrow {
+        margin-left:100px;
+      }
+    }
+
+    .popover.top { /*  Framafooter */
+      margin-top:-30px;
+    }
+
+    .popover-title { font-weight: bold; }
+
+    #btn-soutenir .btn-soutenir,
+    #btn-benevalo .btn-info,
+    #btn-myframa .btn-primary {
+      width: 135px;
+      height: 41px;
+      line-height: 41px;
+      font-size: 12px;
+      color: #fff;
+      text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+      padding: 0px;
+      border: none ;
+      text-align:center;
+
+      &:hover, &:focus, &:active {
+        color: #fff;
+      }
+    }
+
+    #btn-soutenir .btn-soutenir {
+      background-color: #DBA306;
+
+      &:hover, &:focus, &:active {
+        background-color: #C48a1b;
+      }
+    }
+
+    #btn-benevalo .btn-info {
+      background-color: #11809E;
+
+      &:hover, &:focus, &:active {
+        background-color: #0C5B7A;
+      }
+    }
+
+    #btn-myframa .btn-primary {
+      background-color: #6A5687;
+
+      &:hover, &:focus, &:active {
+         background-color: #635182;
+      }
+    }
+
+    @media (max-width: 768px) {
+      #btn-myframa, #btn-benevalo {
+        width:auto;
+        text-align:left;
+      }
+    }
+  }
+
+  #framanav_donation {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    display: block;
+    height: 70px;
+    width: 70px;
+    background: no-repeat url(../img/macaron.png);
+    z-index : 1101;
+
+    &:hover {
+      filter:alpha(opacity=90);
+      -moz-opacity:0.9;
+      -khtml-opacity: 0.9;
+      opacity: 0.9;
+    }
+  }
+
+  //------------------------------------------------------------------------------
+  #modal-don .new-window,
+  #modal-contact .new-window,
+  #link-opt-in .new-window,
+  #framanav .dropdown-menu li a .new-window { /*a:not(.modal-link)*/
+    visibility: hidden;
+    font-size: 10px !important;
+  }
+
+  #modal-don:hover .new-window,
+  #modal-contact:hover .new-window,
+  #link-opt-in:hover .new-window,
+  #framanav .dropdown-menu li a:hover .new-window,
+  #modal-don:focus .new-window,
+  #modal-contact:focus .new-window,
+  #link-opt-in:focus .new-window,
+  #framanav .dropdown-menu li a:focus .new-window {
+    visibility:visible;
+  }
+
+  @media (max-width: 768px) {
+    #apropos span.hidden {
+      display:inline !important;
+      visibility:visible !important;
+    }
+  }
+
+  #modal-soutenir p {
+    font-size:14px !important;
+  }
+
+  /* --- on s'assure on a bien une nav collée en haut en cas de petit écran --- */
+  @media (max-width: 979px) {
+    body {
+      margin-top: 0px !important;
+    }
+  }
+
+  .navbar-toggle {padding: 4px 6px !important;}
+
+  #nav-skip {
+    position:absolute;
+    margin-top:-5000px;
+  }
+  #nav-skip:focus {
+    width: auto;
+    line-height: 20px;
+    margin: 0 0 0 -135px;
+    padding: 10px 20px;
+    background-color: #fafafa;
+    color: #333;
+    outline: 1px dotted #000;
+    text-decoration:none;
+    font-size:12px;
+  }
+
+  /* Alerts */
+  #nav-alert {
+    border-top:0px;
+    border-left:0px;
+    border-right:0px;
+    border-radius:0 !important;
+    padding-top:52px;
+  }
+
+  #nav-alert.alert-info.black {
+    color: #fff !important;
+    background-color:  #010001 !important;
+    border-color: #010001 !important;
+
+    .saveyourinternet {
+      width: 100%;
+      display: block;
+      background-color:  #010001 !important;
+      border-color: #010001 !important;
+
+      &:hover, &:focus {
+        background-color:  #010001 !important;
+      }
+    }
+  }
+
+  #nav-alert.alert {
+    padding:10px;
+    margin-bottom:0;
+    font-size:14px;
+    line-height:18px;
+    font-family: "DejaVu Sans",Verdana,Geneva,sans-serif !important;
+    text-shadow:none;
+
+    p {
+      margin-bottom:5px;
+      margin-top:0px;
+    }
+
+    a:not(.btn) {
+      text-decoration: underline !important;
+      -moz-text-decoration-style: dotted;
+      -webkit-text-decoration-style: dotted;
+      -ms-text-decoration-style: dotted;
+      text-decoration-style: dotted;
+
+      &:hover, &:focus {
+        text-decoration: underline !important;
+        -moz-text-decoration-style: solid;
+        -webkit-text-decoration-style: solid;
+        -ms-text-decoration-style: solid;
+        text-decoration-style: solid;
+      }
+    }
+    a {
+      font-weight:inherit !important;
+    }
+  }
+
+  #nav-alert.alert-success a:not(.btn),
+  #nav-alert.alert-success a:hover:not(.btn),
+  #nav-alert.alert-success {
+    color: #304219 !important;
+    background:#E3EBC7 !important;
+    border-color: #C0D481 !important;
+  }
+  #nav-alert.alert-info a:not(.btn),
+  #nav-alert.alert-info a:hover:not(.btn),
+  #nav-alert.alert-info {
+    color: #0C5B7A !important;
+    background-color: #E1F8FC !important;
+    border-color: #B2D5DB !important;
+  }
+  #nav-alert.alert-warning a:not(.btn),
+  #nav-alert.alert-danger a:hover:not(.btn),
+  #nav-alert.alert-warning {
+    color: #A15014 !important;
+    background-color: #FFEBB5 !important;
+    border-color: #FFCF4F !important;
+  }
+  #nav-alert.alert-danger a:not(.btn),
+  #nav-alert.alert-danger a:hover:not(.btn),
+  #nav-alert.alert-danger {
+    color: #AB2909 !important;
+    background-color: #fde0dc !important;
+    border-color: #E0B3A8 !important;
+  }
+
+  #nav-alert.alert-dismissible .close {
+    right: 0px;
+    margin-right: 5px;
+    margin-top: -5px;
+  }
+
+  #nav-alert .clearfix {
+    height:auto !important;
+    overflow:visible !important;
+  }
+
+  #nav-alert > div {
+    margin:0 auto;
+    max-width:800px;
+  }
+
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a,
+  .navbar-default .navbar-nav > li > a {
+    color:#555;
+  }
+
+  /* Modal header title */
+  .modal-header h1,.modal-header h2,.modal-header h3,
+  .modal-header h4,.modal-header h5,.modal-header h6, .modal-header p {
+    font-size: 24px;
+  }
+
+  /* Fix Theme Wordpress Virtue */
+  #framanav .navbar-brand span.hidden-sm {
+    display:inline !important;
+    margin-left: 10px;
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    #framanav .navbar-brand span.hidden-sm {
+      display: none !important;
+    }
+  }
+
+
+  .fs_petitions, .fs_story {
+    display:none !important;
+  }
+
+  .fs_clic {
+    visibility: hidden;
+  }
+}
+
+#ffooter {
+  @import "bootstrap-footer";
+
+  #framafooter {
+    padding:20px 0 20px 0;
+    margin:0;
+    background:#dfdfdf;
+    color:#333;
+    font-size:14px;
+    width:100%;
+    max-width:100%;
+    bottom:0;
+    border-top:1px solid #ccc;
+    height:auto;
+    text-align:left;
+
+    .container {
+      background:#dfdfdf;
+      min-height:0px;
+      padding: 0;
+    }
+
+    h1 {
+      font-size:14px;
+      font-weight:bold;
+      margin-top:0;
+    }
+
+    h2 {
+      font-size:14px;
+      font-weight:bold;
+    }
+    a {
+      color:#333;
+      text-decoration:none;
+      border-bottom:none;
+      font-size:14px;
+
+      .fa-fw {
+        padding:5px;
+        width:36px;
+        height:36px;
+        text-decoration:none;
+      }
+
+      &:hover, &:focus {
+        text-decoration:underline;
+
+        .fa {
+          background:#6A5687;
+          color:#fff;
+          border-radius:5px;
+        }
+      }
+    }
+
+    .btn {
+      margin-top:0;
+    }
+  }
+}
+
+#foptin {
+  @import "bootstrap-optin";
+  @import "frama/alerts";
+
+    /* Opt-in */
+  #fs_opt-in, #fs_opt-in_confirm, #fs_opt-in_error {
+    margin-top:10px;
+    margin-bottom:10px;
+    font-size:13px;
+    padding:10px;
+    line-height: 17px;
+  }
+  #commentform #fs_opt-in,
+  #commentform #fs_opt-in_confirm,
+  #commentform #fs_opt-in_error {  /* wordpress */
+    min-width: 555px;
+  }
+  #fs_opt-in small {
+    font-size:11px;
+  }
+
+  #fs_opt-in input {
+    margin:0;
+    width:auto !important;
+    display:inline !important;
+  }
+
+  #fs_opt-in label {
+    display: inline !important;
+    float: none !important;
+    width: auto !important;
+    text-align: left !important;
+    font-weight: normal !important;
+    margin: 0px 0px 0px 5px !important;
+    white-space: normal;
+    color: #0C5B7A;
+  }
+}
+
+/* Display nav and footer only when CSS is ready */
+#framanav[style*="display: none"],
+#ffooter[style*="display: none"] {
+  display: block !important;
+}
+
+.modal-backdrop { // Outside #fnav (no bootstrap)
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #000;
+
+  &.fade { opacity: 0; }
+  &.in { opacity: 0.5; }
+}
