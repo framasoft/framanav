@@ -62,7 +62,7 @@
 <script>
 export default {
   mounted() {
-    const html = document.getElementsByTagName('html')[0];
+    const html = document.getElementsByTagName('html');
     if (document.getElementById('language')
       && /> français </.test(document.getElementById('language').innerHTML)
       && html[0].getAttribute('lang') !== 'fr') {
