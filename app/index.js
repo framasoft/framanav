@@ -6,7 +6,6 @@ import PortalVue from 'portal-vue';
 
 import App from './App.vue';
 
-import './assets/scss/bootstrap.scss';
 import '../node_modules/fork-awesome/css/fork-awesome.css';
 import './assets/scss/main.scss';
 

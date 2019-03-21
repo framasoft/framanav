@@ -155,18 +155,30 @@ export default {
     html[0].setAttribute('data-url', this.$root.url);
     html[0].setAttribute('data-inframe', this.$root.inframe);
 
-    // Load Bootstrap CSS (Depreciated)const regSites = new RegExp([
-    const regSites = new RegExp([
+    // Load Bootstrap CSS (Depreciated)
+    // Todo build files from SASS
+    let regSites = new RegExp([
+      '(localhost:8080', 'localhost)'
+      ].join('|'), 'i');
+    if (regSites.test(this.$root.host)) {
+      const bsTinyCss = document.createElement('link');
+      Object.assign(bsTinyCss, {
+        rel: 'stylesheet',
+        href: `${this.$root.baseurl}lib/bootstrap/css/bootstrap.tiny.min.css`,
+      });
+      document.getElementsByTagName('head')[0].appendChild(bsTinyCss);
+    }
+    regSites = new RegExp([
       '(bookin', 'drop', 'bookin', 'carte', 'forms', 'memo', 'pic',
       'stats)'
       ].join('|'), 'i');
     if (regSites.test(this.$root.host) || this.$root.host === 'framaboard.org') {
-      const bscss = document.createElement('link');
-      Object.assign(bscss, {
+      const bsFullCss = document.createElement('link');
+      Object.assign(bsFullCss, {
         rel: 'stylesheet',
         href: `${this.$root.baseurl}lib/bootstrap/css/bootstrap.min.css`,
       });
-      document.getElementsByTagName('head')[0].appendChild(bscss);
+      document.getElementsByTagName('head')[0].appendChild(bsFullCss);
     }
     // Load CSS
     const fcss = document.createElement('link');
