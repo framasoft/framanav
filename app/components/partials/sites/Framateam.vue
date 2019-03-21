@@ -185,6 +185,9 @@ export default {
       const ctId = (ct[4] === 'channels' || ct[4] === 'tutorial')
         ? `ct-${ct[4].split('?')[0]}`
         : `ct-${ct[3].split('?')[0]}`;
+
+      if(ctId === 'ct-') { body.classList.add('outMM'); }
+
       if (bodyId !== ctId.replace('test', debug)
         || (document.querySelector('.outMM') && !document.querySelector('#root header.framateam'))
         || (document.querySelector('#ct-login.outMM') && !document.querySelector('#root #fteam_screen') && !document.querySelector('#root #jardin'))
