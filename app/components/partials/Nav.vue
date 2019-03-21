@@ -165,12 +165,12 @@ export default {
       'notes', 'piaf', 'pic', 'frama.site', 'frama.wiki', 'stats)'
       ].join('|'), 'i');
     if (regSites.test(this.$root.host) || this.$root.host === 'framaboard.org') {
-      const bsFullCss = document.createElement('link');
-      Object.assign(bsFullCss, {
+      const bsCSS = document.createElement('link');
+      Object.assign(bsCSS, {
         rel: 'stylesheet',
         href: `${this.$root.baseurl}lib/bootstrap/css/bootstrap.min.css`,
       });
-      document.getElementsByTagName('head')[0].appendChild(bsFullCss);
+      document.getElementsByTagName('head')[0].appendChild(bsCSS);
     }
 
     // Wrap .carousel with .carousel-container
@@ -187,14 +187,16 @@ export default {
 
     // Modales and tabs need BootstrapJS
     regSites = new RegExp([
-      '(agenda', 'bookin', 'drive', 'memo)'
+      '(agenda', 'bookin', 'drive', 'localhost', 'memo)'
       ].join('|'), 'i');
     if (regSites.test(this.$root.host)) {
-      const carousel = document.querySelector('.carousel');
-      const carouselContainer = document.createElement('div');
-      carouselContainer.classList.add('carousel-container');
-      carousel.parentNode.insertBefore(carouselContainer, carousel);
-      carouselContainer.appendChild(carousel);
+      const bsJS = document.createElement('script');
+      Object.assign(bsJS, {
+        src: `${this.$root.baseurl}lib/bootstrap/js/bootstrap.min.js`,
+        type: 'text/javascript',
+        charset: 'utf-8',
+      });
+      document.getElementsByTagName('head')[0].appendChild(bsJS);
     }
     /** </> */
 
