@@ -9,12 +9,15 @@
     #workarea, #sidepanels, #tools_left {
         top:112px !important;
     }
+
     #main_button {
         top:46px !important;
     }
+
     #tools_top {
         top:44px !important;
     }
+
     #svg_source_container {
         top:92px !important;
     }
@@ -22,30 +25,39 @@
     #tools_rect {
         top:214px !important;
     }
+
     #tools_ellipse {
         top:248px !important;
     }
+
     #tools_line {
         top:180px !important;
     }
+
     #tools_shapelib {
         top:316px !important;
     }
+
     #ruler_corner,#ruler_x,#ruler_y {
         top:113px !important;
     }
+
     #imgbrowse {
         top: 77px;
     }
+
     #color_picker {
         bottom: 82px !important;
     }
 }
 
 [data-url*="://framavectoriel.org/svg-editor.html"] {
+    margin: 0;
+
     #tool_save {
         display:none;
     }
+
     #sidepanel_handle {
         text-transform:uppercase;
     }
