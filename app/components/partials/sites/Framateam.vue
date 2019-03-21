@@ -186,8 +186,8 @@ export default {
         ? `ct-${ct[4].split('?')[0]}`
         : `ct-${ct[3].split('?')[0]}`;
       if (bodyId !== ctId.replace('test', debug)
-        || (document.querySelector('.outMM') && !document.querySelector('#root #fteam_header'))
-        || (document.querySelector('#ct-login.outMM') && !document.querySelector('#root #fteam_screen') && !document.querySelector('#root #fteam_prez'))
+        || (document.querySelector('.outMM') && !document.querySelector('#root header.framateam'))
+        || (document.querySelector('#ct-login.outMM') && !document.querySelector('#root #fteam_screen') && !document.querySelector('#root #jardin'))
         || (document.querySelector('#ct-select_team.outMM') && !document.querySelector('#root #fteam_public'))) {
         this.updateDisplay(ctId.replace('test', debug));
       }
