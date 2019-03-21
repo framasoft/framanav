@@ -1,6 +1,14 @@
 [data-url*=".framaboard.org/"] {
+  background: #fff !important;
+
   body {
     background: #fff !important;
+  }
+
+  #framanav a.btn-info i,
+  #framanav a.btn-soutenir i,
+  #framanav a.btn-myframa i {
+    color: #fff !important;
   }
 
   /* Button color from Framacss */
