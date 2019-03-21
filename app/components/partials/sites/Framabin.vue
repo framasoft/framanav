@@ -66,10 +66,10 @@ export default {
     if (document.getElementById('language')
       && /> français </.test(document.getElementById('language').innerHTML)
       && html[0].getAttribute('lang') !== 'fr') {
-      html.lang = 'fr';
+      html[0].lang = 'fr';
       this.$i18n.locale = 'fr';
     } else {
-      html.lang = 'en';
+      html[0].lang = 'en';
       this.$i18n.locale = 'en';
     }
     const container = document.querySelector('.container.ombre');

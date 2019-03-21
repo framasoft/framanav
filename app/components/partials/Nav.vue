@@ -397,14 +397,14 @@ export default {
 
         case 'mindmap':
           this.js = function() {
-            const html = html = document.getElementsByTagName('html')[0];
+            const html = document.getElementsByTagName('html');
             if (document.getElementById('userSettingsBtn')
               && document.getElementById('userSettingsBtn').innerHTML === 'Compte'
-              && html.getAttribute('lang') !== 'fr') {
-              html.lang = 'fr';
+              && html[0].getAttribute('lang') !== 'fr') {
+              html[0].lang = 'fr';
               this.$i18n.locale = 'fr';
             } else {
-              html.lang = 'en';
+              html[0].lang = 'en';
               this.$i18n.locale = 'en';
             }
           };
