@@ -180,7 +180,7 @@ export default {
     if (regSites.test(this.$root.host) || this.$root.host === 'framaboard.org') {
       const carousel = document.querySelector('.carousel');
       const carouselContainer = document.createElement('div');
-      if (carousel !== undefined) {
+      if (carousel !== null) {
         carouselContainer.classList.add('carousel-container');
         carousel.parentNode.insertBefore(carouselContainer, carousel);
         carouselContainer.appendChild(carousel);
