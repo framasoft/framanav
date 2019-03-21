@@ -1,12 +1,12 @@
 <template>
   <div>
-    <portal target-el="#fteam_header">
+    <div id="fteam_header" style="display:none;">
       <header role="banner" class="clearfix framateam">
         <h1 v-html="$root.html.team"></h1>
         <p class="lead" v-html="$t('team.header.lead')"></p>
         <hr class="trait" role="presentation" />
       </header>
-    </portal>
+    </div>
 
     <portal target-el="#fteam_screen">
       <div class="carousel-container text-center framateam">
@@ -53,7 +53,7 @@
       </div>
     </portal>
 
-    <portal target-el="#fteam_prez">
+    <div id="fteam_prez" style="display:none;">
       <div class="col-md-5 text-center h1 framateam">
         <a href="/signup_user_complete" class="btn btn-lg btn-success">
           <i class="fa fa-fw fa-lg fa-user" aria-hidden="true"></i>
@@ -108,7 +108,7 @@
           </div>
         </div>
       </div>
-    </portal>
+    </div>
 
     <portal target-el="#fteam_public">
       <div class="text-center framateam" id="Options">
@@ -269,9 +269,9 @@ export default {
           }
           if (document.getElementById('login_section')) {
             // ⚠️ vue-portal #fteam_prez
-            if (!document.querySelector('#root #fteam_prez')) {
+            if (!document.querySelector('#root #jardin')) {
               document.getElementById('login_section')
-                .insertAdjacentElement('afterend', document.getElementById('fteam_prez'));
+                .insertAdjacentHTML('afterend', document.getElementById('fteam_prez').innerHTML);
 
               stc.parentNode.insertAdjacentElement('afterend',
                 document.querySelector('#fteam_prez .col-md-5'));
@@ -294,9 +294,8 @@ export default {
 
       // ⚠️ vue-portal #fteam_header
       if (document.querySelector('.outMM')
-        && currentId !== 'ct-'
-        && !document.querySelector('#root #fteam_header')) {
-        document.getElementById('root').insertAdjacentElement('afterbegin', document.getElementById('fteam_header'));
+        && !document.querySelector('#root header.framateam')) {
+        document.getElementById('root').insertAdjacentHTML('afterbegin', document.getElementById('fteam_header').innerHTML);
       }
 
       body.id = currentId;
