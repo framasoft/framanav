@@ -185,9 +185,9 @@ export default {
       carouselContainer.appendChild(carousel);
     }
 
-    // Modales and tabs need BootstrapJS
+    // Modales, Carousel and Tabs need BootstrapJS
     regSites = new RegExp([
-      '(agenda', 'bookin', 'drive', 'localhost', 'memo)'
+      '(agenda', 'bookin', 'drive', 'forms', 'memo', 'notes', 'piaf)'
       ].join('|'), 'i');
     if (regSites.test(this.$root.host)) {
       const bsJS = document.createElement('script');
