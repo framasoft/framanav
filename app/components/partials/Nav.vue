@@ -115,7 +115,7 @@
     <ModalDon :storage="storage.modal.don" />
 
     <Framabin v-if="/:\/\/framabin.org.p/.test($root.url)" />
-    <Framavox v-if="/:\/\/framavox.org/.test($root.url)" />
+    <!-- <Framavox v-if="/:\/\/framavox.org/.test($root.url)" /> -->
     <Framateam v-if="/:\/\/framateam.org/.test($root.url)" />
 
     <Optin :storage="storage.optin" />
