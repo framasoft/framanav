@@ -166,7 +166,7 @@ export default {
         rel: 'stylesheet',
         href: `${this.$root.baseurl}lib/bootstrap/css/bootstrap.min.css`,
       });
-      document.getElementsByTagName('head')[0].appendChild(fcss);
+      document.getElementsByTagName('head')[0].appendChild(bscss);
     }
     // Load CSS
     const fcss = document.createElement('link');
@@ -375,7 +375,11 @@ export default {
               } catch (e) {
                 // continue regardless of error
               }
-              window.dispatchEvent(new Event('resize'));
+              setInterval(() => {
+                if (document.body.scrollHeight < window.innerHeight - 30) {
+                  window.dispatchEvent(new Event('resize'));
+                }
+              }, 1000)
             };
           }
           break;
