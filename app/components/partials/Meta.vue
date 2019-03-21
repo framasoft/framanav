@@ -15,8 +15,8 @@ export default {
       '(agenda', 'bag', 'bee', 'bin', 'blog', 'board',
       'bookin', 'book', 'calc', 'carte', 'cloud', 'code', 'colibri', 'date',
       'drive', 'drop', 'dvd', 'forms', 'games', 'key', 'lab', 'lang', 'libre',
-      'link', 'listes', 'maestro', 'memo', 'mindmap', 'minetest', 'news', 'pack',
-      'phonie', 'piaf', 'pic', 'site', 'slides', 'sphere', 'start', 'stats',
+      'link', 'listes', 'maestro', 'memo', 'mindmap', 'minetest', 'news', 'notes',
+      'pack', 'phonie', 'piaf', 'pic', 'site', 'slides', 'sphere', 'start', 'stats',
       'status', 'talk', 'team', 'tube', 'vectoriel', 'vox', 'zic',
       'bot.', 'contact.', 'degooglisons-internet', 'forum.', 'participer.',
       'soutenir.)'

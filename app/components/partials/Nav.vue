@@ -169,8 +169,8 @@ export default {
       document.getElementsByTagName('head')[0].appendChild(bsTinyCss);
     }
     regSites = new RegExp([
-      '(bookin', 'drop', 'bookin', 'carte', 'forms', 'memo', 'piaf', 'pic',
-      'stats)'
+      '(bookin', 'drop', 'bookin', 'carte', 'forms', 'memo',
+      'notes', 'piaf', 'pic', 'frama.site', 'frama.wiki', 'stats)'
       ].join('|'), 'i');
     if (regSites.test(this.$root.host) || this.$root.host === 'framaboard.org') {
       const bsFullCss = document.createElement('link');
