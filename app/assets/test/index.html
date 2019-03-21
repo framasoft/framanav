@@ -24,6 +24,10 @@
 
   </div>
 
-  <script src="../nav.js"></script>
+  <script>
+    const nav = document.createElement('script');
+    nav.src = 'http://localhost:8080/nav.js';
+    document.getElementsByTagName('head')[0].appendChild(nav);
+  </script>
 </body>
 </html>

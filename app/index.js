@@ -105,7 +105,14 @@ Object.assign(data, {
     ie: /*@cc_on!@*/false || !!document.documentMode, // eslint-disable-line
   },
 });
-data.self = new URL(scripts[scripts.length - 1].src, data.url).href;
+if (/nav.js$/.test(scripts[scripts.length - 1].src)) {
+  data.self = new URL(scripts[scripts.length - 1].src, data.url).href;
+} else {
+  const findNav = /nav.src = '(.*)';\n/g.exec(scripts[scripts.length - 1].innerText);
+  data.self = (findNav !== null && findNav[1] !== undefined)
+    ? new URL(findNav[1], data.url).href
+    : 'https://framasoft.org/nav/nav.js';
+}
 data.baseurl = `${data.self.split('/').slice(0, -1).join('/')}/`;
 
 /** Only for nav */
@@ -203,23 +210,6 @@ for (let j = 0; j < userLang.length; j += 1) { // check if user locales
   }
 }
 
-// Redirections
-/* for (let i = 0; i < pages.length; i += 1) {
-  if (!window.vuefsPrerender) {
-    routes.push({
-      path: `/${pages[i].toLowerCase().replace('home', '')}`,
-      redirect: `/${defaultRouteLang}/${pages[i].toLowerCase().replace('home', '')}`,
-    });
-  } else {
-    // Component needed for SEO
-    const component = require(`./components/pages/${pages[i]}.vue`); // eslint-disable-line
-    routes.push({
-      path: `/${pages[i].toLowerCase().replace('home', '')}`,
-      component: component.default,
-    });
-  }
-} */
-
 // Create VueI18n instance with options
 const i18n = new VueI18n({
   locale: lang,
@@ -235,14 +225,11 @@ const router = new VueRouter({
   base: `${__dirname}${process.env.BASE_URL}`,
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  /** <framanav> */
+const loadNav = () => {
   if (document.getElementById('fnav') === null) {
     document.querySelector('body')
       .insertAdjacentHTML('afterbegin', '<div id="fnav"></div>');
   }
-  /** </framanav> */
-
   new Vue({ // eslint-disable-line no-new
     el: '#fnav',
     router,
@@ -254,4 +241,10 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     render: h => h(App),
   });
-}, false);
+};
+
+if (!/nav.js$/.test(scripts[scripts.length - 1].src)) {
+  loadNav();
+} else {
+  window.addEventListener('DOMContentLoaded', () => { loadNav(); });
+}
