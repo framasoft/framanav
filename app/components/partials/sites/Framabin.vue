@@ -63,18 +63,15 @@
 export default {
   mounted() {
     const html = document.getElementsByTagName('html');
-    setInterval(() => {
-      if (document.getElementById('language')
-        && /> français </.test(document.getElementById('language').innerHTML)
-        && html[0].getAttribute('lang') !== 'fr') {
-        html[0].lang = 'fr';
-        this.$i18n.locale = 'fr';
-      } else {
-        html[0].lang = 'en';
-        this.$i18n.locale = 'en';
-      }
-    }, 1000);
-
+    if (document.getElementById('language')
+      && /> français </.test(document.getElementById('language').innerHTML)
+      && html[0].getAttribute('lang') !== 'fr') {
+      html[0].lang = 'fr';
+      this.$i18n.locale = 'fr';
+    } else {
+      html[0].lang = 'en';
+      this.$i18n.locale = 'en';
+    }
     const container = document.querySelector('.container.ombre');
     if (container) {
       container
