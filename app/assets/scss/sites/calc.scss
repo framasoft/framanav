@@ -1,5 +1,7 @@
 [data-url*="://framacalc.org"] [onresize],
 [data-url*="://lite.framacalc.org"] [onresize] { /* dans Ethercalc */
+    background: #fff;
+
     *, *:before, *:after {
         -webkit-box-sizing: content-box !important;
         -moz-box-sizing: content-box !important;

@@ -12,25 +12,25 @@
       <div class="carousel-container text-center framateam">
         <carousel :indicators="false" :controls="true" :interval="interval" ref="carousel">
           <slide>
-            <img src="https://framasoft.org/nav/ext/team-01-discuter.jpg" alt="" />
+            <img src="https://framasoft.org/nav/img/team/01-discuter.jpg" alt="" />
             <div class="carousel-caption">
               <p class="h3" v-html="$t('team.carousel[0]')"></p>
             </div>
           </slide>
           <slide>
-            <img src="https://framasoft.org/nav/ext/team-02-canaux.jpg" alt=""/>
+            <img src="https://framasoft.org/nav/img/team/02-canaux.jpg" alt=""/>
             <div class="carousel-caption">
               <p class="h3" v-html="$t('team.carousel[1]')"></p>
             </div>
           </slide>
           <slide>
-            <img src="https://framasoft.org/nav/ext/team-03-pimpez.jpg" alt="" />
+            <img src="https://framasoft.org/nav/img/team/03-pimpez.jpg" alt="" />
             <div class="carousel-caption">
               <p class="h3" v-html="$t('team.carousel[2]')"></p>
             </div>
           </slide>
           <slide>
-            <img src="https://framasoft.org/nav/ext/team-04-rechercher.jpg" alt="" />
+            <img src="https://framasoft.org/nav/img/team/04-rechercher.jpg" alt="" />
             <div class="carousel-caption">
               <p class="h3" v-html="$t('team.carousel[3]')"></p>
             </div>

@@ -31,7 +31,8 @@
                   :auto-placement="false" trigger="hover-focus" append-to="#framanav"
                   :title="text($t(`fnav.sites.${l}.t1`))"
                 >
-                  <a :href="/^fnav/.test($t(`fnav.sites.${l}.link`)) ? $root.link[l] : $t(`fnav.sites.${l}.link`)">
+                  <a :href="/^fnav/.test($t(`fnav.sites.${l}.link`)) ? $root.link[l] : $t(`fnav.sites.${l}.link`)"
+                    target="_blank">
                     <i :class="`fa fa-fw fa-lg ${$root.icon[l]}`" aria-hidden="true"></i>
                     {{
                       /^fnav/.test($t(`fnav.sites.${l}.name`))
@@ -154,6 +155,19 @@ export default {
     html[0].setAttribute('data-url', this.$root.url);
     html[0].setAttribute('data-inframe', this.$root.inframe);
 
+    // Load Bootstrap CSS (Depreciated)const regSites = new RegExp([
+    const regSites = new RegExp([
+      '(bookin', 'drop', 'bookin', 'carte', 'forms', 'memo', 'pic',
+      'stats)'
+      ].join('|'), 'i');
+    if (regSites.test(this.$root.host) || this.$root.host === 'framaboard.org') {
+      const bscss = document.createElement('link');
+      Object.assign(bscss, {
+        rel: 'stylesheet',
+        href: `${this.$root.baseurl}lib/bootstrap/css/bootstrap.min.css`,
+      });
+      document.getElementsByTagName('head')[0].appendChild(fcss);
+    }
     // Load CSS
     const fcss = document.createElement('link');
     Object.assign(fcss, {
@@ -161,6 +175,7 @@ export default {
       href: `${this.$root.baseurl}main.css`,
     });
     document.getElementsByTagName('head')[0].appendChild(fcss);
+
 
     this.storage = this.storageInit;
   },
@@ -326,7 +341,7 @@ export default {
                   <h4 class="panel-title">${this.$i18n.t('bee.search')}</h4>
                 </div>
                 <div class="panel-body">
-                  <p>truc</p>
+                  <p>${engines.replace(/pull-right/g, '')}</p>
                   <p>${this.$i18n.t('bee.pref')}</p>
                 </div>
               </div>

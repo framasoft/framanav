@@ -69,22 +69,22 @@ export default {
 
       switch (site) {
         case 'soft': /**           */ c.id = '1'; break;
-        case 'forum': /**          */ c.id = '2'; break;
+        // case 'forum': /**          */ c.id = '2'; break;
         case 'blog': /**           */ c.id = '3'; break;
         case 'pad': /**            */ c.id = '4'; break;
         case 'etherpad': /**       */ c.id = '4'; break;
         case 'key': /**            */ c.id = '5'; break;
         case 'dvd': /**            */ c.id = '6'; break;
         case 'book': /**           */ c.id = '7'; break;
-        case 'tube': /**           */ c.id = '8'; break;
+        // case 'tube': /**           */ c.id = '8'; break;
         case 'zic': /**            */ c.id = '9'; break;
         case 'date': /**           */ c.id = '10'; break;
         case 'calc': /**           */ c.id = '11'; break;
         case 'mindmap': /**        */ c.id = '12'; break;
         case 'vectoriel': /**      */ c.id = '13'; break;
-        case 'phonie': /**         */ c.id = '14'; break;
-        case 'lab': /**            */ c.id = '16'; break;
-        case 'code': /**           */ c.id = '17'; break;
+        // case 'phonie': /**         */ c.id = '14'; break;
+        // case 'lab': /**            */ c.id = '16'; break;
+        // case 'code': /**           */ c.id = '17'; break;
         // case 'localhost:8080': /**      */ c.id = '17'; break;
         case 'soutenir': /**       */ c.id = '18'; break;
         case 'contact': /**        */ c.id = '19'; break;
@@ -112,7 +112,7 @@ export default {
         case 'drop': /**           */ c.id = '42'; c.mode = 'img'; break;
         case 'carte': /**          */ c.id = '43'; break;
         case 'forms': /**          */ c.id = '44'; break;
-        case 'petition': /**       */ c.id = '45'; break;
+        // case 'petition': /**       */ c.id = '45'; break;
         case 'vox': /**            */ c.id = '47'; break;
         case 'team': /**           */ c.id = '48'; break;
         case 'memo': /**           */ c.id = '49'; break;
