@@ -180,14 +180,16 @@ export default {
     if (regSites.test(this.$root.host) || this.$root.host === 'framaboard.org') {
       const carousel = document.querySelector('.carousel');
       const carouselContainer = document.createElement('div');
-      carouselContainer.classList.add('carousel-container');
-      carousel.parentNode.insertBefore(carouselContainer, carousel);
-      carouselContainer.appendChild(carousel);
+      if (carousel !== undefined) {
+        carouselContainer.classList.add('carousel-container');
+        carousel.parentNode.insertBefore(carouselContainer, carousel);
+        carouselContainer.appendChild(carousel);
+      }
     }
 
     // Modales, Carousel and Tabs need BootstrapJS
     regSites = new RegExp([
-      '(agenda', 'bookin', 'drive', 'memo', 'notes)'
+      '(agenda', 'bookin', 'drive', 'forms', 'memo', 'notes)'
       ].join('|'), 'i');
     if (regSites.test(this.$root.host)) {
       const bsJS = document.createElement('script');
