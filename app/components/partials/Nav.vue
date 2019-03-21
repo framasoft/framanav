@@ -77,7 +77,7 @@
               :title="text($t('fnav.myframa.t1'))"
             >
               <a :href="myframa" class="btn-primary"
-                @click="window.open(myframa, 'myframa', 'menubar=no,height=500,width=600,toolbar=no,scrollbars=yes,status=no,dialog=1'); return false;"
+                @click.prevent="openMyframa()"
               >
                 <i :class="`fa fa-fw fa-lg ${$root.icon.my}`" aria-hidden="true"></i>
                 {{ $root.txt.my }}
@@ -237,6 +237,9 @@ export default {
 
       return ((today - fullMoon) % moonRev < 129600
         || (today - fullMoon) % moonRev > moonRev - 129600);
+    },
+    openMyframa() {
+      window.open(this.myframa, 'myframa', 'menubar=no,height=500,width=600,toolbar=no,scrollbars=yes,status=no,dialog=1');
     },
     divider(key) {
       return ([
@@ -453,7 +456,7 @@ export default {
         case 'piaf':
           this.js = function() {
             document.querySelectorAll('img[src*="/packs/logo"]')
-              .forEach(img => Object.assign(img, { src: 'https://framasoft.org/nav/img/icons/piaf.png' }));
+              .forEach(img => Object.assign(img, { src: 'https://framasoft.org/nav/icons/piaf.png' }));
           };
           break;
 
