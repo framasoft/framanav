@@ -155,21 +155,13 @@ export default {
     html[0].setAttribute('data-url', this.$root.url);
     html[0].setAttribute('data-inframe', this.$root.inframe);
 
-    // Load Bootstrap CSS (Depreciated)
-    // Todo build files from SASS
+    /**
+     * Depreciated - Need to be cleaned up
+     **/
+    // Load Bootstrap CSS
+    // Todo: build files from SASS
     let regSites = new RegExp([
-      '(localhost:8080', 'localhost)'
-      ].join('|'), 'i');
-    if (regSites.test(this.$root.host)) {
-      const bsTinyCss = document.createElement('link');
-      Object.assign(bsTinyCss, {
-        rel: 'stylesheet',
-        href: `${this.$root.baseurl}lib/bootstrap/css/bootstrap.tiny.min.css`,
-      });
-      document.getElementsByTagName('head')[0].appendChild(bsTinyCss);
-    }
-    regSites = new RegExp([
-      '(bookin', 'drop', 'bookin', 'carte', 'forms', 'memo',
+      '(bookin', 'drop', 'carte', 'forms', 'frama.link', 'huit.re', 'memo',
       'notes', 'piaf', 'pic', 'frama.site', 'frama.wiki', 'stats)'
       ].join('|'), 'i');
     if (regSites.test(this.$root.host) || this.$root.host === 'framaboard.org') {
@@ -179,14 +171,33 @@ export default {
         href: `${this.$root.baseurl}lib/bootstrap/css/bootstrap.min.css`,
       });
       document.getElementsByTagName('head')[0].appendChild(bsFullCss);
+    }
 
-      // Wrap .carousel with .carousel-container
+    // Wrap .carousel with .carousel-container
+    regSites = new RegExp([
+      '(carte', 'forms', 'notes', 'piaf', 'frama.site', 'frama.wiki)'
+      ].join('|'), 'i');
+    if (regSites.test(this.$root.host) || this.$root.host === 'framaboard.org') {
       const carousel = document.querySelector('.carousel');
       const carouselContainer = document.createElement('div');
       carouselContainer.classList.add('carousel-container');
       carousel.parentNode.insertBefore(carouselContainer, carousel);
       carouselContainer.appendChild(carousel);
     }
+
+    // Modales and tabs need BootstrapJS
+    regSites = new RegExp([
+      '(agenda', 'bookin', 'drive', 'memo)'
+      ].join('|'), 'i');
+    if (regSites.test(this.$root.host)) {
+      const carousel = document.querySelector('.carousel');
+      const carouselContainer = document.createElement('div');
+      carouselContainer.classList.add('carousel-container');
+      carousel.parentNode.insertBefore(carouselContainer, carousel);
+      carouselContainer.appendChild(carousel);
+    }
+    /** </> */
+
     // Load CSS
     const fcss = document.createElement('link');
     Object.assign(fcss, {
