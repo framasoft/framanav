@@ -62,14 +62,14 @@
 <script>
 export default {
   mounted() {
-    const html = document.getElementsByTagName('html');
+    const html = document.getElementsByTagName('html')[0];
     if (document.getElementById('language')
       && /> français </.test(document.getElementById('language').innerHTML)
       && html[0].getAttribute('lang') !== 'fr') {
-      html[0].lang = 'fr';
+      html.lang = 'fr';
       this.$i18n.locale = 'fr';
     } else {
-      html[0].lang = 'en';
+      html.lang = 'en';
       this.$i18n.locale = 'en';
     }
     const container = document.querySelector('.container.ombre');

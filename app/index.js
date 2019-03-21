@@ -56,11 +56,7 @@ let lang = '';
 const html = document.getElementsByTagName('html');
 const meta = document.getElementsByTagName('script');
 
-if (window.location.host.indexOf('framindmap.org') > -1 // Contournement de Wisemapping
-  && document.getElementById('userSettingsBtn')
-  && document.getElementById('userSettingsBtn').innerHTML === 'Compte') {
-  lang = 'fr';
-} else if (html[0].getAttribute('xml:lang')) {
+if (html[0].getAttribute('xml:lang')) {
   lang = html[0].getAttribute('xml:lang');
 } else if (html[0].getAttribute('lang')) {
   lang = html[0].getAttribute('lang');

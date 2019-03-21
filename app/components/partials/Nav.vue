@@ -253,11 +253,7 @@ export default {
         const html = document.getElementsByTagName('html');
         const meta = document.getElementsByTagName('script');
 
-        if (this.$root.host.indexOf('framindmap.org') > -1 // Contournement de Wisemapping
-          && document.getElementById('userSettingsBtn')
-          && document.getElementById('userSettingsBtn').innerHTML === 'Compte') {
-          lang = 'fr';
-        } else if (html[0].getAttribute('lang')) {
+        if (html[0].getAttribute('lang')) {
           lang = html[0].getAttribute('lang');
         } else if (html[0].getAttribute('locale')) {
           lang = html[0].getAttribute('locale');
@@ -395,6 +391,21 @@ export default {
           this.js = function() {
             if (this.$root.inframe) {
               document.querySelectorAll('a').forEach(a => Object.assign(a, { target: '_blank' }));
+            }
+          };
+          break;
+
+        case 'mindmap':
+          this.js = function() {
+            const html = html = document.getElementsByTagName('html')[0];
+            if (document.getElementById('userSettingsBtn')
+              && document.getElementById('userSettingsBtn').innerHTML === 'Compte'
+              && html.getAttribute('lang') !== 'fr') {
+              html.lang = 'fr';
+              this.$i18n.locale = 'fr';
+            } else {
+              html.lang = 'en';
+              this.$i18n.locale = 'en';
             }
           };
           break;
