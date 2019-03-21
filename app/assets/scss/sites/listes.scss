@@ -25,9 +25,27 @@
     footer:not(#framafooter) {
         display: none;
     }
-    
+
     #framafooter[style] {
         position: relative !important;
+    }
+
+    fieldset {
+      border: none;
+      padding: 0;
+    }
+
+    fieldset button {
+      line-height: normal;
+    }
+
+    .dropdown.menu.medium-horizontal > li.is-dropdown-submenu-parent > a::after {
+      right: 0;
+    }
+
+    .row {
+      margin-left: auto;
+      margin-right: auto;
     }
 }
 
