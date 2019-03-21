@@ -246,10 +246,8 @@ const router = new VueRouter({
 document.addEventListener('DOMContentLoaded', () => {
   /** <framanav> */
   if (document.getElementById('fnav') === null) {
-    // Framanav
-    const fnav = document.createElement('div');
-    fnav.id = 'fnav';
-    document.getElementsByTagName('body')[0].insertBefore(fnav, document.getElementsByTagName('body')[0].children[0]);
+    document.querySelector('body')
+      .insertAdjacentHTML('afterbegin', '<div id="fnav"></div>');
   }
   /** </framanav> */
 

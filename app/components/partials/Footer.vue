@@ -97,14 +97,9 @@ export default {
     Popover, Tooltip,
   },
   created() {
-    // Footer
     if (!window.vuefsPrerender) {
-      const ffooter = document.createElement('div');
-      Object.assign(ffooter, {
-        id: 'ffooter',
-        style: 'display: none;',
-      });
-      document.getElementsByTagName('body')[0].appendChild(ffooter);
+      document.querySelector('body')
+        .insertAdjacentHTML('beforeend', '<div id="ffooter" style="display: none"></div>');
     }
   },
   data() {

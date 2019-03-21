@@ -168,11 +168,8 @@ export default {
     const fteam = {};
 
     portals.forEach((k) => {
-      fteam[k] = document.createElement('div');
-      Object.assign(fteam[k], {
-        id: `fteam_${k}`,
-      });
-      document.getElementsByTagName('body')[0].appendChild(fteam[k]);
+      document.querySelector('body')
+        .insertAdjacentHTML('beforeend', `<div id="fteam_${k}"></div>`);
     });
 
     let ct = this.$root.url.split('/');

@@ -41,9 +41,8 @@ export default {
   created() {
     // Optin
     if (!window.vuefsPrerender) {
-      const foptin = document.createElement('div');
-      foptin.id = 'foptin';
-      document.getElementsByTagName('body')[0].appendChild(foptin);
+      document.querySelector('body')
+        .insertAdjacentHTML('beforeend', '<div id="foptin"></div>');
     }
   },
   props: {

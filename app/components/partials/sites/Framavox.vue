@@ -19,25 +19,25 @@
           <div class="carousel-container">
             <carousel :indicators="false" :controls="true" :interval="interval" ref="carousel">
               <slide>
-                <img src="https://framasoft.org/nav/ext/vox-01-creer-groupe.png" alt="" />
+                <img src="https://framasoft.org/nav/img/vox/01-creer-groupe.png" alt="" />
                 <div class="carousel-caption">
                   <p class="h3" v-html="$t('vox.carousel[0]')"></p>
                 </div>
               </slide>
               <slide>
-                <img src="https://framasoft.org/nav/ext/vox-02-inviter.png" alt=""/>
+                <img src="https://framasoft.org/nav/img/vox/02-inviter.png" alt=""/>
                 <div class="carousel-caption">
                   <p class="h3" v-html="$t('vox.carousel[1]')"></p>
                 </div>
               </slide>
               <slide>
-                <img src="https://framasoft.org/nav/ext/vox-03-discuter.png" alt="" />
+                <img src="https://framasoft.org/nav/img/vox/03-discuter.png" alt="" />
                 <div class="carousel-caption">
                   <p class="h3" v-html="$t('vox.carousel[2]')"></p>
                 </div>
               </slide>
               <slide>
-                <img src="https://framasoft.org/nav/ext/vox-04-voter.png" alt="" />
+                <img src="https://framasoft.org/nav/img/vox/04-voter.png" alt="" />
                 <div class="carousel-caption">
                   <p class="h3" v-html="$t('vox.carousel[3]')"></p>
                 </div>
@@ -130,11 +130,8 @@ export default {
     Carousel, Slide,
   },
   created() {
-    const fvox = document.createElement('div');
-    Object.assign(fvox, {
-      id: 'fvox',
-    });
-    document.getElementsByTagName('body')[0].appendChild(fvox);
+    document.querySelector('body')
+      .insertAdjacentHTML('beforeend', '<div id="fvox"></div>');
 
     const hidden = document.querySelectorAll('.md-dialog-container, .md-scroll-mask, .md-dialog-backdrop, .lmo-navbar');
     hidden.forEach((el) => { el.style.display = 'none'; });

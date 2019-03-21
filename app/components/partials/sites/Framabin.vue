@@ -1,12 +1,12 @@
 <template>
   <div>
-    <header role="banner" id="framabin_header">
+    <header role="banner" id="fbin_header">
       <a :href="$root.link.bin"><h1 v-html="$root.color.bin"></h1></a>
       <p class="lead" v-html="$t('bin.header.lead')"></p>
       <hr class="trait" role="presentation" />
     </header>
 
-    <section  id="framabin_presentation">
+    <section  id="fbin_presentation">
       <hr role="presentation" />
       <div class="row">
         <div class="col-md-4" id="tuto-faq">
@@ -65,10 +65,9 @@ export default {
     const container = document.querySelector('.container.ombre');
     if (container) {
       container
-        .insertBefore(document.getElementById('framabin_header'),
-          container.firstChild);
-      container
-        .appendChild(document.getElementById('framabin_presentation'));
+        .insertAdjacentElement('afterbegin', document.getElementById('fbin_header'));
+        container
+        .insertAdjacentElement('beforeend', document.getElementById('fbin_presentation'));
     }
     if (document.getElementById('sendbutton')) {
       document.getElementById('sendbutton').classList.add('btn-primary');

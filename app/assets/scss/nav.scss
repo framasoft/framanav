@@ -1,18 +1,3 @@
-.fnav-fixed {
-  padding-top:42px;
-
-  #framanav_container {
-    position: absolute;
-    top: 0;
-    z-index: 1000;
-    width: 100%;
-  }
-
-  #nav-alert.alert {
-    margin-bottom: 42px;
-  }
-}
-
 #fnav {
   @import "bootstrap-nav";
   @import "global";
@@ -370,6 +355,162 @@
     font-size:12px;
   }
 
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a,
+  .navbar-default .navbar-nav > li > a {
+    color:#555;
+  }
+
+  /* Modal header title */
+  .modal-header h1,.modal-header h2,.modal-header h3,
+  .modal-header h4,.modal-header h5,.modal-header h6, .modal-header p {
+    font-size: 24px;
+  }
+
+  /* Fix Theme Wordpress Virtue */
+  #framanav .navbar-brand span.hidden-sm {
+    display:inline !important;
+    margin-left: 10px;
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    #framanav .navbar-brand span.hidden-sm {
+      display: none !important;
+    }
+  }
+
+
+  .fs_petitions, .fs_story {
+    display:none !important;
+  }
+
+  .fs_clic {
+    visibility: hidden;
+  }
+}
+
+#ffooter {
+  @import "bootstrap-footer";
+
+  #framafooter {
+    padding:20px 0 20px 0;
+    margin:0;
+    background:#dfdfdf;
+    color:#333;
+    font-size:14px;
+    width:100%;
+    max-width:100%;
+    bottom:0;
+    border-top:1px solid #ccc;
+    height:auto;
+    text-align:left;
+
+    .container {
+      background:#dfdfdf;
+      min-height:0px;
+      padding: 0;
+    }
+
+    h1 {
+      font-size:14px;
+      font-weight:bold;
+      margin-top:0;
+    }
+
+    h2 {
+      font-size:14px;
+      font-weight:bold;
+    }
+    a {
+      color:#333;
+      text-decoration:none;
+      border-bottom:none;
+      font-size:14px;
+
+      .fa-fw {
+        padding:5px;
+        width:36px;
+        height:36px;
+        text-decoration:none;
+      }
+
+      &:hover, &:focus {
+        text-decoration:underline;
+
+        .fa {
+          background:#6A5687;
+          color:#fff;
+          border-radius:5px;
+        }
+      }
+    }
+
+    .btn {
+      margin-top:0;
+    }
+  }
+}
+
+#foptin, #falert {
+  @import "bootstrap-alert";
+  @import "frama/alerts";
+}
+
+#foptin {
+    /* Opt-in */
+  #fs_opt-in, #fs_opt-in_confirm, #fs_opt-in_error {
+    margin-top:10px;
+    margin-bottom:10px;
+    font-size:13px;
+    padding:10px;
+    line-height: 17px;
+  }
+  #commentform #fs_opt-in,
+  #commentform #fs_opt-in_confirm,
+  #commentform #fs_opt-in_error {  /* wordpress */
+    min-width: 555px;
+  }
+  #fs_opt-in small {
+    font-size:11px;
+  }
+
+  #fs_opt-in input {
+    margin:0;
+    width:auto !important;
+    display:inline !important;
+  }
+
+  #fs_opt-in label {
+    display: inline !important;
+    float: none !important;
+    width: auto !important;
+    text-align: left !important;
+    font-weight: normal !important;
+    margin: 0px 0px 0px 5px !important;
+    white-space: normal;
+    color: #0C5B7A;
+  }
+}
+
+/* Display nav and footer only when CSS is ready */
+#framanav[style*="display: none"],
+#ffooter[style*="display: none"] {
+  display: block !important;
+}
+
+.modal-backdrop { // Outside #fnav (no bootstrap)
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #000;
+
+  &.fade { opacity: 0; }
+  &.in { opacity: 0.5; }
+}
+
+#falert {
   /* Alerts */
   #nav-alert {
     border-top:0px;
@@ -473,156 +614,4 @@
     margin:0 auto;
     max-width:800px;
   }
-
-  .navbar-default .navbar-nav .open .dropdown-menu > li > a,
-  .navbar-default .navbar-nav > li > a {
-    color:#555;
-  }
-
-  /* Modal header title */
-  .modal-header h1,.modal-header h2,.modal-header h3,
-  .modal-header h4,.modal-header h5,.modal-header h6, .modal-header p {
-    font-size: 24px;
-  }
-
-  /* Fix Theme Wordpress Virtue */
-  #framanav .navbar-brand span.hidden-sm {
-    display:inline !important;
-    margin-left: 10px;
-  }
-
-  @media (min-width: 768px) and (max-width: 991px) {
-    #framanav .navbar-brand span.hidden-sm {
-      display: none !important;
-    }
-  }
-
-
-  .fs_petitions, .fs_story {
-    display:none !important;
-  }
-
-  .fs_clic {
-    visibility: hidden;
-  }
-}
-
-#ffooter {
-  @import "bootstrap-footer";
-
-  #framafooter {
-    padding:20px 0 20px 0;
-    margin:0;
-    background:#dfdfdf;
-    color:#333;
-    font-size:14px;
-    width:100%;
-    max-width:100%;
-    bottom:0;
-    border-top:1px solid #ccc;
-    height:auto;
-    text-align:left;
-
-    .container {
-      background:#dfdfdf;
-      min-height:0px;
-      padding: 0;
-    }
-
-    h1 {
-      font-size:14px;
-      font-weight:bold;
-      margin-top:0;
-    }
-
-    h2 {
-      font-size:14px;
-      font-weight:bold;
-    }
-    a {
-      color:#333;
-      text-decoration:none;
-      border-bottom:none;
-      font-size:14px;
-
-      .fa-fw {
-        padding:5px;
-        width:36px;
-        height:36px;
-        text-decoration:none;
-      }
-
-      &:hover, &:focus {
-        text-decoration:underline;
-
-        .fa {
-          background:#6A5687;
-          color:#fff;
-          border-radius:5px;
-        }
-      }
-    }
-
-    .btn {
-      margin-top:0;
-    }
-  }
-}
-
-#foptin {
-  @import "bootstrap-optin";
-  @import "frama/alerts";
-
-    /* Opt-in */
-  #fs_opt-in, #fs_opt-in_confirm, #fs_opt-in_error {
-    margin-top:10px;
-    margin-bottom:10px;
-    font-size:13px;
-    padding:10px;
-    line-height: 17px;
-  }
-  #commentform #fs_opt-in,
-  #commentform #fs_opt-in_confirm,
-  #commentform #fs_opt-in_error {  /* wordpress */
-    min-width: 555px;
-  }
-  #fs_opt-in small {
-    font-size:11px;
-  }
-
-  #fs_opt-in input {
-    margin:0;
-    width:auto !important;
-    display:inline !important;
-  }
-
-  #fs_opt-in label {
-    display: inline !important;
-    float: none !important;
-    width: auto !important;
-    text-align: left !important;
-    font-weight: normal !important;
-    margin: 0px 0px 0px 5px !important;
-    white-space: normal;
-    color: #0C5B7A;
-  }
-}
-
-/* Display nav and footer only when CSS is ready */
-#framanav[style*="display: none"],
-#ffooter[style*="display: none"] {
-  display: block !important;
-}
-
-.modal-backdrop { // Outside #fnav (no bootstrap)
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1040;
-  background-color: #000;
-
-  &.fade { opacity: 0; }
-  &.in { opacity: 0.5; }
 }

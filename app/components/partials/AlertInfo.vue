@@ -1,11 +1,13 @@
 <template>
-  <alert id="nav-alert"
-    :type="config[0]"
-    v-if="state.alert"
-    dismissible
-    @dismissed="state.alert = false; cookie('w', config[2], true, config[3]);">
-    <div><p class="text-center" v-html="config[1]"></p></div>
-  </alert>
+  <portal target-el="#falert">
+    <alert id="nav-alert"
+      :type="config[0]"
+      v-if="state.alert"
+      dismissible
+      @dismissed="state.alert = false; cookie('w', config[2], true, config[3]);">
+      <div><p class="text-center" v-html="config[1]"></p></div>
+    </alert>
+  </portal>
 </template>
 
 <script>
@@ -13,6 +15,12 @@ import { Alert } from 'uiv';
 export default {
   components: {
     Alert,
+  },
+  created() {
+    if (!window.vuefsPrerender) {
+      document.querySelector('#fnav')
+        .insertAdjacentHTML('beforebegin', '<div id="falert"></div>');
+    }
   },
   data() {
     return {
