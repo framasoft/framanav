@@ -187,7 +187,7 @@ export default {
 
     // Modales, Carousel and Tabs need BootstrapJS
     regSites = new RegExp([
-      '(agenda', 'bookin', 'drive', 'forms', 'memo', 'notes', 'piaf)'
+      '(agenda', 'bookin', 'drive', 'forms', 'memo', 'notes)'
       ].join('|'), 'i');
     if (regSites.test(this.$root.host)) {
       const bsJS = document.createElement('script');
