@@ -56,11 +56,7 @@ let lang = '';
 const html = document.getElementsByTagName('html');
 const meta = document.getElementsByTagName('script');
 
-if (window.location.href.indexOf('framabin.org/p/') > -1 // Contournement de PrivateBin
-  && document.getElementById('language')
-  && document.getElementById('language').innerHTML.indexOf('> français <') > -1) {
-  lang = 'fr';
-} else if (window.location.host.indexOf('framindmap.org') > -1 // Contournement de Wisemapping
+if (window.location.host.indexOf('framindmap.org') > -1 // Contournement de Wisemapping
   && document.getElementById('userSettingsBtn')
   && document.getElementById('userSettingsBtn').innerHTML === 'Compte') {
   lang = 'fr';

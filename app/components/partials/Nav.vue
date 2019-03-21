@@ -253,11 +253,7 @@ export default {
         const html = document.getElementsByTagName('html');
         const meta = document.getElementsByTagName('script');
 
-        if (this.$root.url.indexOf('framabin.org/p/') > -1 // Contournement de PrivateBin
-          && document.getElementById('language')
-          && document.getElementById('language').innerHTML.indexOf('> français <') > -1) {
-          lang = 'fr';
-        } else if (this.$root.host.indexOf('framindmap.org') > -1 // Contournement de Wisemapping
+        if (this.$root.host.indexOf('framindmap.org') > -1 // Contournement de Wisemapping
           && document.getElementById('userSettingsBtn')
           && document.getElementById('userSettingsBtn').innerHTML === 'Compte') {
           lang = 'fr';
