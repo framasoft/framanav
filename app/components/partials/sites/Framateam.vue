@@ -186,7 +186,7 @@ export default {
         ? `ct-${ct[4].split('?')[0]}`
         : `ct-${ct[3].split('?')[0]}`;
 
-      if(ctId === 'ct-') { body.classList.add('outMM'); }
+      if(ctId === 'ct-') { document.getElementsByTagName('body')[0].classList.add('outMM'); }
 
       if (bodyId !== ctId.replace('test', debug)
         || (document.querySelector('.outMM') && !document.querySelector('#root header.framateam'))

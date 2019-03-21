@@ -179,6 +179,13 @@ export default {
         href: `${this.$root.baseurl}lib/bootstrap/css/bootstrap.min.css`,
       });
       document.getElementsByTagName('head')[0].appendChild(bsFullCss);
+
+      // Wrap .carousel with .carousel-container
+      const carousel = document.querySelector('.carousel');
+      const carouselContainer = document.createElement('div');
+      carouselContainer.classList.add('carousel-container');
+      carousel.parentNode.insertBefore(carouselContainer, carousel);
+      carouselContainer.appendChild(carousel);
     }
     // Load CSS
     const fcss = document.createElement('link');
