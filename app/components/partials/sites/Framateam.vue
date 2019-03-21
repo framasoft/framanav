@@ -294,6 +294,7 @@ export default {
 
       // ⚠️ vue-portal #fteam_header
       if (document.querySelector('.outMM')
+        && currentId !== 'ct-'
         && !document.querySelector('#root #fteam_header')) {
         document.getElementById('root').insertAdjacentElement('afterbegin', document.getElementById('fteam_header'));
       }
