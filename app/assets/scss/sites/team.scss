@@ -229,9 +229,8 @@
    * Dans Mattermost *
    *******************/
   .inMM {
-
     overflow: hidden;
-    padding-top: 62px;
+    /* padding-top: 62px; */
     background: inherit;
 
     .framateam {
@@ -242,11 +241,11 @@
       margin-top: 0 !important;
     }
 
-    .sidebar--right,
+    /* .sidebar--right,
     .sidebar--left,
     .team-sidebar {
-        margin-top: -20px;
-    }
+      margin-top: -20px;
+    } */
 
     .sidebar--left {
       height: calc(100% - 21px);
