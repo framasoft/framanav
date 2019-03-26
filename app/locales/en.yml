@@ -12,6 +12,18 @@ txt:
   anotherQuestion: Votre question n’est pas listée ?
   campaign: Campaigns
   community: Community
+  action:
+    dl: to download
+    use: to use
+  actionBtn:
+    dl: download
+    use: use
+    play: play
+    calc: create a calc
+    pad: create a pad
+    map: create a map
+    img: create an image
+    poll: create a poll
 fnav:
   soutenir:
     name: Make a donation ?
