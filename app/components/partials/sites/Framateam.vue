@@ -186,12 +186,12 @@ export default {
     };
   },
   mounted() {
-    let ct = this.$root.url.split('/');
+    let ct = window.location.href.split('/');
     let bodyId = document.body.id || '';
 
     // Ajout d'un id pour savoir sur quelle page on est
     setInterval(() => {
-      ct = this.$root.url.split('/');
+      ct = window.location.href.split('/');
       bodyId = document.body.id || '';
 
       const debug = /login/.test(ct[4]) ? 'login' : 'select_team';
