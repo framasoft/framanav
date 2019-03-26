@@ -173,12 +173,12 @@ export default {
     });
 
     let ct = this.$root.url.split('/');
-    let bodyId = document.getElementsByTagName('body')[0].id || '';
+    let bodyId = document.body.id || '';
 
     // Ajout d'un id pour savoir sur quelle page on est
     setInterval(() => {
       ct = this.$root.url.split('/');
-      bodyId = document.getElementsByTagName('body')[0].id || '';
+      bodyId = document.body.id || '';
 
       const debug = /login/.test(ct[4]) ? 'login' : 'select_team';
 
@@ -187,6 +187,10 @@ export default {
         : `ct-${ct[3].split('?')[0]}`;
 
       if(ctId === 'ct-') { document.getElementsByTagName('body')[0].classList.add('outMM'); }
+
+      if (bodyId !== ctId.replace('test', debug)) {
+        document.body.id = ctId.replace('test', debug);
+      }
 
       if (bodyId !== ctId.replace('test', debug)
         || (document.querySelector('.outMM') && !document.querySelector('#root header.framateam'))

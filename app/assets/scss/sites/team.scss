@@ -217,7 +217,8 @@
     margin-top: 7px;
   }
 
-  #fteam_public, #fteam_prez, #fteam_screen {
+  #fteam_public, #fteam_prez, #fteam_screen,
+  #login_section + .col-md-5 a[href="/signup_user_complete"] {
     display: none;
   }
   #ct-select_team #fteam_public,
