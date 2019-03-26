@@ -1,5 +1,6 @@
 <template>
   <modal v-model="state.info"
+    :style="(!state.info) ? 'display: none;' : ''"
     :title="config[0]"
     id="modal-finfo"
     aria-labelledby="modal-finfoLabel"

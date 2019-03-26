@@ -1,6 +1,7 @@
 <template>
   <portal target-el="#falert">
     <alert id="nav-alert"
+      :style="(!state.alert) ? 'display: none;' : ''"
       :type="config[0]"
       v-if="state.alert"
       dismissible

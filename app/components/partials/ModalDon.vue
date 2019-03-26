@@ -1,5 +1,6 @@
 <template>
   <modal v-model="state.don"
+    :style="(!state.don) ? 'display: none;' : ''"
     :title="$t('fnav.modaldon.title')"
     id="modal-soutenir"
     aria-labelledby="modal-soutenirLabel"
