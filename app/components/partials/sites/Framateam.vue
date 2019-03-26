@@ -172,6 +172,20 @@ export default {
         .insertAdjacentHTML('beforeend', `<div id="fteam_${k}"></div>`);
     });
 
+    // Court-circuiter ReactJS sur l'accès aux teams
+    document
+      .querySelectorAll('a[href*="/channels"]')
+      .forEach(a => a.onclick = (e) => { window.location.href = a.href; e.preventDefault(); });
+  },
+  data() {
+    return {
+      interval: 5000,
+      state: {
+        publicList: false,
+      },
+    };
+  },
+  mounted() {
     let ct = this.$root.url.split('/');
     let bodyId = document.body.id || '';
 
@@ -186,7 +200,9 @@ export default {
         ? `ct-${ct[4].split('?')[0]}`
         : `ct-${ct[3].split('?')[0]}`;
 
-      if(ctId === 'ct-') { document.getElementsByTagName('body')[0].classList.add('outMM'); }
+      if(ctId === 'ct-') {
+        document.body.classList.add('outMM');
+      }
 
       if (bodyId !== ctId.replace('test', debug)) {
         document.body.id = ctId.replace('test', debug);
@@ -206,19 +222,6 @@ export default {
           href: a.href.replace('docs.mattermost.com', 'docs.framasoft.org/fr/mattermost')
         }));
     }, 1000);
-
-    // Court-circuiter ReactJS sur l'accès aux teams
-    document
-      .querySelectorAll('a[href*="/channels"]')
-      .forEach(a => a.onclick = (e) => { window.location.href = a.href; e.preventDefault(); });
-  },
-  data() {
-    return {
-      interval: 5000,
-      state: {
-        publicList: false,
-      },
-    };
   },
   methods: {
     updateDisplay(currentId) {
