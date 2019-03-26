@@ -60,8 +60,8 @@ export default {
     document.getElementsByTagName('head')[0].appendChild(rss);
   },
   methods: {
-    analytics(site, config) {
-      const c = config || {
+    analytics(site) {
+      const c = {
         id: '',
         url: 'https://stats.framasoft.org/',
         mode: 'js',
