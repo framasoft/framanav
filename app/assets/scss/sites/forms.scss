@@ -7,4 +7,26 @@
   #admin-menu {
     z-index: 1003;
   }
+
+  .btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    border-radius: 4px;
+  }
+
+  .btn-default {
+    border-color: #ccc;
+  }
+
+  #page-wrapper ~ #page-wrapper { /* Error double template */
+    display: none;
+  }
 }
