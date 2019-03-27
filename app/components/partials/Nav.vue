@@ -163,10 +163,11 @@ export default {
     // Todo: build files from SASS
     let regSites = new RegExp([
       '(bookin', 'drop', 'carte', 'frama.link', 'huit.re', 'memo',
-      'notes', 'piaf', 'pic', 'frama.site', 'frama.wiki', 'stats)'
+      'notes', 'pic', 'frama.site', 'frama.wiki', 'stats)'
       ].join('|'), 'i');
     if (regSites.test(this.$root.host) || this.$root.host === 'framaboard.org'
-      || this.$root.url === 'https://framaforms.org/') {
+      || this.$root.url === 'https://framaforms.org/'
+      || this.$root.url === 'https://framapiaf.org/about') {
       const bsCSS = document.createElement('link');
       Object.assign(bsCSS, {
         rel: 'stylesheet',
@@ -177,10 +178,11 @@ export default {
 
     // Wrap .carousel with .carousel-container
     regSites = new RegExp([
-      '(carte', 'notes', 'piaf', 'frama.site', 'frama.wiki)'
+      '(carte', 'notes', 'frama.site', 'frama.wiki)'
       ].join('|'), 'i');
     if (regSites.test(this.$root.host) || this.$root.host === 'framaboard.org'
-      || this.$root.url === 'https://framaforms.org/') {
+      || this.$root.url === 'https://framaforms.org/'
+      || this.$root.url === 'https://framapiaf.org/about') {
       const carousel = document.querySelector('.carousel');
       const carouselContainer = document.createElement('div');
       if (carousel !== null) {
@@ -195,7 +197,8 @@ export default {
       '(agenda', 'bookin', 'drive', 'memo', 'notes)'
       ].join('|'), 'i');
     if (regSites.test(this.$root.host)
-      || this.$root.url === 'https://framaforms.org/') {
+      || this.$root.url === 'https://framaforms.org/'
+      || this.$root.url === 'https://framapiaf.org/about') {
       const bsJS = document.createElement('script');
       Object.assign(bsJS, {
         src: `${this.$root.baseurl}lib/bootstrap/js/bootstrap.min.js`,
