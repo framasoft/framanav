@@ -94,6 +94,7 @@
     <!-- Make a donation -->
     <a :href="`${$root.link.soutenir}/?f=macaron`"
       id="framanav_donation"
+      :style="!macaron ? 'display: none' : ''"
       class="hidden-xs">
       <span class="sr-only" v-html="text($t('fnav.soutenir.name'))"></span>
     </a>
@@ -235,6 +236,7 @@ export default {
       },
       storage: {},
       js: function() {},
+      macaron: false,
     };
   },
   mounted() {
@@ -244,6 +246,7 @@ export default {
         this.$i18n.locale = html[0].getAttribute('lang');
       }
     }, 1000);
+    setTimeout(() => { this.macaron = true; }, 1500);
 
     /*********** Custom JavaScript ***********/
     this.customJS(this.$root.site);
