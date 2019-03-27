@@ -197,8 +197,7 @@ export default {
       '(agenda', 'bookin', 'drive', 'memo', 'notes)'
       ].join('|'), 'i');
     if (regSites.test(this.$root.host)
-      || this.$root.url === 'https://framaforms.org/'
-      || this.$root.url === 'https://framapiaf.org/about') {
+      || this.$root.url === 'https://framaforms.org/') {
       const bsJS = document.createElement('script');
       Object.assign(bsJS, {
         src: `${this.$root.baseurl}lib/bootstrap/js/bootstrap.min.js`,
