@@ -86,7 +86,7 @@ export default {
         // case 'phonie': /**         */ c.id = '14'; break;
         // case 'lab': /**            */ c.id = '16'; break;
         // case 'code': /**           */ c.id = '17'; break;
-        case 'localhost:8080': /**      */ c.id = '17'; c.mode = 'js' break;
+        case 'localhost:8080': /**      */ c.id = '17'; c.mode = 'js'; break;
         case 'soutenir': /**       */ c.id = '18'; break;
         case 'contact': /**        */ c.id = '19'; break;
         case 'news': /**           */ c.id = '20'; break;
