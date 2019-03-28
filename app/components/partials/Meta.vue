@@ -148,7 +148,7 @@ export default {
           || window.doNotTrack === '1')) {
         // Code Javascript
         if (c.mode === 'js') {
-          var _paq = _paq || []; // eslint-disable-line
+          var _paq = window._paq || []; // eslint-disable-line
 
           // Conformité CNIL
           _paq.push([function matomoCNIL() {

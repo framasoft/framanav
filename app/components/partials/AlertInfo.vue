@@ -54,6 +54,16 @@ export default {
       // Site config (< Local config)
       if (c[0] === undefined) {
         switch (site) {
+          case 'forms':
+            if (this.is.before('2019/04/08')) {
+              c = [
+                'warning',
+                `Le service ${this.$root.color.forms} sera inaccessible le 8 avril au matin pour
+                une mise à jour qui permettra d’améliorer ses performances.
+                Plus d’infos sur <a href="https://status.framasoft.org/incident/470">status.framasoft.org</a>`,
+              ];
+            }
+            break;
           case 'libre':
             c = [
               'info',
