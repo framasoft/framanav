@@ -222,7 +222,7 @@ console.log(`${__dirname}${process.env.BASE_URL}`, /framasoft.org/.test(window.l
 const router = new VueRouter({
   routes,
   mode: 'history',
-  base: /framasoft.org/.test(window.location.host) ? `${__dirname}${process.env.BASE_URL}`: '/',
+  base: (/framasoft.org/.test(window.location.host) ? `${__dirname}${process.env.BASE_URL}` : '/'),
 });
 
 const loadNav = () => {
