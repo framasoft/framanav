@@ -218,7 +218,6 @@ const i18n = new VueI18n({
 });
 
 // Routes
-console.log(`${__dirname}${process.env.BASE_URL}`, /framasoft.org/.test(window.location.host)); // eslint-disable-line
 const router = new VueRouter({
   routes,
   mode: 'history',
