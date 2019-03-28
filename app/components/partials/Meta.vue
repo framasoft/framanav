@@ -3,10 +3,11 @@
 
 <script>
 export default {
-  mounted() {
+  created() {
     // Matomo
     this.analytics(this.$root.site);
-
+  },
+  mounted() {
     // Favicons
     const icons = [{}, {}];
     document.querySelectorAll('link[rel*=icon]').forEach(e => e.parentNode.removeChild(e));
@@ -64,7 +65,7 @@ export default {
       const c = {
         id: '',
         url: 'https://stats.framasoft.org/',
-        mode: 'js',
+        mode: 'img', // 'js',
       };
 
       switch (site) {
@@ -85,7 +86,7 @@ export default {
         // case 'phonie': /**         */ c.id = '14'; break;
         // case 'lab': /**            */ c.id = '16'; break;
         // case 'code': /**           */ c.id = '17'; break;
-        // case 'localhost:8080': /**      */ c.id = '17'; break;
+        case 'localhost:8080': /**      */ c.id = '17'; c.mode = 'js' break;
         case 'soutenir': /**       */ c.id = '18'; break;
         case 'contact': /**        */ c.id = '19'; break;
         case 'news': /**           */ c.id = '20'; break;
@@ -174,7 +175,7 @@ export default {
             const d = document;
             const g = d.createElement('script');
             const s = d.getElementsByTagName('script')[0];
-            g.type = 'text/javascript'; // g.defer = true; g.async = true;
+            g.type = 'text/javascript'; g.defer = true; g.async = true;
             g.src = [u, 'p.js'].join(''); s.parentNode.insertBefore(g, s);
           }());
         // Code Matomo Image
