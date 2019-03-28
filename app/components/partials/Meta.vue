@@ -174,7 +174,7 @@ export default {
             const d = document;
             const g = d.createElement('script');
             const s = d.getElementsByTagName('script')[0];
-            g.type = 'text/javascript'; g.defer = true; g.async = true;
+            g.type = 'text/javascript'; // g.defer = true; g.async = true;
             g.src = [u, 'p.js'].join(''); s.parentNode.insertBefore(g, s);
           }());
         // Code Matomo Image
