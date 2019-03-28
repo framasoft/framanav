@@ -218,10 +218,13 @@ const i18n = new VueI18n({
 });
 
 // Routes
+const b = /framasoft.org|frama.io/.test(window.location.host)
+  ? process.env.BASE_URL
+  : process.env.BASE_URL.replace('/nav', '');
 const router = new VueRouter({
   routes,
   mode: 'history',
-  base: `${__dirname}${process.env.BASE_URL}`,
+  base: `${__dirname}${b}`,
 });
 
 const loadNav = () => {
