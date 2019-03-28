@@ -104,7 +104,7 @@ Object.assign(data, {
     ie: /*@cc_on!@*/false || !!document.documentMode, // eslint-disable-line
   },
 });
-if (/nav.js$/.test(scripts[scripts.length - 1].src)) {
+if (/\/nav.js$/.test(scripts[scripts.length - 1].src)) {
   data.self = new URL(scripts[scripts.length - 1].src, data.url).href;
 } else {
   const findNav = /nav.src = '(.*)';\n/g.exec(scripts[scripts.length - 1].innerText);
@@ -242,7 +242,7 @@ const loadNav = () => {
   });
 };
 
-if (!/nav.js$/.test(scripts[scripts.length - 1].src)) {
+if (!/\/nav.js$/.test(scripts[scripts.length - 1].src)) {
   loadNav();
 } else {
   window.addEventListener('DOMContentLoaded', () => { loadNav(); });
