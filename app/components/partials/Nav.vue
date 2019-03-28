@@ -249,6 +249,7 @@ export default {
       }
     }, 1000);
     setTimeout(() => { this.macaron = true; }, 1500);
+    console.log(this); // eslint-disable-line
 
     /*********** Custom JavaScript ***********/
     this.customJS(this.$root.site);

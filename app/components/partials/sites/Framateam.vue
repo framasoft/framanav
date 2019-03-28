@@ -111,7 +111,8 @@
     </div>
 
     <portal target-el="#fteam_public">
-      <div class="text-center framateam" id="Options">
+      <div class="text-center framateam" id="Options"
+        :style="(!state.selectTeam) ? 'display: none;' : ''">
         <p>
           <button id="ListBtn" class="btn btn-primary btn-block"
             @click="state.publicList ^= true">
@@ -131,6 +132,7 @@
     <modal v-model="!!state.publicList"
       :title="$t('team.teams.list')"
       id="modal-publicList"
+      :style="(!state.selectTeam) ? 'display: none;' : ''"
       aria-labelledby="modal-publicListLabel">
       <div slot="header">
         <button type="button" class="close"
@@ -182,6 +184,7 @@ export default {
       interval: 5000,
       state: {
         publicList: false,
+        selectTeam: false,
       },
     };
   },
@@ -241,6 +244,7 @@ export default {
           break;
         case 'ct-select_team':
           if (!document.querySelector('#root #fteam_public')) {
+            this.state.selectTeam = true;
             // ⚠️ vue-portal #fteam_screen
             document.getElementById('site_description')
               .insertAdjacentElement('afterend', document.getElementById('fteam_public'));
