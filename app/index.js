@@ -218,13 +218,11 @@ const i18n = new VueI18n({
 });
 
 // Routes
-const b = /framasoft.org/.test(window.location.host)
-  ? process.env.BASE_URL
-  : process.env.BASE_URL.replace('nav/', '');
+console.log(`${__dirname}${process.env.BASE_URL}`, /framasoft.org/.test(window.location.host)); // eslint-disable-line
 const router = new VueRouter({
   routes,
   mode: 'history',
-  base: `${__dirname}${b}`,
+  base: /framasoft.org/.test(window.location.host) ? `${__dirname}${process.env.BASE_URL}`: '/',
 });
 
 const loadNav = () => {
