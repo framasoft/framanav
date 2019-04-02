@@ -76,5 +76,10 @@
     }
 }
 
+[data-url*="://my.framasoft.org"][data-url*="source=bookmarklet"] {
+    #framanav_container {
+      display: none;
+    }
+}
 
 
