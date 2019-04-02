@@ -1,6 +1,6 @@
 <template>
   <portal target-el="#fvox">
-    <div id="framavox_container" class="container ombre" v-if="home">
+    <div id="framavox_container" class="container ombre"  v-if="home">
       <header role="banner" style="margin: 0 15px;">
         <span class="pull-right">
           <a class="btn btn-primary" href="/dashboard"
@@ -131,7 +131,7 @@ export default {
   },
   created() {
     document.querySelector('body')
-      .insertAdjacentHTML('beforeend', '<div id="fvox"></div>');
+      .insertAdjacentHTML('beforeend', '<div id="fvox" style="display: none;"></div>');
 
     setInterval(() => {
       if (/vox.org\/dashboard$/.test(window.location.href)

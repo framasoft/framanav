@@ -83,16 +83,13 @@
   }
 
   #fvox {
-    @import "bootstrap-nav";
-    @import "frama/buttons";
-    @import "frama/carousel";
-    @import "frama/internav";
-    display: none;
+    @import "bootstrap-vox";
+    @import "global";
   }
 
   .logged-out {
-    #fvox {
-      display: block;
+    #fvox[style] {
+      display: block !important;
     }
 
     .md-dialog-container,
@@ -104,8 +101,8 @@
   }
 
   .home-hidden {
-    #fvox {
-      display: none;
+    #fvox[style] {
+      display: none !important;
     }
 
     .md-scroll-mask,
