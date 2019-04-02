@@ -82,7 +82,16 @@
     display: none;
   }
 
+  #fvox {
+    @import "bootstrap-nav";
+    display: none;
+  }
+
   .logged-out {
+    #fvox {
+      display: block;
+    }
+
     .md-dialog-container,
     .md-scroll-mask,
     .md-dialog-backdrop,
