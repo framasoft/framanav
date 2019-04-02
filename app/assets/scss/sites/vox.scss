@@ -84,6 +84,9 @@
 
   #fvox {
     @import "bootstrap-nav";
+    @import "frama/buttons";
+    @import "frama/carousel";
+    @import "frama/internav";
     display: none;
   }
 
@@ -105,11 +108,14 @@
       display: none;
     }
 
-    .md-dialog-container,
     .md-scroll-mask,
     .md-dialog-backdrop,
     .lmo-navbar {
       display : block;
+    }
+
+    .md-dialog-container {
+      display: flex;
     }
   }
 }
