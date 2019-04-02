@@ -130,14 +130,17 @@ export default {
     Carousel, Slide,
   },
   created() {
-    if (/vox.org\/dashboard$/.test(window.location.href)
-      && !!document.querySelector('.lmo-navbar .navbar__sign-in')) {
-      document.querySelector('body')
-        .insertAdjacentHTML('beforeend', '<div id="fvox"></div>');
+    document.querySelector('body')
+      .insertAdjacentHTML('beforeend', '<div id="fvox"></div>');
 
-      const hidden = document.querySelectorAll('.md-dialog-container, .md-scroll-mask, .md-dialog-backdrop, .lmo-navbar');
-      hidden.forEach((el) => { el.style.display = 'none'; });
-    }
+    setInterval(() => {
+      if (/vox.org\/dashboard$/.test(window.location.href)
+          && !!document.querySelector('.lmo-navbar .navbar__sign-in')) {
+        document.body.classList.add('logged-out');
+      } else {
+        document.body.classList.remove('logged-out');
+      }
+    }, 1000);
   },
   data() {
     return {
@@ -148,8 +151,7 @@ export default {
   methods: {
     dashboard() {
       this.home = false;
-      const hidden = document.querySelectorAll('.md-dialog-container, .md-scroll-mask, .md-dialog-backdrop, .lmo-navbar');
-      hidden.forEach((el) => { el.style.display = 'block'; });
+      document.body.classList.add('home-hidden');
     }
   },
 };
