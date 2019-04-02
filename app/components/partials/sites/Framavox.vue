@@ -135,11 +135,17 @@ export default {
 
     setInterval(() => {
       if (/vox.org\/dashboard$/.test(window.location.href)
-          && !!document.querySelector('.lmo-navbar .navbar__sign-in')) {
+        && !!document.querySelector('.lmo-navbar .navbar__sign-in')) {
         document.body.classList.add('logged-out');
       } else {
         document.body.classList.remove('logged-out');
       }
+
+      document
+        .querySelectorAll('a[href*="help.loomio.org"]')
+        .forEach(a => Object.assign(a, {
+          href: `https://docs.framasoft.org/${/^fr/.test(this.$i18n.locale) ? 'fr' : 'en'}/loomio/`
+        }));
     }, 1000);
   },
   data() {
