@@ -38,8 +38,11 @@
     text-decoration: none !important;
   }
 
-  h1.lmo-h1 {
-    color: #fff;
+  md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar),
+  md-toolbar.md-default-theme:not(.md-menu-toolbar) h1, md-toolbar:not(.md-menu-toolbar) h1,
+  .modal-header-cancel-button {
+      background: #6A5687 !important;
+      color: #fff !important;
   }
 
   .sessions.new .terms,
