@@ -116,7 +116,7 @@
     <ModalDon :storage="storage.modal.don" />
 
     <Framabin v-if="/:\/\/framabin.org.p/.test($root.url)" />
-    <!-- <Framavox v-if="/:\/\/framavox.org/.test($root.url)" /> -->
+    <Framavox v-if="/:\/\/framavox.org/.test($root.url)" />
     <Framateam v-if="/:\/\/framateam.org/.test($root.url)" />
 
     <Optin :storage="storage.optin" />
@@ -163,11 +163,14 @@ export default {
     // Todo: build files from SASS
     let regSites = new RegExp([
       '(bookin', 'drop', 'carte', 'frama.link', 'huit.re', 'memo',
-      'notes', 'pic', 'frama.site', 'frama.wiki', 'stats)'
+      'notes', 'pic', 'stats)'
       ].join('|'), 'i');
-    if (regSites.test(this.$root.host) || this.$root.host === 'framaboard.org'
+    if (regSites.test(this.$root.host)
+      || this.$root.host === 'framaboard.org'
       || this.$root.url === 'https://framaforms.org/'
-      || this.$root.url === 'https://framapiaf.org/about') {
+      || this.$root.url === 'https://framapiaf.org/about'
+      || this.$root.url === 'https://frama.site'
+      || this.$root.url === 'https://frama.wiki') {
       const bsCSS = document.createElement('link');
       Object.assign(bsCSS, {
         rel: 'stylesheet',
@@ -177,12 +180,12 @@ export default {
     }
 
     // Wrap .carousel with .carousel-container
-    regSites = new RegExp([
-      '(carte', 'notes', 'frama.site', 'frama.wiki)'
-      ].join('|'), 'i');
-    if (regSites.test(this.$root.host) || this.$root.host === 'framaboard.org'
+    if (/(carte|notes)/.test(this.$root.host)
+      || this.$root.host === 'framaboard.org'
       || this.$root.url === 'https://framaforms.org/'
-      || this.$root.url === 'https://framapiaf.org/about') {
+      || this.$root.url === 'https://framapiaf.org/about'
+      || this.$root.url === 'https://frama.site'
+      || this.$root.url === 'https://frama.wiki') {
       const carousel = document.querySelector('.carousel');
       const carouselContainer = document.createElement('div');
       if (carousel !== null) {
@@ -232,6 +235,7 @@ export default {
           '&description=', encodeURIComponent(document.getSelection()),
           '&source=bookmarklet',
         ].join(''),
+      maestro: this.createMaestro(),
       storageInit: {
         modal: { don: [false, 604800000] },
         optin: [false, 604800000],
@@ -282,6 +286,24 @@ export default {
     },
     openMyframa() {
       window.open(this.myframa, 'myframa', 'menubar=no,height=500,width=600,toolbar=no,scrollbars=yes,status=no,dialog=1');
+    },
+    createMaestro() {
+      let hash = 4321;
+      for (let i = 0; i < this.$root.url.length; i++) {
+        hash = hash * 33 ^ this.$root.url.charCodeAt(i);
+      }
+      const tonality = btoa(String(hash >>> 0)).substring(0, 8)
+      const concerto = this.$root.url.split(/[?#]/)[0].substring(this.$root.url.lastIndexOf('/') + 1).replace(/[^a-zA-Z0-9=?]/g, '');
+      const currentW = parseInt((window.innerWidth - 60) * (2 / 3), 10);
+      const currentH = parseInt(window.innerHeight - 160, 10);
+      const talkW = parseInt(currentW / 2, 10);
+      const talkH = parseInt(talkW * (9 / 16), 10);
+      return [
+        'https://framaestro.org/p/#', tonality, '/', concerto, '/',
+        '0,20,', currentW, ',', currentH, ',', encodeURIComponent(this.$root.url), ';',
+        '0,', (currentW + 40), ',', talkW, ',', talkH, ',',
+        encodeURIComponent(`https://framatalk.org/${tonality}${concerto}`), ';',
+      ].join('');
     },
     divider(key) {
       return ([

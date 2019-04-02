@@ -138,6 +138,7 @@
         background-color: #6A5687;
         border-color: #6A5687;
     }
+
     .md-button.md-default-theme.md-primary.md-fab.md-focused:not([disabled]),
     .md-button.md-primary.md-fab.md-focused:not([disabled]),
     .md-button.md-default-theme.md-primary.md-fab:hover:not([disabled]),
@@ -156,8 +157,12 @@
     .md-button.md-default-theme.md-accent, .md-button.md-accent {
         color: #0C5B7A;
     }
-    
+
     #menu_container_1 md-menu-item:nth-of-type(5) {
+      display: none;
+    }
+
+    #fvox {
       display: none;
     }
 }

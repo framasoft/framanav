@@ -130,11 +130,14 @@ export default {
     Carousel, Slide,
   },
   created() {
-    document.querySelector('body')
-      .insertAdjacentHTML('beforeend', '<div id="fvox"></div>');
+    if (/vox.org\/dashboard$/.test(window.location.href)
+      && !!document.querySelector('.lmo-navbar .navbar__sign-in')) {
+      document.querySelector('body')
+        .insertAdjacentHTML('beforeend', '<div id="fvox"></div>');
 
-    const hidden = document.querySelectorAll('.md-dialog-container, .md-scroll-mask, .md-dialog-backdrop, .lmo-navbar');
-    hidden.forEach((el) => { el.style.display = 'none'; });
+      const hidden = document.querySelectorAll('.md-dialog-container, .md-scroll-mask, .md-dialog-backdrop, .lmo-navbar');
+      hidden.forEach((el) => { el.style.display = 'none'; });
+    }
   },
   data() {
     return {
