@@ -43,3 +43,7 @@
         display: none !important;
     }
 }
+
+[data-url*="framadate.org/create_"] #framafooter {
+  position: relative !important;
+}
