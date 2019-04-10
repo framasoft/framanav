@@ -1,9 +1,9 @@
 [data-url*="://framacolibri.org"] {
-  *, *:before, *:after {
+  /* *, *:before, *:after {
     -webkit-box-sizing: content-box !important;
     -moz-box-sizing: content-box !important;
     box-sizing: content-box !important;
-  }
+  } */
   
   #reply-control.fullscreen {
     z-index: 1005;
@@ -18,7 +18,7 @@
     height: 25px;
   }
 
-  #reply-control .wmd-controls .d-editor,
+  /* #reply-control .wmd-controls .d-editor,
   #reply-control .wmd-controls .d-editor-container,
   #reply-control .wmd-controls .d-editor-textarea-wrapper,
   #reply-control .wmd-controls .d-editor-preview-wrapper,
@@ -27,7 +27,7 @@
   #reply-control .d-editor-button-bar,
   #reply-control .reply-area {
     box-sizing: border-box !important;
-  }
+  } */
 
   .modal.hidden[style*="block"] {
     display: block !important;
