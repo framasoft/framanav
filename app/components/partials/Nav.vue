@@ -168,7 +168,6 @@ export default {
     if (regSites.test(this.$root.host)
       || this.$root.host === 'framaboard.org'
       || this.$root.url === 'https://framaforms.org/'
-      || this.$root.url === 'https://framapiaf.org/about'
       || this.$root.url === 'https://frama.site'
       || this.$root.url === 'https://frama.wiki') {
       const bsCSS = document.createElement('link');
@@ -183,7 +182,6 @@ export default {
     if (/(carte|notes)/.test(this.$root.host)
       || this.$root.host === 'framaboard.org'
       || this.$root.url === 'https://framaforms.org/'
-      || this.$root.url === 'https://framapiaf.org/about'
       || this.$root.url === 'https://frama.site'
       || this.$root.url === 'https://frama.wiki') {
       const carousel = document.querySelector('.carousel');
