@@ -524,7 +524,7 @@ export default {
 
         case 'piaf':
           this.js = function() {
-            document.querySelectorAll('img[src*="/packs/logo"]')
+            document.querySelectorAll('img[src*="/packs/media/images/logo"]')
               .forEach(img => Object.assign(img, { src: 'https://framasoft.org/nav/icons/piaf.png' }));
           };
           break;
