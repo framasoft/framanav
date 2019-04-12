@@ -60,7 +60,7 @@
           <span v-html="$t('team.create')"></span>
         </a>
       </div>
-      <div class="col-md-12 framateam">
+      <div class="clearfix col-xs-12 framateam">
         <hr role="presentation" />
         <div class="row">
           <div class="col-md-4" id="tuto-faq">
