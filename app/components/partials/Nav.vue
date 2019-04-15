@@ -445,6 +445,13 @@ export default {
           this.js = function() {
             if (this.$root.url !== 'https://framadrop.org/') {
               jQuery('main .row:last,main hr:last').hide();
+            } else {
+              document.querySelector('#delete-day option[value="60"]')
+                .insertAdjacentHTML('beforeend', ' (max 2Mo)');
+              document.querySelector('#delete-day option[value="30"]')
+                .insertAdjacentHTML('beforeend', ' (max 50Mo)');
+              document.querySelector('#delete-day option[value="7"]')
+                .insertAdjacentHTML('beforeend', ' (max 200Mo)');
             }
           };
           break;
