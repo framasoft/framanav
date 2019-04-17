@@ -165,19 +165,7 @@
   .signup-team__container h1,   /* Titre Framateam */
   .signup-team__container h4:nth-child(2),
   .signup-team__container h4:nth-child(3), /* Sous-titre */
-  .row.footer,          /* Footer Mattermost */
-  /* /select_team */
-  .outMM .signup-team__container .signup__content:nth-child(5),
-  #ct-select_team .margin--extra,
-  #ct-select_team .signup__content > h4,
-  /* /signup_user_complete */
-  .outMM .signup-team__container .or__container,
-  .outMM .signup-team__container > span.color--light,
-  .outMM .signup-team__container > p,
-  /* /login */
-  .outMM#ct-login .signup__content > div > .form-group, /* Pas de compte ? */
-  .outMM .signup__content .or__container,
-  .signup-team__container h5 {
+  .row.footer {          /* Footer Mattermost */
     display: none;
   }
 
@@ -368,4 +356,28 @@
 
 [data-url*="framateam.org/framasoft/"] .system-notice {
   display:none;
+}
+
+[data-url*="framateam.org/select_team"] {
+  .outMM .signup-team__container .signup__content:nth-child(5),
+  #ct-select_team .margin--extra,
+  #ct-select_team .signup__content > h4 {
+    display: none;
+  }
+}
+
+[data-url*="framateam.org/select_team"] {
+  .outMM .signup-team__container .or__container,
+  .outMM .signup-team__container > span.color--light,
+  .outMM .signup-team__container > p {
+    display: none;
+  }
+}
+
+[data-url*="framateam.org/login"] {
+  .outMM#ct-login .signup__content > div > .form-group, /* Pas de compte ? */
+  .outMM .signup__content .or__container,
+  .signup-team__container h5 {
+    display: none;
+  }
 }
