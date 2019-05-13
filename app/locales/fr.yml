@@ -581,8 +581,7 @@ vox:
     docs: Pour apprendre à maîtriser @:data.color.vox, consultez <a href="@:data.link.docs/fr/loomio">nos
       pages d’aide</a> <small>(traduction de la documentation officielle de Loomio
       par l’équipe @:data.html.lang)</small>.
-    video: Voici également un tutoriel vidéo réalisé par Frédéric Véron, professeur
-      de SVT dans l’Académie de Créteil.
+    video: Voici également un tutoriel vidéo réalisé par Frédéric Véron.
     play_video: Lire la vidéo
     h2_2: Le logiciel
     framaware: '@:data.color.vox repose sur le logiciel <a href="https://www.loomio.org">Loomio</a>.'

@@ -467,8 +467,7 @@ vox:
       and to vote on proposals.'
     docs: To learn how to master @:data.color.vox, see <a href="@:data.link.docs/en/loomio">our
       help pages</a>.
-    video: Here is also a video tutorial directed by Frédéric Véron, SVT teacher at
-      the Académie de Créteil.
+    video: Here is also a video tutorial directed by Frédéric Véron.
     play_video: Play the video
     h2_2: The software
     framaware: '@:data.color.vox is based on the software <a href="https://www.loomio.org">Loomio</a>.
