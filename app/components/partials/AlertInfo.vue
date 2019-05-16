@@ -54,6 +54,28 @@ export default {
       // Site config (< Local config)
       if (c[0] === undefined) {
         switch (site) {
+        case 'agenda':
+            if (this.is.after('2019/05/21') && this.is.before('2019/05/28')) {
+              c = [
+                'warning',
+                `Afin de procéder à une mise à jour majeure et une migration de
+                base de données, le service ${this.$root.color.agenda} sera interrompu le lundi 27 mai dès 9h, 
+                pour une durée n’excédant pas 24 heures. Prenez vos précautions ! 
+                Plus d’infos : <a href="https://status.framasoft.org/incident/476">status.framasoft.org</a>`,
+              ];
+            }
+            break;
+        case 'drive':
+            if (this.is.before('2019/05/21')) {
+              c = [
+                'warning',
+                `Afin de procéder à une mise à jour majeure et une migration de
+                base de données, le service ${this.$root.color.drive} sera interrompu le lundi 20 mai dès 9h, 
+                pour une durée n’excédant pas 24 heures. Prenez vos précautions ! 
+                Plus d’infos : <a href="https://status.framasoft.org/incident/477">status.framasoft.org</a>`,
+              ];
+            }
+            break;
           case 'forms':
             if (this.is.before('2019/04/08')) {
               c = [
@@ -64,43 +86,12 @@ export default {
               ];
             }
             break;
-          case 'libre':
-            c = [
-              'info',
-              `${this.$root.color.libre}, l’annuaire des logiciels libres de l’association
-              ${this.$root.color.soft}
-              <a href="https://framablog.org/2017/03/21/framalibre-lannuaire-du-libre-renait-entre-vos-mains/"
-              >fait peau neuve</a>.<br>
-              Certains liens prééxistants ne sont plus valides.
-              <a href="${this.$root.link.contact}/fr/faq/#libre_v2">
-              Vous avez du mal à vous y retrouver&nbsp;?</a>`,
-            ];
-            break;
-          case 'site':
-            c = [
-              'info',
-              `${this.$root.color.site} est en phase de test.
-              Le service fonctionne, mais n’est pas encore facile à utiliser par quiconque.
-              C’est à l’écoute de vos retours que nous allons l’améliorer
-              et le documenter au cours des semaines à venir.`,
-            ];
-            break;
-          case 'wiki':
-            if (/frama\.wiki/.test(this.$root.host)) {
-              c = [
-                'info',
-                `${this.$root.color.wiki} est en phase de test.
-                Le service fonctionne, mais n’est pas encore facile à utiliser par quiconque.
-                C’est à l’écoute de vos retours que nous allons l’améliorer
-                et le documenter au cours des semaines à venir.`,
-              ];
-            }
-            break;
 
           // no-default
         }
       }
 
+      /* Save Your Internet */
       if (c[0] === undefined
         && this.is.after('2019/03/20')
         && this.is.before('2019/03/22')) {
