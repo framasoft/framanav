@@ -61,7 +61,7 @@ export default {
                 `Afin de procéder à une mise à jour majeure et une migration de
                 base de données, le service ${this.$root.color.agenda} sera interrompu le lundi 27 mai dès 9h, 
                 pour une durée n’excédant pas 24 heures. Prenez vos précautions ! 
-                Plus d’infos : <a href="https://status.framasoft.org/incident/476">status.framasoft.org</a>`,
+                Plus d’infos : <a href="https://status.framasoft.org/incident/477">status.framasoft.org</a>`,
               ];
             }
             break;
@@ -72,7 +72,7 @@ export default {
                 `Afin de procéder à une mise à jour majeure et une migration de
                 base de données, le service ${this.$root.color.drive} sera interrompu le lundi 20 mai dès 9h, 
                 pour une durée n’excédant pas 24 heures. Prenez vos précautions ! 
-                Plus d’infos : <a href="https://status.framasoft.org/incident/477">status.framasoft.org</a>`,
+                Plus d’infos : <a href="https://status.framasoft.org/incident/476">status.framasoft.org</a>`,
               ];
             }
             break;
