@@ -22,6 +22,10 @@
       margin:auto;
       background-color:#f8f8f8;
     }
+    
+   .navbar-collapse {
+     background: #f8f8f8; /* fix team */
+   }
 
     @media (min-width: 768px) {
       .container-fluid {
@@ -103,6 +107,7 @@
 
     .dropdown-toggle {
       padding: 7px 4px 5px 10px;
+      float: none; /* fix colibri */
     }
 
     .dropdown-menu {
@@ -238,7 +243,7 @@
     #btn-soutenir .btn-soutenir,
     #btn-benevalo .btn-info,
     #btn-myframa .btn-primary {
-      width: 135px;
+      min-width: 135px;
       height: 41px;
       line-height: 41px;
       font-size: 12px;
