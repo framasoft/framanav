@@ -2,6 +2,9 @@
   @import "bootstrap-nav";
   @import "global";
 
+  .navbar-collapse.in {
+    max-height: 360px;
+  }
 
   #framanav.navbar {
     font-size: 12px;
