@@ -162,11 +162,11 @@ export default {
     // Load Bootstrap CSS
     // Todo: build files from SASS
     let regSites = new RegExp([
-      '(bookin', 'drop', 'carte', 'frama.link', 'huit.re', 'memo',
-      'notes', 'pic', 'stats)'
+      '(bookin', 'drop', 'carte', 'frama.link', 'huit.re', 'memo', 'pic', 'stats)'
       ].join('|'), 'i');
     if (regSites.test(this.$root.host)
       || this.$root.host === 'framaboard.org'
+      || this.$root.host === 'framanotes.org'
       || this.$root.url === 'https://framaforms.org/'
       || this.$root.url === 'https://frama.site'
       || this.$root.url === 'https://frama.wiki') {
@@ -195,9 +195,10 @@ export default {
 
     // Modales, Carousel and Tabs need BootstrapJS
     regSites = new RegExp([
-      '(agenda', 'bookin', 'drive', 'memo', 'notes)'
+      '(agenda', 'bookin', 'drive', 'memo)'
       ].join('|'), 'i');
     if (regSites.test(this.$root.host)
+      || this.$root.host === 'framanotes.org'
       || this.$root.url === 'https://framaforms.org/') {
       const bsJS = document.createElement('script');
       Object.assign(bsJS, {
