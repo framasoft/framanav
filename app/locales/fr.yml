@@ -586,7 +586,7 @@ vox:
     h2_2: Le logiciel
     framaware: '@:data.color.vox repose sur le logiciel <a href="https://www.loomio.org">Loomio</a>.'
     instance: Il s’agit d’une instance parmi d'autres, les développeurs de Loomio
-      propose également la leur.
+      proposent également la leur.
     license: Loomio est sous @:data.license.agpl3
     browsers: '@:data.color.bin requiert l’activation du Javascript pour fonctionner
       ainsi qu’un navigateur web récent :'
