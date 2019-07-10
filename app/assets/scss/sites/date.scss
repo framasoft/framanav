@@ -1,3 +1,9 @@
 [data-url*="://framadate.org"] {
-  #message-container .well { display: none; }  
+  #message-container .well {
+    display: none;
+  }
+
+  #tableContainer {
+    overflow-x: auto;
+  }
 }

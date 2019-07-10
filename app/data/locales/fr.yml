@@ -7,6 +7,8 @@ carousel:
   pause: Pause
   prev: Diapo précédente
   next: Diapo suivante
+  goto: Aller à la diapo
+  indicator: Sélectionner une diapo à afficher
 txt:
   dio: Dégooglisons Internet
   newWindow: nouvelle fenêtre

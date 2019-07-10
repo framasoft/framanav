@@ -1,7 +1,7 @@
 <template>
-  <modal v-model="state.faq"
+  <modal id="modal-fsFAQ"
+    v-model="state.faq"
     :title="`${$t('fnav.sites.faq.name')} ${$root.name}`"
-    id="modal-fsFAQ"
     aria-labelledby="modal-fsFAQLabel"
     ><!-- v-show="this.$root.f.faq.l.indexOf(this.lname) > -1" -->
     <div slot="header">

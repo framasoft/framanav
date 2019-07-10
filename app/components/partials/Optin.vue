@@ -1,20 +1,19 @@
 <template>
   <portal target-el="#foptin">
-    <div class="alert alert-danger fade in"
-      id="fs_opt-in_error"
+    <div id="fs_opt-in_error"
+      class="alert alert-danger fade in"
       v-if="state.email !== '' && !is.email(state.email)">
       <p v-html="$t('fnav.optin.e2', { email: `<b>${state.email}</b>`})"></p>
     </div>
-    <div class="alert alert-success fade in"
-      id="fs_opt-in_confirm"
+    <div id="fs_opt-in_confirm"
+      class="alert alert-success fade in"
       v-if="state.sent">
       <p v-html="$t('fnav.optin.s1', { email: `<b>${state.email}</b>`})"></p>
     </div>
-    <div class="alert alert-info fade in"
-      id="fs_opt-in"
+    <div id="fs_opt-in"
+      class="alert alert-info fade in"
       v-if="state.optin && !state.sent">
-      <input
-        id="fs_opt-in_checkbox"
+      <input id="fs_opt-in_checkbox"
         type="checkbox"
         v-model="state.checked"
         :value="state.checked"

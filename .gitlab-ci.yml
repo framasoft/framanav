@@ -8,6 +8,7 @@ pages:
   - npm install
   - npm run preview
   - mv -f public/$CI_PROJECT_NAME/* public
+  - find public -type f -iregex '.*\.\(htm\|html\|txt\|text\|js\|css\)$' -execdir gzip -f --keep {} \;
   artifacts:
     paths:
     - public

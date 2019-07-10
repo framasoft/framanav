@@ -7,6 +7,8 @@ carousel:
   pause: Pause
   prev: Previous slide
   next: Next slide
+  goto: Goto slide
+  indicator: Select a slide to display
 txt:
   dio: De-google-ify Internet
   newWindow: new window
