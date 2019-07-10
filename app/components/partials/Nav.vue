@@ -14,8 +14,8 @@
         </span>
         <template slot="collapse">
           <navbar-nav>
-            <dropdown
-              ref="dropdown" tag="li" :id="`fs_${key}`"
+            <dropdown :id="`fs_${key}`"
+              ref="dropdown" tag="li" 
               v-for="(cat, key) in $t('fnav.cat')" :key="key"
             >
               <a class="dropdown-toggle" role="button">

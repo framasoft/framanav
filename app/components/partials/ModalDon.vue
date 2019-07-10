@@ -1,8 +1,8 @@
 <template>
-  <modal v-model="state.don"
+  <modal id="modal-soutenir"
+    v-model="state.don"
     :style="(!state.don) ? 'display: none;' : ''"
     :title="$t('fnav.modaldon.title')"
-    id="modal-soutenir"
     aria-labelledby="modal-soutenirLabel"
     @hide="donClose();">
     <div slot="header">

@@ -1,7 +1,7 @@
 <template>
   <div id="fnav">
     <Nav />
-    <router-view></router-view>
+    <!--<router-view></router-view>-->
   </div>
 </template>
 

@@ -10,7 +10,10 @@
           <nav class="col-xs-4">
             <h1 v-html="$root.txt.soft"></h1>
             <ul class="list-unstyled">
-              <li v-for="key in $root.fnav.footer.frama">
+              <li 
+                v-for="key in $root.fnav.footer.frama"
+                :key="key"
+              >
                 <a
                   :href="/^fnav/.test($t(`fnav.sites.${key}.link`)) ? $root.link[key] : $t(`fnav.sites.${key}.link`)"
                   v-html="$t(`fnav.sites.${key}.name`)"
@@ -26,7 +29,10 @@
                   {{ text($root.txt.colibri) }}
                 </a>
               </li>
-              <li v-for="key in $root.fnav.footer.community">
+              <li 
+                v-for="key in $root.fnav.footer.community"
+                :key="key"
+              >
                 <a
                   :href="/^fnav/.test($t(`fnav.sites.${key}.link`)) ? $root.link[key] : $t(`fnav.sites.${key}.link`)"
                   v-html="$t(`fnav.sites.${key}.name`)"
@@ -37,7 +43,10 @@
           <nav class="col-xs-4">
             <h1 v-html="$t('txt.site')"></h1>
             <ul class="list-unstyled">
-              <li v-for="key in $root.fnav.footer.site">
+              <li 
+                v-for="key in $root.fnav.footer.site"
+                :key="key"
+              >
                 <a
                   :href="/^fnav/.test($t(`fnav.sites.${key}.link`)) ? $root.link[key] : $t(`fnav.sites.${key}.link`)"
                   v-html="$t(`fnav.sites.${key}.name`)"
@@ -50,9 +59,14 @@
           <div class="col-xs-12">
             <h1 v-html="$t('fnav.cat.follow.name')"></h1>
             <ul class="list-inline">
-              <popover tag="li" :class="`fs_${key}`"
-                v-for="key in $root.fnav.footer.follow" :key="key"
-                placement="top" trigger="hover-focus" append-to="#framanav"
+              <popover 
+                v-for="key in $root.fnav.footer.follow" 
+                :key="key"
+                tag="li" 
+                :class="`fs_${key}`"
+                placement="top" 
+                trigger="hover-focus" 
+                append-to="#framanav"
                 :title="text($t(`fnav.sites.${key}.t1`))"
               >
                 <a :href="/^fnav/.test($t(`fnav.sites.${key}.link`)) ? $root.link[key] : $t(`fnav.sites.${key}.link`)">

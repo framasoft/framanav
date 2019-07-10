@@ -76,8 +76,9 @@ const userLang = navigator.languages
 let defaultRouteLang = '';
 
 const messages = {};
-messages.locales = require('./lang.yml'); // eslint-disable-line
-messages.locales.avalaible = Object.keys(messages.locales).filter(n => locales.indexOf(n) > -1);
+const numberFormats = {};
+messages.locales = require('./data/lang.yml'); // eslint-disable-line
+messages.locales.available = Object.keys(messages.locales).filter(n => locales.indexOf(n) > -1);
 
 // Data import
 const data = {};
@@ -171,11 +172,18 @@ Object.keys(data.link).forEach((k) => {
 const routes = [];
 for (let i = 0; i < locales.length; i += 1) {
   messages[locales[i]] = {};
+  numberFormats[locales[i]] = {};
   // Locales import
   /* eslint-disable */
   messages[locales[i]] = require(`./locales/${locales[i]}.yml`);
   messages[locales[i]].data = data;
   messages[locales[i]].lang = locales[i];
+  numberFormats[locales[i]].eur = {
+    style: 'currency',
+    currency: 'EUR',
+    maximumFractionDigits: 0,
+    minimumFractionDigits: 0,
+  };
 
   if (dataLocales.includes(locales[i])) {
     const dataLocale = require(`./data/locales/${locales[i]}.yml`);
@@ -214,15 +222,16 @@ const i18n = new VueI18n({
   locale: lang,
   fallbackLocale: defaultLocale,
   messages,
+  numberFormats,
   silentTranslationWarn: true,
 });
 
 // Routes
-const router = new VueRouter({
+/* const router = new VueRouter({
   routes,
   mode: 'history',
   base: (/^framasoft.org/.test(window.location.host) ? `${__dirname}${process.env.BASE_URL}` : '/'),
-});
+}); */
 
 const loadNav = () => {
   if (document.getElementById('fnav') === null) {
@@ -231,7 +240,7 @@ const loadNav = () => {
   }
   new Vue({ // eslint-disable-line no-new
     el: '#fnav',
-    router,
+    // router,
     i18n,
     data,
     mounted() {
