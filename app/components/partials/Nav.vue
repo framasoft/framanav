@@ -213,7 +213,7 @@ export default {
     /** </> */
 
     // Load CSS
-    if (!cortex) {
+    if (!this.cortex) {
       const fcss = document.createElement('link');
       Object.assign(fcss, {
         rel: 'stylesheet',
