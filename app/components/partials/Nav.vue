@@ -1,9 +1,14 @@
 <template>
   <div>
-    <Meta />
+    <Meta v-if="!cortex" />
 
     <!-- Menus -->
-    <div id="framanav_container" class="hidden-print" style="height:42px;" v-show="!$root.inframe">
+    <div id="framanav_container"
+      v-if="!cortex"
+      v-show="!$root.inframe"
+      class="hidden-print" 
+      style="height:42px;" 
+    >
       <navbar id="framanav" style="display: none;" role="menubar">
         <span slot="brand">
           <a class="navbar-brand" slot="brand" :href="$root.link.soft">
@@ -93,30 +98,31 @@
 
     <!-- Make a donation -->
     <a id="framanav_donation"
+      v-if="!cortex"
       :href="`${$root.link.soutenir}/?f=macaron`"
       :style="!macaron ? 'display: none' : ''"
       class="hidden-xs">
       <span class="sr-only" v-html="text($t('fnav.soutenir.name'))"></span>
     </a>
 
-    <Cortex v-if="/:\/\/framalab.org/.test($root.url) || $root.url === 'https://framasoft.org/nav/lib/cortex.html'"
+    <Cortex v-if="/:\/\/framalab.org/.test($root.url) || cortex"
       key="framanav"
       src="https://framasoft.org/nav/lib/cortex.html"
       :storage="storage"
       :init="storageInit"
     />
 
-    <AlertInfo />
+    <AlertInfo v-if="!cortex" />
 
-    <ModalInfo />
-    <ModalDon :storage="storage.modal.don" />
+    <ModalInfo v-if="!cortex" />
+    <ModalDon v-if="!cortex" :storage="storage.modal.don" />
 
     <Framabin v-if="/:\/\/framabin.org.p/.test($root.url)" />
     <Framavox v-if="/:\/\/framavox.org/.test($root.url)" />
     <Framateam v-if="/:\/\/framateam.org/.test($root.url)" />
 
-    <Optin :storage="storage.optin" />
-    <Footer />
+    <Optin v-if="!cortex" :storage="storage.optin" />
+    <Footer v-if="!cortex" />
   </div>
 </template>
 
@@ -207,12 +213,14 @@ export default {
     /** </> */
 
     // Load CSS
-    const fcss = document.createElement('link');
-    Object.assign(fcss, {
-      rel: 'stylesheet',
-      href: `${this.$root.baseurl}main.css`,
-    });
-    document.getElementsByTagName('head')[0].appendChild(fcss);
+    if (!cortex) {
+      const fcss = document.createElement('link');
+      Object.assign(fcss, {
+        rel: 'stylesheet',
+        href: `${this.$root.baseurl}main.css`,
+      });
+      document.getElementsByTagName('head')[0].appendChild(fcss);
+    }
 
 
     this.storage = this.storageInit;
@@ -238,6 +246,7 @@ export default {
       storage: {},
       js: function() {},
       macaron: false,
+      cortex: /cortex(.html)?$/.test(this.$root.url),
     };
   },
   mounted() {
