@@ -92,26 +92,22 @@
     </div>
 
     <!-- Make a donation -->
-    <a :href="`${$root.link.soutenir}/?f=macaron`"
-      id="framanav_donation"
+    <a id="framanav_donation"
+      :href="`${$root.link.soutenir}/?f=macaron`"
       :style="!macaron ? 'display: none' : ''"
       class="hidden-xs">
       <span class="sr-only" v-html="text($t('fnav.soutenir.name'))"></span>
     </a>
 
-    <!-- TODO
-      <Cortex
-        key="framanav"
-        src="https://framasoft.org/nav/html/cortex.html"
-        :storage="storage"
-        :init="storageInit"/>
-    -->
+    <Cortex v-if="/:\/\/framalab.org/.test($root.url)"
+      key="framanav"
+      src="https://framasoft.org/nav/lib/cortex.html"
+      :storage="storage"
+      :init="storageInit"
+    />
 
     <AlertInfo />
 
-    <!-- TODO
-    <ModalFAQ />
-    -->
     <ModalInfo />
     <ModalDon :storage="storage.modal.don" />
 
