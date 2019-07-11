@@ -99,7 +99,7 @@
       <span class="sr-only" v-html="text($t('fnav.soutenir.name'))"></span>
     </a>
 
-    <Cortex v-if="/:\/\/framalab.org/.test($root.url)"
+    <Cortex v-if="/:\/\/framalab.org/.test($root.url) || $root.url === 'https://framasoft.org/nav/lib/cortex.html'"
       key="framanav"
       src="https://framasoft.org/nav/lib/cortex.html"
       :storage="storage"
