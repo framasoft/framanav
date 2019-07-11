@@ -13,6 +13,7 @@ import text from './plugins/text';
 import is from './plugins/is';
 import cookie from './plugins/cookie';
 import merge from './plugins/merge';
+import globalStorage from './plugins/globalstorage';
 
 Vue.use(VueRouter);
 Vue.use(VueI18n);
@@ -23,6 +24,7 @@ Vue.use(text);
 Vue.use(is);
 Vue.use(cookie);
 Vue.use(merge);
+Vue.use(globalStorage);
 
 const defaultLocale = 'fr';
 const locales = [];

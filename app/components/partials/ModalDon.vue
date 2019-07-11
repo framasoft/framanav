@@ -48,7 +48,7 @@
           <button id="modal-dl2"
             class="btn btn-xs btn-default btn-block"
             style="line-height: 36px;"
-            @click="state.don = false; storage = [true, 31536000000]"
+            @click="state.don = false; storage.modal.don = [true, 31536000000]"
             v-html="$t('fnav.modaldon.b4')">
           </button>
         </p>
@@ -65,7 +65,7 @@ export default {
   },
   props: {
     storage: {
-      type: Array,
+      type: Object,
       required: true,
     }
   },
@@ -84,17 +84,17 @@ export default {
 
     if (this.config[0] !== '') {
       if (this.config[0] === 'onstart') {
-        if (this.storage[0]) {
+        if (this.storage.modal.don[0]) {
           // Global cookie send locally
-          this.cookie('w', this.config[1], true, this.storage[2]);
+          this.cookie('w', this.config[1], true, this.storage.modal.don[2]);
         }
         this.state.don = !this.cookie('r', 'dondl');
       } else {
         document.querySelectorAll(this.config[0]).forEach(a =>
           a.onclick = (e) => {
-            if (this.storage[0]) {
+            if (this.storage.modal.don[0]) {
               // Global cookie send locally
-              this.cookie('w', this.config[1], true, this.storage[2]);
+              this.cookie('w', this.config[1], true, this.storage.modal.don[2]);
             }
             this.state.don = !this.cookie('r', 'dondl');
             if (this.state.don) {
@@ -108,7 +108,9 @@ export default {
   },
   methods: {
     donClose() {
-      this.cookie('w', 'dondl', true, this.storage[1]);
+      this.cookie('w', 'dondl', true, this.storage.modal.don[1]);
+      this.storage.modal.don = [true, this.storage.modal.don[1]];
+      this.globalStorage.minus('o', this.storage);
       window.location.href = this.state.donTarget;
     },
     siteConfig(site) {

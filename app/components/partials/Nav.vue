@@ -6,9 +6,8 @@
     <div id="framanav_container"
       v-if="!cortex"
       v-show="!$root.inframe"
-      class="hidden-print" 
-      style="height:42px;" 
-    >
+      class="hidden-print"
+      style="height:42px;">
       <navbar id="framanav" style="display: none;" role="menubar">
         <span slot="brand">
           <a class="navbar-brand" slot="brand" :href="$root.link.soft">
@@ -20,7 +19,7 @@
         <template slot="collapse">
           <navbar-nav>
             <dropdown :id="`fs_${key}`"
-              ref="dropdown" tag="li" 
+              ref="dropdown" tag="li"
               v-for="(cat, key) in $t('fnav.cat')" :key="key"
             >
               <a class="dropdown-toggle" role="button">
@@ -105,23 +104,21 @@
       <span class="sr-only" v-html="text($t('fnav.soutenir.name'))"></span>
     </a>
 
-    <Cortex v-if="/:\/\/framalab.org/.test($root.url) || cortex"
-      key="framanav"
+    <Cortex v-if="/:\/\/framalab.org/.test($root.url) || cortex || /localhost/.test($root.url)"
       src="https://framasoft.org/nav/lib/cortex.html"
-      :storage="storage"
       :init="storageInit"
     />
 
     <AlertInfo v-if="!cortex" />
 
     <ModalInfo v-if="!cortex" />
-    <ModalDon v-if="!cortex" :storage="storage.modal.don" />
+    <ModalDon v-if="!cortex" :storage="storage" />
 
     <Framabin v-if="/:\/\/framabin.org.p/.test($root.url)" />
     <Framavox v-if="/:\/\/framavox.org/.test($root.url)" />
     <Framateam v-if="/:\/\/framateam.org/.test($root.url)" />
 
-    <Optin v-if="!cortex" :storage="storage.optin" />
+    <Optin v-if="!cortex" :storage="storage" />
     <Footer v-if="!cortex" />
   </div>
 </template>
@@ -221,7 +218,6 @@ export default {
       });
       document.getElementsByTagName('head')[0].appendChild(fcss);
     }
-
 
     this.storage = this.storageInit;
   },
