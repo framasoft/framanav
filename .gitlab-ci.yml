@@ -21,16 +21,21 @@ production:
   script:
   - npm install
   - npm run prod -- --root=nav
- # - cp ./public/nav/fr/index.html ./public/nav/index.html
   - for f in $(find -type l);do cp --remove-destination $(readlink -f $f) $f;done;
   - mkdir "${HOME}/.ssh"
   - chmod 700 "${HOME}/.ssh"
-  - if [ ! -z ${DEPLOYEMENT_KNOWN_HOSTS+x} ]; then echo -e "${DEPLOYEMENT_KNOWN_HOSTS}" > ${HOME}/.ssh/known_hosts; fi
+  - echo -e "${DEPLOYEMENT_KNOWN_HOSTS}" > ${HOME}/.ssh/known_hosts;
   - eval `ssh-agent -s`
-  - if [ ! -z ${DEPLOYEMENT_KEY+x} ]; then ssh-add <(echo "${DEPLOYEMENT_KEY}" | base64 --decode -i); fi
-  - if [ ! -z ${DEPLOYEMENT_KEY+x} ]; then cd public/nav && echo "put -r ." | sftp ${DEPLOYEMENT_USER}@${DEPLOYEMENT_HOST}:../../web/nav/; fi
+  - ssh-add <(echo "${DEPLOYEMENT_KEY}" | base64 --decode -i);
+  - cd public/nav && echo "put -r ." | sftp ${DEPLOYEMENT_USER}@${DEPLOYEMENT_HOST}:../../web/nav/;
   only:
+    refs:
     - master
+    variables:
+    - $DEPLOYEMENT_KEY
+    - $DEPLOYEMENT_KNOWN_HOSTS
+    - $DEPLOYEMENT_USER
+    - $DEPLOYEMENT_HOST
 
 # Push new translations strings to https://trad.framasoft.org
 trads:
@@ -40,7 +45,10 @@ trads:
   - sed -e "s@<project-version>.*</project-version>@<project-version>$CI_COMMIT_REF_SLUG</project-version>@" -i zanata/zanata.xml
   - sed -e "s@<project>.*</project>@<project>$CI_PROJECT_NAME</project>@" -i zanata/zanata.xml
   - cp -n zanata/zanata.xml zanata.xml
-  - if [ ! -z ${ZANATA_CONFIG_FRAMABOT+x} ]; then mkdir -p ${HOME}/.config; echo -e "${ZANATA_CONFIG_FRAMABOT}" > ${HOME}/.config/zanata.ini; fi
-  - if [ ! -z ${ZANATA_CONFIG_FRAMABOT+x} ]; then make push-locales; fi
+  - mkdir -p ${HOME}/.config; echo -e "${ZANATA_CONFIG_FRAMABOT}" > ${HOME}/.config/zanata.ini;
+  - make push-locales;
   only:
+    refs:
     - master
+    variables:
+    - $ZANATA_CONFIG_FRAMABOT

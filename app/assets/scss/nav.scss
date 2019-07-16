@@ -25,7 +25,7 @@
       margin:auto;
       background-color:#f8f8f8;
     }
-    
+
    .navbar-collapse {
      background: #f8f8f8; /* fix team */
    }
@@ -71,7 +71,7 @@
         width: 38px;
         height: 38px;
         border:none;
-        display: inline;
+        display: inline-block;
         vertical-align: top;
       }
 
@@ -138,9 +138,9 @@
 
         a:hover {
           color: #fff;
-          
+
           .fa {
-            color: #fff;  
+            color: #fff;
           }
         }
       }
@@ -174,9 +174,9 @@
       .fs_start,  .fs_evl,
       .fs_zic, .fs_evl,
       .fs_diolist, .fs_slides, .fs_maestro, .fs_bee, .fs_carte, .fs_talk, .fs_vox,
-      .fs_bag, .fs_news, .fs_games, .fs_minetest, .fs_site, .fs_wiki,
+      .fs_bag, .fs_news, .fs_games, .fs_minetest, .fs_drive, .fs_clic,
       .fs_wikipedia,
-      .fs_stats, .fs_status, .fs_cgu, .fs_credits {
+      .fs_stats, .fs_status, .fs_moderation {
         border-bottom: 1px solid #e5e5e5;
       }
     }
@@ -184,7 +184,7 @@
     @media (min-width: 992px) {
       #fs_services .dropdown-menu,
       #fs_about .dropdown-menu {
-        min-width: 320px;
+        min-width: 340px;
       }
 
       #fs_services ul { margin-left: -106px; }
@@ -488,11 +488,10 @@
   #fs_opt-in input {
     margin:0;
     width:auto !important;
-    display:inline !important;
+    display:inline-block !important;
   }
 
   #fs_opt-in label {
-    display: inline !important;
     float: none !important;
     width: auto !important;
     text-align: left !important;

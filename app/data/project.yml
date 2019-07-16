@@ -21,10 +21,10 @@ fnav:
     about:
       ['asso', 'participer', 'charte', 'benevalo', 'contact', 'partenaires',
       'stats', 'status', 'doc', 'faq', 'aide', 'legals', 'cgu', 'credits',
-      'dio2', 'cuo2']
+      'moderation', 'dio2', 'cuo2']
 
   footer:
     frama: ['asso', 'charte', 'contact', 'stats', 'status']
-    community: ['participer', 'benevalo', 'partenaires']
+    community: ['participer', 'benevalo', 'partenaires', 'moderation']
     site: ['aide', 'faq', 'legals', 'cgu', 'credits']
     follow: ['diaspora', 'mastodon', 'twitter', 'facebook', 'rss']

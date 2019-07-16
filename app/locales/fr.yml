@@ -508,6 +508,9 @@ fnav:
     cgu:
       name: <abbr>CGU</abbr>
       link: https://framasoft.org/fr/cgu
+    moderation:
+      name: Charte de moderation
+      link: https://framasoft.org/fr/moderation
     credits:
       name: Crédits
       link: https://framasoft.org/fr/credits

@@ -40,11 +40,12 @@ export default {
         },
         cortex(action, msg) {
           const m = msg;
-          const storage = {};
+          let storage = {};
           switch (action) {
             case 'o': // output to Minus
               try {
                 window.parent.postMessage(localStorage.framanav, '*');
+                storage = localStorage.framanav;
               } catch (e) {
                 window.parent.postMessage(JSON.stringify(storage), '*');
               }

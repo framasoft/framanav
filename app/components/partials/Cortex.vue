@@ -22,6 +22,19 @@ export default {
   },
   mounted() {
     this.globalStorage.init(this.init);
+    this.storageReady(() => { this.$parent.cortex.ready = true; });
   },
+  methods: {
+    storageReady(callback) {
+      if (this.$refs.framanav_cortex) {
+        if (Object.keys(this.$parent.storage).length > 0) {
+          callback();
+        } else {
+          this.$parent.storage = JSON.parse(this.globalStorage.cortex('o'));
+          callback();
+        }
+      }
+    },
+  }
 }
 </script>

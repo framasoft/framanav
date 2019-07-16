@@ -228,13 +228,6 @@ const i18n = new VueI18n({
   silentTranslationWarn: true,
 });
 
-// Routes
-/* const router = new VueRouter({
-  routes,
-  mode: 'history',
-  base: (/^framasoft.org/.test(window.location.host) ? `${__dirname}${process.env.BASE_URL}` : '/'),
-}); */
-
 const loadNav = () => {
   if (document.getElementById('fnav') === null) {
     document.querySelector('body')
@@ -242,7 +235,6 @@ const loadNav = () => {
   }
   new Vue({ // eslint-disable-line no-new
     el: '#fnav',
-    // router,
     i18n,
     data,
     mounted() {
