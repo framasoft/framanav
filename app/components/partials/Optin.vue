@@ -44,15 +44,9 @@ export default {
         .insertAdjacentHTML('beforeend', '<div id="foptin"></div>');
     }
   },
-  props: {
-    storage: {
-      type: Object,
-      required: true,
-    }
-  },
   data() {
     return {
-      config: ['', 'opt-in', 604800000],
+      config: ['', this.$root.cookie.optin, 604800000],
       /** [email selector, cookie name, cookie duration] */
       state: {
         optin: false,
@@ -60,6 +54,7 @@ export default {
         email: '',
         sent: false,
       },
+      storage: this.$root.storage,
     }
   },
   mounted() {
@@ -77,7 +72,7 @@ export default {
         document.getElementById('foptin').style.display = 'none';
       }
       // Display checkbox
-      this.state.optin = (!this.cookie('r', 'opt-in'));
+      this.state.optin = (!this.cookie('r', this.config[1]));
     }
   },
   methods: {

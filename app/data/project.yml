@@ -28,3 +28,13 @@ fnav:
     community: ['participer', 'benevalo', 'partenaires', 'moderation']
     site: ['aide', 'faq', 'legals', 'cgu', 'credits']
     follow: ['diaspora', 'mastodon', 'twitter', 'facebook', 'rss']
+
+cookie:
+  don: dondl
+  optin: opt-in
+
+storage:
+  # idem in cortex.html
+  modal:
+    don: [false, 604800000]
+  optin: [false, 604800000]

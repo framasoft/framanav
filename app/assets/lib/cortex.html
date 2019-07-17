@@ -4,11 +4,64 @@
   <meta charset="UTF-8" />
   <meta name="robots" content="noindex, nofollow" />
   <title>Cortex</title>
-  <!-- <prod> -->
-  <script src="https://framasoft.org/nav/nav.js"></script>
-  <!-- <debug>
-    <script src="http://localhost:8080/nav.js"></script>
-  <!-- </> -->
+  <script>
+    const $_globalStorage = { // eslint-disable-line
+      storage: {},
+      storageInit: {
+        modal: {
+          don: [false, 604800000]
+        },
+        optin: [false, 604800000],
+      },
+
+      init() {
+        if (/cortex(.html)?$/.test(window.location.href)) {
+          $_globalStorage.cortex();
+        }
+      },
+
+      cortex(action, msg) {
+        const m = msg;
+        switch (action) {
+          case 'o': // output to Minus
+            try {
+              window.parent.postMessage(localStorage.framanav, '*');
+            } catch (e) {
+              window.parent.postMessage(JSON.stringify($_globalStorage.storageInit), '*');
+            }
+            break;
+          case 'i': // input in localStorage
+            try {
+              localStorage.setItem('framanav', JSON.stringify(m));
+            } catch (e) {
+              // access denied to localStorage
+            }
+            break;
+          default: // init
+            try {
+              if (localStorage.framanav === undefined) {
+                $_globalStorage.cortex('i', $_globalStorage.storageInit);
+              }
+            } catch (e) {
+              // access denied to localStorage
+            }
+            $_globalStorage.cortex('o');
+
+            window.onmessage = function listenMinus(event) {
+              const payload = JSON.parse(event.data);
+              if (payload.framanav !== $_globalStorage.storageInit
+                && Object.keys(payload.framanav).length) {
+                $_globalStorage.storage = payload.framanav;
+                $_globalStorage.cortex('i', $_globalStorage.storage);
+              }
+              $_globalStorage.cortex('o');
+            };
+            break;
+        }
+      },
+    };
+    $_globalStorage.init();
+  </script>
 </head>
 <body></body>
 </html>

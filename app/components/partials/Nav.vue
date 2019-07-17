@@ -1,18 +1,15 @@
 <template>
   <div>
-    <Meta v-if="!cortex.render" />
+    <Meta />
 
     <Cortex
-      v-if="/:\/\/framalab.org/.test($root.url) || cortex.render || /localhost/.test($root.url)"
-      src="https://framasoft.org/nav/lib/cortex.html"
-      :init="storageInit"
+      v-if="/:\/\/framalab.org/.test($root.url) || /localhost/.test($root.url)"
     />
 
-    <NavMenu v-if="!cortex.render" />
+    <NavMenu />
 
     <!-- Make a donation -->
     <a
-      v-if="!cortex.render"
       id="framanav_donation"
       :href="`${$root.link.soutenir}/?f=macaron`"
       :style="!macaron ? 'display: none' : ''"
@@ -20,17 +17,17 @@
       <span class="sr-only" v-html="text($t('fnav.soutenir.name'))"></span>
     </a>
 
-    <AlertInfo v-if="!cortex.render" />
+    <AlertInfo />
 
-    <ModalInfo v-if="!cortex.render" />
-    <ModalDon v-if="!cortex.render && cortex.ready" :storage="storage" />
+    <ModalInfo />
+    <ModalDon v-if="cortexReady" />
 
     <Framabin v-if="/:\/\/framabin.org.p/.test($root.url)" />
     <Framavox v-if="/:\/\/framavox.org/.test($root.url)" />
     <Framateam v-if="/:\/\/framateam.org/.test($root.url)" />
 
-    <Optin v-if="!cortex.render && cortex.ready" :storage="storage" />
-    <Footer v-if="!cortex.render" />
+    <Optin v-if="cortexReady" />
+    <Footer />
   </div>
 </template>
 
@@ -118,33 +115,22 @@ export default {
     /** </> */
 
     // Load CSS
-    if (!this.cortex.render) {
-      const fcss = document.createElement('link');
-      Object.assign(fcss, {
-        rel: 'stylesheet',
-        href: `${this.$root.baseurl}main.css`,
-      });
-      document.getElementsByTagName('head')[0].appendChild(fcss);
-    }
+    const fcss = document.createElement('link');
+    Object.assign(fcss, {
+      rel: 'stylesheet',
+      href: `${this.$root.baseurl}main.css`,
+    });
+    document.getElementsByTagName('head')[0].appendChild(fcss);
 
-    // this.storage = this.storageInit;
   },
   data() {
     return {
       // Init nav
       version: '190319', // n° version de la nav
       maestro: this.createMaestro(),
-      storageInit: {
-        modal: { don: [false, 604800000] },
-        optin: [false, 604800000],
-      },
-      storage: {},
       js: function() {},
       macaron: false,
-      cortex: {
-        ready: false,
-        render: /cortex(.html)?$/.test(this.$root.url),
-      },
+      cortexReady: false,
     };
   },
   mounted() {
