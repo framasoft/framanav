@@ -1,7 +1,7 @@
 <template>
   <iframe v-if="!/cortex(.html)?$/.test(this.$root.url)"
     id="framanav_cortex" ref="framanav_cortex"
-    :src="`${$root['/']}lib/cortex.html`"
+    src="https://framasoft.org/nav/lib/cortex.html"
     aria-hidden="true"
     style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;"    >
   </iframe>
