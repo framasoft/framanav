@@ -399,6 +399,9 @@ fnav:
     cgu:
       name: Terms of Use
       link: https://framasoft.org/en/cgu
+    moderation:
+      name: Moderation charter
+      link: https://framasoft.org/en/moderation
     credits:
       name: Credits
       link: https://framasoft.org/en/credits

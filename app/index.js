@@ -13,6 +13,7 @@ import text from './plugins/text';
 import is from './plugins/is';
 import cookie from './plugins/cookie';
 import merge from './plugins/merge';
+import globalStorage from './plugins/globalstorage';
 
 Vue.use(VueRouter);
 Vue.use(VueI18n);
@@ -23,6 +24,7 @@ Vue.use(text);
 Vue.use(is);
 Vue.use(cookie);
 Vue.use(merge);
+Vue.use(globalStorage);
 
 const defaultLocale = 'fr';
 const locales = [];
@@ -226,13 +228,6 @@ const i18n = new VueI18n({
   silentTranslationWarn: true,
 });
 
-// Routes
-/* const router = new VueRouter({
-  routes,
-  mode: 'history',
-  base: (/^framasoft.org/.test(window.location.host) ? `${__dirname}${process.env.BASE_URL}` : '/'),
-}); */
-
 const loadNav = () => {
   if (document.getElementById('fnav') === null) {
     document.querySelector('body')
@@ -240,7 +235,6 @@ const loadNav = () => {
   }
   new Vue({ // eslint-disable-line no-new
     el: '#fnav',
-    // router,
     i18n,
     data,
     mounted() {

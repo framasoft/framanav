@@ -48,7 +48,7 @@
           <button id="modal-dl2"
             class="btn btn-xs btn-default btn-block"
             style="line-height: 36px;"
-            @click="state.don = false; storage = [true, 31536000000]"
+            @click="state.don = false; storage.modal.don = [true, 31536000000]"
             v-html="$t('fnav.modaldon.b4')">
           </button>
         </p>
@@ -63,12 +63,6 @@ export default {
   components: {
     Modal,
   },
-  props: {
-    storage: {
-      type: Array,
-      required: true,
-    }
-  },
   data() {
     return {
       config: ['', '', '', 604800000],
@@ -77,6 +71,7 @@ export default {
         don: false,
         donTarget: '#SoutenirFramasoft',
       },
+      storage: this.$root.storage,
     }
   },
   mounted() {
@@ -84,19 +79,11 @@ export default {
 
     if (this.config[0] !== '') {
       if (this.config[0] === 'onstart') {
-        if (this.storage[0]) {
-          // Global cookie send locally
-          this.cookie('w', this.config[1], true, this.storage[2]);
-        }
-        this.state.don = !this.cookie('r', 'dondl');
+        this.state.don = !this.cookie('r', this.$root.cookie.don);
       } else {
         document.querySelectorAll(this.config[0]).forEach(a =>
           a.onclick = (e) => {
-            if (this.storage[0]) {
-              // Global cookie send locally
-              this.cookie('w', this.config[1], true, this.storage[2]);
-            }
-            this.state.don = !this.cookie('r', 'dondl');
+            this.state.don = !this.cookie('r', this.$root.cookie.don);
             if (this.state.don) {
               this.state.donTarget = a.href;
               e.preventDefault();
@@ -108,7 +95,9 @@ export default {
   },
   methods: {
     donClose() {
-      this.cookie('w', 'dondl', true, this.storage[1]);
+      this.cookie('w', this.$root.cookie.don, true, this.storage.modal.don[1]);
+      this.storage.modal.don = [true, this.storage.modal.don[1]];
+      this.globalStorage.minus('o', this.storage);
       window.location.href = this.state.donTarget;
     },
     siteConfig(site) {

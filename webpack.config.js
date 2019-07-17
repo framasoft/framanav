@@ -5,14 +5,11 @@ const fs = require('fs');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-/* const PrerenderSPAPlugin = require('prerender-spa-plugin'); */
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
-
-/* const Renderer = PrerenderSPAPlugin.PuppeteerRenderer; */
 
 let root = (process.env.NODE_ENV === 'preview') ? `/${process.env.INIT_CWD.match(/([^/]*)\/*$/)[1]}/` : '/';
 for (let i = 0; i < process.argv.length; i += 1) {
@@ -132,7 +129,8 @@ module.exports = config;
 
 const locales = [];
 // Import locales list
-fs.readdirSync('./app/locales').forEach(file => locales.push(file.replace(/(.*)\.yml/, '$1')));
+fs.readdirSync('./app/locales')
+  .forEach(file => locales.push(file.replace(/(.*)\.yml/, '$1')));
 
 if (process.env.NODE_ENV === 'development') {
   module.exports.plugins = (module.exports.plugins || [])
@@ -153,7 +151,9 @@ if (process.env.NODE_ENV === 'development') {
   const routes = [];
   const pages = [];
   // Import pages list
-  fs.readdirSync('./app/components/pages').forEach(file => pages.push(file.replace(/(.*)\.vue/, '$1')));
+  fs.readdirSync('./app/components/pages')
+    .forEach(file => pages.push(file.replace(/(.*)\.vue/, '$1')));
+
   for (let j = 0; j < pages.length; j += 1) {
     routes.push(`${root}${pages[j].toLowerCase().replace('home', '')}`);
     // Localized routes
@@ -185,27 +185,6 @@ if (process.env.NODE_ENV === 'development') {
       template: 'index.html',
       filename: path.resolve(__dirname, 'public/index.html'),
     }),
-    /* new PrerenderSPAPlugin({
-      staticDir: path.join(__dirname, 'public'),
-      routes,
-      renderer: new Renderer({
-        headless: true,
-        renderAfterDocumentEvent: 'render-event',
-        maxConcurrentRoutes: 1,
-        injectProperty: 'vuefsPrerender',
-        inject: {
-          prerender: true,
-        },
-        postProcess(renderedRoute) {
-          // eslint-disable-next-line no-param-reassign
-          renderedRoute.html = renderedRoute.html
-            .replace(/<script (.*?)>/g, '`<script $1 defer>')
-            .replace('`id="app"', 'id="app" data-server-rendered="true"');
-
-          return renderedRoute;
-        },
-      }),
-    }), */
   );
 }
 

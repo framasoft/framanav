@@ -44,15 +44,9 @@ export default {
         .insertAdjacentHTML('beforeend', '<div id="foptin"></div>');
     }
   },
-  props: {
-    storage: {
-      type: Array,
-      required: true,
-    }
-  },
   data() {
     return {
-      config: ['', 'opt-in', 604800000],
+      config: ['', this.$root.cookie.optin, 604800000],
       /** [email selector, cookie name, cookie duration] */
       state: {
         optin: false,
@@ -60,15 +54,16 @@ export default {
         email: '',
         sent: false,
       },
+      storage: this.$root.storage,
     }
   },
   mounted() {
     this.siteConfig(this.$root.site);
 
     if (this.config[0] !== '') {
-      if (this.storage[0]) {
+      if (this.storage.optin[0]) {
         // Global cookie send locally
-        this.cookie('w', this.config[1], true, this.storage[2]);
+        this.cookie('w', this.config[1], true, this.storage.optin[2]);
       }
       // Move box next to email input
       if (document.querySelector(this.config[0])) {
@@ -77,7 +72,7 @@ export default {
         document.getElementById('foptin').style.display = 'none';
       }
       // Display checkbox
-      this.state.optin = (!this.cookie('r', 'opt-in'));
+      this.state.optin = (!this.cookie('r', this.config[1]));
     }
   },
   methods: {
@@ -106,8 +101,8 @@ export default {
 
         // Never ask again
         this.cookie('w', this.config[1], true, this.config[2]);
-        // this.storage = [true, this.config[2]];
-        // this.minus('o', this.storage);
+        this.storage.optin = [true, this.config[2]];
+        this.globalStorage.minus('o', this.storage);
       }
       // Not a valid email
       this.state.checked = false;

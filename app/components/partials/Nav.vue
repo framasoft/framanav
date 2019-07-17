@@ -1,134 +1,40 @@
 <template>
   <div>
-    <Meta v-if="!cortex" />
+    <Meta />
 
-    <!-- Menus -->
-    <div id="framanav_container"
-      v-if="!cortex"
-      v-show="!$root.inframe"
-      class="hidden-print" 
-      style="height:42px;" 
-    >
-      <navbar id="framanav" style="display: none;" role="menubar">
-        <span slot="brand">
-          <a class="navbar-brand" slot="brand" :href="$root.link.soft">
-            <img :src="`${$root.baseurl}img/logo.png`" alt="" />
-            <span class="hidden-sm" v-html="$root.color.soft"></span>
-          </a>
-          <a href="#nav-end" id="nav-skip" v-html="$t('txt.skip')"></a>
-        </span>
-        <template slot="collapse">
-          <navbar-nav>
-            <dropdown :id="`fs_${key}`"
-              ref="dropdown" tag="li" 
-              v-for="(cat, key) in $t('fnav.cat')" :key="key"
-            >
-              <a class="dropdown-toggle" role="button">
-                {{ cat.name }} <b class="caret"></b>
-              </a>
-              <template slot="dropdown">
-                <li class="dropdown-header" v-if="key === 'about'" v-html="$root.color.soft"></li>
-                <popover
-                  v-for="(l, index) in $root.fnav.cat[key]" :key="l"
-                  tag="li" :class="`fs_${l}`"
-                  :enable="!/^fnav/.test($t(`fnav.sites.${l}.t1`))"
-                  :placement="/(services|about)/.test(key) && !(index % 2) ? 'right' : 'left'"
-                  :auto-placement="false" trigger="hover-focus" append-to="#framanav"
-                  :title="text($t(`fnav.sites.${l}.t1`))"
-                >
-                  <a :href="/^fnav/.test($t(`fnav.sites.${l}.link`)) ? $root.link[l] : $t(`fnav.sites.${l}.link`)"
-                    target="_blank">
-                    <i :class="`fa fa-fw fa-lg ${$root.icon[l]}`" aria-hidden="true"></i>
-                    {{
-                      /^fnav/.test($t(`fnav.sites.${l}.name`))
-                      ? $root.txt[l]
-                      : text($t(`fnav.sites.${l}.name`))
-                    }}
-                    <span class="sr-only" v-html="`(${$t('txt.newWindow')})`"></span>
-                    <i class="fa new-window fa-external-link" aria-hidden="true"></i>
-                  </a>
-                  <template slot="popover">
-                    <div v-html="$t(`fnav.sites.${l}.d1`)"></div>
-                  </template>
-                </popover>
-              </template>
-            </dropdown>
-            <popover tag="li" id="btn-soutenir" v-show="!benevalo()"
-              placement="bottom" trigger="hover-focus" append-to="#framanav"
-              :title="text($t('fnav.soutenir.t1'))"
-            >
-              <a :href="`${$root.link.soutenir}/?f=nav`" class="btn-soutenir">
-                <i :class="`fa fa-fw fa-lg ${$root.icon.soutenir}`" aria-hidden="true"></i>
-                {{ text($t('fnav.soutenir.name')) }}
-              </a>
-              <template slot="popover">
-                <div v-html="$t('fnav.soutenir.d1')"></div>
-              </template>
-            </popover>
-            <popover tag="li" id="btn-benevalo" v-show="benevalo()"
-              placement="bottom" trigger="hover-focus" append-to="#framanav"
-              :title="text($t('fnav.benevalo.t1'))"
-            >
-              <a :href="$root.link.benevalo" class="btn-info">
-                <i :class="`fa fa-fw fa-lg ${$root.icon.benevalo}`" aria-hidden="true"></i>
-                {{ text($t('fnav.benevalo.name')) }}
-              </a>
-              <template slot="popover">
-                <div v-html="$t('fnav.benevalo.d1')"></div>
-              </template>
-            </popover>
-            <popover tag="li" id="btn-myframa"
-              placement="bottom" trigger="hover-focus" append-to="#framanav"
-              :title="text($t('fnav.myframa.t1'))"
-            >
-              <a :href="myframa" class="btn-primary"
-                @click.prevent="openMyframa()"
-              >
-                <i :class="`fa fa-fw fa-lg ${$root.icon.my}`" aria-hidden="true"></i>
-                {{ $root.txt.my }}
-              </a>
-              <template slot="popover">
-                <div v-html="$t('fnav.myframa.d1')"></div>
-              </template>
-            </popover>
-          </navbar-nav>
-        </template>
-      </navbar>
-    </div>
+    <Cortex
+      v-if="/:\/\/framalab.org/.test($root.url) || /localhost/.test($root.url)"
+    />
+
+    <NavMenu />
 
     <!-- Make a donation -->
-    <a id="framanav_donation"
-      v-if="!cortex"
+    <a
+      id="framanav_donation"
       :href="`${$root.link.soutenir}/?f=macaron`"
       :style="!macaron ? 'display: none' : ''"
       class="hidden-xs">
       <span class="sr-only" v-html="text($t('fnav.soutenir.name'))"></span>
     </a>
 
-    <Cortex v-if="/:\/\/framalab.org/.test($root.url) || cortex"
-      key="framanav"
-      src="https://framasoft.org/nav/lib/cortex.html"
-      :storage="storage"
-      :init="storageInit"
-    />
+    <AlertInfo />
 
-    <AlertInfo v-if="!cortex" />
-
-    <ModalInfo v-if="!cortex" />
-    <ModalDon v-if="!cortex" :storage="storage.modal.don" />
+    <ModalInfo />
+    <ModalDon v-if="cortexReady" />
 
     <Framabin v-if="/:\/\/framabin.org.p/.test($root.url)" />
     <Framavox v-if="/:\/\/framavox.org/.test($root.url)" />
     <Framateam v-if="/:\/\/framateam.org/.test($root.url)" />
 
-    <Optin v-if="!cortex" :storage="storage.optin" />
-    <Footer v-if="!cortex" />
+    <Optin v-if="cortexReady" />
+    <Footer />
   </div>
 </template>
 
 <script>
 import Meta from './Meta.vue';
 import Cortex from './Cortex.vue';
+import NavMenu from './NavMenu.vue';
 import AlertInfo from './AlertInfo.vue';
 import ModalFAQ from './ModalFAQ.vue';
 import ModalInfo from './ModalInfo.vue';
@@ -141,13 +47,9 @@ import Framabin from './sites/Framabin.vue';
 import Framavox from './sites/Framavox.vue';
 import Framateam from './sites/Framateam.vue';
 
-import { Btn, Dropdown, Navbar, NavbarNav, Popover, Tooltip, Modal } from 'uiv';
-
 export default {
   components: {
-    Btn, Dropdown, Navbar, NavbarNav, Popover, Tooltip, Modal,
-
-    Meta, Cortex, AlertInfo, ModalFAQ, ModalInfo, ModalDon,
+    Meta, Cortex, NavMenu, AlertInfo, ModalInfo, ModalDon,
 
     Optin, Footer,
     Framabin, Framavox, Framateam,
@@ -213,40 +115,22 @@ export default {
     /** </> */
 
     // Load CSS
-    if (!this.cortex) {
-      const fcss = document.createElement('link');
-      Object.assign(fcss, {
-        rel: 'stylesheet',
-        href: `${this.$root.baseurl}main.css`,
-      });
-      document.getElementsByTagName('head')[0].appendChild(fcss);
-    }
+    const fcss = document.createElement('link');
+    Object.assign(fcss, {
+      rel: 'stylesheet',
+      href: `${this.$root.baseurl}main.css`,
+    });
+    document.getElementsByTagName('head')[0].appendChild(fcss);
 
-
-    this.storage = this.storageInit;
-  },
-  directives: {
-    Popover, Tooltip
   },
   data() {
     return {
       // Init nav
       version: '190319', // n° version de la nav
-      myframa: [
-          'https://my.framasoft.org/?post=', encodeURIComponent(this.$root.url),
-          '&title=', encodeURIComponent(document.title || this.$root.url),
-          '&description=', encodeURIComponent(document.getSelection()),
-          '&source=bookmarklet',
-        ].join(''),
       maestro: this.createMaestro(),
-      storageInit: {
-        modal: { don: [false, 604800000] },
-        optin: [false, 604800000],
-      },
-      storage: {},
       js: function() {},
       macaron: false,
-      cortex: /cortex(.html)?$/.test(this.$root.url),
+      cortexReady: false,
     };
   },
   mounted() {
@@ -271,7 +155,7 @@ export default {
     }
   },
   methods: {
-    link(href) {
+    link(href) { // Depreciated (to remove with lib/jquery)
       const link = document.createElement('a');
       link.href
         = (/:\/\//.test(href))
@@ -279,17 +163,6 @@ export default {
         : `${this.$root.baseurl}${href.replace(/^\//, '')}`;
       link.href = link.href.replace(/\?$/, `?${this.version}`)
       return [link.protocol, '//', link.host, link.pathname, link.search, link.hash].join('');
-    },
-    benevalo() {
-      const today = Math.floor(new Date().getTime() / 1000);
-      const fullMoon = 1453603580; // 24/01/2016 02:46:20
-      const moonRev = 2551443; // 29j 12h 44m 3s
-
-      return ((today - fullMoon) % moonRev < 129600
-        || (today - fullMoon) % moonRev > moonRev - 129600);
-    },
-    openMyframa() {
-      window.open(this.myframa, 'myframa', 'menubar=no,height=500,width=600,toolbar=no,scrollbars=yes,status=no,dialog=1');
     },
     createMaestro() {
       let hash = 4321;
@@ -308,12 +181,6 @@ export default {
         '0,', (currentW + 40), ',', talkW, ',', talkH, ',',
         encodeURIComponent(`https://framatalk.org/${tonality}${concerto}`), ';',
       ].join('');
-    },
-    divider(key) {
-      return ([
-        'start', 'zic', ' evl', ' dio', 'maestro', ' carte', ' minetest',
-        ' news', 'git', 'wiki', ' petitions', ' wikipedia', ' status',
-        ' credits'].indexOf(key) > -1);
     },
     isLang(lg, browser) {
       if (browser !== 'b') { // Langue de la page
