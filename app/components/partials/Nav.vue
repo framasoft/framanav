@@ -2,9 +2,7 @@
   <div>
     <Meta />
 
-    <Cortex
-      v-if="/:\/\/framalab.org/.test($root.url) || /localhost/.test($root.url)"
-    />
+    <Cortex />
 
     <NavMenu />
 
