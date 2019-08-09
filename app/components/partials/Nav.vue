@@ -82,7 +82,6 @@ export default {
 
     // Wrap .carousel with .carousel-container
     if (/(carte|notes)/.test(this.$root.host)
-      || this.$root.host === 'framaboard.org'
       || this.$root.url === 'https://framaforms.org/'
       || this.$root.url === 'https://frama.site'
       || this.$root.url === 'https://frama.wiki') {
@@ -282,11 +281,6 @@ export default {
             this.js = function() {
               jQuery('h1 .logo a').html(this.$root.color.board);
               jQuery('h1 .logo').removeClass('logo');
-              jQuery([
-                'a[href$="?controller=UserCreationController&action=show&remote=1"]',
-                'a[href^="/?controller=UserViewController&action=external"]',
-                'input[name="is_ldap_user"]'].join())
-                .parent().hide();
             };
           }
           break;
