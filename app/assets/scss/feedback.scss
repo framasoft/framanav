@@ -1,0 +1,114 @@
+#ffeedback {
+  position: fixed;
+  bottom: 42px;
+  right: 42px;
+  z-index: 1102;
+
+  .dropdown-toggle {
+    display:block;
+    opacity: .5;
+    transition: all .2s ease-out;
+    text-align: center;
+
+    &:hover {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+
+    i {
+      width: 56px;
+      height: 56px;
+      line-height: 54px;
+      border-radius: 100%;
+      background-color: $orange;
+      color: #fff;
+      box-shadow: 0 1px 2px 0 rgba(50,54,63,.19),0 6px 18px 0 rgba(50,54,63,.39);
+    }
+  }
+
+  .dropdown-menu {
+    width: 400px;
+    margin-bottom: 15px;
+    border: none;
+    border-bottom: 3px solid $orange;
+    border-radius: 0;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    background: lighten($orange, 37%);
+    padding: 0;
+
+    &:after {
+      position: fixed;
+      content: '';
+      right: 106px;
+      bottom: 101px;
+      width: 0;
+      height: 0;
+      border-bottom: 12px solid transparent;
+      border-right: 24px solid $orange;
+    }
+  }
+
+  .dropdown-header {
+    padding: 0;
+    background: $orange;
+    color: #fff;
+
+    span {
+      font-size: 18px;
+      line-height: 32px;
+    }
+
+    .btn {
+      color: #fff;
+    }
+  }
+
+  .dropdown-body {
+    width: 100%;
+    max-height: 480px;
+    overflow-y: auto;
+  }
+
+  .subtitle {
+    color: #fff;
+    background: $orange;
+    text-align: center;
+    padding: 0 15px 30px;
+    margin:-15px;
+    font-size: 14px;
+  }
+
+  #ffb-participate .btn,
+  .no-answer .btn {
+    white-space: normal;
+    border: none;
+    border-radius: 0;
+    background: #fff;
+    font-size: 13px;
+    opacity: 0.8;
+
+    &:hover {
+      box-shadow: 0px 2px 6px lighten($orange, 25%);
+      opacity: 0.9;
+    }
+
+    .fa-stack {
+      font-size: 1.7em;
+    }
+  }
+}
+
+#ffeedback.open .dropdown-toggle {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+@import "feedback/main";
+@import "feedback/docs";
+@import "feedback/faq";
+@import "feedback/participate";
+@import "feedback/contact";
+
+#framanav_donation {
+  display: none !important;
+}

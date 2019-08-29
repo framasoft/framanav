@@ -6,10 +6,12 @@
     aria-labelledby="modal-finfoLabel"
     >
     <div slot="header">
-      <button type="button" class="close"
+      <button
+        v-text="'×'"
+        type="button"
+        aria-hidden="true"
+        class="close"
         @click="state.info = false; cookie('w', config[2], true);">
-        <span aria-hidden="true">×</span>
-        <span class="sr-only" v-html="$t('txt.close')"></span>
       </button>
       <h1 id="modal-finfoLabel"
         v-html="config[0]"
