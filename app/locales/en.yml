@@ -521,3 +521,68 @@ team:
     join: Join a new public team
     create: Create a new team
     list: Public teams listing
+contact:
+  form:
+    title: Contact form
+    warning:
+    - Before filling out our contact form, please click above on
+    - the category concerned
+    - the project concerned
+    - so that we can respond to you as effectively as possible.
+    required: required
+    optional: optional
+    name: Last name, first name or nickname
+    email: E-mail
+    subject: Subject
+    concerne: Your request concerns
+    message: Message
+    file: File or screenshot
+    fileHelp: 'An attachment is not mandatory but can be very useful. Here is the
+      list of authorized extensions:'
+    submit: Send
+    error_empty: This field must be completed.
+    error_email: You must enter a valid email address.
+  alert:
+    email: Remember to <b> check your email address</b>. If it is false, we will not
+      be able to answer you!
+    confirm: The message has been sent. <br> You will receive an automatic confirmation
+      email. <br> Remember to <b>check</b> that it is not in <b>your spam</b> folder.
+    libre: <b class="label label-warning">Attention</b> It will only be given <b>no
+      answers to questions about how free software works</b>. We are not familiar
+      with all the software in our directory. For this, please use <a href="@:data.link.colibri">our
+      forums</a> or social networks.
+    pad: Don’t forget to <b>give us the full address of the pad</b> that you have
+      a problem with in your message.
+    calc: Don’t forget to <b>give us the address of the calc</b> that you have a problem
+      with in your message.
+    date: Don’t forget to <b>give us the address of the poll</b> that you have a problem
+      with in your message.
+    memo: Don’t forget to <b>give us the address of the memo</b> that you have a problem
+      with in your message.
+    forms: Don’t forget to <b>give us the address of the form</b> that you have a
+      problem with in your message.
+    board: Don’t forget to <b>give us the address of the @:data.color.board space</b>
+      and <b>your username</b> in your message.
+    drive: Don’t forget to <b>give us your username</b> in your message.
+    agenda: Don’t forget to <b>give us your username</b> in your message.
+    listes: Don’t forget to <b>give us the name of your list</b> in your message.
+    site: Don’t forget to <b>give us the address of your site</b> in your message.
+    wiki: Don’t forget to <b>give us the address of your wiki</b> in your message.
+    team: Don’t forget to <b>give us your username</b> and <b>the teams where you
+      are registered</b> in your message.
+    mdp: <b>Never give us your passwords</b>, we don’t need them. Remember that <a
+      href="https://framablog.org/2016/11/23/10-trucs-que-jignorais-sur-internet-et-mon-ordi-avant-de-my-interesser">a
+      email is a postcard without an envelope</a>.
+    kindness: <b>Is your message kind?</b><br> We are <a href="@:data.link.support">a
+      small association living exclusively on donations</a> and we make our best for
+      <a href="@:data.link.dio">resist to the 5 largest companies in the world</a>
+      ({gafam})<br> Improve the services we offer and help you requests <b>time and
+      volunteer energy</b>.<br> Please take this into account when writing your message.
+  concerne:
+  - Announcement of a free event
+  - Invitation to an event
+  - Partnership
+  - Press contact
+  - Newsletter
+  - Questions about the association
+  - 'Service / Employment: response or spontaneous application'

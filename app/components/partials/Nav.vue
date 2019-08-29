@@ -15,6 +15,8 @@
       <span class="sr-only" v-html="text($t('fnav.soutenir.name'))"></span>
     </a>
 
+    <Feedback v-if="false" />
+
     <AlertInfo />
 
     <ModalInfo />
@@ -33,8 +35,8 @@
 import Meta from './Meta.vue';
 import Cortex from './Cortex.vue';
 import NavMenu from './NavMenu.vue';
+import Feedback from './Feedback.vue';
 import AlertInfo from './AlertInfo.vue';
-import ModalFAQ from './ModalFAQ.vue';
 import ModalInfo from './ModalInfo.vue';
 import ModalDon from './ModalDon.vue';
 
@@ -47,7 +49,7 @@ import Framateam from './sites/Framateam.vue';
 
 export default {
   components: {
-    Meta, Cortex, NavMenu, AlertInfo, ModalInfo, ModalDon,
+    Meta, Cortex, NavMenu, Feedback, AlertInfo, ModalInfo, ModalDon,
 
     Optin, Footer,
     Framabin, Framavox, Framateam,
