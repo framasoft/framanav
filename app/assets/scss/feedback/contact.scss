@@ -1,0 +1,104 @@
+#ffb-contact-form {
+  padding: 15px;
+
+  .text-muted {
+    display:none;
+  }
+
+  .alert, input, .btn {
+    border-radius: 0;
+  }
+
+  .input-group-addon {
+    border-right: 0;
+    border-left: 0;
+    background: #fff;
+  }
+
+  input, textarea, select {
+    border-right: 0;
+    border-left: 0;
+    box-shadow: none;
+  }
+
+  .alert {
+    margin: 0;
+    border: 0;
+    font-size: 13px;
+
+    a {
+      background: linear-gradient(to top, #ccc 1px, transparent 1px);
+
+      &:hover,
+      &:focus {
+        background: linear-gradient(to top, #bbb 1px, #ffffff77 1px);
+        text-decoration: none;
+      }
+    }
+  }
+
+  textarea {
+    clear: left;
+    float: none;
+    border: 0;
+    border-left: 1px dashed #ccc;
+  }
+
+  #name_wrapper,
+  #email_wrapper {
+    margin-bottom: 0;
+
+    .input-group-addon, input {
+      border-top: 0;
+    }
+
+    .alert {
+      padding-top: 5px;
+    }
+  }
+
+  #subject_wrapper,
+  #concerne_wrapper {
+    .input-group-addon, input, select {
+      border-top: 0;
+    }
+  }
+
+  #message_wrapper {
+    margin-bottom: 0;
+    background: #fff;
+
+    .input-group-addon {
+      vertical-align: top;
+      padding-top: 10px;
+      border: 0;
+    }
+
+  }
+
+  #subject_wrapper,
+  #concerne_wrapper {
+    margin-bottom: 0;
+  }
+
+  #file_wrapper {
+    background: #fff;
+
+    .input-group-addon, input[type="file"] {
+      border-bottom: 0;
+      height: auto;
+      line-height: 30px;
+    }
+  }
+
+  #concerne_wrapper,
+  #file_wrapper {
+    .input-group-addon {
+      cursor: help;
+    }
+  }
+
+  button.btn {
+    display: none;
+  }
+}

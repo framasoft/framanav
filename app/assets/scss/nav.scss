@@ -2,6 +2,8 @@
   @import "bootstrap-nav";
   @import "global";
 
+  @import "feedback";
+
   .navbar-collapse.in {
     max-height: 360px;
   }
@@ -626,4 +628,11 @@
     margin:0 auto;
     max-width:800px;
   }
+}
+
+/* Modal fix */
+.modal-open #framanav_container,
+.modal-open #ffeedback .dropdown-menu,
+.modal-open #ffeedback .dropdown-toggle {
+  visibility:hidden;
 }

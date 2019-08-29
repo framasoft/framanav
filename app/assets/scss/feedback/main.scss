@@ -1,0 +1,16 @@
+#ffb-main-menu {
+  padding: 15px;
+
+  .btn-block {
+    text-align: left;
+    border: none;
+    border-radius: 0;
+    background: #fff;
+    opacity: 0.8;
+
+    &:hover {
+      box-shadow: 0px 2px 6px lighten($orange, 25%);
+      opacity: 0.9;
+    }
+  }
+}
