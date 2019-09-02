@@ -15,7 +15,7 @@
       <span class="sr-only" v-html="text($t('fnav.soutenir.name'))"></span>
     </a>
 
-    <Feedback v-if="false" />
+    <Feedback v-if="testing.feedback" />
 
     <AlertInfo />
 
@@ -122,6 +122,14 @@ export default {
     });
     document.getElementsByTagName('head')[0].appendChild(fcss);
 
+    // Testing features (keyboard press AABB)
+    const kkeys = [];
+    window.addEventListener('keydown', (e) => {
+      kkeys.push(e.keyCode);
+      if (/65,65,66,66/.test(kkeys.toString())) {
+        this.testing.feedback = true;
+      }
+    }, true);
   },
   data() {
     return {
@@ -131,6 +139,9 @@ export default {
       js: function() {},
       macaron: false,
       cortexReady: false,
+      testing: {
+        feedback: false,
+      }
     };
   },
   mounted() {
