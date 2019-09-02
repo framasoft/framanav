@@ -103,6 +103,37 @@
   opacity: 1;
 }
 
+/* Mobile ≈ full viewport */
+@media (max-width: 640px) {
+  #ffeedback {
+    top: 20px;
+    bottom: 20px;
+    right: 20px;
+    left: 20px;
+
+    .dropdown-toggle {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+
+    .dropdown-menu {
+      width: 100%;
+      height: calc(100% - 56px - 20px);
+      position: absolute;
+      bottom: 56px;
+      &:after {
+        right: 84px;
+        bottom: 79px;
+      }
+    }
+
+    .dropdown-body {
+      max-height: calc(100% - 44px);
+    }
+  }
+}
+
 @import "feedback/main";
 @import "feedback/docs";
 @import "feedback/faq";
