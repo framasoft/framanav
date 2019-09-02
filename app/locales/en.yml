@@ -521,14 +521,23 @@ team:
     join: Join a new public team
     create: Create a new team
     list: Public teams listing
+feedback:
+  title: Framassistance
+  menu:
+    docs: Consult the documentation
+    faq: Getting help
+    participate: Propose an idea for improvement
+    about: About us
+  mainFaq: Frequently asked questions
+  faq: Frequently asked questions about
+  noanswer: No answer is satisfactory?
+  more: Other issues
+  contact: Contact the support of
+  participate: Propose improvements to
+  forum: Ask your question on the forum
 contact:
   form:
     title: Contact form
-    warning:
-    - Before filling out our contact form, please click above on
-    - the category concerned
-    - the project concerned
-    - so that we can respond to you as effectively as possible.
     required: required
     optional: optional
     name: Last name, first name or nickname
@@ -545,6 +554,10 @@ contact:
   alert:
     email: Remember to <b> check your email address</b>. If it is false, we will not
       be able to answer you!
+    sent: The message has been sent.<br> You will receive an automatic email
+      <br> Remember <b>to check</b> that it is not in <b>your
+      spam</b> folder.
+    failed: An error has occurred. The message could not be sent.<br> Please try again later.
     confirm: The message has been sent. <br> You will receive an automatic confirmation
       email. <br> Remember to <b>check</b> that it is not in <b>your spam</b> folder.
     libre: <b class="label label-warning">Attention</b> It will only be given <b>no
@@ -573,11 +586,11 @@ contact:
     mdp: <b>Never give us your passwords</b>, we don’t need them. Remember that <a
       href="https://framablog.org/2016/11/23/10-trucs-que-jignorais-sur-internet-et-mon-ordi-avant-de-my-interesser">a
       email is a postcard without an envelope</a>.
-    kindness: <b>Is your message kind?</b><br> We are <a href="@:data.link.support">a
-      small association living exclusively on donations</a> and we make our best for
-      <a href="@:data.link.dio">resist to the 5 largest companies in the world</a>
-      ({gafam})<br> Improve the services we offer and help you requests <b>time and
-      volunteer energy</b>.<br> Please take this into account when writing your message.
+    kindness: '<b>Is your message kind?</b><br> Framasoft is <a href="@:data.link.support">a
+      small association living exclusively on donations</a> and make her best for
+      <a href="@:data.link.dio">resist to the 5 largest companies in the world</a>:
+      ({gafam})<br> Improve our services and help you requests <b>time and
+      volunteer energy</b>.<br> Please take this into account when writing your message.'
   concerne:
   - Announcement of a free event
   - Invitation to an event
@@ -586,3 +599,19 @@ contact:
   - Newsletter
   - Questions about the association
   - 'Service / Employment: response or spontaneous application'
+participate:
+  git:
+    h3: Bugs, features and development
+    p-intro:
+    - First of all, know that <strong>@:data.color.soft does not develop</strong>.
+      With a few exceptions, we only slightly adapt software
+      existing to offer them to the public.
+    - Before contacting us, it is therefore important to know if your contributions
+      really concern the adaptations made for projects @:data.color.soft
+      or the original software.
+    - It will be more effective to report a bug or suggest improvements to the
+      code, if you do so from the respective development sites. For
+      everything else (translation, graphics, writing, system administration…)
+      do not hesitate to contact us.
+  other:
+    h3: Graphics, proofreading, translations, etc.
