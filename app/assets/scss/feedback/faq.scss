@@ -1,5 +1,6 @@
 #ffb-faq {
   padding: 15px;
+  padding-bottom: 65px;
 
   a.toggle {
     height: 100%;
@@ -91,10 +92,21 @@
   .list-group-item:not(.active) {
     display: none;
   }
-}
 
-#ffb-faq.all {
-  .list-group-item:not(.active) {
+  .all .list-group-item:not(.active) {
     display: block;
+  }
+
+  .all.filter .list-group-item {
+    display: none;
+  }
+
+  .all.nofilter .list-group-item,
+  .all.filter .list-group-item.search {
+    display: block;
+  }
+
+  .filter + .no-answer {
+    margin-top: 30px;
   }
 }

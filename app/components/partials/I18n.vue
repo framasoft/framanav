@@ -9,8 +9,7 @@
         <span class="caret"></span>
       </btn>
       <template slot="dropdown">
-        <li 
-          v-for="lang in locales.avalaible"
+        <li v-for="lang in locales.available"
           :key="lang"
           @click="changeLanguage(lang)">
           <router-link :to="`/${lang}/${($route.path.split('/')[2] || '')}`">

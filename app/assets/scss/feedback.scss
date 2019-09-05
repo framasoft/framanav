@@ -4,25 +4,42 @@
   right: 42px;
   z-index: 1102;
 
+  .btn {
+    border: none;
+    border-radius: 0;
+    text-transform: uppercase;
+  }
+
   .dropdown-toggle {
     display:block;
-    opacity: .5;
+    opacity: .9;
     transition: all .2s ease-out;
     text-align: center;
+    height: 44px;
+    line-height: 42px;
+    border-radius: 21px;
+    padding: 0 20px;
+    background-color: $orange;
+    color: #fff;
+    box-shadow: 0 1px 2px 0 rgba(50,54,63,.19),0 6px 18px 0 rgba(50,54,63,.39);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
 
     &:hover {
       transform: scale(1.1);
       opacity: 1;
     }
 
-    i {
-      width: 56px;
-      height: 56px;
-      line-height: 54px;
-      border-radius: 100%;
-      background-color: $orange;
-      color: #fff;
-      box-shadow: 0 1px 2px 0 rgba(50,54,63,.19),0 6px 18px 0 rgba(50,54,63,.39);
+    .fa-close {
+      margin: 0 -10px;
+    }
+    .fa-life-ring {
+      margin: 0 -10px;
+    }
+    .fa-life-ring + span {
+      margin: 0 -10px 0 10px;
+      display: inline-block;
     }
   }
 
@@ -37,10 +54,10 @@
     padding: 0;
 
     &:after {
-      position: fixed;
+      position: absolute;
       content: '';
-      right: 106px;
-      bottom: 101px;
+      right: 50px;
+      bottom: -13px;
       width: 0;
       height: 0;
       border-bottom: 12px solid transparent;
@@ -69,6 +86,12 @@
     overflow-y: auto;
   }
 
+  .dropdown-footer {
+    position: absolute;
+    bottom: 0;
+    z-index: 2;
+  }
+
   .subtitle {
     color: #fff;
     background: $orange;
@@ -81,8 +104,6 @@
   #ffb-participate .btn,
   .no-answer .btn {
     white-space: normal;
-    border: none;
-    border-radius: 0;
     background: #fff;
     font-size: 13px;
     opacity: 0.8;
@@ -94,6 +115,17 @@
 
     .fa-stack {
       font-size: 1.7em;
+    }
+  }
+
+  .search-form {
+    .input-group-addon,
+    input {
+      border-radius: 0;
+      background: #fff;
+      border: none;
+      box-shadow: none;
+      font-size: 16px;
     }
   }
 }
@@ -119,17 +151,13 @@
 
     .dropdown-menu {
       width: 100%;
-      height: calc(100% - 56px - 20px);
+      height: calc(100% - 50px - 20px);
       position: absolute;
-      bottom: 56px;
-      &:after {
-        right: 84px;
-        bottom: 79px;
-      }
+      bottom: 50px;
     }
 
     .dropdown-body {
-      max-height: calc(100% - 44px);
+      max-height: calc(100% - 89px);
     }
   }
 }
