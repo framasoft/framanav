@@ -1,0 +1,26 @@
+meta:
+  title: Framasoft
+  lead: There is a long way to go, but the road is Free…
+txt:
+  nevershow: Do not display anymore
+  toggle: Toggle menu
+  skip: Skip menu
+  typeYourEmail: Enter your email address
+  yourEmail: Your email here
+  subscribe: Suscribe
+  toTheNewsletter: to the newsletter
+  anotherQuestion: Votre question n’est pas listée ?
+  campaign: Campaigns
+  community: Community
+  action:
+    dl: to download
+    use: to use
+  actionBtn:
+    dl: download
+    use: use
+    play: play
+    calc: create a calc
+    pad: create a pad
+    map: create a map
+    img: create an image
+    poll: create a poll

@@ -1,0 +1,15 @@
+git:
+  h3: Bugs, features and development
+  p-intro:
+  - First of all, know that <strong>@:data.color.soft does not develop</strong>.
+    With a few exceptions, we only slightly adapt software
+    existing to offer them to the public.
+  - Before contacting us, it is therefore important to know if your contributions
+    really concern the adaptations made for projects @:data.color.soft
+    or the original software.
+  - It will be more effective to report a bug or suggest improvements to the
+    code, if you do so from the respective development sites. For
+    everything else (translation, graphics, writing, system administration…)
+    do not hesitate to contact us.
+other:
+  h3: Graphics, proofreading, translations, etc.

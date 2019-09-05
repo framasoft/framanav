@@ -17,5 +17,6 @@ txt:
   source: Source
   contactUs: Contact us
   site: Site
+  search: Rechercher
 color:
   dio: <b class="violet">De-google-ify</b> <b class="orange">Internet</b>
