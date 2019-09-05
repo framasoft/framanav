@@ -1,0 +1,26 @@
+meta:
+  title: Framasoft
+  lead: La route est longue mais la voie est libre…
+txt:
+  toggle: Afficher/masquer le menu
+  skip: Sauter le menu
+  typeYourEmail: Saisissez votre courriel
+  yourEmail: Votre courriel
+  subscribe: S’abonner
+  toTheNewsletter: à la lettre d’informations
+  anotherQuestion: Votre question n’est pas listée ?
+  campaign: Campagnes
+  community: Communauté
+  action:
+    dl: de télécharger
+    use: d’utiliser
+  actionBtn:
+    dl: télécharger
+    use: utiliser
+    play: jouer
+    calc: créer un calc
+    pad: créer un pad
+    map: créer une carte
+    img: créer une image
+    poll: créer un sondage
+  docs: Documentation

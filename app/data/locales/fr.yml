@@ -17,5 +17,6 @@ txt:
   source: Source
   contactUs: Contactez-nous
   site: Site
+  search: Rechercher
 color:
   dio: <b class="violet">Dégooglisons</b> <b class="orange">Internet</b>

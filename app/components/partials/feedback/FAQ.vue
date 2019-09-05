@@ -1,27 +1,26 @@
 <template>
-  <section
-    id="ffb-faq"
-    :class="state.toggle === 'all' ? 'all' : ''">
+  <section id="ffb-faq">
     <!-- Spinner -->
     <div v-if="!state.faq" class="h4 text-center">
       <i class="fa fa-spinner fa-spin fa-2x fa-fw" aria-hidden="true"></i>
     </div>
 
     <!-- Answers -->
-    <div v-else>
+    <div v-else
+      :class="`${/all/.test(state.toggle) ? 'all' : ''} ${search !== '' ? 'filter' : 'nofilter'}`">
 
       <div v-if="$root.txt[$root.site] !== undefined"
-        v-html="`${$t('feedback.faq')} <b>${$root.txt[$root.site]}</b>`"
-        class="subtitle">
+        class="subtitle"
+        v-html="`${$t('feedback.faq')} <b>${$root.txt[$root.site]}</b>`">
       </div>
       <div v-else
-        v-html="$t('feedback.mainFaq')"
-        class="subtitle">
+        class="subtitle"
+        v-html="$t('feedback.mainFaq')">
       </div>
 
       <div v-for="(item, index) in faq"
         :key="index"
-        :class="`list-group-item ${state.toggle === item.id ? 'active' : ''}`">
+        :class="`list-group-item ${state.toggle === item.id ? 'active' : ''} ${item.search}`">
         <a v-show="state.toggle === item.id"
           href="#!"
           class="pull-right close"
@@ -38,26 +37,26 @@
           onclick="return false"
           @click="toggleAnswer(item.id)">
         </a>
-        <h3 v-html="item.question"
-          class="list-group-item-heading">
+        <h3 class="list-group-item-heading"
+          @click="state.toggle = 'all'"
+          v-html="item.question">
         </h3>
-        <div v-html="item.answer" class="list-group-item-text">
+        <div class="list-group-item-text" v-html="item.answer">
         </div>
         <p class="text-center">
           <a v-show="state.toggle === item.id"
             href="#!"
-            v-text="$t('txt.close')"
             class="btn btn-xs btn-default"
             onclick="return false"
-            @click="state.toggle = 'all'">
+            @click="state.toggle = 'all'"
+            v-text="$t('txt.close')">
           </a>
         </p>
       </div>
-      <p v-if="!state.mainFaq && state.faq">
-        <button
-          v-html="$t('feedback.more')"
-          class="btn btn-default btn-xs btn-block"
-          @click="addMainFaq()">
+      <p v-if="!state.mainFaq && state.faq && state.toggle === 'all'">
+        <button class="btn btn-default btn-xs btn-block"
+          @click="addMainFaq()"
+          v-html="$t('feedback.more')">
         </button>
       </p>
     </div>
@@ -101,6 +100,9 @@ export default {
     open: {
       type: Boolean,
       required: true,
+    },
+    search: {
+      type: String,
     }
   },
   data() {
@@ -119,6 +121,11 @@ export default {
     open: function (newValue) {
       if (newValue) {
         this.loadFaq();
+      }
+    },
+    search: function (newValue) {
+      if (newValue !== '') {
+        this.searchUpdate();
       }
     }
   },
@@ -141,6 +148,7 @@ export default {
                   id: html.children[i].querySelector('h3 a').id,
                   question: html.children[i].querySelector('h3 span').innerHTML,
                   answer: html.children[i].querySelector('.list-group-item-text').innerHTML,
+                  search: '',
                 }
               }
             }
@@ -154,6 +162,7 @@ export default {
                     id: html.children[i].querySelector('h3 a').id,
                     question: html.children[i].querySelector('h3 span').innerHTML,
                     answer: html.children[i].querySelector('.list-group-item-text').innerHTML,
+                    search: '',
                   }
                 }
               }
@@ -179,6 +188,23 @@ export default {
     addMainFaq() {
       this.faq = this.faq.concat(this.mainFaq);
       this.state.mainFaq = true;
+    },
+    searchUpdate() {
+      if (!this.state.mainFaq) { /* search = more results */
+        this.addMainFaq();
+      }
+      this.state.toggle = 'all';
+
+      for (let i = 1; i < this.faq.length; i += 1) {
+        const words = this.text(this.search, 'latin').toLowerCase().replace(', ', ',').split(',');
+        const reg = new RegExp(`(${words.join('|')})`, 'g');
+        const content = this.text(`${this.faq[i].question} ${this.faq[i].answer}`, 'latin').toLowerCase();
+        if (reg.test(content)) {
+          this.faq[i].search = 'search';
+        } else {
+          this.faq[i].search = '';
+        }
+      }
     }
   }
 }

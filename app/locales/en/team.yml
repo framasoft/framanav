@@ -1,0 +1,35 @@
+header:
+  lead: Collaborative communication
+carousel:
+- Communicate with your team over a chat on steroids
+- Create channels according to team’s needs
+- Markdown-powered messages
+- Find colleagues messages and answer without getting lost
+create: Create an account
+connect_framagit: Sign in with Framagit
+create_framagit: Sign up with Framagit
+email: Email address or User name
+password: Password
+presentation:
+  h2_1: Getting Started
+  serviceby: '@:data.color.team is a free/libre <b>chat</b> service to communicate
+    with a team providing colleagues’ notifications, conversation history and searching.'
+  createyours: Create your team
+  invite: Invite members
+  newchans: Create channels (public or private)
+  aide: Help
+  learn: 'To learn how to format messages, use emoticons, share images and
+    documents or manage @:data.color.team, checkout our help pages:'
+  trad: (official documentation translation by the team of @:data.html.lang)
+  h2_2: The software
+  framaware: '@:data.color.team relies upon the free software <a href="https://about.mattermost.com/">Mattermost</a>.'
+  license: Mattermost is licensed under @:data.license.mit license.
+  h2_3: Cultivate your garden
+  contrib_upstream: To participate in the development of the software, suggest improvements
+    or simply download it, go to <a href="https://github.com/mattermost/platform">project website</a>.
+  home_install: 'If you want to install this software for your own use and thus
+    gain autonomy, we help you on:'
+teams:
+  join: Join a new public team
+  create: Create a new team
+  list: Public teams listing

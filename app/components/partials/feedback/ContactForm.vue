@@ -1,25 +1,22 @@
 <template>
   <section id="ffb-contact-form">
     <div v-if="success.status === ''">
-      <div
-        v-html="`${$t('feedback.contact')} <b>${$root.txt.soft}</b>`"
-        class="subtitle">
+      <div class="subtitle"
+        v-html="`${$t('feedback.contact')} <b>${$root.txt.soft}</b>`">
       </div>
       <form role="form" action="#" @submit="sendMail">
         <div>
           <!-- Name -->
           <div id="name_wrapper" :class="`form-group ${ok.name}`">
             <div class="input-group">
-              <label
-                v-html="`${$t('contact.form.name')} (${$t('contact.form.required')})`"
-                for="name"
-                class="sr-only">
+              <label for="name"
+                class="sr-only"
+                v-html="`${$t('contact.form.name')} (${$t('contact.form.required')})`">
               </label>
               <span class="input-group-addon" aria-hidden="true">
                 <i class="fa fa-user fa-fw fa-lg"></i>
               </span>
-              <input
-                id="name"
+              <input id="name"
                 v-model="form['your-name']"
                 :placeholder="$t('contact.form.name')"
                 type="text" required
@@ -29,32 +26,20 @@
             </div>
           </div>
 
-          <!-- -->
-          <div v-show="false" aria-hidden="true">
-            <label
-              v-html="`${$t('contact.form.email')} (${$t('contact.form.required')})`"
-              for="e-mail">
-            </label>
-            <input v-model="form['mailou-158']" type="email">
-          </div>
-
           <!-- Email -->
           <div id="email_wrapper" :class="`form-group ${ok.email}`">
             <div class="input-group">
-              <label
-                v-html="`${$t('contact.form.email')} (${$t('contact.form.required')})`"
-                for="email"
-                class="sr-only">
+              <label for="email"
+                class="sr-only"
+                v-html="`${$t('contact.form.email')} (${$t('contact.form.required')})`">
               </label>
               <span class="input-group-addon" aria-hidden="true">
                 <i class="fa fa-envelope-o fa-fw fa-lg"></i>
               </span>
-              <input
-                id="email"
+              <input id="email"
                 v-model="form['your-email']"
                 :placeholder="$t('contact.form.email')"
-                type="email" required
-                size="40"
+                type="email" size="40" required
                 class="form-control"
                 @focusout="check('email')">
             </div>
@@ -63,12 +48,11 @@
         </div>
         <div>
           <!-- Subject -->
-          <div :class="`form-group ${ok.subject}`" id="subject_wrapper">
+          <div id="subject_wrapper" :class="`form-group ${ok.subject}`">
             <div class="input-group">
-              <label
-                v-html="`${$t('contact.form.subject')} (${$t('contact.form.required')})`"
-                for="subject"
-                class="sr-only">
+              <label for="subject"
+                class="sr-only"
+                v-html="`${$t('contact.form.subject')} (${$t('contact.form.required')})`">
               </label>
               <span class="input-group-addon" aria-hidden="true">
                 <i class="fa fa-question fa-fw fa-lg"></i>
@@ -76,29 +60,25 @@
               <input id="subject"
                 v-model="form['your-subject']"
                 :placeholder="$t('contact.form.subject')"
-                type="text" required
-                size="40"
+                type="text" size="40" required
                 class="form-control"
                 @focusout="check('subject')">
             </div>
           </div>
 
           <!-- Concern -->
-          <div
-            v-show="section !== 'contact-participate'"
+          <div v-show="section !== 'contact-participate'"
             id="concerne_wrapper"
             :class="`form-group ${ok.concerne}`">
             <div class="input-group" :title="$t('contact.form.concerne')">
-              <label
-                v-html="`${$t('contact.form.concerne')} (${$t('contact.form.required')})`"
-                for="concerne"
-                class="sr-only">
+              <label for="concerne"
+                class="sr-only"
+                v-html="`${$t('contact.form.concerne')} (${$t('contact.form.required')})`">
               </label>
               <span class="input-group-addon" aria-hidden="true">
                 <i class="fa fa-crosshairs fa-fw fa-lg"></i>
               </span>
-              <select
-                id="concerne"
+              <select id="concerne"
                 v-model="form.concerne"
                 required
                 class="form-control"
@@ -127,38 +107,33 @@
           <!-- Message -->
           <div id="message_wrapper" :class="`form-group ${ok.message}`">
             <div class="input-group">
-              <label
-                v-html="`${$t('contact.form.message')} (${$t('contact.form.required')})`"
-                for="message"
-                class="sr-only">
+              <label for="message"
+                class="sr-only"
+                v-html="`${$t('contact.form.message')} (${$t('contact.form.required')})`">
               </label>
               <span class="input-group-addon" aria-hidden="true">
                 <i class="fa fa-pencil fa-fw fa-lg"></i>
               </span>
-              <textarea
-                id="message"
+              <textarea id="message"
                 v-model="form['your-message']"
                 :placeholder="$t('contact.form.message')"
-                cols="40" rows="10"
-                required
+                cols="40" rows="10" required
                 class="form-control"
                 @focusin="bienveillance = true;"
                 @focusout="check('message')">
               </textarea>
-              <p
-                v-show="bienveillance"
-                v-html="$t('contact.alert.kindness', icons)"
-                class="alert alert-info">
+              <p v-show="bienveillance"
+                class="alert alert-info"
+                v-html="$t('contact.alert.kindness', icons)">
               </p>
               <div v-if="section === 'contact-faq'">
-                <p
-                  v-for="(alert, id) in $t('contact.alert')"
-                  :key="id"
+                <p v-for="(alert, id) in $t('contact.alert')"
                   v-show="form.concerne === $root.txt[id]"
-                  v-html="$t(`contact.alert.${id}`)"
-                  class="alert alert-warning" >
+                  :key="id"
+                  class="alert alert-warning"
+                  v-html="$t(`contact.alert.${id}`)">
                 </p>
-                <p v-html="$t('contact.alert.mdp')" class="alert alert-danger"></p>
+                <p class="alert alert-danger" v-html="$t('contact.alert.mdp')"></p>
               </div>
             </div>
           </div>
@@ -166,18 +141,16 @@
           <!-- File -->
           <div id="file_wrapper" class="form-group">
             <div class="input-group" :title="`${$t('contact.form.fileHelp')} ${ext.join(', ')}`">
-              <label
-                v-html="`${$t('contact.form.file')} (${$t('contact.form.optional')})`"
-                for="file"
-                class="sr-only">
+              <label for="file"
+                class="sr-only"
+                v-html="`${$t('contact.form.file')} (${$t('contact.form.optional')})`">
               </label>
               <span class="input-group-addon" aria-hidden="true">
                 <i class="fa fa-paperclip fa-fw fa-lg"></i>
               </span>
               <input ref="file"
-                type="file"
+                type="file" size="40"
                 :accept="ext.join()"
-                size="40"
                 class="form-control"
                 @change="fileUpload()">
             </div>
@@ -186,13 +159,13 @@
 
         <!-- Submit -->
         <p class="text-center">
-          <input
-            :value="$t('contact.form.submit')"
+          <input :value="$t('contact.form.submit')"
             type="submit"
             class="btn btn-primary">
         </p>
       </form>
     </div>
+
     <div v-if="success.status === 'mail_sent'" class="confirm">
       <p class="text-center">
         <span class="fa-stack fa-5x">
@@ -202,6 +175,7 @@
       </p>
       <p v-html="$t('contact.alert.sent')" class="alert"></p>
     </div>
+
     <div v-if="/failed$/.test(success.status)" class="confirm">
       <p class="text-center">
         <span class="fa-stack fa-5x">

@@ -1,0 +1,65 @@
+form:
+  title: Formulaire de contact
+  required: obligatoire
+  optional: facultatif
+  name: Nom, prénom ou pseudo
+  email: E-mail
+  subject: Sujet
+  concerne: Votre demande concerne
+  message: Message
+  file: Fichier ou capture écran
+  fileHelp: 'Une pièce jointe n’est pas obligatoire mais peut être très utile. Voici
+    la liste des extensions autorisées :'
+  submit: Envoyer
+  error_empty: Ce champ doit être renseigné.
+  error_email: Vous devez saisir une adresse email valide.
+alert:
+  email: Pensez à <b>vérifier votre adresse email</b>. Si elle est fausse, nous
+    ne pourrons pas vous répondre !
+  sent: Le message a bien été envoyé.<br> Vous allez recevoir un mail automatique
+    de confirmation.<br> Pensez à <b>vérifier</b> qu’il ne se trouve pas dans <b>votre
+    dossier spam</b>.
+  failed: Une erreur est survenue. Le message n’a pu être envoyé.<br> Veuillez réessayer ultérieurement.
+  libre: <b class="label label-warning">Attention</b> Il ne sera donné <b>aucune
+    réponse aux questions concernant le fonctionnement de logiciels libres</b>.
+    Nous ne connaissons pas tous les logiciels qui figurent dans notre annuaire.
+    Pour cela, merci d’utiliser <a href="@:data.link.colibri">nos forums</a> ou
+    les réseaux sociaux.
+  pad: N’oubliez pas de <b>nous donner l’adresse complète du pad</b> qui vous pose
+    problème dans votre message.
+  calc: N’oubliez pas de <b>nous donner l’adresse du calc</b> qui vous pose problème
+    dans votre message.
+  date: N’oubliez pas de <b>nous donner l’adresse du sondage</b> qui vous pose problème
+    dans votre message.
+  memo: N’oubliez pas de <b>nous donner l’adresse du memo</b> qui vous pose problème
+    dans votre message.
+  forms: N’oubliez pas de <b>nous donner l’adresse du formulaire</b> qui vous pose
+    problème dans votre message.
+  board: N’oubliez pas de <b>nous donner l’adresse de votre espace</b> @:data.color.board
+    ainsi que <b>votre identifiant</b> dans votre message.
+  drive: N’oubliez pas de <b>nous donner l’identifiant de votre compte</b> dans
+    votre message.
+  agenda: N’oubliez pas de <b>nous donner l’identifiant de votre compte</b> dans
+    votre message.
+  listes: N’oubliez pas de <b>nous donner le nom de votre liste</b> dans votre message.
+  site: N’oubliez pas de <b>nous donner l’adresse de votre site</b> dans votre message.
+  wiki: N’oubliez pas de <b>nous donner l’adresse de votre wiki</b> dans votre message.
+  team: N’oubliez pas de <b>nous donner votre identifiant</b> ainsi que <b>les équipes
+    où vous êtes inscrits</b> dans votre message.
+  mdp: Ne nous donnez <b>jamais vos mots de passe</b>, nous n’en avons pas besoin.
+    N’oubliez pas qu’<a href="https://framablog.org/2016/11/23/10-trucs-que-jignorais-sur-internet-et-mon-ordi-avant-de-my-interesser">un
+    email est une carte postale sans enveloppe</a>.
+  kindness: '<b>Votre message est-il bienveillant ?</b><br> Framasoft est <a href="@:data.link.soutenir">une
+    petite association vivant exclusivement des dons</a> et faisant de son
+    mieux pour <a href="@:data.link.dio">résister aux 5 plus grosses entreprises
+    du monde</a> : {gafam}<br>Améliorer nos services et vous
+    aider requiert <b>du temps et de l’énergie bénévole</b>.<br>Merci d’en tenir
+    compte lorsque vous rédigez votre message.'
+concerne:
+- Annonce d’un événement libre
+- Invitation à un événement
+- Partenariat
+- Contact presse
+- Newsletter
+- Questions sur l’association
+- 'Prestation / Emploi : réponse ou candidature spontanée'

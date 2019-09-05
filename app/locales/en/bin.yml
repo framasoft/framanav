@@ -1,0 +1,28 @@
+header:
+  lead: Send encrypted messages
+presentation:
+  h2_1: Getting started
+  serviceby: '@:data.color.bin is a free and minimalist online service that allows
+    confidential and secure text sharing.'
+  paste: Paste the text to be transmitted.
+  config: If needed, define its shelf life online, add a discussion space or enable
+    code coloration.
+  share: Then share with your correspondents the link that is given to you.
+  crypto: Your data (including comments) is <b>encrypted in the web browser</b>
+    using <a href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard">the
+    algorithm <attr title="Advanced Encryption Standard">AES</attr> 256 bits</a>.<br>It
+    is then transmitted and stored on our servers without us being able to decrypt
+    it. Only you have the key</b> used to encrypt and decrypt the data.
+  h2_2: The software
+  framaware: '@:data.color.bin is based on the software <a href="https://privatebin.info/">PrivateBin</a>,
+    a fork of ZeroBin originally developed by Sébastien Sauvage.'
+  license: PrivateBin and its components are <a href="https://github.com/PrivateBin/PrivateBin/blob/master/LICENSE.md">under
+    free license</a>.
+  browsers: '@:data.color.bin requires Javascript to work and a recent web browser:'
+  noie: The use of Internet Explorer is not recommended.
+  h2_3: Cultivate your garden
+  contrib_upstream: To participate into the development of the software, suggest
+    improvements or just download it, go to <a href="https://github.com/PrivateBin/PrivateBin/">the
+    development site</a>.
+  home_install: 'If you wish to install your own instance of the software and increase
+    your autonomy, we help you at:'

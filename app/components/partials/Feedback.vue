@@ -1,8 +1,9 @@
 <template>
   <div id="ffeedback" :class="`dropup ${show ? 'open' : ''}`">
     <a class="dropdown-toggle" @click="show = !show; section = 'main'" role="button">
-      <i :class="`fa fa-2x fa-${!show ? 'question' : 'close'}`" aria-hidden="true"></i>
-      <span v-text="$t('fnav.sites.aide.name')" class="sr-only"></span>
+      <i :class="`fa fa-fw fa-lg fa-${!show ? 'life-ring' : 'close'}`" aria-hidden="true"></i>
+      <span v-if="!show" v-text="$t('fnav.sites.aide.name')"></span>
+      <span v-else class="sr-only" v-text="$t('txt.close')"></span>
     </a>
     <div class="dropdown-menu dropdown-menu-right">
       <div class="dropdown-header text-center clearfix">
@@ -47,7 +48,7 @@
             @click="section = 'faq'">
             <span class="fa-stack fa-2x">
               <i class="fa fa-circle fa-stack-2x fc_v5"></i>
-              <i class="fa fa-stack-1x fa-life-ring fa-inverse"></i>
+              <i class="fa fa-stack-1x fa-question fa-inverse"></i>
             </span>
             <span v-html="$t('feedback.menu.faq')"></span>
           </a>
@@ -73,11 +74,33 @@
           </a> -->
         </section>
 
-        <FAQ v-show="section === 'faq'" :open="section === 'faq'" />
+        <FAQ v-show="section === 'faq'" :open="section === 'faq'" :search="search" />
 
         <Participate  v-show="section === 'feedback'" />
 
         <ContactForm v-show="/^contact\-/.test(section)" :section="section" />
+      </div>
+
+      <div class="dropdown-footer">
+        <!-- Search -->
+        <div v-show="section === 'faq'" class="search-form">
+          <div class="input-group input-group-lg">
+            <label for="search"
+              class="sr-only"
+              v-html="$t('txt.search')">
+            </label>
+            <input id="search"
+              v-model="search"
+              :placeholder="$t('txt.search')"
+              type="text" size="40"
+              class="form-control"
+            >
+            <span class="input-group-addon" aria-hidden="true">
+              <i v-if="search === ''" class="fa fa-search text-muted"></i>
+              <i v-else class="fa fa-times text-muted" @click="search = ''"></i>
+            </span>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -104,13 +127,14 @@ export default {
         docs: false,
         about: false,
       },
+      search: '',
     }
   },
   methods: {
     close() {
       this.show = false;
       this.section = 'main';
-    }
+    },
   }
 }
 </script>
