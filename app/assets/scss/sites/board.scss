@@ -1,4 +1,5 @@
-[data-url*=".framaboard.org/"] {
+[data-url*=".framaboard.org/"],
+[data-url*=".localhost"] {
   background: #fff !important;
 
   body {
@@ -62,4 +63,3 @@
     top: 60px;
   }
 }
-
