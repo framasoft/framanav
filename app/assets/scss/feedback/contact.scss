@@ -1,6 +1,14 @@
 #ffb-contact-form {
   padding: 15px;
 
+  form {
+    display: inline; /* ~calc */
+  }
+
+  .form-group {
+    margin-left: 0; /* soutenir~ */
+  }
+
   .text-muted {
     display:none;
   }
@@ -19,12 +27,14 @@
     border-right: 0;
     border-left: 0;
     box-shadow: none;
+    opacity: 1;
   }
 
   .alert {
     margin: 0;
     border: 0;
     font-size: 13px;
+    font-weight: normal;
 
     a {
       background: linear-gradient(to top, #ccc 1px, transparent 1px);
@@ -54,6 +64,9 @@
 
     .alert {
       padding-top: 5px;
+      background: transparent; /* participer~, docs~, ~cloud, ~board */
+      color: inherit; /* ~board */
+      letter-spacing: initial; /* participer~ */
     }
   }
 
@@ -74,6 +87,10 @@
       border: 0;
     }
 
+    .alert {
+      margin: 0 5px 5px -44px;
+      padding: 5px 10px;
+    }
   }
 
   #subject_wrapper,

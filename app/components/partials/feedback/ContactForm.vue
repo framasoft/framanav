@@ -158,11 +158,9 @@
         </div>
 
         <!-- Submit -->
-        <p class="text-center">
-          <input :value="$t('contact.form.submit')"
-            type="submit"
-            class="btn btn-primary">
-        </p>
+        <input :value="$t('contact.form.submit')"
+          type="submit"
+          class="btn btn-lg btn-block btn-warning">
       </form>
     </div>
 
