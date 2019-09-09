@@ -4,6 +4,7 @@
     border: none;
     border-top: 8px solid #DBA306;
     height: 94vh;
+    background: #fff; /* ~team */
   }
 
   .embed-responsive-4by3 {
@@ -17,9 +18,12 @@
   .modal-body {
     padding: 0;
     max-height: none;
+    background: transparent; /* ~team */
   }
 
   .modal-footer {
     border: none;
+    margin: 0; /* ~mindmap */
+    background: transparent; /* ~team */
   }
 }

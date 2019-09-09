@@ -1,7 +1,7 @@
 <template>
   <div id="ffeedback" :class="`dropup ${show ? 'open' : ''}`">
     <a class="dropdown-toggle" @click="show = !show; section = 'main'" role="button">
-      <i :class="`fa fa-fw fa-lg fa-${!show ? 'life-ring' : 'close'}`" aria-hidden="true"></i>
+      <i :class="`fa fa-fw fa-lg fa-inverse fa-${!show ? 'life-ring' : 'close'}`" aria-hidden="true"></i>
       <span v-if="!show" v-text="$t('fnav.sites.aide.name')"></span>
       <span v-else class="sr-only" v-text="$t('txt.close')"></span>
     </a>
@@ -55,6 +55,7 @@
           <!-- Git of the service, then contact (rt+participer) form -->
           <a href="#feedback"
             class="btn btn-default btn-block"
+            onclick="return false;"
             @click="section = 'feedback'">
             <span class="fa-stack fa-2x">
               <i class="fa fa-circle fa-stack-2x fc_b9"></i>
@@ -65,6 +66,7 @@
           <!-- About page of the service opened in a modal
           <a href="#about"
             class="btn btn-default btn-block"
+            onclick="return false;"
             @click="modal.about = true">
             <span class="fa-stack fa-2x">
               <i class="fa fa-circle fa-stack-2x fc_o5"></i>
