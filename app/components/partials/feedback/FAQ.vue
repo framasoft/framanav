@@ -7,7 +7,7 @@
 
     <!-- Answers -->
     <div v-else
-      :class="`${/all/.test(state.toggle) ? 'all' : ''} ${search !== '' ? 'filter' : 'nofilter'}`">
+      :class="`${/^all$/.test(state.toggle) ? 'all' : ''} ${search !== '' ? 'filter' : 'nofilter'}`">
 
       <div v-if="$root.txt[$root.site] !== undefined"
         class="subtitle"
@@ -25,7 +25,6 @@
           href="#!"
           class="pull-right close"
           aria-hidden="true"
-          style="margin: -5px -10px 5px 10px"
           onclick="return false"
           @click="state.toggle = 'all'">
           ×
@@ -179,11 +178,11 @@ export default {
     },
     toggleAnswer(id) {
       this.state.toggle = this.state.toggle === 'all' ? id : 'all';
-      window.location.href= "#ffb-top";
+      this.$parent.$refs['ffb-top'].scrollIntoView();
     },
     showContact() {
       this.$parent.section = 'contact-faq';
-      window.location.href= "#ffb-top";
+      this.$parent.$refs['ffb-top'].scrollIntoView();
     },
     addMainFaq() {
       this.faq = this.faq.concat(this.mainFaq);

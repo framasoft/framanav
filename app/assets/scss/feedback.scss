@@ -1,13 +1,43 @@
 #ffeedback {
   position: fixed;
-  bottom: 42px;
+  bottom: 59px;
   right: 42px;
   z-index: 1102;
+  text-shadow: none; /* ~bookin */
+  line-height: 1.5; /* ~agenda */
+
+  * {
+    box-sizing: border-box !important; /* ethercalc, etherpad */
+  }
 
   .btn {
     border: none;
     border-radius: 0;
     text-transform: uppercase;
+  }
+
+  .fa {
+    padding: 0; /* ~board */
+  }
+
+  .fa-inverse {
+    color: #fff; /* ~board */
+  }
+
+  .fa-stack .fa-stack-2x { /* ~colibri */
+    height: inherit;
+    width: inherit;
+    margin-top: 0;
+    margin-left: 0;
+  }
+
+  .form-control {
+    max-width: 100%; /* ~board */
+  }
+
+  .row {
+    width: auto; /* ~carte */
+    max-width: none; /* ~carte */
   }
 
   .dropdown-toggle {
@@ -25,18 +55,19 @@
     text-decoration: none;
     font-size: 14px;
     font-weight: bold;
+    border: none; /* dio */
 
     &:hover {
       transform: scale(1.1);
       opacity: 1;
     }
 
-    .fa-close {
+    .fa {
       margin: 0 -10px;
+      line-height: 42px; /* ~pack */
+      vertical-align: top; /* ~pack */
     }
-    .fa-life-ring {
-      margin: 0 -10px;
-    }
+
     .fa-life-ring + span {
       margin: 0 -10px 0 10px;
       display: inline-block;
@@ -52,6 +83,15 @@
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     background: lighten($orange, 37%);
     padding: 0;
+
+    span {
+      color: #333; /* ~colibri */
+    }
+
+    a:not(.btn) {
+      display: inline;
+      padding: 0;
+    }
 
     &:after {
       position: absolute;
@@ -70,13 +110,17 @@
     background: $orange;
     color: #fff;
 
+    div {
+      padding-top: 0; /* ~blog */
+    }
+
     span {
       font-size: 18px;
       line-height: 32px;
     }
 
-    .btn {
-      color: #fff;
+    .btn-link {
+      padding: 0; /* ~agenda */
     }
   }
 
@@ -84,6 +128,7 @@
     width: 100%;
     max-height: 480px;
     overflow-y: auto;
+    color: #333;
   }
 
   .dropdown-footer {
@@ -118,7 +163,13 @@
     }
   }
 
+  .input-group {
+    margin: 0; /* ~listes */
+  }
+
   .search-form {
+    margin: 0; /* ~forms, soutenir~ (drupal) */
+
     .input-group-addon,
     input {
       border-radius: 0;
@@ -170,4 +221,10 @@
 
 #framanav_donation {
   display: none !important;
+}
+
+#back-to-top, /* dio */
+#topcontrol, /* ~blog, ~book, ~zic */
+.scroll-top-wrapper { /* ~listes */
+  display: none;
 }
