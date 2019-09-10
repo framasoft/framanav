@@ -227,7 +227,7 @@ export default {
         'your-subject': '',
         'your-message': '',
         'your-file': '',
-        'your-referrer': document.referrer,
+        'your-referrer': `${document.referrer};${document.location.href}`,
         'your-languages': window.navigator.languages,
       },
       general: !(Object.keys(this.$root.txt).indexOf(this.$root.site) > -1),

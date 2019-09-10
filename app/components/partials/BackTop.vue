@@ -1,0 +1,68 @@
+<template>
+  <a v-show="btn"
+    id="fback-top"
+    href="#"
+    :title="$t('txt.backTop')"
+    @click.prevent="backTop()">
+    <i class="fa fa-fw fa-lg fa-inverse fa-chevron-up" aria-hidden="true"></i>
+    <span v-text="$t('txt.backTop')" class="sr-only"></span>
+  </a>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      btn: false,
+    }
+  },
+  mounted () {
+    window.addEventListener('scroll', () => {
+      this.btn = window.pageYOffset > window.innerHeight;
+    });
+  },
+  methods: {
+    backTop() {
+      document.body.scrollIntoView({behavior: 'smooth'});
+    }
+  }
+}
+</script>
+
+<style>
+#fback-top {
+  position: fixed;
+  bottom: 0px;
+  right: 42px;
+  z-index: 1102;
+  height: 26px;
+  line-height: 30px;
+  border-radius: 26px 26px 0 0;
+  padding: 0 20px;
+  background-color: #767676 !important;
+  opacity: 0.4;
+  border: none;
+}
+
+#fback-top i {
+  margin: 0 -7px;
+}
+
+#fback-top:hover,
+#fback-top:focus {
+  opacity: 1;
+}
+
+@media (max-width: 640px) {
+  #fback-top {
+    right: 20px;
+  }
+}
+
+/* Remove "top" links */
+#back-to-top[style], /* dio */
+#topcontrol[style], /* ~blog, ~book, ~zic */
+.scroll-top-wrapper[style] { /* ~listes */
+  display: none !important;
+}
+</style>

@@ -18,5 +18,6 @@ txt:
   contactUs: Contactez-nous
   site: Site
   search: Rechercher
+  backTop: Retour en haut
 color:
   dio: <b class="violet">Dégooglisons</b> <b class="orange">Internet</b>

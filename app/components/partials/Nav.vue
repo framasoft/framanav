@@ -16,6 +16,7 @@
     </a>
 
     <Feedback v-if="testing.feedback" />
+    <BackTop />
 
     <AlertInfo />
 
@@ -36,6 +37,7 @@ import Meta from './Meta.vue';
 import Cortex from './Cortex.vue';
 import NavMenu from './NavMenu.vue';
 import Feedback from './Feedback.vue';
+import BackTop from './BackTop.vue';
 import AlertInfo from './AlertInfo.vue';
 import ModalInfo from './ModalInfo.vue';
 import ModalDon from './ModalDon.vue';
@@ -49,7 +51,9 @@ import Framateam from './sites/Framateam.vue';
 
 export default {
   components: {
-    Meta, Cortex, NavMenu, Feedback, AlertInfo, ModalInfo, ModalDon,
+    Meta, Cortex, NavMenu,
+    Feedback, BackTop,
+    AlertInfo, ModalInfo, ModalDon,
 
     Optin, Footer,
     Framabin, Framavox, Framateam,
