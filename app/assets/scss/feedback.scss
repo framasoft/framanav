@@ -1,7 +1,7 @@
 #ffeedback {
   position: fixed;
-  bottom: 59px;
-  right: 42px;
+  bottom: 100px;
+  right: 100px;
   z-index: 1102;
   text-shadow: none; /* ~bookin */
   line-height: 1.5; /* ~agenda */
@@ -58,7 +58,7 @@
     border: none; /* dio */
 
     &:hover {
-      transform: scale(1.1);
+      transform: scale(1.2);
       opacity: 1;
     }
 
@@ -81,7 +81,7 @@
     border-bottom: 3px solid $orange;
     border-radius: 0;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    background: lighten($orange, 37%);
+    background: lighten($orange, 38%);
     padding: 0;
 
     span {
@@ -182,7 +182,7 @@
 }
 
 #ffeedback.open .dropdown-toggle {
-  transform: scale(1.1);
+  transform: scale(1.2);
   opacity: 1;
 }
 
@@ -190,7 +190,7 @@
 @media (max-width: 640px) {
   #ffeedback {
     top: 20px;
-    bottom: 20px;
+    bottom: 40px;
     right: 20px;
     left: 20px;
 
@@ -223,8 +223,3 @@
   display: none !important;
 }
 
-#back-to-top, /* dio */
-#topcontrol, /* ~blog, ~book, ~zic */
-.scroll-top-wrapper { /* ~listes */
-  display: none;
-}

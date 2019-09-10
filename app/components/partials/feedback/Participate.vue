@@ -81,7 +81,7 @@ export default {
   methods: {
     showContact() {
       this.$parent.section = 'contact-participate';
-      window.location.href= "#ffb-top";
+      this.$parent.$refs['ffb-top'].scrollIntoView();
     },
   }
 }
