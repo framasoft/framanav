@@ -9,7 +9,7 @@
     <div v-else
       :class="`${/^all$/.test(state.toggle) ? 'all' : ''} ${search !== '' ? 'filter' : 'nofilter'}`">
 
-      <div v-if="$root.txt[$root.site] !== undefined"
+      <div v-if="siteIn.txt"
         class="subtitle"
         v-html="`${$t('feedback.faq')} <b>${$root.txt[$root.site]}</b>`">
       </div>
@@ -20,7 +20,7 @@
 
       <div v-for="(item, index) in faq"
         :key="index"
-        :class="`list-group-item ${state.toggle === item.id ? 'active' : ''} ${item.search}`">
+        :class="`list-group-item ${state.toggle === item.id ? 'active' : ''} ${item.class}`">
         <a v-show="state.toggle === item.id"
           href="#!"
           class="pull-right close"
@@ -109,10 +109,16 @@ export default {
       general: !(Object.keys(this.$root.txt).indexOf(this.$root.site) > -1),
       mainFaq: [],
       faq: [],
+      siteIn: {
+        txt: this.$root.txt[this.$root.site] !== undefined,
+        status: this.$root.status[this.$root.site] !== undefined,
+      },
       state: {
         mainFaq: false,
         faq: false,
         toggle: 'all',
+        status: false,
+
       },
     }
   },
@@ -147,7 +153,7 @@ export default {
                   id: html.children[i].querySelector('h3 a').id,
                   question: html.children[i].querySelector('h3 span').innerHTML,
                   answer: html.children[i].querySelector('.list-group-item-text').innerHTML,
-                  search: '',
+                  class: '',
                 }
               }
             }
@@ -161,7 +167,7 @@ export default {
                     id: html.children[i].querySelector('h3 a').id,
                     question: html.children[i].querySelector('h3 span').innerHTML,
                     answer: html.children[i].querySelector('.list-group-item-text').innerHTML,
-                    search: '',
+                    class: '',
                   }
                 }
               }
@@ -171,10 +177,74 @@ export default {
               this.state.mainFaq = true;
             }
             this.state.faq = true;
+
+            this.checkStatus();
+            this.loadScheduledIncidents();
+          }).catch(function (err) {
+            console.error(err); // eslint-disable-line
+          });
+      }
+    },
+    checkStatus() {
+      /* Status */
+      if (!this.state.status && this.siteIn.status) {
+        fetch(`https://status.framasoft.org/api/v1/components?id=${this.$root.status[this.$root.site]}`).then((res) => {
+            return res.json();
+          })
+          .then((data) => {
+            if (data.data[0].status > 1) { // There is a incident
+              const cssClass = data.data[0].status < 4 ? 'bg-warning' : 'bg-danger';
+              this.loadLastIncident(this.$root.status[this.$root.site], cssClass);
+            }
+            this.state.status = true;
+          }).catch(function (err) {
+            console.error(err); // eslint-disable-line
+          });
+      }
+    },
+    loadLastIncident(id, cssClass) {
+      fetch(`https://status.framasoft.org/api/v1/incidents?component_id=${id}&sort=id&order=desc`)
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          if (data.data.length > 0) {
+            this.faq.unshift({
+              id: 'status_0',
+              question: data.data[0].name,
+              answer: `<p>${data.data[0].message.replace('\r\n', '<br>')}</p>`,
+              class: cssClass,
+            });
+          }
         }).catch(function (err) {
           console.error(err); // eslint-disable-line
         });
-      }
+    },
+    loadScheduledIncidents() {
+      fetch(`https://status.framasoft.org/api/v1/incidents?component_id=0&sort=id&order=desc`)
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          for (let i = 0; i < data.data.length; i += 1) {
+            if (this.is.before(data.data[i].scheduled_at.replace(/\-/g, '/').substr(0, 10))
+              && this.siteIn.txt) {
+              const reg = new RegExp(`(${this.text(this.$root.txt[this.$root.site], 'latin').toLowerCase()})`, 'g');
+              const content = this.text(`${data.data[i].message} ${data.data[i].name}`, 'latin').toLowerCase();
+              console.log(reg, content); // eslint-disable-line
+              if (reg.test(content)) {
+                this.faq.unshift({
+                  id: `status_${i + 1}`,
+                  question: data.data[i].name,
+                  answer: `<p>${data.data[i].message.replace('\r\n', '<br>')}</p>`,
+                  class: 'bg-info',
+                });
+              }
+            }
+          }
+        }).catch(function (err) {
+          console.error(err); // eslint-disable-line
+        });
     },
     toggleAnswer(id) {
       this.state.toggle = this.state.toggle === 'all' ? id : 'all';
@@ -199,9 +269,9 @@ export default {
         const reg = new RegExp(`(${words.join('|')})`, 'g');
         const content = this.text(`${this.faq[i].question} ${this.faq[i].answer}`, 'latin').toLowerCase();
         if (reg.test(content)) {
-          this.faq[i].search = 'search';
+          this.faq[i].class = `${this.faq[i].class.replace(/search/g, '')} search`;
         } else {
-          this.faq[i].search = '';
+          this.faq[i].class = this.faq[i].class.replace(/search/g, '');
         }
       }
     }

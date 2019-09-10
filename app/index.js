@@ -141,7 +141,8 @@ data.site = data.site.replace(/framand/i, 'and') // TODO : remplacer par noFrama
   .replace(/(\.framasoft|frama\.)/i, '')
   .replace(/framin/i, 'min')
   .replace(/frame/i, 'me')
-  .replace(/frama/i, '');
+  .replace(/frama/i, '')
+  .replace(/localhost:8080/i, 'board');
 
 // [site] Aliases
 if (/(tontonroger|trouvons)/.test(data.host)) { data.site = 'bee'; }
