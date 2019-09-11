@@ -1,6 +1,9 @@
 <template>
-  <div id="ffeedback" :class="`dropup ${show ? 'open' : ''}`">
-    <a class="dropdown-toggle" @click="show = !show; section = 'main'" role="button">
+  <div id="ffeedback"
+    :class="`dropup ${show ? 'open' : ''}`"
+    v-draggable
+  >
+    <a class="dropdown-toggle" @click="show = !drag ? !show : show; drag = false; section = 'main'" role="button">
       <i :class="`fa fa-fw fa-lg fa-inverse fa-${!show ? 'life-ring' : 'close'}`" aria-hidden="true"></i>
       <span v-if="!show" v-text="$t('fnav.sites.aide.name')"></span>
       <span v-else class="sr-only" v-text="$t('txt.close')"></span>
@@ -130,6 +133,51 @@ export default {
         about: false,
       },
       search: '',
+      drag: false,
+      position: {
+        bottom: 100,
+        right: 100,
+      },
+    }
+  },
+  directives: {
+    draggable: {
+      bind: function (el, binding, vnode) {
+        const offset = {
+          mouse: { x: 0, y: 0 },
+          btn: { x: 0, y: 0 },
+        };
+
+        function mousemove(e) {
+          if (document.selection) {
+            document.selection.empty()
+          } else {
+            window.getSelection().removeAllRanges()
+          }
+          el.style.bottom = `${window.innerHeight - offset.btn.y - e.clientY - el.clientHeight + offset.mouse.y}px`;
+          el.style.right = `${window.innerWidth - offset.btn.x - e.clientX - el.clientWidth + offset.mouse.x}px`;
+          return false;
+        }
+
+        function mouseup() {
+          vnode.context.$data.drag = (vnode.context.$data.position.bottom !== el.style.bottom
+            && vnode.context.$data.position.right !== el.style.right);
+          document.removeEventListener('mousemove', mousemove);
+          document.removeEventListener('mouseup', mouseup);
+        }
+
+        el.addEventListener('mousedown', function(e) {
+          Object.assign(offset, {
+            mouse: {x: event.clientX, y: e.clientY},
+            btn: {x: el.offsetLeft, y: el.offsetTop},
+          });
+          vnode.context.$data.position.bottom = el.style.bottom;
+          vnode.context.$data.position.right = el.style.right;
+          document.addEventListener('mousemove', mousemove);
+          document.addEventListener('mouseup', mouseup);
+          return false;
+        });
+      }
     }
   },
   methods: {
