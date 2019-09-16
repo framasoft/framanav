@@ -1,10 +1,12 @@
 #ffeedback {
-  position: fixed;
-  bottom:  100px;
-  right: 100px;
-  z-index: 1102;
-  text-shadow: none; /* ~bookin */
-  line-height: 1.5; /* ~agenda */
+  .moveable {
+    position: fixed;
+    bottom:  100px;
+    right: 100px;
+    z-index: 1102;
+    text-shadow: none; /* ~bookin */
+    line-height: 1.5; /* ~agenda */
+  }
 
   * {
     box-sizing: border-box !important; /* ethercalc, etherpad */
@@ -22,6 +24,12 @@
 
   .fa-inverse {
     color: #fff; /* ~board */
+  }
+
+  .fa-drag-handle {
+    color: darken($orange, 12%);
+    font-size: 20px;
+    cursor: move;
   }
 
   .fa-stack .fa-stack-2x { /* ~colibri */
@@ -58,7 +66,6 @@
     border: none; /* dio */
 
     &:hover {
-      transform: scale(1.2);
       opacity: 1;
     }
 
@@ -68,9 +75,13 @@
       vertical-align: top; /* ~pack */
     }
 
-    .fa-life-ring + span {
+    .fa-inverse + span {
       margin: 0 -10px 0 10px;
       display: inline-block;
+    }
+    span + .fa-drag-handle {
+      margin-left: 12px;
+      line-height: 46px;
     }
   }
 
@@ -91,17 +102,6 @@
     a:not(.btn) {
       display: inline;
       padding: 0;
-    }
-
-    &:after {
-      position: absolute;
-      content: '';
-      right: 50px;
-      bottom: -13px;
-      width: 0;
-      height: 0;
-      border-bottom: 12px solid transparent;
-      border-right: 24px solid $orange;
     }
   }
 
@@ -182,44 +182,23 @@
 }
 
 #ffeedback.open .dropdown-toggle {
-  transform: scale(1.2);
   opacity: 1;
 }
 
-/* Mobile ≈ full viewport */
 @media (max-width: 640px) {
-  #ffeedback {
-    top: 20px;
-    bottom: 40px;
+  #ffeedback .moveable {
+    bottom: 20px;
     right: 20px;
-    left: 20px;
-
-    .dropdown-toggle {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-    }
-
-    .dropdown-menu {
-      width: 100%;
-      height: calc(100% - 50px - 20px);
-      position: absolute;
-      bottom: 50px;
-    }
-
-    .dropdown-body {
-      max-height: calc(100% - 89px);
-    }
   }
 }
 
-@import "feedback/main";
-@import "feedback/docs";
-@import "feedback/faq";
-@import "feedback/participate";
-@import "feedback/contact";
+
+@import "main";
+@import "docs";
+@import "faq";
+@import "participate";
+@import "contact";
 
 #framanav_donation {
   display: none !important;
 }
-

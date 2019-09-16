@@ -96,18 +96,21 @@
 
     &.bg-info:not(.active) {
       border: 1px solid #b2d5db;
+      white-space: pre-wrap;
       &:after { box-shadow: -5px -20px 30px #e1f8fc; }
       h3 { border-bottom-color: #b2d5db; }
     }
 
     &.bg-warning:not(.active) {
       border: 1px solid #ffcf4f;
+      white-space: pre-wrap;
       &:after { box-shadow: -5px -20px 30px #ffebb5; }
       h3 { border-bottom-color: #ffcf4f; }
     }
 
     &.bg-danger:not(.active) {
       border: 1px solid #e0b3a8;
+      white-space: pre-wrap;
       &:after { box-shadow: -5px -20px 30px #fde0dc; }
       h3 { border-bottom-color: #e0b3a8; }
     }

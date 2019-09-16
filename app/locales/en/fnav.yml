@@ -346,7 +346,7 @@ sites:
     name: Volunteering
     link: https://soutenir.framasoft.org/benevolat
   contact:
-    name: Contact us
+    name: Contact @:data.txt.soft
     link: https://contact.framasoft.org
   partenaires:
     name: Partners
@@ -364,7 +364,7 @@ sites:
     name: <abbr>FAQ</abbr>
     link: https://contact.framasoft.org/foire-aux-questions
   aide:
-    name: Help
+    name: Mutual support
     link: https://contact.framasoft.org/#aide
   legals:
     name: Legals
