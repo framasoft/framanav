@@ -2,7 +2,7 @@
   @import "bootstrap-nav";
   @import "global";
 
-  @import "feedback";
+  @import "feedback/feedback";
 
   .navbar-collapse.in {
     max-height: 360px;
@@ -635,4 +635,13 @@
 .modal-open #ffeedback .dropdown-menu,
 .modal-open #ffeedback .dropdown-toggle {
   visibility:hidden;
+}
+
+.fa-drag-handle:before {
+  content: "\f142 \f142";
+  letter-spacing: 0.1em;
+}
+
+.moveable-control-box {
+  display: none !important;
 }
