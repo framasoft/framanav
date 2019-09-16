@@ -26,10 +26,12 @@
     .container-fluid {
       margin:auto;
       background-color:#f8f8f8;
+      height: initial; /* ~team */
+      overflow: initial; /* ~team */
     }
 
    .navbar-collapse {
-     background: #f8f8f8; /* fix team */
+     background: #f8f8f8; /* ~team */
    }
 
     @media (min-width: 768px) {
