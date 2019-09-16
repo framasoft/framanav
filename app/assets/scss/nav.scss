@@ -176,7 +176,7 @@
       .fs_start,  .fs_evl,
       .fs_zic, .fs_evl,
       .fs_diolist, .fs_slides, .fs_maestro, .fs_bee, .fs_carte, .fs_talk, .fs_vox,
-      .fs_bag, .fs_news, .fs_games, .fs_minetest, .fs_drive, .fs_clic,
+      .fs_bag, .fs_news, .fs_minetest, .fs_drive, .fs_clic,
       .fs_wikipedia,
       .fs_stats, .fs_status, .fs_moderation {
         border-bottom: 1px solid #e5e5e5;
@@ -283,7 +283,14 @@
       background-color: #6A5687;
 
       &:hover, &:focus, &:active {
-         background-color: #635182;
+        background-color: #635182;
+      }
+
+      span {
+        line-height: 14px;
+        padding: 7px 0;
+        display: inline-block;
+        vertical-align: middle;
       }
     }
 

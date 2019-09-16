@@ -91,9 +91,11 @@
             <a
               :href="myframa"
               class="btn-primary"
-              @click.prevent="openMyframa()">
+              @click.prevent="openMyframa()"
+              @mouseover="myFramaLabel = $root.txt.my"
+              @mouseout="myFramaLabel = $t('txt.bookmarkThisPage')">
               <i :class="`fa fa-fw fa-lg ${$root.icon.my}`" aria-hidden="true"></i>
-              {{ $root.txt.my }}
+              <span v-html="myFramaLabel"></span>
             </a>
             <template slot="popover">
               <div v-html="$t('fnav.myframa.d1')"></div>
@@ -123,6 +125,7 @@ export default {
           '&description=', encodeURIComponent(document.getSelection()),
           '&source=bookmarklet',
         ].join(''),
+      myFramaLabel: this.$t('txt.bookmarkThisPage'),
     }
   },
   methods: {

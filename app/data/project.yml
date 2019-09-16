@@ -6,14 +6,14 @@ meta:
 fnav:
   cat:
     logiciel:
-      ['libre', 'key', 'dvd', 'pack', 'start', 'evl', 'vvl', 'clibre']
+      ['libre', 'key', 'dvd', 'pack', 'start', 'evl', 'vvl']
     culture:
-      ['blog', 'book', 'bookin', 'lang', 'tube', 'zic', 'evl', 'ptilouk', 'planet']
+      ['blog', 'book', 'bookin', 'lang', 'tube', 'zic', 'games', 'minetest', 'evl']
     services:
       ['diolist', 'pad', 'calc', 'forms', 'agenda', 'date', 'board', 'mindmap', 'vectoriel',
       'slides', 'maestro', 'bee', 'carte', 'sphere', 'piaf', 'team', 'listes', 'talk', 'vox',
-      'memo', 'notes', 'bag', 'news', 'games',
-      'minetest', 'drop', 'bin', 'pic', 'link', 'drive', 'clic', 'my', 'git',
+      'memo', 'notes', 'bag', 'news',
+      'drop', 'bin', 'pic', 'link', 'drive', 'clic', 'my', 'git',
       'site', 'wiki']
     follow:
       ['diaspora', 'mastodon', 'twitter', 'facebook', 'newsletter', 'rss',

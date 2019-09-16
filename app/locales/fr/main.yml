@@ -11,6 +11,7 @@ txt:
   anotherQuestion: Votre question n’est pas listée ?
   campaign: Campagnes
   community: Communauté
+  bookmarkThisPage: Marquer<br>cette page
   action:
     dl: de télécharger
     use: d’utiliser
