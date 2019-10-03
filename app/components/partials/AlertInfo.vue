@@ -86,6 +86,25 @@ export default {
               ];
             }
             break;
+          case 'bee':
+            if (this.$t('lang') === 'fr') {
+              c = [
+                'warning',
+                `Attention : [Framabee|Trouvons.org|Tonton Roger] ne fonctionnant plus correctement,
+                ce méta-moteur de recherche sera fermé à partir du 24/10/2019. 
+                <a href="https://framablog.org/2019/09/24/deframasoftisons-internet">
+                Plus d'infos ici.</a>`
+              ];
+            } else {
+              c = [
+                'warning',
+                `Warning: as [Framabee|Trouvons.org|Tonton Roger] isn't working properly anymore, 
+                this meta-search engine will be closed from 2019/10/24<sup>th</sup>.
+                <a href="https://framablog.org/2019/09/24/deframasoftisons-internet">
+                More info here.</a>`
+              ];
+            }
+            break;
 
           // no-default
         }
