@@ -5,3 +5,9 @@
     height: 100%;
   }
 }
+
+[data-url*="://degooglisons-internet.org"][data-inframe="true"] {
+  body:not(#home) main {
+    margin-top: 0;
+  }
+}
