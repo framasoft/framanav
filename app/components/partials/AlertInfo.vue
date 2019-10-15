@@ -110,17 +110,35 @@ export default {
         }
       }
 
-      /* Save Your Internet */
+      /* Campaign 2019 */
       if (c[0] === undefined
-        && this.is.after('2019/03/20')
-        && this.is.before('2019/03/22')) {
-        c = [
-          'info black',
-          `<a href="https://pledge2019.eu/fr" class="saveyourinternet">
-            <img src="${this.$root.baseurl}img/com/saveyourinternet.png" alt=""/>
-          </a>`,
-          'nav-alert-syi'
-        ];
+        && !/(contributopia|soutenir)/.test(site)
+        && this.is.after('2019/10/14')
+        && this.is.before('2019/11/04')) {
+        if (this.$t('lang') === 'fr') {
+          c = [
+            'info',
+            `Pour sa nouvelle campagne de don, Framasoft vous ouvre
+            <a herf="https://contributopia.org/fr/journal">les carnets de voyage de Contributopia</a>
+            pour partager avec vous 2 ans de découvertes, d’observations et de collaborations
+            (lire nos explications
+            <a href="https://framablog.org/2019/10/15/les-carnets-de-voyage-de-contributopia/">sur le Framablog</a>).
+            <br>
+            Si vous le pouvez, pensez à
+            <a href="https://contributopia.org/fr/journal#soutenir">soutenir nos actions par un don</a>.`,
+            'nav-alert-cuo'
+          ];
+        } else {
+          c = [
+            'info',
+            `Framasoft publishes “<a href="https://contributopia.org/en/journal">Contributopia’s travel journals</a>”.
+            From October to December of 2019, we will assess our many (donations-founded) actions,
+            which are tax-deductible for French taxpayers.
+            <br>
+            <a href="https://contributopia.org/en/journal#soutenir">Donate here</a> if you can.`,
+            'nav-alert-cuo'
+          ];
+        }
       }
 
       // Merge + return config
