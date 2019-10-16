@@ -119,7 +119,7 @@ export default {
           c = [
             'info',
             `Pour sa nouvelle campagne de don, Framasoft vous ouvre
-            <a herf="https://contributopia.org/fr/journal">les carnets de voyage de Contributopia</a>
+            <a href="https://contributopia.org/fr/journal">les carnets de voyage de Contributopia</a>
             pour partager avec vous 2 ans de découvertes, d’observations et de collaborations
             (lire nos explications
             <a href="https://framablog.org/2019/10/15/les-carnets-de-voyage-de-contributopia/">sur le Framablog</a>).
