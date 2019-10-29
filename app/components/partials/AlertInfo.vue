@@ -59,8 +59,8 @@ export default {
               c = [
                 'warning',
                 `Afin de procéder à une mise à jour majeure et une migration de
-                base de données, le service ${this.$root.color.agenda} sera interrompu le lundi 27 mai dès 9h, 
-                pour une durée n’excédant pas 24 heures. Prenez vos précautions ! 
+                base de données, le service ${this.$root.color.agenda} sera interrompu le lundi 27 mai dès 9h,
+                pour une durée n’excédant pas 24 heures. Prenez vos précautions !
                 Plus d’infos : <a href="https://status.framasoft.org/incident/477">status.framasoft.org</a>`,
               ];
             }
@@ -70,20 +70,29 @@ export default {
               c = [
                 'warning',
                 `Afin de procéder à une mise à jour majeure et une migration de
-                base de données, le service ${this.$root.color.drive} sera interrompu le lundi 20 mai dès 9h, 
-                pour une durée n’excédant pas 24 heures. Prenez vos précautions ! 
+                base de données, le service ${this.$root.color.drive} sera interrompu le lundi 20 mai dès 9h,
+                pour une durée n’excédant pas 24 heures. Prenez vos précautions !
                 Plus d’infos : <a href="https://status.framasoft.org/incident/476">status.framasoft.org</a>`,
               ];
             }
             break;
           case 'forms':
-            if (this.is.before('2019/04/08')) {
-              c = [
-                'warning',
-                `Le service ${this.$root.color.forms} sera inaccessible le 8 avril au matin pour
-                une mise à jour qui permettra d’améliorer ses performances.
-                Plus d’infos sur <a href="https://status.framasoft.org/incident/470">status.framasoft.org</a>`,
-              ];
+            if (this.is.before('2019/11/04')) {
+              if (this.$t('lang') === 'fr') {
+                c = [
+                  'warning',
+                  `Le service ${this.$root.color.forms} sera inaccessible le 4 novembre à partir de 8h pour
+                  la mise à jour du système d'exploitation du serveur.
+                  Plus d’infos sur <a href="https://status.framasoft.org/incident/550">status.framasoft.org</a>`,
+                ];
+              } else {
+                c = [
+                  'warning',
+                  `The ${this.$root.color.forms} service will be unavailable on November 4th from 8am
+                  for the update of the server operating system.
+                  More informations on <a href="https://status.framasoft.org/incident/550">status.framasoft.org</a>`,
+                ];
+              }
             }
             break;
           case 'bee':
@@ -91,14 +100,14 @@ export default {
               c = [
                 'warning',
                 `Attention : [Framabee|Trouvons.org|Tonton Roger] ne fonctionnant plus correctement,
-                ce méta-moteur de recherche sera fermé à partir du 24/10/2019. 
+                ce méta-moteur de recherche sera fermé à partir du 24/10/2019.
                 <a href="https://framablog.org/2019/09/24/deframasoftisons-internet">
                 Plus d'infos ici.</a>`
               ];
             } else {
               c = [
                 'warning',
-                `Warning: as [Framabee|Trouvons.org|Tonton Roger] isn't working properly anymore, 
+                `Warning: as [Framabee|Trouvons.org|Tonton Roger] isn't working properly anymore,
                 this meta-search engine will be closed from 2019/10/24<sup>th</sup>.
                 <a href="https://framablog.org/2019/09/24/deframasoftisons-internet">
                 More info here.</a>`
