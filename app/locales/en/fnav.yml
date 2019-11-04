@@ -1,5 +1,5 @@
 soutenir:
-  name: Make a donation ?
+  name: Make a donation?
   link: https://soutenir.framasoft.org
   t1: Because free as in “free speech” doesn’t mean free as in “free beer”
   d1: Framasoft would not exist without our strong volunteer community but could
@@ -37,7 +37,7 @@ modaldon:
 optin:
   t: I agree to Framasoft sending important information to this address
   d1: (We swear, we won’t resell our files, even to the NSA!)
-  d2: Why suscribe ?
+  d2: Why suscribe?
   e1: Email addresses don’t match.
   e2: The email address {email} is not valid.
   s1: Your email address {email} has been added to our list.
