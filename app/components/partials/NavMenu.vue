@@ -87,6 +87,7 @@
             placement="bottom"
             trigger="hover-focus"
             append-to="#framanav"
+            class="hidden-sm"
             :title="text($t('fnav.myframa.t1'))">
             <a
               :href="myframa"
