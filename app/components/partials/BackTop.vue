@@ -1,6 +1,6 @@
 <template>
   <a v-show="btn"
-    id="fback-top"
+    id="f-backtop"
     href="#"
     :title="$t('txt.backTop')"
     @click.prevent="backTop()">
@@ -30,7 +30,7 @@ export default {
 </script>
 
 <style>
-#fback-top {
+#f-backtop {
   position: fixed;
   bottom: 0px;
   right: 42px;
@@ -44,17 +44,17 @@ export default {
   border: none;
 }
 
-#fback-top i {
+#f-backtop i {
   margin: 0 -7px;
 }
 
-#fback-top:hover,
-#fback-top:focus {
+#f-backtop:hover,
+#f-backtop:focus {
   opacity: 1;
 }
 
 @media (max-width: 640px) {
-  #fback-top {
+  #f-backtop {
     right: 20px;
   }
 }

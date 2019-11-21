@@ -1,68 +1,55 @@
 <template>
-  <modal id="modal-soutenir"
+  <b-modal id="f-modal-soutenir"
     v-model="state.don"
-    :style="(!state.don) ? 'display: none;' : ''"
+    :static="true"
+    :lazy="true"
     :title="$t('fnav.modaldon.title')"
-    aria-labelledby="modal-soutenirLabel"
-    @hide="donClose();">
-    <div slot="header">
-      <button type="button" class="close" @click="state.don = false;">
-        <span aria-hidden="true">×</span>
-        <span class="sr-only" v-html="$t('txt.close')"></span>
-      </button>
-      <h1 id="modal-soutenirLabel"
-        v-html="$t('fnav.modaldon.title')"
-      ></h1>
-    </div>
+    :cancel-title-html="$t('txt.close')"
+    cancel-variant="light"
+    :ok-title-html="$t('txt.nevershow')"
+    @hidden="donClose()">
+    <div v-html="$t('fnav.modaldon.desc', { action: $t(config[1])})"></div>
 
-    <div class="clearfix" id="modal-soutenirBody"
-      v-html="$t('fnav.modaldon.desc', { action: $t(config[1])})">
-    </div>
-
-    <div slot="footer">
-      <div class="clearfix">
-        <p class="col-md-12 text-center">
-          <a target="_blank" :href="`${$root.link.soutenir}?f=modal`"
+    <template v-slot:modal-footer>
+      <div class="row">
+        <div class="col-md-12 mb-3">
+          <a target="_blank"
+            :href="`${$t('link.soutenir')}?f=modal`"
             class="btn btn-soutenir btn-block">
-            <i :class="`fa fa-fw ${$root.icon.soutenir}`" aria-hidden="true"></i>
+            <i :class="`fa fa-fw ${$t('icon.soutenir')}`" aria-hidden="true"></i>
             <span v-html="$t('fnav.modaldon.b1')"></span>
             <span class="sr-only" v-html="`(${$t('txt.newWindow')})`"></span>
           </a>
-        </p>
-        <p class="col-md-6 text-center">
-          <button id="modal-dl"
-            :href="state.donTarget"
-            class="btn btn-xs btn-default btn-block"
+        </div>
+        <div class="col pr-2">
+          <button
+            class="btn btn-sm btn-outline-secondary btn-block"
             @click="state.don = false;">
             <span
               v-if="config[2] === 'txt.actionBtn.use'"
-              v-html="$t('fnav.modaldon.b3', { btn: `${$t(config[2])} ${$root.name}`})"
+              v-html="$t('fnav.modaldon.b3', { btn: `${$t(config[2])} ${$t('name')}`})"
             ></span>
             <span
               v-else
               v-html="$t('fnav.modaldon.b3', { btn: `${$t(config[2])}`})"
             ></span>
           </button>
-        </p>
-        <p class="col-md-6 text-center">
-          <button id="modal-dl2"
-            class="btn btn-xs btn-default btn-block"
-            style="line-height: 36px;"
-            @click="state.don = false; storage.modal.don = [true, 31536000000]"
+        </div>
+        <div class="col pl-2">
+          <button
+            class="btn btn-sm btn-outline-secondary btn-block h-100"
+            @click="state.don = false; storage.modal.don = [true, 31536000000];"
             v-html="$t('fnav.modaldon.b4')">
           </button>
-        </p>
+        </div>
       </div>
-    </div>
-  </modal>
+    </template>
+  </b-modal>
 </template>
 
 <script>
-import { Modal } from 'uiv';
 export default {
-  components: {
-    Modal,
-  },
+
   data() {
     return {
       config: ['', '', '', 604800000],
@@ -71,19 +58,19 @@ export default {
         don: false,
         donTarget: '#SoutenirFramasoft',
       },
-      storage: this.$root.storage,
+      storage: this.$t('storage'),
     }
   },
   mounted() {
-    this.siteConfig(this.$root.site);
+    this.siteConfig(this.$t('site'));
 
     if (this.config[0] !== '') {
       if (this.config[0] === 'onstart') {
-        this.state.don = !this.cookie('r', this.$root.cookie.don);
+        this.state.don = !this.cookie('r', this.$t('cookie.don'));
       } else {
         document.querySelectorAll(this.config[0]).forEach(a =>
           a.onclick = (e) => {
-            this.state.don = !this.cookie('r', this.$root.cookie.don);
+            this.state.don = !this.cookie('r', this.$t('cookie.don'));
             if (this.state.don) {
               this.state.donTarget = a.href;
               e.preventDefault();
@@ -95,7 +82,7 @@ export default {
   },
   methods: {
     donClose() {
-      this.cookie('w', this.$root.cookie.don, true, this.storage.modal.don[1]);
+      this.cookie('w', this.$t('cookie.don'), true, this.storage.modal.don[1]);
       this.storage.modal.don = [true, this.storage.modal.don[1]];
       this.globalStorage.minus('o', this.storage);
       window.location.href = this.state.donTarget;
@@ -118,7 +105,7 @@ export default {
             c = ['a[href*="download-monitor/download.php?id="]'];
             break;
           case 'calc':
-            if (/accueil\.framacalc\.org/.test(this.$root.host)) {
+            if (/accueil\.framacalc\.org/.test(this.$t('host'))) {
               c = ['a[href*="lite.framacalc.org/"]', 'txt.action.use', 'txt.actionBtn.calc'];
             }
             break;
@@ -138,8 +125,8 @@ export default {
             c = ['a[href*="framaclic.org"]'];
             break;
           case 'mindmap':
-            if (/framindmap.org\/c\/maps\//.test(this.$root.url)
-              && !/\/edit/.test(this.$root.url)) {
+            if (/framindmap.org\/c\/maps\//.test(this.$t('url'))
+              && !/\/edit/.test(this.$t('url'))) {
               c = ['onstart', 'txt.action.use', 'txt.actionBtn.use'];
             }
             break;
@@ -147,7 +134,7 @@ export default {
             c = ['a[href*=".framapad.org/p/"]', 'txt.action.use', 'txt.actionBtn.pad'];
             break;
           case 'vectoriel':
-            if (!/svg-editor/.test(this.$root.url)) {
+            if (!/svg-editor/.test(this.$t('url'))) {
               c = ['a[href$="svg-editor.html"]', 'txt.action.use', 'txt.actionBtn.img'];
             }
             break;

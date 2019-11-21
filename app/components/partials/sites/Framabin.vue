@@ -1,15 +1,15 @@
 <template>
   <div>
-    <header role="banner" id="fbin_header">
-      <a :href="$root.link.bin"><h1 v-html="$root.color.bin"></h1></a>
+    <header role="banner" id="f-bin-header" class="f-bs4">
+      <a :href="$t('link.bin')"><h1 v-html="$t('color.bin')"></h1></a>
       <p class="lead" v-html="$t('bin.header.lead')"></p>
       <hr class="trait" role="presentation" />
     </header>
 
-    <section  id="fbin_presentation">
+    <section  id="f-bin-presentation" class="f-bs4">
       <hr role="presentation" />
       <div class="row">
-        <div class="col-md-4" id="tuto-faq">
+        <div class="col-md" id="tuto-faq">
           <h2 v-html="$t('bin.presentation.h2_1')"></h2>
           <p class="text-center" role="presentation" aria-hidden="true">
             <i class="fa fa-question-circle"></i>
@@ -24,7 +24,7 @@
             <p v-html="$t('bin.presentation.crypto')"></p>
           </div>
          </div>
-         <div class="col-md-4" id="le-logiciel">
+         <div class="col-md" id="le-logiciel">
           <h2 v-html="$t('bin.presentation.h2_2')"></h2>
           <p class="text-center" role="presentation" aria-hidden="true">
             <i class="fa fa-cloud"></i>
@@ -40,16 +40,16 @@
           </ul>
           <p v-html="$t('bin.presentation.noie')"></p>
          </div>
-         <div class="col-md-4" id="jardin">
+         <div class="col-md" id="jardin">
           <h2 v-html="$t('bin.presentation.h2_3')"></h2>
           <p class="text-center" role="presentation" aria-hidden="true">
-            <i class="glyphicon glyphicon-tree-deciduous"></i>
+            <i class="fa fa-leaf"></i>
           </p>
           <p v-html="$t('bin.presentation.contrib_upstream')"></p>
           <p v-html="$t('bin.presentation.home_install')"></p>
           <p class="text-center">
-            <a href="http://framacloud.org/fr/cultiver-son-jardin/pastebin.html" class="btn btn-success">
-              <i class="glyphicon glyphicon-tree-deciduous" aria-hidden="true"></i>
+            <a :href="$t('cloud.bin')" class="btn btn-success">
+              <i class="fa fa-leaf" aria-hidden="true"></i>
               framacloud.org
             </a>
           </p>
@@ -75,14 +75,13 @@ export default {
     const container = document.querySelector('.container.ombre');
     if (container) {
       container
-        .insertAdjacentElement('afterbegin', document.getElementById('fbin_header'));
+        .insertAdjacentElement('afterbegin', document.getElementById('f-bin-header'));
         container
-        .insertAdjacentElement('beforeend', document.getElementById('fbin_presentation'));
+        .insertAdjacentElement('beforeend', document.getElementById('f-bin-presentation'));
     }
     if (document.getElementById('sendbutton')) {
       document.getElementById('sendbutton').classList.add('btn-primary');
     }
-
   }
 }
 </script>

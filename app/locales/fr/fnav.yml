@@ -456,7 +456,7 @@ sites:
     name: Bénévolat valorisé
     link: https://soutenir.framasoft.org/benevolat
   contact:
-    name: Contacter @:data.txt.soft
+    name: Contacter @:txt.soft
     link: https://contact.framasoft.org
   partenaires:
     name: Partenaires
@@ -495,15 +495,15 @@ sites:
     t1: '@:color.dio : une
       ambitieuse campagne.'
     d1: Les services en ligne de géants tentaculaires comme Google, Amazon, Facebook,
-      Apple ou Microsoft (GAFAM) mettent en danger nos vies numériques. @:data.color.soft s’est lancé comme défi audacieux de vous proposer,
+      Apple ou Microsoft (GAFAM) mettent en danger nos vies numériques. @:color.soft s’est lancé comme défi audacieux de vous proposer,
       avec votre aide, une alternative Libre, Éthique, Décentralisé et Solidaire
       pour chacun de ces services.
   cuo2:
     name: '<b>2017-2020</b> : Contributopia'
     link: https://contributopia.org
     d0: Campagne de sensiblisation
-    t1: '@:data.color.cuo : dégoogliser ne suffit pas'
-    d1: '@:data.color.soft vous invite à un
+    t1: '@:color.cuo : dégoogliser ne suffit pas'
+    d1: '@:color.soft vous invite à un
       voyage exaltant : explorons ensemble des mondes numériques. Des mondes où
       les outils informatiques se conçoivent en collaboration, où les pratiques
       respectueuses essaiment et pollinisent, où s’ouvrent les portes de la contribution.'

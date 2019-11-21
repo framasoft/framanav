@@ -1,31 +1,28 @@
 <template>
-  <portal target-el="#falert">
-    <alert id="nav-alert"
-      :style="(!state.alert) ? 'display: none;' : ''"
-      :type="config[0]"
+  <portal target-el="#fp-alert" target-class="f-bs4">
+    <b-alert id="f-alert"
+      :show="state.alert"
+      :variant="config[0]"
       v-if="state.alert"
       dismissible
+      :dismiss-label="$t('txt.close')"
       @dismissed="state.alert = false; cookie('w', config[2], true, config[3]);">
       <div><p class="text-center" v-html="config[1]"></p></div>
-    </alert>
+    </b-alert>
   </portal>
 </template>
 
 <script>
-import { Alert } from 'uiv';
 export default {
-  components: {
-    Alert,
-  },
   created() {
     if (!window.vuefsPrerender) {
-      document.querySelector('#fnav')
-        .insertAdjacentHTML('beforebegin', '<div id="falert"></div>');
+      document.querySelector('#f-nav')
+        .insertAdjacentHTML('beforebegin', '<div id="fp-alert"></div>');
     }
   },
   data() {
     return {
-      config: ['', '', 'nav-alert', 604800000],
+      config: ['', '', 'f-alert', 604800000],
       /** [color (from bootstrap), text, cookie name, cookie duration] */
       state: {
         alert: false,
@@ -33,7 +30,7 @@ export default {
     }
   },
   mounted() {
-    this.siteConfig(this.$root.site);
+    this.siteConfig(this.$t('site'));
 
     if (this.config[1] !== '') {
       this.state.alert = !this.cookie('r', this.config[2]);
@@ -59,7 +56,7 @@ export default {
               c = [
                 'warning',
                 `Afin de procéder à une mise à jour majeure et une migration de
-                base de données, le service ${this.$root.color.agenda} sera interrompu le lundi 27 mai dès 9h,
+                base de données, le service ${this.$t('color.agenda')} sera interrompu le lundi 27 mai dès 9h,
                 pour une durée n’excédant pas 24 heures. Prenez vos précautions !
                 Plus d’infos : <a href="https://status.framasoft.org/incident/477">status.framasoft.org</a>`,
               ];
@@ -70,7 +67,7 @@ export default {
               c = [
                 'warning',
                 `Afin de procéder à une mise à jour majeure et une migration de
-                base de données, le service ${this.$root.color.drive} sera interrompu le lundi 20 mai dès 9h,
+                base de données, le service ${this.$t('color.drive')} sera interrompu le lundi 20 mai dès 9h,
                 pour une durée n’excédant pas 24 heures. Prenez vos précautions !
                 Plus d’infos : <a href="https://status.framasoft.org/incident/476">status.framasoft.org</a>`,
               ];
@@ -81,37 +78,18 @@ export default {
               if (this.$t('lang') === 'fr') {
                 c = [
                   'warning',
-                  `Le service ${this.$root.color.forms} sera inaccessible le 4 novembre à partir de 8h pour
+                  `Le service ${this.$t('color.forms')} sera inaccessible le 4 novembre à partir de 8h pour
                   la mise à jour du système d'exploitation du serveur.
                   Plus d’infos sur <a href="https://status.framasoft.org/incident/550">status.framasoft.org</a>`,
                 ];
               } else {
                 c = [
                   'warning',
-                  `The ${this.$root.color.forms} service will be unavailable on November 4th from 8am
+                  `The ${this.$t('color.forms')} service will be unavailable on November 4th from 8am
                   for the update of the server operating system.
                   More informations on <a href="https://status.framasoft.org/incident/550">status.framasoft.org</a>`,
                 ];
               }
-            }
-            break;
-          case 'bee':
-            if (this.$t('lang') === 'fr') {
-              c = [
-                'warning',
-                `Attention : [Framabee|Trouvons.org|Tonton Roger] ne fonctionnant plus correctement,
-                ce méta-moteur de recherche sera fermé à partir du 24/10/2019.
-                <a href="https://framablog.org/2019/09/24/deframasoftisons-internet">
-                Plus d'infos ici.</a>`
-              ];
-            } else {
-              c = [
-                'warning',
-                `Warning: as [Framabee|Trouvons.org|Tonton Roger] isn't working properly anymore,
-                this meta-search engine will be closed from 2019/10/24<sup>th</sup>.
-                <a href="https://framablog.org/2019/09/24/deframasoftisons-internet">
-                More info here.</a>`
-              ];
             }
             break;
 

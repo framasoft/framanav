@@ -129,7 +129,7 @@
       </div>
     </portal>
 
-    <modal v-model="!!state.publicList"
+    <modal v-model="state.publicList"
       :title="$t('team.teams.list')"
       id="modal-publicList"
       :style="(!state.selectTeam) ? 'display: none;' : ''"
@@ -159,12 +159,8 @@
 </template>
 
 <script>
-import { Carousel, Slide, Modal } from 'uiv';
 
 export default {
-  components: {
-    Carousel, Slide, Modal,
-  },
   created() {
     const portals = ['header', 'screen', 'prez', 'public'];
     const fteam = {};

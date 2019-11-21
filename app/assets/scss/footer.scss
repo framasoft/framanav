@@ -38,12 +38,12 @@
 [data-url*="://connard.pro"],
 
 [data-inframe="true"] {
-    #framafooter,
-    #framafooter[style] {
-        display: none !important;
-    }
+  #f-footer,
+  #f-footer[style] {
+    display: none !important;
+  }
 }
 
-[data-url*="framadate.org/create_"] #framafooter {
+[data-url*="framadate.org/create_"] #f-footer {
   position: relative !important;
 }

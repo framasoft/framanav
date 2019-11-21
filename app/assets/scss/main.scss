@@ -1,3 +1,4 @@
+/* Variables */
 $bgcolor: #eee;
 
 $violet: #6a5687;
@@ -13,120 +14,45 @@ $img-ombre: 0px 2px 6px rgba(50, 50, 50, 0.4);
 $carousel-ombre: 0px 3px 3px rgba(50, 50, 50, 0.5);
 $button-ombre: 0px 1px 1px rgba(50, 50, 50, 0.5);
 
-@import "../fonts/ptsans_caption";
+/* Frameworks */
+// @import 'frameworks/bootstrap3';
+// @import 'frameworks/bootstrap4';
 
-body {
-  background: $bgcolor;
-  font-size:14px;
-}
+/* Fonts */
+@import '../../../node_modules/fork-awesome/css/fork-awesome.min.css';
+@import 'fonts/ptsans_caption';
 
-h1 {
-  font-family: "DejaVu Sans",Verdana,Geneva,sans-serif;
-  font-size: 48px;
-  font-weight: bold;
-}
+/* Frama */
+// @import 'frama/bs3';
+// @import 'frama/common';
 
-.lead {
-  font-style:italic;
-}
-
-.container.ombre {
-  margin-top: 20px;
-  margin-bottom: 30px;
-  padding: 20px 30px;
-}
-
-#tuto-faq,
-#tuto-video,
-#le-logiciel,
-#jardin {
-  p[role="presentation"] {
-    i, span.glyphicon { /* glyphicon is depreciated */
-      font-size:50px;
-    }
-  }
-}
-
-body {
-  font-family: "DejaVu Sans", Verdana, Geneva, sans-serif;
-  color:#333;
-}
-
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
-  font-family: PTSansCaption, GillSans, sans-serif;
-  font-weight: bold;
-  color: #616161;
-}
-
-h1 {font-family: "DejaVu Sans", Verdana, Geneva, sans-serif; font-weight:bold; }
-
-header .lead {
-  font-style:italic;
-}
-
-.trait { /* hr */
-  background-color: #EEE;
-  height: 11px;
-  margin: 15px 0px;
-  border: medium none;
-}
-
-.ombre {
-  background-color: #FFF;
-  -webkit-box-shadow: $ombre;
-  -moz-box-shadow: $ombre;
-  box-shadow: $ombre;
-}
-
-.container.ombre {
-  margin-top: 20px;
-  margin-bottom: 30px;
-  padding: 20px 30px;
-}
-
-img.ombre {
-  box-shadow: $img-ombre;
-  margin:10px;
-  padding:0;
-  width:90%;
-}
-
-.signature {
-  font-style: italic;
-  text-align:right;
-  color:#795548;
-}
-
-@import "nav";
-@import "global";
+@import 'nav';
 
 /* Sites Frama */
-@import "sites/bee";
-@import "sites/bin";
-@import "sites/board";
-@import "sites/bookin";
-@import "sites/calc";
-@import "sites/carte";
-@import "sites/clic";
-@import "sites/colibri";
-@import "sites/date";
-@import "sites/forms";
-@import "sites/libre";
-@import "sites/listes";
-@import "sites/localhost";
-@import "sites/mindmap";
-@import "sites/news";
-@import "sites/pad";
-@import "sites/pic";
-@import "sites/team";
-@import "sites/vectoriel";
-@import "sites/vox";
-@import "sites/wiki";
+@import 'sites/bin';
+@import 'sites/board';
+@import 'sites/bookin';
+@import 'sites/calc';
+@import 'sites/carte';
+@import 'sites/clic';
+@import 'sites/colibri';
+@import 'sites/date';
+@import 'sites/forms';
+@import 'sites/libre';
+@import 'sites/listes';
+@import 'sites/localhost';
+@import 'sites/mindmap';
+@import 'sites/news';
+@import 'sites/pad';
+@import 'sites/pic';
+@import 'sites/team';
+@import 'sites/vectoriel';
+@import 'sites/vox';
+@import 'sites/wiki';
 
 /* Ajustements */
-@import "nav-fixed";
-@import "nav-iframe";
-@import "footer";
-@import "mute";
-@import "overflow";
+@import 'nav-fixed';
+@import 'nav-iframe';
+@import 'footer';
+@import 'mute';
+@import 'overflow';

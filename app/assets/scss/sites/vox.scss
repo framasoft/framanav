@@ -1,23 +1,21 @@
 [data-url*="://framavox.org"] {
-  #framavox_container h1 {
-    font-size: 48px;
-    font-family: "DejaVu Sans",Verdana,Geneva,sans-serif !important;
-    font-weight: bold;
+  &#f-- {
+    background: #eee;
   }
 
-  .lead { font-style: italic; font-size: 21px !important;}
+  #fp-vox {
+    @import '../frama/bs3';
+    @import '../frama/bs3/carousel';
+    @import '../frama/common';
 
-  .container.ombre {
-    margin-top: 30px;
-    margin-bottom: 30px;
-    padding: 20px 30px;
-  }
+    color: #333;
 
-  img.ombre {
-    box-shadow: $img-ombre;
-    margin: 10px;
-    padding: 0px;
-    width: 80%;
+    .lead { font-size: 21px;}
+
+    .trait {
+      height: 11px;
+      border: none;
+    }
   }
 
   /* Fix nav */
@@ -41,8 +39,8 @@
   md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar),
   md-toolbar.md-default-theme:not(.md-menu-toolbar) h1, md-toolbar:not(.md-menu-toolbar) h1,
   .modal-header-cancel-button {
-      background: #6A5687 !important;
-      color: #fff !important;
+    background: #6A5687 !important;
+    color: #fff !important;
   }
 
   .sessions.new .terms,
@@ -89,13 +87,8 @@
     display: none;
   }
 
-  #fvox {
-    @import "bootstrap-vox";
-    @import "global";
-  }
-
   .logged-out {
-    #fvox[style] {
+    #fp-vox[style] {
       display: block !important;
     }
 
@@ -108,7 +101,7 @@
   }
 
   .home-hidden {
-    #fvox[style] {
+    #fp-vox[style] {
       display: none !important;
     }
 

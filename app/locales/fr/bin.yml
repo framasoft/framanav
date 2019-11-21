@@ -2,7 +2,7 @@ header:
   lead: Transmettez des messages chiffrés
 presentation:
   h2_1: Prise en main
-  serviceby: '@:data.color.bin est un service en ligne libre et minimaliste qui
+  serviceby: '@:color.bin est un service en ligne libre et minimaliste qui
     permet de partager des textes de manière confidentielle et sécurisée.'
   paste: Collez le texte à transmettre.
   config: Si besoin, définissez sa durée de conservation en ligne, ajoutez un espace
@@ -15,11 +15,11 @@ presentation:
     de les déchiffrer. <b>Vous seuls possedez la clé</b> utilisée pour chiffrer
     et déchiffrer les données.
   h2_2: Le logiciel
-  framaware: '@:data.color.bin repose sur le logiciel <a href="https://privatebin.info/">PrivateBin</a>,
+  framaware: '@:color.bin repose sur le logiciel <a href="https://privatebin.info/">PrivateBin</a>,
     un fork de ZeroBin initialement développé par Sébastien Sauvage.'
   license: PrivateBin et ses composants sont <a href="https://github.com/PrivateBin/PrivateBin/blob/master/LICENSE.md">sous
     licence libre</a>.
-  browsers: '@:data.color.bin requiert l’activation du Javascript pour fonctionner
+  browsers: '@:color.bin requiert l’activation du Javascript pour fonctionner
     ainsi qu’un navigateur web récent :'
   noie: L’utilisation d’Internet Explorer n’est pas recommandée.
   h2_3: Cultivez votre jardin
