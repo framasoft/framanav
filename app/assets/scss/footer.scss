@@ -14,6 +14,7 @@
 [data-url*="://framadrive.org"][data-url*="index.php/app"]:not([data-url*="registration"]),
 [data-url*="://framadrive.org"][data-url*="index.php/setting"],
 
+[data-url*="://framaestro.org/p/"],                                     /* dans un projet Framaestro */
 [data-url*="://framindmap.org/c/maps"][data-url*="/edit"],              /* dans l’éditeur de Wisemapping */
 [data-url*="://framinetest.org/carte/"],                                /* dans la carte Minetest */
 [data-url*="://framanews.org/ttrss"],                                   /* dans TTRSS (pas actif) */

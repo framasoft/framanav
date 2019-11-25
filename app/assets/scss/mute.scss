@@ -22,14 +22,14 @@
 [data-url*="://contributopia.org"],
 
 [data-inframe="true"] {
-  #nav-alert {
+  #f-alert {
     display: none !important;
   }
 
-  #modal-finfo[style],
-  #modal-finfo[style] + .modal-backdrop,
-  #modal-soutenir[style],
-  #modal-soutenir[style] + .modal-backdrop {
+  #f-modal-info[style],
+  #f-modal-info[style] + .modal-backdrop,
+  #f-modal-soutenir[style],
+  #f-modal-soutenir[style] + .modal-backdrop {
     display: none !important;
   }
   .modal-open {
@@ -61,7 +61,7 @@
 [data-url*="://docs.framasoft.org"],
 [data-url*="://framacloud.org"],
 [data-url*="://participer.framasoft.org"] {
-  #nav-alert {
+  #f-alert {
     display: none !important;
   }
 
