@@ -1,4 +1,22 @@
 [data-url*="://framateam.org"] {
+  &#f-- .f-bs4 {
+    @import '../frama/bs4';
+    @import '../frama/bs4/carousel';
+    @import '../frama/common';
+
+    color: #333;
+
+    .lead { font-size: 21px;}
+
+    .trait {
+      height: 11px;
+      border: none;
+    }
+  }
+
+  #f-modal-publicList .btn.disabled {
+    display: none;
+  }
   /************************* *
    * En dehors de Mattermost *
    * *********************** */
@@ -6,7 +24,7 @@
 
     background: #eee !important;
 
-    .framateam {
+    .f-team {
       display: block;
     }
 
@@ -209,13 +227,13 @@
     margin-top: 7px;
   }
 
-  #fteam_public, #fteam_prez, #fteam_screen,
+  #fp-team-public, #fp-team-prez, #fp-team-screen,
   #login_section + .col-md-5 a[href="/signup_user_complete"] {
     display: none;
   }
-  #ct-select_team #fteam_public,
-  #ct-login #fteam_prez,
-  #ct-login #fteam_screen {
+  #ct-select_team #fp-team-public,
+  #ct-login #fp-team-prez,
+  #ct-login #fp-team-screen {
     display: block;
   }
   /*******************
@@ -226,8 +244,8 @@
     /* padding-top: 62px; */
     background: inherit;
 
-    .framateam,
-    #fteam_screen {
+    .f-team,
+    #fp-team-screen {
       display: none;
     }
 
@@ -260,8 +278,8 @@
     .navbar-right .dropdown-menu { right: -100px; }
 
     #editStatusMenu {
-        left:auto;
-        top:60px;
+      left:auto;
+      top:60px;
     }
 
     .admin-sidebar {

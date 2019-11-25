@@ -5,7 +5,7 @@
 export default {
   created() {
     // Matomo
-    this.analytics(this.$root.site);
+    this.analytics(this.$t('site'));
   },
   mounted() {
     // Favicons
@@ -22,12 +22,12 @@ export default {
       'bot.', 'contact.', 'degooglisons-internet', 'forum.', 'participer.',
       'soutenir.)'
       ].join('|'), 'i');
-    if (regSites.test(this.$root.host)) {
-      icons[0].file = `fav_${this.$root.site}.png`;
-      icons[1].file = `${this.$root.site}.png`;
+    if (regSites.test(this.$t('host'))) {
+      icons[0].file = `fav_${this.$t('site')}.png`;
+      icons[1].file = `${this.$t('site')}.png`;
     }
 
-    if (/(pad)/i.test(this.$root.host)) {
+    if (/(pad)/i.test(this.$t('host'))) {
       icons[0].file = 'fav_pad.png';
       icons[1].file = 'pad.png';
     }
@@ -37,7 +37,7 @@ export default {
     Object.assign(icons[0].link, {
       rel: 'icon',
       type: 'image/png',
-      href: `${this.$root.baseurl}icons/${icons[0].file}`,
+      href: `${this.$t('baseurl')}icons/${icons[0].file}`,
     });
     document.getElementsByTagName('head')[0].appendChild(icons[0].link);
 
@@ -46,7 +46,7 @@ export default {
     Object.assign(icons[1].link, {
       rel: 'apple-touch-icon',
       type: 'image/png',
-      href: `${this.$root.baseurl}icons/${icons[1].file}`,
+      href: `${this.$t('baseurl')}icons/${icons[1].file}`,
     });
     document.getElementsByTagName('head')[0].appendChild(icons[1].link);
 
@@ -55,7 +55,7 @@ export default {
     Object.assign(rss, {
       rel: 'alternate',
       type: 'application/rss+xml',
-      href: this.$root.link.rss,
+      href: this.$t('link.rss'),
       title: this.$i18n.t('fnav.sites.rss.d1'),
     });
     document.getElementsByTagName('head')[0].appendChild(rss);

@@ -22,24 +22,19 @@
 [data-url*="://contributopia.org"],
 
 [data-inframe="true"] {
-    #nav-alert {
-        display: none !important;
-    }
+  #nav-alert {
+    display: none !important;
+  }
 
-    #modal-finfo[style],
-    #modal-finfo[style] + .modal-backdrop,
-    #modal-soutenir[style],
-    #modal-soutenir[style] + .modal-backdrop {
-        display: none !important;
-    }
-    .modal-open {
-        overflow: auto;
-    }
-
-    #framanav_donation,
-    #framanav_donation[style] {
-        display: none !important;
-    }
+  #modal-finfo[style],
+  #modal-finfo[style] + .modal-backdrop,
+  #modal-soutenir[style],
+  #modal-soutenir[style] + .modal-backdrop {
+    display: none !important;
+  }
+  .modal-open {
+    overflow: auto;
+  }
 }
 
 /* Ni bandeau ni macaron */
@@ -66,20 +61,16 @@
 [data-url*="://docs.framasoft.org"],
 [data-url*="://framacloud.org"],
 [data-url*="://participer.framasoft.org"] {
-    #nav-alert {
-        display: none !important;
-    }
+  #nav-alert {
+    display: none !important;
+  }
 
-    #framanav_donation,
-    #framanav_donation[style] {
-        display: none !important;
-    }
 }
 
 [data-url*="://my.framasoft.org"][data-url*="source=bookmarklet"] {
-    #framanav_container {
-      display: none;
-    }
+  #f-header {
+    display: none;
+  }
 }
 
 

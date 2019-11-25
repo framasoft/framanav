@@ -56,7 +56,7 @@ cat:
 sites:
   libre:
     t1: The free culture directory
-    d1: '@:data.txt.soft historical project: hundreds of free softwares and cultural
+    d1: '@:txt.soft historical project: hundreds of free softwares and cultural
       contents organized and tested, displayed with short notices'
   key:
     t1: Le plein de liberté dans une simple clé
@@ -346,7 +346,7 @@ sites:
     name: Volunteering
     link: https://soutenir.framasoft.org/benevolat
   contact:
-    name: Contact @:data.txt.soft
+    name: Contact @:txt.soft
     link: https://contact.framasoft.org
   partenaires:
     name: Partners
@@ -384,14 +384,14 @@ sites:
     t1: '@:color.dio: an ambitions campaign.'
     d1: 'Online services as provided by hegemonic giants such as Google, Amazon,
       Facebook, Apple or Microsoft (GAFAM) are putting our digital life and privacy
-      at risk. @:data.color.soft was indulging in a big challenge: offer, with your
+      at risk. @:color.soft was indulging in a big challenge: offer, with your
       help, a Libre, Ethic, Decentralized and Solidary alternative for every popular
       service.'
   cuo2:
     name: '<b>2017-2020</b>: Contributopia'
     d0: Campagne de sensiblisation,
-    t1: '@:data.color.cuo: de-googl-ify is not enough'
-    d1: '@:data.color.soft invites you on an exciting journey: let’s explore digital
+    t1: '@:color.cuo: de-googl-ify is not enough'
+    d1: '@:color.soft invites you on an exciting journey: let’s explore digital
       worlds together. worlds where computer tools are conceived in collaboration,
       where respectful practices swarm and pollinate, where the doors of contribution
       open.'

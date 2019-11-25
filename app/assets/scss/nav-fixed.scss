@@ -12,14 +12,14 @@
 [data-url*="://contact.framasoft.org"],
 [data-url*="://status.framasoft.org"],
 [data-url$="test/verbose-fixed.html"] {
-    body {
-        padding-top: 42px;
-    }
+  body {
+    padding-top: 42px;
+  }
 
-    #fnav {
-        position: fixed;
-        top: 0;
-        z-index: 1042;
-        width: 100%;
-    }
+  #f-nav {
+    position: fixed;
+    top: 0;
+    z-index: 1042;
+    width: 100%;
+  }
 }

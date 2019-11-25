@@ -1,74 +1,74 @@
 [data-url*=".framapad.org/p/"][data-inframe="false"] {
-    *, *:before, *:after {
-        -webkit-box-sizing: content-box !important;
-        -moz-box-sizing: content-box !important;
-        box-sizing: content-box !important;
-    }
+  *, *:before, *:after {
+    -webkit-box-sizing: content-box !important;
+    -moz-box-sizing: content-box !important;
+    box-sizing: content-box !important;
+  }
 
-    #editorcontainerbox {
-        top:42px !important;
-    }
-    #embed,#connectivity,#settings,#importexport,#users {
-        top:78px !important;
-    }
-    .stickyChat {
-        top:79px !important;
-    }
+  #editorcontainerbox {
+    top:42px !important;
+  }
+  #embed,#connectivity,#settings,#importexport,#users {
+    top:78px !important;
+  }
+  .stickyChat {
+    top:79px !important;
+  }
 
-    .toolbar ul li select {
-        height:20px !important;
-    }
-    #helpbubbleslink > .buttonicon {
-        font-size: 18px !important;
-    }
+  .toolbar ul li select {
+    height:20px !important;
+  }
+  #helpbubbleslink > .buttonicon {
+    font-size: 18px !important;
+  }
 
-    .toolbar ul li a .buttonicon {
-        top: -2px !important;
-    }
+  .toolbar ul li a .buttonicon {
+    top: -2px !important;
+  }
 
-    .popup label {
-        margin-bottom:0px;
-        font-weight:normal;
-    }
-    .popup input[type="text"] {
-        -webkit-box-sizing: border-box !important;
-        -moz-box-sizing: border-box !important;
-        box-sizing: border-box !important;
-    }
+  .popup label {
+    margin-bottom:0px;
+    font-weight:normal;
+  }
+  .popup input[type="text"] {
+    -webkit-box-sizing: border-box !important;
+    -moz-box-sizing: border-box !important;
+    box-sizing: border-box !important;
+  }
 
-    .popup h1, .popup h2 {
-        margin-top:0px;
-        margin-bottom:0px;
-    }
+  .popup h1, .popup h2 {
+    margin-top:0px;
+    margin-bottom:0px;
+  }
 
-    /* Fix toolbar on mobile */
-    @media only screen and (min-device-width:320px)and (max-device-width:720px) {
-        .toolbar ul.menu_left {
-            top:42px !important;
-        }
+  /* Fix toolbar on mobile */
+  @media only screen and (min-device-width:320px)and (max-device-width:720px) {
+    .toolbar ul.menu_left {
+      top:42px !important;
     }
+  }
 }
 
 [data-url*=".framapad.org/p/"] {
-    /* Hide .doc export (bug avec libreoffice de Stretch) */
-    #exportworda {
-        display: none;
-    }
-    
-    .fa-video-camera:before {
-        font-family: ForkAwesome !important;
-    }
+  /* Hide .doc export (bug avec libreoffice de Stretch) */
+  #exportworda {
+    display: none;
+  }
+
+  .fa-video-camera:before {
+    font-family: ForkAwesome !important;
+  }
 }
 
 [data-url*="mypads.framapad.org/mypads/"] {
-    .container-fluid.ombre {
-        box-shadow: none;
-        padding-bottom: 15px;
-    }
+  .container-fluid.ombre {
+    box-shadow: none;
+    padding-bottom: 15px;
+  }
 }
 
 @media (max-width:600px) {
-    html[data-url*=".framapad.org/p/"] {
-        overflow: initial;
-    }
+  html[data-url*=".framapad.org/p/"] {
+    overflow: initial;
+  }
 }

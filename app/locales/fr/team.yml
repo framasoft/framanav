@@ -12,7 +12,7 @@ email: Adresse email ou nom d’utilisateur
 password: Mot de passe
 presentation:
   h2_1: Prise en main
-  serviceby: '@:data.color.team  est un service de <b>tchat</b> libre
+  serviceby: '@:color.team  est un service de <b>tchat</b> libre
     qui permet de communiquer avec son équipe en notifiant ses collègues,
     de conserver ses conversations et d’y faire des recherches.'
   createyours: Créez votre équipe
@@ -20,11 +20,11 @@ presentation:
   newchans: Créez vos canaux de communication (publics ou privés)
   aide: Aide
   learn: 'Pour apprendre à mettre en page vos messages, utiliser des émoticônes,
-    partager des images et documents et maîtriser @:data.color.team, consultez nos pages d’aide :'
-  trad: (traduction de la documentation officielle par l’équipe @:data.html.lang)
+    partager des images et documents et maîtriser @:color.team, consultez nos pages d’aide :'
+  trad: (traduction de la documentation officielle par l’équipe @:html.lang)
   h2_2: Le logiciel
-  framaware: '@:data.color.team repose sur le logiciel libre <a href="https://about.mattermost.com/">Mattermost</a>.'
-  license: Mattermost est sous licence @:data.license.mit</>.
+  framaware: '@:color.team repose sur le logiciel libre <a href="https://about.mattermost.com/">Mattermost</a>.'
+  license: Mattermost est sous licence @:license.mit</>.
   h2_3: Cultivez votre jardin
   contrib_upstream: Pour participer au développement du logiciel,
     proposer des améliorations ou simplement le télécharger, rendez-vous sur

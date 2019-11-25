@@ -1,15 +1,20 @@
 [data-url*="://framabin.org/p/"] {
+  @import '../frama/bs4';
+  @import '../frama/common';
+
   body {
     padding: 0;
-    background: #eee;
   }
 
-  .ombre header a {
-    text-decoration: none;
-  }
+  #f-bin-header {
+    a {
+      text-decoration: none;
+    }
 
-  header h1 {
-    font-size: 48px;
+    .trait {
+      height: 11px;
+      border: none;
+    }
   }
 
   .container .container {
@@ -17,11 +22,8 @@
     padding: 0;
   }
 
-  #framanav .dropdown-menu > li > div {
+  #f-navbar .dropdown-menu > li > div {
     white-space: inherit;
-  }
-
-  #framanav .dropdown-menu > li > div {
     padding: 0;
   }
 
@@ -44,11 +46,5 @@
 
   footer.container {
     display: none;
-  }
-
-  #tuto-faq p > .glyphicon,
-  #le-logiciel p > .glyphicon,
-  #jardin p > .glyphicon {
-    font-size: 50px;
   }
 }
