@@ -1,52 +1,52 @@
 [data-url*="://framalistes.org"] {
-    header h1.medium-offset-3.medium-9,
-    main#content-inner.medium-9,
-    section.home-submenu ul.row,
-    header .row,
-    main.row {
-        background-color: #FFF;
-        -webkit-box-shadow: $ombre;
-        -moz-box-shadow: $ombre;
-        box-shadow: $ombre;
-    }
+  header h1.medium-offset-3.medium-9,
+  main#content-inner.medium-9,
+  section.home-submenu ul.row,
+  header .row,
+  main.row {
+    background-color: #FFF;
+    -webkit-box-shadow: $ombre;
+    -moz-box-shadow: $ombre;
+    box-shadow: $ombre;
+  }
 
-    .home-submenu {
-        margin-top: -30px !important;
-    }
+  .home-submenu {
+    margin-top: -30px !important;
+  }
 
-    header h1 {
-        margin-top: 30px;
-    }
+  header h1 {
+    margin-top: 30px;
+  }
 
-    main {
-        margin-bottom: 30px;
-    }
+  main {
+    margin-bottom: 30px;
+  }
 
-    footer:not(#framafooter) {
-        display: none;
-    }
+  footer:not(#framafooter) {
+    display: none;
+  }
 
-    #framafooter[style] {
-        position: relative !important;
-    }
+  #framafooter[style] {
+    position: relative !important;
+  }
 
-    fieldset {
-      border: none;
-      padding: 0;
-    }
+  fieldset {
+    border: none;
+    padding: 0;
+  }
 
-    fieldset button {
-      line-height: normal;
-    }
+  fieldset button {
+    line-height: normal;
+  }
 
-    .dropdown.menu.medium-horizontal > li.is-dropdown-submenu-parent > a::after {
-      right: 0;
-    }
+  .dropdown.menu.medium-horizontal > li.is-dropdown-submenu-parent > a::after {
+    right: 0;
+  }
 
-    .row {
-      margin-left: auto;
-      margin-right: auto;
-    }
+  .row {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 

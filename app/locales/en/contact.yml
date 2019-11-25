@@ -22,7 +22,7 @@ alert:
   failed: An error has occurred. The message could not be sent.<br> Please try again later.
   libre: <b class="label label-warning">Attention</b> It will only be given <b>no
     answers to questions about how free software works</b>. We are not familiar
-    with all the software in our directory. For this, please use <a href="@:data.link.colibri">our
+    with all the software in our directory. For this, please use <a href="@:link.colibri">our
     forums</a> or social networks.
   pad: Don’t forget to <b>give us the full address of the pad</b> that you have
     a problem with in your message.
@@ -34,7 +34,7 @@ alert:
     with in your message.
   forms: Don’t forget to <b>give us the address of the form</b> that you have a
     problem with in your message.
-  board: Don’t forget to <b>give us the address of the @:data.color.board space</b>
+  board: Don’t forget to <b>give us the address of the @:color.board space</b>
     and <b>your username</b> in your message.
   drive: Don’t forget to <b>give us your username</b> in your message.
   agenda: Don’t forget to <b>give us your username</b> in your message.
@@ -46,9 +46,9 @@ alert:
   mdp: <b>Never give us your passwords</b>, we don’t need them. Remember that <a
     href="https://framablog.org/2016/11/23/10-trucs-que-jignorais-sur-internet-et-mon-ordi-avant-de-my-interesser">a
     email is a postcard without an envelope</a>.
-  kindness: '<b>Is your message kind?</b><br> Framasoft is <a href="@:data.link.support">a
+  kindness: '<b>Is your message kind?</b><br> Framasoft is <a href="@:link.support">a
     small association living exclusively on donations</a> and make her best for
-    <a href="@:data.link.dio">resist to the 5 largest companies in the world</a>:
+    <a href="@:link.dio">resist to the 5 largest companies in the world</a>:
     ({gafam})<br> Improve our services and help you requests <b>time and
     volunteer energy</b>.<br> Please take this into account when writing your message.'
 concerne:

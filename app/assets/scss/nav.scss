@@ -1,20 +1,50 @@
-#fnav {
-  @import "bootstrap-nav";
-  @import "global";
+#f-- .f-bs4 {
+  $primary:       #635182 !default;
 
-  @import "feedback/feedback";
+  $danger:        #CC2D18;
+  $info:          #11809E;
+  $warning:       #EB7239;
+  $success:       #677835;
 
-  .navbar-collapse.in {
-    max-height: 360px;
+  @import 'frameworks/bootstrap4-nav';
+
+  .modal-backdrop {
+    opacity: 0.5;
   }
 
-  #framanav.navbar {
-    font-size: 12px;
-    font-family: "DejaVu Sans",Verdana,Geneva,sans-serif;
+  /* Frama */
+  .btn-soutenir {
+    color: #fff !important;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+    background-color: #DBA306;
+    border-color: #DBA306;
+
+    &:hover, &:focus, &:active, &.active {
+      color: #fff;
+      background-color: #C48a1b;
+      border-color: #C48a1b;
+    }
+  }
+}
+
+#f-nav.f-bs4 {
+  /* Colors */
+  .violet, .frama { color: $violet;}
+  .orange, .soft { color: $orange;}
+
+  // @import 'feedback/feedback';
+
+  #f-header {
+    height:42px;
+  }
+
+  #f-navbar {
+    font-size: 14px;
     text-align: justify;
-    display: block;
+    display: flex !important;
     min-height: 30px;
     margin-bottom: 0;
+    padding: 0;
     height: 42px;
     width: auto;
     z-index: 1002;
@@ -23,46 +53,9 @@
     border: none;
     border-bottom:1px solid #bdbdbd;
 
-    .container-fluid {
-      margin:auto;
-      background-color:#f8f8f8;
-      height: initial; /* ~team */
-      overflow: initial; /* ~team */
-    }
-
-   .navbar-collapse {
-     background: #f8f8f8; /* ~team */
-   }
-
-    @media (min-width: 768px) {
-      .container-fluid {
-        width: 1015px;
-        width: -moz-fit-content;
-        width: -webkit-fit-content;
-        width: fit-content;
-      }
-
-      .collapse { /* bug dans certaines config en box-sizing: content-box*/
-        height:40px ;
-        float:left;
-      }
-
-      .navbar-collapse {
-        padding: 0;
-      }
-    }
-    @media (max-width: 768px) { /* la nav pour tablette/mobile n'a pas ce problème */
-      .container-fluid {
-        width:auto;
-      }
-    }
-
-    /* Brand */
-    .violet, .frama { color: $violet;}
-    .orange, .soft { color: $orange;}
-
     .navbar-brand {
       font-weight: bold;
+      font-family: "DejaVu Sans",Verdana,Geneva,sans-serif;
       height: 40px;
       padding:0;
       line-height:40px;
@@ -90,33 +83,6 @@
       margin: 0;
     }
 
-    .dropdown {
-      box-shadow: none;
-      background: transparent;
-      border-radius: none;
-      z-index: auto;
-      padding: 0;
-      width: auto;
-
-      a {
-        .caret {
-          margin-left: -50%;
-          margin-top: 25px;
-          visibility: hidden;
-        }
-
-        &:hover .caret,
-        &:focus .caret {
-          visibility: visible;
-        }
-      }
-    }
-
-    .dropdown-toggle {
-      padding: 7px 4px 5px 10px;
-      float: none; /* fix colibri */
-    }
-
     .dropdown-menu {
       min-width: 140px;
       padding : 5px 0px;
@@ -126,8 +92,7 @@
       width: auto;
 
       li {
-        font-size: 12px;
-        font-family: "DejaVu Sans",Verdana,Geneva,sans-serif;
+        font-size: 14px;
         text-align: justify;
         display: block;
         width: auto;
@@ -140,18 +105,18 @@
           margin-right: 0;
         }
 
-        a:hover {
-          color: #fff;
+        a {
+          color: #444;
 
-          .fa {
+          &:hover {
             color: #fff;
-          }
-        }
-      }
 
-      .divider {
-        background-color: #e5e5e5;
-        opacity: 1;
+            .fa {
+              color: #fff;
+            }
+          }
+
+        }
       }
 
       > li > a { padding: 5px 10px; }
@@ -170,14 +135,23 @@
     #fs_culture .dropdown-menu li.fs_evl a:hover,
     #fs_culture .dropdown-menu li.fs_planet a:hover,
     #fs_follow .dropdown-menu li.fs_colibri a:hover,
-    #fs_follow .dropdown-menu li.fs_wiki a:hover {
+    #fs_follow .dropdown-menu li.fs_wikifs a:hover {
       background-color: $jaune;
     }
 
+    #f-collapse.show {
+      background: lighten($violet, 53%);
+      padding: 10px;
+      margin-top: 2px;
+    }
+
+    .navbar-toggler {
+      border-color: transparent;
+    }
+
     .dropdown-menu {
-      .fs_start,  .fs_evl,
-      .fs_zic, .fs_evl,
-      .fs_diolist, .fs_slides, .fs_maestro, .fs_bee, .fs_carte, .fs_talk, .fs_vox,
+      .fs_start, .fs_zic,
+      .fs_diolist, .fs_slides, .fs_maestro, .fs_carte, .fs_petitions,
       .fs_bag, .fs_news, .fs_minetest, .fs_drive, .fs_clic,
       .fs_wikipedia,
       .fs_stats, .fs_status, .fs_moderation {
@@ -185,7 +159,7 @@
       }
     }
 
-    @media (min-width: 992px) {
+    @media (min-width: 768px) {
       #fs_services .dropdown-menu,
       #fs_about .dropdown-menu {
         min-width: 340px;
@@ -216,49 +190,19 @@
       }
     }
 
-
-    .popover {
-      width : 300px;
-
-      a {
-        color:#333;
-        text-decoration:none;
-      }
-    }
-    .popover.right,
-    .popover.left {
-      margin-top:35px;
-
-      .arrow {
-        margin-top:-45px;
-      }
-    }
-
-    .popover.bottom {
-      margin-left:-100px;
-      .arrow {
-        margin-left:100px;
-      }
-    }
-
-    .popover.top { /*  Framafooter */
-      margin-top:-30px;
-    }
-
-    .popover-title { font-weight: bold; }
-
     #btn-soutenir .btn-soutenir,
     #btn-benevalo .btn-info,
     #btn-myframa .btn-primary {
       min-width: 135px;
       height: 41px;
       line-height: 41px;
-      font-size: 12px;
+      font-size: 14px;
       color: #fff;
       text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
       padding: 0px;
-      border: none ;
+      border: none;
       text-align:center;
+      border-radius: 0;
 
       &:hover, &:focus, &:active {
         color: #fff;
@@ -289,8 +233,7 @@
       }
 
       span {
-        line-height: 14px;
-        padding: 7px 0;
+        line-height: 16px;
         display: inline-block;
         vertical-align: middle;
       }
@@ -303,42 +246,20 @@
       }
     }
   }
-
-  #framanav_donation {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    display: block;
-    height: 70px;
-    width: 70px;
-    background: no-repeat url(../img/macaron.png);
-    z-index : 1101;
-
-    &:hover {
-      filter:alpha(opacity=90);
-      -moz-opacity:0.9;
-      -khtml-opacity: 0.9;
-      opacity: 0.9;
-    }
-  }
-
   //------------------------------------------------------------------------------
   #modal-don .new-window,
   #modal-contact .new-window,
-  #link-opt-in .new-window,
-  #framanav .dropdown-menu li a .new-window { /*a:not(.modal-link)*/
+  #f-navbar .dropdown-menu li a .new-window { /*a:not(.modal-link)*/
     visibility: hidden;
     font-size: 10px !important;
   }
 
   #modal-don:hover .new-window,
   #modal-contact:hover .new-window,
-  #link-opt-in:hover .new-window,
-  #framanav .dropdown-menu li a:hover .new-window,
+  #f-navbar .dropdown-menu li a:hover .new-window,
   #modal-don:focus .new-window,
   #modal-contact:focus .new-window,
-  #link-opt-in:focus .new-window,
-  #framanav .dropdown-menu li a:focus .new-window {
+  #f-navbar .dropdown-menu li a:focus .new-window {
     visibility:visible;
   }
 
@@ -360,27 +281,18 @@
     }
   }
 
-  .navbar-toggle {padding: 4px 6px !important;}
-
-  #nav-skip {
-    position:absolute;
-    margin-top:-5000px;
-  }
-  #nav-skip:focus {
+  .sr-only-focusable:focus {
     width: auto;
     line-height: 20px;
-    margin: 0 0 0 -135px;
+    margin: 0 0 0 45px;
     padding: 10px 20px;
     background-color: #fafafa;
-    color: #333;
-    outline: 1px dotted #000;
+    color: #555;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
     text-decoration:none;
-    font-size:12px;
-  }
-
-  .navbar-default .navbar-nav .open .dropdown-menu > li > a,
-  .navbar-default .navbar-nav > li > a {
-    color:#555;
+    font-size:14px;
+    position: absolute;
   }
 
   /* Modal header title */
@@ -389,160 +301,153 @@
     font-size: 24px;
   }
 
-  /* Fix Theme Wordpress Virtue */
-  #framanav .navbar-brand span.hidden-sm {
-    display:inline !important;
-    margin-left: 10px;
-  }
-
-  @media (min-width: 768px) and (max-width: 991px) {
-    #framanav .navbar-brand span.hidden-sm {
-      display: none !important;
-    }
-  }
-
-
-  .fs_petitions, .fs_story {
+  .fs_story {
     display:none !important;
   }
 
-  .fs_clic {
+  .fs_clic, .fs_petitions {
     visibility: hidden;
   }
 }
 
-#ffooter {
-  @import "bootstrap-footer";
+.f-bs4 #f-footer {
+  padding:20px 0 20px 0;
+  margin:0;
+  background:#dfdfdf;
+  color:#333;
+  font-size:14px;
+  width:100%;
+  max-width:100%;
+  bottom:0;
+  border-top:1px solid #ccc;
+  height:auto;
+  text-align:left;
 
-  #framafooter {
-    padding:20px 0 20px 0;
-    margin:0;
+  .container {
     background:#dfdfdf;
+    min-height:0px;
+    padding: 0;
+  }
+
+  h1 {
+    font-size:16px;
+    font-weight:bold;
+    margin-top:0;
+  }
+
+  h2 {
+    font-size:16px;
+    font-weight:bold;
+  }
+
+  a {
     color:#333;
+    text-decoration:none;
+    border-bottom:none;
     font-size:14px;
-    width:100%;
-    max-width:100%;
-    bottom:0;
-    border-top:1px solid #ccc;
-    height:auto;
-    text-align:left;
 
-    .container {
-      background:#dfdfdf;
-      min-height:0px;
-      padding: 0;
-    }
-
-    h1 {
-      font-size:14px;
-      font-weight:bold;
-      margin-top:0;
-    }
-
-    h2 {
-      font-size:14px;
-      font-weight:bold;
-    }
-    a {
-      color:#333;
+    .fa-fw {
+      padding:5px;
+      width:36px;
+      height:36px;
       text-decoration:none;
-      border-bottom:none;
-      font-size:14px;
-
-      .fa-fw {
-        padding:5px;
-        width:36px;
-        height:36px;
-        text-decoration:none;
-      }
-
-      &:hover, &:focus {
-        text-decoration:underline;
-
-        .fa {
-          background:#6A5687;
-          color:#fff;
-          border-radius:5px;
-        }
-      }
     }
 
-    .btn {
-      margin-top:0;
+    &:hover, &:focus {
+      color:#333;
+      text-decoration: underline;
+
+      .fa {
+        background:#6A5687;
+        color:#fff;
+        border-radius:5px;
+      }
     }
+  }
+
+  .btn {
+    margin-top:0;
   }
 }
 
-#foptin, #falert {
-  @import "bootstrap-alert";
-  @import "frama/alerts";
-}
-
-#foptin {
-    /* Opt-in */
-  #fs_opt-in, #fs_opt-in_confirm, #fs_opt-in_error {
+/* Opt-in */
+#fp-optin {
+  .alert {
     margin-top:10px;
     margin-bottom:10px;
     font-size:13px;
     padding:10px;
     line-height: 17px;
-  }
-  #commentform #fs_opt-in,
-  #commentform #fs_opt-in_confirm,
-  #commentform #fs_opt-in_error {  /* wordpress */
-    min-width: 555px;
-  }
-  #fs_opt-in small {
-    font-size:11px;
+
+    a, a:hover {
+      color: #0C5B7A;
+      font-weight: bold;
+    }
+
+    &.alert-info {
+      color: #0C5B7A;
+      background-color: #E1F8FC;
+      border-color: #B2D5DB;
+    }
+
+    &.alert-danger {
+      color: #AB2909;
+      background-color: #fde0dc;
+      border-color: #E0B3A8;
+    }
+
+    &.alert-success {
+      color: #304219;
+      background:#E3EBC7;
+      border-color: #C0D481;
+    }
   }
 
-  #fs_opt-in input {
-    margin:0;
-    width:auto !important;
-    display:inline-block !important;
+  #commentform {
+    .alert {  /* wordpress */
+      min-width: 555px;
+    }
   }
 
-  #fs_opt-in label {
-    float: none !important;
-    width: auto !important;
-    text-align: left !important;
-    font-weight: normal !important;
-    margin: 0px 0px 0px 5px !important;
-    white-space: normal;
-    color: #0C5B7A;
+  #f-optin {
+    small {
+      font-size:11px;
+    }
+
+    input {
+      margin:0;
+      width:auto;
+      display:inline-block;
+    }
+
+    label {
+      float: none;
+      width: auto;
+      text-align: left;
+      font-weight: normal;
+      margin: 0px 0px 0px 5px;
+      white-space: normal;
+      color: #0C5B7A;
+    }
   }
 }
 
 /* Display nav and footer only when CSS is ready */
-#framanav[style*="display: none"],
-#ffooter[style*="display: none"] {
+#f-navbar[style*="display: none"] {
+  display: flex !important;
+}
+
+#fp-footer[style*="display: none"] {
   display: block !important;
 }
 
-.modal-backdrop { // Outside #fnav (no bootstrap)
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1040;
-  background-color: #000;
+#f-- #f-alert {
+  border-top:0px;
+  border-left:0px;
+  border-right:0px;
+  border-radius:0 !important;
 
-  &.fade { opacity: 0; }
-  &.in { opacity: 0.5; }
-}
-
-#falert {
-  /* Alerts */
-  #nav-alert {
-    border-top:0px;
-    border-left:0px;
-    border-right:0px;
-    border-radius:0 !important;
-    padding-top:52px;
-  }
-
-  #nav-alert.alert-info.black {
+  &.alert-info.black {
     color: #fff !important;
     background-color:  #010001 !important;
     border-color: #010001 !important;
@@ -560,12 +465,10 @@
     }
   }
 
-  #nav-alert.alert {
-    padding:10px;
+  &.alert {
     margin-bottom:0;
     font-size:14px;
-    line-height:18px;
-    font-family: "DejaVu Sans",Verdana,Geneva,sans-serif !important;
+    line-height:20px;
     text-shadow:none;
 
     p {
@@ -593,54 +496,57 @@
     }
   }
 
-  #nav-alert.alert-success a:not(.btn),
-  #nav-alert.alert-success a:hover:not(.btn),
-  #nav-alert.alert-success {
-    color: #304219 !important;
-    background:#E3EBC7 !important;
-    border-color: #C0D481 !important;
-  }
-  #nav-alert.alert-info a:not(.btn),
-  #nav-alert.alert-info a:hover:not(.btn),
-  #nav-alert.alert-info {
-    color: #0C5B7A !important;
-    background-color: #E1F8FC !important;
-    border-color: #B2D5DB !important;
-  }
-  #nav-alert.alert-warning a:not(.btn),
-  #nav-alert.alert-danger a:hover:not(.btn),
-  #nav-alert.alert-warning {
-    color: #A15014 !important;
-    background-color: #FFEBB5 !important;
-    border-color: #FFCF4F !important;
-  }
-  #nav-alert.alert-danger a:not(.btn),
-  #nav-alert.alert-danger a:hover:not(.btn),
-  #nav-alert.alert-danger {
-    color: #AB2909 !important;
-    background-color: #fde0dc !important;
-    border-color: #E0B3A8 !important;
+  &.alert-success a:not(.btn),
+  &.alert-success a:hover:not(.btn),
+  &.alert-success {
+    color: #304219;
+    background:#E3EBC7;
+    border-color: #C0D481;
   }
 
-  #nav-alert.alert-dismissible .close {
+  &.alert-info a:not(.btn),
+  &.alert-info a:hover:not(.btn),
+  &.alert-info {
+    color: #0C5B7A;
+    background-color: #E1F8FC;
+    border-color: #B2D5DB;
+  }
+
+  &.alert-warning a:not(.btn),
+  &.alert-danger a:hover:not(.btn),
+  &.alert-warning {
+    color: #A15014;
+    background-color: #FFEBB5;
+    border-color: #FFCF4F;
+  }
+
+  &.alert-danger a:not(.btn),
+  &.alert-danger a:hover:not(.btn),
+  &.alert-danger {
+    color: #AB2909;
+    background-color: #fde0dc;
+    border-color: #E0B3A8;
+  }
+
+  &.alert-dismissible .close {
     right: 0px;
     margin-right: 5px;
     margin-top: -5px;
   }
 
-  #nav-alert .clearfix {
+  & .clearfix {
     height:auto !important;
     overflow:visible !important;
   }
 
-  #nav-alert > div {
+  & > div {
     margin:0 auto;
     max-width:800px;
   }
 }
 
 /* Modal fix */
-.modal-open #framanav_container,
+.modal-open #f-header,
 .modal-open #ffeedback .dropdown-menu,
 .modal-open #ffeedback .dropdown-toggle {
   visibility:hidden;

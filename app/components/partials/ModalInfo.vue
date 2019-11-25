@@ -1,55 +1,35 @@
 <template>
-  <modal id="modal-finfo"
+  <b-modal id="f-modal-info"
     v-model="state.info"
-    :style="(!state.info) ? 'display: none;' : ''"
+    :static="true"
+    :lazy="true"
     :title="config[0]"
-    aria-labelledby="modal-finfoLabel"
-    >
-    <div slot="header">
-      <button
-        v-text="'×'"
-        type="button"
-        aria-hidden="true"
-        class="close"
-        @click="state.info = false; cookie('w', config[2], true);">
-      </button>
-      <h1 id="modal-finfoLabel"
-        v-html="config[0]"
-      ></h1>
-    </div>
-
-    <div class="clearfix"  id="modal-finfoBody" v-html="config[1]"></div>
-
-    <div slot="footer">
-      <button class="btn"
-        v-html="$t('txt.close')"
-        @click="state.info = false; cookie('w', config[2], true);"
-      ></button>
-      <button class="btn btn-primary"
-        v-html="$t('txt.nevershow')"
-        @click="state.info = false; cookie('w', config[2], true, config[3]);"
-      ></button>
-    </div>
-  </modal>
+    :header-close-label="$t('txt.close')"
+    :cancel-title-html="$t('txt.close')"
+    cancel-variant="light"
+    :ok-title-html="$t('txt.nevershow')"
+    @esc="cookie('w', config[2], true, config[3])"
+    @backdrop="cookie('w', config[2], true, config[3])"
+    @headerclose="cookie('w', config[2], true, config[3])"
+    @cancel="cookie('w', config[2], true, config[3])"
+    @ok="cookie('w', config[2], true)">
+    <div v-html="config[1]"></div>
+  </b-modal>
 </template>
 
 <script>
-import { Modal } from 'uiv';
 export default {
-  components: {
-    Modal,
-  },
   data() {
     return {
       config: ['', '', 'modal-info', 604800000],
-      /** [title, text, cookie name, cookie duration] */
+      /** [title, text, cookie name, cookie duration (7×24×60×60×1000)] */
       state: {
         info: false,
       },
     }
   },
   mounted() {
-    this.siteConfig(this.$root.site);
+    this.siteConfig(this.$t('site'));
 
     if (this.config[0] !== '') {
       this.state.info = !this.cookie('r', this.config[2]);
@@ -71,7 +51,7 @@ export default {
       if (c[0] === undefined) {
         switch (site) {
           case 'etherpad':
-            if (/(beta\.framapad)/.test(this.$root.host)) {
+            if (/(beta\.framapad)/.test(this.$t('host'))) {
               c = [
                 'Avertissement',
                 `<p>Cette instance de Framapad (<b>beta</b>.framapad.org) est

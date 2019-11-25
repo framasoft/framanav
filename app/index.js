@@ -2,11 +2,11 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import VueI18n from 'vue-i18n';
 import vueHeadful from 'vue-headful';
+import BootstrapVue from 'bootstrap-vue';
 import PortalVue from 'portal-vue';
 
 import App from './App.vue';
 
-import '../node_modules/fork-awesome/css/fork-awesome.css';
 import './assets/scss/main.scss';
 
 import text from './plugins/text';
@@ -15,6 +15,7 @@ import cookie from './plugins/cookie';
 import merge from './plugins/merge';
 import globalStorage from './plugins/globalstorage';
 
+Vue.use(BootstrapVue);
 Vue.use(VueRouter);
 Vue.use(VueI18n);
 Vue.component('vue-headful', vueHeadful);
@@ -44,14 +45,7 @@ req.keys().forEach((key) => {
     locales[lg].push(file);
   }
 });
-// Flag if data/locales/[lg].yml is available
-req = require.context('./data/locales/', false, /\.yml$/);
-req.keys().forEach((key) => {
-  const lg = key.replace(/\.\/(.*)\.yml/, '$1');
-  if (Array.isArray(locales[lg])) {
-    locales[lg].push('data');
-  }
-});
+
 // Import pages list
 req = require.context('./components/pages', false, /\.vue$/);
 req.keys().forEach((key) => {
@@ -89,34 +83,31 @@ let defaultRouteLang = '';
 
 const messages = {};
 const numberFormats = {};
-messages.locales = require('./data/lang.yml'); // eslint-disable-line
+messages.locales = require('./locales/lang.yml'); // eslint-disable-line
 messages.locales.available = Object
   .keys(messages.locales)
-  .filter(n => Object.keys(locales).indexOf(n) > -1);
+  .filter(n => Object.keys(locales).includes(n) && locales[n].includes('_main'));
 
 // Data import
-const data = {};
-let project = {};
+let data = {};
 const scripts = document.getElementsByTagName('script');
 for (let i = 0; i < commons.length; i += 1) {
-  data[commons[i]] = require(`./data/commons/${commons[i]}.yml`); // eslint-disable-line
+  req = require(`./data/commons/${commons[i]}.yml`) || {}; // eslint-disable-line
+  data[commons[i]] = merge.$(data[commons[i]], JSON.parse(JSON.stringify(req)));
 }
-project = require('./data/project.yml'); // eslint-disable-line
-Object.assign(data, project);
+req = require('./data/project.yml') || {}; // eslint-disable-line
+data = merge.$(data, JSON.parse(JSON.stringify(req)));
 
 Object.assign(data, {
   host: window.location.host,
   url: window.location.href,
   '/': `/${process.env.BASE_URL.replace(/(.+)/, '$1/')}`,
-  inframe: window.top.location !== window.self.document.location,
+  inframe: window.top.location !== window.self.document.location ? 'true' : 'false',
   hash: window.location.hash.replace('#', ''),
-  browser: {
-    agent: navigator.userAgent,
-    opera: !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0,
-    firefox: typeof InstallTrigger !== 'undefined',
-    safari: Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0,
-    chrome: !!window.chrome && !(!!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0),
-    ie: /*@cc_on!@*/false || !!document.documentMode, // eslint-disable-line
+  date: process.env.DATE,
+  year: {
+    current: (new Date().getFullYear()).toString(),
+    next: (new Date().getFullYear() + 1).toString(),
   },
 });
 if (/\/nav.js$/.test(scripts[scripts.length - 1].src)) {
@@ -127,7 +118,13 @@ if (/\/nav.js$/.test(scripts[scripts.length - 1].src)) {
     ? new URL(findNav[1], data.url).href
     : 'https://framasoft.org/nav/nav.js';
 }
-data.baseurl = `${data.self.split('/').slice(0, -1).join('/')}/`;
+if (process.env.NODE_ENV === 'production'
+  && data.meta.canonical !== undefined
+  && /^http/.test(data.meta.canonical)) {
+  data.baseurl = data.meta.canonical;
+} else {
+  data.baseurl = `${data.self.split('/').slice(0, -1).join('/')}/`;
+}
 
 /** Only for nav */
 data.site = data.host.replace(/^(www|test)\./i, '').replace(/\.(com|net|org|fr|pro)$/i, '');
@@ -167,58 +164,68 @@ if ((/.framapad/.test(data.host) && !/mypads./.test(data.host))
 
 data.txt = data.txt || {};
 data.html = data.html || {};
-Object.keys(data.color).forEach((k) => {
-  if (data.txt[k] === undefined) {
-    const tmp = document.createElement('div');
-    tmp.innerHTML = data.color[k];
-    data.txt[k] = tmp.textContent || tmp.innerText;
-  }
-});
-Object.keys(data.link).forEach((k) => {
-  if (data.html[k] === undefined) {
-    if (data.color[k] !== undefined) {
-      data.html[k] = `<a href="${data.link[k]}">${data.color[k]}</a>`;
-    } else if (data.txt[k] !== undefined) {
-      data.html[k] = `<a href="${data.link[k]}">${data.txt[k]}</a>`;
-    }
-  }
-});
 
 const routes = [];
+let msg = {};
+// Import locales
 Object.keys(locales).forEach((k) => {
-  messages[k] = {};
-  numberFormats[k] = {};
-  // Locales import
   /* eslint-disable */
-  for (let i = 0; i < commons.length; i += 1) {
-    messages[k] = require(`./data/commons/${commons[i]}.yml`); // eslint-disable-line
-  }
-  messages[k] = require(`./locales/${k}/main.yml`); // eslint-disable-line
-  for (let i = 0; i < locales[k].length; i += 1) {
-    const file = locales[k][i];
-    if (!/main|data/.test(file)) {
-      messages[k][file] = require(`./locales/${k}/${file}.yml`); // eslint-disable-line
-    }
-    if (/data/.test(file)) {
-      const dataLocale = require(`./data/locales/${k}.yml`);
-      Object.keys(dataLocale).forEach((l) => {
-        if (messages[k][l] === undefined) {
-          messages[k][l] = dataLocale[l];
-        } else {
-          Object.assign(messages[k][l], dataLocale[l]);
-        }
-      });
-    }
-  }
-
-  messages[k].data = data;
+  messages[k] = {};
   messages[k].lang = k;
+
+  numberFormats[k] = {};
   numberFormats[k].eur = {
     style: 'currency',
     currency: 'EUR',
     maximumFractionDigits: 0,
     minimumFractionDigits: 0,
   };
+
+  // Import data
+  msg = {txt: {}, html: {}};
+  msg = merge.$(msg, JSON.parse(JSON.stringify(data)));
+
+  // Init with locales/lg/_commons.yml
+  if (locales[k].includes('_commons')) {
+    req = require(`./locales/${k}/_commons.yml`) || {};
+    msg = merge.$(msg, JSON.parse(JSON.stringify(req)));
+  }
+
+  // locales/lg/_main.yml (active and visible)
+  // or locales/lg/_main.yml (active and hidden)
+  const mainFile = locales[k].filter(filename => /^_?main/.test(filename));
+  if (mainFile.length > 0) {
+    req = require(`./locales/${k}/${mainFile[0]}.yml`) || {};
+    msg = merge.$(msg, JSON.parse(JSON.stringify(req)));
+  }
+
+  // locales/lg/*.yml
+  for (let i = 0; i < locales[k].length; i += 1) {
+    const file = locales[k][i];
+    if (!/main|_commons/.test(file)) {
+      msg[file] = msg[file] || {};
+      req = require(`./locales/${k}/${file}.yml`) || {};
+      msg[file] = merge.$(msg[file], JSON.parse(JSON.stringify(req)));
+    }
+  }
+
+  Object.keys(msg.color).forEach((j) => {
+    if (msg.txt[j] === undefined) {
+      const tmp = document.createElement('div');
+      tmp.innerHTML = msg.color[j];
+      msg.txt[j] = tmp.textContent || tmp.innerText;
+    }
+  });
+  Object.keys(msg.link).forEach((j) => {
+    if (msg.html[j] === undefined) {
+      if (msg.color[j] !== undefined) {
+        msg.html[j] = `<a href="@:link.${j}">@:color.${j}</a>`;
+      } else if (msg.txt[j] !== undefined) {
+        msg.html[j] = `<a href="@:link.${j}">@:txt.${j}</a>`;
+      }
+    }
+  });
+  messages[k] = merge.$(messages[k], msg);
   /* eslint-enable */
 
   // Localized routes
@@ -242,7 +249,7 @@ for (let j = 0; j < userLang.length; j += 1) { // check if user locales
 
 // Create VueI18n instance with options
 const i18n = new VueI18n({
-  locale: lang,
+  locale: lang === '' ? defaultRouteLang : lang,
   fallbackLocale: defaultLocale,
   messages,
   numberFormats,
@@ -250,14 +257,13 @@ const i18n = new VueI18n({
 });
 
 const loadNav = () => {
-  if (document.getElementById('fnav') === null) {
+  if (document.getElementById('f-nav') === null) {
     document.querySelector('body')
-      .insertAdjacentHTML('afterbegin', '<div id="fnav"></div>');
+      .insertAdjacentHTML('afterbegin', '<div id="f-nav"></div>');
   }
   new Vue({ // eslint-disable-line no-new
-    el: '#fnav',
+    el: '#f-nav',
     i18n,
-    data,
     mounted() {
       // You'll need this for renderAfterDocumentEvent.
       document.dispatchEvent(new Event('render-event'));

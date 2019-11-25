@@ -25,12 +25,7 @@
 </template>
 
 <script>
-import { Modal } from 'uiv';
-
 export default {
-  components: {
-    Modal,
-  },
   props: {
     open: {
       type: Boolean,

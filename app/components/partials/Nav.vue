@@ -1,68 +1,63 @@
 <template>
   <div>
     <Meta />
-
     <Cortex />
 
-    <NavMenu />
+    <HeaderMenu />
 
-    <!-- Make a donation -->
-    <a
-      id="framanav_donation"
-      :href="`${$root.link.soutenir}/?f=macaron`"
-      :style="!macaron ? 'display: none' : ''"
-      class="hidden-xs">
-      <span class="sr-only" v-html="text($t('fnav.soutenir.name'))"></span>
-    </a>
-
-    <Feedback v-if="testing.feedback" />
-    <BackTop />
+    <!-- <Feedback v-if="testing.feedback" /> -->
 
     <AlertInfo />
-
     <ModalInfo />
     <ModalDon v-if="cortexReady" />
 
-    <Framabin v-if="/:\/\/framabin.org.p/.test($root.url)" />
-    <Framavox v-if="/:\/\/framavox.org/.test($root.url)" />
-    <Framateam v-if="/:\/\/framateam.org/.test($root.url)" />
+    <Framabin v-if="/:\/\/framabin.org.p/.test($t('url'))" />
+    <Framavox v-if="/:\/\/framavox.org/.test($t('url'))" />
+    <Framateam v-if="/:\/\/framateam.org/.test($t('url')) && testing.team" />
 
     <Optin v-if="cortexReady" />
-    <Footer />
+    <FooterMenu />
+    <BackTop />
   </div>
 </template>
 
 <script>
 import Meta from './Meta.vue';
 import Cortex from './Cortex.vue';
-import NavMenu from './NavMenu.vue';
-import Feedback from './Feedback.vue';
-import BackTop from './BackTop.vue';
+
+import HeaderMenu from './HeaderMenu.vue'; /* TODO : replace by PopMenu */
+
 import AlertInfo from './AlertInfo.vue';
 import ModalInfo from './ModalInfo.vue';
 import ModalDon from './ModalDon.vue';
 
 // Need vue-portal
-import Optin from './Optin.vue';
-import Footer from './Footer.vue';
 import Framabin from './sites/Framabin.vue';
 import Framavox from './sites/Framavox.vue';
 import Framateam from './sites/Framateam.vue';
 
+import Optin from './Optin.vue';
+import Feedback from './Feedback.vue';
+import FooterMenu from './FooterMenu.vue';
+
+import BackTop from './BackTop.vue';
+
 export default {
   components: {
-    Meta, Cortex, NavMenu,
-    Feedback, BackTop,
+    Meta, Cortex, HeaderMenu,
+
     AlertInfo, ModalInfo, ModalDon,
 
-    Optin, Footer,
     Framabin, Framavox, Framateam,
+    Optin, FooterMenu, Feedback,
+    BackTop,
   },
   created() {
     // Add [data-*] attributes for CSS
     const html = document.getElementsByTagName('html');
-    html[0].setAttribute('data-url', this.$root.url);
-    html[0].setAttribute('data-inframe', this.$root.inframe);
+    html[0].setAttribute('data-url', this.$t('url'));
+    html[0].setAttribute('data-inframe', this.$t('inframe'));
+    html[0].setAttribute('id', 'f--');
 
     /**
      * Depreciated - Need to be cleaned up
@@ -72,25 +67,25 @@ export default {
     let regSites = new RegExp([
       '(bookin', 'drop', 'carte', 'frama.link', 'huit.re', 'memo', 'pic', 'stats)'
       ].join('|'), 'i');
-    if (regSites.test(this.$root.host)
-      || this.$root.host === 'framaboard.org'
-      || this.$root.host === 'framanotes.org'
-      || this.$root.url === 'https://framaforms.org/'
-      || this.$root.url === 'https://frama.site'
-      || this.$root.url === 'https://frama.wiki') {
+    if (regSites.test(this.$t('host'))
+      || this.$t('host') === 'framaboard.org'
+      || this.$t('host') === 'framanotes.org'
+      || this.$t('url') === 'https://framaforms.org/'
+      || this.$t('url') === 'https://frama.site'
+      || this.$t('url') === 'https://frama.wiki') {
       const bsCSS = document.createElement('link');
       Object.assign(bsCSS, {
         rel: 'stylesheet',
-        href: `${this.$root.baseurl}lib/bootstrap/css/bootstrap.min.css`,
+        href: `${this.$t('baseurl')}lib/bootstrap/css/bootstrap.min.css`,
       });
       document.getElementsByTagName('head')[0].appendChild(bsCSS);
     }
 
     // Wrap .carousel with .carousel-container
-    if (/(carte|notes)/.test(this.$root.host)
-      || this.$root.url === 'https://framaforms.org/'
-      || this.$root.url === 'https://frama.site'
-      || this.$root.url === 'https://frama.wiki') {
+    if (/(carte|notes)/.test(this.$t('host'))
+      || this.$t('url') === 'https://framaforms.org/'
+      || this.$t('url') === 'https://frama.site'
+      || this.$t('url') === 'https://frama.wiki') {
       const carousel = document.querySelector('.carousel');
       const carouselContainer = document.createElement('div');
       if (carousel !== null) {
@@ -104,12 +99,12 @@ export default {
     regSites = new RegExp([
       '(agenda', 'bookin', 'drive', 'memo)'
       ].join('|'), 'i');
-    if (regSites.test(this.$root.host)
-      || this.$root.host === 'framanotes.org'
-      || this.$root.url === 'https://framaforms.org/') {
+    if (regSites.test(this.$t('host'))
+      || this.$t('host') === 'framanotes.org'
+      || this.$t('url') === 'https://framaforms.org/') {
       const bsJS = document.createElement('script');
       Object.assign(bsJS, {
-        src: `${this.$root.baseurl}lib/bootstrap/js/bootstrap.min.js`,
+        src: `${this.$t('baseurl')}lib/bootstrap/js/bootstrap.min.js`,
         type: 'text/javascript',
         charset: 'utf-8',
       });
@@ -121,7 +116,7 @@ export default {
     const fcss = document.createElement('link');
     Object.assign(fcss, {
       rel: 'stylesheet',
-      href: `${this.$root.baseurl}main.css`,
+      href: `${this.$t('baseurl')}main.css`,
     });
     document.getElementsByTagName('head')[0].appendChild(fcss);
 
@@ -131,19 +126,21 @@ export default {
       kkeys.push(e.keyCode);
       if (/65,65,66,66/.test(kkeys.toString())) {
         this.testing.feedback = true;
+        this.testing.team = true;
       }
     }, true);
   },
   data() {
     return {
       // Init nav
-      version: '190319', // n° version de la nav
+      version: '191120', // n° version de la nav
       maestro: this.createMaestro(),
       js: function() {},
       macaron: false,
-      cortexReady: false,
+      cortexReady: true,// false,
       testing: {
         feedback: false,
+        team: false,
       }
     };
   },
@@ -157,7 +154,7 @@ export default {
     setTimeout(() => { this.macaron = true; }, 1500);
 
     /*********** Custom JavaScript ***********/
-    this.customJS(this.$root.site);
+    this.customJS(this.$t('site'));
     if(typeof this.js === 'function') {
       if (/jQuery/.test(this.js.toString()) && window.jQuery === undefined) {
         this.loadJS(this.link('lib/jquery/jquery-3.3.1.min.js'), () => {
@@ -174,24 +171,24 @@ export default {
       link.href
         = (/:\/\//.test(href))
         ? href
-        : `${this.$root.baseurl}${href.replace(/^\//, '')}`;
+        : `${this.$t('baseurl')}${href.replace(/^\//, '')}`;
       link.href = link.href.replace(/\?$/, `?${this.version}`)
       return [link.protocol, '//', link.host, link.pathname, link.search, link.hash].join('');
     },
     createMaestro() {
       let hash = 4321;
-      for (let i = 0; i < this.$root.url.length; i++) {
-        hash = hash * 33 ^ this.$root.url.charCodeAt(i);
+      for (let i = 0; i < this.$t('url').length; i++) {
+        hash = hash * 33 ^ this.$t('url').charCodeAt(i);
       }
       const tonality = btoa(String(hash >>> 0)).substring(0, 8)
-      const concerto = this.$root.url.split(/[?#]/)[0].substring(this.$root.url.lastIndexOf('/') + 1).replace(/[^a-zA-Z0-9=?]/g, '');
+      const concerto = this.$t('url').split(/[?#]/)[0].substring(this.$t('url').lastIndexOf('/') + 1).replace(/[^a-zA-Z0-9=?]/g, '');
       const currentW = parseInt((window.innerWidth - 60) * (2 / 3), 10);
       const currentH = parseInt(window.innerHeight - 160, 10);
       const talkW = parseInt(currentW / 2, 10);
       const talkH = parseInt(talkW * (9 / 16), 10);
       return [
         'https://framaestro.org/p/#', tonality, '/', concerto, '/',
-        '0,20,', currentW, ',', currentH, ',', encodeURIComponent(this.$root.url), ';',
+        '0,20,', currentW, ',', currentH, ',', encodeURIComponent(this.$t('url')), ';',
         '0,', (currentW + 40), ',', talkW, ',', talkH, ',',
         encodeURIComponent(`https://framatalk.org/${tonality}${concerto}`), ';',
       ].join('');
@@ -294,9 +291,9 @@ export default {
           break;
 
         case 'board':
-          if (/\.framaboard/.test(this.$root.host)) { // dans Kanboard
+          if (/\.framaboard/.test(this.$t('host'))) { // dans Kanboard
             this.js = function() {
-              jQuery('h1 .logo a').html(this.$root.color.board);
+              jQuery('h1 .logo a').html(this.$t('color.board'));
               jQuery('h1 .logo').removeClass('logo');
             };
           }
@@ -304,11 +301,11 @@ export default {
 
         case 'calc':
           // dans Ethercalc
-          if (!/accueil\.framacalc\.org/.test(this.$root.host)) {
+          if (!/accueil\.framacalc\.org/.test(this.$t('host'))) {
             this.js = function() {
               try {
                 if (window.top.location.href.indexOf('framacalc.org/=') > -1) {
-                  document.getElementById('framanav_container').style = 'height:42px; opacity:0';
+                  document.getElementById('f-header').style = 'height:42px; opacity:0';
                   document.getElementsByTagName('html')[0].setAttribute('data-inframe', 'false');
                 }
               } catch (e) {
@@ -325,7 +322,7 @@ export default {
 
         case 'drop':
           this.js = function() {
-            if (this.$root.url !== 'https://framadrop.org/') {
+            if (this.$t('url') !== 'https://framadrop.org/') {
               jQuery('main .row:last,main hr:last').hide();
             } else {
               document.querySelector('#delete-day option[value="60"]')
@@ -340,7 +337,7 @@ export default {
 
         case 'libre':
           this.js = function() {
-            if (this.$root.inframe) {
+            if (this.$t('inframe')) {
               document.querySelectorAll('a').forEach(a => Object.assign(a, { target: '_blank' }));
             }
           };
@@ -362,7 +359,7 @@ export default {
           break;
 
         case 'my':
-          if (/source=bookmarklet/.test(this.$root.url)) {
+          if (/source=bookmarklet/.test(this.$t('url'))) {
             document.getElementsByTagName('html')[0].setAttribute('data-inframe', 'true');
             this.js = function() {
               document.getElementById('loginform').insertAdjacentHTML('beforeEnd',
@@ -373,7 +370,7 @@ export default {
             };
           } else {
             this.js = function() {
-              if (this.$root.inframe) {
+              if (this.$t('inframe')) {
                 document.getElementById('linklist').classList.add('container-fluid');
                 document.getElementById('linklist').classList.remove('container');
                 document.getElementById('pageheader').style.display = 'none';
@@ -388,10 +385,10 @@ export default {
           this.js = function() {
             jQuery('#loading').delay(2000).append(`
               <p class="small">Si le pad refuse de s’afficher, essayez de télécharger<br>
-              l’export <a href="${this.$root.url}/export/html">html</a>
-              ou <a href="${this.$root.url}/export/txt">txt</a>
-              de votre document et <a href="${this.$root.link.contact}/#framapad">contactez-nous</a>.</p>`);
-            if (!this.$root.inframe) {
+              l’export <a href="${this.$t('url')}/export/html">html</a>
+              ou <a href="${this.$t('url')}/export/txt">txt</a>
+              de votre document et <a href="${this.$t('link.contact')}/#framapad">contactez-nous</a>.</p>`);
+            if (!this.$t('inframe')) {
               const addMaestroBtn = setInterval(() => {
                 if (jQuery('#editbar .menu_right').length && !jQuery('#maestroBtn').length) {
                   jQuery('#editbar .menu_right').prepend(`

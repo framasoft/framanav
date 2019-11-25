@@ -1,14 +1,14 @@
 [data-url*="://framacalc.org"] [onresize],
 [data-url*="://lite.framacalc.org"] [onresize] { /* dans Ethercalc */
-    background: #fff;
+  background: #fff;
 
-    *, *:before, *:after {
-        -webkit-box-sizing: content-box !important;
-        -moz-box-sizing: content-box !important;
-        box-sizing: content-box !important;
-    }
+  *, *:before, *:after {
+    -webkit-box-sizing: content-box !important;
+    -moz-box-sizing: content-box !important;
+    box-sizing: content-box !important;
+  }
 
-    #msg { top:48px; }
+  #msg { top:48px; }
 
-    overflow: hidden;
+  overflow: hidden;
 }

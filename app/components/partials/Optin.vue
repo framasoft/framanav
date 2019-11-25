@@ -1,52 +1,53 @@
 <template>
-  <portal target-el="#foptin">
-    <div id="fs_opt-in_error"
-      class="alert alert-danger fade in"
-      v-if="state.email !== '' && !is.email(state.email)">
-      <p v-html="$t('fnav.optin.e2', { email: `<b>${state.email}</b>`})"></p>
-    </div>
-    <div id="fs_opt-in_confirm"
-      class="alert alert-success fade in"
-      v-if="state.sent">
-      <p v-html="$t('fnav.optin.s1', { email: `<b>${state.email}</b>`})"></p>
-    </div>
-    <div id="fs_opt-in"
-      class="alert alert-info fade in"
-      v-if="state.optin && !state.sent">
-      <input id="fs_opt-in_checkbox"
+  <portal target-el="#fp-optin" target-class="f-bs4">
+    <!-- Success -->
+    <b-alert id="f-optin"
+      :show="state.optin && !state.sent"
+      variant="info">
+      <input id="f-optin-checkbox"
         type="checkbox"
         v-model="state.checked"
         :value="state.checked"
         @change="subscribe()">
-      <label for="fs_opt-in_checkbox" v-html="$t('fnav.optin.t')"></label>
+      <label for="f-optin-checkbox" v-html="$t('fnav.optin.t')"></label>
       <br>
       <small>
         <span v-html="$t('fnav.optin.d1')"></span>&nbsp;
-        <a :href="$root.link.newsletter" id="link-opt-in" target="_blank" >
+        <a :href="$t('link.newsletter')" target="_blank">
           <span v-html="$t('fnav.optin.d2')"></span>
           <span class="sr-only" v-html="`(${$t('txt.newWindow')})`"></span>
         </a>
       </small>
-    </div>
+    </b-alert>
+
+    <!-- Error -->
+    <b-alert id="f-optin-error"
+      :show="state.email !== '' && !is.email(state.email)"
+      variant="danger">
+      <p v-html="$t('fnav.optin.e2', { email: `<b>${state.email}</b>`})"></p>
+    </b-alert>
+
+    <!-- Success -->
+    <b-alert id="f-optin-success"
+      :show="state.sent"
+      variant="success">
+      <p v-html="$t('fnav.optin.s1', { email: `<b>${state.email}</b>`})"></p>
+    </b-alert>
   </portal>
 </template>
 
 <script>
-import { Alert } from 'uiv';
 export default {
-  components: {
-    Alert,
-  },
   created() {
     // Optin
     if (!window.vuefsPrerender) {
       document.querySelector('body')
-        .insertAdjacentHTML('beforeend', '<div id="foptin"></div>');
+        .insertAdjacentHTML('beforeend', '<div id="fp-optin"></div>');
     }
   },
   data() {
     return {
-      config: ['', this.$root.cookie.optin, 604800000],
+      config: ['', this.$t('cookie.optin'), 604800000],
       /** [email selector, cookie name, cookie duration] */
       state: {
         optin: false,
@@ -54,11 +55,11 @@ export default {
         email: '',
         sent: false,
       },
-      storage: this.$root.storage,
+      storage: this.$t('storage'),
     }
   },
   mounted() {
-    this.siteConfig(this.$root.site);
+    this.siteConfig(this.$t('site'));
 
     if (this.config[0] !== '') {
       if (this.storage.optin[0]) {
@@ -67,9 +68,9 @@ export default {
       }
       // Move box next to email input
       if (document.querySelector(this.config[0])) {
-        document.querySelector(this.config[0]).after(document.getElementById('foptin'));
+        document.querySelector(this.config[0]).after(document.getElementById('fp-optin'));
       } else {
-        document.getElementById('foptin').style.display = 'none';
+        document.getElementById('fp-optin').style.display = 'none';
       }
       // Display checkbox
       this.state.optin = (!this.cookie('r', this.config[1]));
@@ -125,12 +126,12 @@ export default {
             c = ['#commentform #email'];
             break;
           case 'board':
-            if (!/\.framaboard/.test(this.$root.host)) {
+            if (!/\.framaboard/.test(this.$t('host'))) {
               c = ['#registration #email'];
             }
             break;
           case 'date':
-            c = /create_poll\.php\?/.test(this.$root.url) ? ['#formulaire input#email'] : [''];
+            c = /create_poll\.php\?/.test(this.$t('url')) ? ['#formulaire input#email'] : [''];
             break;
           case 'mindmap':
             c = ['#user #email'];

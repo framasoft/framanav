@@ -2,12 +2,3 @@ Le code de la nav est sous double licence,
 Creative Commons BY-SA https://creativecommons.org/licenses/by-sa/2.0/
 et GNU Free Documentation License https://www.gnu.org/copyleft/fdl.html
 
-Bootstrap est sous licence MIT : https://github.com/twbs/bootstrap
-jQuery est sous licence MIT : https://jquery.com/download/
-Font-awesome est sous licence SIL OFL 1.1 : https://fortawesome.github.io/Font-Awesome/license/
-
-fquery et fbootstrap sont juste des variantes des fichiers officiels
-sur lesquel ont été remplacés :
-'jQuery' → 'fQuery'
-    '$(' → 'f$('
-    '$.' → 'f$.'
