@@ -4,6 +4,7 @@
     :static="true"
     :lazy="true"
     :title="config[0]"
+    :header-close-label="$t('txt.close')"
     :cancel-title-html="$t('txt.close')"
     cancel-variant="light"
     :ok-title-html="$t('txt.nevershow')"

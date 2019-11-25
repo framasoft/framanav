@@ -13,7 +13,7 @@
 
     <Framabin v-if="/:\/\/framabin.org.p/.test($t('url'))" />
     <Framavox v-if="/:\/\/framavox.org/.test($t('url'))" />
-    <!--<Framateam v-if="/:\/\/framateam.org/.test($t('url'))" /> -->
+    <Framateam v-if="/:\/\/framateam.org/.test($t('url')) && testing.team" />
 
     <Optin v-if="cortexReady" />
     <FooterMenu />
@@ -126,6 +126,7 @@ export default {
       kkeys.push(e.keyCode);
       if (/65,65,66,66/.test(kkeys.toString())) {
         this.testing.feedback = true;
+        this.testing.team = true;
       }
     }, true);
   },
@@ -139,6 +140,7 @@ export default {
       cortexReady: true,// false,
       testing: {
         feedback: false,
+        team: false,
       }
     };
   },

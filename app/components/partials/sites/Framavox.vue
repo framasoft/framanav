@@ -109,8 +109,8 @@
             <p v-html="$t('vox.presentation.contrib_upstream')"></p>
             <p v-html="$t('vox.presentation.home_install')"></p>
             <p class="text-center">
-              <a class="btn btn-success" href="http://framacloud.org/cultiver-son-jardin/installation-de-loomio/">
-                <i class="glyphicon glyphicon-tree-deciduous"></i> framacloud.org
+              <a class="btn btn-success" :href="$t('cloud.vox')">
+                <i class="fa fa-leaf"></i> framacloud.org
               </a>
             </p>
           </div>
