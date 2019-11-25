@@ -29,13 +29,15 @@
 
 #f-nav.f-bs4 {
   /* Colors */
-  .violet, .frama { color: $violet;}
-  .orange, .soft { color: $orange;}
+  .violet, .frama { color: $violet; }
+  .orange, .soft { color: $orange; }
+
 
   // @import 'feedback/feedback';
 
   #f-header {
     height:42px;
+    font-family: 'Roboto';
   }
 
   #f-navbar {
@@ -48,7 +50,7 @@
     height: 42px;
     width: auto;
     z-index: 1002;
-    background-color: #FAFAFA;
+    background-color: #fafafa;
     border-radius: 0;
     border: none;
     border-bottom:1px solid #bdbdbd;
@@ -81,6 +83,21 @@
 
     li {
       margin: 0;
+    }
+
+    .dropdown {
+      margin: 0 5px;
+
+      .dropdown-toggle:after {
+        display: block;
+        width: 0.3em;
+        margin: 3px auto -3px;
+        visibility: hidden;
+      }
+
+      &:hover .dropdown-toggle:after {
+        visibility: visible;
+      }
     }
 
     .dropdown-menu {
@@ -140,8 +157,8 @@
     }
 
     #f-collapse.show {
-      background: lighten($violet, 53%);
-      padding: 10px;
+      background: #fafafa;
+      padding: 0 10px;
       margin-top: 2px;
     }
 
@@ -245,6 +262,14 @@
         text-align:left;
       }
     }
+
+    .popover {
+      font-size: 14px;
+    }
+
+    .popover-header {
+      font-size: 16px;
+    }
   }
   //------------------------------------------------------------------------------
   #modal-don .new-window,
@@ -322,6 +347,7 @@
   border-top:1px solid #ccc;
   height:auto;
   text-align:left;
+  font-family: 'Roboto';
 
   .container {
     background:#dfdfdf;
@@ -368,6 +394,14 @@
   .btn {
     margin-top:0;
   }
+
+  .popover, .input-group {
+    font-size: 14px;
+  }
+
+  .popover-header {
+    font-size: 16px;
+  }
 }
 
 /* Opt-in */
@@ -410,6 +444,8 @@
   }
 
   #f-optin {
+    font-family: 'Roboto';
+
     small {
       font-size:11px;
     }
@@ -446,6 +482,7 @@
   border-left:0px;
   border-right:0px;
   border-radius:0 !important;
+  font-family: 'Roboto';
 
   &.alert-info.black {
     color: #fff !important;
