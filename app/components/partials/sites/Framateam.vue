@@ -132,7 +132,7 @@
         :style="!state.selectTeam ? 'display: none;' : ''">
         <p>
           <button id="ListBtn" class="btn btn-primary btn-block"
-            @click="state.publicList ^= true; copyList()">
+            @click="state.publicList ^= true">
             <i class="fa fa-fw fa-user-plus" aria-hidden="true"></i>
             <span v-html="$t('team.teams.join')"></span>
           </button>
@@ -153,7 +153,8 @@
         :header-close-label="$t('txt.close')"
         :cancel-title-html="$t('txt.close')"
         cancel-variant="light"
-        :ok-disabled="true">
+        :ok-disabled="true"
+        @shown="copyList()">
         <div class="clearfix" id="ListImport"></div>
       </b-modal>
     </portal>
@@ -307,9 +308,11 @@ export default {
       body.id = currentId;
     },
     copyList() {
-      document.getElementById('ListImport')
-        .insertAdjacentElement('afterbegin',
-          document.getElementById('teamsYouCanJoinContent'));
+      if (document.getElementById('ListImport').children.length === 0) {
+        document.getElementById('ListImport')
+          .insertAdjacentElement('afterbegin',
+            document.getElementById('teamsYouCanJoinContent'));
+      }
     },
   }
 };
