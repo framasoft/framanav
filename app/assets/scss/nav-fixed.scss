@@ -4,6 +4,7 @@
 [data-url*="://framabookin.org"],
 [data-url*="://framadvd.org"],
 [data-url*="://framadrive.org"],
+[data-url*="://framakey.org"],
 [data-url*="://framasoft.org"],
 [data-url*="://framastats.org"],
 [data-url*="://framateam.org"],
@@ -21,5 +22,17 @@
     top: 0;
     z-index: 1042;
     width: 100%;
+  }
+}
+
+/* Wordpress */
+[data-url*="://framablog.org"],
+[data-url*="://framabook.org"],
+[data-url*="://framadvd.org"],
+[data-url*="://framakey.org"],
+[data-url*="://framazic.org"] {
+  /* Admin navbar */
+  .logged-in.admin-bar #f-nav {
+    padding-top: 32px;
   }
 }
