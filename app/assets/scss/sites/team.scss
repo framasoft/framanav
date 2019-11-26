@@ -228,13 +228,24 @@
   }
 
   #fp-team-public, #fp-team-prez, #fp-team-screen,
-  #login_section + .col-md-5 a[href="/signup_user_complete"] {
+  #ct-login .col-md-5.h1:nth-of-type(1) .btn-success {
     display: none;
   }
+
   #ct-select_team #fp-team-public,
   #ct-login #fp-team-prez,
   #ct-login #fp-team-screen {
     display: block;
+  }
+
+  #f-modal-publicList {
+    .modal-header {
+      background: #fff;
+    }
+
+    .close {
+      width: auto;
+    }
   }
   /*******************
    * Dans Mattermost *

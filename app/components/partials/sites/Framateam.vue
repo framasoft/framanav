@@ -1,6 +1,10 @@
 <template>
   <div>
-    <div id="fp-team-header" style="display:none;" class="f-bs4">
+    <!--
+      => prepend #root (cloned)
+      {} Mattermost’s Bootstrap 3
+    -->
+    <div id="fp-team-header" style="display:none;">
       <header role="banner" class="clearfix f-team">
         <h1 v-html="$t('html.team')"></h1>
         <p class="lead" v-html="$t('team.header.lead')"></p>
@@ -8,6 +12,10 @@
       </header>
     </div>
 
+    <!--
+      => prepend #login_section (vue-portal)
+      {} Nav’s Bootstrap 4
+    -->
     <portal target-el="#fp-team-screen" target-class="f-bs4">
       <div class="row f-team">
         <div class="col-12 carousel-container">
@@ -53,18 +61,22 @@
       </div>
     </portal>
 
-    <div id="fp-team-prez" style="display:none;" class="f-bs4">
-      <div class="row">
+    <!--
+      => after #login_section
+      {} Mattermost’s Bootstrap 3
+    -->
+    <div id="fp-team-prez" style="display:none;">
+      <div class="clearfix">
         <div class="col-md-5 text-center h1 f-team">
           <a href="/signup_user_complete" class="btn btn-lg btn-success">
             <i class="fa fa-fw fa-lg fa-user" aria-hidden="true"></i>
             <span v-html="$t('team.create')"></span>
           </a>
         </div>
-        <div class="row f-team">
+        <div class="col-md-12 f-team">
           <hr role="presentation" />
           <div class="row">
-            <div class="col-md" id="tuto-faq">
+            <div class="col-md-4" id="tuto-faq">
               <h2 v-html="$t('team.presentation.h2_1')"></h2>
               <p class="text-center" role="presentation" aria-hidden="true">
                 <i class="fa fa-question-circle"></i>
@@ -77,15 +89,14 @@
               </ol>
               <p v-html="$t('team.presentation.learn')"></p>
               <p class="text-center">
-                <a
-                  href="https://docs.framasoft.org/fr/mattermost/index.html"
+                <a href="https://docs.framasoft.org/fr/mattermost/index.html"
                   class="btn btn-primary"
-                  v-html="$t('team.presentation.aide')"
-                ></a>
+                  v-html="$t('team.presentation.aide')">
+                </a>
               </p>
               <p v-html="$t('team.presentation.trad')"></p>
             </div>
-            <div class="col-md" id="le-logiciel">
+            <div class="col-md-4" id="le-logiciel">
               <h2 v-html="$t('team.presentation.h2_2')"></h2>
               <p class="text-center" role="presentation" aria-hidden="true">
                 <i class="fa fa-cloud"></i>
@@ -93,7 +104,7 @@
               <p v-html="$t('team.presentation.framaware')"></p>
               <p v-html="$t('team.presentation.license')"></p>
             </div>
-            <div class="col-md" id="jardin">
+            <div class="col-md-4" id="jardin">
               <h2 v-html="$t('team.presentation.h2_3')"></h2>
               <p class="text-center" role="presentation" aria-hidden="true">
                 <i class="fa fa-leaf"></i>
@@ -112,6 +123,10 @@
       </div>
     </div>
 
+    <!--
+      => after #site_description (vue-portal)
+      {} Nav’s Bootstrap 4
+    -->
     <portal target-el="#fp-team-public" target-class="f-bs4">
       <div class="text-center f-team" id="Options"
         :style="(!state.selectTeam) ? 'display: none;' : ''">
@@ -139,7 +154,7 @@
         :cancel-title-html="$t('txt.close')"
         cancel-variant="light"
         :ok-disabled="true">
-        <div class="clearfix"  id="ListImport"></div>
+        <div class="clearfix" id="ListImport"></div>
       </b-modal>
     </portal>
   </div>
@@ -233,7 +248,7 @@ export default {
 
             document.getElementById('ListImport')
               .insertAdjacentElement('afterbegin',
-                document.querySelectorAll('.signup-team__container .signup__content .signup-team-all')[0]);
+                document.getElementById('teamsYouCanJoinContent');
           }
           break;
         case 'ct-signup_user_complete':
