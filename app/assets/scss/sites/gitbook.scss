@@ -1,0 +1,7 @@
+[data-url*="://docs.framasoft.org"],
+[data-url*="://participer.framasoft.org"],
+[data-url*="://framacloud.org"] {
+  .book.font-size-2 .book-body .page-inner section {
+    font-size: 1rem;
+  }
+}
