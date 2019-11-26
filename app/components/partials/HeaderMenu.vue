@@ -33,7 +33,7 @@
               :href="$te(`fnav.sites.${l}.link`) ? $t(`fnav.sites.${l}.link`) : $t(`link.${l}`)"
               target="_blank"
               :class="`fs_${l}`"
-              :title="text($t(`fnav.sites.${l}.t1`))"
+              :title="$te(`fnav.sites.${l}.t1`) ? text($t(`fnav.sites.${l}.t1`)) : ''"
               v-b-popover="popoverConfig(key, l, index)">
               <i :class="`fa fa-fw fa-lg ${$t(`icon.${l}`)}`" aria-hidden="true"></i>
               <span

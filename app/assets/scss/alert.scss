@@ -1,0 +1,104 @@
+#f-- #f-alert {
+  border-top:0px;
+  border-left:0px;
+  border-right:0px;
+  border-radius:0 !important;
+  font-family: 'Roboto';
+
+  &.alert-info.black {
+    color: #fff !important;
+    background-color:  #010001 !important;
+    border-color: #010001 !important;
+
+    .saveyourinternet {
+      width: 100%;
+      display: block;
+      background-color:  #010001 !important;
+      border-color: #010001 !important;
+      text-align: center;
+
+      &:hover, &:focus {
+        background-color:  #010001 !important;
+      }
+    }
+  }
+
+  &.alert {
+    margin-bottom:0;
+    font-size:14px;
+    line-height:20px;
+    text-shadow:none;
+
+    p {
+      margin-bottom:5px;
+      margin-top:0px;
+    }
+
+    a:not(.btn) {
+      text-decoration: underline !important;
+      -moz-text-decoration-style: dotted;
+      -webkit-text-decoration-style: dotted;
+      -ms-text-decoration-style: dotted;
+      text-decoration-style: dotted;
+
+      &:hover, &:focus {
+        text-decoration: underline !important;
+        -moz-text-decoration-style: solid;
+        -webkit-text-decoration-style: solid;
+        -ms-text-decoration-style: solid;
+        text-decoration-style: solid;
+      }
+    }
+    a {
+      font-weight:inherit !important;
+    }
+  }
+
+  &.alert-success a:not(.btn),
+  &.alert-success a:hover:not(.btn),
+  &.alert-success {
+    color: #304219;
+    background:#E3EBC7;
+    border-color: #C0D481;
+  }
+
+  &.alert-info a:not(.btn),
+  &.alert-info a:hover:not(.btn),
+  &.alert-info {
+    color: #0C5B7A;
+    background-color: #E1F8FC;
+    border-color: #B2D5DB;
+  }
+
+  &.alert-warning a:not(.btn),
+  &.alert-danger a:hover:not(.btn),
+  &.alert-warning {
+    color: #A15014;
+    background-color: #FFEBB5;
+    border-color: #FFCF4F;
+  }
+
+  &.alert-danger a:not(.btn),
+  &.alert-danger a:hover:not(.btn),
+  &.alert-danger {
+    color: #AB2909;
+    background-color: #fde0dc;
+    border-color: #E0B3A8;
+  }
+
+  &.alert-dismissible .close {
+    right: 0px;
+    margin-right: 5px;
+    margin-top: -5px;
+  }
+
+  & .clearfix {
+    height:auto !important;
+    overflow:visible !important;
+  }
+
+  & > div {
+    margin:0 auto;
+    max-width:800px;
+  }
+}
