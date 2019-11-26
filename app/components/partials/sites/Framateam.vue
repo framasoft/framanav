@@ -129,10 +129,10 @@
     -->
     <portal target-el="#fp-team-public" target-class="f-bs4">
       <div class="text-center f-team" id="Options"
-        :style="(!state.selectTeam) ? 'display: none;' : ''">
+        :style="!state.selectTeam ? 'display: none;' : ''">
         <p>
           <button id="ListBtn" class="btn btn-primary btn-block"
-            @click="state.publicList ^= true">
+            @click="state.publicList ^= true; copyList()">
             <i class="fa fa-fw fa-user-plus" aria-hidden="true"></i>
             <span v-html="$t('team.teams.join')"></span>
           </button>
@@ -148,7 +148,7 @@
         v-model="state.publicList"
         :static="true"
         :lazy="true"
-        :style="(!state.selectTeam) ? 'display: none;' : ''"
+        :style="!state.selectTeam ? 'display: none;' : ''"
         :title="$t('team.teams.list')"
         :header-close-label="$t('txt.close')"
         :cancel-title-html="$t('txt.close')"
@@ -242,13 +242,9 @@ export default {
         case 'ct-select_team':
           if (!document.querySelector('#root #fp-team-public')) {
             this.state.selectTeam = true;
-            // ⚠️ vue-portal #fp-team-screen
+            // ⚠️ vue-portal #fp-team-public
             document.getElementById('site_description')
               .insertAdjacentElement('afterend', document.getElementById('fp-team-public'));
-
-            document.getElementById('ListImport')
-              .insertAdjacentElement('afterbegin',
-                document.getElementById('teamsYouCanJoinContent'));
           }
           break;
         case 'ct-signup_user_complete':
@@ -276,7 +272,6 @@ export default {
               stc.parentNode
                 .insertAdjacentElement('beforebegin', document.getElementById('fp-team-screen'));
             }
-
           }
           if (document.getElementById('login_section')) {
             // ⚠️ vue-portal #fp-team-prez
@@ -310,6 +305,11 @@ export default {
       }
 
       body.id = currentId;
+    },
+    copyList() {
+      document.getElementById('ListImport')
+        .insertAdjacentElement('afterbegin',
+          document.getElementById('teamsYouCanJoinContent'));
     },
   }
 };
