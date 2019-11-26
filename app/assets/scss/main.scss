@@ -27,7 +27,18 @@ $button-ombre: 0px 1px 1px rgba(50, 50, 50, 0.5);
 @import 'frama/bs4';
 @import 'frama/common';
 
+/*
+  Bootstrap 4 import
+  + conflicts resolution
+  + #f-nav container
+*/
 @import 'nav';
+
+/* Components */
+@import 'header';
+@import 'alert';
+@import 'optin';
+@import 'footer';
 
 /* Sites Frama */
 @import 'sites/bin';
@@ -53,8 +64,6 @@ $button-ombre: 0px 1px 1px rgba(50, 50, 50, 0.5);
 @import 'sites/wiki';
 
 /* Ajustements */
-@import 'nav-fixed';
-@import 'nav-iframe';
-@import 'footer';
+@import 'inframe';
 @import 'mute';
 @import 'overflow';
