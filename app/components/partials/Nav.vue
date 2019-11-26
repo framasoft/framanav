@@ -256,38 +256,8 @@ export default {
     },
     customJS(site) {
       switch (site) {
-        case 'bee':
-          this.js = function() {
-            if (jQuery('.explain').length) { jQuery('#q').focus(); }
-            jQuery('.footer').hide();
-            jQuery('body').css('margin-bottom', '0');
-            // Default search in fr
-            if (this.isLang('fr', 'b') && document.cookie.indexOf('language=') === -1) {
-              jQuery('select[name="language"] option[value="fr"]').prop('selected', true);
-            }
-            // Active search engine list
-            let engines = '';
-            jQuery('#main_results .label-default').each((i) => {
-              const html = jQuery('<div />')
-                .append(jQuery('#main_results .label-default')
-                  .eq(i).clone())
-                .html();
-              if (engines.indexOf(html) === -1) {
-                engines += `${html} `;
-              }
-            });
-            jQuery('#sidebar_results').append(`
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4 class="panel-title">${this.$i18n.t('bee.search')}</h4>
-                </div>
-                <div class="panel-body">
-                  <p>${engines.replace(/pull-right/g, '')}</p>
-                  <p>${this.$i18n.t('bee.pref')}</p>
-                </div>
-              </div>
-            `);
-          };
+        case 'blog':
+          document.getElementsByTagName('html')[0].lang = 'fr';
           break;
 
         case 'board':
