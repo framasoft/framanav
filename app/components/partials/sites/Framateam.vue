@@ -248,7 +248,7 @@ export default {
 
             document.getElementById('ListImport')
               .insertAdjacentElement('afterbegin',
-                document.getElementById('teamsYouCanJoinContent');
+                document.getElementById('teamsYouCanJoinContent'));
           }
           break;
         case 'ct-signup_user_complete':

@@ -77,6 +77,8 @@ if (html[0].getAttribute('xml:lang')) {
     }
   }
 }
+lang = lang.replace(/^(fr_.*)/, 'fr').replace(/^((?!fr).)*$/, 'en'); /* TODO: fix locales detection */
+
 const userLang = navigator.languages
   || [navigator.language || navigator.userLanguage];
 let defaultRouteLang = '';

@@ -256,10 +256,6 @@ export default {
     },
     customJS(site) {
       switch (site) {
-        case 'blog':
-          document.getElementsByTagName('html')[0].lang = 'fr';
-          break;
-
         case 'board':
           if (/\.framaboard/.test(this.$t('host'))) { // dans Kanboard
             this.js = function() {
