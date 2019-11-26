@@ -14,7 +14,7 @@
                 <ul class="list-unstyled">
                   <li v-for="key in $t('fnav.footer.frama')"
                     :key="key">
-                    <a :href="$te(`fnav.sites.${key}.link`) ? $t(`link.${key}`) : $t(`fnav.sites.${key}.link`)"
+                    <a :href="!$te(`fnav.sites.${key}.link`) ? $t(`link.${key}`) : $t(`fnav.sites.${key}.link`)"
                       v-html="$t(`fnav.sites.${key}.name`)"
                     ></a>
                   </li>
@@ -27,7 +27,7 @@
                     <a :href="$t('link.colibri')" v-text="$t('txt.colibri')"></a>
                   </li>
                   <li v-for="key in $t('fnav.footer.community')" :key="key">
-                    <a :href="$te(`fnav.sites.${key}.link`) ? $t(`link.${key}`) : $t(`fnav.sites.${key}.link`)"
+                    <a :href="!$te(`fnav.sites.${key}.link`) ? $t(`link.${key}`) : $t(`fnav.sites.${key}.link`)"
                       v-html="$t(`fnav.sites.${key}.name`)">
                     </a>
                   </li>
@@ -37,7 +37,7 @@
                 <h1 v-html="$t('txt.site')"></h1>
                 <ul class="list-unstyled">
                   <li v-for="key in $t('fnav.footer.site')" :key="key">
-                    <a :href="$te(`fnav.sites.${key}.link`) ? $t(`link.${key}`) : $t(`fnav.sites.${key}.link`)"
+                    <a :href="!$te(`fnav.sites.${key}.link`) ? $t(`link.${key}`) : $t(`fnav.sites.${key}.link`)"
                       v-html="$t(`fnav.sites.${key}.name`)">
                     </a>
                   </li>
@@ -53,10 +53,10 @@
                 :class="`list-inline-item fs_${key}`"
                 :title="text($t(`fnav.sites.${key}.t1`))"
                 v-b-popover:f-footer.top.hover.focus.html="$t(`fnav.sites.${key}.d1`)">
-                <a :href="$te(`fnav.sites.${key}.link`) ? $t(`link.${key}`) : $t(`fnav.sites.${key}.link`)">
+                <a :href="!$te(`fnav.sites.${key}.link`) ? $t(`link.${key}`) : $t(`fnav.sites.${key}.link`)">
                   <i :class="`fa fa-fw fa-2x ${$t(`icon.${key}`)}`" aria-hidden="true"></i>
                   <span class="sr-only"
-                    v-text="$te(`fnav.sites.${key}.name`) ? $t(`txt.${key}`) : text($t(`fnav.sites.${key}.name`))">
+                    v-text="!$te(`fnav.sites.${key}.name`) ? $t(`txt.${key}`) : text($t(`fnav.sites.${key}.name`))">
                   </span>
                 </a>
               </li>

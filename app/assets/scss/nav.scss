@@ -1,5 +1,5 @@
 #f-- {
-  font-size: 100%;    
+  font-size: 100%;
 }
 
 #f-- .f-bs4 {
@@ -12,8 +12,14 @@
 
   @import 'frameworks/bootstrap4-nav';
 
+  /* Fix conflicts */
   .modal-backdrop {
     opacity: 0.5;
+  }
+
+  .popover > .arrow,
+  .popover > .arrow:after {
+    border-style: none;
   }
 
   /* Frama */
@@ -29,6 +35,7 @@
       border-color: #C48a1b;
     }
   }
+
 }
 
 #f-nav.f-bs4 {
@@ -42,6 +49,8 @@
   #f-header {
     height:42px;
     font-family: 'Roboto';
+    background-color: #fafafa;
+    border-bottom:1px solid #bdbdbd;
   }
 
   #f-navbar {
@@ -58,6 +67,8 @@
     border-radius: 0;
     border: none;
     border-bottom:1px solid #bdbdbd;
+    max-width: 1170px;
+    margin: auto;
 
     .navbar-brand {
       font-weight: bold;
@@ -99,8 +110,10 @@
         visibility: hidden;
       }
 
-      &:hover .dropdown-toggle:after {
-        visibility: visible;
+      @media (min-width:768px) {
+        &:hover .dropdown-toggle:after {
+          visibility: visible;
+        }
       }
     }
 
@@ -160,10 +173,17 @@
       background-color: $jaune;
     }
 
-    #f-collapse.show {
-      background: #fafafa;
-      padding: 0 10px;
-      margin-top: 2px;
+    #f-collapse {
+      padding: 0;
+
+      @media (max-width:768px) {
+        &.show {
+          background: #eee;
+          padding: 10px;
+          margin-top: 1px;
+          border-bottom: 1px solid #bdbdbd;
+        }
+      }
     }
 
     .navbar-toggler {
@@ -181,33 +201,47 @@
     }
 
     @media (min-width: 768px) {
-      #fs_services .dropdown-menu,
-      #fs_about .dropdown-menu {
-        min-width: 340px;
+      #fs_services,
+      #fs_about {
+        .dropdown-menu {
+          min-width: 340px;
+
+          li {
+            width: 50%;
+            float: left;
+          }
+        }
       }
 
-      #fs_services ul { margin-left: -106px; }
-      #fs_about ul { margin-left: -124px; }
+      #fs_services {
+        ul {
+          margin-left: -106px;
+        }
 
-      #fs_services .dropdown-menu li,
-      #fs_about .dropdown-menu li {
-        width: 50%;
-        float: left;
+        li.fs_diolist,
+        li.dropdown-header {
+          width: 100%;
+          text-align: center;
+          padding: 0;
+        }
       }
 
-      #fs_services .dropdown-menu .fs_diolist,
-      #fs_services .dropdown-menu .dropdown-header,
-      #fs_about .dropdown-menu .fs_dio2,
-      #fs_about .dropdown-menu .fs_cuo2,
-      #fs_about .dropdown-menu .dropdown-header {
-        width: 100%;
-        text-align: center;
-        padding: 0;
-      }
+      #fs_about {
+        ul {
+          margin-left: -124px;
+        }
 
-      #fs_about .dropdown-menu .dropdown-header {
-        border-bottom: 1px solid #e5e5e5;
-        padding: 5px 0;
+        li.fs_dio2, li.fs_cuo2,
+        li.dropdown-header {
+          width: 100%;
+          text-align: center;
+          padding: 0;
+        }
+
+        li.dropdown-header {
+          border-bottom: 1px solid #e5e5e5;
+          padding: 5px 0;
+        }
       }
     }
 

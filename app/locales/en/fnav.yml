@@ -125,6 +125,8 @@ sites:
     t1: Planet-libre
     d1: Selection of french speaking  news.
   diolist:
+    name: All the services
+    d0: List of services
     t1: List of services
     d1: List of all the services we offer classified by usage, with a search bar
       to help you find the one that meets your needs.
