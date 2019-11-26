@@ -1,0 +1,365 @@
+.f-bs4 #f-header {
+  height:42px;
+  font-family: 'Roboto';
+  background-color: #fafafa;
+  border-bottom:1px solid #bdbdbd;
+
+  #f-navbar {
+    font-size: 14px;
+    text-align: justify;
+    display: flex !important;
+    min-height: 30px;
+    margin-bottom: 0;
+    padding: 0;
+    height: 42px;
+    width: auto;
+    z-index: 1002;
+    background-color: #fafafa;
+    border-radius: 0;
+    border: none;
+    border-bottom:1px solid #bdbdbd;
+    max-width: 1170px;
+    margin: auto;
+  }
+
+  /* Brand */
+  .navbar-brand {
+    font-weight: bold;
+    font-family: "DejaVu Sans",Verdana,Geneva,sans-serif;
+    height: 40px;
+    padding:0;
+    line-height:40px;
+    font-size: 20px;
+    margin-right:15px;
+    text-decoration: none;
+
+    img {
+      margin: 0;
+      width: 38px;
+      height: 38px;
+      border:none;
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    b {
+      border:none;
+      display: inline;
+      vertical-align: top;
+    }
+  }
+
+  /* Skip the menu */
+  .sr-only-focusable:focus {
+    width: auto;
+    line-height: 20px;
+    margin: 0 0 0 45px;
+    padding: 10px 20px;
+    background-color: #fafafa;
+    color: #555;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    text-decoration:none;
+    font-size:14px;
+    position: absolute;
+  }
+
+  li {
+    margin: 0;
+  }
+
+  /* Menus */
+  .dropdown {
+    margin: 0 5px;
+
+    .dropdown-toggle:after {
+      display: block;
+      width: 0.3em;
+      margin: 3px auto -3px;
+      visibility: hidden;
+    }
+
+    @media (min-width:768px) {
+      &:hover .dropdown-toggle:after {
+        visibility: visible;
+      }
+    }
+  }
+
+  .dropdown-menu {
+    min-width: 140px;
+    padding : 5px 0px;
+    left: 0;
+    top: 100%;
+    bottom: auto;
+    width: auto;
+
+    li {
+      font-size: 14px;
+      text-align: justify;
+      display: block;
+      width: auto;
+      padding: 0;
+      background-color: #fff;
+      border: none;
+
+      .fa {
+        opacity: 1;
+        margin-right: 0;
+      }
+
+      a {
+        color: #444;
+
+        .new-window {
+          visibility: hidden;
+          font-size: 10px !important;
+        }
+
+        &:hover, &:focus {
+          color: #fff;
+
+          .fa {
+            color: #fff;
+          }
+
+          .new-window {
+            visibility:visible;
+          }
+        }
+      }
+    }
+
+    > li > a { padding: 5px 10px; }
+  }
+
+  #fs_logiciel {
+    .dropdown-item {
+      &:hover, &:focus { background-color: $bleu; }
+    }
+    .fs_evl, .fs_vvl {
+      .dropdown-item {
+        &:hover, &:focus { background-color: $jaune; }
+      }
+    }
+  }
+  #fs_culture {
+    .dropdown-item {
+      &:hover, &:focus { background-color: $rouge; }
+    }
+    .fs_evl {
+      .dropdown-item {
+        &:hover, &:focus { background-color: $jaune; }
+      }
+    }
+  }
+  #fs_services {
+    .dropdown-item {
+      &:hover, &:focus { background-color: $vert; }
+    }
+  }
+  #fs_follow {
+    .dropdown-item {
+      &:hover, &:focus { background-color: $violet; }
+    }
+    .fs_colibri, .fs_wikifs {
+      .dropdown-item {
+        &:hover, &:focus { background-color: $jaune; }
+      }
+    }
+  }
+  #fs_about {
+    .dropdown-item {
+      &:hover, &:focus { background-color: $orange; }
+    }
+    .fs_participer, .fs_doc {
+      .dropdown-item {
+        &:hover, &:focus { background-color: $jaune; }
+      }
+    }
+  }
+
+  .dropdown-menu {
+    .fs_start, .fs_zic,
+    .fs_diolist, .fs_slides, .fs_maestro, .fs_carte, .fs_petitions,
+    .fs_bag, .fs_news, .fs_minetest, .fs_drive, .fs_clic,
+    .fs_wikipedia,
+    .fs_stats, .fs_status, .fs_moderation {
+      border-bottom: 1px solid #e5e5e5;
+    }
+  }
+
+  /* Double column menus */
+  @media (min-width: 768px) {
+    #fs_services,
+    #fs_about {
+      .dropdown-menu {
+        min-width: 340px;
+
+        li {
+          width: 50%;
+          float: left;
+        }
+      }
+    }
+
+    #fs_services {
+      ul {
+        margin-left: -106px;
+      }
+
+      li.fs_diolist,
+      li.dropdown-header {
+        width: 100%;
+        text-align: center;
+        padding: 0;
+      }
+    }
+
+    #fs_about {
+      ul {
+        margin-left: -124px;
+      }
+
+      li.fs_dio2, li.fs_cuo2,
+      li.dropdown-header {
+        width: 100%;
+        text-align: center;
+        padding: 0;
+      }
+
+      li.dropdown-header {
+        border-bottom: 1px solid #e5e5e5;
+        padding: 5px 0;
+      }
+    }
+  }
+
+  /* Menus on mobile */
+  #f-collapse {
+    padding: 0;
+
+    @media (max-width:768px) {
+      &.show {
+        background: #eee;
+        padding: 10px;
+        margin-top: 1px;
+        border-bottom: 1px solid #bdbdbd;
+      }
+    }
+  }
+
+  .navbar-toggler {
+    border-color: transparent;
+  }
+
+  /* Right buttons */
+  #btn-soutenir .btn-soutenir,
+  #btn-benevalo .btn-info,
+  #btn-myframa .btn-primary {
+    min-width: 135px;
+    height: 41px;
+    line-height: 41px;
+    font-size: 14px;
+    color: #fff;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+    padding: 0px;
+    border: none;
+    text-align:center;
+    border-radius: 0;
+    text-transform: none;
+
+    &:hover, &:focus, &:active {
+      color: #fff;
+    }
+  }
+
+  #btn-soutenir .btn-soutenir {
+    background-color: #DBA306;
+
+    &:hover, &:focus, &:active {
+      background-color: #C48a1b;
+    }
+  }
+
+  #btn-benevalo .btn-info {
+    background-color: #11809E;
+
+    &:hover, &:focus, &:active {
+      background-color: #0C5B7A;
+    }
+  }
+
+  #btn-myframa .btn-primary {
+    background-color: #6A5687;
+
+    &:hover, &:focus, &:active {
+      background-color: #635182;
+    }
+
+    span {
+      line-height: 16px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+
+  @media (max-width: 768px) {
+    #btn-myframa, #btn-benevalo {
+      width:auto;
+      text-align:left;
+    }
+  }
+
+  /* Disabled services */
+  .fs_clic, .fs_petitions {
+    visibility: hidden;
+  }
+}
+
+/* Display header only when CSS is ready */
+#f-navbar[style*="display: none"] {
+  display: flex !important;
+}
+
+/*----------------------------------------------------------------------
+  Fixed header menu
+*/
+[data-url*="://framagenda.org"],
+[data-url*="://framablog.org"],
+[data-url*="://framabook.org"],
+[data-url*="://framabookin.org"],
+[data-url*="://framadvd.org"],
+[data-url*="://framadrive.org"],
+[data-url*="://framakey.org"],
+[data-url*="://framasoft.org"],
+[data-url*="://framastats.org"],
+[data-url*="://framateam.org"],
+[data-url*="://framavox.org"],
+[data-url*="://framazic.org"],
+[data-url*="://contact.framasoft.org"],
+[data-url*="://status.framasoft.org"],
+[data-url$="test/verbose-fixed.html"] {
+  body {
+    padding-top: 42px;
+  }
+
+  #f-nav {
+    position: fixed;
+    top: 0;
+    z-index: 1042;
+    width: 100%;
+  }
+}
+
+/* Wordpress */
+[data-url*="://framablog.org"],
+[data-url*="://framabook.org"],
+[data-url*="://framadvd.org"],
+[data-url*="://framakey.org"],
+[data-url*="://framazic.org"] {
+  /* Admin navbar */
+  .logged-in.admin-bar #f-nav {
+    padding-top: 32px;
+  }
+}

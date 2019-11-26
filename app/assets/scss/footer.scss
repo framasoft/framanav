@@ -1,38 +1,115 @@
+.f-bs4 #f-footer {
+  padding:20px 0 20px 0;
+  margin:0;
+  background:#dfdfdf;
+  color:#333;
+  font-size:14px;
+  width:100%;
+  max-width:100%;
+  bottom:0;
+  border-top:1px solid #ccc;
+  height:auto;
+  text-align:left;
+  font-family: 'Roboto';
+
+  .container {
+    background:#dfdfdf;
+    min-height:0px;
+    padding: 0;
+  }
+
+  h1 {
+    font-size:16px;
+    font-weight:bold;
+    margin-top:0;
+  }
+
+  h2 {
+    font-size:16px;
+    font-weight:bold;
+  }
+
+  a {
+    color:#333;
+    text-decoration:none;
+    border-bottom:none;
+    font-size:14px;
+
+    .fa-fw {
+      padding:5px;
+      width:36px;
+      height:36px;
+      text-decoration:none;
+    }
+
+    &:hover, &:focus {
+      color:#333;
+      text-decoration: underline;
+
+      .fa {
+        background:#6A5687;
+        color:#fff;
+        border-radius:5px;
+      }
+    }
+  }
+
+  .btn {
+    margin-top:0;
+  }
+
+  .popover, .input-group {
+    font-size: 14px;
+  }
+
+  .popover-header {
+    font-size: 16px;
+  }
+}
+
+/* Display footer only when CSS is ready */
+#fp-footer[style*="display: none"] {
+  display: block !important;
+}
+
+/*----------------------------------------------------------------------
+  No footer in…
+*/
 [data-url*=".framaboard.org"],
 [data-url*="://framabookin.org/b"],
 
-/* dans Ethercalc */
+/* Ethercalc */
 [data-url*="framacalc.org/"]:not([data-url$="/_start"]):not([data-url$="framacalc.org/"]),
 
-[data-url*="://framacarte.org"][data-url*="/map/"],                     /* dans uMap */
+[data-url*="://framacarte.org"][data-url*="/map/"],                     /* uMap */
 [data-url*="://framacolibri.org"],
 [data-url*="://framacloud.org"],
 
-/* dans Nextcloud */
-/* [data-url*="://framagenda.org"][data-url*="index.php/app"]:not([data-url*="registration"]),
- * [data-url*="://framagenda.org"][data-url*="index.php/setting"], */
+/* Nextcloud */
+// [data-url*="://framagenda.org"][data-url*="index.php/app"]:not([data-url*="registration"]),
+// [data-url*="://framagenda.org"][data-url*="index.php/setting"],
 [data-url*="://framadrive.org"][data-url*="index.php/app"]:not([data-url*="registration"]),
 [data-url*="://framadrive.org"][data-url*="index.php/setting"],
 
-[data-url*="://framaestro.org/p/"],                                     /* dans un projet Framaestro */
-[data-url*="://framindmap.org/c/maps"][data-url*="/edit"],              /* dans l’éditeur de Wisemapping */
-[data-url*="://framinetest.org/carte/"],                                /* dans la carte Minetest */
-[data-url*="://framanews.org/ttrss"],                                   /* dans TTRSS (pas actif) */
-[data-url*="://framapack.org/admin/"],                                  /* dans l’interface admin de Framapack */
+[data-url*="://framaestro.org/p/"],                                     /* Framaestro project */
+[data-url*="://framindmap.org/c/maps"][data-url*="/edit"],              /* Wisemapping */
+[data-url*="://framinetest.org/carte/"],                                /* Minetest map */
+// [data-url*="://framanews.org/ttrss"],                                /* TTRSS */
+[data-url*="://framapack.org/admin/"],                                  /* Framapack admin */
 [data-url*="://framaphonie.org"],
 [data-url*="://framapiaf.org"]:not([data-url*="/about"]),
-[data-url*=".frama.site/admin"],                                        /* dans Grav */
+[data-url*=".frama.site/admin"],                                        /* Grav */
 [data-url*="://framateam.org"],
-[data-url*="://framavectoriel.org/svg-editor"],                         /* dans SVG-Edit */
+[data-url*="://framavectoriel.org/svg-editor"],                         /* SVG-Edit */
 [data-url*="://framavox.org"],
 
-[data-url*="://mypads.framapad.org"],                                   /* dans MyPads */
-[data-url*=".framapad.org/p/"],                                         /* dans Etherpad */
+[data-url*="://mypads.framapad.org"],                                   /* MyPads */
+[data-url*=".framapad.org/p/"],                                         /* Etherpad */
 
 [data-url*="://bot.framasoft.org"],
 [data-url*="://docs.framasoft.org"],
 [data-url*="://forum.framasoft.org"],
-[data-url*="://my.framasoft.org"][data-url*="source=bookmarklet"],      /* dans la popup MyFrama */
+[data-url*="://my.framasoft.org"][data-url*="source=bookmarklet"],      /* MyFrama popup */
 [data-url*="://participer.framasoft.org"],
 [data-url*="://status.framasoft.org"],
 
@@ -45,6 +122,7 @@
   }
 }
 
+/* Keep position relative */
 [data-url*="framadate.org/create_"] #f-footer {
   position: relative !important;
 }

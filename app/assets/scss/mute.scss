@@ -1,4 +1,4 @@
-/* Ni bandeau, ni modale, ni macaron */
+/* No alert, no modal */
 /* ------------------------------------------------------------------ */
 [data-url*=".framaboard.org/"],
 [data-url*="://framabookin.org/b"],
@@ -37,26 +37,26 @@
   }
 }
 
-/* Ni bandeau ni macaron */
+/* No alert only */
 /* ------------------------------------------------------------------ */
-/* dans Ethercalc */
+/* Ethercalc */
 [data-url*="framacalc.org/"]:not([data-url$="/_start"]):not([data-url$="framacalc.org/"]),
 
-[data-url*="://framacarte.org"][data-url*="/map/"],                     /* dans uMap */
-[data-url*=".frama.site/admin"],                                        /* dans Grav */
+[data-url*="://framacarte.org"][data-url*="/map/"],                     /* uMap */
+[data-url*=".frama.site/admin"],                                        /* Grav */
 
-/* dans Nextcloud */
-/* [data-url*="://framagenda.org"][data-url*="index.php/app"]:not([data-url*="registration"]),
- * [data-url*="://framagenda.org"][data-url*="index.php/setting"], */
+/* Nextcloud */
+// [data-url*="://framagenda.org"][data-url*="index.php/app"]:not([data-url*="registration"]),
+// [data-url*="://framagenda.org"][data-url*="index.php/setting"],
 [data-url*="://framadrive.org"][data-url*="index.php/app"]:not([data-url*="registration"]),
 [data-url*="://framadrive.org"][data-url*="index.php/setting"],
 
-[data-url*="://mypads.framapad.org"],                                   /* dans MyPads */
-[data-url*=".framapad.org/p/"],                                         /* dans Etherpad */
-[data-url*="://framindmap.org/c/maps"][data-url*="/edit"],              /* dans l’éditeur de Wisemapping */
-[data-url*="://framaestro.org/p/"],                                     /* dans Maestro */
-[data-url*="://framapiaf.org"]:not([data-url*="/about"]),               /* dans Mastodon */
-[data-url*="://framavectoriel.org/svg-editor"],                         /* dans SVG-Edit */
+[data-url*="://mypads.framapad.org"],                                   /* MyPads */
+[data-url*=".framapad.org/p/"],                                         /* Etherpad */
+[data-url*="://framindmap.org/c/maps"][data-url*="/edit"],              /* Wisemapping */
+[data-url*="://framaestro.org/p/"],                                     /* Maestro */
+[data-url*="://framapiaf.org"]:not([data-url*="/about"]),               /* Mastodon */
+[data-url*="://framavectoriel.org/svg-editor"],                         /* SVG-Edit */
 
 [data-url*="://docs.framasoft.org"],
 [data-url*="://framacloud.org"],
@@ -64,13 +64,12 @@
   #f-alert {
     display: none !important;
   }
-
 }
 
-[data-url*="://my.framasoft.org"][data-url*="source=bookmarklet"] {
+/* No header only */
+/* ------------------------------------------------------------------ */
+[data-url*="://my.framasoft.org"][data-url*="source=bookmarklet"] {     /* MyFrama popup */
   #f-header {
     display: none;
   }
 }
-
-
