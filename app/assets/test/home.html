@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr_FR">
 <head>
   <meta charset="UTF-8" />
   <meta name="robots" content="noindex, follow" />
   <title>Home - Nav test</title>
+  <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body class="apropos">
   <div class="container ombre">
@@ -17,37 +18,41 @@
       <div class="row">
         <div class="col-md-12">
           <!-- Carousel à générer en javascript + fallback 1 image html -->
-          <div id="carousel-truc" class="carousel slide" role="presentation">
-            <div class="carousel-inner">
-              <div class="item active">
-                <img src="../ext/team-01-discuter.jpg" alt="" />
-                <div class="carousel-caption">
-                  <p>Veggies es bonus vobis, proinde vos postulo essum magis avocado daikon napa cabbage chard seakale pumpkin onion chickpea gram corn pea. Brussels sprout coriander water chestnut gourd swiss chard wakame.</p>
+          <div class="carousel-container">
+            <div id="carousel-truc" class="carousel slide" role="presentation">
+              <div class="carousel-inner">
+                <div class="item active">
+                  <img src="../img/team/01-discuter.jpg" alt="" />
+                  <div class="carousel-caption">
+                    <p>Veggies es bonus vobis, proinde vos postulo essum magis avocado daikon napa cabbage chard seakale pumpkin onion chickpea gram corn pea. Brussels sprout coriander water chestnut gourd swiss chard wakame.</p>
+                  </div>
+                </div>
+                <div class="item">
+                  <img src="../img/team/02-canaux.jpg" alt="" />
+                  <div class="carousel-caption">
+                    <p class="h3">kohlrabi welsh onion daikon amaranth tatsoi tomatillo/p>
+                  </div>
+                </div>
+                <div class="item">
+                  <img src="../img/team/03-pimpez.jpg" alt="" />
+                  <div class="carousel-caption">
+                    <p class="h3">Gumbo beet greens corn soko endive gumbo gourd.</p>
+                  </div>
                 </div>
               </div>
-              <div class="item">
-                <img src="../ext/team-02-canaux.jpg" alt="" />
-                <div class="carousel-caption">
-                  <p class="h3">kohlrabi welsh onion daikon amaranth tatsoi tomatillo/p>
-                </div>
-              </div>
-              <div class="item">
-                <img src="../ext/team-03-pimpez.jpg" alt="" />
-                <div class="carousel-caption">
-                  <p class="h3">Gumbo beet greens corn soko endive gumbo gourd.</p>
-                </div>
-              </div>
+
+              <p class="text-center" id="play-pause"><a href="#play-pause" class="carousel-control" title="Pause"><span class="fa fa-pause"></span><span class="sr-only">Pause</span></a></p>
+
+              <a class="left carousel-control" href="#carousel-carte" role="button" data-slide="prev" title="Diapo précédente">
+                <i class="glyphicon glyphicon-chevron-left"></i>
+                <span class="sr-only">Diapo précédente</span>
+              </a>
+
+              <a class="right carousel-control" href="#carousel-carte" role="button" data-slide="next" title="Diapo suivante">
+                <i class="glyphicon glyphicon-chevron-right"></i>
+                <span class="sr-only">Diapo suivante</span>
+              </a>
             </div>
-
-            <p class="text-center" id="play-pause"><a href="#play-pause" class="carousel-control" title="Pause"><span class="glyphicon glyphicon-pause"></span><span class="sr-only">Pause</span></a></p>
-
-            <a class="left carousel-control" href="#carousel-carte" role="button" data-slide="prev" title="Diapo précédente">
-                <i class="glyphicon glyphicon-chevron-left"></i><span class="sr-only">Diapo précédente</span>
-            </a>
-
-            <a class="right carousel-control" href="#carousel-carte" role="button" data-slide="next" title="Diapo suivante">
-                <i class="glyphicon glyphicon-chevron-right"></i><span class="sr-only">Diapo suivante</span>
-            </a>
           </div>
         </div>
       </div>
@@ -71,7 +76,7 @@
 
         <div class="col-md-4" id="tuto-faq">
           <h2>Prise en main</h2>
-          <p class="text-center" role="presentation"><i class="glyphicon glyphicon-question-sign"></i></p>
+          <p class="text-center" role="presentation"><i class="fa fa-question-circle"></i></p>
           <p>Turnip greens yarrow ricebean rutabaga endive cauliflower sea lettuce kohlrabi amaranth water spinach :</p>
           <ol>
             <li>nori grape silver beet broccoli kombu</li>
@@ -84,7 +89,7 @@
 
         <div class="col-md-4" id="le-logiciel">
           <h2>Le logiciel</h2>
-          <p class="text-center" role="presentation"><i class="glyphicon glyphicon-cloud"></i></p>
+          <p class="text-center" role="presentation"><i class="fa fa-cloud"></i></p>
           <p><b class="violet">Frama</b><b class="vert">truc</b> repose sur le logiciel libre <a href="#bidule">Bidule</a>.</p>
           <p>Il s’agit d’<a href="#listes-de-bidules">une instance parmi d’autres</a>.</p>
           <p>Bidule est sous <a href="https://www.apache.org/licenses/LICENSE-2.0.html">licence Apache 2.0</a>.</p>
@@ -92,12 +97,12 @@
 
         <div class="col-md-4" id="jardin">
           <h2>Cultivez votre jardin</h2>
-          <p class="text-center" role="presentation"><i class="glyphicon glyphicon-tree-deciduous"></i></p>
+          <p class="text-center" role="presentation"><i class="fa fa-leaf"></i></p>
           <p>Pour participer au développement du logiciel, proposer des améliorations
               ou simplement le télécharger, rendez-vous sur <a href="#dev-bidule">le site de développement</a>.</p>
           <br>
           <p>Si vous souhaitez installer ce logiciel pour votre propre usage et ainsi gagner en autonomie, nous vous aidons sur :</p>
-          <p class="text-center"><a href="#framacloud.org/cultiver-son-jardin/installation-de-bidule/" class="btn btn-success"><i class="glyphicon glyphicon-tree-deciduous"></i> framacloud.org</a></p>
+          <p class="text-center"><a href="#framacloud.org/cultiver-son-jardin/installation-de-bidule/" class="btn btn-success"><i class="fa fa-leaf"></i> framacloud.org</a></p>
         </div>
 
       </div>

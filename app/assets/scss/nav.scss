@@ -2,6 +2,10 @@
   font-size: 100%;
 }
 
+#f-- :not(.f-bs3) {
+  @import 'frama/bs3';
+}
+
 #f-- .f-bs4 {
   $primary:       #635182 !default;
 
@@ -10,7 +14,8 @@
   $warning:       #EB7239;
   $success:       #677835;
 
-  @import 'frameworks/bootstrap4-nav';
+  @import 'frameworks/bootstrap4';
+  @import 'frama/bs4';
 
   /* Fix conflicts */
   .modal-backdrop {

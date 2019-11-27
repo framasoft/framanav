@@ -16,7 +16,7 @@ $button-ombre: 0px 1px 1px rgba(50, 50, 50, 0.5);
 
 /* Frameworks */
 // @import 'frameworks/bootstrap3';
-// @import 'frameworks/bootstrap4';
+// @import 'frameworks/bootstrap4'; => nav.scss
 
 /* Fonts */
 @import '../../../node_modules/fork-awesome/css/fork-awesome.min.css';
@@ -24,7 +24,6 @@ $button-ombre: 0px 1px 1px rgba(50, 50, 50, 0.5);
 @import 'fonts/roboto';
 
 /* Frama */
-@import 'frama/bs4';
 @import 'frama/common';
 
 /*

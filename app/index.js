@@ -144,7 +144,6 @@ data.site = data.site.replace(/framand/i, 'and') // TODO : remplacer par noFrama
   .replace(/localhost:8080/i, 'board');
 
 // [site] Aliases
-if (/(tontonroger|trouvons)/.test(data.host)) { data.site = 'bee'; }
 if (/huit.re/.test(data.host)) { data.site = 'link'; }
 
 // [site] Subdomains
