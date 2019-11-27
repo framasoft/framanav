@@ -135,7 +135,6 @@ export default {
       version: '191120', // n° version de la nav
       maestro: this.createMaestro(),
       js: function() {},
-      macaron: false,
       cortexReady: true,// false,
       testing: {
         feedback: false,
@@ -146,11 +145,20 @@ export default {
   mounted() {
     const html = document.getElementsByTagName('html');
     setInterval(() => {
-      if (html[0].getAttribute('lang') && this.$i18n.locale !== html[0].getAttribute('lang')) {
-        this.$i18n.locale = html[0].getAttribute('lang');
+      const lang = html[0].getAttribute('lang');
+      if (lang && this.$i18n.locale !== lang && this.$i18n.locale !== lang.substr(0, 2)) {
+        if (this.$i18n.messages.locales.available.includes(lang)) {
+          /* lang === (fr|en|…) */
+          this.$i18n.locale = lang;
+        } else if (this.$i18n.messages.locales.available.includes(lang.substr(0, 2))) {
+            /* lang === (fr_FR|en_GB|…) */
+            this.$i18n.locale = lang.substr(0, 2);
+        } else {
+          /* lang === (it|sv|ø|…) */
+          this.$i18n.locale = this.$i18n.fallbackLocale;
+        }
       }
     }, 1000);
-    setTimeout(() => { this.macaron = true; }, 1500);
 
     /*********** Custom JavaScript ***********/
     this.customJS(this.$t('site'));

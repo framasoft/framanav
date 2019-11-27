@@ -72,9 +72,14 @@
   .dropdown {
     margin: 0 5px;
 
+    > a {
+      border: none;
+      text-decoration: none;
+    }
+
     .dropdown-toggle:after {
       display: block;
-      width: 0.3em;
+      width: 1px;
       margin: 3px auto -3px;
       visibility: hidden;
     }
@@ -111,6 +116,11 @@
       a {
         color: #444;
 
+        span {
+          color: #444;
+          font-size: 14px;
+        }
+
         .new-window {
           visibility: hidden;
           font-size: 10px !important;
@@ -118,6 +128,10 @@
 
         &:hover, &:focus {
           color: #fff;
+
+          span {
+            color: #fff;
+          }
 
           .fa {
             color: #fff;
@@ -268,6 +282,7 @@
     text-align:center;
     border-radius: 0;
     text-transform: none;
+    margin: 0;
 
     &:hover, &:focus, &:active {
       color: #fff;
@@ -349,6 +364,23 @@
     top: 0;
     z-index: 1042;
     width: 100%;
+  }
+}
+
+[data-url*="://framacolibri.org"] {
+  #f-header {
+    position: fixed;
+    top: 0;
+    z-index: 1004;
+    width: 100%;
+  }
+
+  .d-header {
+    margin-top: 42px
+  }
+
+  #main-outlet {
+    padding-top: 124px;
   }
 }
 

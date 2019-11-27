@@ -30,7 +30,7 @@ Vue.use(globalStorage);
 const defaultLocale = 'fr';
 const locales = {};
 const pages = [];
-const commons = [];
+let commons = [];
 
 // Import locales list
 // in locales/[lg]/[file].yml
@@ -51,6 +51,7 @@ req = require.context('./components/pages', false, /\.vue$/);
 req.keys().forEach((key) => {
   pages.push(key.replace(/\.\/(.*)\.vue/, '$1'));
 });
+
 // Import commons data list
 req = require.context('./data/commons/', false, /\.yml$/);
 req.keys().forEach((key) => {
@@ -77,7 +78,6 @@ if (html[0].getAttribute('xml:lang')) {
     }
   }
 }
-lang = lang.replace(/^(fr_.*)/, 'fr').replace(/^((?!fr).)*$/, 'en'); /* TODO: fix locales detection */
 
 const userLang = navigator.languages
   || [navigator.language || navigator.userLanguage];
@@ -88,17 +88,22 @@ const numberFormats = {};
 messages.locales = require('./locales/lang.yml'); // eslint-disable-line
 messages.locales.available = Object
   .keys(messages.locales)
-  .filter(n => Object.keys(locales).includes(n) && locales[n].includes('_main'));
+  .filter(n => Object.keys(locales).includes(n)
+    && (locales[n].includes('main') || locales[n].includes('_main')));
 
 // Data import
 let data = {};
+let project = {};
 const scripts = document.getElementsByTagName('script');
+project = require('./data/project.yml') || {}; // eslint-disable-line
+if (Array.isArray(project.commons) && project.commons.length > 0) {
+  [commons] = [project.commons];
+}
 for (let i = 0; i < commons.length; i += 1) {
   req = require(`./data/commons/${commons[i]}.yml`) || {}; // eslint-disable-line
   data[commons[i]] = merge.$(data[commons[i]], JSON.parse(JSON.stringify(req)));
 }
-req = require('./data/project.yml') || {}; // eslint-disable-line
-data = merge.$(data, JSON.parse(JSON.stringify(req)));
+data = merge.$(data, JSON.parse(JSON.stringify(project)));
 
 Object.assign(data, {
   host: window.location.host,
@@ -144,7 +149,6 @@ data.site = data.site.replace(/framand/i, 'and') // TODO : remplacer par noFrama
   .replace(/localhost:8080/i, 'board');
 
 // [site] Aliases
-if (/(tontonroger|trouvons)/.test(data.host)) { data.site = 'bee'; }
 if (/huit.re/.test(data.host)) { data.site = 'link'; }
 
 // [site] Subdomains
@@ -170,7 +174,7 @@ data.html = data.html || {};
 const routes = [];
 let msg = {};
 // Import locales
-Object.keys(locales).forEach((k) => {
+messages.locales.available.forEach((k) => {
   /* eslint-disable */
   messages[k] = {};
   messages[k].lang = k;
@@ -249,9 +253,20 @@ for (let j = 0; j < userLang.length; j += 1) { // check if user locales
   }
 }
 
+/* Check if lang is avalaible */
+if (!messages.locales.available.includes(lang)) {
+  if (messages.locales.available.includes(lang.substr(0, 2))) {
+    /* lang === (fr_FR|en_GB|…) */
+    lang = lang.substr(0, 2);
+  } else {
+    /* lang === (it|sv|ø|…) */
+    lang = defaultLocale;
+  }
+} /*   lang === (en|fr) */
+
 // Create VueI18n instance with options
 const i18n = new VueI18n({
-  locale: lang === '' ? defaultRouteLang : lang,
+  locale: lang,
   fallbackLocale: defaultLocale,
   messages,
   numberFormats,
