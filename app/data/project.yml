@@ -1,3 +1,20 @@
+commons:
+#  - blog
+  - cloud
+  - color
+#  - country
+  - doc
+#  - emoji
+  - git
+  - icon
+  - license
+  - link
+  - people
+  - soft
+  - src
+  - status
+  - taxonomy
+
 meta:
   title: Framasoft
   author: Framasoft

@@ -30,7 +30,7 @@ Vue.use(globalStorage);
 const defaultLocale = 'fr';
 const locales = {};
 const pages = [];
-const commons = [];
+let commons = [];
 
 // Import locales list
 // in locales/[lg]/[file].yml
@@ -51,6 +51,7 @@ req = require.context('./components/pages', false, /\.vue$/);
 req.keys().forEach((key) => {
   pages.push(key.replace(/\.\/(.*)\.vue/, '$1'));
 });
+
 // Import commons data list
 req = require.context('./data/commons/', false, /\.yml$/);
 req.keys().forEach((key) => {
@@ -92,13 +93,17 @@ messages.locales.available = Object
 
 // Data import
 let data = {};
+let project = {};
 const scripts = document.getElementsByTagName('script');
+project = require('./data/project.yml') || {}; // eslint-disable-line
+if (Array.isArray(project.commons) && project.commons.length > 0) {
+  [commons] = [project.commons];
+}
 for (let i = 0; i < commons.length; i += 1) {
   req = require(`./data/commons/${commons[i]}.yml`) || {}; // eslint-disable-line
   data[commons[i]] = merge.$(data[commons[i]], JSON.parse(JSON.stringify(req)));
 }
-req = require('./data/project.yml') || {}; // eslint-disable-line
-data = merge.$(data, JSON.parse(JSON.stringify(req)));
+data = merge.$(data, JSON.parse(JSON.stringify(project)));
 
 Object.assign(data, {
   host: window.location.host,
