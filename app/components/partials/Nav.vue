@@ -310,7 +310,7 @@ export default {
 
         case 'libre':
           this.js = function() {
-            if (this.$t('inframe')) {
+            if (this.$t('inframe') === 'true') {
               document.querySelectorAll('a').forEach(a => Object.assign(a, { target: '_blank' }));
             }
           };
@@ -343,7 +343,7 @@ export default {
             };
           } else {
             this.js = function() {
-              if (this.$t('inframe')) {
+              if (this.$t('inframe') === 'true') {
                 document.getElementById('linklist').classList.add('container-fluid');
                 document.getElementById('linklist').classList.remove('container');
                 document.getElementById('pageheader').style.display = 'none';
@@ -361,7 +361,7 @@ export default {
               l’export <a href="${this.$t('url')}/export/html">html</a>
               ou <a href="${this.$t('url')}/export/txt">txt</a>
               de votre document et <a href="${this.$t('link.contact')}/#framapad">contactez-nous</a>.</p>`);
-            if (!this.$t('inframe')) {
+            if (this.$t('inframe') === 'false') {
               const addMaestroBtn = setInterval(() => {
                 if (jQuery('#editbar .menu_right').length && !jQuery('#maestroBtn').length) {
                   jQuery('#editbar .menu_right').prepend(`
