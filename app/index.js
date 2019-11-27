@@ -77,7 +77,6 @@ if (html[0].getAttribute('xml:lang')) {
     }
   }
 }
-lang = lang.replace(/^(fr_.*)/, 'fr').replace(/^((?!fr).)*$/, 'en'); /* TODO: fix locales detection */
 
 const userLang = navigator.languages
   || [navigator.language || navigator.userLanguage];
@@ -88,7 +87,8 @@ const numberFormats = {};
 messages.locales = require('./locales/lang.yml'); // eslint-disable-line
 messages.locales.available = Object
   .keys(messages.locales)
-  .filter(n => Object.keys(locales).includes(n) && locales[n].includes('_main'));
+  .filter(n => Object.keys(locales).includes(n)
+    && (locales[n].includes('main') || locales[n].includes('_main')));
 
 // Data import
 let data = {};
@@ -169,7 +169,7 @@ data.html = data.html || {};
 const routes = [];
 let msg = {};
 // Import locales
-Object.keys(locales).forEach((k) => {
+messages.locales.available.forEach((k) => {
   /* eslint-disable */
   messages[k] = {};
   messages[k].lang = k;
@@ -248,9 +248,20 @@ for (let j = 0; j < userLang.length; j += 1) { // check if user locales
   }
 }
 
+/* Check if lang is avalaible */
+if (!messages.locales.available.includes(lang)) {
+  if (messages.locales.available.includes(lang.substr(0, 2))) {
+    /* lang === (fr_FR|en_GB|…) */
+    lang = lang.substr(0, 2);
+  } else {
+    /* lang === (it|sv|ø|…) */
+    lang = defaultLocale;
+  }
+} /*   lang === (en|fr) */
+
 // Create VueI18n instance with options
 const i18n = new VueI18n({
-  locale: lang === '' ? defaultRouteLang : lang,
+  locale: lang,
   fallbackLocale: defaultLocale,
   messages,
   numberFormats,
