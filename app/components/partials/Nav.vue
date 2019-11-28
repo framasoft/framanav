@@ -5,7 +5,7 @@
 
     <HeaderMenu />
 
-    <!-- <Feedback v-if="testing.feedback" /> -->
+    <Feedback v-if="testing.feedback" />
 
     <AlertInfo />
     <ModalInfo />
@@ -124,8 +124,11 @@ export default {
     const kkeys = [];
     window.addEventListener('keydown', (e) => {
       kkeys.push(e.keyCode);
-      if (/65,65,66,66/.test(kkeys.toString())) {
+      if (/65,65,66,66/.test(kkeys.toString())) { //  (keyboard press AABB)
         this.testing.feedback = true;
+      }
+      if (/88,88,89,89/.test(kkeys.toString())) { //  (keyboard press XXYY)
+        this.testing.navpop = true;
       }
     }, true);
   },
@@ -137,8 +140,8 @@ export default {
       js: function() {},
       cortexReady: true,// false,
       testing: {
-        feedback: false,
-        team: false,
+        navpop: process.env.NODE_ENV === 'development',
+        feedback: process.env.NODE_ENV === 'development',
       }
     };
   },

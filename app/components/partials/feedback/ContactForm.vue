@@ -1,8 +1,8 @@
 <template>
-  <section id="ffb-contact-form">
+  <section id="f-fb-contact-form">
     <div v-if="success.status === ''">
       <div class="subtitle"
-        v-html="`${$t('feedback.contact')} <b>${$root.txt.soft}</b>`">
+        v-html="`${$t('feedback.contact')} <b>${$t('txt.soft')}</b>`">
       </div>
       <form role="form" action="#" @submit="sendMail">
         <div>
@@ -85,8 +85,8 @@
                 @focusout="check('concerne')">
                 <option
                   v-if="!general && section === 'contact-faq'"
-                  v-text="this.$root.txt[this.$root.site]"
-                  :value="this.$root.txt[this.$root.site]">
+                  v-text="this.$t(`txt.${this.$t('site')}`)"
+                  :value="this.$t(`txt.${this.$t('site')}`)">
                 </option>
                 <option
                   v-if="section === 'contact-participate'"
@@ -128,7 +128,7 @@
               </p>
               <div v-if="section === 'contact-faq'">
                 <p v-for="(alert, id) in $t('contact.alert')"
-                  v-show="form.concerne === $root.txt[id]"
+                  v-show="form.concerne === $t(`txt.${id}`)"
                   :key="id"
                   class="alert alert-warning"
                   v-html="$t(`contact.alert.${id}`)">
@@ -230,7 +230,7 @@ export default {
         'your-referrer': `${document.referrer};${document.location.href}`,
         'your-languages': window.navigator.languages,
       },
-      general: !(Object.keys(this.$root.txt).indexOf(this.$root.site) > -1),
+      general: !(Object.keys(this.$t('txt')).indexOf(this.$t('site')) > -1),
       ok: {
         name: '',
         email: '',
@@ -249,7 +249,7 @@ export default {
   watch: {
     section: function (newValue) {
       if (!this.general && newValue === 'contact-faq') {
-        this.form.concerne = this.$root.txt[this.$root.site];
+        this.form.concerne = this.$t(`txt.${this.$t('site')}`);
       }
       if (newValue === 'contact-participate') {
         this.form.concerne = 'Participer';
