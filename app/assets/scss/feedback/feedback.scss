@@ -1,4 +1,4 @@
-#ffeedback {
+#f-feedback {
   .moveable {
     position: fixed;
     bottom:  100px;
@@ -48,22 +48,34 @@
     max-width: none; /* ~carte */
   }
 
-  .dropdown-toggle {
+  .fb-toggle {
     display:block;
     opacity: .9;
     transition: all .2s ease-out;
     text-align: center;
     height: 44px;
-    line-height: 42px;
+    line-height: 44px;
     border-radius: 21px;
-    padding: 0 20px;
-    background-color: $orange;
-    color: #fff;
-    box-shadow: 0 1px 2px 0 rgba(50,54,63,.19),0 6px 18px 0 rgba(50,54,63,.39);
+    padding: 0 10px;
+    background-color: #fff;
+    color: #666;
+    box-shadow: $button-ombre; /* 0 1px 2px 0 rgba(50,54,63,.19),0 6px 18px 0 rgba(50,54,63,.39);*/
     text-decoration: none;
     font-size: 14px;
-    font-weight: bold;
+    font-weight: 700;
     border: none; /* dio */
+    text-transform: uppercase;
+
+    .btn-secondary,
+    .btn-secondary:hover,
+    .btn-secondary:focus {
+      padding: 0;
+      background: transparent;
+      border: none;
+      color: inherit;
+      line-height: inherit;
+      box-shadow: none;
+    }
 
     &:hover {
       opacity: 1;
@@ -75,118 +87,31 @@
       vertical-align: top; /* ~pack */
     }
 
+    .fa-map-signs,
+    .fa-close {
+      height: 44px;
+      width: 44px;
+      line-height: 42px;
+      border-radius: 21px;
+      background: #eb7239;
+    }
+
     .fa-inverse + span {
-      margin: 0 -10px 0 10px;
+      margin: 0 -10px 0 15px;
       display: inline-block;
     }
+
     span + .fa-drag-handle {
-      margin-left: 12px;
+      margin-left: 15px;
+      margin-right: 0px;
       line-height: 46px;
+      color: #ccc;
     }
   }
-
-  .dropdown-menu {
-    width: 400px;
-    margin-bottom: 15px;
-    border: none;
-    border-bottom: 3px solid $orange;
-    border-radius: 0;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    background: lighten($orange, 38%);
-    padding: 0;
-
-    span {
-      color: #333; /* ~colibri */
-    }
-
-    a:not(.btn) {
-      display: inline;
-      padding: 0;
-    }
-  }
-
-  .dropdown-header {
-    padding: 0;
-    background: $orange;
-    color: #fff;
-
-    div {
-      padding-top: 0; /* ~blog */
-    }
-
-    span {
-      font-size: 18px;
-      line-height: 32px;
-    }
-
-    .btn-link {
-      padding: 0; /* ~agenda */
-    }
-  }
-
-  .dropdown-body {
-    width: 100%;
-    max-height: 480px;
-    overflow-y: auto;
-    color: #333;
-  }
-
-  .dropdown-footer {
-    position: absolute;
-    bottom: 0;
-    z-index: 2;
-  }
-
-  .subtitle {
-    color: #fff;
-    background: $orange;
-    text-align: center;
-    padding: 0 15px 30px;
-    margin:-15px;
-    font-size: 14px;
-  }
-
-  #ffb-participate .btn,
-  .no-answer .btn {
-    white-space: normal;
-    background: #fff;
-    font-size: 13px;
-    opacity: 0.8;
-
-    &:hover {
-      box-shadow: 0px 2px 6px lighten($orange, 25%);
-      opacity: 0.9;
-    }
-
-    .fa-stack {
-      font-size: 1.7em;
-    }
-  }
-
-  .input-group {
-    margin: 0; /* ~listes */
-  }
-
-  .search-form {
-    margin: 0; /* ~forms, soutenir~ (drupal) */
-
-    .input-group-addon,
-    input {
-      border-radius: 0;
-      background: #fff;
-      border: none;
-      box-shadow: none;
-      font-size: 16px;
-    }
-  }
-}
-
-#ffeedback.open .dropdown-toggle {
-  opacity: 1;
 }
 
 @media (max-width: 640px) {
-  #ffeedback .moveable {
+  #f-feedback .moveable {
     bottom: 20px;
     right: 20px;
   }

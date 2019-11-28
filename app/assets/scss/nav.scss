@@ -1,5 +1,9 @@
 #f-- {
   font-size: 100%;
+
+  .moveable-control-box {
+    display: none !important;
+  }
 }
 
 @import 'frama/bs3';
@@ -47,21 +51,8 @@
     }
   }
 
-}
-
-/* For feedback (maybe not needed) */
-/* Modal fix */
-.modal-open #f-header,
-.modal-open #ffeedback .dropdown-menu,
-.modal-open #ffeedback .dropdown-toggle {
-  visibility:hidden;
-}
-
-.fa-drag-handle:before { /* d&d icon */
-  content: "\f142 \f142";
-  letter-spacing: 0.1em;
-}
-
-.moveable-control-box {
-  display: none !important;
+  .fa-drag-handle:before { /* d&d icon */
+    content: "\f142 \f142";
+    letter-spacing: 0.1em;
+  }
 }

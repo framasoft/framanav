@@ -146,7 +146,7 @@ data.site = data.site.replace(/framand/i, 'and') // TODO : remplacer par noFrama
   .replace(/framin/i, 'min')
   .replace(/frame/i, 'me')
   .replace(/frama/i, '')
-  .replace(/localhost:8080/i, 'board');
+  .replace(/localhost:8080/i, 'pad');
 
 // [site] Aliases
 if (/huit.re/.test(data.host)) { data.site = 'link'; }

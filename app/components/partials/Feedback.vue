@@ -1,49 +1,63 @@
 <template>
-  <div id="ffeedback">
+  <div id="f-feedback">
     <Moveable
-      ref="ffb-drag"
-      :class="`moveable drop${menu.y} ${show ? 'open' : ''}`"
+      ref="f-fb-drag"
+      class="moveable fb-toggle"
       :style="menu.position"
       v-bind="moveable"
       @drag="handleDrag"
-      @dragEnd="cookie('w', 'ffb-drag', JSON.stringify(menu));"
-    >
-      <a class="dropdown-toggle" @click="show = !drag ? !show : show; drag = false; section = 'main'" role="button">
-        <i :class="`fa fa-fw fa-lg fa-inverse ${!show ? $root.icon.aide : 'fa-close'}`" aria-hidden="true"></i>
+      @dragEnd="cookie('w', 'f-fb-drag', JSON.stringify(menu));">
+      <b-button v-b-modal.f-fb-menu
+        @click="show = !drag ? !show : show; drag = false; section = 'main'; menu.visited = 1">
+        <i :class="`fa fa-fw fa-lg fa-inverse ${!show ? $t('icon.aide') : 'fa-close'}`" aria-hidden="true"></i>
 
-        <span v-if="!show" v-text="$t('fnav.sites.aide.name')"></span>
+        <span v-if="!show && menu.visited === 0" v-text="$t('fnav.sites.aide.name')"></span>
         <span v-else class="sr-only" v-text="$t('txt.close')"></span>
 
-        <i v-if="!show" class="fa fa-lg fa-drag-handle" aria-hidden="true"></i>
-      </a>
-      <div :class="`dropdown-menu dropdown-menu-${menu.x}`">
-        <div class="dropdown-header text-center clearfix">
-          <div class="col-xs-1 h4">
+        <i v-if="!show && menu.visited === 0"
+          class="fa fa-lg fa-drag-handle" aria-hidden="true">
+        </i>
+      </b-button>
+    </Moveable>
+
+    <portal target-el="#fp-feedback" target-class="f-bs4">
+      <b-modal id="f-fb-menu"
+        v-model="show"
+        size="md"
+        :static="true"
+        :lazy="true"
+        :cancel-title-html="$t('txt.close')"
+        :style="menu.position"
+        hide-backdrop>
+        <template v-slot:modal-header>
+          <!-- Header -->
+          <div class="col-2 h5 pl-0">
             <button v-show="section !== 'main'"
               class="btn-link"
               @click="section = 'main'">
-              <i class="fa fa-lg fa-chevron-left fa-inverse" aria-hidden="true"></i>
+              <i class="fa fa-chevron-left fa-inverse" aria-hidden="true"></i>
               <span v-text="$t('txt.back')" class="sr-only"></span>
             </button>
           </div>
-          <div class="col-xs-10 h4 text-center">
+          <div class="col-8 h5 text-center px-0">
             <b v-html="$t('fnav.sites.aide.name')"></b>
           </div>
-          <div class="col-xs-1 h4">
-            <i class="fa fa-lg fa-drag-handle" aria-hidden="true"></i>
+          <div class="col-2 h5 text-right pr-0">
+            <i class="fa fa-drag-handle" aria-hidden="true"></i>
             <button
               v-text="$t('txt.close')"
               class="sr-only"
               @click="close()">
             </button>
           </div>
-        </div>
+        </template>
 
-        <div class="dropdown-body">
-          <a id="ffb-top" ref="ffb-top"></a>
-          <section v-show="section === 'main'" id="ffb-main-menu">
+        <!-- Body -->
+        <template v-slot:default>
+          <a id="f-fb-top" ref="f-fb-top"></a>
+          <section v-show="section === 'main'" id="f-fb-main-menu">
             <!-- Service documentation opened in a modal -->
-            <a :href="$root.link.docs + (doc ? `/${$root.doc[$root.site][0]}/index.html` : '')"
+            <a :href="$t('link.docs') + (doc ? `/${$t(`doc.${$t('site')}[0]}`)}/index.html` : '')"
               class="btn btn-default btn-block"
               onclick="return false;"
               @click="modal.docs = true;">
@@ -54,10 +68,11 @@
               <span v-html="$t('feedback.menu.docs')"></span>
             </a>
             <!-- Faq of the service, then contact form -->
-            <a :href="`${$root.link.contact}/faq/#${$root.lname}`"
+            <a :href="`${$t('link.contact')}/faq/#${$t('lname')}`"
               class="btn btn-default btn-block"
               onclick="return false;"
               @click="section = 'faq'">
+              <status />
               <span class="fa-stack fa-2x">
                 <i class="fa fa-circle fa-stack-2x fc_v5"></i>
                 <i class="fa fa-stack-1x fa-question fa-inverse"></i>
@@ -88,43 +103,45 @@
             </a> -->
           </section>
 
-          <FAQ v-show="section === 'faq'" :open="section === 'faq'" :search="search" />
+          <FAQ v-show="section === 'faq'"
+            :open="section === 'faq'"
+            :search="search"
+            :status="status"
+          />
 
           <Participate  v-show="section === 'feedback'" />
 
           <ContactForm v-show="/^contact\-/.test(section)" :section="section" />
-        </div>
+        </template>
 
-        <div class="dropdown-footer">
+        <template v-slot:modal-footer>
           <!-- Search -->
           <div v-show="section === 'faq'" class="search-form">
-            <div class="input-group input-group-lg">
-              <label for="search"
-                class="sr-only"
-                v-html="$t('txt.search')">
-              </label>
-              <input id="search"
-                v-model="search"
+            <b-input-group size="lg">
+              <b-form-input v-model="search"
+                :aria-label="$t('txt.search')"
                 :placeholder="$t('txt.search')"
-                type="text" size="40"
-                class="form-control"
-              >
-              <span class="input-group-addon" aria-hidden="true">
-                <i v-if="search === ''" class="fa fa-search text-muted"></i>
-                <i v-else class="fa fa-times text-muted" @click="search = ''"></i>
-              </span>
-            </div>
+                type="text" size="40">
+              </b-form-input>
+              <b-input-group-append>
+                <b-button variant="light text-muted" @click="search = ''">
+                  <i :class="`fa fa-${search === '' ? 'search': 'times'}`"></i>
+                </b-button>
+              </b-input-group-append>
+            </b-input-group>
           </div>
-        </div>
-      </div>
+        </template>
+      </b-modal>
 
       <ModalDocs :open="modal.docs" />
-    </Moveable>
+    </portal>
   </div>
 </template>
 
 <script>
 import Moveable from 'vue-moveable';
+
+import Status from './feedback/Status.vue';
 import FAQ from './feedback/FAQ.vue';
 import ModalDocs from './feedback/ModalDocs.vue';
 import Participate from './feedback/Participate.vue';
@@ -133,28 +150,36 @@ import ContactForm from './feedback/ContactForm.vue';
 export default {
   components: {
     Moveable,
-    FAQ, ModalDocs, Participate, ContactForm,
+    Status, FAQ, ModalDocs, Participate, ContactForm,
+  },
+  created() {
+    if (!window.vuefsPrerender) {
+      document.querySelector('body')
+        .insertAdjacentHTML('beforeend', '<div id="fp-feedback"></div>');
+    }
   },
   data() {
     let menu = {
       x: 'right',
       y: 'up',
       position: '',
+      visited: 0,
     };
 
-    if (this.cookie('r', 'ffb-drag')) {
-      Object.assign(menu, JSON.parse(this.cookie('r', 'ffb-drag')));
+    if (this.cookie('r', 'f-fb-drag')) {
+      Object.assign(menu, JSON.parse(this.cookie('r', 'f-fb-drag')));
     };
 
     return {
       show: false,
       section: 'main',
-      doc: this.$root.doc[this.$root.site] !== undefined,
+      doc: this.$te(`doc.${this.$t('site')}`),
       modal: {
         docs: false,
         about: false,
       },
       search: '',
+      status: [],
       drag: false,
       menu,
       moveable: {
@@ -172,7 +197,6 @@ export default {
     }
   },
   mounted() {
-
   },
   methods: {
     close() {
