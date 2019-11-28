@@ -2,9 +2,7 @@
   font-size: 100%;
 }
 
-:not(.f-bs3) {
-  @import 'frama/bs3';
-}
+@import 'frama/bs3';
 
 #f-- .f-bs4 {
   $primary:       #635182 !default;
