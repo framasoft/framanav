@@ -1,27 +1,27 @@
 <template>
-  <modal id="modal-fsDocs"
+  <b-modal id="f-modal-docs"
     v-model="state.docs"
-    size="lg">
-    <div slot="header"></div>
+    size="lg"
+    :static="true"
+    :lazy="true"
+    :title="$t('feedback.menu.docs')"
+    :title-sr-only="true"
+    :hide-header="true"
+    :cancel-title-html="$t('txt.close')"
+    cancel-variant="light"
+    button-size="sm"
+    @hidden="close()">
 
-    <div class="clearfix" id="modal-fsDocsBody">
-      <div class="embed-responsive embed-responsive-4by3">
+    <div class="clearfix">
+      <div class="embed-responsive embed-responsive-1by1">
         <iframe
           v-if="state.docs === true"
           class="embed-responsive-item"
-          :src="$root.link.docs + ($root.doc[$root.site] !== undefined ? `/${$root.doc[$root.site][0]}/index.html` : '')">
+          :src="$te(`doc.${$t('site')}`) ? `${$t('link.docs')}/${$t(`doc.${$t('site')}[0]`)}/index.html` : $t('link.docs')">
         </iframe>
       </div>
     </div>
-
-    <div slot="footer" class="text-center">
-      <button
-        v-html="$t('txt.close')"
-        class="btn btn-default"
-        @click="close()"
-      ></button>
-    </div>
-  </modal>
+  </b-modal>
 </template>
 
 <script>

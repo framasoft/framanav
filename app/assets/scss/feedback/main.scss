@@ -1,14 +1,142 @@
-#ffb-main-menu {
-  padding: 15px;
+.f-bs4 #f-fb-menu {
+  padding: 1rem;
+
+  &.modal {
+    position: relative;
+    padding: 1.5rem;
+  }
+
+  .modal-dialog {
+    margin: 0;
+  }
+
+  .modal-content {
+    border: none;
+    border-bottom: 3px solid $orange;
+    border-radius: 0;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    background: lighten($orange, 38%);
+    padding: 0;
+  }
+
+  .modal-header {
+    padding: 0.5rem 0.5rem 0;
+    background: $orange;
+    color: #fff;
+    border-radius: 0;
+    border: none;
+
+    .h5 {
+      color: #fff;
+    }
+
+    div {
+      padding-top: 0; /* ~blog */
+    }
+
+    span {
+      font-size: 18px;
+      line-height: 32px;
+    }
+
+    .btn-link {
+      padding: 0; /* ~agenda */
+    }
+  }
+
+  .modal-body {
+    width: 100%;
+    max-height: 480px;
+    overflow-y: auto;
+    color: #333;
+  }
+
+  .subtitle {
+    color: #fff;
+    background: $orange;
+    text-align: center;
+    padding: 0 1rem 1rem;
+    margin:-1rem -1rem 1rem;
+    font-size: 0.875rem;
+  }
 
   .btn-block {
     text-align: left;
     background: #fff;
     opacity: 0.8;
+    position: relative;
 
     &:hover {
       box-shadow: 0px 2px 6px lighten($orange, 25%);
       opacity: 0.9;
+    }
+
+    .badge {
+      position: absolute;
+      display: block;
+      top: 0.75em;
+      left: 4.25em;
+      z-index: 1;
+      padding: 0;
+      width: 2em;
+      height: 2em;
+      line-height: 2em;
+    }
+  }
+
+  .modal-footer {
+    border: none;
+    padding: 0;
+  }
+
+  span {
+    color: #333; /* ~colibri */
+  }
+
+  a:not(.btn) {
+    display: inline;
+    padding: 0;
+  }
+
+  #f-fb-top:focus {
+    outline: none;
+  }
+
+  #f-fb-participate,
+  .no-answer {
+    .btn {
+      white-space: normal;
+      background: #fff;
+      /*font-size: 0.875rem;*/
+      opacity: 0.8;
+      text-align: center;
+      margin-bottom: 1rem;
+
+      &:hover {
+        box-shadow: 0px 2px 6px lighten($orange, 25%);
+        opacity: 0.9;
+      }
+
+      .fa-stack {
+        font-size: 1.7em;
+      }
+    }
+  }
+
+  .input-group {
+    margin: 0; /* ~listes */
+  }
+
+  .search-form {
+    margin: 0; /* ~forms, soutenir~ (drupal) */
+    width: 100%;
+
+    .input-group-append .btn,
+    .form-control {
+      border-radius: 0;
+      background: #fff;
+      border: none;
+      box-shadow: none;
     }
   }
 }

@@ -39,7 +39,6 @@
 <script>
 export default {
   created() {
-    // Optin
     if (!window.vuefsPrerender) {
       document.querySelector('body')
         .insertAdjacentHTML('beforeend', '<div id="fp-optin"></div>');

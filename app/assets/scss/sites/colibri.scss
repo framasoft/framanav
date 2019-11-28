@@ -2,7 +2,7 @@
   #reply-control.fullscreen {
     z-index: 1005;
   }
-  
+
   #discourse-modal.in {
     display: block !important;
     visibility: visible !important;
@@ -28,6 +28,7 @@
 
   body {
     background-color: #eee;
+    font-size: 0.938rem;
   }
 
   #main-outlet {
@@ -51,19 +52,7 @@
   .category-breadcrumb a{
     text-decoration:none;
   }
-  /*
-  .notification-options .dropdown-menu li span {
-    white-space: initial;
-  }
 
-  nav.post-controls .post-admin-menu {
-    width: 274px;
-  }
-
-  nav.post-controls .post-admin-menu li {
-    width: 250px;
-  }*/
-  
   .select-kit-body[style]{
     left: auto !important;
   }

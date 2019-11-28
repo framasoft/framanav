@@ -1,7 +1,4 @@
-#ffb-faq {
-  padding: 15px;
-  padding-bottom: 65px;
-
+.f-bs4 #f-fb-faq {
   a.toggle {
     height: 100%;
     width: 100%;
@@ -12,7 +9,7 @@
   }
 
   .list-group-item-text {
-    font-size: 13px;
+    font-size: 0.875rem;
     max-height: 80px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -24,9 +21,15 @@
   }
 
   .list-group-item {
-    margin-bottom: 15px;
+    padding: 0.75rem;
+    padding-right: 0.75rem;
+    padding-right: 1.25rem;
+    margin-bottom: 1rem;
     border: none;
-    border-radius: 0;
+    border-radius: 0 !important;
+    &.active {
+      margin-bottom: 0;
+    }
 
     h3 {
       font-size: 13px;
@@ -46,16 +49,6 @@
 
     ul {
       padding-left: 20px;
-    }
-
-    &:not(.active):after { /* shadow */
-      box-shadow: -5px -20px 30px #fff;
-      content: ' ';
-      display: block;
-      width: calc(100% - 20px);
-      height: 20px;
-      bottom: -20px;
-      position: absolute;
     }
 
     &:hover {
@@ -134,7 +127,7 @@
     display: block;
   }
 
-  .filter + .no-answer {
+  .no-answer {
     margin-top: 30px;
   }
 }
