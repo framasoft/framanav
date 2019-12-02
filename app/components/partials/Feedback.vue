@@ -116,7 +116,6 @@
           <Participate  v-show="section === 'feedback'" />
 
           <ContactForm v-show="/^contact\-/.test(section)" :section="section" />
-          <p v-text="text('Déjà vu æ œ éèç', '-Ll')"></p>
         </template>
 
         <template v-slot:modal-footer>
