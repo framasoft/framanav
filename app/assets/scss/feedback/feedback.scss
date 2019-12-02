@@ -48,7 +48,7 @@
     max-width: none; /* ~carte */
   }
 
-  .fb-toggle {
+  .f-fb-toggle {
     display:block;
     opacity: .9;
     transition: all .2s ease-out;
@@ -116,7 +116,6 @@
     right: 20px;
   }
 }
-
 
 @import "main";
 @import "docs";

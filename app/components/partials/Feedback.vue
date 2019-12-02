@@ -2,7 +2,7 @@
   <div id="f-feedback">
     <Moveable
       ref="f-fb-drag"
-      class="moveable fb-toggle"
+      :class="`moveable f-fb-toggle ${!show ? 'visible' : 'invisible'}`"
       :style="menu.position"
       v-bind="moveable"
       @drag="handleDrag"
@@ -38,16 +38,20 @@
               <i class="fa fa-chevron-left fa-inverse" aria-hidden="true"></i>
               <span v-text="$t('txt.back')" class="sr-only"></span>
             </button>
+            <button v-show="show && section === 'main'"
+              class="btn-link">
+              <i
+                class="fa fa-drag-handle fa-inverse" aria-hidden="true">
+              </i>
+            </button>
           </div>
           <div class="col-8 h5 text-center px-0">
             <b v-html="$t('fnav.sites.aide.name')"></b>
           </div>
           <div class="col-2 h5 text-right pr-0">
-            <i class="fa fa-drag-handle" aria-hidden="true"></i>
-            <button
-              v-text="$t('txt.close')"
-              class="sr-only"
-              @click="close()">
+            <button class="btn-link" @click="close()">
+              <i class="fa fa-close fa-inverse" aria-hidden="true"></i>
+              <span v-text="$t('txt.close')" class="sr-only"></span>
             </button>
           </div>
         </template>
@@ -112,6 +116,7 @@
           <Participate  v-show="section === 'feedback'" />
 
           <ContactForm v-show="/^contact\-/.test(section)" :section="section" />
+          <p v-text="text('Déjà vu æ œ éèç', '-Ll')"></p>
         </template>
 
         <template v-slot:modal-footer>
