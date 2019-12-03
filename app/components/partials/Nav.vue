@@ -120,7 +120,7 @@ export default {
     });
     document.getElementsByTagName('head')[0].appendChild(fcss);
 
-    // Testing features (keyboard press AABB)
+    // Testing features
     const kkeys = [];
     window.addEventListener('keydown', (e) => {
       kkeys.push(e.keyCode);
@@ -131,6 +131,12 @@ export default {
         this.testing.navpop = true;
       }
     }, true);
+    /* regSites = new RegExp([
+      '(forms', 'bookin', 'memo)'
+      ].join('|'), 'i');
+    if (regSites.test(this.$t('host'))) {
+      this.testing.feedback = true;
+    } */
   },
   data() {
     return {

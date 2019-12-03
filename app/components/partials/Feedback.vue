@@ -156,9 +156,7 @@ export default {
   },
   data() {
     let menu = {
-      x: 'right',
-      y: 'up',
-      position: '',
+      position: 'inset: auto 100px 100px auto',
       start: '',
       visited: 0,
     };
@@ -201,8 +199,6 @@ export default {
     },
     handleDrag({ target, top, right, bottom, left}) {
       const display = {
-        x: '',
-        y: '',
         top: 'auto',
         right: 'auto',
         bottom: 'auto',
@@ -210,21 +206,16 @@ export default {
       }
       if (left < window.innerWidth / 2) {
         display.left = `${left > 0 ? left: 0}px`;
-        display.x = 'left';
       } else {
         display.right = `${right > 0 ? right: 0}px`;
-        display.x = 'right';
       }
 
       if (top < window.innerHeight / 2) {
         display.top = `${top > 0 ? top: 0}px`;
-        display.y = 'down';
       } else {
         display.bottom = `${bottom > 0 ? bottom : 0}px`;
-        display.y = 'up';
       }
-      this.menu.x = display.x;
-      this.menu.y = display.y;
+
       this.menu.position = `inset: ${display.top} ${display.right} ${display.bottom} ${display.left}`;
     },
     dragEnd() {
