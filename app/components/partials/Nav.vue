@@ -133,10 +133,10 @@ export default {
     }, true);
     /* regSites = new RegExp([
       '(forms', 'bookin', 'memo)'
-      ].join('|'), 'i');
-    if (regSites.test(this.$t('host'))) {
+      ].join('|'), 'i');*/
+    if (/listes/.test(this.$t('host'))) {
       this.testing.feedback = true;
-    } */
+    }
   },
   data() {
     return {
