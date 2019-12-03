@@ -2,21 +2,17 @@
   <div id="f-feedback">
     <Moveable
       ref="f-fb-drag"
-      :class="`moveable f-fb-toggle ${!show ? 'visible' : 'invisible'}`"
+      :class="`moveable f-fb-toggle ${menu.visited === 1 ? 'visited' : ''} ${show ? 'active' : ''}`"
       :style="menu.position"
       v-bind="moveable"
       @drag="handleDrag"
       @dragEnd="cookie('w', 'f-fb-drag', JSON.stringify(menu));">
-      <b-button v-b-modal.f-fb-menu
-        @click="show = !drag ? !show : show; drag = false; section = 'main'; menu.visited = 1">
-        <i :class="`fa fa-fw fa-lg fa-inverse ${!show ? $t('icon.aide') : 'fa-close'}`" aria-hidden="true"></i>
-
-        <span v-if="!show && menu.visited === 0" v-text="$t('fnav.sites.aide.name')"></span>
-        <span v-else class="sr-only" v-text="$t('txt.close')"></span>
-
-        <i v-if="!show && menu.visited === 0"
-          class="fa fa-lg fa-drag-handle" aria-hidden="true">
-        </i>
+      <b-button v-b-modal.f-fb-menu>
+        <i class="fa fa-fw fa-lg fa-inverse fa-map-signs" aria-hidden="true"></i>
+        <i class="fa fa-fw fa-lg fa-inverse fa-arrows" aria-hidden="true"></i>
+        <span class="d-none" v-text="$t('fnav.sites.aide.name')"></span>
+        <span class="sr-only" v-text="$t('fnav.sites.aide.name')"></span>
+        <i class="fa fa-lg fa-arrows" aria-hidden="true"></i>
       </b-button>
     </Moveable>
 
@@ -27,7 +23,7 @@
         :static="true"
         :lazy="true"
         :cancel-title-html="$t('txt.close')"
-        :style="menu.position"
+        :style="`position: fixed; ${menu.position}`"
         hide-backdrop>
         <template v-slot:modal-header>
           <!-- Header -->
@@ -37,12 +33,6 @@
               @click="section = 'main'">
               <i class="fa fa-chevron-left fa-inverse" aria-hidden="true"></i>
               <span v-text="$t('txt.back')" class="sr-only"></span>
-            </button>
-            <button v-show="show && section === 'main'"
-              class="btn-link">
-              <i
-                class="fa fa-drag-handle fa-inverse" aria-hidden="true">
-              </i>
             </button>
           </div>
           <div class="col-8 h5 text-center px-0">

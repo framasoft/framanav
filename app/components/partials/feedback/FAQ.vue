@@ -207,9 +207,9 @@ export default {
       this.state.toggle = 'all';
 
       for (let i = 1; i < this.faq.length; i += 1) {
-        const words = this.text(this.search, '-Ll').replace(', ', ',').split(',');
+        const words = this.text(this.search.replace(/\+ ?/, '_'), '-Ll@').split('_');
         const reg = new RegExp(`(${words.join('|')})`, 'g');
-        const content = this.text(`${this.faq[i].question} ${this.faq[i].answer}`, '-Ll');
+        const content = this.text(`${this.faq[i].question} ${this.faq[i].answer}`, '-Ll@');
         if (reg.test(content)) {
           this.faq[i].variant = `${this.faq[i].variant.replace(/search/g, '')} search`;
         } else {

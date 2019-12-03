@@ -1,4 +1,4 @@
-#f-feedback {
+.f-bs4 #f-feedback {
   .moveable {
     position: fixed;
     bottom:  100px;
@@ -26,8 +26,7 @@
     color: #fff; /* ~board */
   }
 
-  .fa-drag-handle {
-    color: darken($orange, 12%);
+  .fa-arrows {
     font-size: 20px;
     cursor: move;
   }
@@ -49,7 +48,7 @@
   }
 
   .f-fb-toggle {
-    display:block;
+    display: block;
     opacity: .9;
     transition: all .2s ease-out;
     text-align: center;
@@ -66,6 +65,53 @@
     border: none; /* dio */
     text-transform: uppercase;
 
+    &:hover {
+      opacity: 1;
+    }
+
+    &.visited {
+      background: transparent;
+      box-shadow: none;
+
+      .fa-arrows:last-of-type {
+        display: none;
+      }
+    }
+
+    &:not(.visited) {
+      .d-none {
+        display: block;
+      }
+
+      .sr-only {
+        display: none;
+      }
+
+      .fa-arrows:last-of-type {
+        display: block;
+      }
+    }
+
+    &.active {
+      .fa-map-signs {
+        display: none;
+      }
+
+      .fa-arrows:first-of-type {
+        display: block;
+      }
+    }
+
+    &:not(.active) {
+      .fa-map-signs {
+        display: block;
+      }
+
+      .fa-arrows {
+        display: none;
+      }
+    }
+
     .btn-secondary,
     .btn-secondary:hover,
     .btn-secondary:focus {
@@ -77,10 +123,6 @@
       box-shadow: none;
     }
 
-    &:hover {
-      opacity: 1;
-    }
-
     .fa {
       margin: 0 -10px;
       line-height: 42px; /* ~pack */
@@ -88,7 +130,7 @@
     }
 
     .fa-map-signs,
-    .fa-close {
+    .fa-arrows {
       height: 44px;
       width: 44px;
       line-height: 42px;
@@ -96,16 +138,24 @@
       background: #eb7239;
     }
 
+    .fa-arrows {
+      background: #666;
+      color: #fff;
+    }
+
     .fa-inverse + span {
       margin: 0 -10px 0 15px;
       display: inline-block;
     }
 
-    span + .fa-drag-handle {
+    span + .fa-arrows {
       margin-left: 15px;
       margin-right: 0px;
       line-height: 46px;
+      width: auto;
+      height: auto;
       color: #ccc;
+      background: transparent;
     }
   }
 }
