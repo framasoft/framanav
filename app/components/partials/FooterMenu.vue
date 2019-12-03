@@ -7,7 +7,7 @@
       v-show="$t('inframe') === 'false'">
       <div class="container">
         <div class="row  mx-2 mx-sm-0">
-          <div class="col-sm-8">
+          <div class="col-md-8">
             <div class="row">
               <nav class="col">
                 <h1 v-html="$t('txt.soft')"></h1>
@@ -45,7 +45,7 @@
               </nav>
             </div>
           </div>
-          <div class="col-sm-4">
+          <div class="col-md-4">
             <h1 v-html="$t('fnav.cat.follow.name')"></h1>
             <ul class="list-inline">
               <li v-for="key in $t('fnav.footer.follow')"
