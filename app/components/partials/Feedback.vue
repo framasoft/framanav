@@ -5,15 +5,13 @@
       :class="`moveable f-fb-toggle ${menu.visited === 1 ? 'visited' : ''} ${show ? 'active' : ''}`"
       :style="menu.position"
       v-bind="moveable"
+      @dragStart="menu.start = menu.position"
       @drag="handleDrag"
-      @dragEnd="cookie('w', 'f-fb-drag', JSON.stringify(menu));">
-      <b-button @click="show = !drag ? true : show; drag = false;">
-        <i class="fa fa-fw fa-lg fa-inverse fa-map-signs" aria-hidden="true"
-          @click="show = !drag ? true : show; drag = false;"
-        ></i>
+      @dragEnd="dragEnd()">
+      <b-button>
+        <i class="fa fa-fw fa-lg fa-inverse fa-map-signs" aria-hidden="true"></i>
         <i class="fa fa-fw fa-lg fa-inverse fa-arrows" aria-hidden="true"></i>
-        <span class="d-none" v-text="$t('fnav.sites.aide.name')"
-          @click="show = !drag ? true : show; drag = false;"></span>
+        <span class="d-none" v-text="$t('fnav.sites.aide.name')"></span>
         <span class="sr-only" v-text="$t('fnav.sites.aide.name')"></span>
         <i class="fa fa-lg fa-arrows" aria-hidden="true"></i>
       </b-button>
@@ -161,6 +159,7 @@ export default {
       x: 'right',
       y: 'up',
       position: '',
+      start: '',
       visited: 0,
     };
 
@@ -178,7 +177,6 @@ export default {
       },
       search: '',
       status: [],
-      drag: false,
       menu,
       moveable: {
         draggable: true,
@@ -202,8 +200,6 @@ export default {
       this.section = 'main';
     },
     handleDrag({ target, top, right, bottom, left}) {
-      this.drag = true;
-
       const display = {
         x: '',
         y: '',
@@ -227,10 +223,16 @@ export default {
         display.bottom = `${bottom > 0 ? bottom : 0}px`;
         display.y = 'up';
       }
-
       this.menu.x = display.x;
       this.menu.y = display.y;
       this.menu.position = `inset: ${display.top} ${display.right} ${display.bottom} ${display.left}`;
+    },
+    dragEnd() {
+      this.cookie('w', 'f-fb-drag', JSON.stringify(this.menu));
+      /* It looks like a @drag, but it’s just a @click */
+      if (this.menu.start === this.menu.position && !this.show) {
+        this.show = true;
+      }
     },
   }
 }
