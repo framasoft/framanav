@@ -140,7 +140,7 @@ export default {
             }
             break;
           default: // all sites with 'onstart' + 'use'
-            if (/(bin|link|pack|pic)/.test(site)) {
+            if (/(link|pack|pic)/.test(site)) {
               c = ['onstart', 'txt.action.use', 'txt.actionBtn.use'];
             }
             break;
