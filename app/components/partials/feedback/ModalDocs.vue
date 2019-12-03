@@ -49,7 +49,7 @@ export default {
   methods: {
     close() {
       this.state.docs = false;
-      this.$parent.modal.docs = false;
+      this.$parent.$parent.modal.docs = false;
     }
   }
 }

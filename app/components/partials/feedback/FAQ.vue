@@ -58,8 +58,8 @@
           </p>
         </b-list-group-item>
       </b-list-group>
-      <p v-if="!state.mainFaq && state.faq && state.toggle === 'all'">
-        <b-button block variant="outline-dark"
+      <p v-if="!state.mainFaq && state.faq && state.toggle === 'all'" class="mb-0 mt-3">
+        <b-button block variant="outline-warning text-center"
           @click="addMainFaq()"
           v-html="$t('feedback.more')">
         </b-button>
@@ -163,7 +163,7 @@ export default {
 
             /* Site Faq */
             if (!this.general) {
-              html = parser.parseFromString(data, "text/html").querySelector(`#${this.text(this.$t(`txt.${this.$t('site')}`), 'latin sanitize')}`);
+              html = parser.parseFromString(data, "text/html").querySelector(`#${this.text(this.$t(`txt.${this.$t('site')}`), '-L@')}`);
               if (html) {
                 for (let i = 1; i < html.children.length; i += 1) { // .list-group-item only (first node is h2)
                   this.faq[i - 1] = {
@@ -207,9 +207,9 @@ export default {
       this.state.toggle = 'all';
 
       for (let i = 1; i < this.faq.length; i += 1) {
-        const words = this.text(this.search, 'latin').toLowerCase().replace(', ', ',').split(',');
+        const words = this.text(this.search.replace(/\+ ?/, '_'), '-Ll@').split('_');
         const reg = new RegExp(`(${words.join('|')})`, 'g');
-        const content = this.text(`${this.faq[i].question} ${this.faq[i].answer}`, 'latin').toLowerCase();
+        const content = this.text(`${this.faq[i].question} ${this.faq[i].answer}`, '-Ll@');
         if (reg.test(content)) {
           this.faq[i].variant = `${this.faq[i].variant.replace(/search/g, '')} search`;
         } else {

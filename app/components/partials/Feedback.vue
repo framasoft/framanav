@@ -2,21 +2,18 @@
   <div id="f-feedback">
     <Moveable
       ref="f-fb-drag"
-      class="moveable fb-toggle"
+      :class="`moveable f-fb-toggle ${menu.visited === 1 ? 'visited' : ''} ${show ? 'active' : ''}`"
       :style="menu.position"
       v-bind="moveable"
+      @dragStart="menu.start = menu.position"
       @drag="handleDrag"
-      @dragEnd="cookie('w', 'f-fb-drag', JSON.stringify(menu));">
-      <b-button v-b-modal.f-fb-menu
-        @click="show = !drag ? !show : show; drag = false; section = 'main'; menu.visited = 1">
-        <i :class="`fa fa-fw fa-lg fa-inverse ${!show ? $t('icon.aide') : 'fa-close'}`" aria-hidden="true"></i>
-
-        <span v-if="!show && menu.visited === 0" v-text="$t('fnav.sites.aide.name')"></span>
-        <span v-else class="sr-only" v-text="$t('txt.close')"></span>
-
-        <i v-if="!show && menu.visited === 0"
-          class="fa fa-lg fa-drag-handle" aria-hidden="true">
-        </i>
+      @dragEnd="dragEnd()">
+      <b-button>
+        <i class="fa fa-fw fa-lg fa-inverse fa-map-signs" aria-hidden="true"></i>
+        <i class="fa fa-fw fa-lg fa-inverse fa-arrows" aria-hidden="true"></i>
+        <span class="d-none" v-text="$t('fnav.sites.aide.name')"></span>
+        <span class="sr-only" v-text="$t('fnav.sites.aide.name')"></span>
+        <i class="fa fa-lg fa-arrows" aria-hidden="true"></i>
       </b-button>
     </Moveable>
 
@@ -27,7 +24,8 @@
         :static="true"
         :lazy="true"
         :cancel-title-html="$t('txt.close')"
-        :style="menu.position"
+        :style="`position: fixed; ${menu.position}`"
+        @shown="menu.visited = 1"
         hide-backdrop>
         <template v-slot:modal-header>
           <!-- Header -->
@@ -43,11 +41,9 @@
             <b v-html="$t('fnav.sites.aide.name')"></b>
           </div>
           <div class="col-2 h5 text-right pr-0">
-            <i class="fa fa-drag-handle" aria-hidden="true"></i>
-            <button
-              v-text="$t('txt.close')"
-              class="sr-only"
-              @click="close()">
+            <button class="btn-link" @click="close()">
+              <i class="fa fa-close fa-inverse" aria-hidden="true"></i>
+              <span v-text="$t('txt.close')" class="sr-only"></span>
             </button>
           </div>
         </template>
@@ -163,6 +159,7 @@ export default {
       x: 'right',
       y: 'up',
       position: '',
+      start: '',
       visited: 0,
     };
 
@@ -180,7 +177,6 @@ export default {
       },
       search: '',
       status: [],
-      drag: false,
       menu,
       moveable: {
         draggable: true,
@@ -204,29 +200,39 @@ export default {
       this.section = 'main';
     },
     handleDrag({ target, top, right, bottom, left}) {
-      this.drag = true;
-
+      const display = {
+        x: '',
+        y: '',
+        top: 'auto',
+        right: 'auto',
+        bottom: 'auto',
+        left: 'auto',
+      }
       if (left < window.innerWidth / 2) {
-        target.style.right = 'auto';
-        target.style.left = `${left > 0 ? left: 0}px`;
-        this.menu.x = 'left';
+        display.left = `${left > 0 ? left: 0}px`;
+        display.x = 'left';
       } else {
-        target.style.left = 'auto';
-        target.style.right = `${right > 0 ? right: 0}px`;
-        this.menu.x = 'right';
+        display.right = `${right > 0 ? right: 0}px`;
+        display.x = 'right';
       }
 
       if (top < window.innerHeight / 2) {
-        target.style.bottom = 'auto';
-        target.style.top = `${top > 0 ? top: 0}px`;
-        this.menu.y = 'down';
+        display.top = `${top > 0 ? top: 0}px`;
+        display.y = 'down';
       } else {
-        target.style.top = 'auto';
-        target.style.bottom = `${bottom > 0 ? bottom : 0}px`;
-        this.menu.y = 'up';
+        display.bottom = `${bottom > 0 ? bottom : 0}px`;
+        display.y = 'up';
       }
-
-      this.menu.position = `inset: ${target.style.top} ${target.style.right} ${target.style.bottom} ${target.style.left}`;
+      this.menu.x = display.x;
+      this.menu.y = display.y;
+      this.menu.position = `inset: ${display.top} ${display.right} ${display.bottom} ${display.left}`;
+    },
+    dragEnd() {
+      this.cookie('w', 'f-fb-drag', JSON.stringify(this.menu));
+      /* It looks like a @drag, but it’s just a @click */
+      if (this.menu.start === this.menu.position && !this.show) {
+        this.show = true;
+      }
     },
   }
 }

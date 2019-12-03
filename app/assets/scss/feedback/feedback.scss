@@ -1,4 +1,4 @@
-#f-feedback {
+.f-bs4 #f-feedback {
   .moveable {
     position: fixed;
     bottom:  100px;
@@ -26,8 +26,7 @@
     color: #fff; /* ~board */
   }
 
-  .fa-drag-handle {
-    color: darken($orange, 12%);
+  .fa-arrows {
     font-size: 20px;
     cursor: move;
   }
@@ -48,8 +47,8 @@
     max-width: none; /* ~carte */
   }
 
-  .fb-toggle {
-    display:block;
+  .f-fb-toggle {
+    display: block;
     opacity: .9;
     transition: all .2s ease-out;
     text-align: center;
@@ -66,19 +65,63 @@
     border: none; /* dio */
     text-transform: uppercase;
 
-    .btn-secondary,
-    .btn-secondary:hover,
-    .btn-secondary:focus {
-      padding: 0;
-      background: transparent;
-      border: none;
-      color: inherit;
-      line-height: inherit;
-      box-shadow: none;
-    }
-
     &:hover {
       opacity: 1;
+    }
+
+    &.visited {
+      background: transparent;
+      box-shadow: none;
+
+      .fa-arrows:last-of-type {
+        display: none;
+      }
+    }
+
+    &:not(.visited) {
+      .d-none {
+        display: inline-block !important;
+      }
+
+      .sr-only {
+        display: none;
+      }
+
+      .fa-arrows:last-of-type {
+        display: inline-block;
+      }
+    }
+
+    &.active {
+      .fa-map-signs {
+        display: none;
+      }
+
+      .fa-arrows:first-of-type {
+        display: inline-block;
+      }
+    }
+
+    &:not(.active) {
+      .fa-map-signs {
+        display: inline-block;
+      }
+
+      .fa-arrows {
+        display: none;
+      }
+    }
+
+    .btn-secondary,
+    .btn-secondary:hover,
+    .btn-secondary:focus,
+    .btn-secondary:active {
+      padding: 0;
+      background: transparent !important;
+      border: none;
+      color: inherit !important;
+      line-height: inherit;
+      box-shadow: none;
     }
 
     .fa {
@@ -88,7 +131,7 @@
     }
 
     .fa-map-signs,
-    .fa-close {
+    .fa-arrows {
       height: 44px;
       width: 44px;
       line-height: 42px;
@@ -96,27 +139,27 @@
       background: #eb7239;
     }
 
+    .fa-arrows {
+      background: #666;
+      color: #fff;
+    }
+
     .fa-inverse + span {
       margin: 0 -10px 0 15px;
       display: inline-block;
     }
 
-    span + .fa-drag-handle {
+    span + .fa-arrows {
       margin-left: 15px;
       margin-right: 0px;
       line-height: 46px;
+      width: auto;
+      height: auto;
       color: #ccc;
+      background: transparent;
     }
   }
 }
-
-@media (max-width: 640px) {
-  #f-feedback .moveable {
-    bottom: 20px;
-    right: 20px;
-  }
-}
-
 
 @import "main";
 @import "docs";
