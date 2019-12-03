@@ -8,9 +8,12 @@
       @drag="handleDrag"
       @dragEnd="cookie('w', 'f-fb-drag', JSON.stringify(menu));">
       <b-button @click="show = !drag ? true : show; drag = false;">
-        <i class="fa fa-fw fa-lg fa-inverse fa-map-signs" aria-hidden="true"></i>
+        <i class="fa fa-fw fa-lg fa-inverse fa-map-signs" aria-hidden="true"
+          @click="show = !drag ? true : show; drag = false;"
+        ></i>
         <i class="fa fa-fw fa-lg fa-inverse fa-arrows" aria-hidden="true"></i>
-        <span class="d-none" v-text="$t('fnav.sites.aide.name')"></span>
+        <span class="d-none" v-text="$t('fnav.sites.aide.name')"
+          @click="show = !drag ? true : show; drag = false;"></span>
         <span class="sr-only" v-text="$t('fnav.sites.aide.name')"></span>
         <i class="fa fa-lg fa-arrows" aria-hidden="true"></i>
       </b-button>

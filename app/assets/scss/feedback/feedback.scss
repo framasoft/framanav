@@ -114,11 +114,12 @@
 
     .btn-secondary,
     .btn-secondary:hover,
-    .btn-secondary:focus {
+    .btn-secondary:focus,
+    .btn-secondary:active {
       padding: 0;
-      background: transparent;
+      background: transparent !important;
       border: none;
-      color: inherit;
+      color: inherit !important;
       line-height: inherit;
       box-shadow: none;
     }
