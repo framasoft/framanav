@@ -5,7 +5,7 @@
         v-html="`${$t('feedback.contact')} <b>${$t('txt.soft')}</b>`">
       </div>
 
-      <b-form @submit="sendMail()">
+      <b-form @submit="sendMail">
         <div>
           <!-- Name -->
           <b-form-group
@@ -24,7 +24,7 @@
                 required
                 trim
                 :state="ok.name"
-                @focusout="check('f-cf-name')">
+                @focusout="check('name')">
               </b-form-input>
             </b-input-group>
           </b-form-group>
@@ -46,7 +46,7 @@
                 required
                 trim
                 :state="ok.email"
-                @focusout="check('f-cf-email')">
+                @focusout="check('email')">
               </b-form-input>
             </b-input-group>
             <p v-html="$t('contact.alert.email')" class="alert"></p>
@@ -70,7 +70,7 @@
                 required
                 trim
                 :state="ok.subject"
-                @focusout="check('f-cf-subject')">
+                @focusout="check('subject')">
               </b-form-input>
             </b-input-group>
           </b-form-group>
@@ -87,8 +87,7 @@
               </b-input-group-prepend>
               <b-form-select id="f-cf-concerne"
                 v-model="form.concerne"
-                required
-                @focusout="check('f-cf-concerne')">
+                required>
                 <option
                   v-if="!general && section === 'contact-faq'"
                   v-text="this.$t(`txt.${this.$t('site')}`)"
@@ -124,7 +123,7 @@
                 :placeholder="$t('contact.form.message')"
                 cols="40" rows="10" required
                 @focusin="bienveillance = true;"
-                @focusout="check('f-cf-message')">
+                @focusout="check('message')">
               </b-form-textarea>
               <p v-show="bienveillance"
                 class="alert alert-info"
@@ -241,7 +240,6 @@ export default {
         email: null,
         subject: null,
         message: null,
-        concerne: null,
       },
       success: {
         into: '',
@@ -264,7 +262,7 @@ export default {
   methods: {
     check(input) {
       switch (input) {
-        case 'f-cf-email':
+        case 'email':
           const email = document.getElementById('f-cf-email');
           if (email.validity.valueMissing) {
             this.ok.email = false;
@@ -278,7 +276,7 @@ export default {
           }
           break;
         default:
-          const el = document.getElementById(input);
+          const el = document.getElementById(`f-cf-${input}`);
           if (el.validity.valueMissing) {
             this.ok[input] = false;
             el.setCustomValidity(this.$i18n.messages[this.$i18n.locale].contact.form.error_empty);

@@ -7,7 +7,7 @@
       v-bind="moveable"
       @drag="handleDrag"
       @dragEnd="cookie('w', 'f-fb-drag', JSON.stringify(menu));">
-      <b-button v-b-modal.f-fb-menu>
+      <b-button @click="show = !drag ? true : show; drag = false;">
         <i class="fa fa-fw fa-lg fa-inverse fa-map-signs" aria-hidden="true"></i>
         <i class="fa fa-fw fa-lg fa-inverse fa-arrows" aria-hidden="true"></i>
         <span class="d-none" v-text="$t('fnav.sites.aide.name')"></span>
@@ -24,6 +24,7 @@
         :lazy="true"
         :cancel-title-html="$t('txt.close')"
         :style="`position: fixed; ${menu.position}`"
+        @shown="menu.visited = 1"
         hide-backdrop>
         <template v-slot:modal-header>
           <!-- Header -->
@@ -200,27 +201,33 @@ export default {
     handleDrag({ target, top, right, bottom, left}) {
       this.drag = true;
 
+      const display = {
+        x: '',
+        y: '',
+        top: 'auto',
+        right: 'auto',
+        bottom: 'auto',
+        left: 'auto',
+      }
       if (left < window.innerWidth / 2) {
-        target.style.right = 'auto';
-        target.style.left = `${left > 0 ? left: 0}px`;
-        this.menu.x = 'left';
+        display.left = `${left > 0 ? left: 0}px`;
+        display.x = 'left';
       } else {
-        target.style.left = 'auto';
-        target.style.right = `${right > 0 ? right: 0}px`;
-        this.menu.x = 'right';
+        display.right = `${right > 0 ? right: 0}px`;
+        display.x = 'right';
       }
 
       if (top < window.innerHeight / 2) {
-        target.style.bottom = 'auto';
-        target.style.top = `${top > 0 ? top: 0}px`;
-        this.menu.y = 'down';
+        display.top = `${top > 0 ? top: 0}px`;
+        display.y = 'down';
       } else {
-        target.style.top = 'auto';
-        target.style.bottom = `${bottom > 0 ? bottom : 0}px`;
-        this.menu.y = 'up';
+        display.bottom = `${bottom > 0 ? bottom : 0}px`;
+        display.y = 'up';
       }
 
-      this.menu.position = `inset: ${target.style.top} ${target.style.right} ${target.style.bottom} ${target.style.left}`;
+      this.menu.x = display.x;
+      this.menu.y = display.y;
+      this.menu.position = `inset: ${display.top} ${display.right} ${display.bottom} ${display.left}`;
     },
   }
 }

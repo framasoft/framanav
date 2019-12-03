@@ -80,7 +80,7 @@
 
     &:not(.visited) {
       .d-none {
-        display: block;
+        display: inline-block !important;
       }
 
       .sr-only {
@@ -88,7 +88,7 @@
       }
 
       .fa-arrows:last-of-type {
-        display: block;
+        display: inline-block;
       }
     }
 
@@ -98,13 +98,13 @@
       }
 
       .fa-arrows:first-of-type {
-        display: block;
+        display: inline-block;
       }
     }
 
     &:not(.active) {
       .fa-map-signs {
-        display: block;
+        display: inline-block;
       }
 
       .fa-arrows {
