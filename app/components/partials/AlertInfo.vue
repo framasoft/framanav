@@ -24,6 +24,15 @@ export default {
     return {
       config: ['', '', 'f-alert', 604800000],
       /** [color (from bootstrap), text, cookie name, cookie duration] */
+      countdown: {
+        today: 0,
+        end: new Date(1 * this.$t('year.next'), 0, 1).getTime(),
+        diff: 0,
+        d: 0,
+        h: 0,
+        m: 0,
+        html: '',
+      },
       state: {
         alert: false,
       },
@@ -59,6 +68,16 @@ export default {
                 base de données, le service ${this.$t('color.agenda')} sera interrompu le lundi 27 mai dès 9h,
                 pour une durée n’excédant pas 24 heures. Prenez vos précautions !
                 Plus d’infos : <a href="https://status.framasoft.org/incident/477">status.framasoft.org</a>`,
+              ];
+            }
+            break;
+        case 'board':
+            if (this.is.before('2019/12/12')) {
+              c = [
+                'warning',
+                `Mercredi 11 décembre, à partir de 22h, nous couperons l’accès au service
+                Framaboard pour le migrer vers un serveur plus véloce.<br>
+                La coupure devrait prendre fin jeudi matin.`,
               ];
             }
             break;
@@ -126,6 +145,48 @@ export default {
             'nav-alert-cuo'
           ];
         }
+      }
+
+      // Bandeau soutenir défiscalisation
+      if (c[0] === undefined
+        && this.is.after(`${this.$t('year.current')}/12/10`)
+        && !this.is.after(`${this.$t('year.current')}/12/31`)
+        && !/soutenir/.test(site)
+        && this.$t('lang') === 'fr') {
+          this.countdown.today = new Date().getTime();
+          this.countdown.diff = (this.countdown.end - this.countdown.today) / 1000;
+          this.countdown.d = Math.floor(this.countdown.diff / (60 * 60 * 24));
+          if (this.countdown.d > 0) {
+            this.countdown.html = `
+              ${this.countdown.d}</b> jour${this.countdown.d > 1 ? 's' : ''}
+            `;
+          } else {
+            this.countdown.h = Math.floor((this.countdown.diff % (60 * 60 * 24)) / (60 * 60));
+            this.countdown.m = Math.floor((this.countdown.diff % (60 * 60)) / 60);
+
+            if (this.countdown.h > 0) {
+              this.countdown.html = `
+                ${this.countdown.h}</b> heure${this.countdown.h > 1 ? 's' : ''}
+                ${this.countdown.m}</b> minute${this.countdown.m > 1 ? 's' : ''}
+              `;
+            } else {
+              this.countdown.html = `
+                ${this.countdown.m}</b> minute${this.countdown.m > 1 ? 's' : ''}
+              `;
+            }
+          }
+
+          c = [
+            'info',
+            `Rappel : il vous reste
+            <a href="${this.$t('link.soutenir')}" class="btn btn-sm btn-soutenir py-0">${this.countdown.html}</a> pour faire un
+            <a href="${this.$t('link.blog')}/2018/11/22/impots-et-dons-a-framasoft-le-prelevement-a-la-source-en-2019/">
+            don défiscalisé en ${this.$t('year.current')}</a> à Framasoft.<br>
+            Merci pour <a href="${this.$t('link.soutenir')}">
+              <b>votre soutien</b>
+              <i class="fa fa-heart" aria-hidden="true"></i>
+            </a>`,
+          ];
       }
 
       // Merge + return config
