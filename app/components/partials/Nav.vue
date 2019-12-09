@@ -5,7 +5,7 @@
 
     <HeaderMenu />
 
-    <Feedback v-if="testing.feedback" />
+    <Feedback v-if="testing.feedback && this.$t('inframe') === 'false'" />
 
     <AlertInfo />
     <ModalInfo />
@@ -131,10 +131,10 @@ export default {
         this.testing.navpop = true;
       }
     }, true);
-    /* regSites = new RegExp([
-      '(forms', 'bookin', 'memo)'
-      ].join('|'), 'i');*/
-    if (/listes/.test(this.$t('host'))) {
+    regSites = new RegExp([
+      '(forms', 'listes', 'key)'
+      ].join('|'), 'i');
+    if (regSites.test(this.$t('host'))) {
       this.testing.feedback = true;
     }
   },
