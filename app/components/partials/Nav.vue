@@ -302,6 +302,17 @@ export default {
           }
           break;
 
+        case 'docs':
+          if (this.$t('inframe') === 'true') {
+            this.js = function() {
+              /* Disable sidebar menu in iframe (still toggleable) */
+              if (document.querySelector('.with-summary')) {
+                document.querySelector('.with-summary').classList.remove('with-summary');
+              }
+            };
+          }
+          break;
+
         case 'drop':
           this.js = function() {
             if (this.$t('url') !== 'https://framadrop.org/') {
