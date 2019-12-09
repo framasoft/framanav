@@ -73,3 +73,11 @@
     display: none;
   }
 }
+
+/* No feedback button */
+/* ------------------------------------------------------------------ */
+[data-url*="://framaforms.org"] .not-logged-in {                        /* public forms */
+  #f-feedback {
+    display: none;
+  }
+}
