@@ -132,8 +132,9 @@ export default {
       }
     }, true);
     regSites = new RegExp([
-      '(forms', 'listes', 'key)'
-      ].join('|'), 'i');
+      '(forms', 'key', 'frama.link', 'listes',
+      'notes', 'slides', 'sphere',
+      'talk)'].join('|'), 'i');
     if (regSites.test(this.$t('host'))) {
       this.testing.feedback = true;
     }
