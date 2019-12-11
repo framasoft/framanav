@@ -48,7 +48,7 @@
           <p v-html="$t('bin.presentation.contrib_upstream')"></p>
           <p v-html="$t('bin.presentation.home_install')"></p>
           <p class="text-center">
-            <a :href="$t('cloud.bin')" class="btn btn-success">
+            <a :href="`${$t('link.cloud')}${$t('cloud.bin')}`" class="btn btn-success">
               <i class="fa fa-leaf" aria-hidden="true"></i>
               framacloud.org
             </a>
