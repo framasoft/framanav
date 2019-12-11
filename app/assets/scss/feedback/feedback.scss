@@ -3,7 +3,7 @@
     position: fixed;
     bottom:  100px;
     right: 100px;
-    z-index: 1102;
+    z-index: 1041; /* over main menu ; behind docs modal backdrop */
     text-shadow: none; /* ~bookin */
     line-height: 1.5; /* ~agenda */
   }
@@ -23,7 +23,7 @@
   }
 
   .fa-inverse {
-    color: #fff; /* ~board */
+    color: #fff !important; /* ~board */
   }
 
   .fa-arrows {
