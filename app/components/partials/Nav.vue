@@ -132,7 +132,7 @@ export default {
       }
     }, true);
     regSites = new RegExp([
-      '(forms', 'key', 'frama.link', 'listes',
+      '(board', 'forms', 'key', 'frama.link', 'listes',
       'notes', 'slides', 'sphere',
       'talk)'].join('|'), 'i');
     if (regSites.test(this.$t('host'))) {

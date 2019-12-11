@@ -25,6 +25,7 @@
     color: #fff;
     border-radius: 0;
     border: none;
+    margin-bottom: 0px; /* ~board */
 
     .h5 {
       color: #fff;
@@ -96,6 +97,10 @@
   a:not(.btn) {
     display: inline;
     padding: 0;
+  }
+
+  .fa-inverse {
+    color: #fff; /* ~board */
   }
 
   #f-fb-top:focus {
