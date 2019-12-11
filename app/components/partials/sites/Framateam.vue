@@ -113,7 +113,7 @@
               <br>
               <p v-html="$t('team.presentation.home_install')"></p>
               <p class="text-center">
-                <a class="btn btn-success" :href="`${$t('link.cloud')}${$t('cloud.team')}`">
+                <a class="btn btn-success" :href="`${$t('link.cloud')}/${$t('cloud.team')}`">
                   <i class="fa fa-leaf" aria-hidden="true"></i> framacloud.org
                 </a>
               </p>
