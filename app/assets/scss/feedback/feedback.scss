@@ -161,6 +161,12 @@
   }
 }
 
+@media (max-width:768px) {
+  .f-bs4 #f-feedback .moveable {
+    display: none;
+  }
+}
+
 @import "main";
 @import "docs";
 @import "faq";
