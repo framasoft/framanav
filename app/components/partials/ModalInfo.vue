@@ -61,6 +61,18 @@ export default {
               ];
             }
             break;
+          case 'date':
+            if (/(beta\.framadate)/.test(this.$t('host'))) {
+              c = [
+                'Avertissement',
+                `<p>Cette instance de Framadate (<b>beta</b>.framadate.org) est
+                instable et ne doit servir que pour des tests.<p>
+                <p>Passez plutôt par <a href="https://framadate.org">framadate.org</a> 
+                pour créer vos sondages.</p>
+                <p>Merci.<br>L’équipe technique</p>`,
+              ];
+            }
+            break;
 
           // no-default
         }
