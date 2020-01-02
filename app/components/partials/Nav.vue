@@ -25,7 +25,7 @@
 import Meta from './Meta.vue';
 import Cortex from './Cortex.vue';
 
-import HeaderMenu from './HeaderMenu.vue'; /* TODO : replace by PopMenu */
+import HeaderMenu from './HeaderMenu.vue'; /* TODO : replace by PopMenu */
 
 import AlertInfo from './AlertInfo.vue';
 import ModalInfo from './ModalInfo.vue';
@@ -333,6 +333,14 @@ export default {
           this.js = function() {
             if (this.$t('inframe') === 'true') {
               document.querySelectorAll('a').forEach(a => Object.assign(a, { target: '_blank' }));
+            }
+            const register = document.getElementById('user-register-form');
+            if (register) {
+              register.insertAdjacentHTML('beforeEnd',
+                `<p class="alert alert-warning"><b>Rappel&nbsp;:</b> Framalibre est
+                seulement un annuaire collaboratif de ressources libres.
+                Il ne permet <strong>pas de créer un compte unique</strong> pour
+                accéder à l’ensemble des services de Framasoft.</p>`);
             }
           };
           break;
