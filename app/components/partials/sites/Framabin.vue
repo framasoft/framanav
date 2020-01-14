@@ -1,17 +1,39 @@
 <template>
   <div>
-    <header role="banner" id="f-bin-header" class="f-bs4">
-      <a :href="$t('link.bin')"><h1 v-html="$t('color.bin')"></h1></a>
-      <p class="lead" v-html="$t('bin.header.lead')"></p>
-      <hr class="trait" role="presentation" />
+    <header
+      id="f-bin-header"
+      role="banner"
+      class="f-bs4"
+    >
+      <a :href="$t('link.bin')">
+        <h1 v-html="$t('color.bin')"></h1>
+      </a>
+      <p
+        class="lead"
+        v-html="$t('bin.header.lead')"
+      ></p>
+      <hr
+        class="trait"
+        role="presentation"
+      />
     </header>
 
-    <section  id="f-bin-presentation" class="f-bs4">
+    <section
+      id="f-bin-presentation"
+      class="f-bs4"
+    >
       <hr role="presentation" />
       <div class="row">
-        <div class="col-md" id="tuto-faq">
+        <div
+          id="tuto-faq"
+          class="col-md"
+        >
           <h2 v-html="$t('bin.presentation.h2_1')"></h2>
-          <p class="text-center" role="presentation" aria-hidden="true">
+          <p
+            class="text-center"
+            role="presentation"
+            aria-hidden="true"
+          >
             <i class="fa fa-question-circle"></i>
           </p>
           <div id="aboutbox">
@@ -23,10 +45,17 @@
             </ol>
             <p v-html="$t('bin.presentation.crypto')"></p>
           </div>
-         </div>
-         <div class="col-md" id="le-logiciel">
+        </div>
+        <div
+          id="le-logiciel"
+          class="col-md"
+        >
           <h2 v-html="$t('bin.presentation.h2_2')"></h2>
-          <p class="text-center" role="presentation" aria-hidden="true">
+          <p
+            class="text-center"
+            role="presentation"
+            aria-hidden="true"
+          >
             <i class="fa fa-cloud"></i>
           </p>
           <p v-html="$t('bin.presentation.framaware')"></p>
@@ -39,22 +68,35 @@
             <li>Safari…</li>
           </ul>
           <p v-html="$t('bin.presentation.noie')"></p>
-         </div>
-         <div class="col-md" id="jardin">
+        </div>
+        <div
+          id="jardin"
+          class="col-md"
+        >
           <h2 v-html="$t('bin.presentation.h2_3')"></h2>
-          <p class="text-center" role="presentation" aria-hidden="true">
+          <p
+            class="text-center"
+            role="presentation"
+            aria-hidden="true"
+          >
             <i class="fa fa-leaf"></i>
           </p>
           <p v-html="$t('bin.presentation.contrib_upstream')"></p>
           <p v-html="$t('bin.presentation.home_install')"></p>
           <p class="text-center">
-            <a :href="`${$t('link.cloud')}/${$t('cloud.bin')}`" class="btn btn-success">
-              <i class="fa fa-leaf" aria-hidden="true"></i>
+            <a
+              :href="`${$t('link.cloud')}/${$t('cloud.bin')}`"
+              class="btn btn-success"
+            >
+              <i
+                class="fa fa-leaf"
+                aria-hidden="true"
+              ></i>
               framacloud.org
             </a>
           </p>
-         </div>
-       </div>
+        </div>
+      </div>
     </section>
   </div>
 </template>
@@ -76,12 +118,12 @@ export default {
     if (container) {
       container
         .insertAdjacentElement('afterbegin', document.getElementById('f-bin-header'));
-        container
+      container
         .insertAdjacentElement('beforeend', document.getElementById('f-bin-presentation'));
     }
     if (document.getElementById('sendbutton')) {
       document.getElementById('sendbutton').classList.add('btn-primary');
     }
-  }
-}
+  },
+};
 </script>

@@ -1,10 +1,21 @@
 <template>
-  <iframe v-if="!/cortex(.html)?$/.test(this.$t('url'))"
-    id="f-cortex" ref="f-cortex"
+  <iframe
+    v-if="!/cortex(.html)?$/.test(this.$t('url'))"
+    id="f-cortex"
+    ref="f-cortex"
     src="https://framasoft.org/nav/lib/cortex.html"
     aria-hidden="true"
-    style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;"    >
-  </iframe>
+    :style="`
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    `"
+  ></iframe>
 </template>
 
 <script>
@@ -12,7 +23,7 @@ export default {
   data() {
     return {
       storage: {},
-    }
+    };
   },
   mounted() {
     this.globalStorage.minus('o', this.storage);
@@ -20,7 +31,7 @@ export default {
     const eventMethod = (window.addEventListener) ? 'addEventListener' : 'attachEvent';
     const eventer = window[eventMethod];
     const messageEvent = (eventMethod === 'attachEvent') ? 'onmessage' : 'message';
-    eventer(messageEvent, e => { this.storage = this.globalStorage.minus('i', e.data) }, false);
+    eventer(messageEvent, (e) => { this.storage = this.globalStorage.minus('i', e.data); }, false);
 
     this.storageReady(() => {
       // state sent to $parent to delay the rendering of the component
@@ -44,6 +55,6 @@ export default {
         }
       }
     },
-  }
-}
+  },
+};
 </script>

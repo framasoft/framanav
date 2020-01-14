@@ -44,13 +44,36 @@ import BackTop from './BackTop.vue';
 
 export default {
   components: {
-    Meta, Cortex, HeaderMenu,
+    Meta,
+    Cortex,
+    HeaderMenu,
 
-    AlertInfo, ModalInfo, ModalDon,
+    AlertInfo,
+    ModalInfo,
+    ModalDon,
 
-    Framabin, Framavox, Framateam,
-    Optin, FooterMenu, Feedback,
+    Framabin,
+    Framavox,
+    Framateam,
+
+    Optin,
+    FooterMenu,
+    Feedback,
     BackTop,
+  },
+
+  data() {
+    return {
+      // Init nav
+      version: '191120', // n° version de la nav
+      maestro: this.createMaestro(),
+      js() {},
+      cortexReady: true, // false,
+      testing: {
+        navpop: process.env.NODE_ENV === 'development',
+        feedback: process.env.NODE_ENV === 'development',
+      },
+    };
   },
   created() {
     // Add [data-*] attributes for CSS
@@ -59,14 +82,14 @@ export default {
     html[0].setAttribute('data-inframe', this.$t('inframe'));
     html[0].setAttribute('id', 'f--');
 
-    /**
+    /* *
      * Depreciated - Need to be cleaned up
-     **/
+     * */
     // Load Bootstrap CSS
     // Todo: build files from SASS
     let regSites = new RegExp([
-      '(bookin', 'drop', 'carte', 'frama.link', 'huit.re', 'memo', 'pic', 'stats)'
-      ].join('|'), 'i');
+      '(bookin', 'drop', 'carte', 'frama.link', 'huit.re', 'memo', 'pic', 'stats)',
+    ].join('|'), 'i');
     if (regSites.test(this.$t('host'))
       || this.$t('host') === 'framaboard.org'
       || this.$t('host') === 'framanotes.org'
@@ -97,8 +120,8 @@ export default {
 
     // Modales, Carousel and Tabs need BootstrapJS
     regSites = new RegExp([
-      '(agenda', 'bookin', 'drive', 'memo)'
-      ].join('|'), 'i');
+      '(agenda', 'bookin', 'drive', 'memo)',
+    ].join('|'), 'i');
     if (regSites.test(this.$t('host'))
       || this.$t('host') === 'framanotes.org'
       || this.$t('url') === 'https://framaforms.org/') {
@@ -139,19 +162,6 @@ export default {
       this.testing.feedback = true;
     }
   },
-  data() {
-    return {
-      // Init nav
-      version: '191120', // n° version de la nav
-      maestro: this.createMaestro(),
-      js: function() {},
-      cortexReady: true,// false,
-      testing: {
-        navpop: process.env.NODE_ENV === 'development',
-        feedback: process.env.NODE_ENV === 'development',
-      }
-    };
-  },
   mounted() {
     const html = document.getElementsByTagName('html');
     setInterval(() => {
@@ -161,8 +171,8 @@ export default {
           /* lang === (fr|en|…) */
           this.$i18n.locale = lang;
         } else if (this.$i18n.messages.locales.available.includes(lang.substr(0, 2))) {
-            /* lang === (fr_FR|en_GB|…) */
-            this.$i18n.locale = lang.substr(0, 2);
+          /* lang === (fr_FR|en_GB|…) */
+          this.$i18n.locale = lang.substr(0, 2);
         } else {
           /* lang === (it|sv|ø|…) */
           this.$i18n.locale = this.$i18n.fallbackLocale;
@@ -170,9 +180,9 @@ export default {
       }
     }, 1000);
 
-    /*********** Custom JavaScript ***********/
+    /* ********** Custom JavaScript ********** */
     this.customJS(this.$t('site'));
-    if(typeof this.js === 'function') {
+    if (typeof this.js === 'function') {
       if (/jQuery/.test(this.js.toString()) && window.jQuery === undefined) {
         this.loadJS(this.link('lib/jquery/jquery-3.3.1.min.js'), () => {
           this.js();
@@ -185,19 +195,18 @@ export default {
   methods: {
     link(href) { // Depreciated (to remove with lib/jquery)
       const link = document.createElement('a');
-      link.href
-        = (/:\/\//.test(href))
+      link.href = (/:\/\//.test(href))
         ? href
         : `${this.$t('baseurl')}${href.replace(/^\//, '')}`;
-      link.href = link.href.replace(/\?$/, `?${this.version}`)
+      link.href = link.href.replace(/\?$/, `?${this.version}`);
       return [link.protocol, '//', link.host, link.pathname, link.search, link.hash].join('');
     },
     createMaestro() {
       let hash = 4321;
-      for (let i = 0; i < this.$t('url').length; i++) {
-        hash = hash * 33 ^ this.$t('url').charCodeAt(i);
+      for (let i = 0; i < this.$t('url').length; i += 1) {
+        hash = hash * 33 ^ this.$t('url').charCodeAt(i); // eslint-disable-line no-bitwise
       }
-      const tonality = btoa(String(hash >>> 0)).substring(0, 8)
+      const tonality = btoa(String(hash >>> 0)).substring(0, 8); // eslint-disable-line no-bitwise
       const concerto = this.$t('url').split(/[?#]/)[0].substring(this.$t('url').lastIndexOf('/') + 1).replace(/[^a-zA-Z0-9=?]/g, '');
       const currentW = parseInt((window.innerWidth - 60) * (2 / 3), 10);
       const currentH = parseInt(window.innerHeight - 160, 10);
@@ -275,7 +284,7 @@ export default {
       switch (site) {
         case 'board':
           if (/\.framaboard/.test(this.$t('host'))) { // dans Kanboard
-            this.js = function() {
+            this.js = function board() {
               jQuery('h1 .logo a').html(this.$t('color.board'));
               jQuery('h1 .logo').removeClass('logo');
             };
@@ -285,7 +294,7 @@ export default {
         case 'calc':
           // dans Ethercalc
           if (!/accueil\.framacalc\.org/.test(this.$t('host'))) {
-            this.js = function() {
+            this.js = function calc() {
               try {
                 if (window.top.location.href.indexOf('framacalc.org/=') > -1) {
                   document.getElementById('f-header').style = 'height:42px; opacity:0';
@@ -298,14 +307,14 @@ export default {
                 if (document.body.scrollHeight < window.innerHeight - 30) {
                   window.dispatchEvent(new Event('resize'));
                 }
-              }, 1000)
+              }, 1000);
             };
           }
           break;
 
         case 'docs':
           if (this.$t('inframe') === 'true') {
-            this.js = function() {
+            this.js = function docs() {
               /* Disable sidebar menu in iframe (still toggleable) */
               if (document.querySelector('.with-summary')) {
                 document.querySelector('.with-summary').classList.remove('with-summary');
@@ -315,7 +324,7 @@ export default {
           break;
 
         case 'drop':
-          this.js = function() {
+          this.js = function drop() {
             if (this.$t('url') !== 'https://framadrop.org/') {
               jQuery('main .row:last,main hr:last').hide();
             } else {
@@ -330,7 +339,7 @@ export default {
           break;
 
         case 'libre':
-          this.js = function() {
+          this.js = function libre() {
             if (this.$t('inframe') === 'true') {
               document.querySelectorAll('a').forEach(a => Object.assign(a, { target: '_blank' }));
             }
@@ -346,7 +355,7 @@ export default {
           break;
 
         case 'mindmap':
-          this.js = function() {
+          this.js = function mindmap() {
             const html = document.getElementsByTagName('html');
             if (document.getElementById('userSettingsBtn')
               && document.getElementById('userSettingsBtn').innerHTML === 'Compte'
@@ -363,7 +372,7 @@ export default {
         case 'my':
           if (/source=bookmarklet/.test(this.$t('url'))) {
             document.getElementsByTagName('html')[0].setAttribute('data-inframe', 'true');
-            this.js = function() {
+            this.js = function my() {
               document.getElementById('loginform').insertAdjacentHTML('beforeEnd',
                 `<p class="alert alert-warning"><b>Rappel&nbsp;:</b> MyFrama sert à
                 regrouper en un même endroit vos liens (notamment vos pads, calcs, sondages, etc).
@@ -371,7 +380,7 @@ export default {
                 accéder à l’ensemble des services de Framasoft.</p>`);
             };
           } else {
-            this.js = function() {
+            this.js = function my() {
               if (this.$t('inframe') === 'true') {
                 document.getElementById('linklist').classList.add('container-fluid');
                 document.getElementById('linklist').classList.remove('container');
@@ -384,7 +393,7 @@ export default {
 
         // <framapad> --------------------------------------------------------
         case 'etherpad': // dans Etherpad
-          this.js = function() {
+          this.js = function etherpad() {
             jQuery('#loading').delay(2000).append(`
               <p class="small">Si le pad refuse de s’afficher, essayez de télécharger<br>
               l’export <a href="${this.$t('url')}/export/html">html</a>
@@ -411,7 +420,7 @@ export default {
           // </framapad> -------------------------------------------------------
 
         case 'piaf':
-          this.js = function() {
+          this.js = function piaf() {
             document.querySelectorAll('img[src*="/packs/media/images/logo"]')
               .forEach(img => Object.assign(img, { src: 'https://framasoft.org/nav/icons/piaf.png' }));
           };
@@ -420,6 +429,6 @@ export default {
         // no default
       }
     },
-  }
-}
+  },
+};
 </script>

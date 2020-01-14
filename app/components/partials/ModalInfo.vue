@@ -1,5 +1,6 @@
 <template>
-  <b-modal id="f-modal-info"
+  <b-modal
+    id="f-modal-info"
     v-model="state.info"
     :static="true"
     :lazy="true"
@@ -12,7 +13,8 @@
     @backdrop="cookie('w', config[2], true, config[3])"
     @headerclose="cookie('w', config[2], true, config[3])"
     @cancel="cookie('w', config[2], true, config[3])"
-    @ok="cookie('w', config[2], true)">
+    @ok="cookie('w', config[2], true)"
+  >
     <div v-html="config[1]"></div>
   </b-modal>
 </template>
@@ -26,7 +28,7 @@ export default {
       state: {
         info: false,
       },
-    }
+    };
   },
   mounted() {
     this.siteConfig(this.$t('site'));
@@ -39,6 +41,7 @@ export default {
     siteConfig(site) {
       let c = [];
       // Local config
+      /* global l$ */
       try {
         if (l$.modal.info.constructor === Array) {
           c = l$.modal.info;
@@ -67,14 +70,15 @@ export default {
                 'Avertissement',
                 `<p>Cette instance de Framadate (<b>beta</b>.framadate.org) est
                 instable et ne doit servir que pour des tests.<p>
-                <p>Passez plutôt par <a href="https://framadate.org">framadate.org</a> 
+                <p>Passez plutôt par <a href="https://framadate.org">framadate.org</a>
                 pour créer vos sondages.</p>
                 <p>Merci.<br>L’équipe technique</p>`,
               ];
             }
             break;
-
-          // no-default
+          default:
+            // no-default
+            break;
         }
       }
 
@@ -82,7 +86,7 @@ export default {
       this.config.forEach((v, i) => {
         if (c[i] !== undefined) { this.config[i] = c[i]; }
       });
-    }
+    },
   },
-}
+};
 </script>
