@@ -1,25 +1,29 @@
 <template>
-  <portal target-el="#fp-alert" target-class="f-bs4">
-    <b-alert id="f-alert"
+  <portal
+    target-el="#fp-alert"
+    target-class="f-bs4"
+  >
+    <b-alert
+      v-if="state.alert"
+      id="f-alert"
       :show="state.alert"
       :variant="config[0]"
-      v-if="state.alert"
       dismissible
       :dismiss-label="$t('txt.close')"
-      @dismissed="state.alert = false; cookie('w', config[2], true, config[3]);">
-      <div><p class="text-center" v-html="config[1]"></p></div>
+      @dismissed="state.alert = false; cookie('w', config[2], true, config[3]);"
+    >
+      <div>
+        <p
+          class="text-center"
+          v-html="config[1]"
+        ></p>
+      </div>
     </b-alert>
   </portal>
 </template>
 
 <script>
 export default {
-  created() {
-    if (!window.vuefsPrerender) {
-      document.querySelector('#f-nav')
-        .insertAdjacentHTML('beforebegin', '<div id="fp-alert"></div>');
-    }
-  },
   data() {
     return {
       config: ['', '', 'f-alert', 604800000],
@@ -36,6 +40,12 @@ export default {
       state: {
         alert: false,
       },
+    };
+  },
+  created() {
+    if (!window.vuefsPrerender) {
+      document.querySelector('#f-nav')
+        .insertAdjacentHTML('beforebegin', '<div id="fp-alert"></div>');
     }
   },
   mounted() {
@@ -49,6 +59,7 @@ export default {
     siteConfig(site) {
       let c = [];
       // Local config
+      /* global l$ */
       try {
         if (l$.alert.constructor === Array) {
           c = l$.alert;
@@ -60,18 +71,18 @@ export default {
       // Site config (< Local config)
       if (c[0] === undefined) {
         switch (site) {
-        case 'agenda':
+          case 'agenda':
             if (this.is.after('2019/05/21') && this.is.before('2019/05/28')) {
               c = [
                 'warning',
                 `Afin de procéder à une mise à jour majeure et une migration de
                 base de données, le service ${this.$t('color.agenda')} sera interrompu le lundi 27 mai dès 9h,
-                pour une durée n’excédant pas 24 heures. Prenez vos précautions !
-                Plus d’infos : <a href="https://status.framasoft.org/incident/477">status.framasoft.org</a>`,
+                pour une durée n’excédant pas 24 heures. Prenez vos précautions&nbsp;!
+                Plus d’infos&nbsp;: <a href="https://status.framasoft.org/incident/477">status.framasoft.org</a>`,
               ];
             }
             break;
-        case 'board':
+          case 'board':
             if (this.is.before('2019/12/12')) {
               c = [
                 'warning',
@@ -81,14 +92,14 @@ export default {
               ];
             }
             break;
-        case 'drive':
+          case 'drive':
             if (this.is.before('2019/05/21')) {
               c = [
                 'warning',
                 `Afin de procéder à une mise à jour majeure et une migration de
                 base de données, le service ${this.$t('color.drive')} sera interrompu le lundi 20 mai dès 9h,
-                pour une durée n’excédant pas 24 heures. Prenez vos précautions !
-                Plus d’infos : <a href="https://status.framasoft.org/incident/476">status.framasoft.org</a>`,
+                pour une durée n’excédant pas 24 heures. Prenez vos précautions&nbsp;!
+                Plus d’infos&nbsp;: <a href="https://status.framasoft.org/incident/476">status.framasoft.org</a>`,
               ];
             }
             break;
@@ -111,8 +122,9 @@ export default {
               }
             }
             break;
-
-          // no-default
+          default:
+            // no-default
+            break;
         }
       }
 
@@ -129,10 +141,10 @@ export default {
             pour partager avec vous 2 ans de découvertes, d’observations et de collaborations
             (lire nos explications
             <a href="https://framablog.org/2019/10/15/les-carnets-de-voyage-de-contributopia/">sur le Framablog</a>).
-            <br>
+            <br />
             Si vous le pouvez, pensez à
             <a href="https://contributopia.org/fr/journal#soutenir">soutenir nos actions par un don</a>.`,
-            'nav-alert-cuo'
+            'nav-alert-cuo',
           ];
         } else {
           c = [
@@ -140,9 +152,9 @@ export default {
             `Framasoft publishes “<a href="https://contributopia.org/en/journal">Contributopia’s travel journals</a>”.
             From October to December of 2019, we will assess our many (donations-founded) actions,
             which are tax-deductible for French taxpayers.
-            <br>
+            <br />
             <a href="https://contributopia.org/en/journal#soutenir">Donate here</a> if you can.`,
-            'nav-alert-cuo'
+            'nav-alert-cuo',
           ];
         }
       }
@@ -153,47 +165,47 @@ export default {
         && !this.is.after(`${this.$t('year.current')}/12/31`)
         && !/soutenir/.test(site)
         && this.$t('lang') === 'fr') {
-          this.countdown.today = new Date().getTime();
-          this.countdown.diff = (this.countdown.end - this.countdown.today) / 1000;
-          this.countdown.d = Math.floor(this.countdown.diff / (60 * 60 * 24));
-          if (this.countdown.d > 0) {
+        this.countdown.today = new Date().getTime();
+        this.countdown.diff = (this.countdown.end - this.countdown.today) / 1000;
+        this.countdown.d = Math.floor(this.countdown.diff / (60 * 60 * 24));
+        if (this.countdown.d > 0) {
+          this.countdown.html = `
+            ${this.countdown.d}</b> jour${this.countdown.d > 1 ? 's' : ''}
+          `;
+        } else {
+          this.countdown.h = Math.floor((this.countdown.diff % (60 * 60 * 24)) / (60 * 60));
+          this.countdown.m = Math.floor((this.countdown.diff % (60 * 60)) / 60);
+
+          if (this.countdown.h > 0) {
             this.countdown.html = `
-              ${this.countdown.d}</b> jour${this.countdown.d > 1 ? 's' : ''}
+              ${this.countdown.h}</b> heure${this.countdown.h > 1 ? 's' : ''}
+              ${this.countdown.m}</b> minute${this.countdown.m > 1 ? 's' : ''}
             `;
           } else {
-            this.countdown.h = Math.floor((this.countdown.diff % (60 * 60 * 24)) / (60 * 60));
-            this.countdown.m = Math.floor((this.countdown.diff % (60 * 60)) / 60);
-
-            if (this.countdown.h > 0) {
-              this.countdown.html = `
-                ${this.countdown.h}</b> heure${this.countdown.h > 1 ? 's' : ''}
-                ${this.countdown.m}</b> minute${this.countdown.m > 1 ? 's' : ''}
-              `;
-            } else {
-              this.countdown.html = `
-                ${this.countdown.m}</b> minute${this.countdown.m > 1 ? 's' : ''}
-              `;
-            }
+            this.countdown.html = `
+              ${this.countdown.m}</b> minute${this.countdown.m > 1 ? 's' : ''}
+            `;
           }
+        }
 
-          c = [
-            'info',
-            `Rappel : il vous reste
-            <a href="${this.$t('link.soutenir')}" class="btn btn-sm btn-soutenir py-0">${this.countdown.html}</a> pour faire un
-            <a href="${this.$t('link.blog')}/2018/11/22/impots-et-dons-a-framasoft-le-prelevement-a-la-source-en-2019/">
-            don défiscalisé en ${this.$t('year.current')}</a> à Framasoft.<br>
-            Merci pour <a href="${this.$t('link.soutenir')}">
-              <b>votre soutien</b>
-              <i class="fa fa-heart" aria-hidden="true"></i>
-            </a>`,
-          ];
+        c = [
+          'info',
+          `Rappel&nbsp;: il vous reste
+          <a href="${this.$t('link.soutenir')}" class="btn btn-sm btn-soutenir py-0">${this.countdown.html}</a> pour faire un
+          <a href="${this.$t('link.blog')}/2018/11/22/impots-et-dons-a-framasoft-le-prelevement-a-la-source-en-2019/">
+          don défiscalisé en ${this.$t('year.current')}</a> à Framasoft.<br>
+          Merci pour <a href="${this.$t('link.soutenir')}">
+            <b>votre soutien</b>
+            <i class="fa fa-heart" aria-hidden="true"></i>
+          </a>`,
+        ];
       }
 
       // Merge + return config
       this.config.forEach((v, i) => {
         if (c[i] !== undefined) { this.config[i] = c[i]; }
       });
-    }
-  }
-}
+    },
+  },
+};
 </script>

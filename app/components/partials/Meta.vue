@@ -1,4 +1,5 @@
 <template>
+  <span></span>
 </template>
 
 <script>
@@ -20,8 +21,8 @@ export default {
       'pack', 'phonie', 'piaf', 'pic', 'site', 'slides', 'sphere', 'start', 'stats',
       'status', 'talk', 'team', 'tube', 'vectoriel', 'vox', 'zic',
       'bot.', 'contact.', 'degooglisons-internet', 'forum.', 'participer.',
-      'soutenir.)'
-      ].join('|'), 'i');
+      'soutenir.)',
+    ].join('|'), 'i');
     if (regSites.test(this.$t('host'))) {
       icons[0].file = `fav_${this.$t('site')}.png`;
       icons[1].file = `${this.$t('site')}.png`;
@@ -190,15 +191,15 @@ export default {
         }
 
         // Framaclic
-        /*(function framaclic() {
+        /* (function framaclic() {
           const d = document;
           const g = d.createElement('img');
           const s = d.getElementsByTagName('body')[0];
           g.style = 'border:0'; g.alt = '';
           g.src = ['https://framaclic.org/h/', c.id].join(''); s.appendChild(g);
-        }());*/
+        }()); */
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
