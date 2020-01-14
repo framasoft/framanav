@@ -1,11 +1,19 @@
 <template>
-  <a v-show="btn"
+  <a
+    v-show="btn"
     id="f-backtop"
     href="#"
     :title="$t('txt.backTop')"
-    @click.prevent="backTop()">
-    <i class="fa fa-fw fa-lg fa-inverse fa-chevron-up" aria-hidden="true"></i>
-    <span v-text="$t('txt.backTop')" class="sr-only"></span>
+    @click.prevent="backTop()"
+  >
+    <i
+      class="fa fa-fw fa-lg fa-inverse fa-chevron-up"
+      aria-hidden="true"
+    ></i>
+    <span
+      class="sr-only"
+      v-text="$t('txt.backTop')"
+    ></span>
   </a>
 </template>
 
@@ -14,19 +22,19 @@ export default {
   data() {
     return {
       btn: false,
-    }
+    };
   },
-  mounted () {
+  mounted() {
     window.addEventListener('scroll', () => {
       this.btn = window.pageYOffset > window.innerHeight;
     });
   },
   methods: {
     backTop() {
-      document.body.scrollIntoView({behavior: 'smooth'});
-    }
-  }
-}
+      document.body.scrollIntoView({ behavior: 'smooth' });
+    },
+  },
+};
 </script>
 
 <style>

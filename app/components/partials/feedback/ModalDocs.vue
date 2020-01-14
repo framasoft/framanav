@@ -1,5 +1,6 @@
 <template>
-  <b-modal id="f-modal-docs"
+  <b-modal
+    id="f-modal-docs"
     v-model="state.docs"
     size="lg"
     :static="true"
@@ -10,15 +11,15 @@
     :cancel-title-html="$t('txt.close')"
     cancel-variant="light"
     button-size="sm"
-    @hidden="close()">
-
+    @hidden="close()"
+  >
     <div class="clearfix">
       <div class="embed-responsive embed-responsive-1by1">
         <iframe
           v-if="state.docs === true"
           class="embed-responsive-item"
-          :src="$te(`doc.${$t('site')}`) ? `${$t('link.docs')}/${$t(`doc.${$t('site')}[0]`)}/index.html` : $t('link.docs')">
-        </iframe>
+          :src="link"
+        ></iframe>
       </div>
     </div>
   </b-modal>
@@ -30,27 +31,32 @@ export default {
     open: {
       type: Boolean,
       required: true,
-    }
+    },
   },
   data() {
+    const link = this.$te(`doc.${this.$t('site')}`)
+      ? `${this.$t('link.docs')}/${this.$t(`doc.${this.$t('site')}[0]`)}/index.html`
+      : this.$t('link.docs');
+
     return {
       state: {
         docs: false,
       },
-    }
+      link,
+    };
   },
   watch: {
-    open: function (newValue) {
+    open(newValue) {
       if (newValue) {
         this.state.docs = true;
       }
-    }
+    },
   },
   methods: {
     close() {
       this.state.docs = false;
       this.$parent.$parent.modal.docs = false;
-    }
-  }
-}
+    },
+  },
+};
 </script>
