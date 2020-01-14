@@ -1,85 +1,134 @@
 <template>
-  <div v-show="$t('inframe') === 'false'"
+  <div
+    v-show="$t('inframe') === 'false'"
     id="f-header"
-    class="d-print-none">
-    <b-navbar id="f-navbar"
+    class="d-print-none"
+  >
+    <b-navbar
+      id="f-navbar"
       toggleable="md"
-      style="display: none;">
+      style="display: none;"
+    >
       <b-navbar-nav>
         <b-navbar-brand :href="$t('link.soft')">
-          <img :src="`${$t('baseurl')}img/logo.png`" alt="" />
-          <span v-html="$t('color.soft')" class="d-md-none d-lg-inline"></span>
+          <img
+            :src="`${$t('baseurl')}img/logo.png`"
+            alt=""
+          />
+          <span
+            class="d-md-none d-lg-inline"
+            v-html="$t('color.soft')"
+          ></span>
         </b-navbar-brand>
 
-        <a href="#nav-end" class="sr-only sr-only-focusable" v-html="$t('txt.skip')"></a>
+        <a
+          href="#nav-end"
+          class="sr-only sr-only-focusable"
+          v-html="$t('txt.skip')"
+        ></a>
       </b-navbar-nav>
 
-      <b-navbar-toggle target="f-collapse"></b-navbar-toggle>
+      <b-navbar-toggle target="f-collapse" />
 
-      <b-collapse id="f-collapse" is-nav>
+      <b-collapse
+        id="f-collapse"
+        is-nav
+      >
         <b-navbar-nav class="mx-auto">
           <!-- Categories menu -->
           <b-nav-item-dropdown
             v-for="(cat, key) in $t('fnav.cat')"
             :id="`fs_${key}`"
             :key="key"
-            :text="cat.name">
-            <b-dropdown-header v-if="key === 'about'"
+            :text="cat.name"
+          >
+            <b-dropdown-header
+              v-if="key === 'about'"
               class="dropdown-header"
-              v-html="$t('color.soft')">
-            </b-dropdown-header>
-            <b-dropdown-item v-for="(l, index) in $t(`fnav.cat.${key}`)"
+              v-html="$t('color.soft')"
+            />
+            <b-dropdown-item
+              v-for="(l, index) in $t(`fnav.cat.${key}`)"
               :key="l"
+              v-b-popover="popoverConfig(key, l, index)"
               :href="$te(`fnav.sites.${l}.link`) ? $t(`fnav.sites.${l}.link`) : $t(`link.${l}`)"
               target="_blank"
               :class="`fs_${l}`"
               :title="$te(`fnav.sites.${l}.t1`) ? text($t(`fnav.sites.${l}.t1`)) : ''"
-              v-b-popover="popoverConfig(key, l, index)">
-              <i :class="`fa fa-fw fa-lg ${$t(`icon.${l}`)}`" aria-hidden="true"></i>
+            >
+              <i
+                :class="`fa fa-fw fa-lg ${$t(`icon.${l}`)}`"
+                aria-hidden="true"
+              ></i>
               <span
-                v-text="$te(`fnav.sites.${l}.name`) ? text($t(`fnav.sites.${l}.name`)) : $t(`txt.${l}`)">
-              </span>
-              <span class="sr-only" v-html="`(${$t('txt.newWindow')})`"></span>
-              <i class="fa new-window fa-external-link" aria-hidden="true"></i>
+                v-text="$te(`fnav.sites.${l}.name`)
+                  ? text($t(`fnav.sites.${l}.name`))
+                  : $t(`txt.${l}`)"
+              ></span>
+              <span
+                class="sr-only"
+                v-html="`(${$t('txt.newWindow')})`"
+              ></span>
+              <i
+                class="fa new-window fa-external-link"
+                aria-hidden="true"
+              ></i>
             </b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
 
         <b-navbar-nav>
           <!-- Support button -->
-          <b-nav-item v-show="!benevalo()"
+          <b-nav-item
+            v-show="!benevalo()"
             id="btn-soutenir"
+            v-b-popover:f-nav.bottomleft.hover.focus.html="$t('fnav.soutenir.d1')"
             :href="`${$t('link.soutenir')}/?f=nav`"
             link-classes="btn btn-soutenir"
             target="_blank"
             :title="text($t('fnav.soutenir.t1'))"
-            v-b-popover:f-nav.bottomleft.hover.focus.html="$t('fnav.soutenir.d1')">
-            <i :class="`fa fa-fw fa-lg ${$t('icon.soutenir')}`" aria-hidden="true"></i>
-            <span v-text="text($t('fnav.soutenir.name'))"></span>
+          >
+            <i
+              :class="`fa fa-fw fa-lg ${$t('icon.soutenir')}`"
+              aria-hidden="true"
+            ></i>
+            <span
+              v-text="text($t('fnav.soutenir.name'))"
+            ></span>
           </b-nav-item>
 
           <!-- Benevalo button -->
-          <b-nav-item v-show="benevalo()"
+          <b-nav-item
+            v-show="benevalo()"
             id="btn-benevalo"
+            v-b-popover:f-nav.bottomleft.hover.focus.html="$t('fnav.benevalo.d1')"
             :href="$t('link.benevalo')"
             link-classes="btn btn-info"
             target="_blank"
             :title="text($t('fnav.benevalo.t1'))"
-            v-b-popover:f-nav.bottomleft.hover.focus.html="$t('fnav.benevalo.d1')">
-            <i :class="`fa fa-fw fa-lg ${$t('icon.benevalo')}`" aria-hidden="true"></i>
+          >
+            <i
+              :class="`fa fa-fw fa-lg ${$t('icon.benevalo')}`"
+              aria-hidden="true"
+            ></i>
             <span v-text="text($t('fnav.benevalo.name'))"></span>
           </b-nav-item>
 
           <!-- MyFrama button -->
-          <b-nav-item id="btn-myframa"
-           :href="myframa"
+          <b-nav-item
+            id="btn-myframa"
+            v-b-popover:f-nav.bottomleft.hover.focus.html="$t('fnav.myframa.d1')"
+            :href="myframa"
             link-classes="btn btn-primary d-md-none d-lg-block"
+            :title="text($t('fnav.myframa.t1'))"
             @click.prevent="openMyframa()"
             @mouseover="myFramaLabel = $t('txt.my')"
             @mouseout="myFramaLabel = $t('txt.bookmarkThisPage')"
-            :title="text($t('fnav.myframa.t1'))"
-            v-b-popover:f-nav.bottomleft.hover.focus.html="$t('fnav.myframa.d1')">
-            <i :class="`fa fa-fw fa-lg ${$t('icon.my')}`" aria-hidden="true"></i>
+          >
+            <i
+              :class="`fa fa-fw fa-lg ${$t('icon.my')}`"
+              aria-hidden="true"
+            ></i>
             <span v-html="myFramaLabel"></span>
           </b-nav-item>
         </b-navbar-nav>
@@ -93,13 +142,13 @@ export default {
   data() {
     return {
       myframa: [
-          'https://my.framasoft.org/?post=', encodeURIComponent(this.$t('url')),
-          '&title=', encodeURIComponent(document.title || this.$t('url')),
-          '&description=', encodeURIComponent(document.getSelection()),
-          '&source=bookmarklet',
-        ].join(''),
+        'https://my.framasoft.org/?post=', encodeURIComponent(this.$t('url')),
+        '&title=', encodeURIComponent(document.title || this.$t('url')),
+        '&description=', encodeURIComponent(document.getSelection()),
+        '&source=bookmarklet',
+      ].join(''),
       myFramaLabel: this.$t('txt.bookmarkThisPage'),
-    }
+    };
   },
   methods: {
     benevalo() {
@@ -124,8 +173,8 @@ export default {
         content: this.$t(`fnav.sites.${l}.d1`),
         disabled: !this.$te(`fnav.sites.${l}.d1`),
         customClass: 'd-none d-md-block',
-      }
-    }
-  }
-}
+      };
+    },
+  },
+};
 </script>

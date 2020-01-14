@@ -4,11 +4,23 @@
       => prepend #root (cloned)
       {} Mattermost’s Bootstrap 3
     -->
-    <div id="fp-team-header" style="display:none;">
-      <header role="banner" class="clearfix f-team">
+    <div
+      id="fp-team-header"
+      style="display:none;"
+    >
+      <header
+        role="banner"
+        class="clearfix f-team"
+      >
         <h1 v-html="$t('html.team')"></h1>
-        <p class="lead" v-html="$t('team.header.lead')"></p>
-        <hr class="trait" role="presentation" />
+        <p
+          class="lead"
+          v-html="$t('team.header.lead')"
+        ></p>
+        <hr
+          class="trait"
+          role="presentation"
+        />
       </header>
     </div>
 
@@ -16,7 +28,10 @@
       => prepend #login_section (vue-portal)
       {} Nav’s Bootstrap 4
     -->
-    <portal target-el="#fp-team-screen" target-class="f-bs4">
+    <portal
+      target-el="#fp-team-screen"
+      target-class="f-bs4"
+    >
       <div class="row f-team">
         <div class="col-12 carousel-container">
           <b-carousel
@@ -25,36 +40,61 @@
             fade
             :interval="interval"
             indicators
-            :controls="false">
+            :controls="false"
+          >
             <b-carousel-slide
               :caption="$t('team.carousel[0]')"
-              :img-src="`${$t('baseurl')}/img/team/01-discuter.jpg`">
-            </b-carousel-slide>
+              :img-src="`${$t('baseurl')}/img/team/01-discuter.jpg`"
+            />
             <b-carousel-slide
               :caption="$t('team.carousel[1]')"
-              :img-src="`${$t('baseurl')}/img/team/02-canaux.jpg`">
-            </b-carousel-slide>
+              :img-src="`${$t('baseurl')}/img/team/02-canaux.jpg`"
+            />
             <b-carousel-slide
               :caption="$t('team.carousel[2]')"
-              :img-src="`${$t('baseurl')}/img/team/03-pimpez.jpg`">
-            </b-carousel-slide>
+              :img-src="`${$t('baseurl')}/img/team/03-pimpez.jpg`"
+            />
             <b-carousel-slide
               :caption="$t('team.carousel[3]')"
-              :img-src="`${$t('baseurl')}/img/team/04-rechercher.jpg`">
-            </b-carousel-slide>
+              :img-src="`${$t('baseurl')}/img/team/04-rechercher.jpg`"
+            />
           </b-carousel>
-          <p class="text-center play-pause" v-if="interval === 5000">
-            <button class="carousel-control" :title="$t('carousel.pause')"
-              @click="interval = 0">
-              <i class="fa fa-fw fa-pause" aria-hidden="true"></i>
-              <span class="sr-only" v-html="$t('carousel.pause')"></span>
+          <p
+            v-if="interval === 5000"
+            class="text-center play-pause"
+          >
+            <button
+              class="carousel-control"
+              :title="$t('carousel.pause')"
+              @click="interval = 0"
+            >
+              <i
+                class="fa fa-fw fa-pause"
+                aria-hidden="true"
+              ></i>
+              <span
+                class="sr-only"
+                v-html="$t('carousel.pause')"
+              ></span>
             </button>
           </p>
-          <p class="text-center play-pause" v-else>
-            <button class="carousel-control" :title="$t('carousel.play')"
-              @click="interval = 5000">
-              <i class="fa fa-fw fa-play" aria-hidden="true"></i>
-              <span class="sr-only" v-html="$t('carousel.play')"></span>
+          <p
+            v-else
+            class="text-center play-pause"
+          >
+            <button
+              class="carousel-control"
+              :title="$t('carousel.play')"
+              @click="interval = 5000"
+            >
+              <i
+                class="fa fa-fw fa-play"
+                aria-hidden="true"
+              ></i>
+              <span
+                class="sr-only"
+                v-html="$t('carousel.play')"
+              ></span>
             </button>
           </p>
         </div>
@@ -65,20 +105,36 @@
       => after #login_section
       {} Mattermost’s Bootstrap 3
     -->
-    <div id="fp-team-prez" style="display:none;">
+    <div
+      id="fp-team-prez"
+      style="display:none;"
+    >
       <div class="clearfix">
         <div class="col-md-5 text-center h1 f-team">
-          <a href="/signup_user_complete" class="btn btn-lg btn-success">
-            <i class="fa fa-fw fa-lg fa-user" aria-hidden="true"></i>
+          <a
+            href="/signup_user_complete"
+            class="btn btn-lg btn-success"
+          >
+            <i
+              class="fa fa-fw fa-lg fa-user"
+              aria-hidden="true"
+            ></i>
             <span v-html="$t('team.create')"></span>
           </a>
         </div>
         <div class="col-md-12 f-team">
           <hr role="presentation" />
           <div class="row">
-            <div class="col-md-4" id="tuto-faq">
+            <div
+              id="tuto-faq"
+              class="col-md-4"
+            >
               <h2 v-html="$t('team.presentation.h2_1')"></h2>
-              <p class="text-center" role="presentation" aria-hidden="true">
+              <p
+                class="text-center"
+                role="presentation"
+                aria-hidden="true"
+              >
                 <i class="fa fa-question-circle"></i>
               </p>
               <p v-html="$t('team.presentation.serviceby')"></p>
@@ -89,32 +145,54 @@
               </ol>
               <p v-html="$t('team.presentation.learn')"></p>
               <p class="text-center">
-                <a href="https://docs.framasoft.org/fr/mattermost/index.html"
+                <a
+                  href="https://docs.framasoft.org/fr/mattermost/index.html"
                   class="btn btn-primary"
-                  v-html="$t('team.presentation.aide')">
-                </a>
+                  v-html="$t('team.presentation.aide')"
+                ></a>
               </p>
               <p v-html="$t('team.presentation.trad')"></p>
             </div>
-            <div class="col-md-4" id="le-logiciel">
+            <div
+              id="le-logiciel"
+              class="col-md-4"
+            >
               <h2 v-html="$t('team.presentation.h2_2')"></h2>
-              <p class="text-center" role="presentation" aria-hidden="true">
+              <p
+                class="text-center"
+                role="presentation"
+                aria-hidden="true"
+              >
                 <i class="fa fa-cloud"></i>
               </p>
               <p v-html="$t('team.presentation.framaware')"></p>
               <p v-html="$t('team.presentation.license')"></p>
             </div>
-            <div class="col-md-4" id="jardin">
+            <div
+              id="jardin"
+              class="col-md-4"
+            >
               <h2 v-html="$t('team.presentation.h2_3')"></h2>
-              <p class="text-center" role="presentation" aria-hidden="true">
+              <p
+                class="text-center"
+                role="presentation"
+                aria-hidden="true"
+              >
                 <i class="fa fa-leaf"></i>
               </p>
               <p v-html="$t('team.presentation.contrib_upstream')"></p>
-              <br>
+              <br />
               <p v-html="$t('team.presentation.home_install')"></p>
               <p class="text-center">
-                <a class="btn btn-success" :href="`${$t('link.cloud')}/${$t('cloud.team')}`">
-                  <i class="fa fa-leaf" aria-hidden="true"></i> framacloud.org
+                <a
+                  class="btn btn-success"
+                  :href="`${$t('link.cloud')}/${$t('cloud.team')}`"
+                >
+                  <i
+                    class="fa fa-leaf"
+                    aria-hidden="true"
+                  ></i>
+                  framacloud.org
                 </a>
               </p>
             </div>
@@ -127,24 +205,43 @@
       => after #site_description (vue-portal)
       {} Nav’s Bootstrap 4
     -->
-    <portal target-el="#fp-team-public" target-class="f-bs4">
-      <div class="text-center f-team" id="Options"
-        :style="!state.selectTeam ? 'display: none;' : ''">
+    <portal
+      target-el="#fp-team-public"
+      target-class="f-bs4"
+    >
+      <div
+        id="Options"
+        class="text-center f-team"
+        :style="!state.selectTeam ? 'display: none;' : ''"
+      >
         <p>
-          <button id="ListBtn" class="btn btn-primary btn-block"
-            @click="state.publicList ^= true">
-            <i class="fa fa-fw fa-user-plus" aria-hidden="true"></i>
+          <button
+            id="ListBtn"
+            class="btn btn-primary btn-block"
+            @click="state.publicList ^= true"
+          >
+            <i
+              class="fa fa-fw fa-user-plus"
+              aria-hidden="true"
+            ></i>
             <span v-html="$t('team.teams.join')"></span>
           </button>
         </p>
         <p>
-          <a href="/create_team" class="btn btn-success btn-block">
-            <i class="fa fa-fw fa-lg fa-group" aria-hidden="true"></i>
+          <a
+            href="/create_team"
+            class="btn btn-success btn-block"
+          >
+            <i
+              class="fa fa-fw fa-lg fa-group"
+              aria-hidden="true"
+            ></i>
             <span v-html="$t('team.teams.create')"></span>
           </a>
         </p>
       </div>
-      <b-modal id="f-modal-publicList"
+      <b-modal
+        id="f-modal-publicList"
         v-model="state.publicList"
         :static="true"
         :lazy="true"
@@ -154,8 +251,12 @@
         :cancel-title-html="$t('txt.close')"
         cancel-variant="light"
         :ok-disabled="true"
-        @shown="copyList()">
-        <div class="clearfix" id="ListImport"></div>
+        @shown="copyList()"
+      >
+        <div
+          id="ListImport"
+          class="clearfix"
+        ></div>
       </b-modal>
     </portal>
   </div>
@@ -164,6 +265,15 @@
 <script>
 
 export default {
+  data() {
+    return {
+      interval: 5000,
+      state: {
+        publicList: false,
+        selectTeam: false,
+      },
+    };
+  },
   created() {
     const portals = ['header', 'screen', 'prez', 'public'];
 
@@ -175,16 +285,13 @@ export default {
     // Court-circuiter ReactJS sur l'accès aux teams
     document
       .querySelectorAll('a[href*="/channels"]')
-      .forEach(a => a.onclick = (e) => { window.location.href = a.href; e.preventDefault(); });
-  },
-  data() {
-    return {
-      interval: 5000,
-      state: {
-        publicList: false,
-        selectTeam: false,
-      },
-    };
+      .forEach((a) => {
+        const link = a;
+        link.onclick = (e) => {
+          window.location.href = link.href;
+          e.preventDefault();
+        };
+      });
   },
   mounted() {
     let ct = window.location.href.split('/');
@@ -201,7 +308,7 @@ export default {
         ? `ct-${ct[4].split('?')[0]}`
         : `ct-${ct[3].split('?')[0]}`;
 
-      if(ctId === 'ct-') {
+      if (ctId === 'ct-') {
         document.body.classList.add('outMM');
       }
 
@@ -220,13 +327,16 @@ export default {
       document
         .querySelectorAll('a[href*="docs.mattermost.com/help"], a[href*="docs.mattermost.com/index"]')
         .forEach(a => Object.assign(a, {
-          href: a.href.replace('docs.mattermost.com', 'docs.framasoft.org/fr/mattermost')
+          href: a.href.replace('docs.mattermost.com', 'docs.framasoft.org/fr/mattermost'),
         }));
     }, 1000);
   },
   methods: {
     updateDisplay(currentId) {
       const body = document.getElementsByTagName('body')[0];
+      const title = document.querySelector('.tutorial__steps h1');
+      const vname = document.getElementById('valid_name');
+
       if (/ct-(channels|admin-console|tutorial)/.test(currentId)) {
         body.classList.remove('inMM', 'outMM');
         body.classList.add('inMM');
@@ -235,9 +345,9 @@ export default {
         body.classList.remove('inMM', 'outMM');
         body.classList.add('outMM');
       }
+
       switch (currentId) {
         case 'ct-tutorial':
-          const title = document.querySelector('.tutorial__steps h1');
           if (title) { title.innerHTML = this.$t('color.team'); }
           break;
         case 'ct-select_team':
@@ -254,7 +364,6 @@ export default {
             .innerHTML = this.$i18n.t('team.create_framagit');
           break;
         case 'ct-signup_email':
-          const vname = document.getElementById('valid_name');
           if (vname) {
             vname.innerHTML = vname.innerHTML.replace('des symboles \'.\', \'-\' et \'_\'', 'symboles <kbd>.</kbd>, <kbd>-</kbd> ou <kbd>_</kbd>');
           }
@@ -314,6 +423,6 @@ export default {
             document.getElementById('teamsYouCanJoinContent'));
       }
     },
-  }
+  },
 };
 </script>

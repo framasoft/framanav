@@ -1,36 +1,56 @@
 <template>
-  <portal target-el="#fp-optin" target-class="f-bs4">
+  <portal
+    target-el="#fp-optin"
+    target-class="f-bs4"
+  >
     <!-- Success -->
-    <b-alert id="f-optin"
+    <b-alert
+      id="f-optin"
       :show="state.optin && !state.sent"
-      variant="info">
-      <input id="f-optin-checkbox"
-        type="checkbox"
+      variant="info"
+    >
+      <input
+        id="f-optin-checkbox"
         v-model="state.checked"
+        type="checkbox"
         :value="state.checked"
-        @change="subscribe()">
-      <label for="f-optin-checkbox" v-html="$t('fnav.optin.t')"></label>
-      <br>
+        @change="subscribe()"
+      />
+      <label
+        for="f-optin-checkbox"
+        v-html="$t('fnav.optin.t')"
+      ></label>
+      <br />
       <small>
         <span v-html="$t('fnav.optin.d1')"></span>&nbsp;
-        <a :href="$t('link.newsletter')" target="_blank">
+        <a
+          :href="$t('link.newsletter')"
+          target="_blank"
+        >
           <span v-html="$t('fnav.optin.d2')"></span>
-          <span class="sr-only" v-html="`(${$t('txt.newWindow')})`"></span>
+          <span
+            class="sr-only"
+            v-html="`(${$t('txt.newWindow')})`"
+          ></span>
         </a>
       </small>
     </b-alert>
 
     <!-- Error -->
-    <b-alert id="f-optin-error"
+    <b-alert
+      id="f-optin-error"
       :show="state.email !== '' && !is.email(state.email)"
-      variant="danger">
+      variant="danger"
+    >
       <p v-html="$t('fnav.optin.e2', { email: `<b>${state.email}</b>`})"></p>
     </b-alert>
 
     <!-- Success -->
-    <b-alert id="f-optin-success"
+    <b-alert
+      id="f-optin-success"
       :show="state.sent"
-      variant="success">
+      variant="success"
+    >
       <p v-html="$t('fnav.optin.s1', { email: `<b>${state.email}</b>`})"></p>
     </b-alert>
   </portal>
@@ -38,12 +58,6 @@
 
 <script>
 export default {
-  created() {
-    if (!window.vuefsPrerender) {
-      document.querySelector('body')
-        .insertAdjacentHTML('beforeend', '<div id="fp-optin"></div>');
-    }
-  },
   data() {
     return {
       config: ['', this.$t('cookie.optin'), 604800000],
@@ -55,6 +69,12 @@ export default {
         sent: false,
       },
       storage: this.$t('storage'),
+    };
+  },
+  created() {
+    if (!window.vuefsPrerender) {
+      document.querySelector('body')
+        .insertAdjacentHTML('beforeend', '<div id="fp-optin"></div>');
     }
   },
   mounted() {
@@ -77,8 +97,8 @@ export default {
   },
   methods: {
     subscribe() {
-      this.state.email
-        = (this.config[0] !== '' && document.querySelector(this.config[0]) !== null)
+      this.state.email = (this.config[0] !== ''
+        && document.querySelector(this.config[0]) !== null)
         ? document.querySelector(this.config[0]).value
         : '';
       if (this.is.email(this.state.email)) {
@@ -92,7 +112,7 @@ export default {
           body: [
             'makeconfirmed=1&htmlemail=1&list%5B5%5D=signup&listname%5B5%5D=Newsletter&email=',
             this.state.email.replace('@', '%40'),
-            '&VerificationCodeX=&subscribe=Abonnement'
+            '&VerificationCodeX=&subscribe=Abonnement',
           ].join(''), // Paramètres habituellement passés dans le formulaire
         }).catch((err) => {
           console.error(err); // eslint-disable-line
@@ -110,6 +130,7 @@ export default {
     siteConfig(site) {
       let c = [];
       // Local config
+      /* global l$ */
       try {
         if (l$.optin.constructor === Array) {
           c = l$.optin;
@@ -135,8 +156,9 @@ export default {
           case 'mindmap':
             c = ['#user #email'];
             break;
-
-          // no-default
+          default:
+            // no-default
+            break;
         }
       }
 
@@ -144,7 +166,7 @@ export default {
       this.config.forEach((v, i) => {
         if (c[i] !== undefined) { this.config[i] = c[i]; }
       });
-    }
+    },
   },
-}
+};
 </script>
