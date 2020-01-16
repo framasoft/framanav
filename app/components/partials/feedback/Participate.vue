@@ -1,14 +1,14 @@
 <template>
   <section id="f-fb-participate">
     <div
-      v-if="$t(`txt.${$t('site')}`) !== undefined"
+      v-if="$te(`txt.${$t('site')}`)"
       class="subtitle"
       v-html="`${$t('feedback.participate')} <b>${$t(`txt.${$t('site')}`)}</b>`"
     ></div>
     <v-text :section="`participate.git`" />
     <div class="row">
       <div
-        v-if="$t(`src.${$t('site')}`)"
+        v-if="$te(`src.${$t('site')}`)"
         class="col-6"
       >
         <a
@@ -27,7 +27,7 @@
         </a>
       </div>
       <div
-        v-if="$t(`git.${$t('site')}`)"
+        v-if="$te(`git.${$t('site')}`)"
         class="col-6"
       >
         <a
