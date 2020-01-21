@@ -130,8 +130,7 @@ export default {
               nos maigres ressources et pour favoriser l’utilisation de petits 
               hébergeurs de proximité
               (<a href="https://framablog.org/2019/09/24/deframasoftisons-internet">toutes 
-              les infos ici</a>)
-
+              les infos ici</a>)<br />
               ${this.$t('color.news')} fermera ses portes le mardi 7 juillet 2020. 
               Nous avons réuni des outils pour vous aider à récupérer vos données 
               et à trouver un service similaire 
