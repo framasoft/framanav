@@ -122,6 +122,17 @@ export default {
               }
             }
             break;
+          case 'listes':
+            if (this.is.before('2020/01/25')) {
+              c = [
+                'warning',
+                `Framalistes est actuellement en train de traiter la file d'attente des emails créée à cause des soucis
+                de blocage des mails par Yahoo. Nous estimons que cela sera achevé d'ici la fin de la journée.
+                <b>Il donc inutile de nous contacter à propos d'emails non délivrés pour le moment</b>.
+              Plus d'infos sur <a href="https://status.framasoft.org/incident/581">status.framasoft.org</a>`,
+              ];
+            }
+            break;
           case 'news':
             c = [
               'danger',
