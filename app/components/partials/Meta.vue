@@ -20,7 +20,7 @@ export default {
       'link', 'listes', 'maestro', 'memo', 'mindmap', 'minetest', 'news', 'notes',
       'pack', 'phonie', 'piaf', 'pic', 'site', 'slides', 'sphere', 'start', 'stats',
       'status', 'talk', 'team', 'tube', 'vectoriel', 'vox', 'zic',
-      'bot.', 'contact.', 'degooglisons-internet', 'forum.', 'participer.',
+      'alt.', 'bot.', 'contact.', 'degooglisons-internet', 'forum.', 'participer.',
       'soutenir.)',
     ].join('|'), 'i');
     if (regSites.test(this.$t('host'))) {
