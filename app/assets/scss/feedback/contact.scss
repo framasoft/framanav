@@ -74,6 +74,9 @@
   #f-cf-concerne-wrapper {
     .input-group-prepend, input, select {
       border-top: 0;
+      border-radius: 0;
+      border-right: 0;
+      border-left: 0;
     }
   }
 
@@ -102,10 +105,14 @@
     background: #fff;
     padding: 5px 0;
 
-    .input-group-prepend, input[type="file"] {
+    .input-group-prepend,
+    input[type="file"] {
       border-bottom: 0;
       height: auto;
       line-height: 30px;
+      padding-top: 5px;
+      width: auto;
+      padding-left: 5px;
     }
 
     label {

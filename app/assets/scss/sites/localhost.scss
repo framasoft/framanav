@@ -1,6 +1,7 @@
 [data-url^="http://localhost"] {
   body {
     background:#fee;
+    margin: 0;
   }
 }
 [data-url^="http://localhost"][data-inframe="true"] {

@@ -17,10 +17,10 @@
           >
             <b-input-group>
               <b-input-group-prepend>
-                <i
-                  class="fa fa-user fa-fw fa-lg"
-                  aria-hidden="true"
-                ></i>
+                <icon
+                  name="user"
+                  size="lg fa-fw"
+                />
               </b-input-group-prepend>
               <b-form-input
                 id="f-cf-name"
@@ -44,10 +44,10 @@
           >
             <b-input-group>
               <b-input-group-prepend>
-                <i
-                  class="fa fa-envelope-o fa-fw fa-lg"
-                  aria-hidden="true"
-                ></i>
+                <icon
+                  name="envelope-o"
+                  size="lg fa-fw"
+                />
               </b-input-group-prepend>
               <b-form-input
                 id="f-cf-email"
@@ -76,10 +76,10 @@
           >
             <b-input-group>
               <b-input-group-prepend>
-                <i
-                  class="fa fa-question fa-fw fa-lg"
-                  aria-hidden="true"
-                ></i>
+                <icon
+                  name="question"
+                  size="lg fa-fw"
+                />
               </b-input-group-prepend>
               <b-form-input
                 id="f-cf-subject"
@@ -104,10 +104,10 @@
           >
             <b-input-group>
               <b-input-group-prepend>
-                <i
-                  class="fa fa-crosshairs fa-fw fa-lg"
-                  aria-hidden="true"
-                ></i>
+                <icon
+                  name="crosshairs"
+                  size="lg fa-fw"
+                />
               </b-input-group-prepend>
               <b-form-select
                 id="f-cf-concerne"
@@ -165,10 +165,10 @@
           >
             <b-input-group>
               <b-input-group-prepend>
-                <i
-                  class="fa fa-pencil fa-fw fa-lg"
-                  aria-hidden="true"
-                ></i>
+                <icon
+                  name="pencil"
+                  size="lg fa-fw"
+                />
               </b-input-group-prepend>
               <b-form-textarea
                 id="f-cf-message"
@@ -212,14 +212,15 @@
               :title="`${$t('contact.form.fileHelp')} ${ext.join(', ')}`"
             >
               <b-input-group-prepend>
-                <i
-                  class="fa fa-paperclip fa-fw fa-lg"
-                  aria-hidden="true"
-                ></i>
+                <icon
+                  name="paperclip"
+                  size="lg fa-fw"
+                />
               </b-input-group-prepend>
               <b-form-file
                 id="f-cf-file"
                 v-model="form['your-file']"
+                plain
                 :accept="ext.join()"
               />
             </b-input-group>
@@ -241,10 +242,11 @@
       class="confirm"
     >
       <p class="text-center">
-        <span class="fa-stack fa-5x">
-          <i class="fa fa-circle-thin fa-stack-2x fc_v5"></i>
-          <i class="fa fa-stack-1x fa-check fc_v5"></i>
-        </span>
+        <icon
+          name="check fc_v5"
+          name2="circle-thin fc_v5"
+          size="5x"
+        />
       </p>
       <p
         class="alert"
@@ -257,10 +259,11 @@
       class="confirm"
     >
       <p class="text-center">
-        <span class="fa-stack fa-5x">
-          <i class="fa fa-circle-thin fa-stack-2x fc_r5"></i>
-          <i class="fa fa-stack-1x fa-times fc_r5"></i>
-        </span>
+        <icon
+          name="times fc_r5"
+          name2="circle-thin fc_r5"
+          size="5x"
+        />
       </p>
       <p
         class="alert"
@@ -283,11 +286,13 @@ export default {
       bienveillance: false,
       icons: {
         gafam: `
-          <i class="fa fa-google" aria-hidden="true" title="Google"></i>
-          <i class="fa fa-apple" aria-hidden="true" title="Apple"></i>
-          <i class="fa fa-facebook" aria-hidden="true" title="Facebook"></i>
-          <i class="fa fa-amazon" aria-hidden="true" title="Amazon"></i>
-          <i class="fa fa-windows" aria-hidden="true" title="Microsoft"></i>
+          <span aria-hidden="true" title="Google, Apple, Facebook, Amazon, Microsoft">
+            <i class="fa fa-google"></i>
+            <i class="fa fa-apple"></i>
+            <i class="fa fa-facebook"></i>
+            <i class="fa fa-amazon"></i>
+            <i class="fa fa-windows"></i>
+          </span>
           <span class="sr-only">Google, Apple, Facebook, Amazon, Microsoft</span>
         `,
       },

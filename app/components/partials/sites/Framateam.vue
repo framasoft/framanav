@@ -65,17 +65,14 @@
           >
             <button
               class="carousel-control"
-              :title="$t('carousel.pause')"
               @click="interval = 0"
             >
-              <i
-                class="fa fa-fw fa-pause"
-                aria-hidden="true"
-              ></i>
-              <span
-                class="sr-only"
-                v-html="$t('carousel.pause')"
-              ></span>
+              <icon
+                name="pause"
+                size="fw"
+                sr-only
+                :label="$t('carousel.pause')"
+              />
             </button>
           </p>
           <p
@@ -87,14 +84,12 @@
               :title="$t('carousel.play')"
               @click="interval = 5000"
             >
-              <i
-                class="fa fa-fw fa-play"
-                aria-hidden="true"
-              ></i>
-              <span
-                class="sr-only"
-                v-html="$t('carousel.play')"
-              ></span>
+              <icon
+                name="play"
+                size="fw"
+                sr-only
+                :label="$t('carousel.play')"
+              />
             </button>
           </p>
         </div>
@@ -115,11 +110,11 @@
             href="/signup_user_complete"
             class="btn btn-lg btn-success"
           >
-            <i
-              class="fa fa-fw fa-lg fa-user"
-              aria-hidden="true"
-            ></i>
-            <span v-html="$t('team.create')"></span>
+            <icon
+              name="user"
+              size="lg fa-fw"
+              :label="$t('team.create')"
+            />
           </a>
         </div>
         <div class="col-md-12 f-team">
@@ -135,7 +130,7 @@
                 role="presentation"
                 aria-hidden="true"
               >
-                <i class="fa fa-question-circle"></i>
+                <icon name="question-circle" />
               </p>
               <p v-html="$t('team.presentation.serviceby')"></p>
               <ol>
@@ -163,7 +158,7 @@
                 role="presentation"
                 aria-hidden="true"
               >
-                <i class="fa fa-cloud"></i>
+                <icon name="cloud" />
               </p>
               <p v-html="$t('team.presentation.framaware')"></p>
               <p v-html="$t('team.presentation.license')"></p>
@@ -178,7 +173,7 @@
                 role="presentation"
                 aria-hidden="true"
               >
-                <i class="fa fa-leaf"></i>
+                <icon name="leaf" />
               </p>
               <p v-html="$t('team.presentation.contrib_upstream')"></p>
               <br />
@@ -188,11 +183,10 @@
                   class="btn btn-success"
                   :href="`${$t('link.cloud')}/${$t('cloud.team')}`"
                 >
-                  <i
-                    class="fa fa-leaf"
-                    aria-hidden="true"
-                  ></i>
-                  framacloud.org
+                  <icon
+                    name="leaf"
+                    label="framacloud.org"
+                  />
                 </a>
               </p>
             </div>
@@ -220,11 +214,11 @@
             class="btn btn-primary btn-block"
             @click="state.publicList ^= true"
           >
-            <i
-              class="fa fa-fw fa-user-plus"
-              aria-hidden="true"
-            ></i>
-            <span v-html="$t('team.teams.join')"></span>
+            <icon
+              name="user-plus"
+              size="fw"
+              :label="$t('team.teams.join')"
+            />
           </button>
         </p>
         <p>
@@ -232,11 +226,11 @@
             href="/create_team"
             class="btn btn-success btn-block"
           >
-            <i
-              class="fa fa-fw fa-lg fa-group"
-              aria-hidden="true"
-            ></i>
-            <span v-html="$t('team.teams.create')"></span>
+            <icon
+              name="group"
+              size="fw"
+              :label="$t('team.teams.create')"
+            />
           </a>
         </p>
       </div>

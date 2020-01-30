@@ -18,11 +18,10 @@
             href="/dashboard"
             @click.prevent="dashboard()"
           >
-            <i
-              class="fa fa-user fa-lg"
-              aria-hidden="true"
-            ></i>
-            <span v-html="$t('vox.header.sign')"></span>
+            <icon
+              name="user"
+              :label="$t('vox.header.sign')"
+            />
           </a>
         </span>
         <h1 v-html="$t('html.vox')"></h1>
@@ -69,17 +68,14 @@
             >
               <button
                 class="carousel-control"
-                :title="$t('carousel.pause')"
                 @click="interval = 0"
               >
-                <i
-                  class="fa fa-fw fa-pause"
-                  aria-hidden="true"
-                ></i>
-                <span
-                  class="sr-only"
-                  v-html="$t('carousel.pause')"
-                ></span>
+                <icon
+                  name="pause"
+                  size="fw"
+                  sr-only
+                  :label="$t('carousel.pause')"
+                />
               </button>
             </p>
             <p
@@ -88,17 +84,14 @@
             >
               <button
                 class="carousel-control"
-                :title="$t('carousel.play')"
                 @click="interval = 5000"
               >
-                <i
-                  class="fa fa-fw fa-play"
-                  aria-hidden="true"
-                ></i>
-                <span
-                  class="sr-only"
-                  v-html="$t('carousel.play')"
-                ></span>
+                <icon
+                  name="play"
+                  size="fw"
+                  sr-only
+                  :label="$t('carousel.play')"
+                />
               </button>
             </p>
           </div>
@@ -109,100 +102,69 @@
               href="/dashboard"
               @click.prevent="dashboard()"
             >
-              <i
-                class="fa fa-user fa-lg"
-                aria-hidden="true"
-              ></i>
-              <span v-html="$t('vox.header.sign')"></span>
+              <icon
+                name="user"
+                :label="$t('vox.header.sign')"
+              />
             </a>
           </div>
         </div>
 
         <hr role="presentation" />
+
         <div class="row">
-          <div
-            id="tuto-faq"
-            class="col-md"
-          >
+          <div class="col-md">
             <h2
               class="h2"
-              v-html="$t('vox.presentation.h2_1')"
+              v-html="$t('vox.help.title')"
             ></h2>
-            <p
-              class="text-center"
-              role="presentation"
-              aria-hidden="true"
+            <icon
+              name="question-circle"
+              size="3x d-block text-center mb-3"
+            />
+
+            <div v-html="$t('vox.help.md')"></div>
+            <b-button
+              href="https://framatube.org/videos/watch/c6705be9-5a6e-4615-9522-147445dca210"
+              variant="outline-primary"
             >
-              <i class="fa fa-question-circle"></i>
-            </p>
-            <p v-html="$t('vox.presentation.serviceby')"></p>
-            <ol>
-              <li
-                v-for="(text, i) in $t('vox.carousel')"
-                :key="i"
-                v-html="$t(`vox.carousel[${i}]`)"
-              ></li>
-            </ol>
-            <p v-html="$t('vox.presentation.docs')"></p>
-            <p v-html="$t('vox.presentation.video')"></p>
-            <p class="text-center">
-              <a
-                class="btn btn-primary"
-                href="https://framatube.org/videos/watch/c6705be9-5a6e-4615-9522-147445dca210"
-              >
-                <i
-                  class="fa fa-film"
-                  aria-hidden="true"
-                ></i>
-                <span v-html="$t('vox.presentation.play_video')"></span>
-              </a>
-            </p>
+              <icon
+                name="film"
+                :label="$t('vox.help.btn')"
+              />
+            </b-button>
           </div>
-          <div
-            id="le-logiciel"
-            class="col-md"
-          >
+
+          <div class="col-md">
             <h2
               class="h2"
-              v-html="$t('vox.presentation.h2_2')"
+              v-html="$t('vox.software.title')"
             ></h2>
-            <p
-              class="text-center"
-              role="presentation"
-              aria-hidden="true"
-            >
-              <i class="fa fa-cloud"></i>
-            </p>
-            <p v-html="$t('vox.presentation.framaware')"></p>
-            <p v-html="$t('vox.presentation.instance')"></p>
-            <p v-html="$t('vox.presentation.license')"></p>
+            <icon
+              name="cloud"
+              size="3x d-block text-center mb-3"
+            />
+            <div v-html="$t('vox.software.md')"></div>
           </div>
-          <div
-            id="jardin"
-            class="col-md"
-          >
+          <div class="col-md">
             <h2
               class="h2"
-              v-html="$t('vox.presentation.h2_3')"
+              v-html="$t('vox.garden.title')"
             ></h2>
-            <p
-              class="text-center"
-              role="presentation"
-              aria-hidden="true"
+            <icon
+              name="leaf"
+              size="3x d-block text-center mb-3"
+            />
+            <div v-html="$t('vox.garden.md')"></div>
+            <b-button
+              :href="`${$t('link.cloud')}/${$t('cloud.vox')}`"
+              variant="outline-success"
             >
-              <i class="fa fa-leaf"></i>
-            </p>
-            <p v-html="$t('vox.presentation.contrib_upstream')"></p>
-            <p v-html="$t('vox.presentation.home_install')"></p>
-            <p class="text-center">
-              <a
-                class="btn btn-success"
-                :href="`${$t('link.cloud')}/${$t('cloud.vox')}`"
-              >
-                <i class="fa fa-leaf"></i>
-                framacloud.org
-              </a>
-            </p>
+              <icon
+                name="leaf"
+                label="framacloud.org"
+              />
+            </b-button>
           </div>
         </div>
       </main>

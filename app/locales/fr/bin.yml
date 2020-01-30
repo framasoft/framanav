@@ -1,30 +1,39 @@
 header:
   lead: Transmettez des messages chiffrés
-presentation:
-  h2_1: Prise en main
-  serviceby: '@:color.bin est un service en ligne libre et minimaliste qui
-    permet de partager des textes de manière confidentielle et sécurisée.'
-  paste: Collez le texte à transmettre.
-  config: Si besoin, définissez sa durée de conservation en ligne, ajoutez un espace
+help:
+  title: Prise en main
+  md: |-
+    @:color.bin est un service en ligne libre et minimaliste qui
+    permet de partager des textes de manière confidentielle et sécurisée.
+
+    1. Collez le texte à transmettre.
+    2. Si besoin, définissez sa durée de conservation en ligne, ajoutez un espace
     de discussion ou activez la coloration du code.
-  share: Partagez ensuite avec vos correspondants le lien qui vous est donné.
-  crypto: Vos données (commentaires inclus) sont <b>chiffrées dans le navigateur
-    web</b> en utilisant <a href="https://fr.wikipedia.org/wiki/Advanced_Encryption_Standard">l’algorithme
-    <attr title="Advanced Encryption Standard">AES</attr> 256 bits</a>.<br>Elles
-    sont ensuite transmises et stockées sur nos serveurs sans qu’il nous soit possible
-    de les déchiffrer. <b>Vous seuls possedez la clé</b> utilisée pour chiffrer
+    3. Partagez ensuite avec vos correspondants le lien qui vous est donné.
+
+    Vos données (commentaires inclus) sont **chiffrées dans le navigateur
+    web** en utilisant [l’algorithme <attr title="Advanced Encryption Standard">AES</attr>
+    256 bits](https://fr.wikipedia.org/wiki/Advanced_Encryption_Standard).<br />
+    Elles sont ensuite transmises et stockées sur nos serveurs sans qu’il nous soit
+    possible de les déchiffrer. **Vous seuls possedez la clé** utilisée pour chiffrer
     et déchiffrer les données.
-  h2_2: Le logiciel
-  framaware: '@:color.bin repose sur le logiciel <a href="https://privatebin.info/">PrivateBin</a>,
-    un fork de ZeroBin initialement développé par Sébastien Sauvage.'
-  license: PrivateBin et ses composants sont <a href="https://github.com/PrivateBin/PrivateBin/blob/master/LICENSE.md">sous
-    licence libre</a>.
-  browsers: '@:color.bin requiert l’activation du Javascript pour fonctionner
-    ainsi qu’un navigateur web récent :'
-  noie: L’utilisation d’Internet Explorer n’est pas recommandée.
-  h2_3: Cultivez votre jardin
-  contrib_upstream: Pour participer au développement du logiciel, proposer des améliorations
-    ou simplement le télécharger, rendez-vous sur <a href="https://github.com/PrivateBin/PrivateBin/">le
-    site de développement</a>.
-  home_install: 'Si vous souhaitez installer ce logiciel pour votre propre usage
+software:
+  title: Le logiciel
+  md: |-
+    @:color.bin repose sur le logiciel [@:soft.bin](https://privatebin.info),
+    un fork de ZeroBin initialement développé par Sébastien Sauvage.
+
+    @:soft.bin et ses composants sont [sous licence
+    libre](https://github.com/PrivateBin/PrivateBin/blob/master/LICENSE.md).
+
+    @:color.bin requiert l’activation du Javascript pour fonctionner
+    ainsi qu’un navigateur web récent.<br />
+    L’utilisation d’Internet Explorer n’est pas recommandée.
+garden:
+  title: Cultivez votre jardin
+  md: |-
+    Pour participer au développement du logiciel, proposer des améliorations ou
+    simplement le télécharger, rendez-vous sur [le site de développement](@:src.bin).
+
+    Si vous souhaitez installer ce logiciel pour votre propre usage
     et ainsi gagner en autonomie, nous vous aidons sur :'
