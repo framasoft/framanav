@@ -6,25 +6,31 @@ carousel:
 - Invite your colleagues
 - Take part in the exchanges
 - Vote for the proposals
-presentation:
-  h2_1: Getting Started
-  serviceby: '@:color.vox is a free collaborative decision-making service.
+help:
+  title: Getting Started
+  md: |-
+    @:color.vox is a free collaborative decision-making service.
     It allows you to discuss specific topics with your team (by notifying your colleagues),
-    and to vote on proposals.'
-  docs: To learn how to master @:color.vox, see <a href="@:link.docs/en/loomio">our
-    help pages</a>.
-  video: Here is also a video tutorial directed by Frédéric Véron.
-  play_video: Play the video
-  h2_2: The software
-  framaware: '@:color.vox is based on the software <a href="https://www.loomio.org">Loomio</a>.
-    instance: This is one instance among others, the developers of Loomio also propose
+    and to vote on proposals.
+
+    To learn how to master @:color.vox, see [our help pages](@:link.docs/en/loomio).
+
+    Here is also a video tutorial directed by Frédéric Véron.
+  btn: Play the video
+software:
+  title: The software
+  md: |-
+    @:color.vox is based on the software [@:soft.vox](https://www.loomio.org).
+
+    This is one instance among others, the developers of Loomio also propose
     their own.
-  license: Loomio is under @:license.agpl3 browsers: @:color.bin
-    requires Javascript enabled to work as well as a recent web browser:'
-  browser: The use of Internet Explorer is not recommended.
-  h2_3: Cultivate your garden
-  contrib_upstream: To participate in the development of the software, suggest improvements
-    or simply download it, go to <a href="https://github.com/loomio/">the development
-    site</a>.
-  home_install: 'If you want to install this software for your own use and thus
-    gain autonomy, we help you on:'
+
+    Loomio is under @:license.agpl3
+garden:
+  title: Cultivate your garden
+  md: |-
+    To participate in the development of the software, suggest improvements
+    or simply download it, go to [the development site](@:src.vox).
+
+    If you want to install this software for your own use and thus
+    gain autonomy, we help you on:

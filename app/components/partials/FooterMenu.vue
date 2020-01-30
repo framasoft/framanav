@@ -78,23 +78,21 @@
                 :key="key"
                 v-b-popover:f-footer.top.hover.focus.html="$t(`fnav.sites.${key}.d1`)"
                 :class="`list-inline-item fs_${key}`"
-                :title="text($t(`fnav.sites.${key}.t1`))"
+                :title="$t(`fnav.sites.${key}.t1`, '-t')"
               >
                 <a
                   :href="!$te(`fnav.sites.${key}.link`)
                     ? $t(`link.${key}`)
                     : $t(`fnav.sites.${key}.link`)"
                 >
-                  <i
-                    :class="`fa fa-fw fa-2x ${$t(`icon.${key}`)}`"
-                    aria-hidden="true"
-                  ></i>
-                  <span
-                    class="sr-only"
-                    v-text="!$te(`fnav.sites.${key}.name`)
+                  <icon
+                    :name="$t(`icon.${key}`)"
+                    size="2x fa-fw"
+                    sr-only
+                    :label="!$te(`fnav.sites.${key}.name`)
                       ? $t(`txt.${key}`)
-                      : text($t(`fnav.sites.${key}.name`))"
-                  ></span>
+                      : $t(`fnav.sites.${key}.name`, '-t')"
+                  />
                 </a>
               </li>
             </ul>

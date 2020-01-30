@@ -101,15 +101,12 @@
             :href="$t('link.colibri')"
             class="btn btn-block"
           >
-            <span
-              class="fa-stack fa-2x"
-              aria-hidden="true"
-            >
-              <i class="fa fa-circle fa-stack-2x orange"></i>
-              <i class="fa fa-stack-1x fa-comment fa-inverse"></i>
-            </span>
-            <br />
-            <span v-html="$t('feedback.forum')"></span>
+            <icon
+              name="comment fa-inverse"
+              name2="circle orange"
+              size="2x d-block mx-auto"
+              :label="$t('feedback.forum')"
+            />
           </a>
         </div>
         <div class="col-6">
@@ -119,15 +116,12 @@
             onclick="return false;"
             @click="showContact()"
           >
-            <span
-              class="fa-stack fa-2x"
-              aria-hidden="true"
-            >
-              <i class="fa fa-circle fa-stack-2x orange"></i>
-              <i class="fa fa-stack-1x fa-envelope fa-inverse"></i>
-            </span>
-            <br />
-            <span v-html="`${$t('feedback.contact')} ${$t('color.soft')}`"></span>
+            <icon
+              name="envelope fa-inverse"
+              name2="circle orange"
+              size="2x d-block mx-auto"
+              :label="`${$t('feedback.contact')} ${$t('color.soft')}`"
+            />
           </a>
         </div>
       </div>
@@ -203,7 +197,7 @@ export default {
 
             /* Site Faq */
             if (!this.general) {
-              html = parser.parseFromString(data, 'text/html').querySelector(`#${this.text(this.$t(`txt.${this.$t('site')}`), '-L@')}`);
+              html = parser.parseFromString(data, 'text/html').querySelector(`#${this.$t(`txt.${this.$t('site')}`, '-L@')}`);
               if (html) {
                 for (let i = 1; i < html.children.length; i += 1) {
                   // .list-group-item only (first node is h2)
@@ -247,9 +241,9 @@ export default {
       this.state.toggle = 'all';
 
       for (let i = 1; i < this.faq.length; i += 1) {
-        const words = this.text(this.search.replace(/\+ ?/, '_'), '-Ll@').split('_');
+        const words = this.$t(this.search.replace(/\+ ?/, '_'), '-kLl@').split('_');
         const reg = new RegExp(`(${words.join('|')})`, 'g');
-        const content = this.text(`${this.faq[i].question} ${this.faq[i].answer}`, '-Ll@');
+        const content = this.$t(`${this.faq[i].question} ${this.faq[i].answer}`, '-kLl@');
         if (reg.test(content)) {
           this.faq[i].variant = `${this.faq[i].variant.replace(/search/g, '')} search`;
         } else {

@@ -51,38 +51,32 @@
         <template v-slot:modal-header>
           <!-- Header -->
           <div class="col-2 h5 pl-0">
-            <button
+            <b-button
               v-show="section !== 'main'"
-              class="btn-link"
+              variant="link"
               @click="section = 'main'"
             >
-              <i
-                class="fa fa-chevron-left fa-inverse"
-                aria-hidden="true"
-              ></i>
-              <span
-                class="sr-only"
-                v-text="$t('txt.back')"
-              ></span>
-            </button>
+              <icon
+                name="chevron-left fa-inverse"
+                :label="$t('txt.back')"
+                sr-only
+              />
+            </b-button>
           </div>
           <div class="col-8 h5 text-center px-0">
             <b v-html="$t('fnav.sites.aide.name')"></b>
           </div>
           <div class="col-2 h5 text-right pr-0">
-            <button
-              class="btn-link"
+            <b-button
+              variant="link"
               @click="close()"
             >
-              <i
-                class="fa fa-close fa-inverse"
-                aria-hidden="true"
-              ></i>
-              <span
-                class="sr-only"
-                v-text="$t('txt.close')"
-              ></span>
-            </button>
+              <icon
+                name="close fa-inverse"
+                :label="$t('txt.close')"
+                sr-only
+              />
+            </b-button>
           </div>
         </template>
 
@@ -103,11 +97,12 @@
               onclick="return false;"
               @click="modal.docs = true;"
             >
-              <span class="fa-stack fa-2x">
-                <i class="fa fa-circle fa-stack-2x fc_j6"></i>
-                <i class="fa fa-stack-1x fa-graduation-cap fa-inverse"></i>
-              </span>
-              <span v-html="$t('feedback.menu.docs')"></span>
+              <icon
+                name="graduation-cap fa-inverse"
+                name2="circle fc_j6"
+                size="2x"
+                :label="$t('feedback.menu.docs')"
+              />
             </a>
             <!-- Faq of the service, then contact form -->
             <a
@@ -117,11 +112,12 @@
               @click="section = 'faq'"
             >
               <status />
-              <span class="fa-stack fa-2x">
-                <i class="fa fa-circle fa-stack-2x fc_v5"></i>
-                <i class="fa fa-stack-1x fa-question fa-inverse"></i>
-              </span>
-              <span v-html="$t('feedback.menu.faq')"></span>
+              <icon
+                name="question fa-inverse"
+                name2="circle fc_v5"
+                size="2x"
+                :label="$t('feedback.menu.faq')"
+              />
             </a>
             <!-- Git of the service, then contact (rt+participer) form -->
             <a
@@ -130,11 +126,12 @@
               onclick="return false;"
               @click="section = 'feedback'"
             >
-              <span class="fa-stack fa-2x">
-                <i class="fa fa-circle fa-stack-2x fc_b9"></i>
-                <i class="fa fa-stack-1x fa-paw fa-inverse"></i>
-              </span>
-              <span v-html="$t('feedback.menu.participate')"></span>
+              <icon
+                name="paw fa-inverse"
+                name2="circle fc_b9"
+                size="2x"
+                :label="$t('feedback.menu.participate')"
+              />
             </a>
             <!-- About page of the service opened in a modal
             <a href="#about"
@@ -183,7 +180,7 @@
                   variant="light text-muted"
                   @click="search = ''"
                 >
-                  <i :class="`fa fa-${search === '' ? 'search': 'times'}`"></i>
+                  <icon :name="search === '' ? 'search': 'times'" />
                 </b-button>
               </b-input-group-append>
             </b-input-group>
