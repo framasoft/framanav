@@ -8,26 +8,7 @@
     line-height: 17px;
 
     a, a:hover {
-      color: #0C5B7A;
       font-weight: bold;
-    }
-
-    &.alert-info {
-      color: #0C5B7A;
-      background-color: #E1F8FC;
-      border-color: #B2D5DB;
-    }
-
-    &.alert-danger {
-      color: #AB2909;
-      background-color: #fde0dc;
-      border-color: #E0B3A8;
-    }
-
-    &.alert-success {
-      color: #304219;
-      background:#E3EBC7;
-      border-color: #C0D481;
     }
   }
 
@@ -57,7 +38,6 @@
       font-weight: normal;
       margin: 0px 0px 0px 5px;
       white-space: normal;
-      color: #0C5B7A;
     }
   }
 }
