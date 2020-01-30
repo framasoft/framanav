@@ -122,6 +122,32 @@ export default {
               }
             }
             break;
+          case 'listes':
+            if (this.is.before('2020/01/25')) {
+              c = [
+                'warning',
+                `Framalistes est actuellement en train de traiter la file d'attente des emails créée à cause des soucis
+                de blocage des mails par Yahoo. Nous estimons que cela sera achevé d'ici la fin de la journée.
+                <b>Il est donc inutile de nous contacter à propos d'emails non délivrés pour le moment</b>.
+              Plus d'infos sur <a href="https://status.framasoft.org/incident/581">status.framasoft.org</a>`,
+              ];
+            }
+            break;
+          case 'news':
+            c = [
+              'danger',
+              `<b>Déframasoftisons Internet</b>&nbsp;: l’association Framasoft a 
+              programmé la fermeture de certains services, pour éviter d’épuiser
+              nos maigres ressources et pour favoriser l’utilisation de petits 
+              hébergeurs de proximité
+              (<a href="https://framablog.org/2019/09/24/deframasoftisons-internet">toutes 
+              les infos ici</a>)<br />
+              ${this.$t('color.news')} fermera ses portes le mardi 7 juillet 2020. 
+              Nous avons réuni des outils pour vous aider à récupérer vos données 
+              et à trouver un service similaire 
+              <a href="https://alt.framasoft.org/framanews">sur cette page</a>.`,
+            ];
+            break;
           default:
             // no-default
             break;

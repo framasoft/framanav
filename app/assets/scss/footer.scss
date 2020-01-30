@@ -124,6 +124,8 @@
 }
 
 /* Keep position relative */
-[data-url*="framadate.org/create_"] #f-footer {
+[data-url*="framagenda.org"] #f-footer,
+[data-url*="framadate.org/create_"] #f-footer,
+[data-url*="framadrive.org"] #f-footer {
   position: relative !important;
 }
