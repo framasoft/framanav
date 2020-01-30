@@ -6,6 +6,7 @@
     left: 0;
     margin-top: -10px;
     z-index: 1;
+    outline: 0;
   }
 
   .list-group-item-text {
@@ -26,12 +27,9 @@
     margin-bottom: 1rem;
     border: none;
     border-radius: 0 !important;
-    &.active {
-      margin-bottom: 0;
-    }
 
     h3 {
-      font-size: 13px;
+      font-size: 0.95rem;
       font-weight: bold;
       border-bottom: 1px dashed #ddd;
       margin: 0 0 10px;

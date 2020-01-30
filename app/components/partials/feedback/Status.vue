@@ -66,8 +66,8 @@ export default {
           for (let i = 0; i < data.data.length; i += 1) {
             if (this.is.before(data.data[i].scheduled_at.replace(/-/g, '/').substr(0, 10))
               && this.$te(`txt.${this.$t('site')}`)) {
-              const reg = new RegExp(`(${this.text(this.$t(`txt.${this.$t('site')}`), '-Ll')})`, 'g');
-              const content = this.text(`${data.data[i].message} ${data.data[i].name}`, '-Ll');
+              const reg = new RegExp(`(${this.$t(`txt.${this.$t('site')}`, '-Ll')})`, 'g');
+              const content = this.$t(`${data.data[i].message} ${data.data[i].name}`, '-kLl');
               if (reg.test(content)) {
                 this.status.unshift({
                   id: `maintenance_${i + 1}`,

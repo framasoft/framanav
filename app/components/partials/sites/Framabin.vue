@@ -23,78 +23,43 @@
       class="f-bs4"
     >
       <hr role="presentation" />
+
       <div class="row">
-        <div
-          id="tuto-faq"
-          class="col-md"
-        >
-          <h2 v-html="$t('bin.presentation.h2_1')"></h2>
-          <p
-            class="text-center"
-            role="presentation"
-            aria-hidden="true"
-          >
-            <i class="fa fa-question-circle"></i>
-          </p>
-          <div id="aboutbox">
-            <p v-html="$t('bin.presentation.serviceby')"></p>
-            <ol>
-              <li v-html="$t('bin.presentation.paste')"></li>
-              <li v-html="$t('bin.presentation.config')"></li>
-              <li v-html="$t('bin.presentation.share')"></li>
-            </ol>
-            <p v-html="$t('bin.presentation.crypto')"></p>
-          </div>
+        <div class="col-md">
+          <h2 v-html="$t('bin.help.title')"></h2>
+          <icon
+            name="question-circle"
+            size="3x d-block text-center mb-3"
+          />
+          <div v-html="$t('bin.help.md')"></div>
         </div>
-        <div
-          id="le-logiciel"
-          class="col-md"
-        >
-          <h2 v-html="$t('bin.presentation.h2_2')"></h2>
-          <p
-            class="text-center"
-            role="presentation"
-            aria-hidden="true"
-          >
-            <i class="fa fa-cloud"></i>
-          </p>
-          <p v-html="$t('bin.presentation.framaware')"></p>
-          <p v-html="$t('bin.presentation.license')"></p>
-          <p v-html="$t('bin.presentation.browsers')"></p>
-          <ul>
-            <li><a href="http://www.mozilla.org/firefox/">Firefox</a>,</li>
-            <li>Opera,</li>
-            <li>Chrome,</li>
-            <li>Safari…</li>
-          </ul>
-          <p v-html="$t('bin.presentation.noie')"></p>
+
+        <div class="col-md">
+          <h2 v-html="$t('bin.software.title')"></h2>
+          <icon
+            name="cloud"
+            size="3x d-block text-center mb-3"
+          />
+          <div v-html="$t('bin.software.md')"></div>
         </div>
-        <div
-          id="jardin"
-          class="col-md"
-        >
-          <h2 v-html="$t('bin.presentation.h2_3')"></h2>
-          <p
-            class="text-center"
-            role="presentation"
-            aria-hidden="true"
+
+        <div class="col-md">
+          <h2 v-html="$t('bin.garden.title')"></h2>
+          <icon
+            name="leaf"
+            size="3x d-block text-center mb-3"
+          />
+
+          <div v-html="$t('bin.garden.md')"></div>
+          <b-button
+            :href="`${$t('link.cloud')}/${$t('cloud.bin')}`"
+            variant="outline-success"
           >
-            <i class="fa fa-leaf"></i>
-          </p>
-          <p v-html="$t('bin.presentation.contrib_upstream')"></p>
-          <p v-html="$t('bin.presentation.home_install')"></p>
-          <p class="text-center">
-            <a
-              :href="`${$t('link.cloud')}/${$t('cloud.bin')}`"
-              class="btn btn-success"
-            >
-              <i
-                class="fa fa-leaf"
-                aria-hidden="true"
-              ></i>
-              framacloud.org
-            </a>
-          </p>
+            <icon
+              name="leaf"
+              label="framacloud.org"
+            />
+          </b-button>
         </div>
       </div>
     </section>

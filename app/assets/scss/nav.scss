@@ -6,7 +6,7 @@
   }
 }
 
-@import 'frama/bs3';
+@import 'frama/bootstrap3';
 
 #f-- .f-bs4 {
   $primary:       #635182 !default;
@@ -17,7 +17,9 @@
   $success:       #677835;
 
   @import 'frameworks/bootstrap4';
-  @import 'frama/bs4';
+  @import 'frama/bootstrap4';
+
+  font-family: 'Roboto';
 
   /* Fix conflicts */
   .modal-backdrop {

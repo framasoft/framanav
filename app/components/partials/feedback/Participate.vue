@@ -5,7 +5,9 @@
       class="subtitle"
       v-html="`${$t('feedback.participate')} <b>${$t(`txt.${$t('site')}`)}</b>`"
     ></div>
-    <v-text :section="`participate.git`" />
+
+    <div v-html="$t('participate.git')"></div>
+
     <div class="row">
       <div
         v-if="$te(`src.${$t('site')}`)"
@@ -13,17 +15,14 @@
       >
         <a
           :href="$t(`src.${$t('site')}`)"
-          class="btn btn-default btn-block"
+          class="btn btn-block"
         >
-          <span
-            class="fa-stack fa-2x"
-            aria-hidden="true"
-          >
-            <i class="fa fa-circle fa-stack-2x bleu"></i>
-            <i class="fa fa-stack-1x fa-code-fork fa-inverse"></i>
-          </span>
-          <br />
-          <span v-html="$t(`soft.${$t('site')}`)"></span>
+          <icon
+            name="code-fork fa-inverse"
+            name2="circle bleu"
+            size="2x d-block mx-auto"
+            :label="$t(`soft.${$t('site')}`)"
+          />
         </a>
       </div>
       <div
@@ -32,22 +31,20 @@
       >
         <a
           :href="$t(`git.${$t('site')}`)"
-          class="btn btn-default btn-block"
+          class="btn btn-block"
         >
-          <span
-            class="fa-stack fa-2x"
-            aria-hidden="true"
-          >
-            <i class="fa fa-circle fa-stack-2x bleu"></i>
-            <i class="fa fa-stack-1x fa-git fa-inverse"></i>
-          </span>
-          <br />
-          <span v-html="$t(`color.${$t('site')}`)"></span>
+          <icon
+            name="git fa-inverse"
+            name2="circle bleu"
+            size="2x d-block mx-auto"
+            :label="$t(`color.${$t('site')}`)"
+          />
         </a>
       </div>
     </div>
 
-    <v-text :section="`participate.other`" />
+    <div v-html="$t('participate.other')"></div>
+
     <div class="row">
       <div class="col-12">
         <a
@@ -56,26 +53,19 @@
           onclick="return false;"
           @click="showContact()"
         >
-          <span
-            class="fa-stack fa-2x"
-            aria-hidden="true"
-          >
-            <i class="fa fa-circle fa-stack-2x orange"></i>
-            <i class="fa fa-stack-1x fa-envelope fa-inverse"></i>
-          </span>
-          <span v-html="`${$t('feedback.contact')} ${$t('color.soft')}`"></span>
+          <icon
+            name="envelope fa-inverse"
+            name2="circle orange"
+            size="2x"
+            :label="`${$t('feedback.contact')} ${$t('color.soft')}`"
+          />
         </a>
       </div>
     </div>
   </section>
 </template>
 <script>
-import VText from '../V-Text.vue';
-
 export default {
-  components: {
-    VText,
-  },
   /* props: {
     open: {
       type: Boolean,
