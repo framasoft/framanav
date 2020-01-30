@@ -20,7 +20,7 @@ export default {
       'link', 'listes', 'maestro', 'memo', 'mindmap', 'minetest', 'news', 'notes',
       'pack', 'phonie', 'piaf', 'pic', 'site', 'slides', 'sphere', 'start', 'stats',
       'status', 'talk', 'team', 'tube', 'vectoriel', 'vox', 'zic',
-      'bot.', 'contact.', 'degooglisons-internet', 'forum.', 'participer.',
+      'alt.', 'bot.', 'contact.', 'degooglisons-internet', 'forum.', 'participer.',
       'soutenir.)',
     ].join('|'), 'i');
     if (regSites.test(this.$t('host'))) {
@@ -189,15 +189,6 @@ export default {
             g.src = [c.url, 'p.php?idsite=', c.id, '&rec=1'].join(''); s.appendChild(g);
           }());
         }
-
-        // Framaclic
-        /* (function framaclic() {
-          const d = document;
-          const g = d.createElement('img');
-          const s = d.getElementsByTagName('body')[0];
-          g.style = 'border:0'; g.alt = '';
-          g.src = ['https://framaclic.org/h/', c.id].join(''); s.appendChild(g);
-        }()); */
       }
     },
   },

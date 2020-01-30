@@ -6,14 +6,12 @@
     :title="$t('txt.backTop')"
     @click.prevent="backTop()"
   >
-    <i
-      class="fa fa-fw fa-lg fa-inverse fa-chevron-up"
-      aria-hidden="true"
-    ></i>
-    <span
-      class="sr-only"
-      v-text="$t('txt.backTop')"
-    ></span>
+    <icon
+      name="chevron-up fa-inverse"
+      size="lg fa-fw"
+      :label="$t('txt.backTop')"
+      sr-only
+    />
   </a>
 </template>
 

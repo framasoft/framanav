@@ -1,15 +1,17 @@
-git:
-  h3: Bugs, fonctionnalités et développement
-  p-intro:
-  - Avant tout, sachez que <strong>@:color.soft ne fait pas de développement</strong>.
-    À quelques exceptions près, nous ne faisons qu’adapter légèrement des logiciels
-    existants pour les proposer au public.
-  - Avant de nous contacter, il est donc important de savoir si vos contributions
-    concernent réellement les adaptations réalisées pour les projets @:color.soft
-    ou bien les logiciels originaux.
-  - Il sera plus efficace de signaler un bug ou proposer des améliorations au
-    code, si vous le faites depuis les sites de développements respectifs. Pour
-    tout le reste (traduction, graphisme, rédaction, administration système…)
-    n’hésitez pas à nous contacter.
-other:
-  h3: Graphisme, relectures, traductions, etc.
+git: |-
+  ### Bugs, fonctionnalités et développement
+
+  Avant tout, sachez que <strong>@:color.soft ne fait pas de développement</strong>.
+  À quelques exceptions près, nous ne faisons qu’adapter légèrement des logiciels
+  existants pour les proposer au public.
+
+  Avant de nous contacter, il est donc important de savoir si vos contributions
+  concernent réellement les adaptations réalisées pour les projets @:color.soft
+  ou bien les logiciels originaux.
+
+  Il sera plus efficace de signaler un bug ou proposer des améliorations au
+  code, si vous le faites depuis les sites de développements respectifs. Pour
+  tout le reste (traduction, graphisme, rédaction, administration système…)
+  n’hésitez pas à nous contacter.
+other: |-
+  ### Graphisme, relectures, traductions, etc.

@@ -54,25 +54,21 @@
               :href="$te(`fnav.sites.${l}.link`) ? $t(`fnav.sites.${l}.link`) : $t(`link.${l}`)"
               target="_blank"
               :class="`fs_${l}`"
-              :title="$te(`fnav.sites.${l}.t1`) ? text($t(`fnav.sites.${l}.t1`)) : ''"
+              :title="$te(`fnav.sites.${l}.t1`) ? $t(`fnav.sites.${l}.t1`, '-t') : ''"
             >
-              <i
-                :class="`fa fa-fw fa-lg ${$t(`icon.${l}`)}`"
-                aria-hidden="true"
-              ></i>
-              <span
-                v-text="$te(`fnav.sites.${l}.name`)
-                  ? text($t(`fnav.sites.${l}.name`))
+              <icon
+                :name="$t(`icon.${l}`)"
+                size="lg fa-fw"
+                :label="$te(`fnav.sites.${l}.name`)
+                  ? $t(`fnav.sites.${l}.name`, '-t')
                   : $t(`txt.${l}`)"
-              ></span>
-              <span
-                class="sr-only"
-                v-html="`(${$t('txt.newWindow')})`"
-              ></span>
-              <i
-                class="fa new-window fa-external-link"
-                aria-hidden="true"
-              ></i>
+              />
+              <icon
+                name="external-link new-window"
+                size="lg fa-fw"
+                sr-only
+                :label="`(${$t('txt.newWindow')})`"
+              />
             </b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
@@ -86,15 +82,13 @@
             :href="`${$t('link.soutenir')}/?f=nav`"
             link-classes="btn btn-soutenir"
             target="_blank"
-            :title="text($t('fnav.soutenir.t1'))"
+            :title="$t('fnav.soutenir.t1', '-t')"
           >
-            <i
-              :class="`fa fa-fw fa-lg ${$t('icon.soutenir')}`"
-              aria-hidden="true"
-            ></i>
-            <span
-              v-text="text($t('fnav.soutenir.name'))"
-            ></span>
+            <icon
+              :name="$t('icon.soutenir')"
+              size="lg fa-fw"
+              :label="$t('fnav.soutenir.name', '-t')"
+            />
           </b-nav-item>
 
           <!-- Benevalo button -->
@@ -105,13 +99,13 @@
             :href="$t('link.benevalo')"
             link-classes="btn btn-info"
             target="_blank"
-            :title="text($t('fnav.benevalo.t1'))"
+            :title="$t('fnav.benevalo.t1', '-t')"
           >
-            <i
-              :class="`fa fa-fw fa-lg ${$t('icon.benevalo')}`"
-              aria-hidden="true"
-            ></i>
-            <span v-text="text($t('fnav.benevalo.name'))"></span>
+            <icon
+              :name="$t('icon.benevalo')"
+              size="lg fa-fw"
+              :label="$t('fnav.benevalo.name', '-t')"
+            />
           </b-nav-item>
 
           <!-- MyFrama button -->
@@ -120,16 +114,16 @@
             v-b-popover:f-nav.bottomleft.hover.focus.html="$t('fnav.myframa.d1')"
             :href="myframa"
             link-classes="btn btn-primary d-md-none d-lg-block"
-            :title="text($t('fnav.myframa.t1'))"
+            :title="$t('fnav.myframa.t1', '-t')"
             @click.prevent="openMyframa()"
             @mouseover="myFramaLabel = $t('txt.my')"
             @mouseout="myFramaLabel = $t('txt.bookmarkThisPage')"
           >
-            <i
-              :class="`fa fa-fw fa-lg ${$t('icon.my')}`"
-              aria-hidden="true"
-            ></i>
-            <span v-html="myFramaLabel"></span>
+            <icon
+              :name="$t('icon.my')"
+              size="lg fa-fw"
+              :label="myFramaLabel"
+            />
           </b-nav-item>
         </b-navbar-nav>
       </b-collapse>
