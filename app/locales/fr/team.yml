@@ -24,7 +24,7 @@ presentation:
   trad: (traduction de la documentation officielle par l’équipe @:html.lang)
   h2_2: Le logiciel
   framaware: '@:color.team repose sur le logiciel libre <a href="https://about.mattermost.com/">Mattermost</a>.'
-  license: Mattermost est sous licence @:license.mit</>.
+  license: Mattermost est sous licence @:(license.mit).
   h2_3: Cultivez votre jardin
   contrib_upstream: Pour participer au développement du logiciel,
     proposer des améliorations ou simplement le télécharger, rendez-vous sur

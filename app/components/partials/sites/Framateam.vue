@@ -130,7 +130,10 @@
                 role="presentation"
                 aria-hidden="true"
               >
-                <icon name="question-circle" />
+                <icon 
+                  name="question-circle"
+                  size="5x"
+                />
               </p>
               <p v-html="$t('team.presentation.serviceby')"></p>
               <ol>
@@ -158,7 +161,10 @@
                 role="presentation"
                 aria-hidden="true"
               >
-                <icon name="cloud" />
+                <icon 
+                  name="cloud"
+                  size="5x"
+                />
               </p>
               <p v-html="$t('team.presentation.framaware')"></p>
               <p v-html="$t('team.presentation.license')"></p>
@@ -173,7 +179,10 @@
                 role="presentation"
                 aria-hidden="true"
               >
-                <icon name="leaf" />
+                <icon 
+                  name="leaf" 
+                  size="5x"
+                />
               </p>
               <p v-html="$t('team.presentation.contrib_upstream')"></p>
               <br />
