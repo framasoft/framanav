@@ -15,7 +15,7 @@ presentation:
   serviceby: '@:color.team is a free/libre <b>chat</b> service to communicate
     with a team providing colleagues’ notifications, conversation history and searching.'
   createyours: Create your team
-  invite: Invite members
+  invite: Invite members (maximum 250 per team)
   newchans: Create channels (public or private)
   aide: Help
   learn: 'To learn how to format messages, use emoticons, share images and
