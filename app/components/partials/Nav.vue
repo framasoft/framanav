@@ -7,6 +7,7 @@
 
     <Feedback v-if="testing.feedback && this.$t('inframe') === 'false'" />
 
+    <AlertDeframa />
     <AlertInfo />
     <ModalInfo />
     <ModalDon v-if="cortexReady" />
@@ -27,6 +28,7 @@ import Cortex from './Cortex.vue';
 
 import HeaderMenu from './HeaderMenu.vue'; /* TODO : replace by PopMenu */
 
+import AlertDeframa from './AlertDeframa.vue';
 import AlertInfo from './AlertInfo.vue';
 import ModalInfo from './ModalInfo.vue';
 import ModalDon from './ModalDon.vue';
@@ -48,6 +50,7 @@ export default {
     Cortex,
     HeaderMenu,
 
+    AlertDeframa,
     AlertInfo,
     ModalInfo,
     ModalDon,
