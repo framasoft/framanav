@@ -22,7 +22,7 @@
 [data-url*="://contributopia.org"],
 
 [data-inframe="true"] {
-  #f-alert {
+  #f-alert, #f-alert-deframa {
     display: none !important;
   }
 
@@ -61,7 +61,7 @@
 [data-url*="://docs.framasoft.org"],
 [data-url*="://framacloud.org"],
 [data-url*="://participer.framasoft.org"] {
-  #f-alert {
+  #f-alert, #f-alert-deframa {
     display: none !important;
   }
 }
