@@ -133,6 +133,14 @@ export default {
               ];
             }
             break;
+          case 'mindmap':
+            if (navigator.userAgent.match('Chrome')) {
+              c = [
+                'warning',
+                `Un bug avec le logiciel Wisemapping (qui n'est plus développé) empêche l'utilisation de ${this.$t('color.mindmap')} avec les versions récentes du navigateur Chrome (et dérivés). Nous vous conseillons d'utiliser Firefox en attendant qu'une solution à ce problème soit trouvée.`
+              ];
+            }
+            break;
           default:
             // no-default
             break;
