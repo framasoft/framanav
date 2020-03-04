@@ -369,6 +369,7 @@ export default {
                 html[0].lang = 'en';
                 this.$i18n.locale = 'en';
               }
+              return;
             }
             if (document.getElementById('userSettingsBtn')
               && document.getElementById('userSettingsBtn').innerHTML === 'Compte'
