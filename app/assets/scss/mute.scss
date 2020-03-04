@@ -40,7 +40,7 @@
 /* No alert only */
 /* ------------------------------------------------------------------ */
 /* Ethercalc */
-[data-url*="framacalc.org/"]:not([data-url$="/_start"]):not([data-url$="framacalc.org/"]),
+[data-url*="framacalc.org/"]:not([data-url$="/_start"]):not([data-url*="accueil.framacalc.org/"]),
 
 [data-url*="://framacarte.org"][data-url*="/map/"],                     /* uMap */
 [data-url*=".frama.site/admin"],                                        /* Grav */
