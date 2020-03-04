@@ -360,7 +360,16 @@ export default {
         case 'mindmap':
           this.js = function mindmap() {
             const html = document.getElementsByTagName('html');
-            if (document.getElementById('SignIn')) return;
+            const lang = navigator.languages || [navigator.language];
+            if (document.getElementById('SignIn')) {
+              if (lang[0].substr(0, 2) === 'fr') {
+                html[0].lang = 'fr';
+                this.$i18n.locale = 'fr';
+              } else {
+                html[0].lang = 'en';
+                this.$i18n.locale = 'en';
+              }
+            }
             if (document.getElementById('userSettingsBtn')
               && document.getElementById('userSettingsBtn').innerHTML === 'Compte'
               && html[0].getAttribute('lang') !== 'fr') {
