@@ -360,6 +360,7 @@ export default {
         case 'mindmap':
           this.js = function mindmap() {
             const html = document.getElementsByTagName('html');
+            if (document.getElementById('SignIn')) return;
             if (document.getElementById('userSettingsBtn')
               && document.getElementById('userSettingsBtn').innerHTML === 'Compte'
               && html[0].getAttribute('lang') !== 'fr') {
