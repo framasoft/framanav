@@ -135,10 +135,17 @@ export default {
             break;
           case 'mindmap':
             if (navigator.userAgent.match('Chrome')) {
-              c = [
-                'warning',
-                `Un bug avec le logiciel Wisemapping (qui n'est plus développé) empêche l'utilisation de ${this.$t('color.mindmap')} avec les versions récentes du navigateur Chrome (et dérivés). Nous vous conseillons d'utiliser Firefox en attendant qu'une solution à ce problème soit trouvée.`
-              ];
+              if (this.$t('lang') === 'fr') {
+                c = [
+                  'warning',
+                  `Un bug avec le logiciel Wisemapping (qui n'est plus développé) empêche l'utilisation de ${this.$t('color.mindmap')} avec les versions récentes du navigateur Chrome (et dérivés). Nous vous conseillons d'utiliser Firefox en attendant qu'une solution à ce problème soit trouvée.`
+                ];
+              } else {
+                c = [
+                  'warning',
+                  `A bug with the Wisemapping software (which is no longer developed) prevents the use of ${this.$t('color.mindmap')} with recent versions of the Chrome browser (and derivatives). We advise you to use Firefox until a solution to this problem is found.`
+                ];
+              }
             }
             break;
           default:
