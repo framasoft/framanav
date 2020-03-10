@@ -148,6 +148,32 @@ export default {
               }
             }
             break;
+          case 'talk':
+            if (this.$t('lang') === 'fr') {
+              c = [
+                'warning',
+                `Suite à une très forte et soudaine augmentation de l'utilisation du service ${this.$t('color.talk')},
+                nous allons procéder à une migration en urgence le 10 mars 2020&nbsp;:
+                <a href="https://status.framasoft.org/incident/592">plus d'informations ici</a>.
+                Le nouveau serveur, plus puissant, devrait permettre d'atténuer les ralentissements
+                et bugs rencontrés sur ${this.$t('color.talk')} ces derniers jours.<br>
+                Nous rappelons que si ${this.$t('color.talk')} est gratuit, c'est grâce aux dons qui financent
+                notre association loi 1901&nbsp;: vous pouvez
+                <a href="https://soutenir.framasoft.org" target="_blank">nous soutenir ici</a>.`,
+              ];
+            } else {
+              c = [
+                'warning',
+                `Due to a very sudden increase in the use of the ${this.$t('color.talk')} service,
+                 we will carry out an emergency migration on March 10th, 2020:
+                 <a href="https://status.framasoft.org/incident/592">more info here</a>.
+                 The new server, more powerful, should help mitigate the slowdowns and bugs encountered on
+                 ${this.$t('color.talk')} in recent days.<br>
+                 Please note that ${this.$t('color.talk')} is free thanks to the donations that support our
+                 not-for-profit association. You can <a href="https://soutenir.framasoft.org" target="_blank">support us here</a>.`,
+              ];
+            }
+            break;
           default:
             // no-default
             break;
