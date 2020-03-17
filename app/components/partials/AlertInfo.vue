@@ -148,28 +148,6 @@ export default {
               }
             }
             break;
-          case 'talk':
-            if (this.$t('lang') === 'fr') {
-              c = [
-                'warning',
-                `Suite à une très forte et soudaine augmentation de l'utilisation du service ${this.$t('color.talk')},
-                nous sommes en train de procéder à des ajustements afin d'améliorer le service pour tout le monde,
-                ce qui peut temporairement poser des problèmes lors de l'utilisation du service.<br>
-                Nous rappelons que si ${this.$t('color.talk')} est gratuit, c'est grâce aux dons qui financent
-                notre association loi 1901&nbsp;: vous pouvez
-                <a href="https://soutenir.framasoft.org" target="_blank">nous soutenir ici</a>.`,
-              ];
-            } else {
-              c = [
-                'warning',
-                `Due to a very sudden increase in the use of the ${this.$t('color.talk')} service,
-                 we are in the process of making adjustments to improve service for everyone,
-                 which may temporarily cause problems when using the service.<br>
-                 Please note that ${this.$t('color.talk')} is free thanks to the donations that support our
-                 not-for-profit association. You can <a href="https://soutenir.framasoft.org" target="_blank">support us here</a>.`,
-              ];
-            }
-            break;
           default:
             // no-default
             break;
