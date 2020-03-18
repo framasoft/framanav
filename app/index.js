@@ -162,12 +162,12 @@ if (/framadate/.test(data.host)) { data.site = 'date'; }
 if (/framacalc/.test(data.host)) { data.site = 'calc'; }
 
 // [site] Exceptions Framapad
-if (/(mypads|beta3).framapad.org/.test(data.host)) {
+if (/(mypads2?|beta3).framapad.org/.test(data.host)) {
   data.site = 'mypads';
   data.name = 'Framapad';
 }
 if ((/.framapad/.test(data.host) && !/mypads./.test(data.host))
-  || (/(mypads|beta3).framapad/.test(data.host) && /\/p\//.test(data.url))) {
+  || (/(mypads2?|beta3).framapad/.test(data.host) && /\/p\//.test(data.url))) {
   data.site = 'etherpad';
   data.name = 'Framapad';
 }

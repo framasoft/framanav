@@ -60,7 +60,8 @@
   }
 }
 
-[data-url*="mypads.framapad.org/mypads/"] {
+[data-url*="mypads.framapad.org/mypads/"],
+[data-url*="mypads2.framapad.org/mypads/"] {
   .container-fluid.ombre {
     box-shadow: none;
     padding-bottom: 15px;
