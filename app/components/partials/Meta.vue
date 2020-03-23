@@ -11,7 +11,10 @@ export default {
   mounted() {
     // Favicons
     const icons = [{}, {}];
-    document.querySelectorAll('link[rel*=icon]').forEach(e => e.parentNode.removeChild(e));
+    
+    if (!/(team)/i.test(this.$t('host'))) {
+      document.querySelectorAll('link[rel*=icon]').forEach(e => e.parentNode.removeChild(e));
+    }
 
     const regSites = new RegExp([
       '(agenda', 'bag', 'bee', 'bin', 'blog', 'board',
@@ -32,24 +35,27 @@ export default {
       icons[0].file = 'fav_pad.png';
       icons[1].file = 'pad.png';
     }
+    
+    
+    if (!/(team)/i.test(this.$t('host'))) {
+      icons[0].file = icons[0].file || 'favicon-violet.png';
+      icons[0].link = document.createElement('link');
+      Object.assign(icons[0].link, {
+        rel: 'icon',
+        type: 'image/png',
+        href: `${this.$t('baseurl')}icons/${icons[0].file}`,
+      });
+      document.getElementsByTagName('head')[0].appendChild(icons[0].link);
 
-    icons[0].file = icons[0].file || 'favicon-violet.png';
-    icons[0].link = document.createElement('link');
-    Object.assign(icons[0].link, {
-      rel: 'icon',
-      type: 'image/png',
-      href: `${this.$t('baseurl')}icons/${icons[0].file}`,
-    });
-    document.getElementsByTagName('head')[0].appendChild(icons[0].link);
-
-    icons[1].file = icons[1].file || 'apple-orange.png';
-    icons[1].link = document.createElement('link');
-    Object.assign(icons[1].link, {
-      rel: 'apple-touch-icon',
-      type: 'image/png',
-      href: `${this.$t('baseurl')}icons/${icons[1].file}`,
-    });
-    document.getElementsByTagName('head')[0].appendChild(icons[1].link);
+      icons[1].file = icons[1].file || 'apple-orange.png';
+      icons[1].link = document.createElement('link');
+      Object.assign(icons[1].link, {
+        rel: 'apple-touch-icon',
+        type: 'image/png',
+        href: `${this.$t('baseurl')}icons/${icons[1].file}`,
+      });
+      document.getElementsByTagName('head')[0].appendChild(icons[1].link);
+    }
 
     // RSS
     const rss = document.createElement('link');
