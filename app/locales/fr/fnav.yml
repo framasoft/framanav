@@ -483,7 +483,7 @@ sites:
     name: <abbr>CGU</abbr>
     link: https://framasoft.org/fr/cgu
   moderation:
-    name: Charte de moderation
+    name: Charte de modération
     link: https://framasoft.org/fr/moderation
   credits:
     name: Crédits
