@@ -91,11 +91,12 @@ export default {
     // Load Bootstrap CSS
     // Todo: build files from SASS
     let regSites = new RegExp([
-      '(bookin', 'drop', 'carte', 'frama.link', 'huit.re', 'memo', 'pic', 'stats)',
+      '(bookin', 'carte', 'frama.link', 'huit.re', 'memo', 'pic', 'stats)',
     ].join('|'), 'i');
     if (regSites.test(this.$t('host'))
       || this.$t('host') === 'framaboard.org'
       || this.$t('host') === 'framanotes.org'
+      || this.$t('host') === 'framadrop.org'
       || this.$t('url') === 'https://framaforms.org/'
       || this.$t('url') === 'https://frama.site'
       || this.$t('url') === 'https://frama.wiki') {
