@@ -13,7 +13,7 @@
     <ModalDon v-if="cortexReady" />
 
     <Framabin v-if="/:\/\/framabin.org.p/.test($t('url'))" />
-    <Framavox v-if="/:\/\/framavox.org/.test($t('url'))" />
+    <Framavox v-if="/:\/\/framavox.org/.test($t('url')) && this.testing.navpop" />
     <Framateam v-if="/:\/\/framateam.org/.test($t('url'))" />
 
     <Optin v-if="cortexReady" />
