@@ -14,9 +14,9 @@
       padding-top: 64px;
     }
   
-    .thread-sidebar {
-      top: 106px;
-      max-height: calc(100% - 106px);
+    .thread-sidebar[style] {
+      top: 106px !important;
+      max-height: calc(100% - 106px) !important;
     }
   }
 }
