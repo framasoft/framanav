@@ -1,4 +1,5 @@
 [data-url*="://framavox.org"] {
+  /* Fix Loomio */
   #app {
     background: #f5f5f5;
 
@@ -19,9 +20,12 @@
       max-height: calc(100% - 106px) !important;
     }
   }
-}
 
-[data-url*="://framavox.org"] {
+  .sidenav-left a[href="/contact"] { // contact form is broken
+    display: none;
+  }
+
+  /* Homepage */
   &#f-- {
     background: #eee;
   }
@@ -37,75 +41,7 @@
     }
   }
 
-  /* Fix nav
-  body > .navbar.navbar-top {
-    margin-top:42px;
-  }
-
-  header.lmo-navbar {
-    top: 42px;
-  }
-
-  .lmo-one-column-layout, .lmo-two-column-layout {
-    padding-top: 90px;
-  }*/
-
-  /* Fix Loomio
-  .navbar__middle a {
-    text-decoration: none !important;
-  }
-
-  md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar),
-  md-toolbar.md-default-theme:not(.md-menu-toolbar) h1, md-toolbar:not(.md-menu-toolbar) h1,
-  .modal-header-cancel-button {
-    background: #6A5687 !important;
-    color: #fff !important;
-  }
-
-  .sessions.new .terms,
-  .registrations.create .terms,
-  .registrations.new .terms,
-  .angular-feedback-card,
-  #dialogContent_3 .lmo-h3,
-  .signin_container .sign_up,
-  #sign-in .col-md-6:nth-child(1) > p:nth-child(3) {
-    display: none;
-  }
-
-  .sessions.new header h1,
-  .registrations.create header h1,
-  .registrations.new header h1 {
-    font-size: 48px !important;
-    margin-top: 20px !important;
-    margin-bottom: 10px !important;
-  }
-
-  .sessions.new .alert,
-  .registrations.create .alert,
-  .registrations.new .alert {
-    margin: 0 auto;
-  }
-
-  .container {
-    max-width: 100%;
-  }
-
-  .start-menu__modal-backdrop[style*="block"] {
-    display: none !important;
-  }
-
-  .thread-lintel__wrapper {
-    top:86px;
-  }
-
-  .start-menu__start-button {
-    background: #6A5687;
-  } */
-
-  .sidenav-left a[href="/contact"] { // contact form is broken
-    display: none;
-  }
-
+  /* Toggle visibility */
   .logged-out {
     #fp-vox[style] {
       display: block !important;
@@ -124,9 +60,5 @@
     #app {
       display : block;
     }
-
-    /* .md-dialog-container {
-      display: flex;
-    } */
   }
 }
