@@ -186,7 +186,7 @@ export default {
 
     setInterval(() => {
       if (/vox.org\/dashboard$/.test(window.location.href)
-        && !!document.querySelector('.lmo-navbar .navbar__sign-in')) {
+        && !!document.querySelector('.v-app-bar .navbar__sign-in')) {
         document.body.classList.add('logged-out');
       } else {
         document.body.classList.remove('logged-out');

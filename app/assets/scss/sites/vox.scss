@@ -1,11 +1,11 @@
 [data-url*="://framavox.org"] {
   #app {
     background: #f5f5f5;
-  
+
     .v-application--wrap > nav {
       padding-top: 42px;
     }
-  
+
     .v-application--wrap > header {
       top: 42px;
     }
@@ -13,7 +13,7 @@
     .v-application--wrap > main .v-content__wrap {
       padding-top: 64px;
     }
-  
+
     .thread-sidebar[style] {
       top: 106px !important;
       max-height: calc(100% - 106px) !important;
@@ -21,7 +21,7 @@
   }
 }
 
-[data-url*="://#framavox.org"] {
+[data-url*="://framavox.org"] {
   &#f-- {
     background: #eee;
   }
@@ -37,7 +37,7 @@
     }
   }
 
-  /* Fix nav */
+  /* Fix nav
   body > .navbar.navbar-top {
     margin-top:42px;
   }
@@ -48,9 +48,9 @@
 
   .lmo-one-column-layout, .lmo-two-column-layout {
     padding-top: 90px;
-  }
+  }*/
 
-  /* Fix Loomio */
+  /* Fix Loomio
   .navbar__middle a {
     text-decoration: none !important;
   }
@@ -100,9 +100,9 @@
 
   .start-menu__start-button {
     background: #6A5687;
-  }
+  } */
 
-  #menu_container_1 md-menu-item:nth-of-type(5) { // contact form is broken
+  .sidenav-left a[href="/contact"] { // contact form is broken
     display: none;
   }
 
@@ -111,10 +111,7 @@
       display: block !important;
     }
 
-    .md-dialog-container,
-    .md-scroll-mask,
-    .md-dialog-backdrop,
-    .lmo-navbar {
+    #app {
       display: none;
     }
   }
@@ -124,14 +121,12 @@
       display: none !important;
     }
 
-    .md-scroll-mask,
-    .md-dialog-backdrop,
-    .lmo-navbar {
+    #app {
       display : block;
     }
 
-    .md-dialog-container {
+    /* .md-dialog-container {
       display: flex;
-    }
+    } */
   }
 }
