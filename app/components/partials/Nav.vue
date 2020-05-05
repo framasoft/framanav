@@ -13,7 +13,7 @@
     <ModalDon v-if="cortexReady" />
 
     <Framabin v-if="/:\/\/framabin.org.p/.test($t('url'))" />
-    <Framavox v-if="/:\/\/framavox.org/.test($t('url')) && this.testing.navpop" />
+    <Framavox v-if="/:\/\/framavox.org/.test($t('url')) && testing.navpop" />
     <Framateam v-if="/:\/\/framateam.org/.test($t('url'))" />
 
     <Optin v-if="cortexReady" />
@@ -124,8 +124,7 @@ export default {
 
     // Modales, Carousel and Tabs need BootstrapJS
     regSites = new RegExp([
-      '(agenda', 'bookin', 'drive', 'memo)',
-    ].join('|'), 'i');
+      '(bookin', 'memo)'].join('|'), 'i');
     if (regSites.test(this.$t('host'))
       || this.$t('host') === 'framanotes.org'
       || this.$t('url') === 'https://framaforms.org/') {
